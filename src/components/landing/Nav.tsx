@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/seatsbrokers-logo.svg.asset.json";
+import logo from "@/assets/seatsbrokers-logo.png";
 
 const links = [
   { label: "About Us", href: "#about" },
@@ -29,14 +29,14 @@ export function Nav() {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <nav className="container-page flex h-18 items-center justify-between gap-6 py-3">
+      <nav className="container-nav flex h-18 w-full items-center justify-between gap-6 py-3 lg:py-3.5">
         <a href="#top" className="flex items-center">
           <img
-            src={logo.url}
+            src={logo}
             alt="SeatsBrokers"
             width={566}
             height={174}
-            className={`h-9 w-auto transition ${scrolled ? "" : "brightness-0 invert"}`}
+            className="h-14 w-auto max-w-[min(100%,280px)] object-contain sm:h-16"
           />
         </a>
 
@@ -85,7 +85,7 @@ export function Nav() {
 
       {open && (
         <div className="border-t border-border bg-background lg:hidden">
-          <div className="container-page flex flex-col gap-1 py-4">
+          <div className="container-nav flex flex-col gap-1 py-4">
             {links.map((l) => (
               <a
                 key={l.href}

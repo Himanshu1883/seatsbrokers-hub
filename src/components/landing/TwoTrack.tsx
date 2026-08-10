@@ -28,7 +28,7 @@ const tracks = [
 
 export function TwoTrack() {
   return (
-    <section id="about" className="bg-surface py-24">
+    <section id="about" className="section-curve bg-surface py-24">
       <div className="container-page">
         <Reveal>
           <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">

@@ -9,7 +9,7 @@ const pillars = [
 
 export function GlobalReach() {
   return (
-    <section id="network" className="scroll-mt-24 bg-background py-24">
+    <section id="network" className="section-curve scroll-mt-24 bg-background py-24">
       <div className="container-page grid gap-14 lg:grid-cols-2 lg:items-center">
         <Reveal>
           <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">

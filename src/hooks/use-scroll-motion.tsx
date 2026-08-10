@@ -48,6 +48,13 @@ export function useTypewriter(phrases: string[], speed = 70, pause = 1600) {
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
+  const phraseKey = phrases.join("\u0000");
+
+  useEffect(() => {
+    setText("");
+    setIndex(0);
+    setDeleting(false);
+  }, [phraseKey]);
 
   useEffect(() => {
     const current = phrases[index % phrases.length] ?? "";

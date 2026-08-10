@@ -27,7 +27,7 @@ const tiles = [
 
 export function MarketIntelligence() {
   return (
-    <section className="bg-dark py-24 text-background">
+    <section className="section-curve bg-dark py-24 text-background">
       <div className="container-page grid gap-14 lg:grid-cols-[1.05fr_1fr]">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Reveal>

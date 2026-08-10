@@ -15,7 +15,7 @@ const marketplaces = [
 
 export function Marketplaces() {
   return (
-    <section className="border-y border-border bg-background py-14">
+    <section className="section-curve bg-background py-14">
       <div className="container-page">
         <Reveal>
           <p className="text-center font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">

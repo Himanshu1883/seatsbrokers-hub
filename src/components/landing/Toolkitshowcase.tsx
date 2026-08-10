@@ -1,0 +1,430 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { MouseEvent as ReactMouseEvent } from "react";
+import {
+  ArrowRight,
+  BarChart3,
+  DollarSign,
+  Layers,
+  RefreshCw,
+  Users,
+} from "lucide-react";
+import { Reveal } from "@/hooks/use-scroll-motion";
+
+import eventsImg from "@/assets/product-events-browser.png";
+import analyticsImg from "@/assets/product-analytics-dashboard.png";
+
+const AUTO_ADVANCE_MS = 5200;
+
+const items = [
+  {
+    id: "marketplace-hub",
+    icon: RefreshCw,
+    tag: "Marketplace Hub",
+    headline: "List once and sell across every channel fans use",
+    detail:
+      "Publish from SeatsBrokers to StubHub, Viagogo, and regional OTAs — section splits, holds, and delivery rules stay attached to every listing.",
+    kind: "screenshot" as const,
+    image: eventsImg,
+    imageAlt: "SeatsBrokers events browser with live inventory ready to publish",
+    metric: { value: "8+", label: "connected marketplaces" },
+    telemetry: ["unified catalog", "live sync", "holds enforced"],
+    hudPath: "app.seatsbrokers.com / events",
+  },
+  {
+    id: "smart-pricing",
+    icon: DollarSign,
+    tag: "Smart Pricing",
+    headline: "Reprice around the clock without leaving your desk",
+    detail:
+      "Floors, ceilings, and undercut logic track live comparables and margin guards — so inventory moves before kickoff, not after the final whistle.",
+    kind: "chart" as const,
+    metric: { value: "24/7", label: "repricing engine" },
+    telemetry: ["comparables live", "guardrails on", "desk overrides"],
+    hudPath: "app.seatsbrokers.com / pricing",
+  },
+  {
+    id: "fulfilment",
+    icon: Layers,
+    tag: "Fulfilment",
+    headline: "Confirm and deliver on the path ops can audit",
+    detail:
+      "Mobile transfer, PDF, and will-call orders flow through one queue — auto-routed to the cheapest compliant delivery with SLA tracking built in.",
+    kind: "queue" as const,
+    metric: { value: "99.4%", label: "SLA met" },
+    telemetry: ["auto-routing", "verified barcodes", "full audit trail"],
+    hudPath: "app.seatsbrokers.com / orders",
+  },
+  {
+    id: "marketiq",
+    icon: BarChart3,
+    tag: "MarketIQ",
+    headline: "Trade on the same intelligence the platform runs on",
+    detail:
+      "Revenue trends, category mix, and Market Insight API depth — merged floors and scraper visibility for pricing desks, not stale spreadsheets.",
+    kind: "screenshot" as const,
+    image: analyticsImg,
+    imageAlt: "SeatsBrokers analytics dashboard with revenue and category trends",
+    metric: { value: "1.5M+", label: "tickets tracked" },
+    telemetry: ["8 live sources", "Market Insight API", "sub-second refresh"],
+    hudPath: "app.seatsbrokers.com / dashboard",
+  },
+  {
+    id: "partner-network",
+    icon: Users,
+    tag: "Partner Network",
+    headline: "Broker-to-broker trades with settlement you can reconcile",
+    detail:
+      "Trade inside the SeatsBrokers network with transparent margins, KYC-ready onboarding, and payout statements finance closes in one export.",
+    kind: "table" as const,
+    metric: { value: "10K+", label: "active partners" },
+    telemetry: ["desks online", "escrow ready", "165 countries"],
+    hudPath: "app.seatsbrokers.com / network",
+    cta: "Get Started",
+  },
+] as const;
+
+function ChartMock() {
+  const bars = [55, 80, 40, 95, 65, 75, 50];
+  return (
+    <div className="flex h-full flex-col justify-between bg-background p-5 sm:p-6">
+      <div className="flex items-center justify-between gap-3">
+        <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
+          Live price feed
+        </span>
+        <span className="flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 font-mono text-[10px] font-semibold text-primary">
+          <span className="toolkit-live-dot" aria-hidden />
+          Auto-adjusting
+        </span>
+      </div>
+      <div className="flex h-32 items-end gap-2 sm:h-40 sm:gap-2.5">
+        {bars.map((h, i) => (
+          <div
+            key={i}
+            className="toolkit-bar flex-1 rounded-t-md bg-gradient-to-t from-primary to-primary/35"
+            style={{ height: `${h}%`, animationDelay: `${i * 70}ms` }}
+          />
+        ))}
+      </div>
+      <div className="grid grid-cols-3 gap-3 border-t border-border pt-4 font-mono text-[11px]">
+        <div>
+          <span className="text-muted-foreground">Floor</span>
+          <div className="mt-0.5 font-semibold text-foreground">$180</div>
+        </div>
+        <div>
+          <span className="text-muted-foreground">Current</span>
+          <div className="mt-0.5 font-semibold text-primary">$247 ▲</div>
+        </div>
+        <div>
+          <span className="text-muted-foreground">Ceiling</span>
+          <div className="mt-0.5 font-semibold text-foreground">$310</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function QueueMock() {
+  const rows = [
+    { evt: "Cowboys vs Eagles · Sec 214", status: "Confirmed" },
+    { evt: "Coldplay World Tour · Floor B", status: "Transferred" },
+    { evt: "Lakers vs Celtics · Sec 108", status: "Confirmed" },
+    { evt: "F1 Grand Prix · Grandstand C", status: "Routing…" },
+  ];
+  return (
+    <div className="flex h-full flex-col bg-background p-5 sm:p-6">
+      <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
+        Order queue
+      </span>
+      <div className="mt-4 flex flex-1 flex-col justify-center gap-2.5">
+        {rows.map((r, i) => (
+          <div
+            key={r.evt}
+            className="toolkit-row flex items-center justify-between gap-3 rounded-lg border border-border bg-muted/40 px-4 py-3"
+            style={{ animationDelay: `${i * 90}ms` }}
+          >
+            <span className="truncate font-mono text-[11px] font-medium text-foreground">
+              {r.evt}
+            </span>
+            <span
+              className={`shrink-0 rounded-full px-2.5 py-0.5 font-mono text-[10px] font-semibold ${
+                r.status === "Routing…"
+                  ? "bg-muted text-muted-foreground"
+                  : "bg-primary/12 text-primary"
+              }`}
+            >
+              {r.status}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TableMock() {
+  const rows = [
+    { broker: "Broker #4471", tickets: 240, margin: "18%" },
+    { broker: "Broker #2093", tickets: 118, margin: "22%" },
+    { broker: "Broker #5588", tickets: 76, margin: "15%" },
+  ];
+  return (
+    <div className="flex h-full flex-col bg-background p-5 sm:p-6">
+      <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
+        Broker-to-broker trades
+      </span>
+      <div className="mt-4 grid grid-cols-3 gap-2 border-b border-border pb-2 font-mono text-[10px] font-semibold tracking-wide text-muted-foreground uppercase">
+        <span>Broker</span>
+        <span className="text-right">Tickets</span>
+        <span className="text-right">Margin</span>
+      </div>
+      <div className="flex-1 divide-y divide-border">
+        {rows.map((r, i) => (
+          <div
+            key={r.broker}
+            className="toolkit-row grid grid-cols-3 gap-2 py-3 font-mono text-[11px]"
+            style={{ animationDelay: `${i * 90}ms` }}
+          >
+            <span className="font-medium text-foreground">{r.broker}</span>
+            <span className="text-right text-foreground">{r.tickets}</span>
+            <span className="text-right font-semibold text-primary">{r.margin}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MockSurface({ item }: { item: (typeof items)[number] }) {
+  if (item.kind === "screenshot") {
+    return (
+      <img
+        src={item.image}
+        alt={item.imageAlt}
+        loading="lazy"
+        className="size-full bg-background object-cover object-top"
+      />
+    );
+  }
+  if (item.kind === "chart") return <ChartMock />;
+  if (item.kind === "queue") return <QueueMock />;
+  return <TableMock />;
+}
+
+export function ToolkitShowcase() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const stackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setInterval(
+      () => setActive((prev) => (prev + 1) % items.length),
+      AUTO_ADVANCE_MS,
+    );
+    return () => window.clearInterval(id);
+  }, [paused, active]);
+
+  const handleParallax = useCallback((e: ReactMouseEvent<HTMLDivElement>) => {
+    const el = stackRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--tk-px", ((e.clientX - rect.left) / rect.width - 0.5).toFixed(3));
+    el.style.setProperty("--tk-py", ((e.clientY - rect.top) / rect.height - 0.5).toFixed(3));
+  }, []);
+
+  const resetParallax = useCallback(() => {
+    const el = stackRef.current;
+    if (!el) return;
+    el.style.setProperty("--tk-px", "0");
+    el.style.setProperty("--tk-py", "0");
+  }, []);
+
+  const activeItem = items[active] ?? items[0];
+  const nextItem = items[(active + 1) % items.length] ?? items[0];
+
+  return (
+    <section
+      id="platform-toolkit"
+      className="toolkit section-curve-sticky relative isolate scroll-mt-24 overflow-hidden text-background min-h-[100dvh] flex flex-col py-10 sm:py-12 lg:py-14"
+      aria-label="Platform toolkit"
+    >
+      <span className="toolkit-bg-grid" aria-hidden />
+      <span className="toolkit-bg-scan" aria-hidden />
+
+      <div className="container-page relative z-10 flex min-h-0 flex-1 flex-col">
+        <Reveal>
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.24em] text-primary uppercase">
+                <span className="toolkit-live-dot" aria-hidden />
+                SeatsBrokers platform
+              </p>
+              <h2 className="mt-3 font-display text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.08] tracking-tight">
+                List once.{" "}
+                <span className="text-primary">Price smart. Deliver everywhere.</span>
+              </h2>
+            </div>
+            <p className="max-w-md text-sm leading-relaxed text-background/75 lg:text-right lg:text-[15px]">
+              The workspace brokers and travel partners use to publish inventory, reprice against live
+              comparables, fulfil orders, read MarketIQ, and trade inside our partner network — one
+              stack, production-ready.
+            </p>
+          </div>
+        </Reveal>
+
+        <div
+          className="toolkit-stage mt-8 grid min-h-0 flex-1 gap-10 lg:mt-10 lg:grid-cols-[0.92fr_1.15fr] lg:gap-10 xl:gap-14"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={(e) => {
+            if (!e.currentTarget.contains(e.relatedTarget as Node)) setPaused(false);
+          }}
+        >
+          {/* Progressive rail */}
+          <ul
+            className="toolkit-rail-list flex min-h-0 flex-col lg:max-h-[calc(100dvh-12rem)] lg:overflow-y-auto lg:pr-2"
+            role="tablist"
+            aria-label="Platform modules"
+          >
+            {items.map((item, i) => {
+              const state = i === active ? "active" : i < active ? "done" : "idle";
+              const Icon = item.icon;
+              return (
+                <li key={item.id} className="toolkit-step relative pl-6" data-state={state}>
+                  <span className="toolkit-rail" aria-hidden>
+                    <span
+                      key={`${item.id}-${active}-${paused}`}
+                      className="toolkit-rail-fill"
+                      style={
+                        state === "active"
+                          ? {
+                              animationDuration: `${AUTO_ADVANCE_MS}ms`,
+                              animationPlayState: paused ? "paused" : "running",
+                            }
+                          : undefined
+                      }
+                    />
+                  </span>
+
+                  <button
+                    type="button"
+                    role="tab"
+                    id={`toolkit-tab-${item.id}`}
+                    aria-selected={state === "active"}
+                    aria-controls="toolkit-panel"
+                    onClick={() => setActive(i)}
+                    className="toolkit-step-button w-full py-4 text-left sm:py-5 lg:py-3.5 xl:py-4"
+                  >
+                    <span className="toolkit-chip">
+                      <Icon className="size-3.5" strokeWidth={2} aria-hidden />
+                      {item.tag}
+                    </span>
+
+                    <p className="toolkit-headline mt-3 font-display text-lg font-bold leading-snug tracking-tight sm:text-xl">
+                      {item.headline}
+                    </p>
+
+                    <div className="toolkit-reveal">
+                      <p className="max-w-md pt-3 text-sm leading-relaxed text-background/80">
+                        {item.detail}
+                      </p>
+
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-4">
+                        {item.telemetry.map((t) => (
+                          <span key={t} className="toolkit-telemetry font-mono">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      {"cta" in item && item.cta ? (
+                        <a
+                          href="#sellers"
+                          className="lift mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
+                        >
+                          {item.cta}
+                          <ArrowRight className="size-4" aria-hidden />
+                        </a>
+                      ) : null}
+                    </div>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Layered panel stack */}
+          <div
+            id="toolkit-panel"
+            role="tabpanel"
+            aria-labelledby={`toolkit-tab-${activeItem.id}`}
+            className="lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100dvh-12rem)]"
+          >
+            <div
+              ref={stackRef}
+              className="toolkit-stack relative"
+              onMouseMove={handleParallax}
+              onMouseLeave={resetParallax}
+            >
+              <span className="toolkit-ghost toolkit-layer" aria-hidden />
+
+              <div className="toolkit-main toolkit-layer">
+                <div className="toolkit-hud">
+                  <span className="font-mono text-[10px] tracking-[0.16em] text-background/55 uppercase">
+                    {activeItem.hudPath}
+                  </span>
+                  <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.16em] text-primary uppercase">
+                    <span className="toolkit-live-dot" aria-hidden />
+                    live
+                  </span>
+                </div>
+
+                <div className="toolkit-screen">
+                  <div key={activeItem.id} className="toolkit-swap absolute inset-0">
+                    <MockSurface item={activeItem} />
+                  </div>
+                </div>
+
+                <div className="toolkit-segments" aria-hidden>
+                  {items.map((s, i) => (
+                    <span
+                      key={s.id}
+                      className="toolkit-segment"
+                      data-state={i === active ? "active" : i < active ? "done" : "idle"}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="toolkit-float toolkit-layer">
+                <div key={`float-${activeItem.id}`} className="toolkit-swap">
+                  <p className="font-display text-2xl font-bold text-primary sm:text-3xl">
+                    {activeItem.metric.value}
+                  </p>
+                  <p className="mt-1 font-mono text-[9px] tracking-[0.14em] text-background/70 uppercase">
+                    {activeItem.metric.label}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+              <p className="font-mono text-[10px] tracking-[0.14em] text-background/55 uppercase">
+                {activeItem.tag} · live on SeatsBrokers inventory
+              </p>
+              <button
+                type="button"
+                onClick={() => setActive((prev) => (prev + 1) % items.length)}
+                className="toolkit-next inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] text-primary uppercase"
+              >
+                next · {nextItem.tag}
+                <ArrowRight className="size-3.5" aria-hidden />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

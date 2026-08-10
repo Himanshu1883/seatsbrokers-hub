@@ -30,7 +30,7 @@ const quotes = [
 
 export function Testimonials() {
   return (
-    <section className="bg-surface py-24">
+    <section className="section-curve bg-surface py-24">
       <div className="container-page">
         <Reveal>
           <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">

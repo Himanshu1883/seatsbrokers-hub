@@ -1,24 +1,51 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/landing/Nav";
+import { Hero } from "@/components/landing/Hero";
+import { Marketplaces } from "@/components/landing/Marketplaces";
+import { TwoTrack } from "@/components/landing/TwoTrack";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { MarketIntelligence } from "@/components/landing/MarketIntelligence";
+import { SellerTools, TravelTools } from "@/components/landing/ToolsGrid";
+import { GlobalReach } from "@/components/landing/GlobalReach";
+import { Stats } from "@/components/landing/Stats";
+import { Testimonials } from "@/components/landing/Testimonials";
+import { FinalCTA } from "@/components/landing/FinalCTA";
+import { Footer } from "@/components/landing/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "SeatsBrokers — B2B Ticket Distribution & Market Intelligence";
+const description =
+  "List once and sell everywhere. SeatsBrokers connects brokers and travel partners to every major ticket marketplace with live pricing, verified inventory and clean settlement.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="bg-background">
+      <Nav />
+      <main>
+        <Hero />
+        <Marketplaces />
+        <TwoTrack />
+        <HowItWorks />
+        <MarketIntelligence />
+        <SellerTools />
+        <TravelTools />
+        <GlobalReach />
+        <Stats />
+        <Testimonials />
+        <FinalCTA />
+      </main>
+      <Footer />
     </div>
   );
 }

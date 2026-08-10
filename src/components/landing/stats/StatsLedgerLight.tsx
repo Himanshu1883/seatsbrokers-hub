@@ -1,4 +1,5 @@
 import { Reveal } from "@/hooks/use-scroll-motion";
+import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 
 const stats = [
   {
@@ -41,10 +42,11 @@ function CrosshairTicks() {
 export function StatsLedgerLight() {
   return (
     <section
-      className="section-curve stats-ledger py-20 sm:py-24"
+      className="section-curve stats-ledger relative isolate py-20 sm:py-24"
       aria-labelledby="stats-ledger-heading"
     >
-      <div className="container-page">
+      <SectionBackdrop image="basketball" tone="surface" strength={0.09} />
+      <div className="container-page relative z-10">
         <Reveal>
           <div className="flex items-center gap-3">
             <span className="relative flex h-2 w-2">

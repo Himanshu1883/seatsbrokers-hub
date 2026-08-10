@@ -15,6 +15,9 @@ import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 import { ToolkitShowcase } from "@/components/landing/Toolkitshowcase";
 import { ProcessBento } from "@/components/landing/Processbento";
+import { PartnerProductShowcase } from "@/components/landing/PartnerProductShowcase";
+import { NetworkConstellation } from "@/components/landing/NetworkConstellation";
+import { FeatureOrbit } from "@/components/landing/FeatureOrbit";
 
 const title = "SeatsBrokers — B2B Ticket Distribution & Market Intelligence";
 const description =
@@ -38,10 +41,13 @@ function Index() {
       <Nav />
       <main className="flex flex-col gap-1.5 sm:gap-2">
         <Hero />
+        <NetworkConstellation />
         <Marketplaces />
         <TwoTrack />
+        <FeatureOrbit />
         <ProcessBento />
         <HowItWorks />
+        <PartnerProductShowcase />
         <ToolkitShowcase />
         <StickyScrollShowcase />
         <MarketIntelligence />

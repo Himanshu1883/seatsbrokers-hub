@@ -1,4 +1,5 @@
 import { Reveal } from "@/hooks/use-scroll-motion";
+import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 
 const pillars = [
   { title: "Global reach", body: "165 countries, every major league, tour and festival circuit." },
@@ -9,8 +10,9 @@ const pillars = [
 
 export function GlobalReach() {
   return (
-    <section id="network" className="section-curve scroll-mt-24 bg-background py-24">
-      <div className="container-page grid gap-14 lg:grid-cols-2 lg:items-center">
+    <section id="network" className="section-curve relative isolate scroll-mt-24 bg-background py-24">
+      <SectionBackdrop image="motorsport" tone="light" strength={0.1} />
+      <div className="container-page relative z-10 grid gap-14 lg:grid-cols-2 lg:items-center">
         <Reveal>
           <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
             Global distribution

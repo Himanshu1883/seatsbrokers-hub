@@ -1,5 +1,6 @@
 import { Star } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
+import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 
 const quotes = [
   {
@@ -30,8 +31,9 @@ const quotes = [
 
 export function Testimonials() {
   return (
-    <section className="section-curve bg-surface py-24">
-      <div className="container-page">
+    <section className="section-curve relative isolate bg-surface py-24">
+      <SectionBackdrop image="trophy" tone="surface" strength={0.09} />
+      <div className="container-page relative z-10">
         <Reveal>
           <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
             Partner feedback

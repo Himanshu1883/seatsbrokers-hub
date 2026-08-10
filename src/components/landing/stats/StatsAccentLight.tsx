@@ -1,4 +1,5 @@
 import { Reveal } from "@/hooks/use-scroll-motion";
+import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 
 const heroStat = {
   icon: "◎",
@@ -31,10 +32,11 @@ const stats = [
 export function StatsAccentLight() {
   return (
     <section
-      className="section-curve bg-background py-20 sm:py-24"
+      className="section-curve relative isolate bg-background py-20 sm:py-24"
       aria-labelledby="stats-accent-heading"
     >
-      <div className="container-page">
+      <SectionBackdrop image="musicStage" tone="light" strength={0.1} />
+      <div className="container-page relative z-10">
         <Reveal>
           <p className="font-mono text-[11px] tracking-[0.24em] text-primary uppercase">
             By The Numbers

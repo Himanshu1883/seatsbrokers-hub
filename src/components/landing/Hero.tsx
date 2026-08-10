@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTypewriter } from "@/hooks/use-scroll-motion";
+import { HeroDashboardTilt } from "@/components/landing/HeroDashboardTilt";
 import heroStadium from "@/assets/hero-stadium.jpg";
 import heroChampionship from "@/assets/cta-trophy.jpg";
 import heroTravel from "@/assets/card-travel.jpg";
@@ -98,7 +99,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="section-curve-hero relative isolate grid h-dvh min-h-[36rem] grid-rows-[auto_1fr_auto]"
+      className="section-curve-hero relative isolate grid h-dvh min-h-[40rem] grid-rows-[auto_1fr_auto]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -126,7 +127,7 @@ export function Hero() {
       </div>
 
       <div
-        className="absolute inset-0 -z-10 bg-linear-to-br from-dark/93 via-dark/78 to-primary-deep/58"
+        className="absolute inset-0 -z-10 bg-linear-to-br from-dark/94 via-dark/82 to-primary-deep/55"
         aria-hidden
       />
 
@@ -134,63 +135,66 @@ export function Hero() {
 
       <div className="flex min-h-0 items-center overflow-y-auto">
         <div className="container-page w-full py-4 sm:py-6">
-          <div
-            key={motionKey}
-            className="hero-copy w-full max-w-3xl lg:max-w-[46rem]"
-          >
-            <p className="hero-copy-item hero-copy-delay-0 inline-flex items-center gap-2 rounded-full border border-background/20 bg-background/8 px-3 py-1.5 font-mono text-[10px] tracking-[0.2em] text-background/85 uppercase backdrop-blur-sm sm:text-[11px]">
-              <span className="size-1.5 shrink-0 rounded-full bg-primary" />
-              {slide.eyebrow}
-            </p>
+          <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-8 xl:gap-12">
+            <div key={motionKey} className="hero-copy w-full max-w-3xl lg:max-w-[40rem]">
+              <p className="hero-copy-item hero-copy-delay-0 inline-flex items-center gap-2 rounded-full border border-background/20 bg-background/8 px-3 py-1.5 font-mono text-[10px] tracking-[0.2em] text-background/85 uppercase backdrop-blur-sm sm:text-[11px]">
+                <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+                {slide.eyebrow}
+              </p>
 
-            <h1 className="hero-copy-item hero-copy-delay-1 mt-5 text-[clamp(2rem,5vw,3.25rem)] leading-[1.1] font-bold text-balance text-background sm:mt-6">
-              {slide.title}
-              <HeroTypewriter key={active} phrases={slide.typePhrases} />
-            </h1>
+              <h1 className="hero-copy-item hero-copy-delay-1 mt-5 text-[clamp(2rem,5vw,3.25rem)] leading-[1.1] font-bold text-balance text-background sm:mt-6">
+                {slide.title}
+                <HeroTypewriter key={active} phrases={slide.typePhrases} />
+              </h1>
 
-            <p className="hero-copy-item hero-copy-delay-2 mt-5 max-w-2xl font-display text-lg leading-snug font-medium tracking-tight text-background/92 sm:mt-6 sm:text-xl">
-              {slide.lead}
-            </p>
+              <p className="hero-copy-item hero-copy-delay-2 mt-5 max-w-2xl font-display text-lg leading-snug font-medium tracking-tight text-background/92 sm:mt-6 sm:text-xl">
+                {slide.lead}
+              </p>
 
-            <p className="hero-copy-item hero-copy-delay-3 mt-4 max-w-2xl text-base leading-relaxed text-pretty text-background/78 sm:text-[1.0625rem]">
-              {slide.body}
-            </p>
+              <p className="hero-copy-item hero-copy-delay-3 mt-4 max-w-2xl text-base leading-relaxed text-pretty text-background/78 sm:text-[1.0625rem]">
+                {slide.body}
+              </p>
 
-            <ul className="hero-copy-item hero-copy-delay-4 mt-6 space-y-2.5 border-l-2 border-primary/45 pl-4 sm:mt-7 sm:pl-5">
-              {slide.details.map((item) => (
-                <li
-                  key={item}
-                  className="flex gap-2.5 text-sm leading-relaxed text-background/82 sm:text-[0.9375rem]"
+              <ul className="hero-copy-item hero-copy-delay-4 mt-6 space-y-2.5 border-l-2 border-primary/45 pl-4 sm:mt-7 sm:pl-5">
+                {slide.details.map((item) => (
+                  <li
+                    key={item}
+                    className="flex gap-2.5 text-sm leading-relaxed text-background/82 sm:text-[0.9375rem]"
+                  >
+                    <span className="mt-2 size-1 shrink-0 rounded-full bg-primary" aria-hidden />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="hero-copy-item hero-copy-delay-5 mt-8 flex flex-wrap gap-3 sm:mt-9">
+                <a
+                  href="#sellers"
+                  className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
                 >
-                  <span className="mt-2 size-1 shrink-0 rounded-full bg-primary" aria-hidden />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+                  Become a Seller Partner
+                </a>
+                <a
+                  href="#travel"
+                  className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
+                >
+                  Become a Travel Partner
+                </a>
+              </div>
 
-            <div className="hero-copy-item hero-copy-delay-5 mt-8 flex flex-wrap gap-3 sm:mt-9">
-              <a
-                href="#sellers"
-                className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
-              >
-                Become a Seller Partner
-              </a>
-              <a
-                href="#travel"
-                className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
-              >
-                Become a Travel Partner
-              </a>
+              <ul className="hero-copy-item hero-copy-delay-6 mt-8 flex flex-col gap-2 font-mono text-[10px] tracking-[0.12em] text-background/65 uppercase sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:text-xs">
+                {["30+ Years in Ticketing", "10K+ Partners", "3 Global Offices"].map((t) => (
+                  <li key={t} className="flex items-center gap-2">
+                    <span className="size-1 shrink-0 rounded-full bg-primary" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <ul className="hero-copy-item hero-copy-delay-6 mt-8 flex flex-col gap-2 font-mono text-[10px] tracking-[0.12em] text-background/65 uppercase sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:text-xs">
-              {["30+ Years in Ticketing", "10K+ Partners", "3 Global Offices"].map((t) => (
-                <li key={t} className="flex items-center gap-2">
-                  <span className="size-1 shrink-0 rounded-full bg-primary" />
-                  {t}
-                </li>
-              ))}
-            </ul>
+            <div className="hero-copy-item hero-copy-delay-3 mx-auto w-full max-w-xl min-h-0 lg:mx-0 lg:max-w-none">
+              <HeroDashboardTilt />
+            </div>
           </div>
         </div>
       </div>

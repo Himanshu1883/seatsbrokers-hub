@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
+import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 import sellerImg from "@/assets/card-seller.jpg";
 import travelImg from "@/assets/card-travel.jpg";
 
@@ -28,8 +29,9 @@ const tracks = [
 
 export function TwoTrack() {
   return (
-    <section id="about" className="section-curve bg-surface py-24">
-      <div className="container-page">
+    <section id="about" className="section-curve relative isolate bg-surface py-24">
+      <SectionBackdrop image="concertCrowd" tone="surface" strength={0.1} />
+      <div className="container-page relative z-10">
         <Reveal>
           <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
             Two tracks, one platform

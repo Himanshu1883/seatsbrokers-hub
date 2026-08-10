@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Reveal, useTypewriter } from "@/hooks/use-scroll-motion";
 import { ArrowRight, Check } from "lucide-react";
+import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 
 import eventsImg from "@/assets/product-events-browser.png";
 import marketInsightImg from "@/assets/product-market-insight-api.png";
@@ -191,10 +192,11 @@ export function HowItWorks() {
     <section
       ref={sectionRef}
       id="how-it-works"
-      className="section-curve-sticky scroll-mt-24 bg-background py-24 lg:py-28"
+      className="section-curve-sticky relative isolate scroll-mt-24 bg-background py-24 lg:py-28"
       aria-label="How it works"
     >
-      <div className="container-page">
+      <SectionBackdrop image="venueSeats" tone="light" strength={0.09} />
+      <div className="container-page relative z-10">
         <Reveal>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">

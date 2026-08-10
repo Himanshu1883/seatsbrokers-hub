@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 import dashboardImg from "@/assets/dashboard.jpg";
 import sellerImg from "@/assets/card-seller.jpg";
 import travelImg from "@/assets/card-travel.jpg";
@@ -132,10 +133,11 @@ export function StickyScrollShowcase() {
     <section
       ref={sectionRef}
       id="platform"
-      className="section-curve-sticky scroll-mt-24 bg-surface"
+      className="section-curve-sticky relative isolate scroll-mt-24 bg-surface"
       aria-label="Platform capabilities"
     >
-      <div className="container-page">
+      <SectionBackdrop image="arenaNight" tone="surface" strength={0.1} />
+      <div className="container-page relative z-10">
         <div className="grid lg:grid-cols-2 lg:gap-10 xl:gap-16">
           <div className="relative hidden lg:block">
             <div className="sticky top-24 flex h-[calc(100dvh-6rem)] flex-col justify-center py-12">

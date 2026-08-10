@@ -1,4 +1,5 @@
 import { Reveal } from "@/hooks/use-scroll-motion";
+import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 
 const stats = [
   {
@@ -30,10 +31,11 @@ const stats = [
 export function StatsGlowLight() {
   return (
     <section
-      className="section-curve bg-surface py-20 sm:py-24"
+      className="section-curve relative isolate bg-surface py-20 sm:py-24"
       aria-labelledby="stats-glow-heading"
     >
-      <div className="container-page">
+      <SectionBackdrop image="footballNight" tone="surface" strength={0.1} />
+      <div className="container-page relative z-10">
         <Reveal>
           <h2
             id="stats-glow-heading"

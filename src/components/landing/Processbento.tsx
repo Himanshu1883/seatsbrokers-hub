@@ -1,4 +1,5 @@
 import { Reveal } from "@/hooks/use-scroll-motion";
+import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 
 function OnboardIllustration() {
   const nodes = [
@@ -232,8 +233,12 @@ export function ProcessBento() {
   const bottom = cards.slice(3);
 
   return (
-    <section id="partner-process" className="section-curve scroll-mt-24 bg-background py-20 sm:py-24">
-      <div className="container-page">
+    <section
+      id="partner-process"
+      className="section-curve relative isolate scroll-mt-24 bg-background py-20 sm:py-24"
+    >
+      <SectionBackdrop image="footballPitch" tone="light" strength={0.12} />
+      <div className="container-page relative z-10">
         <Reveal>
           <p className="font-mono text-[11px] font-bold tracking-[0.24em] text-primary uppercase">
             How we partner

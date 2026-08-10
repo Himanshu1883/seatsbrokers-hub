@@ -1,7 +1,6 @@
 import {
   BadgeCheck,
   Boxes,
-  CalendarClock,
   ClipboardList,
   Clock4,
   Gauge,
@@ -11,7 +10,6 @@ import {
   Receipt,
   ShieldCheck,
   Send,
-  Ticket,
   Wallet,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
@@ -100,5 +98,3 @@ export function TravelTools() {
     />
   );
 }
-
-export const toolIcons = { CalendarClock, Ticket };

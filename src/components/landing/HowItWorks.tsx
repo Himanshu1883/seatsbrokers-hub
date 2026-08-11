@@ -3,7 +3,7 @@ import { Reveal, useTypewriter } from "@/hooks/use-scroll-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 
-import eventsImg from "@/assets/product-events-browser.png";
+import eventsImg from "@/assets/product-events-browser.jpg";
 import marketInsightImg from "@/assets/product-market-insight-api.png";
 import analyticsImg from "@/assets/product-analytics-dashboard.png";
 

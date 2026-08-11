@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 
-import eventsImg from "@/assets/product-events-browser.png";
+import eventsImg from "@/assets/product-events-browser.jpg";
 import analyticsImg from "@/assets/product-analytics-dashboard.png";
 
 const AUTO_ADVANCE_MS = 5200;

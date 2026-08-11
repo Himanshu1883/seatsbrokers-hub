@@ -117,7 +117,7 @@ export function PartnerProductShowcase() {
         <Reveal>
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-xl">
-              <p className="flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.22em] text-primary uppercase">
+              <p className="flex items-center gap-2 section-eyebrow text-primary">
                 <span className="partner-live-dot" aria-hidden />
                 Inside the partner workspace
               </p>

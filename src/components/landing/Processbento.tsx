@@ -54,8 +54,8 @@ function OnboardIllustration() {
 
 function AuditIllustration() {
   const rows = [
-    { label: "StubHub · listings", value: "2,418 synced", hot: false },
-    { label: "Viagogo · margin gap", value: "−4.2% vs floor", hot: true },
+    { label: "Marketplace 01 · listings", value: "2,418 synced", hot: false },
+    { label: "Marketplace 02 · margin gap", value: "−4.2% vs floor", hot: true },
     { label: "Market Insight API", value: "182 ms", hot: false },
     { label: "Hold conflicts", value: "0 open", hot: false },
     { label: "Channel coverage", value: "8 marketplaces", hot: true },
@@ -206,7 +206,7 @@ const cards = [
   },
   {
     title: "We audit your stack",
-    body: "Listings, marketplace exposure, pricing gaps, and hold risk — mapped across StubHub, Viagogo, and every channel you rely on today.",
+    body: "Listings, marketplace exposure, pricing gaps, and hold risk — mapped across every channel you rely on today.",
     Illustration: AuditIllustration,
   },
   {
@@ -240,7 +240,7 @@ export function ProcessBento() {
       <SectionBackdrop image="footballPitch" tone="light" strength={0.12} />
       <div className="container-page relative z-10">
         <Reveal>
-          <p className="font-mono text-[11px] font-bold tracking-[0.24em] text-primary uppercase">
+          <p className="section-eyebrow text-primary">
             How we partner
           </p>
           <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-4xl lg:text-[2.65rem]">

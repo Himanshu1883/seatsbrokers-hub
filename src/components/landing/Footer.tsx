@@ -15,7 +15,7 @@ export function Footer() {
     <footer className="section-curve bg-dark text-background">
       <div className="border-b border-background/10 bg-background/[0.03] py-8 sm:py-10">
         <div className="container-page flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-          <p className="font-mono text-[11px] tracking-[0.22em] text-primary uppercase">
+          <p className="section-eyebrow text-primary">
             Global B2B ticket infrastructure
           </p>
           <p className="max-w-xl text-sm leading-relaxed text-background/65 sm:text-right">

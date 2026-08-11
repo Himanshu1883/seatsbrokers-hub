@@ -14,7 +14,7 @@ export function GlobalReach() {
       <SectionBackdrop image="motorsport" tone="light" strength={0.1} />
       <div className="container-page relative z-10 grid gap-14 lg:grid-cols-2 lg:items-center">
         <Reveal>
-          <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
+          <p className="section-eyebrow text-primary">
             Global distribution
           </p>
           <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">

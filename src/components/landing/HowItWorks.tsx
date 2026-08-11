@@ -59,7 +59,7 @@ const steps = [
     tag: "DISTRIBUTE",
     title: "Distribute globally",
     subtitle: "Route orders. Settle clean. Scale volume.",
-    body: "Push inventory to StubHub, Viagogo, regional OTAs and your own channels — with automated routing, fulfilment SLAs and finance-ready statements. Revenue and ticket volume stay visible as the season moves.",
+    body: "Push inventory to every marketplace, regional channel, and your own outlets — with automated routing, fulfilment SLAs and finance-ready statements. Revenue and ticket volume stay visible as the season moves.",
     bullets: [
       "Trends dashboard: revenue and ticket volume by month, category mix and avg price",
       "Per-scraper visibility so you know where demand is landing",
@@ -200,7 +200,7 @@ export function HowItWorks() {
         <Reveal>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
+              <p className="section-eyebrow text-primary">
                 How it works
               </p>
               <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">
@@ -235,7 +235,7 @@ export function HowItWorks() {
         <div className="mt-12 grid lg:mt-14 lg:grid-cols-2 lg:gap-10 xl:gap-16">
           <div className="relative hidden lg:block">
             <div className="sticky top-24 flex h-[calc(100dvh-6rem)] flex-col justify-center py-8">
-              <p className="mb-2 text-center font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
+              <p className="mb-2 text-center section-eyebrow text-primary">
                 Live product · step {preview.n}
               </p>
               <p className="mb-4 text-center text-sm font-medium text-muted-foreground">
@@ -360,7 +360,7 @@ export function HowItWorks() {
         <Reveal delay={120}>
           <div className="mt-16 flex flex-col items-start justify-between gap-6 rounded-2xl border border-border bg-surface px-6 py-8 sm:flex-row sm:items-center sm:px-10">
             <div>
-              <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
+              <p className="section-eyebrow text-primary">
                 Ready to onboard
               </p>
               <p className="mt-2 max-w-xl text-base font-semibold text-foreground">

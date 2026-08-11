@@ -147,7 +147,7 @@ export function Testimonials() {
     >
       <div className="container-page relative z-10">
         <Reveal>
-          <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
+          <p className="section-eyebrow text-primary">
             Partner feedback
           </p>
           <h2

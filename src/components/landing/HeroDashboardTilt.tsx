@@ -29,10 +29,10 @@ const modes: { id: ModeId; label: string; url: string; status: string }[] = [
 
 function ModeIntel() {
   const sources = [
-    { name: "Ticombo", ask: "£180", tag: "BEST", hot: true },
-    { name: "Seatnet", ask: "£214", tag: "+18%", hot: false },
-    { name: "ZenSeats", ask: "£246", tag: "+37%", hot: false },
-    { name: "7Tickets", ask: "—", tag: "thin", hot: false },
+    { name: "Marketplace 01", ask: "£180", tag: "BEST", hot: true },
+    { name: "Marketplace 02", ask: "£214", tag: "+18%", hot: false },
+    { name: "Marketplace 03", ask: "£246", tag: "+37%", hot: false },
+    { name: "Marketplace 04", ask: "—", tag: "thin", hot: false },
   ];
   const bands = [35, 55, 80, 62, 90, 48, 72, 58];
   const heat = [0.2, 0.55, 0.9, 0.4, 0.7, 0.3, 0.85, 0.5, 0.65, 0.25, 0.95, 0.45];
@@ -232,12 +232,12 @@ function ModePricing() {
 
 function ModeSync() {
   const channels = [
-    { name: "StubHub", status: "Synced", ok: true },
-    { name: "Viagogo", status: "Synced", ok: true },
-    { name: "SeatGeek", status: "Pushing", ok: true },
-    { name: "Ticketmaster", status: "Queued", ok: false },
-    { name: "AXS", status: "Synced", ok: true },
-    { name: "OTAs", status: "3 live", ok: true },
+    { name: "Marketplace 01", status: "Synced", ok: true },
+    { name: "Marketplace 02", status: "Synced", ok: true },
+    { name: "Marketplace 03", status: "Pushing", ok: true },
+    { name: "Marketplace 04", status: "Queued", ok: false },
+    { name: "Marketplace 05", status: "Synced", ok: true },
+    { name: "Regional", status: "3 live", ok: true },
   ];
 
   return (

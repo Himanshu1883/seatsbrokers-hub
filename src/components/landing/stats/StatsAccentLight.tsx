@@ -52,7 +52,7 @@ export function StatsAccentLight() {
 
       <div className="container-page relative z-10">
         <Reveal>
-          <p className="font-mono text-[11px] tracking-[0.24em] text-primary uppercase">
+          <p className="section-eyebrow text-primary">
             By The Numbers
           </p>
           <h2

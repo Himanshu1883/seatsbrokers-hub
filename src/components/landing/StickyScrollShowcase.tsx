@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
-import dashboardImg from "@/assets/dashboard.jpg";
+import dashboardImg from "@/assets/dashboard.png";
 import sellerImg from "@/assets/card-seller.jpg";
 import travelImg from "@/assets/card-travel.jpg";
 import stadiumImg from "@/assets/hero-stadium.jpg";
@@ -11,7 +11,7 @@ const panels = [
     title: "Built for brokers",
     headline: "One catalog.",
     accent: "Every marketplace.",
-    body: "Publish inventory once and fan it out to StubHub, Viagogo, and the long tail — with splits, holds, and delivery rules intact.",
+    body: "Publish inventory once and fan it out to every connected marketplace and the long tail — with splits, holds, and delivery rules intact.",
     points: [
       "Unified listing with live sync across channels",
       "Smart pricing floors and margin guardrails",
@@ -219,7 +219,7 @@ export function StickyScrollShowcase() {
                   />
                 </div>
 
-                <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
+                <p className="section-eyebrow text-primary">
                   {panel.kicker}
                 </p>
                 <p className="mt-3 font-display text-sm font-semibold tracking-[0.08em] text-muted-foreground uppercase">

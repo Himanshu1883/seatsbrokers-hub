@@ -84,7 +84,7 @@ const sellerBlueprint: FlowBlueprint = {
     {
       lineLabel: "channel credentials",
       cardTitle: "Marketplace hub",
-      cardBody: "StubHub, Viagogo and regional OTAs served from one publish point.",
+      cardBody: "Major marketplaces and regional channels served from one publish point.",
       cardMetric: "8+",
       metricLabel: "Connected channels",
       processLabel: "Multi-channel listing & sync",
@@ -259,7 +259,7 @@ function FlowArchitecture({ blueprint }: { blueprint: FlowBlueprint }) {
       <SectionBackdrop image={blueprint.backdrop} tone="light" strength={0.1} />
       <div className="container-page relative z-10">
         <Reveal>
-          <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
+          <p className="section-eyebrow text-primary">
             {blueprint.eyebrow}
           </p>
           <h2

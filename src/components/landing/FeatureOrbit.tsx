@@ -43,7 +43,7 @@ const features: {
     italic: "sell everywhere",
     category: "Marketplace Hub",
     detail:
-      "Publish to StubHub, Viagogo, and regional OTAs — holds, splits, and delivery rules stay attached to every listing.",
+      "Publish to every connected marketplace and regional channel — holds, splits, and delivery rules stay attached to every listing.",
   },
   {
     id: "pricing",
@@ -96,20 +96,20 @@ const features: {
 ];
 
 const syncFeed = [
-  { label: "StubHub", detail: "Cowboys vs Eagles · Sec 214", ago: "2s ago" },
-  { label: "Viagogo", detail: "Champions League Final", ago: "6s ago" },
-  { label: "Vivid Seats", detail: "Coldplay World Tour", ago: "11s ago" },
-  { label: "SeatGeek", detail: "Lakers vs Celtics", ago: "18s ago" },
-  { label: "AXS", detail: "F1 Grand Prix · Grandstand C", ago: "24s ago" },
+  { label: "Marketplace 01", detail: "Cowboys vs Eagles · Sec 214", ago: "2s ago" },
+  { label: "Marketplace 02", detail: "Champions League Final", ago: "6s ago" },
+  { label: "Marketplace 03", detail: "Coldplay World Tour", ago: "11s ago" },
+  { label: "Marketplace 04", detail: "Lakers vs Celtics", ago: "18s ago" },
+  { label: "Marketplace 05", detail: "F1 Grand Prix · Grandstand C", ago: "24s ago" },
 ];
 
 const marketplaces = [
-  { name: "StubHub", status: "Synced" },
-  { name: "Viagogo", status: "Synced" },
-  { name: "Vivid Seats", status: "Synced" },
-  { name: "SeatGeek", status: "Synced" },
-  { name: "TicketNetwork", status: "Syncing" },
-  { name: "AXS", status: "Synced" },
+  { name: "Marketplace 01", status: "Synced" },
+  { name: "Marketplace 02", status: "Synced" },
+  { name: "Marketplace 03", status: "Synced" },
+  { name: "Marketplace 04", status: "Synced" },
+  { name: "Marketplace 05", status: "Syncing" },
+  { name: "Marketplace 06", status: "Synced" },
 ];
 
 function useAutoCycle(len: number) {
@@ -151,7 +151,7 @@ export function FeatureOrbit() {
       <div className="container-page relative">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="font-mono text-[11px] font-semibold tracking-[0.24em] text-primary uppercase">
+            <p className="section-eyebrow text-primary">
               Platform stack
             </p>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.85rem]">

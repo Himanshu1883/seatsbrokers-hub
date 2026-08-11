@@ -1,7 +1,7 @@
 import { Activity, LineChart, RefreshCw, Route } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
-import dashboardImg from "@/assets/dashboard.jpg";
+import dashboardImg from "@/assets/dashboard.png";
 
 const tiles = [
   {
@@ -33,7 +33,7 @@ export function MarketIntelligence() {
       <div className="container-page relative z-10 grid gap-14 lg:grid-cols-[1.05fr_1fr]">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Reveal>
-            <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
+            <p className="section-eyebrow text-primary">
               Live market intelligence
             </p>
             <h2 className="mt-4 text-3xl font-bold sm:text-4xl">

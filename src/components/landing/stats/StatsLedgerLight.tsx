@@ -53,7 +53,7 @@ export function StatsLedgerLight() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
             </span>
-            <p className="font-mono text-[11px] tracking-[0.24em] text-muted-foreground uppercase">
+            <p className="section-eyebrow text-muted-foreground">
               Network Metrics · Updated Live
             </p>
           </div>

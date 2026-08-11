@@ -6,6 +6,7 @@ import { TwoTrack } from "@/components/landing/TwoTrack";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { StickyScrollShowcase } from "@/components/landing/StickyScrollShowcase";
 import { MarketIntelligence } from "@/components/landing/MarketIntelligence";
+import { MarketPathScroll } from "@/components/landing/MarketPathScroll";
 import { SellerTools, TravelTools } from "@/components/landing/ToolsGrid";
 import { GlobalReach } from "@/components/landing/GlobalReach";
 import { GlobeScrollSection } from "@/components/landing/GlobeScrollSection";
@@ -17,6 +18,7 @@ import { ToolkitShowcase } from "@/components/landing/Toolkitshowcase";
 import { ProcessBento } from "@/components/landing/Processbento";
 import { PartnerProductShowcase } from "@/components/landing/PartnerProductShowcase";
 import { NetworkConstellation } from "@/components/landing/NetworkConstellation";
+import { JourneyNumbers } from "@/components/landing/JourneyNumbers";
 import { FeatureOrbit } from "@/components/landing/FeatureOrbit";
 
 const title = "SeatsBrokers — B2B Ticket Distribution & Market Intelligence";
@@ -45,12 +47,14 @@ function Index() {
         <Marketplaces />
         <TwoTrack />
         <FeatureOrbit />
+        <JourneyNumbers />
         <ProcessBento />
         <HowItWorks />
         <PartnerProductShowcase />
         <ToolkitShowcase />
         <StickyScrollShowcase />
         <MarketIntelligence />
+        {/* <MarketPathScroll /> */}
         <SellerTools />
         <TravelTools />
         <GlobalReach />

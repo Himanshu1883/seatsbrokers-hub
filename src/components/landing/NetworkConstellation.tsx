@@ -1,332 +1,414 @@
-import { useId, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   BarChart3,
-  Globe2,
   Layers,
   RefreshCw,
+  Send,
   Wallet,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
-import eventsImg from "@/assets/product-events-browser.png";
+import { GlobeCanvas } from "@/components/landing/globe/GlobeCanvas";
 
-type Satellite = {
+type Stage = {
   id: string;
+  index: string;
+  node: string;
   label: string;
-  detail: string;
+  title: string;
+  body: string;
   metric: string;
+  metricLabel: string;
+  lines: [string, string, string];
   icon: typeof RefreshCw;
-  x: number;
-  y: number;
-  c1x: number;
-  c1y: number;
-  c2x: number;
-  c2y: number;
 };
 
-const CENTER = { x: 50, y: 50 };
-
-const satellites: Satellite[] = [
+const stages: Stage[] = [
   {
-    id: "sync",
-    label: "Marketplace sync",
-    detail: "StubHub · Viagogo · OTAs",
-    metric: "8+ channels",
-    icon: RefreshCw,
-    x: 12,
-    y: 18,
-    c1x: 28,
-    c1y: 28,
-    c2x: 40,
-    c2y: 42,
-  },
-  {
-    id: "pricing",
-    label: "Smart pricing",
-    detail: "Floors · comparables · 24/7",
-    metric: "Auto-guardrails",
-    icon: BarChart3,
-    x: 88,
-    y: 16,
-    c1x: 72,
-    c1y: 26,
-    c2x: 60,
-    c2y: 40,
-  },
-  {
-    id: "intel",
-    label: "MarketIQ",
-    detail: "Live asks · BEST tags",
-    metric: "Sub-second",
+    id: "publish",
+    index: "01",
+    node: "Publish",
+    label: "Marketplace Hub",
+    title: "One catalogue. One publish point.",
+    body: "Upload inventory once with splits, holds, and delivery rules attached — the hub keeps every channel reading the same truth.",
+    metric: "1",
+    metricLabel: "upload per event",
+    lines: ["catalog.sync → unified", "holds.enforced → true", "splits.preserved → true"],
     icon: Layers,
-    x: 10,
-    y: 78,
-    c1x: 24,
-    c1y: 66,
-    c2x: 38,
-    c2y: 56,
   },
   {
-    id: "travel",
-    label: "Travel desks",
-    detail: "Itinerary-ready seats",
-    metric: "White-label",
-    icon: Globe2,
-    x: 90,
-    y: 76,
-    c1x: 76,
-    c1y: 64,
-    c2x: 62,
-    c2y: 54,
+    id: "distribute",
+    index: "02",
+    node: "Distribute",
+    label: "Channel Fan-out",
+    title: "Fan out to every marketplace fans use.",
+    body: "Every major marketplace and the regional long tail — pushed in seconds, with double-sale protection on every listing.",
+    metric: "8+",
+    metricLabel: "connected channels",
+    lines: ["push.channel_01 → ok", "push.channel_02 → ok", "double_sale.guard → armed"],
+    icon: RefreshCw,
+  },
+  {
+    id: "price",
+    index: "03",
+    node: "Price",
+    label: "Smart Pricing",
+    title: "Reprice around the clock, inside guardrails.",
+    body: "Floors, ceilings, and undercut logic track live comparables so inventory moves before kickoff — never below the margin you set.",
+    metric: "24/7",
+    metricLabel: "repricing engine",
+    lines: ["comparables.stream → live", "margin.guard → 18%", "desk.override → allowed"],
+    icon: BarChart3,
+  },
+  {
+    id: "fulfil",
+    index: "04",
+    node: "Fulfil",
+    label: "Order Routing",
+    title: "Deliver on a path ops can audit.",
+    body: "Mobile transfer, PDF, and will-call orders route through one queue — cheapest compliant delivery, SLA tracked end to end.",
+    metric: "99.4%",
+    metricLabel: "SLA met",
+    lines: ["route.auto → cheapest", "barcode.verify → passed", "audit.trail → complete"],
+    icon: Send,
   },
   {
     id: "settle",
+    index: "05",
+    node: "Settle",
     label: "Settlement",
-    detail: "Clean books · audit trail",
-    metric: "165 countries",
+    title: "Clean books, closed in one export.",
+    body: "Transparent margins, KYC-ready onboarding, and payout statements finance reconciles without chasing a single line item.",
+    metric: "165",
+    metricLabel: "countries settled",
+    lines: ["payout.statement → ready", "fx.rates → locked", "reconcile.export → 1 file"],
     icon: Wallet,
-    x: 50,
-    y: 90,
-    c1x: 50,
-    c1y: 74,
-    c2x: 50,
-    c2y: 64,
   },
 ];
 
-function pathFor(s: Satellite) {
-  return `M ${CENTER.x} ${CENTER.y} C ${s.c1x} ${s.c1y}, ${s.c2x} ${s.c2y}, ${s.x} ${s.y}`;
+const CX = 50, CY = 50, R = 46;
+
+function nodePos(i: number) {
+  const angle = ((-90 + (360 / stages.length) * i) * Math.PI) / 180;
+  return { x: CX + R * Math.cos(angle), y: CY + R * Math.sin(angle) };
+}
+
+const clamp01 = (n: number) => Math.min(Math.max(n, 0), 1);
+
+function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let frame = 0;
+    const measure = () => {
+      frame = 0;
+      const rect = el.getBoundingClientRect();
+      const top = window.scrollY + rect.top;
+      const range = Math.max(el.offsetHeight - window.innerHeight, 1);
+      setProgress(clamp01((window.scrollY - top) / range));
+    };
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(measure);
+    };
+    measure();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [ref]);
+  return progress;
 }
 
 export function NetworkConstellation() {
-  const [active, setActive] = useState("sync");
-  const uid = useId().replace(/:/g, "");
-  const activeSat = satellites.find((s) => s.id === active) ?? satellites[0]!;
+  const sectionRef = useRef<HTMLElement>(null);
+  const raw = useScrollProgress(sectionRef);
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+
+  const timeline = clamp01(raw / 0.88);
+  const segment = 1 / stages.length;
+  const activeIndex = Math.min(Math.floor(timeline / segment), stages.length - 1);
+  const active = stages[activeIndex]!;
+
+  const build = stages.map((_, i) =>
+    reduced ? 1 : clamp01((timeline - i * segment) / (segment * 0.72)),
+  );
+  const activeBuild = build[activeIndex] ?? 1;
+
+  // Jump the page scroll position so the pinned section lands on stage `i`.
+  const scrollToStage = (i: number) => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const top = window.scrollY + rect.top;
+    const range = Math.max(el.offsetHeight - window.innerHeight, 1);
+    const targetTimeline = clamp01(i * segment + segment * 0.5);
+    const targetRaw = targetTimeline * 0.88;
+    const targetY = top + targetRaw * range;
+    window.scrollTo({
+      top: targetY,
+      behavior: reduced ? "auto" : "smooth",
+    });
+  };
 
   return (
     <section
+      ref={sectionRef}
       id="network-hub"
-      className="constellation section-curve relative isolate scroll-mt-24 overflow-hidden py-14 text-foreground sm:py-16 lg:py-20"
+      className="relative scroll-mt-24 bg-[var(--bg-alt,#f6f9f7)]"
+      style={{ minHeight: "340vh" }}
       aria-label="SeatsBrokers distribution network"
     >
-      <span className="constellation-bg" aria-hidden />
-      <span className="constellation-orb constellation-orb-a" aria-hidden />
-      <span className="constellation-orb constellation-orb-b" aria-hidden />
+      {/* ===== desktop: sticky two-column stage ===== */}
+      <div className="sticky top-0 hidden h-screen overflow-hidden lg:block">
+        <div className="pointer-events-none absolute -left-40 top-1/4 h-96 w-96 rounded-full bg-primary/8 blur-[130px]" aria-hidden />
+        <div className="pointer-events-none absolute -right-40 bottom-1/4 h-96 w-96 rounded-full bg-primary/8 blur-[130px]" aria-hidden />
 
-      <div className="container-page relative z-10">
-        <div className="constellation-layout grid items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] lg:gap-12 xl:gap-16">
-          {/* Left — copy */}
-          <Reveal className="constellation-copy">
-            <p className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/8 px-3 py-1 font-mono text-[11px] font-bold tracking-[0.22em] text-primary uppercase">
-              <span className="constellation-live" aria-hidden />
-              The SeatsBrokers graph
-            </p>
-            <h2 className="constellation-headline mt-5 text-balance text-left">
-              One publish point.{" "}
-              <em className="constellation-accent">Every marketplace.</em>{" "}
-              <em className="constellation-accent">Live intel</em> on every seat.
-            </h2>
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Brokers and travel partners run inventory, pricing, fulfilment, and MarketIQ from one
-              hub — wired to the channels fans already buy from.
-            </p>
+        <div className="container-page relative flex h-full flex-col justify-center py-6">
+          <div className="grid grid-cols-[400px_1fr] items-center gap-10">
+            {/* ============ LEFT: typography + rail ============ */}
+            <div className="flex flex-col">
+              <p className="flex items-center gap-2 font-mono text-sm tracking-[0.22em] text-primary uppercase">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                </span>
+                Live network build
+              </p>
+              <h2 className="mt-4 text-4xl font-bold leading-[1.08] tracking-tight text-foreground">
+                One publish point.{" "}
+                <span className="text-primary">Every marketplace.</span> Settled clean.
+              </h2>
 
-            <ul className="mt-6 space-y-2.5">
-              {satellites.slice(0, 3).map((s) => (
-                <li key={s.id}>
-                  <button
-                    type="button"
-                    onClick={() => setActive(s.id)}
-                    onMouseEnter={() => setActive(s.id)}
-                    className="constellation-copy-link"
-                    data-active={active === s.id ? "true" : "false"}
-                  >
-                    <span className="constellation-copy-dot" aria-hidden />
-                    <span>
-                      <span className="font-semibold text-foreground">{s.label}</span>
-                      <span className="text-muted-foreground"> — {s.detail}</span>
-                    </span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href="#sellers"
-                className="lift inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-background px-6 py-3 text-sm font-semibold text-foreground shadow-sm transition-colors hover:border-primary/40 hover:text-primary"
-              >
-                Become a Seller Partner
-              </a>
-              <a
-                href="#travel"
-                className="lift inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
-              >
-                Become a Travel Partner
-                <ArrowRight className="size-4" aria-hidden />
-              </a>
-            </div>
-          </Reveal>
-
-          {/* Right — interactive graph */}
-          <div
-            className="constellation-stage relative w-full"
-            onMouseLeave={() => setActive((prev) => prev || "sync")}
-          >
-            <span className="constellation-corner constellation-corner-tl" aria-hidden />
-            <span className="constellation-corner constellation-corner-tr" aria-hidden />
-            <span className="constellation-corner constellation-corner-bl" aria-hidden />
-            <span className="constellation-corner constellation-corner-br" aria-hidden />
-
-            <div className="constellation-stage-label" aria-hidden>
-              <span>graph.live</span>
-              <span className="constellation-stage-meta">5 nodes · routing</span>
-            </div>
-
-            <svg
-              className="constellation-svg pointer-events-none absolute inset-0 size-full"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-              aria-hidden
-            >
-              <defs>
-                <linearGradient id={`branch-${uid}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.15" />
-                  <stop offset="45%" stopColor="var(--primary)" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor="var(--primary-deep)" stopOpacity="0.25" />
-                </linearGradient>
-                <filter id={`glow-${uid}`} x="-40%" y="-40%" width="180%" height="180%">
-                  <feGaussianBlur stdDeviation="0.6" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-
-              <circle
-                cx={CENTER.x}
-                cy={CENTER.y}
-                r="17"
-                fill="none"
-                stroke="color-mix(in oklab, var(--primary) 22%, transparent)"
-                strokeWidth="0.2"
-                strokeDasharray="1.2 1.8"
-                className="constellation-orbit"
-              />
-              <circle
-                cx={CENTER.x}
-                cy={CENTER.y}
-                r="27"
-                fill="none"
-                stroke="color-mix(in oklab, var(--foreground) 8%, transparent)"
-                strokeWidth="0.15"
-                strokeDasharray="0.8 2.2"
-                className="constellation-orbit constellation-orbit-slow"
-              />
-
-              {satellites.map((s, i) => (
-                <g key={s.id} filter={active === s.id ? `url(#glow-${uid})` : undefined}>
-                  <path
-                    d={pathFor(s)}
-                    fill="none"
-                    stroke={`url(#branch-${uid})`}
-                    strokeWidth={active === s.id ? 0.75 : 0.4}
-                    className="constellation-branch"
-                    style={{ animationDelay: `${i * 0.28}s` }}
-                    data-active={active === s.id ? "true" : "false"}
-                  />
-                  <circle r="0.9" fill="var(--primary)" className="constellation-pulse-dot">
-                    <animateMotion
-                      dur={`${2.8 + i * 0.3}s`}
-                      repeatCount="indefinite"
-                      path={pathFor(s)}
-                    />
-                  </circle>
-                </g>
-              ))}
-            </svg>
-
-            <button
-              type="button"
-              className="constellation-hub absolute left-1/2 top-1/2 w-[min(58%,18rem)] -translate-x-1/2 -translate-y-1/2 text-left sm:w-[min(56%,20rem)]"
-              aria-label="SeatsBrokers marketplace hub"
-            >
-              <div className="constellation-glass aspect-video overflow-hidden rounded-2xl">
-                <div className="flex items-center justify-between border-b border-border/80 bg-background/70 px-3 py-2 backdrop-blur-md">
-                  <span className="font-mono text-[9px] tracking-[0.14em] text-muted-foreground uppercase">
-                    seatsbrokers / hub
-                  </span>
-                  <span className="flex items-center gap-1.5 font-mono text-[9px] tracking-[0.14em] text-primary uppercase">
-                    <span className="constellation-live" aria-hidden />
-                    live
-                  </span>
-                </div>
-                <div className="relative h-[calc(100%-2.1rem)] bg-muted">
-                  <img
-                    src={eventsImg}
-                    alt=""
-                    className="size-full object-cover object-top"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/85 to-transparent px-3 pb-2.5 pt-8">
-                    <div className="flex items-end justify-between gap-2">
-                      <div>
-                        <p className="font-display text-sm font-bold text-foreground">
-                          Marketplace Hub
-                        </p>
-                        <p className="mt-0.5 font-mono text-[10px] text-muted-foreground">
-                          Linked · {activeSat.label}
-                        </p>
-                      </div>
-                      <span className="rounded-md bg-primary/12 px-2 py-1 font-mono text-[9px] font-bold tracking-wide text-primary uppercase">
-                        {activeSat.metric}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </button>
-
-            {satellites.map((s, i) => {
-              const Icon = s.icon;
-              const on = active === s.id;
-              return (
-                <button
-                  key={s.id}
-                  type="button"
-                  className="constellation-sat absolute text-left"
-                  style={{
-                    left: `${s.x}%`,
-                    top: `${s.y}%`,
-                    animationDelay: `${i * 0.4}s`,
-                  }}
-                  data-active={on ? "true" : "false"}
-                  onMouseEnter={() => setActive(s.id)}
-                  onFocus={() => setActive(s.id)}
-                  onClick={() => setActive(s.id)}
-                  aria-pressed={on}
-                >
-                  <span className="constellation-sat-inner">
-                    <span className="constellation-sat-icon">
-                      <Icon className="size-3.5" aria-hidden />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="flex items-center gap-1.5">
-                        <span className="block truncate text-[11px] font-bold text-foreground sm:text-[12px]">
-                          {s.label}
+              <ol className="mt-7 flex flex-col gap-1">
+                {stages.map((s, i) => {
+                  const Icon = s.icon;
+                  const on = i === activeIndex;
+                  const done = build[i]! >= 1;
+                  return (
+                    <li key={s.id}>
+                      <button
+                        type="button"
+                        onClick={() => scrollToStage(i)}
+                        aria-current={on ? "step" : undefined}
+                        aria-label={`Jump to ${s.label}`}
+                        className={`flex w-full items-center gap-3.5 rounded-xl px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
+                          on ? "bg-primary/[0.06]" : "hover:bg-primary/[0.04]"
+                        }`}
+                      >
+                        <span
+                          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors ${
+                            on
+                              ? "border-primary/40 bg-primary/15 text-primary"
+                              : done
+                                ? "border-border bg-white text-muted-foreground"
+                                : "border-border/60 bg-white/60 text-muted-foreground/40"
+                          }`}
+                        >
+                          <Icon className="size-4" />
                         </span>
-                        {on ? <span className="constellation-sat-pip" aria-hidden /> : null}
+                        <span className="min-w-0 flex-1">
+                          <span className="flex items-center gap-2.5">
+                            <span className="font-mono text-xs text-muted-foreground/60">{s.index}</span>
+                            <span className={`text-base font-semibold ${on ? "text-foreground" : "text-muted-foreground"}`}>
+                              {s.label}
+                            </span>
+                          </span>
+                          <span className="mt-1.5 block h-1 w-full overflow-hidden rounded-full bg-border">
+                            <span
+                              className="block h-full bg-primary transition-transform duration-150"
+                              style={{ transform: `scaleX(${build[i]})`, transformOrigin: "left" }}
+                            />
+                          </span>
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ol>
+
+              <div className="mt-7 flex flex-wrap gap-3.5">
+                <a
+                  href="#sellers"
+                  className="inline-flex items-center rounded-full border border-border px-6 py-3 text-base font-semibold text-foreground transition-colors hover:border-primary/50"
+                >
+                  Seller Partner
+                </a>
+                <a
+                  href="#travel"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-white transition-transform hover:-translate-y-0.5"
+                >
+                  Travel Partner
+                  <ArrowRight className="size-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* ============ RIGHT: globe + console ============ */}
+            <div className="flex flex-col gap-5">
+              <div className="relative mx-auto aspect-square w-full max-w-[420px]">
+                <GlobeCanvas scrollOffset={timeline} />
+
+                {/* faint guide ring the stage badges sit on */}
+                <svg viewBox="0 0 100 100" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
+                  <circle cx={CX} cy={CY} r={R} fill="none" stroke="color-mix(in oklab, var(--primary) 18%, transparent)" strokeWidth="0.2" strokeDasharray="0.6 2.2" />
+                </svg>
+
+                {/* stage badges orbiting the globe — also clickable */}
+                {stages.map((s, i) => {
+                  const { x, y } = nodePos(i);
+                  const p = build[i]!;
+                  const Icon = s.icon;
+                  const on = i === activeIndex;
+                  return (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => scrollToStage(i)}
+                      aria-label={`Jump to ${s.label}`}
+                      className={`absolute flex items-center gap-2.5 rounded-full border bg-white px-4 py-2.5 shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
+                        on ? "border-primary/40 shadow-md" : "border-border hover:border-primary/30"
+                      }`}
+                      style={{
+                        left: `${x}%`,
+                        top: `${y}%`,
+                        opacity: p,
+                        transform: `translate(-50%, -50%) scale(${0.85 + p * 0.15})`,
+                        zIndex: on ? 4 : 2,
+                        pointerEvents: p > 0.05 ? "auto" : "none",
+                      }}
+                    >
+                      <span className={on ? "text-primary" : "text-muted-foreground/50"}>
+                        <Icon className="size-4" />
                       </span>
-                      <span className="mt-0.5 block truncate font-mono text-[9px] tracking-wide text-muted-foreground">
-                        {s.detail}
+                      <span className="flex flex-col items-start leading-none">
+                        <span className={`text-sm font-semibold ${on ? "text-foreground" : "text-muted-foreground"}`}>
+                          {s.node}
+                        </span>
+                        <span className="mt-0.5 font-mono text-[11px] text-muted-foreground/60">{s.metric}</span>
                       </span>
-                    </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* console */}
+              <div
+                key={active.id}
+                className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="font-mono text-xs tracking-[0.18em] text-primary uppercase">
+                    {active.label}
                   </span>
-                </button>
-              );
-            })}
+                  <span className="h-2 w-2 rounded-full bg-primary" />
+                </div>
+                <h3 className="mt-2 text-xl font-bold text-foreground">{active.title}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{active.body}</p>
+
+                <div className="mt-4 inline-flex flex-col rounded-xl border border-primary/20 bg-primary/[0.06] px-4 py-2.5">
+                  <strong className="text-2xl font-bold leading-none text-primary">
+                    {active.metric}
+                  </strong>
+                  <span className="mt-1.5 font-mono text-[10px] tracking-[0.14em] text-muted-foreground uppercase">
+                    {active.metricLabel}
+                  </span>
+                </div>
+
+                <ul className="mt-4 flex flex-col gap-1.5">
+                  {active.lines.map((l, i) => (
+                    <li
+                      key={l}
+                      className="border-l-2 border-primary/40 pl-2.5 font-mono text-[13px] text-muted-foreground"
+                      style={{ opacity: clamp01((activeBuild - i * 0.22) / 0.3) }}
+                    >
+                      {l}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
+
+          {/* footer progress */}
+          <div className="relative mt-7 h-1 rounded-full bg-border">
+            <span
+              className="absolute inset-y-0 left-0 rounded-full bg-primary"
+              style={{ width: `${timeline * 100}%` }}
+            />
+            {stages.map((s, i) => (
+              <button
+                key={s.id}
+                type="button"
+                onClick={() => scrollToStage(i)}
+                aria-label={`Jump to ${s.label}`}
+                className={`absolute top-1/2 h-2.5 w-2.5 -translate-y-1/2 -translate-x-1/2 rounded-full border-2 border-[var(--bg-alt,#f6f9f7)] transition-transform hover:scale-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
+                  i <= activeIndex ? "bg-primary" : "bg-border"
+                }`}
+                style={{ left: `${((i + 1) / stages.length) * 100}%` }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ===== mobile / tablet fallback ===== */}
+      <div className="container-page py-20 lg:hidden">
+        <Reveal>
+          <p className="flex items-center gap-2 font-mono text-sm tracking-[0.22em] text-primary uppercase">
+            <span className="h-2 w-2 rounded-full bg-primary" />
+            Live network build
+          </p>
+          <h2 className="mt-5 text-4xl font-bold leading-[1.1] tracking-tight text-foreground">
+            One publish point. <span className="text-primary">Every marketplace.</span> Settled clean.
+          </h2>
+        </Reveal>
+
+        <div className="mt-9 grid gap-4">
+          {stages.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <Reveal key={s.id} delay={i * 70}>
+                <article className="flex items-start gap-4 rounded-2xl border border-border bg-white p-5 shadow-sm">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-primary">
+                    <Icon className="size-5" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-mono text-xs text-primary">{s.index}</p>
+                    <p className="mt-1 text-lg font-bold text-foreground">{s.label}</p>
+                    <p className="mt-2 text-base leading-relaxed text-muted-foreground">{s.body}</p>
+                  </div>
+                  <span className="shrink-0 font-mono text-lg font-bold text-primary">
+                    {s.metric}
+                  </span>
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        <div className="mt-9 flex flex-wrap gap-4">
+          <a
+            href="#sellers"
+            className="inline-flex items-center rounded-full border border-border px-7 py-3.5 text-base font-semibold text-foreground"
+          >
+            Become a Seller Partner
+          </a>
+          <a
+            href="#travel"
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white"
+          >
+            Become a Travel Partner
+            <ArrowRight className="size-4" />
+          </a>
         </div>
       </div>
     </section>

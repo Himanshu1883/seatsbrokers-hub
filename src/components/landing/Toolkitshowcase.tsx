@@ -22,7 +22,7 @@ const items = [
     tag: "Marketplace Hub",
     headline: "List once and sell across every channel fans use",
     detail:
-      "Publish from SeatsBrokers to StubHub, Viagogo, and regional OTAs — section splits, holds, and delivery rules stay attached to every listing.",
+      "Publish from SeatsBrokers to every marketplace and regional channel — section splits, holds, and delivery rules stay attached to every listing.",
     kind: "screenshot" as const,
     image: eventsImg,
     imageAlt: "SeatsBrokers events browser with live inventory ready to publish",
@@ -255,7 +255,7 @@ export function ToolkitShowcase() {
         <Reveal>
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <p className="flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.24em] text-primary uppercase">
+              <p className="flex items-center gap-2 section-eyebrow text-primary">
                 <span className="toolkit-live-dot" aria-hidden />
                 SeatsBrokers platform
               </p>

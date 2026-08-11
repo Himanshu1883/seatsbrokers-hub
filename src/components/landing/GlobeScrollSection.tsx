@@ -4,7 +4,7 @@ import { GlobeCanvas } from "@/components/landing/globe/GlobeCanvas";
 import heroStadium from "@/assets/hero-stadium.jpg";
 import sellerImg from "@/assets/card-seller.jpg";
 import travelImg from "@/assets/card-travel.jpg";
-import dashboardImg from "@/assets/dashboard.jpg";
+import dashboardImg from "@/assets/dashboard.png";
 import ctaImg from "@/assets/cta-trophy.jpg";
 
 const GLOBAL_STATS = [
@@ -15,12 +15,12 @@ const GLOBAL_STATS = [
 ] as const;
 
 const MARKETPLACES = [
-  "StubHub",
-  "Viagogo",
-  "Ticketmaster",
-  "SeatGeek",
-  "Live Nation",
-  "Regional OTAs",
+  "Marketplace 01",
+  "Marketplace 02",
+  "Marketplace 03",
+  "Marketplace 04",
+  "Marketplace 05",
+  "Regional channels",
 ] as const;
 
 const slides = [
@@ -52,7 +52,7 @@ const slides = [
     title: null,
     lines: [] as string[],
     headline: "List once. Sell across every major resale channel.",
-    body: "Professional brokers and rights holders publish inventory once. We fan it out to StubHub, Viagogo, and the long tail — with splits, holds, delivery rules, and pricing floors preserved.",
+    body: "Professional brokers and rights holders publish inventory once. We fan it out to every connected marketplace and the long tail — with splits, holds, delivery rules, and pricing floors preserved.",
     bullets: [
       "Unified catalog with live sync and double-sale protection",
       "Smart repricing with margin guards your desk controls",
@@ -248,7 +248,7 @@ export function GlobeScrollSection() {
           </div>
 
           <div className="absolute left-1/2 top-[5rem] hidden w-full max-w-lg -translate-x-1/2 px-6 text-center lg:block">
-            <p className="font-mono text-xs font-bold tracking-[0.2em] text-primary uppercase">
+            <p className="section-eyebrow text-primary">
               {active.eyebrow}
             </p>
             <p className="mt-2 text-sm font-bold leading-snug text-foreground/70 sm:text-base">
@@ -330,7 +330,7 @@ export function GlobeScrollSection() {
               />
               <div className="globe-slide-card-overlay" aria-hidden />
               <div className="globe-slide-card-content relative z-10">
-              <p className="font-mono text-xs font-bold tracking-[0.22em] text-primary uppercase sm:text-sm">
+              <p className="section-eyebrow text-primary">
                 {slide.eyebrow}
               </p>
 

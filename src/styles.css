@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+﻿@import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
 
@@ -200,6 +200,16 @@
   overflow: hidden;
   border-bottom-left-radius: clamp(1rem, 2vw, 1.5rem);
   border-bottom-right-radius: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Shared section kicker — readable at a glance for section orientation */
+@utility section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: clamp(0.875rem, 0.8rem + 0.35vw, 1.0625rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-transform: uppercase;
 }
 
 .sticky-scroll-panel {
@@ -578,7 +588,7 @@
   animation: hero-slide-progress linear forwards;
 }
 
-/* ── Hero 3D tilt dashboard ────────────────────────────────────── */
+/* â”€â”€ Hero 3D tilt dashboard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .hero-tilt-scene {
   perspective: 1600px;
@@ -951,7 +961,7 @@
   color: color-mix(in oklab, var(--background) 45%, transparent);
 }
 
-/* Intel — terminal rail + matrix */
+/* Intel â€” terminal rail + matrix */
 .hero-intel-rail {
   display: flex;
   width: 2.75rem;
@@ -1115,7 +1125,7 @@
   border-top-style: dashed;
 }
 
-/* Pricing — ticker tape + trader board */
+/* Pricing â€” ticker tape + trader board */
 .hero-price-brand {
   display: inline-flex;
   align-items: center;
@@ -1326,7 +1336,7 @@
   color: color-mix(in oklab, var(--background) 78%, transparent);
 }
 
-/* Sync — ops orbit console */
+/* Sync â€” ops orbit console */
 .hero-sync-status-bar {
   display: inline-flex;
   align-items: center;
@@ -1853,7 +1863,7 @@
     transform: translate3d(0, 0, 0);
   }
   to {
-    /* Exactly one group width — seamless infinite loop */
+    /* Exactly one group width â€” seamless infinite loop */
     transform: translate3d(-50%, 0, 0);
   }
 }
@@ -2032,7 +2042,7 @@
   }
 }
 
-/* ── Pipeline architecture diagram ─────────────────────────────── */
+/* â”€â”€ Pipeline architecture diagram â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .tools-flow {
   --flow-ink: color-mix(in oklab, var(--primary) 50%, transparent);
@@ -2459,7 +2469,7 @@
   }
 }
 
-/* ── Platform toolkit showcase ─────────────────────────────────── */
+/* â”€â”€ Platform toolkit showcase â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .toolkit {
   background:
@@ -2880,7 +2890,7 @@
   }
 }
 
-/* ── Stats (light variants) ───────────────────────────────────── */
+/* â”€â”€ Stats (light variants) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .stats-ledger {
   background: color-mix(in oklab, var(--surface) 88%, var(--primary) 4%);
@@ -2911,7 +2921,7 @@
     0 30px 60px -25px color-mix(in oklab, var(--primary) 45%, transparent);
 }
 
-/* ── Section event backdrops (light Unsplash atmosphere) ───────── */
+/* â”€â”€ Section event backdrops (light Unsplash atmosphere) â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .section-backdrop {
   position: absolute;
@@ -2999,7 +3009,7 @@
     linear-gradient(90deg, color-mix(in oklab, var(--background) 6%, transparent) 1px, transparent 1px);
 }
 
-/* ── Process bento ─────────────────────────────────────────────── */
+/* â”€â”€ Process bento â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .process-bento-card {
   transition:
@@ -3309,7 +3319,7 @@
   }
 }
 
-/* ── Partner product showcase (light) ──────────────────────────── */
+/* â”€â”€ Partner product showcase (light) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .partner-showcase {
   background:
@@ -3561,7 +3571,7 @@
   box-shadow: 0 0 10px color-mix(in oklab, var(--primary) 40%, transparent);
 }
 
-/* Lightbox — hide default dialog close; we render our own */
+/* Lightbox â€” hide default dialog close; we render our own */
 .partner-lightbox > button.absolute {
   display: none;
 }
@@ -3594,7 +3604,287 @@
   }
 }
 
-/* ── Network constellation (light · left/right) ────────────────── */
+
+/* Journey in numbers (scroll zoom · light) */
+
+.journey-num {
+  background:
+    radial-gradient(
+      ellipse 55% 50% at 50% 42%,
+      color-mix(in oklab, var(--primary) 10%, transparent),
+      transparent 70%
+    ),
+    var(--surface);
+  color: var(--foreground);
+}
+
+.journey-num-viewport {
+  display: none;
+}
+
+.journey-num-stack {
+  padding-block: 3rem 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  /* ~2 scroll lengths per milestone (5 × ~70vh scrub + sticky frame) */
+  .journey-num {
+    height: 360vh;
+  }
+
+  .journey-num-viewport {
+    position: sticky;
+    top: 0;
+    display: block;
+    height: 100dvh;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .journey-num-stack {
+    display: none;
+  }
+}
+
+.journey-num-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 22% 12% 26%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in oklab, var(--primary) 16%, transparent),
+    transparent 70%
+  );
+  filter: blur(36px);
+  opacity: 0.9;
+}
+
+.journey-num-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image:
+    linear-gradient(
+      color-mix(in oklab, var(--foreground) 5%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--foreground) 5%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 48%, black, transparent 90%);
+}
+
+.journey-num-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  height: 100%;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  padding-block: clamp(1.25rem, 3.5vh, 2.5rem);
+}
+
+.journey-num-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.journey-num-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--primary) 22%, transparent);
+  background: color-mix(in oklab, var(--primary) 8%, transparent);
+  padding: 0.4rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: clamp(0.875rem, 0.8rem + 0.35vw, 1.0625rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.journey-num-live {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 22%, transparent);
+  animation: partner-blink 1.8s ease-in-out infinite;
+}
+
+.journey-num-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: color-mix(in oklab, var(--foreground) 40%, transparent);
+}
+
+.journey-num-counter-sep {
+  opacity: 0.45;
+}
+
+.journey-num-stage {
+  position: relative;
+  min-height: 0;
+}
+
+.journey-num-slide {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: min(100%, 52rem);
+  text-align: center;
+  will-change: transform, opacity, filter;
+  pointer-events: none;
+  transform-origin: center center;
+}
+
+.journey-num-value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 9.25rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  background: linear-gradient(
+    95deg,
+    var(--primary-deep) 0%,
+    var(--primary) 40%,
+    oklch(0.74 0.09 158) 72%,
+    oklch(0.62 0.05 200) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.journey-num-label {
+  margin: 1.1rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.journey-num-detail {
+  margin: 0.45rem auto 0;
+  max-width: 34ch;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+.journey-num-rail {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.journey-num-tick {
+  width: 1.75rem;
+  height: 3px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--foreground) 12%, transparent);
+  transition:
+    background 0.4s ease,
+    width 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.journey-num-tick[data-on="true"] {
+  background: color-mix(in oklab, var(--primary) 55%, transparent);
+}
+
+.journey-num-tick[data-active="true"] {
+  width: 2.75rem;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 16%, transparent);
+}
+
+/* Mobile stack --------------------------------------------------- */
+
+.journey-num-stack-title {
+  margin-top: 0.85rem;
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+}
+
+.journey-num-stack-list {
+  margin: 1.75rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0;
+  list-style: none;
+}
+
+.journey-num-stack-card {
+  display: grid;
+  grid-template-columns: minmax(7rem, auto) minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  border-radius: 1rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  background: color-mix(in oklab, var(--background) 88%, transparent);
+  padding: 1.05rem 1.15rem;
+}
+
+.journey-num-stack-value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 5.5vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  background: linear-gradient(95deg, var(--primary-deep), var(--primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.journey-num-stack-label {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.journey-num-stack-detail {
+  margin: 0.3rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-num-live {
+    animation: none;
+  }
+}
+
+
+/* ΓöÇΓöÇ Network constellation (light ┬╖ left/right) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
 
 .constellation {
   background:
@@ -3953,7 +4243,1088 @@
   }
 }
 
-/* ── Feature orbit (light) ─────────────────────────────────────── */
+
+/* Network graph (scroll-driven build) */
+
+/* ── Network graph (scroll-driven build) ───────────────────────── */
+
+.netgraph {
+  background:
+    radial-gradient(
+      ellipse 55% 45% at 18% 15%,
+      color-mix(in oklab, var(--primary) 11%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 50% 45% at 88% 80%,
+      color-mix(in oklab, var(--primary) 8%, transparent),
+      transparent 66%
+    ),
+    var(--surface);
+}
+
+.netgraph-viewport {
+  display: none;
+}
+
+.netgraph-stack {
+  padding-block: 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  .netgraph {
+    height: 460vh;
+  }
+
+  .netgraph-viewport {
+    position: sticky;
+    top: 0;
+    display: block;
+    height: 100dvh;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .netgraph-stack {
+    display: none;
+  }
+}
+
+.netgraph-grid {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      color-mix(in oklab, var(--foreground) 5%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--foreground) 5%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 38px 38px;
+  mask-image: radial-gradient(ellipse 78% 70% at 50% 48%, black, transparent 92%);
+  opacity: 0.55;
+}
+
+.netgraph-orb {
+  pointer-events: none;
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(60px);
+  opacity: 0.55;
+}
+
+.netgraph-orb-a {
+  top: 6%;
+  left: 2%;
+  width: 20rem;
+  height: 20rem;
+  background: color-mix(in oklab, var(--primary) 18%, transparent);
+}
+
+.netgraph-orb-b {
+  right: 2%;
+  bottom: 4%;
+  width: 22rem;
+  height: 22rem;
+  background: color-mix(in oklab, var(--primary-soft) 90%, transparent);
+}
+
+.netgraph-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  height: 100%;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: clamp(0.75rem, 2vh, 1.75rem);
+  padding-block: clamp(1.5rem, 4vh, 3rem);
+}
+
+.netgraph-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.netgraph-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--primary) 22%, transparent);
+  background: color-mix(in oklab, var(--primary) 8%, transparent);
+  padding: 0.4rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: clamp(0.875rem, 0.8rem + 0.35vw, 1.0625rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.netgraph-live {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--primary);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary) 22%, transparent);
+  animation: partner-blink 1.8s ease-in-out infinite;
+}
+
+.netgraph-headline {
+  margin-top: 0.9rem;
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.6vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  text-wrap: balance;
+}
+
+.netgraph-headline em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--primary-deep);
+}
+
+.netgraph-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  font-family: var(--font-mono);
+  color: color-mix(in oklab, var(--foreground) 40%, transparent);
+}
+
+.netgraph-counter-index {
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--primary);
+}
+
+.netgraph-counter-total {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+.netgraph-main {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: minmax(11rem, 15rem) minmax(0, 1fr) minmax(15rem, 20rem);
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+/* Rail ---------------------------------------------------------- */
+
+.netgraph-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.netgraph-rail-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.6rem;
+  overflow: hidden;
+  border-radius: 0.8rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 7%, transparent);
+  background: color-mix(in oklab, var(--background) 60%, transparent);
+  padding: 0.6rem 0.7rem 0.75rem;
+  transition:
+    border-color 0.35s ease,
+    background 0.35s ease,
+    transform 0.35s ease;
+}
+
+.netgraph-rail-item[data-done="true"] {
+  border-color: color-mix(in oklab, var(--primary) 22%, transparent);
+}
+
+.netgraph-rail-item[data-on="true"] {
+  border-color: color-mix(in oklab, var(--primary) 45%, transparent);
+  background: color-mix(in oklab, var(--background) 92%, transparent);
+  transform: translateX(4px);
+  box-shadow: 0 14px 32px -26px color-mix(in oklab, var(--primary) 45%, transparent);
+}
+
+.netgraph-rail-icon {
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 0.55rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  background: color-mix(in oklab, var(--background) 80%, transparent);
+  color: color-mix(in oklab, var(--foreground) 45%, transparent);
+  transition:
+    color 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+}
+
+.netgraph-rail-item[data-on="true"] .netgraph-rail-icon {
+  border-color: color-mix(in oklab, var(--primary) 35%, transparent);
+  background: color-mix(in oklab, var(--primary) 10%, transparent);
+  color: var(--primary);
+}
+
+.netgraph-rail-index {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: color-mix(in oklab, var(--foreground) 38%, transparent);
+}
+
+.netgraph-rail-label {
+  display: block;
+  overflow: hidden;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--foreground);
+}
+
+.netgraph-rail-bar {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2px;
+  background: color-mix(in oklab, var(--foreground) 7%, transparent);
+}
+
+.netgraph-rail-bar span {
+  display: block;
+  height: 100%;
+  transform-origin: left;
+  background: var(--primary);
+}
+
+/* Stage --------------------------------------------------------- */
+
+.netgraph-stage {
+  position: relative;
+  width: min(100%, min(34rem, 52vh));
+  margin-inline: auto;
+  aspect-ratio: 1;
+}
+
+.netgraph-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.netgraph-orbit {
+  transform-origin: 50px 50px;
+  animation: netgraph-spin 34s linear infinite;
+}
+
+.netgraph-orbit-rev {
+  animation-duration: 52s;
+  animation-direction: reverse;
+}
+
+@keyframes netgraph-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.netgraph-branch {
+  transition:
+    stroke-dashoffset 0.15s linear,
+    stroke-width 0.35s ease;
+}
+
+.netgraph-packet {
+  filter: drop-shadow(0 0 2px color-mix(in oklab, var(--primary) 85%, transparent));
+}
+
+.netgraph-hub {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  display: flex;
+  width: 9.5rem;
+  height: 9.5rem;
+  translate: -50% -50%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--primary) 30%, transparent);
+  background:
+    radial-gradient(
+      circle at 42% 35%,
+      color-mix(in oklab, var(--primary) 14%, var(--background)),
+      var(--background) 72%
+    );
+  box-shadow: 0 24px 60px -34px color-mix(in oklab, var(--primary) 55%, transparent);
+  text-align: center;
+}
+
+.netgraph-hub-pulse {
+  position: absolute;
+  inset: -12%;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--primary) 25%, transparent);
+  animation: netgraph-pulse 3.4s ease-out infinite;
+}
+
+@keyframes netgraph-pulse {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.92);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.netgraph-hub-mark {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--primary-deep);
+}
+
+.netgraph-hub-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.netgraph-hub-meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.netgraph-node {
+  position: absolute;
+  display: flex;
+  width: 9rem;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.85rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  background: color-mix(in oklab, var(--background) 90%, transparent);
+  padding: 0.5rem 0.6rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 30px -26px color-mix(in oklab, var(--foreground) 30%, transparent);
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+.netgraph-node[data-on="true"] {
+  border-color: color-mix(in oklab, var(--primary) 45%, transparent);
+  background: var(--background);
+  box-shadow: 0 18px 38px -22px color-mix(in oklab, var(--primary) 50%, transparent);
+}
+
+.netgraph-node-icon {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 22%, transparent);
+  background: color-mix(in oklab, var(--primary) 10%, transparent);
+  color: var(--primary);
+}
+
+.netgraph-node-title {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.netgraph-node-metric {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+}
+
+/* Console ------------------------------------------------------- */
+
+.netgraph-console {
+  border-radius: 1.15rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  background: color-mix(in oklab, var(--background) 88%, transparent);
+  padding: 1.2rem 1.25rem 1.35rem;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 22px 50px -38px color-mix(in oklab, var(--foreground) 35%, transparent);
+  animation: netgraph-console-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes netgraph-console-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.netgraph-console-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.netgraph-console-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.netgraph-console-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 18%, transparent);
+  animation: partner-blink 1.6s ease-in-out infinite;
+}
+
+.netgraph-console-title {
+  margin-top: 0.65rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.netgraph-console-body {
+  margin-top: 0.55rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+.netgraph-console-metric {
+  margin-top: 0.95rem;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 20%, transparent);
+  background: color-mix(in oklab, var(--primary) 7%, transparent);
+  padding: 0.7rem 0.85rem;
+}
+
+.netgraph-console-metric strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--primary-deep);
+}
+
+.netgraph-console-metric span {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--foreground) 50%, transparent);
+}
+
+.netgraph-console-lines {
+  margin: 0.9rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: color-mix(in oklab, var(--foreground) 58%, transparent);
+}
+
+.netgraph-console-lines li {
+  border-left: 2px solid color-mix(in oklab, var(--primary) 35%, transparent);
+  padding-left: 0.55rem;
+  transition: opacity 0.25s linear;
+}
+
+.netgraph-console-cta {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.netgraph-cta,
+.netgraph-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.netgraph-cta {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.netgraph-cta-ghost {
+  border: 1px solid color-mix(in oklab, var(--foreground) 14%, transparent);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.netgraph-cta:hover,
+.netgraph-cta-ghost:hover {
+  transform: translateY(-1px);
+}
+
+.netgraph-cta-ghost:hover {
+  border-color: color-mix(in oklab, var(--primary) 40%, transparent);
+  color: var(--primary);
+}
+
+/* Footer progress ----------------------------------------------- */
+
+.netgraph-progress {
+  position: relative;
+  height: 3px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--foreground) 8%, transparent);
+}
+
+.netgraph-progress-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--primary) 55%, transparent),
+    var(--primary)
+  );
+}
+
+.netgraph-progress-tick {
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  translate: -50% -50%;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--foreground) 14%, transparent);
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.netgraph-progress-tick[data-on="true"] {
+  background: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 18%, transparent);
+}
+
+/* Mobile stack --------------------------------------------------- */
+
+.netgraph-stack-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  border-radius: 1rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  background: color-mix(in oklab, var(--background) 90%, transparent);
+  padding: 1rem;
+}
+
+.netgraph-stack-metric {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .netgraph-orbit,
+  .netgraph-hub-pulse,
+  .netgraph-live,
+  .netgraph-console,
+  .netgraph-console-dot {
+    animation: none;
+  }
+}
+
+/* Market path scroll (GSAP POV curve · light) */
+
+.market-path {
+  background:
+    radial-gradient(
+      ellipse 55% 45% at 20% 20%,
+      color-mix(in oklab, var(--primary) 10%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 85% 75%,
+      color-mix(in oklab, var(--primary) 8%, transparent),
+      transparent 68%
+    ),
+    var(--surface);
+  color: var(--foreground);
+}
+
+.market-path-pin {
+  display: none;
+}
+
+.market-path-stack {
+  padding-block: 3.25rem 3.75rem;
+}
+
+@media (min-width: 1024px) {
+  .market-path {
+    height: 300vh;
+  }
+
+  .market-path-pin {
+    display: block;
+    height: 100dvh;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .market-path-stack {
+    display: none;
+  }
+}
+
+.market-path-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 15% 8% 20%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in oklab, var(--primary) 16%, transparent),
+    transparent 70%
+  );
+  filter: blur(40px);
+}
+
+.market-path-grid {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image:
+    linear-gradient(
+      color-mix(in oklab, var(--foreground) 5%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--foreground) 5%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 75% 65% at 45% 50%, black, transparent 90%);
+}
+
+.market-path-chrome {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  height: 100%;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  gap: 0.75rem;
+  padding-block: clamp(1.1rem, 3vh, 2.25rem);
+}
+
+.market-path-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.market-path-headline {
+  margin-top: 0.75rem;
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 2.5vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+  text-wrap: balance;
+}
+
+.market-path-lede {
+  margin-top: 0.55rem;
+  max-width: 42ch;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+.market-path-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: color-mix(in oklab, var(--foreground) 40%, transparent);
+}
+
+.market-path-counter-sep {
+  opacity: 0.45;
+}
+
+.market-path-stage {
+  position: relative;
+  display: grid;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 19rem);
+  align-items: stretch;
+  gap: 1.25rem;
+}
+
+.market-path-graph {
+  width: 100%;
+  height: 100%;
+  min-height: 18rem;
+  overflow: visible;
+}
+
+.market-path-readout {
+  align-self: center;
+  border-radius: 1.1rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  background: color-mix(in oklab, var(--background) 90%, transparent);
+  padding: 1.15rem 1.2rem 1.25rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 48px -36px color-mix(in oklab, var(--foreground) 30%, transparent);
+  animation: market-path-readout-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes market-path-readout-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.market-path-readout-tag {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.market-path-readout-title {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.market-path-readout-body {
+  margin: 0.45rem 0 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+.market-path-readout-metric {
+  margin-top: 0.85rem;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 22%, transparent);
+  background: color-mix(in oklab, var(--primary) 7%, transparent);
+  padding: 0.65rem 0.8rem;
+}
+
+.market-path-readout-metric strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--primary-deep);
+}
+
+.market-path-readout-metric span {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--foreground) 48%, transparent);
+}
+
+.market-path-readout-lines {
+  margin: 0.75rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  color: color-mix(in oklab, var(--foreground) 58%, transparent);
+}
+
+.market-path-readout-lines li {
+  border-left: 2px solid color-mix(in oklab, var(--primary) 35%, transparent);
+  padding-left: 0.5rem;
+}
+
+.market-path-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.65rem;
+  justify-content: flex-start;
+}
+
+.market-path-tick {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--foreground) 38%, transparent);
+  transition:
+    color 0.35s ease,
+    opacity 0.35s ease;
+}
+
+.market-path-tick[data-on="true"] {
+  color: color-mix(in oklab, var(--primary) 70%, var(--foreground));
+}
+
+.market-path-tick[data-active="true"] {
+  color: var(--primary-deep);
+}
+
+.market-path-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.market-path-progress {
+  position: relative;
+  flex: 1;
+  height: 3px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--foreground) 8%, transparent);
+  overflow: hidden;
+}
+
+.market-path-progress span {
+  position: absolute;
+  inset: 0;
+  transform-origin: left;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--primary) 55%, transparent),
+    var(--primary)
+  );
+}
+
+.market-path-outro-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.market-path-cta,
+.market-path-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.market-path-cta {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.market-path-cta-ghost {
+  border: 1px solid color-mix(in oklab, var(--foreground) 14%, transparent);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.market-path-cta:hover,
+.market-path-cta-ghost:hover {
+  transform: translateY(-1px);
+}
+
+.market-path-cta-ghost:hover {
+  border-color: color-mix(in oklab, var(--primary) 40%, transparent);
+  color: var(--primary);
+}
+
+/* Mobile stack */
+
+.market-path-stack-list {
+  margin: 1.75rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0;
+  list-style: none;
+}
+
+.market-path-stack-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  border-radius: 1rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  background: color-mix(in oklab, var(--background) 90%, transparent);
+  padding: 1rem 1.1rem;
+}
+
+.market-path-stack-index {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+}
+
+.market-path-stack-label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.market-path-stack-title {
+  margin: 0.2rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.market-path-stack-body {
+  margin: 0.3rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}
+
+.market-path-stack-metric {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-deep);
+}
+
+.market-path-outro {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.market-path-outro p {
+  margin: 0;
+  max-width: 36ch;
+  font-size: 0.9rem;
+  color: var(--muted-foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .market-path-readout {
+    animation: none;
+  }
+}
+
+/* Feature orbit (light) */
 
 .feature-orbit {
   --fo-mint: oklch(0.548 0.117 158.2);

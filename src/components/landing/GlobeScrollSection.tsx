@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { ctas } from "@/content/site";
+import { SiteLink } from "@/components/layout/SiteLink";
 import { GlobeCanvas } from "@/components/landing/globe/GlobeCanvas";
 import heroStadium from "@/assets/hero-stadium.jpg";
 import sellerImg from "@/assets/card-seller.jpg";
@@ -26,113 +28,113 @@ const MARKETPLACES = [
 const slides = [
   {
     index: "01",
-    eyebrow: "Global infrastructure",
-    title: "For every",
-    lines: ["Broker desk.", "Travel team.", "Marketplace."],
+    eyebrow: "Ecosystem",
+    title: "One platform.",
+    lines: ["Brokers.", "Marketplaces.", "Travel partners."],
     headline: null,
-    body: "SeatsBrokers is the B2B layer between live inventory and every channel that sells it — one contract, one catalogue, one settlement stream.",
+    body: "SeatsBrokers is the technology infrastructure connecting the global ticketing ecosystem — event data, inventory, marketplace connectivity, AI pricing and partner commerce.",
     bullets: [
-      "Sport, music, and entertainment inventory in one trade platform",
-      "API, feed, or white-label — integrate at the depth you need",
-      "Built for professionals who move volume, not consumer checkout noise",
+      "Global event data and structured event intelligence",
+      "Ticket inventory and resale marketplace connectivity",
+      "AI-powered pricing and partner sales infrastructure",
     ],
     stats: [
-      { value: "24/7", label: "Ops & routing" },
-      { value: "3", label: "Global offices" },
+      { value: "32", label: "Connected marketplaces" },
+      { value: "12K+", label: "Events catalogued" },
     ],
     coord: "40.71°N 74.00°W",
     hub: "Americas gateway",
     region: "New York",
     image: heroStadium,
-    imageAlt: "Global stadium and live events infrastructure",
+    imageAlt: "Global ticketing ecosystem infrastructure",
   },
   {
     index: "02",
-    eyebrow: "Seller partners",
+    eyebrow: "Broker platform",
     title: null,
     lines: [] as string[],
-    headline: "List once. Sell across every major resale channel.",
-    body: "Professional brokers and rights holders publish inventory once. We fan it out to every connected marketplace and the long tail — with splits, holds, delivery rules, and pricing floors preserved.",
+    headline: "Manage inventory, pricing and marketplace distribution.",
+    body: "Run your entire ticket business from one platform — global event catalog, inventory management, multi-marketplace synchronization, AI pricing and POS/API integration.",
     bullets: [
-      "Unified catalog with live sync and double-sale protection",
-      "Smart repricing with margin guards your desk controls",
-      "Audit-ready payouts finance can reconcile in one export",
+      "List once. Distribute everywhere. Automatic delisting after sale.",
+      "Market pricing, sales intelligence and event onsale information",
+      "Payment infrastructure and ticket delivery management",
     ],
     stats: [
-      { value: "1", label: "Publish point" },
-      { value: "∞", label: "Marketplace reach" },
+      { value: "84K+", label: "Active listings" },
+      { value: "24/7", label: "Automated distribution" },
     ],
     coord: "51.51°N 0.13°W",
     hub: "EMEA trading desk",
     region: "London",
     image: sellerImg,
-    imageAlt: "Seller partner inventory and marketplace distribution",
+    imageAlt: "Broker platform with inventory and marketplace distribution",
   },
   {
     index: "03",
     eyebrow: "Travel partners",
     title: null,
     lines: [] as string[],
-    headline: "Verified tickets inside the packages you quote.",
-    body: "OTAs, tour operators, and concierge teams embed confirmed seats in itineraries — no midnight barcode hunts, no broken promises at the turnstile.",
+    headline: "Buy, margin, quote and sell.",
+    body: "Turn ticket inventory into customer-ready travel experiences — access inventory, add margins, generate professional quotes and share via PDF, WhatsApp or email.",
     bullets: [
-      "Catalogue filtered by city, date, venue, and budget",
-      "Hold-to-package workflows for groups and corporate hospitality",
-      "White-label confirmations that match your brand",
+      "Real-time inventory visibility and partner purchasing",
+      "Custom margins and customer-ready quotation tools",
+      "Invoice generation and order management",
     ],
     stats: [
-      { value: "Minutes", label: "To quote & share" },
-      { value: "100%", label: "Verified barcodes" },
+      { value: "Seconds", label: "Quote generation" },
+      { value: "Branded", label: "Customer output" },
     ],
     coord: "25.20°N 55.27°E",
     hub: "Gulf & leisure routes",
     region: "Dubai",
     image: travelImg,
-    imageAlt: "Travel partners packaging live events",
+    imageAlt: "Travel partner quotation and margin tools",
   },
   {
     index: "04",
-    eyebrow: "Market intelligence",
+    eyebrow: "Event intelligence",
     title: null,
     lines: [] as string[],
-    headline: "The same live data our routing engine uses.",
-    body: "Pricing, demand curves, and sell-through on one screen — updated continuously, not exported overnight. Your trading desk sees what the platform sees.",
+    headline: "Know the event. Know the market. Know the opportunity.",
+    body: "Event intelligence, market intelligence and AI pricing — three layers of data that help ticket businesses make better inventory and pricing decisions.",
     bullets: [
-      "Event-level heatmaps, comparables, and sell-through curves",
-      "Automated order routing with SLA visibility",
-      "Inventory sync across connected marketplaces in seconds",
+      "Global event catalog with onsale dates and demand indicators",
+      "Market pricing, category analysis and resale marketplace comparison",
+      "AI-powered pricing recommendations with broker approval workflow",
     ],
     stats: [
-      { value: "Live", label: "Pricing signals" },
-      { value: "1", label: "Source of truth" },
+      { value: "Live", label: "Market data" },
+      { value: "AI", label: "Pricing engine" },
     ],
     coord: "1.35°N 103.82°E",
     hub: "APAC distribution",
     region: "Singapore",
     image: dashboardImg,
-    imageAlt: "Market intelligence dashboard",
+    imageAlt: "Event and market intelligence dashboard",
   },
   {
     index: "05",
-    eyebrow: "Start partnering",
+    eyebrow: "Build on our technology",
     title: null,
     lines: [] as string[],
-    headline: "Thirty years of infrastructure. Ready for your next season.",
-    body: "Join brokers and travel teams who list once, sell everywhere, and settle clean — from London to New York to Dubai.",
+    headline: "Connect your ticket operation to modern infrastructure.",
+    body: "Whether you are a ticket broker, marketplace, travel partner or technology provider — build your ticket business on better technology.",
     bullets: [
-      "Seller onboarding with inventory import in days, not months",
-      "Travel partner feeds built for itinerary-driven sales",
-      "Dedicated trade support — partners@seatsbrokers.com",
+      "Book a demo to see the platform in action",
+      "API documentation and developer access available",
+      "Dedicated support — partners@seatsbrokers.com",
     ],
     stats: [
-      { value: "4.7/5", label: "Partner rating" },
-      { value: "1K+", label: "Venues on network" },
+      { value: "30+", label: "Years in ticketing" },
+      { value: "10K+", label: "B2B partners" },
     ],
     coord: "33.87°S 151.21°E",
     hub: "Pacific corridor",
     region: "Sydney",
     image: ctaImg,
-    imageAlt: "Championship events and global partnerships",
+    imageAlt: "Build your ticket business on SeatsBrokers technology",
     cta: true,
   },
 ] as const;
@@ -388,19 +390,21 @@ export function GlobeScrollSection() {
 
               {"cta" in slide && slide.cta && (
                 <div className="mt-10 flex flex-wrap justify-center gap-3">
-                  <a
-                    href="#sellers"
+                  <SiteLink
+                    to={ctas.bookDemo.to}
+                    hash={ctas.bookDemo.hash}
                     className="lift inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3.5 text-base font-bold text-primary-foreground"
                   >
-                    Become a Seller Partner
+                    {ctas.bookDemo.label}
                     <ArrowRight className="size-4" />
-                  </a>
-                  <a
-                    href="#travel"
+                  </SiteLink>
+                  <SiteLink
+                    to={ctas.talkToTeam.to}
+                    hash={ctas.talkToTeam.hash}
                     className="lift inline-flex items-center gap-2 rounded-md border border-background/35 bg-background/15 px-6 py-3.5 text-base font-bold text-background backdrop-blur-sm"
                   >
-                    Become a Travel Partner
-                  </a>
+                    {ctas.talkToTeam.label}
+                  </SiteLink>
                 </div>
               )}
 

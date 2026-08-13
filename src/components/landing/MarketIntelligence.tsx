@@ -6,23 +6,23 @@ import dashboardImg from "@/assets/dashboard.png";
 const tiles = [
   {
     icon: LineChart,
-    title: "Smart pricing engine",
-    body: "Floors, ceilings and guardrails that reprice against live comparables — not yesterday's guess.",
+    title: "Average & lowest price",
+    body: "Track average price, lowest price, highest price and price movement across resale marketplaces — per event and category.",
   },
   {
     icon: RefreshCw,
-    title: "Real-time inventory sync",
-    body: "Every hold, release and sale propagates across connected marketplaces in seconds.",
+    title: "Inventory volume & sales activity",
+    body: "Monitor inventory volume, sales activity and category demand to understand market position before you price.",
   },
   {
     icon: Activity,
-    title: "Market analytics",
-    body: "Event-level demand, sell-through and price curves so you know what to buy and when to dump.",
+    title: "Marketplace comparison",
+    body: "Compare pricing and activity across connected marketplaces — financial intelligence for ticket brokers, not an ERP export.",
   },
   {
     icon: Route,
-    title: "Automated order routing",
-    body: "Orders land on the cheapest compliant fulfilment path automatically, with SLA tracking.",
+    title: "Price movement tracking",
+    body: "Follow price curves from floor to settlement — demand signals that inform when to buy, hold or sell inventory.",
   },
 ];
 
@@ -34,14 +34,15 @@ export function MarketIntelligence() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Reveal>
             <p className="section-eyebrow text-primary">
-              Live market intelligence
+              Market intelligence
             </p>
             <h2 className="mt-4 text-3xl font-bold sm:text-4xl">
-              The engine room behind every seat you move
+              See What the Resale Market Is Doing
             </h2>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-background/70">
-              Pricing, inventory and order flow run off one live data layer. You see the same
-              numbers our routing does — updated continuously, not exported nightly.
+              The platform analyzes available market information and presents it in a simple format
+              for brokers — average price, lowest price, price movement, inventory volume and
+              marketplace comparison. Financial intelligence for ticket brokers.
             </p>
           </Reveal>
           <Reveal delay={120}>

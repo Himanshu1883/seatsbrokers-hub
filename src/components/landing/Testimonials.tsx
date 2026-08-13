@@ -4,7 +4,7 @@ import { Reveal } from "@/hooks/use-scroll-motion";
 const quotes = [
   {
     quote:
-      "We cut two full days a week of manual listing. Same inventory, more channels, fewer mistakes.",
+      "The marketplace sync alone replaced three full-time roles. One inventory layer, every channel updated automatically.",
     name: "Dan Whitfield",
     role: "Director, Northgate Tickets",
     initials: "DW",
@@ -12,7 +12,7 @@ const quotes = [
   },
   {
     quote:
-      "Pricing guardrails alone paid for the switch. We stopped underselling playoff inventory overnight.",
+      "Event intelligence with onsale dates changed how we buy inventory. We know what's coming before the market moves.",
     name: "Marisol Vega",
     role: "Head of Trading, Vega Seats",
     initials: "MV",
@@ -20,7 +20,7 @@ const quotes = [
   },
   {
     quote:
-      "Our itinerary team quotes match tickets in minutes now. Clients get real seats, not a maybe.",
+      "Our travel team generates branded quotes in seconds. PDF, WhatsApp, email — customers get professional output instantly.",
     name: "Priya Raman",
     role: "Product Lead, Meridian Travel",
     initials: "PR",
@@ -28,7 +28,7 @@ const quotes = [
   },
   {
     quote:
-      "Settlement is clean and on time. Finance stopped chasing us for reconciliations.",
+      "AI pricing recommendations with approval workflow — we stay in control but move faster than manual repricing ever allowed.",
     name: "Tom Byrne",
     role: "Ops Manager, Curtain Call Group",
     initials: "TB",
@@ -36,7 +36,7 @@ const quotes = [
   },
   {
     quote:
-      "Holds finally stick across every marketplace. No more double-sell fire drills on event day.",
+      "When a ticket sells on one marketplace, every other listing updates. No more double-sell fire drills on event day.",
     name: "Elena Costa",
     role: "Founder, Seatline Partners",
     initials: "EC",
@@ -44,7 +44,7 @@ const quotes = [
   },
   {
     quote:
-      "MarketIQ is the first feed our desk trusts without a second spreadsheet open.",
+      "Market intelligence feels like Bloomberg for ticket brokers — average price, movement, inventory volume, all live.",
     name: "James Okonkwo",
     role: "Pricing Lead, Apex Brokers",
     initials: "JO",
@@ -52,7 +52,7 @@ const quotes = [
   },
   {
     quote:
-      "Onboarding our travel agents took days, not months. They were quoting inventory the first week.",
+      "Connected our POS through the API in days. Inventory flows to marketplaces without us touching a single portal.",
     name: "Sofia Alvarez",
     role: "Partnerships, Horizon Journeys",
     initials: "SA",
@@ -60,7 +60,7 @@ const quotes = [
   },
   {
     quote:
-      "One export closes the month. Our accountants actually smile at payout statements now.",
+      "This is infrastructure, not another ERP dashboard. It understands how ticket businesses actually operate.",
     name: "Chris Nolan",
     role: "Finance, Riviera Seats",
     initials: "CN",
@@ -148,13 +148,13 @@ export function Testimonials() {
       <div className="container-page relative z-10">
         <Reveal>
           <p className="section-eyebrow text-primary">
-            Partner feedback
+            Technology partners
           </p>
           <h2
             id="testimonials-heading"
             className="mt-4 max-w-2xl font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
           >
-            What partners say after a season with us
+            What ticket businesses say about the platform
           </h2>
         </Reveal>
       </div>

@@ -10,6 +10,8 @@ import {
   X,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
+import { SiteLink } from "@/components/layout/SiteLink";
+import { ctas } from "@/content/site";
 import {
   Dialog,
   DialogClose,
@@ -27,59 +29,59 @@ const AUTO_MS = 4800;
 
 const slides = [
   {
-    id: "intel-live",
+    id: "dashboard",
     icon: Activity,
-    tag: "Market Intelligence",
-    title: "Side-by-side metrics. Live.",
-    body: "Listings, tickets, asks, and volatility across every source — BEST tags call the winner instantly.",
-    points: ["Compare 6+ marketplaces", "Lowest / avg / median asks", "Price-band & category charts"],
-    badge: "LIVE",
+    tag: "Dashboard",
+    title: "Platform overview at a glance.",
+    body: "Events, listings, connected marketplaces and inventory value — the command center for your ticketing operation.",
+    points: ["12,482 events · demo", "84,250 listings · demo", "32 connected marketplaces"],
+    badge: "Dashboard",
     image: marketIntelDark,
-    alt: "Market Intelligence live dashboard comparing marketplace metrics",
+    alt: "SeatsBrokers platform dashboard with key metrics",
   },
   {
-    id: "category-dark",
+    id: "events",
     icon: Tags,
-    tag: "Category prices",
-    title: "Best price per seat tier",
-    body: "Club Level to VIP — see every marketplace price on one row, with “not listed” and live % moves.",
-    points: ["8+ sources in one view", "Best price per category", "Blocks & ticket depth"],
-    badge: "Categories",
+    tag: "Events",
+    title: "Global event catalog",
+    body: "Browse football, rugby, cricket, tennis, Formula 1, music, theatre and arts — with onsale dates, venues and demand signals.",
+    points: ["Event onsale dates", "Venue maps", "Demand indicators"],
+    badge: "Events",
     image: categoryPricesDark,
-    alt: "Category prices across marketplaces dark dashboard",
+    alt: "Event catalog with onsale dates and venue information",
   },
   {
-    id: "category-light",
+    id: "market",
     icon: Layers3,
-    tag: "Cross-platform",
-    title: "Spot the cheapest site fast",
-    body: "Same seat category, every marketplace. Green callouts show who wins — open inventory to drill blocks.",
-    points: ["One glance arbitrage", "Per-tier best source", "Drill into inventory"],
-    badge: "Benchmark",
+    tag: "Market",
+    title: "Resale market intelligence",
+    body: "Average price, lowest price, price movement, inventory volume and marketplace comparison — financial intelligence for brokers.",
+    points: ["Price movement charts", "Category demand", "Marketplace comparison"],
+    badge: "Market",
     image: categoryPricesLight,
-    alt: "Light theme category price comparison across marketplaces",
+    alt: "Market intelligence with pricing trends and comparison",
   },
   {
-    id: "intel-light",
+    id: "pricing",
     icon: LineChart,
-    tag: "Market table",
-    title: "One number per cell",
-    body: "Premium, thin books, most inventory — toggle views and read the whole market without tab-hopping.",
-    points: ["BEST / Premium filters", "Std. dev & IQR", "Stacked inventory charts"],
-    badge: "Metrics",
+    tag: "Pricing",
+    title: "AI-powered pricing intelligence",
+    body: "Market data analyzed into pricing recommendations. AI recommends — broker approves — price synchronized across marketplaces.",
+    points: ["Pricing recommendations", "Approval workflow", "Automated sync"],
+    badge: "Pricing",
     image: marketIntelLight,
-    alt: "Market Intelligence light dashboard with metrics table and charts",
+    alt: "AI pricing dashboard with recommendations",
   },
   {
-    id: "admin",
+    id: "partners",
     icon: Settings2,
-    tag: "Control hub",
-    title: "Search deep. Toggle sources.",
-    body: "Market Insight search plus scraper toggles by league — Premier League to Serie A, on your terms.",
-    points: ["Event / league search", "Merged listing stats", "Source toggles per league"],
-    badge: "Admin",
+    tag: "Partners",
+    title: "Partner commerce hub",
+    body: "Travel partner inventory access, margin management, quotation tools and order management — all from one workspace.",
+    points: ["Partner inventory", "Quote generation", "Order management"],
+    badge: "Partners",
     image: adminSources,
-    alt: "Admin settings with Market Insight search and scraper source toggles",
+    alt: "Partner commerce workspace with quotation and order tools",
   },
 ] as const;
 
@@ -119,15 +121,15 @@ export function PartnerProductShowcase() {
             <div className="max-w-xl">
               <p className="flex items-center gap-2 section-eyebrow text-primary">
                 <span className="partner-live-dot" aria-hidden />
-                Inside the partner workspace
+                Product demo
               </p>
               <h2 className="mt-3 font-display text-[clamp(1.65rem,3.6vw,2.55rem)] font-bold leading-[1.08] tracking-tight">
-                What desks run after go-live —{" "}
-                <span className="text-primary">live market intel, not exports.</span>
+                The SeatsBrokers ERP —{" "}
+                <span className="text-primary">one workspace for your entire operation.</span>
               </h2>
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-muted-foreground lg:text-right">
-              Five screens from the real product. Click any screenshot to view it full size.
+              Dashboard, Events, Market, Pricing and Partners — five tabs from the real platform. Demo metrics shown.
             </p>
           </div>
         </Reveal>
@@ -193,13 +195,14 @@ export function PartnerProductShowcase() {
               ))}
             </ul>
             <div className="mt-7 flex flex-wrap items-center gap-4">
-              <a
-                href="#sellers"
+              <SiteLink
+                to={ctas.bookDemo.to}
+                hash={ctas.bookDemo.hash}
                 className="lift inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
               >
-                Become a partner
+                {ctas.bookDemo.label}
                 <ArrowRight className="size-4" aria-hidden />
-              </a>
+              </SiteLink>
               <button
                 type="button"
                 onClick={() => setActive((prev) => (prev + 1) % slides.length)}

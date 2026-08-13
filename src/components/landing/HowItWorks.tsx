@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Reveal, useTypewriter } from "@/hooks/use-scroll-motion";
 import { ArrowRight, Check } from "lucide-react";
+import { SiteLink } from "@/components/layout/SiteLink";
+import { ctas } from "@/content/site";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 
 import eventsImg from "@/assets/product-events-browser.jpg";
@@ -10,72 +12,72 @@ import analyticsImg from "@/assets/product-analytics-dashboard.png";
 const steps = [
   {
     n: "01",
-    tag: "ACCESS",
-    title: "Access inventory",
-    subtitle: "One catalogue. Every league. Every show.",
-    body: "SeatsBrokers gives your desk a single, curated view of live sport, music and entertainment — filtered by league, city, date and budget, with holds and delivery rules your ops team can trust.",
+    tag: "INTELLIGENCE",
+    title: "Know what's coming",
+    subtitle: "Event Intelligence for every fixture.",
+    body: "Our event intelligence technology brings together the information ticket businesses need — event name, date, venue, onsale date, sales criteria, ballot information, demand indicators and venue maps.",
     bullets: [
-      "Browse EPL, La Liga, Serie A, Bundesliga and top concerts from one dashboard",
-      "Category tree by sport, music, theatre and regional tours",
-      "Live match previews with floor pricing and comparables per fixture",
-      "Hold windows and section-level detail before you commit capital",
+      "Global event catalog across football, rugby, cricket, tennis and Formula 1",
+      "Onsale dates, onsale times and upcoming sales tracked per event",
+      "Demand indicators, category pricing and current resale prices",
+      "Interactive venue maps with sections, categories and seating areas",
     ],
     stats: [
-      { value: "1,451+", label: "Events tracked" },
-      { value: "4", label: "Top football leagues" },
+      { value: "12K+", label: "Events catalogued" },
+      { value: "10+", label: "Event categories" },
     ],
-    proof: "Live in the product",
-    proofDetail: "Events browser with live match cards — the same view your traders use daily",
-    caption: "Browse every event category without leaving the workspace",
+    proof: "Event Intelligence",
+    proofDetail: "Structured event data with onsale information, demand signals and venue maps",
+    caption: "Know the event before you buy inventory",
     image: eventsImg,
-    imageAlt: "SeatsBrokers events dashboard showing browsable leagues and live match previews",
-    url: "ticketiq.app / events",
+    imageAlt: "SeatsBrokers event intelligence dashboard showing event catalog and onsale dates",
+    url: "app.seatsbrokers.com / events",
   },
   {
     n: "02",
-    tag: "INTEGRATE",
-    title: "Integrate seamlessly",
-    subtitle: "API-first. White-label ready. One schema.",
-    body: "Connect at the depth you need — REST feeds for marketplaces, Market Insight for pricing desks, or embedded storefronts inside the tools your team already runs. Every source lands in one normalized model.",
+    tag: "MARKET",
+    title: "Know what's happening",
+    subtitle: "Market intelligence for ticket brokers.",
+    body: "See what the resale market is doing — average price, lowest price, highest price, price movement, inventory volume, sales activity and marketplace comparison in one format.",
     bullets: [
-      "Market Insight API merges listings across independent scrapers in one response",
-      "JWT-secured endpoints with staff-grade access and audit-friendly logs",
-      "Query by event, league and source — floors, depth and section pricing side by side",
-      "White-label and webhook flows for OTAs, brokers and internal ERP systems",
+      "Average, lowest and highest price tracking per event and category",
+      "Price movement, inventory volume and sales activity charts",
+      "Category demand and marketplace comparison side by side",
+      "Financial intelligence for ticket brokers — not stale exports",
     ],
     stats: [
-      { value: "8", label: "Live data sources" },
-      { value: "<200ms", label: "Typical API latency" },
+      { value: "8+", label: "Market data sources" },
+      { value: "<200ms", label: "Typical refresh" },
     ],
-    proof: "Live in the product",
-    proofDetail: "Documented Market Insight endpoint with merged_summary and per-source insights",
-    caption: "Search any event across every live marketplace table",
+    proof: "Market Intelligence",
+    proofDetail: "Bloomberg-style market analytics for ticket resale pricing decisions",
+    caption: "See what the resale market is doing right now",
     image: marketInsightImg,
-    imageAlt: "Market Insight API documentation and merged summary response",
-    url: "api.ticketiq.app / market-insight",
+    imageAlt: "Market intelligence dashboard with pricing trends and marketplace comparison",
+    url: "app.seatsbrokers.com / market",
   },
   {
     n: "03",
-    tag: "DISTRIBUTE",
-    title: "Distribute globally",
-    subtitle: "Route orders. Settle clean. Scale volume.",
-    body: "Push inventory to every marketplace, regional channel, and your own outlets — with automated routing, fulfilment SLAs and finance-ready statements. Revenue and ticket volume stay visible as the season moves.",
+    tag: "PRICING",
+    title: "Know what to price",
+    subtitle: "AI recommends. You decide.",
+    body: "Turn market data into actionable pricing recommendations. The platform analyzes market signals and recommends pricing adjustments — once approved, the new price synchronizes through connected marketplace infrastructure.",
     bullets: [
-      "Trends dashboard: revenue and ticket volume by month, category mix and avg price",
-      "Per-scraper visibility so you know where demand is landing",
-      "Automated order routing with margin guards your desk controls",
-      "Reconcilable payouts and exports finance can close in one pass",
+      "Market data → AI analysis → recommended price → broker approval → price updated",
+      "Pricing recommendations with market comparison and category analysis",
+      "Demand signals, inventory position and price movement tracking",
+      "Approval workflow with automated synchronization to marketplaces",
     ],
     stats: [
-      { value: "1.5M+", label: "Tickets tracked" },
-      { value: "$3.8K", label: "Avg ticket price" },
+      { value: "24/7", label: "AI pricing engine" },
+      { value: "Auto", label: "Marketplace sync" },
     ],
-    proof: "Live in the product",
-    proofDetail: "Analytics dashboard with monthly trends, categories and scraper breakdown",
-    caption: "The same live signals our routing engine uses — on your screen",
+    proof: "AI Pricing",
+    proofDetail: "AI-powered pricing intelligence with broker-controlled approval workflow",
+    caption: "Market data into pricing decisions — you stay in control",
     image: analyticsImg,
-    imageAlt: "Analytics dashboard with revenue trends and category breakdown",
-    url: "ticketiq.app / dashboard",
+    imageAlt: "AI pricing dashboard with recommendations and approval workflow",
+    url: "app.seatsbrokers.com / pricing",
   },
 ] as const;
 
@@ -182,7 +184,7 @@ function ProductScreenshot({
 }
 
 export function HowItWorks() {
-  const typed = useTypewriter(["Brokers.", "Travel Agencies.", "Rights Holders."], 80);
+  const typed = useTypewriter(["Event Intelligence.", "Market Intelligence.", "AI Pricing."], 80);
   const sectionRef = useRef<HTMLElement>(null);
   const scrollProgress = useSectionScrollProgress(sectionRef, steps.length);
   const active = Math.min(Math.round(scrollProgress), steps.length - 1);
@@ -201,15 +203,15 @@ export function HowItWorks() {
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <p className="section-eyebrow text-primary">
-                How it works
+                Intelligence stack
               </p>
               <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">
-                Built for <span className="caret text-primary">{typed}</span>
+                Know the market with <span className="caret text-primary">{typed}</span>
               </h2>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-muted-foreground lg:text-right lg:text-base">
-              Three steps from catalogue to settlement — with real product screens, not slide
-              decks. Scroll to walk the workspace your team would use on day one.
+              Know what's coming. Know what's happening. Know what to price — three layers of
+              intelligence built into the SeatsBrokers platform.
             </p>
           </div>
         </Reveal>
@@ -364,17 +366,18 @@ export function HowItWorks() {
                 Ready to onboard
               </p>
               <p className="mt-2 max-w-xl text-base font-semibold text-foreground">
-                Seller desks, travel teams and rights holders start with the same three steps —
-                access, integrate, distribute.
+                Ticket brokers, travel partners and technology providers — know what's coming,
+                know what's happening, know what to price.
               </p>
             </div>
-            <a
-              href="#contact"
+            <SiteLink
+              to={ctas.bookDemo.to}
+              hash={ctas.bookDemo.hash}
               className="lift inline-flex shrink-0 items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-bold text-primary-foreground"
             >
-              Talk to partnerships
+              {ctas.bookDemo.label}
               <ArrowRight className="size-4" />
-            </a>
+            </SiteLink>
           </div>
         </Reveal>
       </div>

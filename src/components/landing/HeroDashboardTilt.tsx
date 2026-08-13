@@ -9,11 +9,13 @@ import {
   Activity,
   ArrowUpRight,
   BarChart3,
-  Cpu,
-  Gauge,
+  Globe2,
+  Layers3,
   Radio,
   RefreshCw,
   ShieldCheck,
+  Sparkles,
+  TrendingUp,
   Zap,
 } from "lucide-react";
 
@@ -22,20 +24,20 @@ const MODE_MS = 3800;
 type ModeId = "intel" | "pricing" | "sync";
 
 const modes: { id: ModeId; label: string; url: string; status: string }[] = [
-  { id: "intel", label: "MarketIQ", url: "intel · feed", status: "STREAM" },
-  { id: "pricing", label: "Pricing", url: "pricing · engine", status: "AUTO" },
-  { id: "sync", label: "Hub", url: "hub · fan-out", status: "SYNC" },
+  { id: "intel", label: "Event Intel", url: "events · intelligence", status: "LIVE" },
+  { id: "pricing", label: "AI Pricing", url: "pricing · engine", status: "AUTO" },
+  { id: "sync", label: "Connectivity", url: "marketplace · sync", status: "SYNC" },
 ];
 
 function ModeIntel() {
   const sources = [
-    { name: "Marketplace 01", ask: "£180", tag: "BEST", hot: true },
-    { name: "Marketplace 02", ask: "£214", tag: "+18%", hot: false },
-    { name: "Marketplace 03", ask: "£246", tag: "+37%", hot: false },
-    { name: "Marketplace 04", ask: "—", tag: "thin", hot: false },
+    { name: "Resale marketplace", ask: "£182", tag: "BEST", hot: true },
+    { name: "Sports exchange", ask: "£214", tag: "+17%", hot: false },
+    { name: "Travel partner hub", ask: "£228", tag: "margin", hot: false },
+    { name: "Regional OTA feed", ask: "—", tag: "thin", hot: false },
   ];
-  const bands = [35, 55, 80, 62, 90, 48, 72, 58];
-  const heat = [0.2, 0.55, 0.9, 0.4, 0.7, 0.3, 0.85, 0.5, 0.65, 0.25, 0.95, 0.45];
+  const bands = [42, 58, 84, 68, 92, 54, 78, 61];
+  const heat = [0.25, 0.62, 0.92, 0.48, 0.74, 0.35, 0.88, 0.55, 0.7, 0.3, 0.96, 0.5];
 
   return (
     <div className="hero-shell hero-shell-intel">
@@ -46,12 +48,12 @@ function ModeIntel() {
           <i />
         </span>
         <span className="hero-shell-path">
-          <Cpu className="size-3" />
-          seatsbrokers / intel
+          <Globe2 className="size-3" />
+          seatsbrokers / event-intelligence
         </span>
         <span className="hero-shell-badge">
           <span className="hero-tilt-live-dot" />
-          STREAM
+          LIVE FEED
         </span>
       </header>
 
@@ -66,18 +68,18 @@ function ModeIntel() {
           <span>
             <Radio className="size-3.5" />
           </span>
-          <span className="hero-intel-rail-meta">v2.4</span>
+          <span className="hero-intel-rail-meta">v3.1</span>
         </aside>
 
         <div className="hero-intel-main">
           <div className="hero-mode-top">
             <div>
               <p className="hero-mode-kicker">
-                <Activity className="size-3" /> Market Intelligence
+                <TrendingUp className="size-3" /> Event Intelligence
               </p>
-              <p className="hero-mode-title">Source matrix · live asks</p>
+              <p className="hero-mode-title">Market depth · resale comparables</p>
             </div>
-            <span className="hero-mode-pill">BEST · £180</span>
+            <span className="hero-mode-pill">12K+ events</span>
           </div>
 
           <div className="hero-intel-grid">
@@ -98,7 +100,7 @@ function ModeIntel() {
 
             <div className="hero-intel-side">
               <div className="hero-intel-chart">
-                <p className="hero-mode-mini">Depth by band</p>
+                <p className="hero-mode-mini">Listing depth</p>
                 <div className="hero-tilt-bars hero-intel-bars">
                   {bands.map((h, i) => (
                     <span
@@ -110,12 +112,12 @@ function ModeIntel() {
                 </div>
               </div>
               <div className="hero-intel-heat">
-                <p className="hero-mode-mini">Volatility grid</p>
+                <p className="hero-mode-mini">Demand heatmap</p>
                 <div className="hero-intel-heat-grid">
                   {heat.map((v, i) => (
                     <span
                       key={i}
-                      style={{ opacity: 0.25 + v * 0.75 }}
+                      style={{ opacity: 0.2 + v * 0.8 }}
                       data-hot={v > 0.7 ? "true" : "false"}
                     />
                   ))}
@@ -125,8 +127,8 @@ function ModeIntel() {
           </div>
 
           <div className="hero-mode-foot hero-intel-foot">
-            <span>7 sources · IQR filter</span>
-            <span className="font-mono text-primary">latency 42ms</span>
+            <span>165+ markets · 84K+ listings tracked</span>
+            <span className="font-mono text-primary">latency 38ms</span>
           </div>
         </div>
       </div>
@@ -135,24 +137,24 @@ function ModeIntel() {
 }
 
 function ModePricing() {
-  const spark = [40, 55, 48, 70, 62, 85, 78, 92, 74, 88, 96, 82];
+  const spark = [38, 52, 46, 68, 58, 82, 76, 94, 71, 89, 98, 86];
   const tape = [
     { t: "FLOOR", v: "$180" },
-    { t: "ASK", v: "$247" },
-    { t: "CEIL", v: "$310" },
-    { t: "Δ", v: "+3.2%" },
-    { t: "EDGE", v: "1.8x" },
+    { t: "REC", v: "$247" },
+    { t: "CEIL", v: "$312" },
+    { t: "MARGIN", v: "18%" },
+    { t: "SIGNAL", v: "↑ onsale" },
   ];
 
   return (
     <div className="hero-shell hero-shell-pricing">
       <header className="hero-shell-chrome hero-shell-chrome-pricing">
         <span className="hero-price-brand">
-          <Gauge className="size-3.5" />
-          SMART PRICING
+          <Sparkles className="size-3.5" />
+          AI PRICING
         </span>
         <span className="hero-shell-path hero-shell-path-center">
-          engine · guardrails on
+          engine · guardrails active
         </span>
         <span className="hero-mode-pill hero-mode-pill-pulse">AUTO</span>
       </header>
@@ -170,10 +172,10 @@ function ModePricing() {
       <div className="hero-shell-body hero-shell-body-pricing">
         <div className="hero-price-hero">
           <div>
-            <p className="hero-price-label">Current ask</p>
+            <p className="hero-price-label">Recommended ask</p>
             <p className="hero-price-value">
               $247
-              <span className="hero-price-delta">▲ 3.2%</span>
+              <span className="hero-price-delta">▲ 3.4%</span>
             </p>
           </div>
           <div className="hero-price-rails">
@@ -183,7 +185,7 @@ function ModePricing() {
             </div>
             <div>
               <span>Ceiling</span>
-              <strong>$310</strong>
+              <strong>$312</strong>
             </div>
             <div>
               <span>Margin</span>
@@ -219,10 +221,10 @@ function ModePricing() {
             <ShieldCheck className="size-3" /> Margin guards
           </span>
           <span>
-            <Radio className="size-3" /> Comparables live
+            <Radio className="size-3" /> Comp set live
           </span>
           <span>
-            <Zap className="size-3" /> 12 events tuned
+            <Zap className="size-3" /> Onsale signals
           </span>
         </div>
       </div>
@@ -232,20 +234,20 @@ function ModePricing() {
 
 function ModeSync() {
   const channels = [
-    { name: "Marketplace 01", status: "Synced", ok: true },
-    { name: "Marketplace 02", status: "Synced", ok: true },
-    { name: "Marketplace 03", status: "Pushing", ok: true },
-    { name: "Marketplace 04", status: "Queued", ok: false },
-    { name: "Marketplace 05", status: "Synced", ok: true },
-    { name: "Regional", status: "3 live", ok: true },
+    { name: "Global resale", status: "Synced", ok: true },
+    { name: "Sports exchange", status: "Synced", ok: true },
+    { name: "Travel partners", status: "Pushing", ok: true },
+    { name: "Regional OTA", status: "Queued", ok: false },
+    { name: "Broker desk", status: "Synced", ok: true },
+    { name: "White-label", status: "3 live", ok: true },
   ];
 
   return (
     <div className="hero-shell hero-shell-sync">
       <header className="hero-shell-chrome hero-shell-chrome-sync">
         <span className="hero-shell-path">
-          <RefreshCw className="size-3 hero-spin" />
-          marketplace hub
+          <Layers3 className="size-3 hero-spin" />
+          marketplace connectivity
         </span>
         <span className="hero-sync-status-bar">
           <i data-ok="true" />
@@ -263,9 +265,10 @@ function ModeSync() {
           <div className="hero-sync-orbit" aria-hidden>
             <span className="hero-sync-orbit-ring" />
             <span className="hero-sync-orbit-ring hero-sync-orbit-ring-2" />
+            <span className="hero-sync-pulse" />
             <span className="hero-sync-core">
               SB
-              <small>HUB</small>
+              <small>SYNC</small>
             </span>
             {channels.map((c, i) => (
               <span
@@ -280,12 +283,12 @@ function ModeSync() {
 
           <div className="hero-sync-stats">
             <div>
-              <strong>8+</strong>
+              <strong>32+</strong>
               <span>channels</span>
             </div>
             <div>
               <strong>4s</strong>
-              <span>last push</span>
+              <span>last sync</span>
             </div>
             <div>
               <strong>0</strong>
@@ -360,11 +363,13 @@ export function HeroDashboardTilt() {
       onMouseLeave={onLeave}
       aria-hidden
     >
+      <div className="hero-tilt-ambient" />
       <div
         ref={cardRef}
         className="hero-tilt-card hero-tilt-alive"
         data-mode={current.id}
       >
+        <div className="hero-tilt-grid-bg" aria-hidden />
         <div className="hero-tilt-glare" />
         <span className="hero-tilt-scan" />
 

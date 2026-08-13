@@ -77,10 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SeatsBrokers" },
+      { title: "SeatsBrokers — Ticketing Technology & Market Intelligence" },
       {
         name: "description",
-        content: "B2B live-event ticket distribution and marketplace intelligence.",
+        content:
+          "The technology infrastructure behind modern ticket resale. Connect events, inventory, marketplaces, pricing, partners and payments through one intelligent ticketing platform.",
       },
       { name: "author", content: "SeatsBrokers" },
       { property: "og:type", content: "website" },

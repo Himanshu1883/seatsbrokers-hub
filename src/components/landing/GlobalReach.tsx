@@ -2,10 +2,10 @@ import { Reveal } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 
 const pillars = [
-  { title: "Global reach", body: "165 countries, every major league, tour and festival circuit." },
-  { title: "Scalable model", body: "From a two-person brokerage to an OTA moving thousands of seats a week." },
-  { title: "Flexible integration", body: "API, feed or white-label — you pick the depth." },
-  { title: "B2B focused", body: "No consumer noise. Trade pricing, trade terms, trade support." },
+  { title: "Global event catalog", body: "Football, rugby, cricket, tennis, Formula 1, boxing, music, theatre, arts and festivals." },
+  { title: "API-first architecture", body: "Connect POS, ERP, websites and partner systems through secure, documented APIs." },
+  { title: "Real-time synchronization", body: "Inventory, pricing and order data synchronized across marketplaces in real time." },
+  { title: "Scalable infrastructure", body: "Built for high-volume ticket operations with monitoring, audit logs and data protection." },
 ];
 
 export function GlobalReach() {
@@ -15,15 +15,15 @@ export function GlobalReach() {
       <div className="container-page relative z-10 grid gap-14 lg:grid-cols-2 lg:items-center">
         <Reveal>
           <p className="section-eyebrow text-primary">
-            Global distribution
+            Infrastructure
           </p>
           <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">
-            One bridge between live inventory and the world that sells it
+            Infrastructure Built for High-Volume Ticket Operations
           </h2>
           <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-            We connect event inventory to travel companies, concierge services, corporate hospitality
-            desks, offline agents and resellers across six continents — so a seat listed in London can
-            be sold in São Paulo before kickoff.
+            API-first architecture, secure authentication, role-based access, audit logs, automated
+            synchronization, real-time inventory workflows, monitoring and scalable infrastructure —
+            built for the global event economy.
           </p>
           <dl className="mt-10 grid gap-6 sm:grid-cols-2">
             {pillars.map((p, i) => (
@@ -39,10 +39,10 @@ export function GlobalReach() {
           <div className="rounded-2xl border border-border bg-surface p-8">
             <div className="grid grid-cols-2 gap-6">
               {[
-                ["165", "Countries covered"],
-                ["1,200+", "Cities served"],
-                ["12", "Marketplaces integrated"],
-                ["24/7", "Trade support"],
+                ["API-First", "Architecture"],
+                ["Real-Time", "Synchronization"],
+                ["AI & ML", "Pricing engine"],
+                ["24/7", "Platform monitoring"],
               ].map(([v, l]) => (
                 <div key={l} className="rounded-xl border border-border bg-card p-5">
                   <div className="font-mono text-2xl font-bold text-primary">{v}</div>
@@ -53,7 +53,7 @@ export function GlobalReach() {
               ))}
             </div>
             <p className="mt-6 text-xs text-muted-foreground">
-              London · New York · Dubai — three offices, one operating standard.
+              London · New York · Dubai — three offices, one technology platform.
             </p>
           </div>
         </Reveal>

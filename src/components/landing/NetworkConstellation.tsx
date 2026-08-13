@@ -7,6 +7,8 @@ import {
   Send,
   Wallet,
 } from "lucide-react";
+import { SiteLink } from "@/components/layout/SiteLink";
+import { ctas } from "@/content/site";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { GlobeCanvas } from "@/components/landing/globe/GlobeCanvas";
 
@@ -25,51 +27,51 @@ type Stage = {
 
 const stages: Stage[] = [
   {
-    id: "publish",
+    id: "events",
     index: "01",
-    node: "Publish",
-    label: "Marketplace Hub",
-    title: "One catalogue. One publish point.",
-    body: "Upload inventory once with splits, holds, and delivery rules attached — the hub keeps every channel reading the same truth.",
-    metric: "1",
-    metricLabel: "upload per event",
-    lines: ["catalog.sync → unified", "holds.enforced → true", "splits.preserved → true"],
+    node: "Event Data",
+    label: "Global Events",
+    title: "Structured event data across every category.",
+    body: "Football, rugby, cricket, tennis, Formula 1, boxing, music, theatre, arts and festivals — catalogued with onsale dates, venues and demand signals.",
+    metric: "12K+",
+    metricLabel: "events catalogued",
+    lines: ["events.catalog → synced", "onsale.dates → tracked", "venues.mapped → live"],
     icon: Layers,
   },
   {
-    id: "distribute",
+    id: "inventory",
     index: "02",
-    node: "Distribute",
-    label: "Channel Fan-out",
-    title: "Fan out to every marketplace fans use.",
-    body: "Every major marketplace and the regional long tail — pushed in seconds, with double-sale protection on every listing.",
-    metric: "8+",
-    metricLabel: "connected channels",
-    lines: ["push.channel_01 → ok", "push.channel_02 → ok", "double_sale.guard → armed"],
+    node: "Inventory",
+    label: "Ticket Inventory",
+    title: "Manage tickets, sections, rows and pricing.",
+    body: "Sections, rows, quantity, prices, ticket types, delivery information, restrictions and packages — managed from one centralized inventory layer.",
+    metric: "84K+",
+    metricLabel: "active listings",
+    lines: ["inventory.sync → unified", "quantity.guard → armed", "holds.enforced → true"],
     icon: RefreshCw,
   },
   {
-    id: "price",
+    id: "platform",
     index: "03",
-    node: "Price",
-    label: "Smart Pricing",
-    title: "Reprice around the clock, inside guardrails.",
-    body: "Floors, ceilings, and undercut logic track live comparables so inventory moves before kickoff — never below the margin you set.",
-    metric: "24/7",
-    metricLabel: "repricing engine",
-    lines: ["comparables.stream → live", "margin.guard → 18%", "desk.override → allowed"],
+    node: "SeatsBrokers",
+    label: "Platform Hub",
+    title: "The infrastructure layer connecting the ecosystem.",
+    body: "Event intelligence, marketplace connectivity, AI pricing, partner commerce and payment infrastructure — orchestrated through one technology platform.",
+    metric: "32",
+    metricLabel: "connected marketplaces",
+    lines: ["hub.orchestrate → active", "api.connect → live", "sync.realtime → true"],
     icon: BarChart3,
   },
   {
-    id: "fulfil",
+    id: "marketplaces",
     index: "04",
-    node: "Fulfil",
-    label: "Order Routing",
-    title: "Deliver on a path ops can audit.",
-    body: "Mobile transfer, PDF, and will-call orders route through one queue — cheapest compliant delivery, SLA tracked end to end.",
-    metric: "99.4%",
-    metricLabel: "SLA met",
-    lines: ["route.auto → cheapest", "barcode.verify → passed", "audit.trail → complete"],
+    node: "Distribute",
+    label: "Marketplace Connectivity",
+    title: "List once. Distribute everywhere.",
+    body: "Automated listing distribution, price synchronization, quantity sync and automatic delisting after sale — across every connected resale marketplace.",
+    metric: "8+",
+    metricLabel: "marketplace channels",
+    lines: ["push.marketplace → ok", "price.sync → live", "delist.auto → armed"],
     icon: Send,
   },
   {
@@ -77,11 +79,11 @@ const stages: Stage[] = [
     index: "05",
     node: "Settle",
     label: "Settlement",
-    title: "Clean books, closed in one export.",
-    body: "Transparent margins, KYC-ready onboarding, and payout statements finance reconciles without chasing a single line item.",
+    title: "Brokers, travel partners and customers connected.",
+    body: "Order synchronization, delivery updates, partner quotations, payment infrastructure and clean settlement — closing the loop on every ticket sale.",
     metric: "165",
-    metricLabel: "countries settled",
-    lines: ["payout.statement → ready", "fx.rates → locked", "reconcile.export → 1 file"],
+    metricLabel: "countries supported",
+    lines: ["order.sync → complete", "delivery.update → sent", "payout.statement → ready"],
     icon: Wallet,
   },
 ];
@@ -184,8 +186,8 @@ export function NetworkConstellation() {
                 Live network build
               </p>
               <h2 className="mt-4 text-4xl font-bold leading-[1.08] tracking-tight text-foreground">
-                One publish point.{" "}
-                <span className="text-primary">Every marketplace.</span> Settled clean.
+                One platform.{" "}
+                <span className="text-primary">Multiple parts</span> of the ticketing ecosystem.
               </h2>
 
               <ol className="mt-7 flex flex-col gap-1">
@@ -236,19 +238,19 @@ export function NetworkConstellation() {
               </ol>
 
               <div className="mt-7 flex flex-wrap gap-3.5">
-                <a
-                  href="#sellers"
+                <SiteLink
+                  to="/brokers"
                   className="inline-flex items-center rounded-full border border-border px-6 py-3 text-base font-semibold text-foreground transition-colors hover:border-primary/50"
                 >
-                  Seller Partner
-                </a>
-                <a
-                  href="#travel"
+                  {ctas.exploreBrokers.label}
+                </SiteLink>
+                <SiteLink
+                  to="/travel-partners"
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-white transition-transform hover:-translate-y-0.5"
                 >
-                  Travel Partner
+                  {ctas.exploreTravel.label}
                   <ArrowRight className="size-4" />
-                </a>
+                </SiteLink>
               </div>
             </div>
 
@@ -396,19 +398,19 @@ export function NetworkConstellation() {
         </div>
 
         <div className="mt-9 flex flex-wrap gap-4">
-          <a
-            href="#sellers"
+          <SiteLink
+            to="/brokers"
             className="inline-flex items-center rounded-full border border-border px-7 py-3.5 text-base font-semibold text-foreground"
           >
-            Become a Seller Partner
-          </a>
-          <a
-            href="#travel"
+            {ctas.exploreBrokers.label}
+          </SiteLink>
+          <SiteLink
+            to="/travel-partners"
             className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white"
           >
-            Become a Travel Partner
+            {ctas.exploreTravel.label}
             <ArrowRight className="size-4" />
-          </a>
+          </SiteLink>
         </div>
       </div>
     </section>

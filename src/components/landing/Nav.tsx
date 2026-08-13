@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import logo from "@/assets/seatsbrokers-logo.png";
-
-const links = [
-  { label: "About Us", href: "#about" },
-  { label: "Seller Partners", href: "#sellers" },
-  { label: "Travel Partners", href: "#travel" },
-  { label: "Affiliates", href: "#network" },
-  { label: "Contact", href: "#contact" },
-];
+import { brand, ctas, navLinks } from "@/content/site";
+import { SiteLink } from "@/components/layout/SiteLink";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -30,47 +25,50 @@ export function Nav() {
       }`}
     >
       <nav className="container-nav flex h-18 w-full items-center justify-between gap-6 py-3 lg:py-3.5">
-        <a href="#top" className="flex items-center">
+        <Link to="/" hash="top" className="flex items-center">
           <img
             src={logo}
-            alt="SeatsBrokers"
+            alt={brand.name}
             width={566}
             height={174}
             className="h-14 w-auto max-w-[min(100%,280px)] object-contain sm:h-16"
           />
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-7 lg:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
+          {navLinks.map((l) => (
+            <SiteLink
+              key={`${l.to}${"hash" in l && l.hash ? `#${l.hash}` : ""}`}
+              to={l.to}
+              hash={"hash" in l ? l.hash : undefined}
               className={`text-sm font-medium transition-colors hover:text-primary ${
                 scrolled ? "text-muted-foreground" : "text-background/80"
               }`}
             >
               {l.label}
-            </a>
+            </SiteLink>
           ))}
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href="#contact"
+          <SiteLink
+            to={ctas.login.to}
+            hash={ctas.login.hash}
             className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
               scrolled
                 ? "text-foreground hover:bg-secondary"
                 : "text-background hover:bg-background/10"
             }`}
           >
-            Login
-          </a>
-          <a
-            href="#sellers"
+            {ctas.login.label}
+          </SiteLink>
+          <SiteLink
+            to={ctas.bookDemo.to}
+            hash={ctas.bookDemo.hash}
             className="lift rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
           >
-            Get Started
-          </a>
+            {ctas.bookDemo.label}
+          </SiteLink>
         </div>
 
         <button
@@ -86,23 +84,25 @@ export function Nav() {
       {open && (
         <div className="border-t border-border bg-background lg:hidden">
           <div className="container-nav flex flex-col gap-1 py-4">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
+            {navLinks.map((l) => (
+              <SiteLink
+                key={`mobile-${l.to}${"hash" in l && l.hash ? `#${l.hash}` : ""}`}
+                to={l.to}
+                hash={"hash" in l ? l.hash : undefined}
                 onClick={() => setOpen(false)}
                 className="rounded-md px-2 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary hover:text-foreground"
               >
                 {l.label}
-              </a>
+              </SiteLink>
             ))}
-            <a
-              href="#sellers"
+            <SiteLink
+              to={ctas.bookDemo.to}
+              hash={ctas.bookDemo.hash}
               onClick={() => setOpen(false)}
               className="mt-2 rounded-md bg-primary px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground"
             >
-              Get Started
-            </a>
+              {ctas.bookDemo.label}
+            </SiteLink>
           </div>
         </div>
       )}

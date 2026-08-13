@@ -1,249 +1,553 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Radio } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  ArrowRight,
+  Briefcase,
+  Globe2,
+  Layers3,
+  Plane,
+  Radio,
+  RefreshCw,
+  Search,
+  Sparkles,
+  TrendingUp,
+  Zap,
+} from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
-import sellerImg from "@/assets/card-seller.jpg";
-import travelImg from "@/assets/card-travel.jpg";
+import { ctas } from "@/content/site";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const tracks = [
   {
-    id: "sellers",
-    code: "TRACK / SELL",
-    dir: -1, // enters from the left
-    image: sellerImg,
-    alt: "Concert crowd under stage lighting",
-    eyebrow: "Seller Partners",
-    title: "Seamless ticket trading for sellers",
-    body: "Stop babysitting spreadsheets and refreshing eight marketplace dashboards. List once, and your inventory prices, syncs and settles on autopilot across every channel we're plugged into.",
+    id: "brokers",
+    code: "BROKER",
+    icon: Briefcase,
+    eyebrow: "Ticket Brokers",
+    consolePath: "seatsbrokers / broker-platform",
+    consoleStatus: "SYNC",
+    lineA: "Run your",
+    lineAccent: "ticket business",
+    lineFade: "from one platform",
+    title: "Run your ticket business from one technology platform",
+    body: "Global event catalog, inventory management, marketplace distribution, multi-marketplace synchronization, market pricing, sales intelligence, AI pricing recommendations and POS/API integration.",
     stats: [
-      { value: "40+", label: "Marketplaces synced" },
-      { value: "<250ms", label: "Price sync latency" },
-      { value: "24/7", label: "Autopilot listing" },
+      { value: "32+", label: "Marketplaces synced" },
+      { value: "<250ms", label: "Sync latency" },
+      { value: "24/7", label: "Auto distribution" },
     ],
-    tags: ["Autopilot Workflows", "Real-Time Pricing", "Zero-Fee Listing", "Transparent Payouts"],
-    cta: "Become a Seller Partner",
+    modules: ["Event Catalog", "Inventory", "Distribution", "AI Pricing"],
+    channels: [
+      { id: "gmp", label: "Global MP", listings: 842, status: "Synced" },
+      { id: "stx", label: "Sports Ex", listings: 418, status: "Live" },
+      { id: "bkr", label: "Broker desk", listings: 612, status: "Pushing" },
+      { id: "ota", label: "Regional OTA", listings: 296, status: "Queued" },
+      { id: "api", label: "POS / API", listings: 250, status: "Synced" },
+      { id: "reg", label: "Resale EU", listings: 184, status: "Live" },
+    ],
+    syncLog: [
+      { time: "09:41:02", msg: "push.listings → 8 channels", ok: true },
+      { time: "09:41:03", msg: "double_sale.guard → armed", ok: true },
+      { time: "09:41:04", msg: "ai.reprice → £248 ask", ok: true },
+      { time: "09:41:05", msg: "hold.conflict → 0 open", ok: true },
+    ],
+    pricing: { ask: "£248", floor: "£185", tag: "BEST", bars: [38, 52, 71, 58, 84, 62, 78, 66] },
+    inventory: { total: "2,418", channels: "8", event: "UCL Final · Cat A" },
+    cta: ctas.exploreBrokers.label,
+    ctaTo: ctas.exploreBrokers.to,
+    tiltY: -16,
+    tiltZ: -2.5,
   },
   {
     id: "travel",
-    code: "TRACK / TRAVEL",
-    dir: 1, // enters from the right
-    image: travelImg,
-    alt: "Rows of stadium seating at golden hour",
+    code: "TRAVEL",
+    icon: Plane,
     eyebrow: "Travel Partners",
-    title: "Add verified event tickets to every itinerary",
-    body: "Sell the match, not just the trip. Guaranteed inventory, itinerary-ready quotes and group fulfilment that holds up at the turnstile — so your travellers never depend on an unreliable source.",
+    consolePath: "seatsbrokers / travel-partners",
+    consoleStatus: "LIVE",
+    lineA: "Turn inventory",
+    lineAccent: "into experience",
+    lineFade: "for every customer",
+    title: "Turn ticket inventory into a seamless customer experience",
+    body: "Access available ticket inventory, real-time visibility, partner purchasing, ticket quotations, custom margins, customer-ready quotes, invoice generation and WhatsApp sharing.",
     stats: [
-      { value: "98%", label: "Turnstile-verified" },
-      { value: "15min", label: "Fastest quote turnaround" },
-      { value: "10k+", label: "Seats fulfilled monthly" },
+      { value: "98%", label: "Quote accuracy" },
+      { value: "15min", label: "Quote turnaround" },
+      { value: "10K+", label: "Seats sourced monthly" },
     ],
-    tags: ["Verified Inventory", "Fair Pricing", "Last-Minute Ready", "Instant Quotes"],
-    cta: "Become a Travel Partner",
+    modules: ["Inventory Access", "Margins", "Quotations", "Orders"],
+    searchQuery: "Champions League Final · May 31",
+    inventoryRows: [
+      { section: "Cat A · Longside", seats: 2, ask: "€920", margin: "+18%" },
+      { section: "Cat B · Corner", seats: 4, ask: "€640", margin: "+18%" },
+    ],
+    pipeline: [
+      { label: "Search", detail: "12 events" },
+      { label: "Margin", detail: "+18% rule" },
+      { label: "Quote", detail: "PDF ready" },
+      { label: "Share", detail: "WhatsApp" },
+    ],
+    quote: {
+      event: "Champions League Final",
+      venue: "Wembley · London",
+      line: "Cat A · Longside lower",
+      seats: 2,
+      subtotal: "€1,840",
+      margin: "€331",
+      total: "€2,171",
+    },
+    cta: ctas.exploreTravel.label,
+    ctaTo: ctas.exploreTravel.to,
+    tiltY: 16,
+    tiltZ: 2.5,
   },
-];
+] as const;
 
-/** Scrub-linked progress (0 → 1) as `ref`'s element moves through the viewport. */
-function useScrollProgress<T extends HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [progress, setProgress] = useState(0);
+function useCycle(length: number, ms = 3200) {
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
-      setProgress(1);
-      return;
-    }
+    if (reduced || length <= 1) return;
 
-    let raf = 0;
-    const measure = () => {
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const start = vh * 0.95; // begin animating just before entering view
-      const end = vh * 0.45; // fully settled once past the upper-middle
-      const p = (start - rect.top) / (start - end);
-      setProgress(Math.min(1, Math.max(0, p)));
-    };
+    const id = window.setInterval(() => {
+      setActive((i) => (i + 1) % length);
+    }, ms);
+    return () => window.clearInterval(id);
+  }, [length, ms]);
 
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(measure);
-    };
-
-    measure();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return { ref, progress };
+  return active;
 }
 
-/** Animates a number from 0 to the value embedded in `text` once `active` flips true. */
-function CountUp({ text, active }: { text: string; active: boolean }) {
-  const match = text.match(/(\D*)(\d+)(.*)/);
-  const [display, setDisplay] = useState(match ? match[1] + "0" + match[3] : text);
-  const done = useRef(false);
-
-  useEffect(() => {
-    if (!match || !active || done.current) return;
-    done.current = true;
-    const [, prefix, digits, suffix] = match;
-    const target = parseInt(digits, 10);
-    const duration = 800;
-    const start = performance.now();
-
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      const current = Math.round(target * eased);
-      setDisplay(`${prefix}${current}${suffix}`);
-      if (t < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }, [active, match]);
-
-  return <>{display}</>;
+function ConsoleChrome({
+  path,
+  status,
+  icon: Icon,
+}: {
+  path: string;
+  status: string;
+  icon: typeof Briefcase;
+}) {
+  return (
+    <header className="two-track-chrome">
+      <span className="two-track-chrome-dots" aria-hidden>
+        <i />
+        <i />
+        <i />
+      </span>
+      <span className="two-track-chrome-path">
+        <Icon className="size-3.5" strokeWidth={1.75} />
+        {path}
+      </span>
+      <span className="two-track-chrome-badge">
+        <span className="two-track-chrome-pulse" />
+        {status}
+      </span>
+    </header>
+  );
 }
 
-function TrackCard({ track, index, groupProgress }: { track: (typeof tracks)[number]; index: number; groupProgress: number }) {
-  // stagger the second card slightly behind the first
-  const local = Math.min(1, Math.max(0, (groupProgress - index * 0.18) / (1 - index * 0.18)));
-  const eased = 1 - Math.pow(1 - local, 3);
-  const translateX = (1 - eased) * 64 * track.dir;
-  const active = local > 0.4;
+function BrokerConsole({ track }: { track: (typeof tracks)[number] }) {
+  if (track.id !== "brokers") return null;
+
+  const activeModule = useCycle(track.modules.length);
+  const activeChannel = useCycle(track.channels.length, 2800);
+  const logRows = [...track.syncLog, ...track.syncLog];
+
+  return (
+    <div className="two-track-console two-track-console-broker">
+      <div className="two-track-console-top">
+        <div className="two-track-hub-panel">
+          <p className="two-track-panel-kicker">
+            <Globe2 className="size-3.5" /> Marketplace distribution
+          </p>
+          <div className="two-track-hub-viz">
+            <div className="two-track-hub-viz-stage">
+              <svg viewBox="0 0 200 100" className="two-track-hub-svg" aria-hidden>
+                <circle cx="100" cy="50" r="38" className="two-track-orbit-ring" />
+                <circle cx="100" cy="50" r="24" className="two-track-orbit-ring two-track-orbit-ring-inner" />
+                {track.channels.map((_, i) => {
+                  const angle = (i / track.channels.length) * Math.PI * 2 - Math.PI / 2;
+                  const x = 100 + Math.cos(angle) * 38;
+                  const y = 50 + Math.sin(angle) * 38;
+                  return (
+                    <line
+                      key={i}
+                      x1="100"
+                      y1="50"
+                      x2={x}
+                      y2={y}
+                      className="two-track-spoke"
+                      data-active={activeChannel === i ? "true" : "false"}
+                      style={{ animationDelay: `${i * 0.35}s` }}
+                    />
+                  );
+                })}
+              </svg>
+              <div className="two-track-orbit-core two-track-orbit-core-sm">
+                <Layers3 className="size-4" strokeWidth={1.75} />
+              </div>
+              {track.channels.map((ch, i) => (
+                <span
+                  key={ch.id}
+                  className="two-track-orbit-node two-track-orbit-node-sm"
+                  data-active={activeChannel === i ? "true" : "false"}
+                  data-status={ch.status}
+                  style={{ ["--orbit-i" as string]: i }}
+                  title={ch.label}
+                >
+                  {ch.label.split(" ")[0]?.slice(0, 3)}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="two-track-inventory-strip">
+            <span>{track.inventory.total} listings</span>
+            <span className="two-track-inventory-dot" />
+            <span>{track.inventory.channels} channels</span>
+            <span className="two-track-inventory-dot" />
+            <span>{track.inventory.event}</span>
+          </div>
+        </div>
+
+        <div className="two-track-side-stack">
+          <div className="two-track-log-panel">
+            <p className="two-track-panel-kicker">
+              <Radio className="size-3.5" /> Sync log
+            </p>
+            <div className="two-track-log-viewport">
+              <div className="two-track-log-track">
+                {logRows.map((row, i) => (
+                  <div key={`${row.time}-${i}`} className="two-track-log-row" data-ok={row.ok ? "true" : "false"}>
+                    <span>{row.time}</span>
+                    <span>{row.msg}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="two-track-pricing-panel">
+            <div className="two-track-pricing-head">
+              <p className="two-track-panel-kicker">
+                <TrendingUp className="size-3.5" /> AI pricing
+              </p>
+              <span className="two-track-best-tag">{track.pricing.tag}</span>
+            </div>
+            <div className="two-track-pricing-asks">
+              <div>
+                <span className="two-track-pricing-label">Live ask</span>
+                <strong>{track.pricing.ask}</strong>
+              </div>
+              <div>
+                <span className="two-track-pricing-label">Floor</span>
+                <strong>{track.pricing.floor}</strong>
+              </div>
+            </div>
+            <div className="two-track-pricing-bars">
+              {track.pricing.bars.map((h, i) => (
+                <span
+                  key={i}
+                  className="two-track-pricing-bar"
+                  style={{ height: `${h}%`, animationDelay: `${i * 70}ms` }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul className="two-track-module-rail">
+        {track.modules.map((mod, i) => (
+          <li key={mod} data-active={activeModule === i ? "true" : "false"}>
+            <RefreshCw className="size-3.5" strokeWidth={2} />
+            {mod}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function TravelConsole({ track }: { track: (typeof tracks)[number] }) {
+  if (track.id !== "travel") return null;
+
+  const activeStep = useCycle(track.pipeline.length, 2600);
+  const activeModule = useCycle(track.modules.length);
+
+  return (
+    <div className="two-track-console two-track-console-travel">
+      <div className="two-track-search-bar">
+        <Search className="size-4 shrink-0 text-muted-foreground" strokeWidth={2} />
+        <span className="two-track-search-query">{track.searchQuery}</span>
+        <span className="two-track-search-badge">Live inventory</span>
+      </div>
+
+      <div className="two-track-console-split">
+        <div className="two-track-inventory-panel">
+          <p className="two-track-panel-kicker">Available inventory</p>
+          {track.inventoryRows.map((row) => (
+            <div key={row.section} className="two-track-inventory-row">
+              <div className="two-track-inventory-row-main">
+                <span className="two-track-inventory-section">{row.section}</span>
+                <span className="two-track-inventory-seats">{row.seats} seats</span>
+              </div>
+              <div className="two-track-inventory-prices">
+                <span>{row.ask}</span>
+                <span className="two-track-margin-pill">{row.margin}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="two-track-quote-panel">
+          <p className="two-track-panel-kicker">
+            <Sparkles className="size-3.5" /> Customer quote
+          </p>
+          <p className="two-track-quote-event">{track.quote.event}</p>
+          <p className="two-track-quote-venue">{track.quote.venue}</p>
+          <p className="two-track-quote-line">{track.quote.line}</p>
+          <div className="two-track-quote-rows">
+            <div>
+              <span>Subtotal · {track.quote.seats} seats</span>
+              <strong>{track.quote.subtotal}</strong>
+            </div>
+            <div>
+              <span>Partner margin</span>
+              <strong>{track.quote.margin}</strong>
+            </div>
+            <div className="two-track-quote-total">
+              <span>Customer total</span>
+              <strong>{track.quote.total}</strong>
+            </div>
+          </div>
+          <div className="two-track-quote-actions">
+            <span className="two-track-quote-action" data-ready="true">
+              PDF ready
+            </span>
+            <span className="two-track-quote-action two-track-quote-action-wa">
+              WhatsApp · sent
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <ol className="two-track-pipeline">
+        {track.pipeline.map((step, i) => (
+          <li key={step.label} data-active={activeStep === i ? "true" : "false"}>
+            <span className="two-track-pipeline-dot" />
+            <span className="two-track-pipeline-label">{step.label}</span>
+            <span className="two-track-pipeline-detail">{step.detail}</span>
+          </li>
+        ))}
+      </ol>
+
+      <ul className="two-track-module-rail">
+        {track.modules.map((mod, i) => (
+          <li key={mod} data-active={activeModule === i ? "true" : "false"}>
+            <Zap className="size-3.5" strokeWidth={2} />
+            {mod}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function TrackCard3D({
+  track,
+  cardRef,
+}: {
+  track: (typeof tracks)[number];
+  cardRef: (el: HTMLElement | null) => void;
+}) {
+  const Icon = track.icon;
 
   return (
     <article
       id={track.id}
-      style={{
-        transform: `translateX(${translateX}px)`,
-        opacity: Math.max(0.001, eased),
-      }}
-      className="group lift relative flex h-full scroll-mt-24 flex-col overflow-hidden rounded-2xl border border-border bg-card transition-[transform,opacity,box-shadow] duration-150 ease-out will-change-transform hover:shadow-[0_0_0_1px_theme(colors.primary.DEFAULT/0.35),0_20px_50px_-20px_theme(colors.primary.DEFAULT/0.35)]"
+      ref={cardRef}
+      className="two-track-3d-card scroll-mt-24"
+      data-track={track.id}
     >
-      <span className="pointer-events-none absolute left-3 top-3 z-20 size-4 border-l-2 border-t-2 border-background/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      <span className="pointer-events-none absolute right-3 top-3 z-20 size-4 border-r-2 border-t-2 border-background/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="two-track-3d-bezel">
+        <div className="two-track-3d-screen">
+          <span className="two-track-3d-grid" aria-hidden />
+          <span className="two-track-3d-glare" aria-hidden />
+          <span className="two-track-3d-scan" aria-hidden />
 
-      <div className="relative h-56 overflow-hidden">
-        <img
-          src={track.image}
-          alt={track.alt}
-          loading="lazy"
-          width={1200}
-          height={800}
-          style={{ transform: `scale(${1.08 - eased * 0.08}) translateX(${(1 - eased) * -20 * track.dir}px)` }}
-          className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "var(--gradient-hero)", opacity: 0.7 }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 opacity-[0.15] mix-blend-overlay"
-          style={{
-            backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)",
-            backgroundSize: "14px 14px",
-            color: "var(--background)",
-          }}
-          aria-hidden
-        />
+          <ConsoleChrome path={track.consolePath} status={track.consoleStatus} icon={track.icon} />
 
-        <div className="absolute inset-x-6 bottom-4 flex items-center justify-between">
-          <span className="font-mono text-[11px] tracking-[0.2em] text-background uppercase">
-            {track.eyebrow}
-          </span>
-          <span className="rounded-full border border-background/40 px-2 py-0.5 font-mono text-[10px] tracking-[0.15em] text-background/90">
-            {track.code}
+          <div className="two-track-3d-inner">
+            <header className="two-track-3d-headline">
+              <span className="two-track-3d-line">{track.lineA}</span>
+              <span className="two-track-3d-accent">{track.lineAccent}</span>
+              <span className="two-track-3d-fade">{track.lineFade}</span>
+            </header>
+
+            <div className="two-track-3d-stage">
+              {track.id === "brokers" ? (
+                <BrokerConsole track={track} />
+              ) : (
+                <TravelConsole track={track} />
+              )}
+            </div>
+
+            <footer className="two-track-3d-footer">
+              <dl className="two-track-3d-stats">
+                {track.stats.map((s) => (
+                  <div key={s.label}>
+                    <dt className="sr-only">{s.label}</dt>
+                    <dd className="two-track-stat-value">{s.value}</dd>
+                    <dd className="two-track-stat-label">{s.label}</dd>
+                  </div>
+                ))}
+              </dl>
+            </footer>
+          </div>
+
+          <span className="two-track-3d-badge">
+            <Icon className="size-4" strokeWidth={1.75} />
           </span>
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col p-7">
-        <h3 className="text-2xl font-bold text-foreground">{track.title}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{track.body}</p>
-
-        <dl className="mt-6 grid grid-cols-3 gap-4 border-y border-border py-5">
-          {track.stats.map((s) => (
-            <div key={s.label}>
-              <dt className="sr-only">{s.label}</dt>
-              <dd className="font-mono text-lg font-semibold tabular-nums text-foreground sm:text-xl">
-                <CountUp text={s.value} active={active} />
-              </dd>
-              <dd className="mt-1 text-[11px] leading-tight text-muted-foreground">{s.label}</dd>
-            </div>
-          ))}
-        </dl>
-
-        <ul className="mt-6 flex flex-wrap gap-2">
-          {track.tags.map((tag, ti) => (
-            <li
-              key={tag}
-              style={{
-                transitionDelay: `${120 + ti * 70}ms`,
-                opacity: active ? 1 : 0,
-                transform: active ? "translateY(0)" : "translateY(6px)",
-              }}
-              className="flex items-center gap-1.5 rounded-full bg-primary-soft px-3 py-1 font-mono text-[11px] font-medium text-accent-foreground transition-all duration-300 ease-out"
-            >
-              <span className="size-1 rounded-full bg-accent-foreground/70" aria-hidden />
-              {tag}
-            </li>
-          ))}
-        </ul>
-
-        <a
-          href="#contact"
-          className="group/cta mt-8 inline-flex w-fit items-center gap-2 border-b border-transparent pb-0.5 text-sm font-semibold text-primary transition-colors hover:border-primary"
-        >
+      <div className="two-track-3d-copy">
+        <p className="section-eyebrow text-primary">{track.eyebrow}</p>
+        <h3 className="mt-3 font-display text-xl font-bold leading-snug text-foreground sm:text-2xl">
+          {track.title}
+        </h3>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
+          {track.body}
+        </p>
+        <Link to={track.ctaTo} className="two-track-cta group/cta">
           {track.cta}
           <ArrowRight className="size-4 transition-transform group-hover/cta:translate-x-1" />
-        </a>
+        </Link>
       </div>
     </article>
   );
 }
 
 export function TwoTrack() {
-  const { ref, progress } = useScrollProgress<HTMLDivElement>();
+  const sectionRef = useRef<HTMLElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLElement | null)[]>([]);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const panel = panelRef.current;
+    if (!section || !panel) return;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const cards = cardRefs.current.filter(Boolean) as HTMLElement[];
+
+    if (reduced) {
+      cards.forEach((card) => {
+        gsap.set(card, { rotateX: 0, rotateY: 0, rotateZ: 0, y: 0, scale: 1 });
+        gsap.set(card.querySelectorAll(".two-track-3d-headline, .two-track-3d-stage, .two-track-3d-footer"), {
+          opacity: 1,
+          y: 0,
+        });
+      });
+      return;
+    }
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "+=175%",
+          pin: panel,
+          scrub: 2.4,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      cards.forEach((card, i) => {
+        const track = tracks[i];
+        if (!track) return;
+
+        const headline = card.querySelector<HTMLElement>(".two-track-3d-headline");
+        const stage = card.querySelector<HTMLElement>(".two-track-3d-stage");
+        const footer = card.querySelector<HTMLElement>(".two-track-3d-footer");
+
+        tl.fromTo(
+          card,
+          {
+            rotateX: 18,
+            rotateY: track.tiltY,
+            rotateZ: track.tiltZ,
+            y: 40,
+            scale: 0.94,
+            transformPerspective: 1800,
+            transformOrigin: "50% 55%",
+            force3D: true,
+          },
+          {
+            rotateX: 0,
+            rotateY: 0,
+            rotateZ: 0,
+            y: 0,
+            scale: 1,
+            ease: "power1.inOut",
+            duration: 1,
+          },
+          0,
+        );
+
+        if (headline) {
+          tl.fromTo(headline, { opacity: 0, y: 22 }, { opacity: 1, y: 0, ease: "power1.out", duration: 0.55 }, 0.12);
+        }
+        if (stage) {
+          tl.fromTo(stage, { opacity: 0, y: 28 }, { opacity: 1, y: 0, ease: "power1.out", duration: 0.55 }, 0.28);
+        }
+        if (footer) {
+          tl.fromTo(footer, { opacity: 0, y: 16 }, { opacity: 1, y: 0, ease: "power1.out", duration: 0.45 }, 0.42);
+        }
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="about" className="section-curve relative isolate bg-surface py-24">
-      <SectionBackdrop image="concertCrowd" tone="surface" strength={0.1} />
-      <div className="container-page relative z-10">
-        <Reveal>
-          <div className="flex items-center gap-2 text-primary">
-            <Radio className="size-3.5 animate-pulse" strokeWidth={2.5} />
-            <p className="section-eyebrow">Two tracks, one platform</p>
+    <section
+      ref={sectionRef}
+      id="platform-tracks"
+      className="two-track-cinema section-curve relative isolate scroll-mt-24 bg-surface"
+    >
+      <SectionBackdrop image="concertCrowd" tone="surface" strength={0.08} />
+
+      <div ref={panelRef} className="two-track-panel">
+        <div className="container-page relative z-10">
+          <Reveal>
+            <p className="section-eyebrow text-primary">One platform · Multiple parts</p>
+            <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-4xl lg:text-[2.65rem]">
+              Built for the global ticketing ecosystem
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Ticket brokers and travel partners — connected through one intelligent infrastructure layer for catalog,
+              distribution, pricing and partner commerce.
+            </p>
+          </Reveal>
+
+          <div className="two-track-stage">
+            {tracks.map((track, i) => (
+              <TrackCard3D
+                key={track.id}
+                track={track}
+                cardRef={(el) => {
+                  cardRefs.current[i] = el;
+                }}
+              />
+            ))}
           </div>
-          <h2 className="mt-4 max-w-2xl text-3xl font-bold text-foreground sm:text-4xl">
-            Built for the two sides of live-event supply
-          </h2>
-          <p className="mt-3 max-w-xl text-sm text-muted-foreground">
-            Same inventory graph, same settlement engine, two purpose-built entry points.
-          </p>
-        </Reveal>
-
-        {/* sync line — draws in as the tracks below settle into place */}
-        <div className="relative mt-10 hidden h-px lg:block" aria-hidden>
-          <div className="absolute inset-0 bg-border" />
-          <div
-            className="absolute inset-y-0 left-1/2 w-px bg-primary transition-[height] duration-300"
-            style={{ height: `${progress * 100}%`, transform: "translateX(-50%)" }}
-          />
-        </div>
-
-        <div ref={ref} className="mt-6 grid gap-6 lg:grid-cols-2 lg:mt-6">
-          {tracks.map((t, i) => (
-            <TrackCard key={t.id} track={t} index={i} groupProgress={progress} />
-          ))}
         </div>
       </div>
     </section>

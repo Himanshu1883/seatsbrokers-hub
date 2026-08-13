@@ -5,7 +5,6 @@ import {
   RefreshCw,
   ShieldCheck,
   TrendingUp,
-  Users,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import logo from "@/assets/seatsbrokers-logo.png";
@@ -34,64 +33,64 @@ const features: {
   detail: string;
 }[] = [
   {
-    id: "hub",
+    id: "intel",
     angle: 200,
     side: "left",
     accent: "mint",
-    icon: RefreshCw,
-    title: "List once",
-    italic: "sell everywhere",
-    category: "Marketplace Hub",
+    icon: BarChart3,
+    title: "Event Intelligence",
+    italic: "know what's coming",
+    category: "Event Data",
     detail:
-      "Publish to every connected marketplace and regional channel — holds, splits, and delivery rules stay attached to every listing.",
+      "Global event catalog, onsale dates, sales criteria, ballot information, demand indicators, venue maps and category pricing — before you sell.",
   },
   {
-    id: "pricing",
+    id: "connectivity",
     angle: 278,
     side: "left",
     accent: "amber",
-    icon: TrendingUp,
-    title: "Smart pricing",
-    italic: "guardrails on",
-    category: "Pricing Engine",
+    icon: RefreshCw,
+    title: "Marketplace Connectivity",
+    italic: "list once, distribute",
+    category: "Distribution",
     detail:
-      "Floors, ceilings, and undercut logic track live comparables so inventory moves before kickoff — not after the whistle.",
+      "API connectivity, inventory synchronization, automated listing distribution, price and quantity sync, and automatic delisting after sale.",
   },
   {
-    id: "fulfilment",
+    id: "automation",
     angle: 338,
     side: "right",
     accent: "teal",
     icon: Layers,
-    title: "Fulfilment",
-    italic: "ops can audit",
-    category: "Order Routing",
+    title: "Inventory Automation",
+    italic: "one place to manage",
+    category: "Inventory",
     detail:
-      "Mobile transfer, PDF, and will-call flow through one queue — auto-routed to the cheapest compliant delivery with SLA tracking.",
+      "Manage tickets, sections, rows, quantity, prices, delivery information and restrictions — with listings synchronized across every connected channel.",
   },
   {
-    id: "marketiq",
+    id: "pricing",
     angle: 48,
     side: "right",
     accent: "cyan",
-    icon: BarChart3,
-    title: "MarketIQ",
-    italic: "live depth",
+    icon: TrendingUp,
+    title: "AI Pricing",
+    italic: "you decide",
     category: "Intelligence",
     detail:
-      "Revenue trends, category mix, and Market Insight API depth — merged floors for pricing desks, not stale spreadsheets.",
+      "Market data analyzed into pricing recommendations. AI recommends — broker approves — price synchronized through connected marketplace infrastructure.",
   },
   {
-    id: "network",
+    id: "api",
     angle: 118,
     side: "right",
     accent: "forest",
-    icon: Users,
-    title: "Partner network",
-    italic: "clean settlement",
-    category: "Trading Desk",
+    icon: ShieldCheck,
+    title: "API Infrastructure",
+    italic: "connect your systems",
+    category: "Integrations",
     detail:
-      "Broker-to-broker trades with transparent margins, KYC-ready onboarding, and payout statements finance closes in one export.",
+      "Connect POS systems, inventory systems, internal ERP, websites, mobile applications and partner systems through API-first architecture.",
   },
 ];
 
@@ -155,14 +154,14 @@ export function FeatureOrbit() {
               Platform stack
             </p>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.85rem]">
-              Everything that keeps{" "}
+              Technology built specifically for{" "}
               <em className="font-serif font-medium text-primary-deep italic">
-                inventory moving
+                ticketing
               </em>
             </h2>
             <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-              Five desks, one orbit — hub sync, pricing, fulfilment, MarketIQ, and
-              partner trading around a single SeatsBrokers core.
+              Event intelligence, marketplace connectivity, inventory automation, AI pricing
+              and API infrastructure — orbiting one SeatsBrokers core.
             </p>
           </div>
         </Reveal>

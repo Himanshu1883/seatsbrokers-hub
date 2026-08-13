@@ -1,4 +1,6 @@
 import { Reveal } from "@/hooks/use-scroll-motion";
+import { SiteLink } from "@/components/layout/SiteLink";
+import { ctas } from "@/content/site";
 import ctaImg from "@/assets/cta-trophy.jpg";
 
 export function FinalCTA() {
@@ -20,24 +22,28 @@ export function FinalCTA() {
       <div className="container-page text-center">
         <Reveal>
           <h2 className="mx-auto max-w-3xl text-3xl font-bold text-background sm:text-5xl">
-            Put your inventory where the demand already is
+            Build Your Ticket Business on Better Technology
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-sm text-background/75 sm:text-base">
-            Tell us which side of the market you're on and we'll get you live in days, not quarters.
+            Whether you are a ticket broker, marketplace, travel partner or technology provider,
+            connect your ticket operation to a modern technology infrastructure built for the global
+            event economy.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <a
-              href="#sellers"
+            <SiteLink
+              to={ctas.bookDemo.to}
+              hash={ctas.bookDemo.hash}
               className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
             >
-              Become a Seller Partner
-            </a>
-            <a
-              href="#travel"
+              {ctas.bookDemo.label}
+            </SiteLink>
+            <SiteLink
+              to={ctas.talkToTeam.to}
+              hash={ctas.talkToTeam.hash}
               className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
             >
-              Become a Travel Partner
-            </a>
+              {ctas.talkToTeam.label}
+            </SiteLink>
           </div>
         </Reveal>
       </div>

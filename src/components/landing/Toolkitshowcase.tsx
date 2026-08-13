@@ -9,6 +9,8 @@ import {
   Users,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
+import { SiteLink } from "@/components/layout/SiteLink";
+import { ctas } from "@/content/site";
 
 import eventsImg from "@/assets/product-events-browser.jpg";
 import analyticsImg from "@/assets/product-analytics-dashboard.png";
@@ -17,69 +19,69 @@ const AUTO_ADVANCE_MS = 5200;
 
 const items = [
   {
-    id: "marketplace-hub",
+    id: "event-catalog",
     icon: RefreshCw,
-    tag: "Marketplace Hub",
-    headline: "List once and sell across every channel fans use",
+    tag: "Event Catalog",
+    headline: "Access a structured catalog of global events",
     detail:
-      "Publish from SeatsBrokers to every marketplace and regional channel — section splits, holds, and delivery rules stay attached to every listing.",
+      "Football, rugby, cricket, tennis, Formula 1, boxing, music, theatre, arts and festivals — with onsale dates, venues and demand signals.",
     kind: "screenshot" as const,
     image: eventsImg,
-    imageAlt: "SeatsBrokers events browser with live inventory ready to publish",
-    metric: { value: "8+", label: "connected marketplaces" },
-    telemetry: ["unified catalog", "live sync", "holds enforced"],
+    imageAlt: "SeatsBrokers event catalog with global events and onsale information",
+    metric: { value: "12K+", label: "events catalogued" },
+    telemetry: ["global events", "onsale dates", "venue maps"],
     hudPath: "app.seatsbrokers.com / events",
   },
   {
-    id: "smart-pricing",
-    icon: DollarSign,
-    tag: "Smart Pricing",
-    headline: "Reprice around the clock without leaving your desk",
+    id: "inventory",
+    icon: Layers,
+    tag: "Inventory Management",
+    headline: "Manage tickets, sections, rows and pricing",
     detail:
-      "Floors, ceilings, and undercut logic track live comparables and margin guards — so inventory moves before kickoff, not after the final whistle.",
+      "Quantity, prices, ticket types, delivery information, restrictions, notes and packages — managed from one centralized inventory layer.",
     kind: "chart" as const,
-    metric: { value: "24/7", label: "repricing engine" },
-    telemetry: ["comparables live", "guardrails on", "desk overrides"],
+    metric: { value: "84K+", label: "active listings" },
+    telemetry: ["sections & rows", "delivery info", "restrictions"],
+    hudPath: "app.seatsbrokers.com / inventory",
+  },
+  {
+    id: "distribution",
+    icon: DollarSign,
+    tag: "Marketplace Distribution",
+    headline: "List once. Distribute everywhere.",
+    detail:
+      "When inventory changes, SeatsBrokers synchronizes quantity, price and listing status across connected marketplaces. When a ticket sells, other listings update automatically.",
+    kind: "queue" as const,
+    metric: { value: "32", label: "connected marketplaces" },
+    telemetry: ["auto delisting", "price sync", "order sync"],
+    hudPath: "app.seatsbrokers.com / distribution",
+  },
+  {
+    id: "ai-pricing",
+    icon: BarChart3,
+    tag: "AI Pricing",
+    headline: "AI recommends. You decide.",
+    detail:
+      "Market data analyzed into pricing recommendations with approval workflow — once approved, prices synchronize through connected marketplace infrastructure.",
+    kind: "screenshot" as const,
+    image: analyticsImg,
+    imageAlt: "SeatsBrokers AI pricing dashboard with recommendations",
+    metric: { value: "24/7", label: "pricing engine" },
+    telemetry: ["market signals", "approval workflow", "auto sync"],
     hudPath: "app.seatsbrokers.com / pricing",
   },
   {
-    id: "fulfilment",
-    icon: Layers,
-    tag: "Fulfilment",
-    headline: "Confirm and deliver on the path ops can audit",
-    detail:
-      "Mobile transfer, PDF, and will-call orders flow through one queue — auto-routed to the cheapest compliant delivery with SLA tracking built in.",
-    kind: "queue" as const,
-    metric: { value: "99.4%", label: "SLA met" },
-    telemetry: ["auto-routing", "verified barcodes", "full audit trail"],
-    hudPath: "app.seatsbrokers.com / orders",
-  },
-  {
-    id: "marketiq",
-    icon: BarChart3,
-    tag: "MarketIQ",
-    headline: "Trade on the same intelligence the platform runs on",
-    detail:
-      "Revenue trends, category mix, and Market Insight API depth — merged floors and scraper visibility for pricing desks, not stale spreadsheets.",
-    kind: "screenshot" as const,
-    image: analyticsImg,
-    imageAlt: "SeatsBrokers analytics dashboard with revenue and category trends",
-    metric: { value: "1.5M+", label: "tickets tracked" },
-    telemetry: ["8 live sources", "Market Insight API", "sub-second refresh"],
-    hudPath: "app.seatsbrokers.com / dashboard",
-  },
-  {
-    id: "partner-network",
+    id: "payments",
     icon: Users,
-    tag: "Partner Network",
-    headline: "Broker-to-broker trades with settlement you can reconcile",
+    tag: "Payment Infrastructure",
+    headline: "Integrated purchasing and payment infrastructure",
     detail:
-      "Trade inside the SeatsBrokers network with transparent margins, KYC-ready onboarding, and payout statements finance closes in one export.",
+      "Centralized balance, card management, ticket purchasing, funding workflows, transaction visibility and internal settlement — built into your ticketing workflow.",
     kind: "table" as const,
-    metric: { value: "10K+", label: "active partners" },
-    telemetry: ["desks online", "escrow ready", "165 countries"],
-    hudPath: "app.seatsbrokers.com / network",
-    cta: "Get Started",
+    metric: { value: "165", label: "countries supported" },
+    telemetry: ["card management", "settlement", "transaction visibility"],
+    hudPath: "app.seatsbrokers.com / payments",
+    cta: "Book a Demo",
   },
 ] as const;
 
@@ -257,17 +259,16 @@ export function ToolkitShowcase() {
             <div className="max-w-2xl">
               <p className="flex items-center gap-2 section-eyebrow text-primary">
                 <span className="toolkit-live-dot" aria-hidden />
-                SeatsBrokers platform
+                Broker platform
               </p>
               <h2 className="mt-3 font-display text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.08] tracking-tight">
-                List once.{" "}
-                <span className="text-primary">Price smart. Deliver everywhere.</span>
+                Manage your operation.{" "}
+                <span className="text-primary">Distribute everywhere.</span>
               </h2>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-background/75 lg:text-right lg:text-[15px]">
-              The workspace brokers and travel partners use to publish inventory, reprice against live
-              comparables, fulfil orders, read MarketIQ, and trade inside our partner network — one
-              stack, production-ready.
+              Event catalog, inventory management, marketplace distribution, AI pricing and payment
+              infrastructure — the modules brokers use to run their entire ticket business.
             </p>
           </div>
         </Reveal>
@@ -339,13 +340,14 @@ export function ToolkitShowcase() {
                       </div>
 
                       {"cta" in item && item.cta ? (
-                        <a
-                          href="#sellers"
+                        <SiteLink
+                          to={ctas.bookDemo.to}
+                          hash={ctas.bookDemo.hash}
                           className="lift mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
                         >
                           {item.cta}
                           <ArrowRight className="size-4" aria-hidden />
-                        </a>
+                        </SiteLink>
                       ) : null}
                     </div>
                   </button>

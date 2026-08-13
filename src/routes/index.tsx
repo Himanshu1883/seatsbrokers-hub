@@ -1,29 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Nav } from "@/components/landing/Nav";
+import { PageShell } from "@/components/layout/PageShell";
+import { pageMeta } from "@/content/site";
 import { Hero } from "@/components/landing/Hero";
+import { NetworkConstellation } from "@/components/landing/NetworkConstellation";
 import { Marketplaces } from "@/components/landing/Marketplaces";
 import { TwoTrack } from "@/components/landing/TwoTrack";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { StickyScrollShowcase } from "@/components/landing/StickyScrollShowcase";
 import { MarketIntelligence } from "@/components/landing/MarketIntelligence";
-import { MarketPathScroll } from "@/components/landing/MarketPathScroll";
 import { SellerTools, TravelTools } from "@/components/landing/ToolsGrid";
 import { GlobalReach } from "@/components/landing/GlobalReach";
 import { GlobeScrollSection } from "@/components/landing/GlobeScrollSection";
 import { Stats } from "@/components/landing/Stats";
 import { Testimonials } from "@/components/landing/Testimonials";
-import { FinalCTA } from "@/components/landing/FinalCTA";
-import { Footer } from "@/components/landing/Footer";
 import { ToolkitShowcase } from "@/components/landing/Toolkitshowcase";
 import { ProcessBento } from "@/components/landing/Processbento";
 import { PartnerProductShowcase } from "@/components/landing/PartnerProductShowcase";
-import { NetworkConstellation } from "@/components/landing/NetworkConstellation";
 import { JourneyNumbers } from "@/components/landing/JourneyNumbers";
 import { FeatureOrbit } from "@/components/landing/FeatureOrbit";
 
-const title = "SeatsBrokers — B2B Ticket Distribution & Market Intelligence";
-const description =
-  "List once and sell everywhere. SeatsBrokers connects brokers and travel partners to every major ticket marketplace with live pricing, verified inventory and clean settlement.";
+const { title, description } = pageMeta.home;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,31 +35,25 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="flex flex-col gap-1.5 bg-background pb-1.5 sm:gap-2 sm:pb-2">
-      <Nav />
-      <main className="flex flex-col gap-1.5 sm:gap-2">
-        <Hero />
-        <NetworkConstellation />
-        <Marketplaces />
-        <TwoTrack />
-        <FeatureOrbit />
-        <JourneyNumbers />
-        <ProcessBento />
-        <HowItWorks />
-        <PartnerProductShowcase />
-        <ToolkitShowcase />
-        <StickyScrollShowcase />
-        <MarketIntelligence />
-        {/* <MarketPathScroll /> */}
-        <SellerTools />
-        <TravelTools />
-        <GlobalReach />
-        <GlobeScrollSection />
-        <Stats />
-        <Testimonials />
-        <FinalCTA />
-      </main>
-      <Footer />
-    </div>
+    <PageShell>
+      <Hero />
+      <NetworkConstellation />
+      <Marketplaces />
+      <TwoTrack />
+      <FeatureOrbit />
+      <JourneyNumbers />
+      <ProcessBento />
+      <HowItWorks />
+      <PartnerProductShowcase />
+      <ToolkitShowcase />
+      <StickyScrollShowcase />
+      <MarketIntelligence />
+      <SellerTools />
+      <TravelTools />
+      <GlobalReach />
+      <GlobeScrollSection />
+      <Stats />
+      <Testimonials />
+    </PageShell>
   );
 }

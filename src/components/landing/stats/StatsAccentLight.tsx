@@ -4,27 +4,27 @@ const heroStat = {
   icon: "◎",
   value: "30+",
   label: "Years in Ticketing",
-  desc: "Three decades of trusted secondary-market operations — longer than nearly every platform built after us.",
+  desc: "Three decades building technology for the global ticketing ecosystem.",
 };
 
 const stats = [
   {
     icon: "⌂",
     value: "10K+",
-    label: "Partner Network",
-    desc: "Brokers and travel partners trading through SeatsBrokers.",
+    label: "B2B Partners",
+    desc: "Brokers, travel partners and marketplaces connected through SeatsBrokers.",
   },
   {
     icon: "▤",
-    value: "2M+",
-    label: "Tickets Delivered",
-    desc: "Cumulative live-event tickets fulfilled since launch.",
+    value: "32",
+    label: "Connected Marketplaces",
+    desc: "Resale marketplaces synchronized through centralized API infrastructure.",
   },
   {
     icon: "★",
-    value: "4.7/5",
-    label: "Partner Rating",
-    desc: "Average score across independent seller reviews.",
+    value: "165",
+    label: "Countries Supported",
+    desc: "Global infrastructure for high-volume ticket operations.",
   },
 ] as const;
 
@@ -59,7 +59,7 @@ export function StatsAccentLight() {
             id="stats-accent-heading"
             className="mt-4 max-w-xl font-display text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl"
           >
-            Thirty years in. Still moving faster.
+            Technology built for ticketing.
           </h2>
         </Reveal>
 

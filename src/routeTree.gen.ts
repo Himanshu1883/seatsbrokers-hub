@@ -10,33 +10,193 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AiPricingRouteImport } from './routes/ai-pricing'
+import { Route as ApiRouteImport } from './routes/api'
+import { Route as BookDemoRouteImport } from './routes/book-demo'
+import { Route as BrokersRouteImport } from './routes/brokers'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as EventIntelligenceRouteImport } from './routes/event-intelligence'
+import { Route as IntegrationsRouteImport } from './routes/integrations'
+import { Route as MarketAnalyticsRouteImport } from './routes/market-analytics'
+import { Route as MarketplaceConnectivityRouteImport } from './routes/marketplace-connectivity'
+import { Route as PlatformRouteImport } from './routes/platform'
+import { Route as TravelPartnersRouteImport } from './routes/travel-partners'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiPricingRoute = AiPricingRouteImport.update({
+  id: '/ai-pricing',
+  path: '/ai-pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRoute = ApiRouteImport.update({
+  id: '/api',
+  path: '/api',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookDemoRoute = BookDemoRouteImport.update({
+  id: '/book-demo',
+  path: '/book-demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrokersRoute = BrokersRouteImport.update({
+  id: '/brokers',
+  path: '/brokers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventIntelligenceRoute = EventIntelligenceRouteImport.update({
+  id: '/event-intelligence',
+  path: '/event-intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntegrationsRoute = IntegrationsRouteImport.update({
+  id: '/integrations',
+  path: '/integrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketAnalyticsRoute = MarketAnalyticsRouteImport.update({
+  id: '/market-analytics',
+  path: '/market-analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceConnectivityRoute = MarketplaceConnectivityRouteImport.update({
+  id: '/marketplace-connectivity',
+  path: '/marketplace-connectivity',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlatformRoute = PlatformRouteImport.update({
+  id: '/platform',
+  path: '/platform',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TravelPartnersRoute = TravelPartnersRouteImport.update({
+  id: '/travel-partners',
+  path: '/travel-partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/ai-pricing': typeof AiPricingRoute
+  '/api': typeof ApiRoute
+  '/book-demo': typeof BookDemoRoute
+  '/brokers': typeof BrokersRoute
+  '/contact': typeof ContactRoute
+  '/event-intelligence': typeof EventIntelligenceRoute
+  '/integrations': typeof IntegrationsRoute
+  '/market-analytics': typeof MarketAnalyticsRoute
+  '/marketplace-connectivity': typeof MarketplaceConnectivityRoute
+  '/platform': typeof PlatformRoute
+  '/travel-partners': typeof TravelPartnersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/ai-pricing': typeof AiPricingRoute
+  '/api': typeof ApiRoute
+  '/book-demo': typeof BookDemoRoute
+  '/brokers': typeof BrokersRoute
+  '/contact': typeof ContactRoute
+  '/event-intelligence': typeof EventIntelligenceRoute
+  '/integrations': typeof IntegrationsRoute
+  '/market-analytics': typeof MarketAnalyticsRoute
+  '/marketplace-connectivity': typeof MarketplaceConnectivityRoute
+  '/platform': typeof PlatformRoute
+  '/travel-partners': typeof TravelPartnersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/ai-pricing': typeof AiPricingRoute
+  '/api': typeof ApiRoute
+  '/book-demo': typeof BookDemoRoute
+  '/brokers': typeof BrokersRoute
+  '/contact': typeof ContactRoute
+  '/event-intelligence': typeof EventIntelligenceRoute
+  '/integrations': typeof IntegrationsRoute
+  '/market-analytics': typeof MarketAnalyticsRoute
+  '/marketplace-connectivity': typeof MarketplaceConnectivityRoute
+  '/platform': typeof PlatformRoute
+  '/travel-partners': typeof TravelPartnersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/ai-pricing'
+    | '/api'
+    | '/book-demo'
+    | '/brokers'
+    | '/contact'
+    | '/event-intelligence'
+    | '/integrations'
+    | '/market-analytics'
+    | '/marketplace-connectivity'
+    | '/platform'
+    | '/travel-partners'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/ai-pricing'
+    | '/api'
+    | '/book-demo'
+    | '/brokers'
+    | '/contact'
+    | '/event-intelligence'
+    | '/integrations'
+    | '/market-analytics'
+    | '/marketplace-connectivity'
+    | '/platform'
+    | '/travel-partners'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/ai-pricing'
+    | '/api'
+    | '/book-demo'
+    | '/brokers'
+    | '/contact'
+    | '/event-intelligence'
+    | '/integrations'
+    | '/market-analytics'
+    | '/marketplace-connectivity'
+    | '/platform'
+    | '/travel-partners'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AiPricingRoute: typeof AiPricingRoute
+  ApiRoute: typeof ApiRoute
+  BookDemoRoute: typeof BookDemoRoute
+  BrokersRoute: typeof BrokersRoute
+  ContactRoute: typeof ContactRoute
+  EventIntelligenceRoute: typeof EventIntelligenceRoute
+  IntegrationsRoute: typeof IntegrationsRoute
+  MarketAnalyticsRoute: typeof MarketAnalyticsRoute
+  MarketplaceConnectivityRoute: typeof MarketplaceConnectivityRoute
+  PlatformRoute: typeof PlatformRoute
+  TravelPartnersRoute: typeof TravelPartnersRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +208,107 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-pricing': {
+      id: '/ai-pricing'
+      path: '/ai-pricing'
+      fullPath: '/ai-pricing'
+      preLoaderRoute: typeof AiPricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api': {
+      id: '/api'
+      path: '/api'
+      fullPath: '/api'
+      preLoaderRoute: typeof ApiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book-demo': {
+      id: '/book-demo'
+      path: '/book-demo'
+      fullPath: '/book-demo'
+      preLoaderRoute: typeof BookDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brokers': {
+      id: '/brokers'
+      path: '/brokers'
+      fullPath: '/brokers'
+      preLoaderRoute: typeof BrokersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/event-intelligence': {
+      id: '/event-intelligence'
+      path: '/event-intelligence'
+      fullPath: '/event-intelligence'
+      preLoaderRoute: typeof EventIntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/integrations': {
+      id: '/integrations'
+      path: '/integrations'
+      fullPath: '/integrations'
+      preLoaderRoute: typeof IntegrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/market-analytics': {
+      id: '/market-analytics'
+      path: '/market-analytics'
+      fullPath: '/market-analytics'
+      preLoaderRoute: typeof MarketAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace-connectivity': {
+      id: '/marketplace-connectivity'
+      path: '/marketplace-connectivity'
+      fullPath: '/marketplace-connectivity'
+      preLoaderRoute: typeof MarketplaceConnectivityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform': {
+      id: '/platform'
+      path: '/platform'
+      fullPath: '/platform'
+      preLoaderRoute: typeof PlatformRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/travel-partners': {
+      id: '/travel-partners'
+      path: '/travel-partners'
+      fullPath: '/travel-partners'
+      preLoaderRoute: typeof TravelPartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AiPricingRoute: AiPricingRoute,
+  ApiRoute: ApiRoute,
+  BookDemoRoute: BookDemoRoute,
+  BrokersRoute: BrokersRoute,
+  ContactRoute: ContactRoute,
+  EventIntelligenceRoute: EventIntelligenceRoute,
+  IntegrationsRoute: IntegrationsRoute,
+  MarketAnalyticsRoute: MarketAnalyticsRoute,
+  MarketplaceConnectivityRoute: MarketplaceConnectivityRoute,
+  PlatformRoute: PlatformRoute,
+  TravelPartnersRoute: TravelPartnersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

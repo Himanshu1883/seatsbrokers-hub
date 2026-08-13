@@ -10,34 +10,34 @@ type Milestone = {
 
 const milestones: Milestone[] = [
   {
+    id: "events",
+    value: "12,482",
+    label: "Events catalogued",
+    detail: "Global event catalog across sport, music, theatre and entertainment — demo data.",
+  },
+  {
+    id: "listings",
+    value: "84,250",
+    label: "Active listings",
+    detail: "Inventory managed and distributed through connected marketplace infrastructure — demo data.",
+  },
+  {
+    id: "marketplaces",
+    value: "32",
+    label: "Connected marketplaces",
+    detail: "Resale marketplaces synchronized through centralized API connectivity.",
+  },
+  {
+    id: "value",
+    value: "£12.4M",
+    label: "Inventory value",
+    detail: "Ticket inventory tracked and priced through the platform — demo data.",
+  },
+  {
     id: "years",
     value: "30+",
     label: "Years in ticketing",
-    detail: "Three decades moving live inventory for professional desks.",
-  },
-  {
-    id: "partners",
-    value: "10,000+",
-    label: "B2B partners",
-    detail: "Brokers and travel teams trading through one hub.",
-  },
-  {
-    id: "tickets",
-    value: "2,000,000+",
-    label: "Tickets delivered",
-    detail: "Fulfilled seats across sport, music, and entertainment.",
-  },
-  {
-    id: "countries",
-    value: "165",
-    label: "Countries settled",
-    detail: "Payouts and fulfilment wired for global desks.",
-  },
-  {
-    id: "channels",
-    value: "8+",
-    label: "Marketplace channels",
-    detail: "Every major marketplace and the regional long tail — one publish.",
+    detail: "Three decades building technology for the global ticketing ecosystem.",
   },
 ];
 
@@ -51,48 +51,75 @@ function easeInCubic(t: number) {
   return t * t * t;
 }
 
-/** Smooth scroll progress that eases toward the real scroll position. */
-function useSmoothScrollProgress(ref: React.RefObject<HTMLElement | null>) {
-  const [progress, setProgress] = useState(0);
-  const target = useRef(0);
-  const current = useRef(0);
+const AUTOPLAY_MS = milestones.length * 2800;
+
+/** Auto-advance progress whenever the section enters the viewport. */
+function useAutoPlayProgress(
+  ref: React.RefObject<HTMLElement | null>,
+  durationMs: number,
+  reduced: boolean,
+) {
+  const [progress, setProgress] = useState(reduced ? 1 : 0);
   const raf = useRef(0);
+  const playing = useRef(false);
 
   useEffect(() => {
+    if (reduced) {
+      setProgress(1);
+      return;
+    }
+
     const el = ref.current;
     if (!el) return;
 
-    const tick = () => {
-      // Slower catch-up = medium, premium scrubbing
-      const next = current.current + (target.current - current.current) * 0.07;
-      const settled = Math.abs(next - target.current) < 0.00025;
-      current.current = settled ? target.current : next;
-      setProgress(current.current);
-      raf.current = settled ? 0 : window.requestAnimationFrame(tick);
+    const stop = () => {
+      if (raf.current) {
+        window.cancelAnimationFrame(raf.current);
+        raf.current = 0;
+      }
+      playing.current = false;
     };
 
-    const kick = () => {
-      if (!raf.current) raf.current = window.requestAnimationFrame(tick);
+    const play = () => {
+      stop();
+      playing.current = true;
+      setProgress(0);
+
+      const t0 = performance.now();
+      const tick = (now: number) => {
+        if (!playing.current) return;
+
+        const t = clamp01((now - t0) / durationMs);
+        setProgress(t);
+
+        if (t < 1) {
+          raf.current = window.requestAnimationFrame(tick);
+        } else {
+          playing.current = false;
+        }
+      };
+
+      raf.current = window.requestAnimationFrame(tick);
     };
 
-    const measure = () => {
-      const rect = el.getBoundingClientRect();
-      const top = window.scrollY + rect.top;
-      const range = Math.max(el.offsetHeight - window.innerHeight, 1);
-      target.current = clamp01((window.scrollY - top) / range);
-      kick();
-    };
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          play();
+        } else {
+          stop();
+          setProgress(0);
+        }
+      },
+      { threshold: 0.55, rootMargin: "-12% 0px -12% 0px" },
+    );
 
-    measure();
-    window.addEventListener("scroll", measure, { passive: true });
-    window.addEventListener("resize", measure);
-
+    io.observe(el);
     return () => {
-      if (raf.current) window.cancelAnimationFrame(raf.current);
-      window.removeEventListener("scroll", measure);
-      window.removeEventListener("resize", measure);
+      io.disconnect();
+      stop();
     };
-  }, [ref]);
+  }, [ref, durationMs, reduced]);
 
   return progress;
 }
@@ -151,15 +178,13 @@ function slideStyle(local: number, isLast: boolean, reduced: boolean) {
 
 export function JourneyNumbers() {
   const sectionRef = useRef<HTMLElement>(null);
-  const raw = useSmoothScrollProgress(sectionRef);
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
 
-  // Keep the last number on screen a beat longer before release.
-  const progress = clamp01(raw / 0.94);
+  const progress = useAutoPlayProgress(sectionRef, AUTOPLAY_MS, reduced);
   const activeIndex = Math.min(
     Math.floor(progress * milestones.length),
     milestones.length - 1,
@@ -180,7 +205,7 @@ export function JourneyNumbers() {
           <header className="journey-num-header">
             <p className="journey-num-eyebrow">
               <span className="journey-num-live" aria-hidden />
-              Our journey in numbers
+              Platform at scale
             </p>
             <div className="journey-num-counter" aria-hidden>
               <span>{String(activeIndex + 1).padStart(2, "0")}</span>
@@ -229,10 +254,10 @@ export function JourneyNumbers() {
         <Reveal>
           <p className="journey-num-eyebrow">
             <span className="journey-num-live" aria-hidden />
-            Our journey in numbers
+            Platform at scale
           </p>
           <h2 className="journey-num-stack-title">
-            Thirty years. Still compounding.
+            The technology behind modern ticket resale.
           </h2>
         </Reveal>
 

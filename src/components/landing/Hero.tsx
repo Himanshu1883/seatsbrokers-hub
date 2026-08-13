@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTypewriter } from "@/hooks/use-scroll-motion";
 import { HeroDashboardTilt } from "@/components/landing/HeroDashboardTilt";
+import { SiteLink } from "@/components/layout/SiteLink";
+import { ctas } from "@/content/site";
 import heroStadium from "@/assets/hero-stadium.jpg";
 import heroChampionship from "@/assets/cta-trophy.jpg";
 import heroTravel from "@/assets/card-travel.jpg";
@@ -10,57 +12,58 @@ const SLIDE_MS = 9000;
 const slides = [
   {
     image: heroStadium,
-    alt: "Floodlit stadium packed with fans on match night",
-    eyebrow: "B2B live-event distribution infrastructure",
-    title: "Powering ticket distribution for",
-    typePhrases: ["Football.", "Concerts.", "Championships.", "Formula 1.", "Every major event."],
-    lead: "Thirty years of moving real inventory across Europe, the Americas, and the Gulf.",
-    body: "One platform that pushes your seats to every marketplace fans buy from — with live pricing, verified barcodes, and settlement you can reconcile in a single export.",
+    alt: "Ticketing technology infrastructure platform",
+    eyebrow: "Ticketing Technology & Intelligence Platform",
+    title: "The Technology Infrastructure Behind",
+    typePhrases: ["Modern Ticket Resale.", "Global Ticketing.", "Market Intelligence.", "Marketplace Connectivity."],
+    lead: "Connect your ticket inventory, marketplaces, partners, pricing and sales operations through one powerful technology platform.",
+    body: "Manage your entire ticketing operation from event discovery to listing, distribution, pricing, sales and fulfillment — the infrastructure layer connecting the global ticketing ecosystem.",
     details: [
-      "Multi-marketplace listing, pricing rules, and inventory sync",
-      "Broker-grade protection against double-sales and stale holds",
-      "Market intelligence dashboards your trading desk actually uses",
+      "Global event data, inventory and resale marketplace connectivity",
+      "Market pricing data, sales intelligence and AI-powered pricing",
+      "Payment infrastructure, partner commerce and quotation tools",
     ],
   },
   {
     image: heroChampionship,
-    alt: "Championship trophy under stadium lights",
-    eyebrow: "Seller tech · brokers & rights holders",
-    title: "Publish once.",
+    alt: "Broker platform for ticket operations",
+    eyebrow: "Broker Platform · Ticket Brokers",
+    title: "Run your ticket business from",
     typePhrases: [
-      "Fan-out everywhere.",
-      "Auto-reprice 24/7.",
-      "Double-sale guard.",
+      "One platform.",
+      "One catalog.",
+      "Every marketplace.",
       "One export close.",
     ],
-    lead: "Stop fighting portals by hand. Our seller stack pushes one catalogue to every channel with rules still attached.",
-    body: "Unified catalog, channel fan-out, smart repricing, and fulfilment routing — the same systems that protect margin and keep books clean.",
+    lead: "List once. Distribute everywhere. When inventory changes, SeatsBrokers synchronizes quantity, price and listing status across connected marketplaces.",
+    body: "Global event catalog, inventory management, marketplace distribution, AI pricing recommendations, POS/API integration and payment infrastructure — built for high-volume ticket operations.",
     details: [
-      "Section, row, and split rules preserved on every push",
-      "Automated undercut logic with desk-controlled guardrails",
-      "Barcode-verified delivery and finance-ready statements",
+      "Multi-marketplace synchronization with automatic delisting after sale",
+      "Market pricing, sales intelligence and event onsale information",
+      "Ticket delivery management, partner inventory and quotation tools",
     ],
   },
   {
     image: heroTravel,
-    alt: "Travel partners packaging live events into itineraries",
-    eyebrow: "Travel tech · OTAs & tour operators",
-    title: "Embed verified seats via",
-    typePhrases: [
-      "API feeds.",
-      "White-label flows.",
-      "Hold-to-package.",
-      "Instant confirms.",
-    ],
-    lead: "Travel teams plug SeatsBrokers into the packages they quote — confirmed seats, not last-minute barcode hunts.",
-    body: "Portal and API access, timed holds, and white-label confirmations so itineraries stay accurate from quote to gate.",
+    alt: "Travel partner ticket distribution platform",
+    eyebrow: "Travel Partner Platform",
+    title: "Powering ticket distribution for",
+    typePhrases: ["Formula 1.", "Football.", "Concerts.", "Championships.", "Every major event."],
+    lead: "Turn ticket inventory into seamless customer experiences — access, margin, quote and sell through your travel business.",
+    body: "Real-time inventory visibility, partner purchasing, custom margins, customer-ready quotes, invoice generation and WhatsApp sharing for travel agencies selling sports and event packages.",
     details: [
-      "API and portal feeds built for itinerary-driven sales",
-      "Hold-to-package workflows with timed release windows",
-      "White-label confirmations that match your brand",
+      "Search by event, date, venue, category, location and ticket type",
+      "Add margin and generate branded PDF quotes in seconds",
+      "Order management with partner pricing and customer-ready delivery",
     ],
   },
 ] as const;
+
+type HeroSlide = (typeof slides)[number];
+
+function longestPhrase(phrases: readonly string[]) {
+  return phrases.reduce((longest, phrase) => (phrase.length > longest.length ? phrase : longest), phrases[0] ?? "");
+}
 
 function HeroTypewriter({ phrases }: { phrases: readonly string[] }) {
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -74,11 +77,121 @@ function HeroTypewriter({ phrases }: { phrases: readonly string[] }) {
 
   return (
     <span
-      className="caret mt-2 block min-h-[1.15em] text-[clamp(2rem,5.5vw,4rem)] leading-[1.05] font-bold text-primary"
+      className="caret hero-copy-typewriter mt-2 block text-[clamp(2rem,5.5vw,4rem)] leading-[1.05] font-bold text-primary"
       aria-live="polite"
     >
       {display}
     </span>
+  );
+}
+
+function HeroSlideCopy({
+  slide,
+  isActive,
+  animate,
+}: {
+  slide: HeroSlide;
+  isActive: boolean;
+  animate: boolean;
+}) {
+  const typeLine = longestPhrase(slide.typePhrases);
+  const item = (delay: number, className: string) =>
+    animate ? `${className} hero-copy-item hero-copy-delay-${delay}` : className;
+
+  return (
+    <>
+      <p
+        className={item(
+          0,
+          "inline-flex items-center gap-2 rounded-full border border-background/20 bg-background/8 px-3 py-1.5 section-eyebrow text-white backdrop-blur-sm",
+        )}
+      >
+        <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+        {slide.eyebrow}
+      </p>
+
+      <h1
+        className={item(
+          1,
+          "mt-5 text-[clamp(2rem,5vw,3.25rem)] leading-[1.1] font-bold text-balance text-white sm:mt-6",
+        )}
+      >
+        {slide.title}
+        {isActive ? (
+          <HeroTypewriter phrases={slide.typePhrases} />
+        ) : (
+          <span className="caret hero-copy-typewriter mt-2 block text-[clamp(2rem,5.5vw,4rem)] leading-[1.05] font-bold text-primary">
+            {typeLine}
+          </span>
+        )}
+      </h1>
+
+      <p
+        className={item(
+          2,
+          "mt-5 max-w-2xl font-display text-lg leading-snug font-bold tracking-tight text-white sm:mt-6 sm:text-xl",
+        )}
+      >
+        {slide.lead}
+      </p>
+
+      <p
+        className={item(
+          3,
+          "mt-4 max-w-2xl text-base leading-relaxed font-semibold text-pretty text-white sm:text-[1.0625rem]",
+        )}
+      >
+        {slide.body}
+      </p>
+
+      <ul
+        className={item(
+          4,
+          "mt-6 space-y-2.5 border-l-2 border-primary/45 pl-4 sm:mt-7 sm:pl-5",
+        )}
+      >
+        {slide.details.map((detail) => (
+          <li
+            key={detail}
+            className="flex gap-2.5 text-sm leading-relaxed font-semibold text-white sm:text-[0.9375rem]"
+          >
+            <span className="mt-2 size-1 shrink-0 rounded-full bg-primary" aria-hidden />
+            <span>{detail}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className={item(5, "mt-8 flex flex-wrap gap-3 sm:mt-9")}>
+        <SiteLink
+          to={ctas.bookDemo.to}
+          className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
+          tabIndex={isActive ? 0 : -1}
+        >
+          {ctas.bookDemo.label}
+        </SiteLink>
+        <SiteLink
+          to={ctas.explorePlatform.to}
+          className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-white hover:bg-background/10"
+          tabIndex={isActive ? 0 : -1}
+        >
+          {ctas.explorePlatform.label}
+        </SiteLink>
+      </div>
+
+      <ul
+        className={item(
+          6,
+          "mt-8 flex flex-col gap-2 font-mono text-[10px] font-bold tracking-[0.12em] text-white uppercase sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:text-xs",
+        )}
+      >
+        {["API Connectivity", "Inventory Synchronization", "Market Intelligence"].map((label) => (
+          <li key={label} className="flex items-center gap-2">
+            <span className="size-1 shrink-0 rounded-full bg-primary" />
+            {label}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 
@@ -104,12 +217,10 @@ export function Hero() {
     return () => window.clearInterval(id);
   }, [paused]);
 
-  const slide = slides[active]!;
-
   return (
     <section
       id="top"
-      className="section-curve-hero relative isolate grid h-dvh min-h-[40rem] grid-rows-[auto_1fr_auto]"
+      className="section-curve-hero relative isolate grid h-dvh min-h-[40rem] grid-rows-[auto_1fr_auto] overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -128,9 +239,7 @@ export function Hero() {
               alt=""
               width={1920}
               height={1080}
-              className={`size-full object-cover ${
-                i === active ? "hero-ken-burns" : "scale-100"
-              }`}
+              className={`size-full object-cover ${i === active ? "hero-ken-burns" : "scale-100"}`}
             />
           </div>
         ))}
@@ -143,63 +252,22 @@ export function Hero() {
 
       <div className="pointer-events-none h-18 shrink-0" aria-hidden />
 
-      <div className="flex min-h-0 items-center overflow-y-auto">
+      <div className="flex min-h-0 items-center">
         <div className="container-page w-full py-4 sm:py-6">
           <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-8 xl:gap-12">
-            <div key={motionKey} className="hero-copy w-full max-w-3xl lg:max-w-[40rem]">
-              <p className="hero-copy-item hero-copy-delay-0 inline-flex items-center gap-2 rounded-full border border-background/20 bg-background/8 px-3 py-1.5 section-eyebrow text-white backdrop-blur-sm">
-                <span className="size-1.5 shrink-0 rounded-full bg-primary" />
-                {slide.eyebrow}
-              </p>
-
-              <h1 className="hero-copy-item hero-copy-delay-1 mt-5 text-[clamp(2rem,5vw,3.25rem)] leading-[1.1] font-bold text-balance text-white sm:mt-6">
-                {slide.title}
-                <HeroTypewriter key={active} phrases={slide.typePhrases} />
-              </h1>
-
-              <p className="hero-copy-item hero-copy-delay-2 mt-5 max-w-2xl font-display text-lg leading-snug font-bold tracking-tight text-white sm:mt-6 sm:text-xl">
-                {slide.lead}
-              </p>
-
-              <p className="hero-copy-item hero-copy-delay-3 mt-4 max-w-2xl text-base leading-relaxed font-semibold text-pretty text-white sm:text-[1.0625rem]">
-                {slide.body}
-              </p>
-
-              <ul className="hero-copy-item hero-copy-delay-4 mt-6 space-y-2.5 border-l-2 border-primary/45 pl-4 sm:mt-7 sm:pl-5">
-                {slide.details.map((item) => (
-                  <li
-                    key={item}
-                    className="flex gap-2.5 text-sm leading-relaxed font-semibold text-white sm:text-[0.9375rem]"
+            <div className="hero-copy w-full max-w-3xl lg:max-w-[40rem]">
+              {slides.map((s, i) => {
+                const isActive = i === active;
+                return (
+                  <div
+                    key={s.alt}
+                    className={`hero-copy-layer ${isActive ? "hero-copy-layer-active" : "hero-copy-layer-measure"}`}
+                    aria-hidden={!isActive}
                   >
-                    <span className="mt-2 size-1 shrink-0 rounded-full bg-primary" aria-hidden />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="hero-copy-item hero-copy-delay-5 mt-8 flex flex-wrap gap-3 sm:mt-9">
-                <a
-                  href="#sellers"
-                  className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
-                >
-                  Become a Seller Partner
-                </a>
-                <a
-                  href="#travel"
-                  className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-white hover:bg-background/10"
-                >
-                  Become a Travel Partner
-                </a>
-              </div>
-
-              <ul className="hero-copy-item hero-copy-delay-6 mt-8 flex flex-col gap-2 font-mono text-[10px] font-bold tracking-[0.12em] text-white uppercase sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:text-xs">
-                {["30+ Years in Ticketing", "10K+ Partners", "3 Global Offices"].map((t) => (
-                  <li key={t} className="flex items-center gap-2">
-                    <span className="size-1 shrink-0 rounded-full bg-primary" />
-                    {t}
-                  </li>
-                ))}
-              </ul>
+                    <HeroSlideCopy slide={s} isActive={isActive} animate={isActive} key={isActive ? motionKey : s.alt} />
+                  </div>
+                );
+              })}
             </div>
 
             <div className="hero-copy-item hero-copy-delay-3 mx-auto w-full max-w-xl min-h-0 lg:mx-0 lg:max-w-none">

@@ -38,7 +38,9 @@ export function Nav() {
             alt={brand.name}
             width={566}
             height={174}
-            className="h-14 w-auto max-w-[min(100%,280px)] object-contain sm:h-16"
+            className={`h-14 w-auto max-w-[min(100%,280px)] object-contain sm:h-16 ${
+              scrolled ? "" : "brand-logo-on-dark"
+            }`}
           />
         </Link>
 

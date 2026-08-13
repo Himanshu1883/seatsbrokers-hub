@@ -24,7 +24,7 @@ export function Footer() {
             width={566}
             height={174}
             loading="lazy"
-            className="h-16 w-auto max-w-[300px] object-contain sm:h-[4.5rem]"
+            className="brand-logo-on-dark h-16 w-auto max-w-[300px] object-contain sm:h-[4.5rem]"
           />
           <p className="mt-6 max-w-sm text-base leading-relaxed text-background/60">
             Powering the technology behind modern ticket resale. From event discovery and inventory

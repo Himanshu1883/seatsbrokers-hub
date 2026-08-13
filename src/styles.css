@@ -14619,6 +14619,16 @@ main > .section-curve:first-child {
   container-type: inline-size;
 }
 
+.mi-console .lc-screen {
+  height: clamp(30rem, 50vh, 36rem);
+  min-height: clamp(30rem, 50vh, 36rem);
+  max-height: clamp(30rem, 50vh, 36rem);
+}
+
+.mi-console .lc-body {
+  gap: 0.55rem;
+}
+
 .mi-label {
   font-family: var(--font-mono);
   font-size: 9.5px;
@@ -14758,13 +14768,17 @@ main > .section-curve:first-child {
 .mi-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
   gap: 0.6rem;
+  flex: 1 1 auto;
   min-height: 0;
+  overflow: hidden;
 }
 
 @container (min-width: 32rem) {
   .mi-grid {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
   }
 }
 
@@ -14778,10 +14792,12 @@ main > .section-curve:first-child {
   padding: 0.6rem 0.65rem;
   min-width: 0;
   min-height: 0;
+  overflow: hidden;
 }
 
 .mi-panel-head {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 0.4rem;
   font-family: var(--font-mono);
@@ -14818,6 +14834,7 @@ main > .section-curve:first-child {
 }
 
 .mi-ladder-cols {
+  flex-shrink: 0;
   padding-inline: 0.35rem;
   font-family: var(--font-mono);
   font-size: 9px;
@@ -14835,16 +14852,20 @@ main > .section-curve:first-child {
 
 .mi-ladder {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
   gap: 0.16rem;
+  min-height: 0;
   margin: 0;
   padding: 0;
+  overflow: auto;
   list-style: none;
 }
 
 .mi-ladder-row {
   position: relative;
   isolation: isolate;
+  flex-shrink: 0;
   border-radius: 0.4rem;
   padding: 0.3rem 0.35rem;
   font-size: 0.73rem;
@@ -15049,10 +15070,15 @@ main > .section-curve:first-child {
 
 .mi-panel-signals {
   flex: 0 0 auto;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--background) 92%, white);
 }
 
 .mi-feed-viewport {
   position: relative;
+  flex-shrink: 0;
   height: 4.5rem;
   overflow: hidden;
   mask-image: linear-gradient(180deg, transparent, black 14%, black 86%, transparent);
@@ -25288,5 +25314,14 @@ main > .section-curve:first-child {
   .mcb-matrix-cell {
     transition: none;
   }
+}
+
+/* == Brand logo on dark bands (nav over hero, footer) ==
+   PNG wordmark is dark charcoal. Invert + hue-rotate keeps mint green
+   while lifting the text for dark backgrounds. Light (scrolled nav,
+   FeatureOrbit white disc) leaves the original file untouched. */
+.brand-logo-on-dark {
+  filter: invert(1) hue-rotate(180deg);
+  transition: filter 0.3s ease;
 }
 

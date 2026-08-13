@@ -1,0 +1,22 @@
+# SeatsBrokers — Cursor Rules
+(Always loaded. Keep this short — it costs tokens every message.)
+
+## Before doing anything
+Read MEMORY.md first. It links to everything else. Do not scan the full
+src/ tree unless you are actively editing a specific file — use
+docs/COMPONENT_MAP.md and docs/PROJECT_STRUCTURE.md instead of re-reading
+the codebase to answer "does X exist" or "where does Y live."
+
+## Non-negotiables
+- Brand name is SeatsBrokers (plural). Never "SeatsBroker."
+- Primary color, fonts, and component conventions are defined in
+  docs/DESIGN_SYSTEM.md — read that before making any style decision.
+- New sections reuse the existing PageSections component vocabulary or the
+  Live Console pattern (docs/DESIGN_SYSTEM.md) — don't invent new one-off
+  section shapes without checking docs/COMPONENT_MAP.md first.
+
+## Workflow
+- One section/feature at a time unless told otherwise.
+- After finishing any task, update docs/PROJECT_STATUS.md yourself.
+- If you need context beyond MEMORY.md's links, ask which specific file to
+  read rather than scanning the whole project.

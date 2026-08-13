@@ -1,7 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Radio, RefreshCw, ShieldCheck, Share2 } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
-import { pageMeta, ctas } from "@/content/site";
-import { FeatureGrid, PageHero, SyncDiagram } from "@/components/pages/shared/PageSections";
+import { pageMeta } from "@/content/site";
+import { SyncDiagram, WorkflowSteps } from "@/components/pages/shared/PageSections";
+import { MarketplaceCapabilityBoard } from "@/components/pages/marketplace/MarketplaceCapabilityBoard";
+import { SectionConnector } from "@/components/pages/brokers/SectionConnector";
+import { MarketplaceHero } from "@/components/pages/marketplace/MarketplaceHero";
+import { MarketplaceLiveConsole } from "@/components/pages/marketplace/MarketplaceLiveConsole";
 
 const { title, description } = pageMeta.marketplaceConnectivity;
 
@@ -20,31 +25,62 @@ export const Route = createFileRoute("/marketplace-connectivity")({
 function MarketplaceConnectivityPage() {
   return (
     <PageShell>
-      <PageHero
-        eyebrow="Marketplace Connectivity"
-        title="One Inventory. Multiple Marketplaces."
-        body="Connect your ticket operation to multiple resale marketplaces through a centralized API infrastructure — listing creation, updates, synchronization and automatic delisting."
-        secondaryCta={ctas.viewApiDocs}
+      <MarketplaceHero />
+
+      <MarketplaceLiveConsole variant="channelStatus" />
+
+      <SectionConnector
+        step="01"
+        tone="light"
+        from={{
+          icon: Radio,
+          label: "Channel status",
+          detail: "Connection health, latency and API status across 32 marketplaces.",
+        }}
+        to={{
+          icon: Share2,
+          label: "Listing distribution",
+          detail: "One inventory write fans out to every connected channel.",
+        }}
+        payload={["channel status", "listing id", "quantity", "ask price"]}
       />
-      <FeatureGrid
-        eyebrow="Features"
-        title="Centralized marketplace management"
-        intro="List once and distribute everywhere — with full synchronization across quantity, price, orders and delivery."
-        items={[
-          { title: "Listing creation & updates", body: "Create and update listings across connected marketplaces from one platform." },
-          { title: "Price synchronization", body: "Price changes propagate to every connected marketplace automatically." },
-          { title: "Quantity synchronization", body: "Inventory quantity stays consistent — no overselling across channels." },
-          { title: "Order synchronization", body: "Orders from any marketplace flow back into the central platform." },
-          { title: "Automatic delisting", body: "When a ticket sells, other marketplace listings are removed automatically." },
-          { title: "Delivery updates", body: "Ticket delivery information synchronized across marketplaces and partners." },
-          { title: "Marketplace status", body: "Monitor connection status, error rates and API health per marketplace." },
-          { title: "Error monitoring", body: "Real-time error detection with API logs for troubleshooting." },
-          { title: "API logs", body: "Full audit trail of every API request and marketplace interaction." },
-        ]}
-      />
+
+      <MarketplaceLiveConsole variant="listingDistribution" />
+
       <SyncDiagram
         title="When a ticket sells, every channel updates"
         body="Broker inventory flows through SeatsBrokers to connected marketplaces. A sale on any channel triggers automatic inventory updates and delisting across all others."
+      />
+
+      <SectionConnector
+        step="02"
+        tone="dark"
+        from={{
+          icon: RefreshCw,
+          label: "Marketplace sync",
+          detail: "Quantity, price and listing status stay aligned after every sale.",
+        }}
+        to={{
+          icon: ShieldCheck,
+          label: "Price & conflict guard",
+          detail: "Price push, holds and automatic delisting on the same clock.",
+        }}
+        payload={["price update", "hold lock", "sale event", "delist"]}
+      />
+
+      <MarketplaceLiveConsole variant="pricePush" />
+
+      <MarketplaceCapabilityBoard />
+
+      <WorkflowSteps
+        eyebrow="How inventory reaches every channel"
+        title="Broker inventory → SeatsBrokers → Marketplaces → Orders back"
+        steps={[
+          "Broker POS / inventory system connects via API",
+          "Inventory synchronized to SeatsBrokers platform",
+          "Listings distributed to connected marketplaces",
+          "Orders synchronized back through the API",
+        ]}
       />
     </PageShell>
   );

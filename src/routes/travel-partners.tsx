@@ -1,7 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ClipboardList, FileText, Search } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
-import { pageMeta, ctas } from "@/content/site";
-import { FeatureGrid, PageHero, WorkflowSteps } from "@/components/pages/shared/PageSections";
+import { pageMeta } from "@/content/site";
+import { FeatureGrid } from "@/components/pages/shared/PageSections";
+import { SectionConnector } from "@/components/pages/brokers/SectionConnector";
+import { TravelPartnersHero } from "@/components/pages/travel/TravelPartnersHero";
+import { TravelLiveConsole } from "@/components/pages/travel/TravelLiveConsole";
+import { InventoryAccessShowcase } from "@/components/pages/travel/InventoryAccessShowcase";
+import { SearchFilterShowcase } from "@/components/pages/travel/SearchFilterShowcase";
+import { PartnerTermsSection } from "@/components/pages/travel/PartnerTermsSection";
 
 const { title, description } = pageMeta.travelPartners;
 
@@ -20,42 +27,64 @@ export const Route = createFileRoute("/travel-partners")({
 function TravelPartnersPage() {
   return (
     <PageShell>
-      <PageHero
-        eyebrow="Travel Partner Platform"
-        title="Turn Ticket Inventory Into Customer-Ready Travel Experiences"
-        body="Give travel partners direct access to ticket inventory, pricing and quotation tools — search, buy, margin and share with customers."
-        secondaryCta={ctas.explorePlatform}
-      />
-      <FeatureGrid
-        eyebrow="Inventory Access"
-        title="Access available ticket inventory through the platform"
-        items={[
-          { title: "Real-time visibility", body: "See available ticket inventory across events, venues and categories in real time." },
-          { title: "Partner purchasing", body: "Select available inventory and purchase through the platform with partner pricing." },
-          { title: "Order management", body: "Track orders, delivery status and customer fulfillment from one workspace." },
-        ]}
-      />
-      <FeatureGrid
-        eyebrow="Search"
-        title="Search by event, date, venue and more"
-        items={[
-          { title: "Event & date", body: "Search by event name, date and onsale information." },
-          { title: "Venue & location", body: "Filter by venue, city, category and location." },
-          { title: "Ticket type & price", body: "Find inventory by ticket type, section and price range." },
-        ]}
-      />
+      <TravelPartnersHero />
+
+      <TravelLiveConsole variant="inventorySearch" />
+
+      <InventoryAccessShowcase />
+
+      <SearchFilterShowcase />
+
       <SplitPanelLocal />
-      <WorkflowSteps
-        eyebrow="Quotation Tool"
-        title="Create Professional Ticket Quotes in Seconds"
-        steps={[
-          "Select Event",
-          "Select Tickets",
-          "Add Margin",
-          "Generate Quote",
-          "Share With Customer",
-        ]}
+
+      <SectionConnector
+        step="01"
+        tone="light"
+        from={{
+          icon: Search,
+          label: "Inventory Access",
+          detail: "Live seats, partner cost bands and margin preview from the broker catalog.",
+        }}
+        to={{
+          icon: FileText,
+          label: "Quotation Builder",
+          detail: "Event, tickets and cost drop into a branded customer quote.",
+        }}
+        payload={["event", "tickets", "partner price", "availability"]}
       />
+
+      <TravelLiveConsole variant="quotationBuilder" />
+
+      <SectionConnector
+        step="02"
+        tone="light"
+        from={{
+          icon: FileText,
+          label: "Quotation Builder",
+          detail: "Shared PDF, WhatsApp or email with a customer-ready total.",
+        }}
+        to={{
+          icon: ClipboardList,
+          label: "Order & Delivery",
+          detail: "Accepted quotes become confirmed orders, invoices and delivery.",
+        }}
+        payload={["quote id", "customer price", "share channel", "status"]}
+      />
+
+      {/* <FeatureGrid
+        eyebrow="Order & Delivery"
+        title="After the customer says yes"
+        intro="The fulfillment desk below is the source of truth. These are the three jobs it closes."
+        items={[
+          { title: "Invoice generation", body: "A branded invoice follows every accepted quote, with ticket cost, margin and customer total itemised." },
+          { title: "Delivery confirmation", body: "Mobile transfer, PDF or will-call reports back to the partner desk when tickets land." },
+          { title: "Last-minute & group booking", body: "Holds and multi-pax packages stay in the same queue — no side channel for late or large requests." },
+        ]}
+      /> */}
+
+      <TravelLiveConsole variant="partnerOrders" />
+
+      <PartnerTermsSection />
     </PageShell>
   );
 }

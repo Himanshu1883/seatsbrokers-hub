@@ -1,7 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { KeyRound, Layers, Webhook } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { pageMeta } from "@/content/site";
-import { ApiCards, PageHero } from "@/components/pages/shared/PageSections";
+import { apiProducts } from "@/content/api-hero-data";
+import { ApiCards, WorkflowSteps } from "@/components/pages/shared/PageSections";
+import { SectionConnector } from "@/components/pages/brokers/SectionConnector";
+import { ApiHero } from "@/components/pages/api/ApiHero";
+import { ApiLiveConsole } from "@/components/pages/api/ApiLiveConsole";
 
 const { title, description } = pageMeta.api;
 
@@ -17,54 +22,64 @@ export const Route = createFileRoute("/api")({
   component: ApiPage,
 });
 
-const apiProducts = [
-  {
-    title: "Events API",
-    body: "Global event catalog and event information — onsale dates, venues, categories and demand indicators.",
-  },
-  {
-    title: "Inventory API",
-    body: "Search and retrieve available ticket inventory — sections, rows, quantity, prices and delivery information.",
-  },
-  {
-    title: "Listing API",
-    body: "Create and manage ticket listings across connected marketplaces from your existing systems.",
-  },
-  {
-    title: "Order API",
-    body: "Receive and manage ticket orders — synchronization, delivery updates and order status.",
-  },
-  {
-    title: "Pricing API",
-    body: "Access pricing and market information — average price, movement, demand signals and AI recommendations.",
-  },
-  {
-    title: "Delivery API",
-    body: "Manage ticket delivery information — mobile transfer, PDF, will-call and fulfillment routing.",
-  },
-  {
-    title: "Partner API",
-    body: "Allow travel partners and external systems to interact with inventory, margins and quotations.",
-  },
-];
-
 function ApiPage() {
   return (
     <PageShell>
-      <PageHero
-        eyebrow="API Platform"
-        title="Build Your Ticket Business on Our APIs"
-        body="API-first architecture for POS systems, inventory systems, internal ERP, websites, mobile applications and partner systems — connect at the depth you need."
+      <ApiHero />
+
+      <ApiLiveConsole variant="auth" />
+
+      <SectionConnector
+        step="01"
+        tone="light"
+        from={{
+          icon: KeyRound,
+          label: "Authentication",
+          detail: "Bearer keys, role-based scopes and an audit log on every call.",
+        }}
+        to={{
+          icon: Layers,
+          label: "Product APIs",
+          detail: "Events, inventory, listings, orders, pricing, delivery and partner.",
+        }}
+        payload={["api key", "role scope", "event id", "signed request"]}
       />
-      <section className="section-curve relative isolate bg-background py-12 sm:py-16">
-        <div className="container-page relative z-10">
-          <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Secure authentication, role-based access, audit logs and real-time synchronization —
-            enterprise-grade API infrastructure built specifically for ticketing operations.
-          </p>
-        </div>
-      </section>
-      <ApiCards items={apiProducts} />
+
+      <ApiCards
+        eyebrow="API products"
+        title="Seven APIs for the full ticketing stack"
+        intro="Connect at the depth you need — from the global event catalog through inventory, listings, orders, pricing, delivery and partner quotations."
+        items={[...apiProducts]}
+      />
+
+      <SectionConnector
+        step="02"
+        tone="dark"
+        from={{
+          icon: Layers,
+          label: "Product APIs",
+          detail: "Your systems call Events, Inventory, Listing and Order APIs.",
+        }}
+        to={{
+          icon: Webhook,
+          label: "Real-time sync",
+          detail: "Signed webhooks return inventory, order and delivery changes.",
+        }}
+        payload={["inventory update", "listing status", "order event", "delivery"]}
+      />
+
+      <ApiLiveConsole variant="webhooks" />
+
+      <WorkflowSteps
+        eyebrow="How you connect"
+        title="Your systems → SeatsBrokers APIs → Inventory, listings and orders"
+        steps={[
+          "Authenticate with role-based access and an API key",
+          "Call Events, Inventory and Listing APIs from POS, ERP or partner systems",
+          "Orders, pricing and delivery stay in sync in real time",
+          "Webhooks and audit logs report every change back to your stack",
+        ]}
+      />
     </PageShell>
   );
 }

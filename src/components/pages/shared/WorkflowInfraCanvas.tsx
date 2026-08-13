@@ -51,11 +51,13 @@ function WorkflowGlowCard({
 
   return (
     <article
-      className={`ws-flow-card-outer${featured ? " is-featured" : ""}`}
+      className={`ws-flow-card-outer wic-glass-host${featured ? " is-featured" : ""}`}
       style={{ "--ws-delay": `${index * 0.55}s` } as CSSProperties}
     >
       <span className="ws-flow-card-dot" aria-hidden />
-      <div className="ws-flow-card">
+      <div className="ws-flow-card wic-glass">
+        <span className="wic-glass-shade wic-glass-shade-back" aria-hidden />
+        <span className="wic-glass-shade wic-glass-shade-front" aria-hidden />
         <span className="ws-flow-card-ray" aria-hidden />
         <span className="ws-flow-card-step">{String(index + 1).padStart(2, "0")}</span>
         {showHubMark ? <span className="ws-flow-card-mark">SB</span> : null}

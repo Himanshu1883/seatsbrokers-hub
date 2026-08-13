@@ -1,7 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Activity, BrainCircuit, MapPin, Radar } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
-import { pageMeta, ctas } from "@/content/site";
-import { FeatureGrid, PageHero, SplitPanel } from "@/components/pages/shared/PageSections";
+import { pageMeta } from "@/content/site";
+import { WorkflowSteps } from "@/components/pages/shared/PageSections";
+import { SectionConnector } from "@/components/pages/brokers/SectionConnector";
+import { EventCategoryBoard } from "@/components/pages/event-intelligence/EventCategoryBoard";
+import { EventIntelHero } from "@/components/pages/event-intelligence/EventIntelHero";
+import { EventIntelLiveConsole } from "@/components/pages/event-intelligence/EventIntelLiveConsole";
+import { VenueIntelligenceSection } from "@/components/pages/event-intelligence/VenueIntelligenceSection";
 
 const { title, description } = pageMeta.eventIntelligence;
 
@@ -20,51 +26,59 @@ export const Route = createFileRoute("/event-intelligence")({
 function EventIntelligencePage() {
   return (
     <PageShell>
-      <PageHero
-        eyebrow="Event Intelligence"
-        title="Global Events. Structured Data. Actionable Intelligence."
-        body="Know the event, the market and the opportunity before you sell — global event catalog, onsale dates, demand indicators, venue maps and market pricing."
-        secondaryCta={ctas.explorePlatform}
+      <EventIntelHero />
+
+      <EventIntelLiveConsole variant="onsaleRadar" />
+
+      <EventCategoryBoard />
+
+      <SectionConnector
+        step="01"
+        tone="light"
+        from={{
+          icon: Radar,
+          label: "Event radar",
+          detail: "Catalog record, onsale window and demand score per event.",
+        }}
+        to={{
+          icon: Activity,
+          label: "Demand & price signals",
+          detail: "Demand curve, market ask movement and comparable events.",
+        }}
+        payload={["event id", "onsale window", "demand score", "watchers"]}
       />
-      <FeatureGrid
-        eyebrow="Event Categories"
-        title="Structured catalog across every major category"
-        items={[
-          { title: "Football", body: "Domestic leagues, European competitions and international fixtures." },
-          { title: "Tennis & Cricket", body: "Grand Slams, Test series, IPL and international tournaments." },
-          { title: "Rugby & Formula 1", body: "Six Nations, World Cup, Grand Prix weekends and hospitality." },
-          { title: "Boxing & Concerts", body: "Championship fights, arena tours and festival circuits." },
-          { title: "Theatre & Arts", body: "West End, Broadway, exhibitions and cultural events." },
-          { title: "Festivals & Other", body: "Multi-day festivals and other global live events." },
-        ]}
+
+      <EventIntelLiveConsole variant="demandSignals" />
+
+      <VenueIntelligenceSection />
+
+      <SectionConnector
+        step="02"
+        tone="light"
+        from={{
+          icon: MapPin,
+          label: "Demand & venue structure",
+          detail: "Category bands, comparable set and section-level availability.",
+        }}
+        to={{
+          icon: BrainCircuit,
+          label: "AI forecast",
+          detail: "Projected ask band, sellout risk and scenario modelling.",
+        }}
+        payload={["demand index", "comp set", "category bands", "days to event"]}
       />
-      <SplitPanel
-        eyebrow="Sample Event Dashboard"
-        title="Know the Event. Know the Market. Know the Opportunity."
-        body="For every event, brokers can access relevant information including onsale dates, demand indicators, market pricing and venue details."
-        items={[
-          { label: "Event", value: "Man Utd vs Arsenal" },
-          { label: "Date", value: "12 Sep 2026" },
-          { label: "Venue", value: "Old Trafford" },
-          { label: "Onsale", value: "08 Aug — 10:00" },
-          { label: "Demand", value: "High" },
-          { label: "Market Average", value: "£285" },
-          { label: "Lowest Available", value: "£195" },
-          { label: "Category Trend", value: "↑ 18%" },
+
+      <EventIntelLiveConsole variant="forecast" />
+
+      <WorkflowSteps
+        eyebrow="How an event becomes intelligence"
+        title="Provider feeds → structured event → demand scoring → forecast → your systems"
+        steps={[
+          "Global provider feeds ingested and normalized into one event record",
+          "Venue maps linked — sections, category bands and rows structured",
+          "Onsale windows, demand indicators and price movement tracked continuously",
+          "Forecasts and comparable events delivered to dashboards and the Events API",
         ]}
-      />
-      <SplitPanel
-        eyebrow="Venue Map Technology"
-        title="Understand the Venue Before You Sell"
-        body="Interactive stadium maps with sections, categories, seating areas and ticket locations — connected to actual inventory listing data."
-        items={[
-          { label: "Section", value: "Lower Tier" },
-          { label: "Row", value: "12" },
-          { label: "Quantity", value: "2" },
-          { label: "Price", value: "£425" },
-          { label: "Availability", value: "Available" },
-        ]}
-        reverse
       />
     </PageShell>
   );

@@ -279,13 +279,27 @@ export function SyncDiagram({
 
 type ApiCardsProps = {
   items: { title: string; body: string }[];
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
 };
 
-export function ApiCards({ items }: ApiCardsProps) {
+export function ApiCards({ items, eyebrow, title, intro }: ApiCardsProps) {
   return (
     <section className="section-curve relative isolate bg-surface py-20 sm:py-24">
       <div className="container-page relative z-10">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {title ? (
+          <Reveal>
+            <div className="mx-auto max-w-3xl text-center">
+              {eyebrow ? <p className="section-eyebrow text-primary">{eyebrow}</p> : null}
+              <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">{title}</h2>
+              {intro ? (
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">{intro}</p>
+              ) : null}
+            </div>
+          </Reveal>
+        ) : null}
+        <div className={`grid gap-5 sm:grid-cols-2 lg:grid-cols-3${title ? " mt-12 lg:mt-14" : ""}`}>
           {items.map((item, i) => (
             <Reveal key={item.title} delay={i * 60}>
               <article className="lift h-full rounded-2xl border border-border bg-card p-6">

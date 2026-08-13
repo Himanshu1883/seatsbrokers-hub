@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import logo from "@/assets/seatsbrokers-logo.png";
 import { brand, ctas, navLinks } from "@/content/site";
 import { SiteLink } from "@/components/layout/SiteLink";
 
+function isNavActive(pathname: string, to: string) {
+  if (to === "/") return pathname === "/";
+  return pathname === to || pathname.startsWith(`${to}/`);
+}
+
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const visibleNavLinks = navLinks.filter((l) => !l.hidden);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -25,7 +32,7 @@ export function Nav() {
       }`}
     >
       <nav className="container-nav flex h-18 w-full items-center justify-between gap-6 py-3 lg:py-3.5">
-        <Link to="/" hash="top" className="flex items-center">
+        <Link to="/" hash="top" activeOptions={{ exact: true }} className="flex items-center">
           <img
             src={logo}
             alt={brand.name}
@@ -36,18 +43,26 @@ export function Nav() {
         </Link>
 
         <div className="hidden items-center gap-7 lg:flex">
-          {navLinks.map((l) => (
-            <SiteLink
-              key={`${l.to}${"hash" in l && l.hash ? `#${l.hash}` : ""}`}
-              to={l.to}
-              hash={"hash" in l ? l.hash : undefined}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                scrolled ? "text-muted-foreground" : "text-background/80"
-              }`}
-            >
-              {l.label}
-            </SiteLink>
-          ))}
+          {visibleNavLinks.map((l) => {
+            const active = isNavActive(pathname, l.to);
+            return (
+              <SiteLink
+                key={`${l.to}${"hash" in l && l.hash ? `#${l.hash}` : ""}`}
+                to={l.to}
+                hash={"hash" in l ? l.hash : undefined}
+                aria-current={active ? "page" : undefined}
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  active
+                    ? "text-primary  decoration-primary decoration-2 underline-offset-4"
+                    : scrolled
+                      ? "text-muted-foreground"
+                      : "text-background/80"
+                }`}
+              >
+                {l.label}
+              </SiteLink>
+            );
+          })}
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
@@ -84,17 +99,25 @@ export function Nav() {
       {open && (
         <div className="border-t border-border bg-background lg:hidden">
           <div className="container-nav flex flex-col gap-1 py-4">
-            {navLinks.map((l) => (
-              <SiteLink
-                key={`mobile-${l.to}${"hash" in l && l.hash ? `#${l.hash}` : ""}`}
-                to={l.to}
-                hash={"hash" in l ? l.hash : undefined}
-                onClick={() => setOpen(false)}
-                className="rounded-md px-2 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary hover:text-foreground"
-              >
-                {l.label}
-              </SiteLink>
-            ))}
+            {visibleNavLinks.map((l) => {
+              const active = isNavActive(pathname, l.to);
+              return (
+                <SiteLink
+                  key={`mobile-${l.to}${"hash" in l && l.hash ? `#${l.hash}` : ""}`}
+                  to={l.to}
+                  hash={"hash" in l ? l.hash : undefined}
+                  onClick={() => setOpen(false)}
+                  aria-current={active ? "page" : undefined}
+                  className={`rounded-md px-2 py-2.5 text-sm font-medium hover:bg-secondary ${
+                    active
+                      ? "text-primary underline decoration-primary decoration-2 underline-offset-4"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {l.label}
+                </SiteLink>
+              );
+            })}
             <SiteLink
               to={ctas.bookDemo.to}
               hash={ctas.bookDemo.hash}

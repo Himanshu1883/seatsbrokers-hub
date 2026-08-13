@@ -1,6 +1,6 @@
 export type NavLink =
-  | { label: string; to: "/"; hash?: string }
-  | { label: string; to: string; hash?: never };
+  | { label: string; to: "/"; hash?: string; hidden?: boolean }
+  | { label: string; to: string; hash?: never; hidden?: boolean };
 
 export type FooterLink = {
   label: string;
@@ -29,7 +29,8 @@ export const ctas = {
 } as const;
 
 export const navLinks: NavLink[] = [
-  { label: "Platform", to: "/platform" },
+  // Hidden from header for now — /platform still works if someone hits the URL.
+  { label: "Platform", to: "/platform", hidden: true },
   { label: "For Brokers", to: "/brokers" },
   { label: "Travel Partners", to: "/travel-partners" },
   { label: "Marketplace Connectivity", to: "/marketplace-connectivity" },

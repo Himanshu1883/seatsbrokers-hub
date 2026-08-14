@@ -1,0 +1,21 @@
+/* Nav-height spacer. Mobile stays 4.5rem (same as nav h-18) so the 100svh lock still fits. */
+.hero-fit-offset {
+  height: 4.5rem;
+}
+
+/* Homepage hero — mobile (<1024px): one locked frame, console-led.
+   Height is 100svh, never dvh: dvh re-measures when the mobile browser
+   toolbar collapses, which resized the console slot mid-scroll.
+   Every rule below targets a stable hook (.hero-copy-head/-lead/-actions,
+   .hero-copy-dense/-brief/-tags) and NOT .hero-copy-delay-*, because the
+   delay classes only exist on the active slide layer — sizing only the
+   active layer let the hidden measure layers (default desktop type) set
+   the grid height, so the reserved copy box changed on every slide swap.
+   Copy on phones = headline + one line-clamped lead + two CTAs. */
+@media (max-width: 1023px) {
+  .hero-fit {
+    height: 100vh;
+    height: 100svh;
+    max-height: 100svh;
+    overflow: hidden;
+  }

@@ -1,0 +1,225 @@
+  .hero-fit-grid {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0.4rem;
+  }
+
+  .hero-copy {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  /* Trimmed on mobile: eyebrow pill, the long lead, the long body + detail
+     list, the tag row. The one supporting line left is `shortBody`
+     (.hero-copy-brief), which is short enough to never need truncating.
+     Desktop keeps all of them. */
+  .hero-fit .hero-copy .hero-copy-eyebrow,
+  .hero-fit .hero-copy .hero-copy-lead,
+  .hero-copy-dense,
+  .hero-fit .hero-copy ul.hero-copy-tags {
+    display: none;
+  }
+
+  .hero-fit .hero-copy .hero-copy-head {
+    margin-top: 0;
+    font-size: clamp(1.3rem, 5.6vw, 1.75rem);
+    line-height: 1.12;
+  }
+
+  .hero-fit .hero-copy-typewriter {
+    margin-top: 0.15rem;
+    font-size: clamp(1.4rem, 6.2vw, 1.95rem);
+    line-height: 1.08;
+  }
+
+  /* Clamp is a guard rail, not a crop: three lines is more than any slide's
+     shortBody needs, so the reserved height is identical on every slide. */
+  .hero-fit .hero-copy p.hero-copy-brief {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    margin-top: 0.4rem;
+    font-size: clamp(0.8125rem, 3.4vw, 0.9375rem);
+    line-height: 1.4;
+  }
+
+  .hero-fit .hero-copy .hero-copy-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-top: 0.7rem;
+  }
+
+  .hero-fit .hero-copy .hero-copy-actions > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.6rem;
+    font-size: clamp(0.75rem, 3.3vw, 0.875rem);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .hero-fit-dots {
+    padding-top: 0.15rem;
+    padding-bottom: max(0.55rem, env(safe-area-inset-bottom));
+  }
+
+  /* Console is a shorter landscape stage, not the leftover 100svh column.
+     Slot sizes to --hero-scene-h (flex 0) so scale leftover is not a tall
+     empty gap. --hero-console-scale stays 0.88 / 0.86 — do not return to
+     0.84/0.78. --hero-bleed only eats the gutter. Scale from the top so
+     the collapsed margin-bottom matches the visual height. */
+  .hero-fit-console {
+    --hero-console-scale: 0.88;
+    --hero-bleed: clamp(0.55rem, 1.5vw, 1.4rem);
+    --hero-scene-h: min(18.75rem, 38svh);
+    display: flex;
+    flex: 0 1 auto;
+    min-height: 0;
+    max-height: var(--hero-scene-h);
+    width: calc(100% + var(--hero-bleed) * 2);
+    max-width: none;
+    margin-inline: calc(var(--hero-bleed) * -1);
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+  }
+
+  .hero-fit-console .hero-tilt-scene {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 44rem;
+    height: var(--hero-scene-h);
+    max-height: var(--hero-scene-h);
+    margin-inline: auto;
+    margin-bottom: calc(var(--hero-scene-h) * (var(--hero-console-scale) - 1));
+    padding: 0.35rem 0.75rem 0.5rem;
+    /* Deep perspective on purpose: a short one (900px) foreshortens so hard that the
+       projected card loses ~12% of its height, which fights "console much bigger". */
+    perspective: 1500px;
+    perspective-origin: 50% 45%;
+    transform: scale(var(--hero-console-scale));
+    transform-origin: top center;
+  }
+
+  /* Tilted like desktop but shallower so the HUD stays readable, and static
+     (no float) so nothing drifts or resizes while a slide plays. The angles are
+     literal, not var(--tilt-*): a tap emits synthetic mouse events, and the
+     pointer handler would otherwise write the desktop angles inline. */
+  .hero-fit-console .hero-tilt-card {
+    --hero-card-h: 100%;
+    transform: rotateX(7.5deg) rotateY(-11deg) rotateZ(-1.4deg);
+  }
+
+  .hero-fit-console .hero-tilt-alive {
+    animation: none;
+  }
+
+  .hero-fit-console .hero-tilt-ambient {
+    inset: 6% 6% 10%;
+  }
+}
+
+/* Short screens (≤700px tall, incl. every landscape phone): headline + CTAs
+   only. Dropping the line rather than clamping it avoids a mid-sentence
+   ellipsis in the hero, and hands the height to the console. */
+@media (max-width: 1023px) and (max-height: 700px) {
+  .hero-fit .hero-copy .hero-copy-head {
+    font-size: clamp(1.2rem, 5.2vw, 1.6rem);
+  }
+
+  .hero-fit .hero-copy-typewriter {
+    font-size: clamp(1.3rem, 5.8vw, 1.75rem);
+  }
+
+  .hero-fit .hero-copy p.hero-copy-brief {
+    display: none;
+  }
+
+  .hero-fit .hero-copy .hero-copy-actions {
+    margin-top: 0.55rem;
+  }
+
+  .hero-fit-console {
+    --hero-console-scale: 0.86;
+    --hero-scene-h: min(16.25rem, 34svh);
+  }
+}
+
+/* Tablets still use the mobile lock, but they have far more height to give the
+   console, so lift the phone caps instead of leaving dead space around the card. */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero-fit .hero-copy .hero-copy-head {
+    font-size: clamp(1.75rem, 3.6vw, 2.35rem);
+  }
+
+  .hero-fit .hero-copy-typewriter {
+    font-size: clamp(1.95rem, 4vw, 2.6rem);
+  }
+
+  .hero-fit .hero-copy p.hero-copy-brief {
+    font-size: 1rem;
+  }
+
+  .hero-fit .hero-copy .hero-copy-actions {
+    gap: 0.65rem;
+  }
+
+  .hero-fit .hero-copy .hero-copy-actions > a {
+    width: 100%;
+    padding-inline: 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  .hero-fit-console {
+    --hero-scene-h: min(24rem, 42svh);
+  }
+
+  .hero-fit-console .hero-tilt-scene {
+    max-width: 52rem;
+  }
+}
+
+/* Landscape phones — side by side instead of stacked, so the console keeps a
+   usable height and the CTAs stay above the fold. */
+@media (max-width: 1023px) and (orientation: landscape) and (max-height: 560px) {
+  .hero-fit-grid {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .hero-copy {
+    flex: 0 1 45%;
+  }
+
+  /* align-self must stay stretch: the scene/card height is a percentage, and a
+     center-aligned flex item would only be as tall as its content. Portrait
+     --hero-scene-h does not apply here — the row is already short. */
+  .hero-fit-console {
+    --hero-scene-h: 100%;
+    flex: 1 1 0;
+    align-self: stretch;
+    min-height: 0;
+    max-height: none;
+    width: auto;
+    margin-inline: 0;
+  }
+
+  .hero-fit-console .hero-tilt-scene {
+    height: 100%;
+    max-height: 100%;
+    margin-bottom: 0;
+    padding: 0.3rem 0.4rem 0.45rem;
+    transform-origin: center center;
+  }
+}

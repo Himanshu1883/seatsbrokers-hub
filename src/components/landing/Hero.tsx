@@ -115,7 +115,7 @@ function HeroSlideCopy({
       <p
         className={item(
           0,
-          "inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-background/20 bg-background/8 px-3 py-1.5 text-pretty section-eyebrow text-white backdrop-blur-sm",
+          "hero-copy-eyebrow inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-background/20 bg-background/8 px-3 py-1.5 text-pretty section-eyebrow text-white backdrop-blur-sm",
         )}
       >
         <span className="size-1.5 shrink-0 rounded-full bg-primary" />
@@ -125,7 +125,7 @@ function HeroSlideCopy({
       <h1
         className={item(
           1,
-          "mt-5 text-[clamp(2rem,5vw,3.25rem)] leading-[1.1] font-bold text-balance text-white sm:mt-6",
+          "hero-copy-head mt-5 text-[clamp(2rem,5vw,3.25rem)] leading-[1.1] font-bold text-balance text-white sm:mt-6",
         )}
       >
         {slide.title}
@@ -139,7 +139,7 @@ function HeroSlideCopy({
       <p
         className={item(
           2,
-          "mt-5 max-w-2xl font-display text-lg leading-snug font-bold tracking-tight text-white sm:mt-6 sm:text-xl",
+          "hero-copy-lead mt-5 max-w-2xl font-display text-lg leading-snug font-bold tracking-tight text-white sm:mt-6 sm:text-xl",
         )}
       >
         {slide.lead}
@@ -180,7 +180,7 @@ function HeroSlideCopy({
         ))}
       </ul>
 
-      <div className={item(5, "mt-8 flex flex-wrap gap-3 sm:mt-9")}>
+      <div className={item(5, "hero-copy-actions mt-8 flex flex-wrap gap-3 sm:mt-9")}>
         <SiteLink
           to={ctas.bookDemo.to}
           className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
@@ -239,7 +239,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="section-curve-hero hero-fit relative isolate min-h-dvh overflow-hidden max-lg:grid max-lg:h-dvh max-lg:min-h-0 max-lg:grid-rows-[auto_minmax(0,1fr)_auto]"
+      className="section-curve-hero hero-fit relative isolate overflow-hidden max-lg:grid max-lg:grid-rows-[auto_minmax(0,1fr)_auto]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}

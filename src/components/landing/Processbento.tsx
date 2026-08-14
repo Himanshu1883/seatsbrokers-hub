@@ -203,6 +203,7 @@ function ReportIllustration({ backdrop }: BentoIllustrationProps) {
             fill="none"
             stroke="var(--primary)"
             strokeWidth="2"
+            vectorEffect="non-scaling-stroke"
             className="bento-chart-line"
           />
           <path
@@ -218,11 +219,20 @@ function ReportIllustration({ backdrop }: BentoIllustrationProps) {
             stroke="var(--border)"
             strokeWidth="1"
             strokeDasharray="4 5"
+            vectorEffect="non-scaling-stroke"
             className="bento-chart-grid"
           />
-          <circle cx={dotX} cy={dotY} r="5" fill="var(--primary)" className="bento-pulse-dot" />
-          <circle cx={dotX} cy={dotY} r="11" fill="var(--primary)" opacity="0.15" className="bento-pulse-ring" />
         </svg>
+        {/* Marker lives outside the svg — the chart stretches with
+            preserveAspectRatio="none", which would squash a circle into an ellipse. */}
+        <span
+          className="bento-chart-marker"
+          style={{ left: `${(dotX / 500) * 100}%`, top: `${(dotY / 140) * 100}%` }}
+          aria-hidden
+        >
+          <i className="bento-chart-marker-ring" />
+          <i className="bento-chart-marker-dot" />
+        </span>
         <div
           className="bento-price-tag bento-scene-panel absolute -translate-x-1/2 -translate-y-full rounded-md bg-card/92 px-3 py-1.5 font-mono text-xs font-bold text-foreground shadow-lg ring-1 ring-border backdrop-blur-sm"
           style={{ left: `${(dotX / 500) * 100}%`, top: `${(dotY / 140) * 100}%`, marginTop: "-10px" }}
@@ -344,15 +354,15 @@ export function ProcessBento() {
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-5 lg:mt-14 lg:grid-cols-3">
+        <div className="process-bento-grid mt-10 grid gap-6 sm:mt-12 lg:mt-14 lg:grid-cols-3 lg:gap-5">
           {top.map((c, i) => (
             <Reveal key={c.title} delay={i * 70}>
-              <article className="process-bento-card group flex h-full flex-col rounded-2xl border border-border bg-card/50 p-4 sm:p-6">
+              <article className="process-bento-card group flex h-full flex-col rounded-2xl border border-border bg-card/50 p-5 sm:p-6">
                 <c.Illustration backdrop={c.backdrop} />
-                <h3 className="mt-6 text-center font-display text-lg font-bold text-foreground sm:text-xl">
+                <h3 className="mt-5 text-center font-display text-[1.1875rem] leading-snug font-bold text-foreground sm:mt-6 sm:text-xl">
                   {c.title}
                 </h3>
-                <p className="mt-3 text-center text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
+                <p className="mt-2.5 text-center text-[0.9375rem] leading-relaxed text-muted-foreground sm:mt-3 sm:text-[15px]">
                   {c.body}
                 </p>
               </article>
@@ -360,15 +370,15 @@ export function ProcessBento() {
           ))}
         </div>
 
-        <div className="mt-5 grid gap-5 lg:grid-cols-2">
+        <div className="process-bento-grid mt-6 grid gap-6 lg:mt-5 lg:grid-cols-2 lg:gap-5">
           {bottom.map((c, i) => (
             <Reveal key={c.title} delay={i * 70}>
-              <article className="process-bento-card group flex h-full flex-col rounded-2xl border border-border bg-card/50 p-4 sm:p-6">
+              <article className="process-bento-card group flex h-full flex-col rounded-2xl border border-border bg-card/50 p-5 sm:p-6">
                 <c.Illustration backdrop={c.backdrop} />
-                <h3 className="mt-6 text-center font-display text-lg font-bold text-foreground sm:text-xl">
+                <h3 className="mt-5 text-center font-display text-[1.1875rem] leading-snug font-bold text-foreground sm:mt-6 sm:text-xl">
                   {c.title}
                 </h3>
-                <p className="mt-3 text-center text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
+                <p className="mt-2.5 text-center text-[0.9375rem] leading-relaxed text-muted-foreground sm:mt-3 sm:text-[15px]">
                   {c.body}
                 </p>
               </article>

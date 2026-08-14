@@ -1,0 +1,11 @@
+/* Mobile console keeps its 3D tilt (set in the hero-fit block above) but never
+   floats — the drift is what made the locked frame feel unstable. */
+@media (max-width: 1023px) {
+  .hero-fit-console .hero-tilt-alive {
+    animation: none;
+  }
+
+  .hero-fit-console .hero-tilt-scene:hover .hero-tilt-card {
+    transform: rotateX(7.5deg) rotateY(-11deg) rotateZ(-1.4deg);
+  }
+}

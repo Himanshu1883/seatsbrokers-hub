@@ -73,7 +73,7 @@ function longestPhrase(phrases: readonly string[]) {
 function HeroTypeLine({ phrases, children }: { phrases: readonly string[]; children: ReactNode }) {
   return (
     <span
-      className="hero-copy-typewriter hero-copy-typeline mt-2 block text-[clamp(2rem,5.5vw,4rem)] leading-[1.05] font-bold text-primary"
+      className="hero-copy-typewriter hero-copy-typeline mt-2 block text-[clamp(2rem,5.5vw,4rem)] leading-[1.2] font-bold text-primary"
       aria-live="polite"
     >
       <span className="hero-copy-typeline-ghost" aria-hidden>
@@ -125,7 +125,7 @@ function HeroSlideCopy({
       <h1
         className={item(
           1,
-          "hero-copy-head mt-5 text-[clamp(2rem,5vw,3.25rem)] leading-[1.1] font-bold text-balance text-white sm:mt-6",
+          "hero-copy-head mt-5 text-[clamp(2rem,5vw,3.25rem)] leading-[1.2] font-bold text-balance text-white sm:mt-6",
         )}
       >
         {slide.title}
@@ -272,7 +272,7 @@ export function Hero() {
       <div className="hero-fit-zoom">
         <div className="hero-fit-offset pointer-events-none shrink-0" aria-hidden />
 
-        <div className="hero-fit-main flex min-h-0 items-center overflow-hidden lg:overflow-visible">
+        <div className="hero-fit-main flex min-h-0 items-center overflow-visible">
           <div className="container-page flex min-h-0 w-full flex-col py-4 sm:py-6">
             <div className="hero-fit-grid grid min-h-0 items-center gap-6 lg:grid-cols-[minmax(0,40rem)_minmax(0,44rem)] lg:items-start lg:justify-center lg:gap-8">
               <div className="hero-copy w-full max-w-3xl lg:max-w-[40rem]">

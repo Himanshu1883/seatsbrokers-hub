@@ -82,8 +82,7 @@ export function Nav() {
   useEffect(() => {
     if (open) {
       wasOpen.current = true;
-      const first = sheetRef.current?.querySelector<HTMLElement>("a[href]");
-      first?.focus();
+      sheetRef.current?.focus();
       return;
     }
     if (wasOpen.current) {
@@ -237,6 +236,7 @@ export function Nav() {
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
+          tabIndex={-1}
         >
           <div className="site-nav-links container-nav">
             {visibleNavLinks.map((l) => {

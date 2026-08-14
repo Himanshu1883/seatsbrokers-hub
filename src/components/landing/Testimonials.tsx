@@ -142,7 +142,7 @@ function MarqueeRow({
 export function Testimonials() {
   return (
     <section
-      className="section-curve relative isolate overflow-hidden bg-[#f4f5f7] py-20 sm:py-24"
+      className="section-curve relative isolate overflow-hidden bg-[#f4f5f7] py-16 sm:py-24"
       aria-labelledby="testimonials-heading"
     >
       <div className="container-page relative z-10">

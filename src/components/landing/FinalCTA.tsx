@@ -5,7 +5,7 @@ import ctaImg from "@/assets/cta-trophy.jpg";
 
 export function FinalCTA() {
   return (
-    <section id="contact" className="section-curve relative isolate scroll-mt-24 py-28">
+    <section id="contact" className="section-curve relative isolate scroll-mt-24 overflow-x-clip py-16 sm:py-28">
       <img
         src={ctaImg}
         alt="Champion lifting a trophy amid confetti"

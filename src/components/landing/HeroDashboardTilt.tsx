@@ -6,332 +6,406 @@ import {
   type MouseEvent as ReactMouseEvent,
 } from "react";
 import {
-  Activity,
-  ArrowUpRight,
-  BarChart3,
+  CalendarDays,
+  Database,
+  FileText,
   Globe2,
   Layers3,
-  Radio,
+  LineChart,
+  MapPin,
   RefreshCw,
+  Search,
+  Send,
   ShieldCheck,
-  Sparkles,
-  TrendingUp,
-  Zap,
+  Ticket,
+  Wallet,
 } from "lucide-react";
+import { useInView } from "@/hooks/use-scroll-motion";
 
-const MODE_MS = 3800;
+const TICK_MS = 1600;
 
-type ModeId = "intel" | "pricing" | "sync";
+const consoleMeta = [
+  { id: "platform", path: "platform · infrastructure", badge: "LIVE" },
+  { id: "broker", path: "broker · distribution", badge: "SYNC" },
+  { id: "travel", path: "travel · quote desk", badge: "QUOTE" },
+] as const;
 
-const modes: { id: ModeId; label: string; url: string; status: string }[] = [
-  { id: "intel", label: "Event Intel", url: "events · intelligence", status: "LIVE" },
-  { id: "pricing", label: "AI Pricing", url: "pricing · engine", status: "AUTO" },
-  { id: "sync", label: "Connectivity", url: "marketplace · sync", status: "SYNC" },
+function HudBar({ path, badge, spin = false }: { path: string; badge: string; spin?: boolean }) {
+  return (
+    <header className="hero-hud-bar">
+      <span className="hero-hud-dots" aria-hidden>
+        <i />
+        <i />
+        <i />
+      </span>
+      <span className="hero-hud-path">
+        {spin ? (
+          <RefreshCw className="size-3 hero-spin shrink-0" />
+        ) : (
+          <Globe2 className="size-3 shrink-0" />
+        )}
+        seatsbrokers / {path}
+      </span>
+      <span className="hero-hud-badge">
+        <span className="hero-hud-pip" />
+        {badge}
+      </span>
+    </header>
+  );
+}
+
+/* 1 — Infrastructure control room: platform layers + system feed */
+
+const platformLayers = [
+  { icon: CalendarDays, label: "Event data", meta: "12K+ events" },
+  { icon: Database, label: "Inventory", meta: "84K+ listings" },
+  { icon: Globe2, label: "Distribution", meta: "32+ channels" },
+  { icon: LineChart, label: "Pricing", meta: "AI signals" },
+  { icon: Wallet, label: "Payments", meta: "£ settled" },
 ];
 
-function ModeIntel() {
-  const sources = [
-    { name: "Resale marketplace", ask: "£182", tag: "BEST", hot: true },
-    { name: "Sports exchange", ask: "£214", tag: "+17%", hot: false },
-    { name: "Travel partner hub", ask: "£228", tag: "margin", hot: false },
-    { name: "Regional OTA feed", ask: "—", tag: "thin", hot: false },
-  ];
-  const bands = [42, 58, 84, 68, 92, 54, 78, 61];
-  const heat = [0.25, 0.62, 0.92, 0.48, 0.74, 0.35, 0.88, 0.55, 0.7, 0.3, 0.96, 0.5];
+const platformFeed = [
+  { tag: "event", line: "Onsale detected · Monaco GP" },
+  { tag: "sync", line: "Listing pushed · 6 channels" },
+  { tag: "price", line: "Ask updated £182 → £188" },
+  { tag: "partner", line: "Quote sent · travel partner" },
+  { tag: "pay", line: "Settlement queued · £14,820" },
+  { tag: "event", line: "Venue map refreshed · Wembley" },
+  { tag: "sync", line: "Quantity synced · 4 remaining" },
+  { tag: "price", line: "Comp set refreshed · 165 markets" },
+];
+
+const platformThroughput = [38, 54, 46, 68, 58, 82, 71, 94, 78, 88];
+
+function PlatformConsole({ tick }: { tick: number }) {
+  const activeLayer = tick % platformLayers.length;
 
   return (
-    <div className="hero-shell hero-shell-intel">
-      <header className="hero-shell-chrome">
-        <span className="hero-shell-dots" aria-hidden>
-          <i />
-          <i />
-          <i />
-        </span>
-        <span className="hero-shell-path">
-          <Globe2 className="size-3" />
-          seatsbrokers / event-intelligence
-        </span>
-        <span className="hero-shell-badge">
-          <span className="hero-tilt-live-dot" />
-          LIVE FEED
-        </span>
-      </header>
+    <div className="hero-hud">
+      <HudBar path={consoleMeta[0]!.path} badge={consoleMeta[0]!.badge} />
 
-      <div className="hero-shell-body">
-        <aside className="hero-intel-rail">
-          <span data-active="true">
-            <Activity className="size-3.5" />
-          </span>
-          <span>
-            <BarChart3 className="size-3.5" />
-          </span>
-          <span>
-            <Radio className="size-3.5" />
-          </span>
-          <span className="hero-intel-rail-meta">v3.1</span>
-        </aside>
-
-        <div className="hero-intel-main">
-          <div className="hero-mode-top">
-            <div>
-              <p className="hero-mode-kicker">
-                <TrendingUp className="size-3" /> Event Intelligence
-              </p>
-              <p className="hero-mode-title">Market depth · resale comparables</p>
-            </div>
-            <span className="hero-mode-pill">12K+ events</span>
-          </div>
-
-          <div className="hero-intel-grid">
-            <div className="hero-intel-table">
-              {sources.map((s) => (
-                <div
-                  key={s.name}
-                  className="hero-intel-row"
-                  data-hot={s.hot ? "true" : "false"}
-                >
-                  <span className="hero-intel-dot" />
-                  <span className="hero-intel-name">{s.name}</span>
-                  <span className="hero-intel-ask">{s.ask}</span>
-                  <span className="hero-intel-tag">{s.tag}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="hero-intel-side">
-              <div className="hero-intel-chart">
-                <p className="hero-mode-mini">Listing depth</p>
-                <div className="hero-tilt-bars hero-intel-bars">
-                  {bands.map((h, i) => (
-                    <span
-                      key={i}
-                      className="hero-tilt-bar"
-                      style={{ height: `${h}%`, animationDelay: `${i * 50}ms` }}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className="hero-intel-heat">
-                <p className="hero-mode-mini">Demand heatmap</p>
-                <div className="hero-intel-heat-grid">
-                  {heat.map((v, i) => (
-                    <span
-                      key={i}
-                      style={{ opacity: 0.2 + v * 0.8 }}
-                      data-hot={v > 0.7 ? "true" : "false"}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="hero-mode-foot hero-intel-foot">
-            <span>165+ markets · 84K+ listings tracked</span>
-            <span className="font-mono text-primary">latency 38ms</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ModePricing() {
-  const spark = [38, 52, 46, 68, 58, 82, 76, 94, 71, 89, 98, 86];
-  const tape = [
-    { t: "FLOOR", v: "$180" },
-    { t: "REC", v: "$247" },
-    { t: "CEIL", v: "$312" },
-    { t: "MARGIN", v: "18%" },
-    { t: "SIGNAL", v: "↑ onsale" },
-  ];
-
-  return (
-    <div className="hero-shell hero-shell-pricing">
-      <header className="hero-shell-chrome hero-shell-chrome-pricing">
-        <span className="hero-price-brand">
-          <Sparkles className="size-3.5" />
-          AI PRICING
-        </span>
-        <span className="hero-shell-path hero-shell-path-center">
-          engine · guardrails active
-        </span>
-        <span className="hero-mode-pill hero-mode-pill-pulse">AUTO</span>
-      </header>
-
-      <div className="hero-price-tape" aria-hidden>
-        <div className="hero-price-tape-track">
-          {[...tape, ...tape].map((item, i) => (
-            <span key={i}>
-              <em>{item.t}</em> {item.v}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div className="hero-shell-body hero-shell-body-pricing">
-        <div className="hero-price-hero">
-          <div>
-            <p className="hero-price-label">Recommended ask</p>
-            <p className="hero-price-value">
-              $247
-              <span className="hero-price-delta">▲ 3.4%</span>
+      <div className="hero-hud-body">
+        <div className="hero-hud-head">
+          <div className="min-w-0">
+            <p className="hero-hud-kicker">
+              <Layers3 className="size-3" /> Platform layers
             </p>
+            <p className="hero-hud-title">One infrastructure layer, end to end</p>
           </div>
-          <div className="hero-price-rails">
-            <div>
-              <span>Floor</span>
-              <strong>$180</strong>
-            </div>
-            <div>
-              <span>Ceiling</span>
-              <strong>$312</strong>
-            </div>
-            <div>
-              <span>Margin</span>
-              <strong>18%</strong>
-            </div>
-          </div>
+          <span className="hero-hud-chip">165+ markets</span>
         </div>
 
-        <div className="hero-price-spark">
-          <div className="hero-price-spark-grid" aria-hidden />
-          <svg
-            viewBox="0 0 120 36"
-            className="hero-price-spark-svg"
-            preserveAspectRatio="none"
-          >
-            <path
-              className="hero-price-spark-area"
-              d={`M0 36 ${spark.map((v, i) => `L${(i / (spark.length - 1)) * 120} ${36 - (v / 100) * 32}`).join(" ")} L120 36 Z`}
-            />
-            <path
-              className="hero-price-spark-line"
-              fill="none"
-              d={`M0 ${36 - (spark[0]! / 100) * 32} ${spark
-                .map((v, i) => `L${(i / (spark.length - 1)) * 120} ${36 - (v / 100) * 32}`)
-                .join(" ")}`}
-            />
-          </svg>
-          <span className="hero-price-cursor" />
-        </div>
-
-        <div className="hero-price-chips">
-          <span>
-            <ShieldCheck className="size-3" /> Margin guards
-          </span>
-          <span>
-            <Radio className="size-3" /> Comp set live
-          </span>
-          <span>
-            <Zap className="size-3" /> Onsale signals
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ModeSync() {
-  const channels = [
-    { name: "Global resale", status: "Synced", ok: true },
-    { name: "Sports exchange", status: "Synced", ok: true },
-    { name: "Travel partners", status: "Pushing", ok: true },
-    { name: "Regional OTA", status: "Queued", ok: false },
-    { name: "Broker desk", status: "Synced", ok: true },
-    { name: "White-label", status: "3 live", ok: true },
-  ];
-
-  return (
-    <div className="hero-shell hero-shell-sync">
-      <header className="hero-shell-chrome hero-shell-chrome-sync">
-        <span className="hero-shell-path">
-          <Layers3 className="size-3 hero-spin" />
-          marketplace connectivity
-        </span>
-        <span className="hero-sync-status-bar">
-          <i data-ok="true" />
-          <i data-ok="true" />
-          <i data-ok="true" />
-          <i data-ok="false" />
-          <i data-ok="true" />
-          <i data-ok="true" />
-        </span>
-        <span className="hero-mode-pill">Queue 0</span>
-      </header>
-
-      <div className="hero-shell-body hero-shell-body-sync">
-        <div className="hero-sync-stage">
-          <div className="hero-sync-orbit" aria-hidden>
-            <span className="hero-sync-orbit-ring" />
-            <span className="hero-sync-orbit-ring hero-sync-orbit-ring-2" />
-            <span className="hero-sync-pulse" />
-            <span className="hero-sync-core">
-              SB
-              <small>SYNC</small>
+        <div className="hero-hud-split">
+          <div className="hero-hud-stack">
+            <span className="hero-hud-stack-rail" aria-hidden>
+              <i className="hero-hud-packet" />
             </span>
-            {channels.map((c, i) => (
-              <span
-                key={c.name}
-                className="hero-sync-node"
-                style={{ ["--i" as string]: i }}
-                data-ok={c.ok ? "true" : "false"}
-                title={c.name}
-              />
+            {platformLayers.map((layer, i) => (
+              <div
+                key={layer.label}
+                className="hero-hud-layer"
+                data-active={i === activeLayer ? "true" : "false"}
+                style={{ animationDelay: `${i * 55}ms` }}
+              >
+                <span className="hero-hud-layer-icon">
+                  <layer.icon className="size-3.5" />
+                </span>
+                <span className="hero-hud-layer-label">{layer.label}</span>
+                <span className="hero-hud-layer-meta">{layer.meta}</span>
+              </div>
             ))}
           </div>
 
-          <div className="hero-sync-stats">
-            <div>
-              <strong>32+</strong>
-              <span>channels</span>
+          <div className="hero-hud-side">
+            <div className="hero-hud-panel hero-hud-chart">
+              <p className="hero-hud-mini">Throughput</p>
+              <div className="hero-tilt-bars hero-hud-bars">
+                {platformThroughput.map((height, i) => (
+                  <span
+                    key={i}
+                    className="hero-tilt-bar"
+                    style={{ height: `${height}%`, animationDelay: `${i * 45}ms` }}
+                  />
+                ))}
+              </div>
             </div>
-            <div>
-              <strong>4s</strong>
-              <span>last sync</span>
-            </div>
-            <div>
-              <strong>0</strong>
-              <span>conflicts</span>
+
+            <div className="hero-hud-tiles">
+              <div>
+                <strong>4s</strong>
+                <span>last sync</span>
+              </div>
+              <div>
+                <strong>38ms</strong>
+                <span>latency</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="hero-sync-list">
-          {channels.map((c) => (
+        <div className="hero-hud-feed">
+          <div className="hero-hud-feed-mask">
+            <div className="hero-hud-feed-track">
+              {[...platformFeed, ...platformFeed].map((entry, i) => (
+                <span key={i} className="hero-hud-feed-row">
+                  <i />
+                  <em>{entry.tag}</em>
+                  <b>{entry.line}</b>
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer className="hero-hud-foot">
+        <span>5 layers · 1 platform</span>
+        <span className="hero-hud-foot-accent">all systems live</span>
+      </footer>
+    </div>
+  );
+}
+
+/* 2 — Distribution matrix: one catalog pushed to every channel */
+
+const brokerChannels = ["MKT", "EXC", "TRV", "OTA", "WL", "API"];
+
+const brokerRows = [
+  { event: "Monaco GP · Main Grandstand", qty: "6", ask: "£182" },
+  { event: "El Clásico · Category 1", qty: "4", ask: "£264" },
+  { event: "Wimbledon · Centre Court", qty: "2", ask: "£410" },
+  { event: "NFL London · Lower Tier", qty: "8", ask: "£148" },
+];
+
+function cellState(row: number, col: number, tick: number) {
+  const n = (row * 7 + col * 3 + tick) % 11;
+  if (n === 0) return "queue";
+  if (n === 3 || n === 6) return "push";
+  return "ok";
+}
+
+function BrokerConsole({ tick }: { tick: number }) {
+  const activeRow = tick % brokerRows.length;
+  const liveListings = (1248 + (tick % 7) * 3).toLocaleString("en-GB");
+
+  return (
+    <div className="hero-hud">
+      <HudBar path={consoleMeta[1]!.path} badge={consoleMeta[1]!.badge} spin />
+
+      <div className="hero-hud-body">
+        <div className="hero-hud-listing">
+          <div className="min-w-0">
+            <p className="hero-hud-kicker">
+              <Ticket className="size-3" /> Listed once
+            </p>
+            <p className="hero-hud-title">Synchronized across every channel</p>
+          </div>
+          <div className="hero-hud-listing-num">
+            <span>Live listings</span>
+            <strong key={liveListings} className="hero-hud-flash">
+              {liveListings}
+            </strong>
+          </div>
+        </div>
+
+        <div className="hero-hud-matrix">
+          <div className="hero-hud-matrix-head">
+            <span>Listing</span>
+            <span>Qty</span>
+            <span>Ask</span>
+            <span className="hero-hud-matrix-chan">
+              {brokerChannels.map((channel) => (
+                <em key={channel}>{channel}</em>
+              ))}
+            </span>
+          </div>
+
+          {brokerRows.map((row, i) => (
             <div
-              key={c.name}
-              className="hero-sync-row"
-              data-ok={c.ok ? "true" : "false"}
+              key={row.event}
+              className="hero-hud-matrix-row"
+              data-active={i === activeRow ? "true" : "false"}
+              style={{ animationDelay: `${i * 55}ms` }}
             >
-              <span>{c.name}</span>
-              <span>
-                {c.status}
-                <ArrowUpRight className="inline size-3 opacity-70" />
+              <span className="hero-hud-matrix-name">{row.event}</span>
+              <span className="hero-hud-matrix-qty">{row.qty}</span>
+              <span className="hero-hud-matrix-ask">{row.ask}</span>
+              <span className="hero-hud-matrix-chan">
+                {brokerChannels.map((channel, j) => (
+                  <i key={channel} data-state={cellState(i, j, tick)} />
+                ))}
               </span>
             </div>
           ))}
         </div>
+
+        <div className="hero-hud-export">
+          <span className="hero-hud-mini">Export close</span>
+          <div className="hero-hud-export-bar" aria-hidden>
+            <i />
+          </div>
+          <span className="hero-hud-export-meta">12,480 rows</span>
+        </div>
       </div>
+
+      <footer className="hero-hud-foot">
+        <span className="hero-hud-foot-icon">
+          <ShieldCheck className="size-3" /> Auto-delist after sale
+        </span>
+        <span className="hero-hud-foot-accent">0 conflicts · push 4s</span>
+      </footer>
     </div>
   );
 }
 
-export function HeroDashboardTilt() {
+/* 3 — Partner quote desk: search, margin, branded quote */
+
+const travelScenarios = [
+  { margin: 12, cost: 242, price: 271 },
+  { margin: 18, cost: 242, price: 286 },
+  { margin: 24, cost: 242, price: 300 },
+];
+
+const travelSteps = ["Search inventory", "Add margin", "Send quote"];
+
+const travelAvailability = [
+  { label: "Category 1", seats: 8, fill: 82 },
+  { label: "Category 2", seats: 6, fill: 58 },
+  { label: "Grandstand K", seats: 4, fill: 36 },
+];
+
+function TravelConsole({ tick }: { tick: number }) {
+  const step = tick % travelSteps.length;
+  const scenario = travelScenarios[step]!;
+  const total = scenario.price * 4;
+
+  return (
+    <div className="hero-hud">
+      <HudBar path={consoleMeta[2]!.path} badge={consoleMeta[2]!.badge} />
+
+      <div className="hero-hud-body">
+        <div className="hero-hud-chips">
+          <span>
+            <Search className="size-3" /> Monaco GP
+          </span>
+          <span>
+            <CalendarDays className="size-3" /> 24 May
+          </span>
+          <span>
+            <MapPin className="size-3" /> Circuit de Monaco
+          </span>
+          <span>Category 1</span>
+        </div>
+
+        <div className="hero-hud-quote">
+          <div className="hero-hud-steps">
+            {travelSteps.map((label, i) => (
+              <div
+                key={label}
+                className="hero-hud-step"
+                data-state={i < step ? "done" : i === step ? "active" : "idle"}
+                style={{ animationDelay: `${i * 55}ms` }}
+              >
+                <span className="hero-hud-step-dot">{i + 1}</span>
+                <span className="hero-hud-step-label">{label}</span>
+              </div>
+            ))}
+
+            <div className="hero-hud-panel hero-hud-avail">
+              <p className="hero-hud-mini">Availability</p>
+              {travelAvailability.map((row) => (
+                <div key={row.label} className="hero-hud-avail-row">
+                  <span>{row.label}</span>
+                  <i>
+                    <b style={{ width: `${row.fill}%` }} />
+                  </i>
+                  <em>{row.seats}</em>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="hero-hud-money">
+            <p className="hero-hud-mini">Client price · per ticket</p>
+            <p key={scenario.price} className="hero-hud-money-value">
+              <span>£</span>
+              {scenario.price}
+              <em>+£{scenario.price - scenario.cost}</em>
+            </p>
+
+            <div className="hero-hud-lines">
+              <div>
+                <span>4 × Category 1</span>
+                <strong>£{scenario.price}</strong>
+              </div>
+              <div data-total="true">
+                <span>Quote total</span>
+                <strong>£{total.toLocaleString("en-GB")}</strong>
+              </div>
+            </div>
+
+            <div className="hero-hud-math">
+              <div>
+                <span>Partner cost</span>
+                <strong>£{scenario.cost}</strong>
+              </div>
+              <div>
+                <span>Margin</span>
+                <strong>{scenario.margin}%</strong>
+              </div>
+              <div>
+                <span>Tickets</span>
+                <strong>4</strong>
+              </div>
+            </div>
+
+            <div className="hero-hud-margin" aria-hidden>
+              <i style={{ width: `${(scenario.margin / 30) * 100}%` }} />
+            </div>
+          </div>
+        </div>
+
+        <div className="hero-hud-quote-foot">
+          <span className="hero-hud-stamp">
+            <FileText className="size-3" /> Branded PDF quote ready
+          </span>
+          <span className="hero-hud-send">
+            <Send className="size-3" /> Send
+          </span>
+        </div>
+      </div>
+
+      <footer className="hero-hud-foot">
+        <span>Quote SB-4821 · 4 tickets</span>
+        <span className="hero-hud-foot-accent">valid 48h</span>
+      </footer>
+    </div>
+  );
+}
+
+export function HeroDashboardTilt({
+  slide = 0,
+  swapKey = 0,
+}: {
+  slide?: number;
+  swapKey?: number;
+}) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [mode, setMode] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const current = modes[mode] ?? modes[0]!;
+  const { ref: sceneRef, inView } = useInView<HTMLDivElement>(0.15);
+  const [tick, setTick] = useState(0);
+  const [reduced, setReduced] = useState(false);
+  const index = ((slide % consoleMeta.length) + consoleMeta.length) % consoleMeta.length;
+  const current = consoleMeta[index]!;
 
   useEffect(() => {
-    if (paused) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(
-      () => setMode((m) => (m + 1) % modes.length),
-      MODE_MS,
-    );
+    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+
+  useEffect(() => {
+    if (reduced || !inView) return;
+    const id = window.setInterval(() => setTick((t) => t + 1), TICK_MS);
     return () => window.clearInterval(id);
-  }, [paused, mode]);
+  }, [reduced, inView]);
 
   const onMove = useCallback((e: ReactMouseEvent<HTMLDivElement>) => {
     const el = cardRef.current;
@@ -352,56 +426,26 @@ export function HeroDashboardTilt() {
     el.style.setProperty("--tilt-y", "-20deg");
     el.style.setProperty("--tilt-glare-x", "28%");
     el.style.setProperty("--tilt-glare-y", "18%");
-    setPaused(false);
   }, []);
 
   return (
     <div
+      ref={sceneRef}
       className="hero-tilt-scene"
       onMouseMove={onMove}
-      onMouseEnter={() => setPaused(true)}
       onMouseLeave={onLeave}
       aria-hidden
     >
       <div className="hero-tilt-ambient" />
-      <div
-        ref={cardRef}
-        className="hero-tilt-card hero-tilt-alive"
-        data-mode={current.id}
-      >
+      <div ref={cardRef} className="hero-tilt-card hero-tilt-alive" data-mode={current.id}>
         <div className="hero-tilt-grid-bg" aria-hidden />
         <div className="hero-tilt-glare" />
         <span className="hero-tilt-scan" />
 
-        <div key={current.id} className="hero-tilt-swap">
-          {current.id === "intel" ? <ModeIntel /> : null}
-          {current.id === "pricing" ? <ModePricing /> : null}
-          {current.id === "sync" ? <ModeSync /> : null}
-        </div>
-
-        <div className="hero-mode-tabs">
-          {modes.map((m, i) => (
-            <button
-              key={m.id}
-              type="button"
-              className="hero-mode-tab"
-              data-active={i === mode ? "true" : "false"}
-              onClick={() => setMode(i)}
-              tabIndex={-1}
-            >
-              {m.label}
-              {i === mode ? (
-                <span
-                  key={`${m.id}-${paused}`}
-                  className="hero-mode-tab-fill"
-                  style={{
-                    animationDuration: `${MODE_MS}ms`,
-                    animationPlayState: paused ? "paused" : "running",
-                  }}
-                />
-              ) : null}
-            </button>
-          ))}
+        <div key={`${current.id}-${swapKey}`} className="hero-hud-swap">
+          {index === 0 ? <PlatformConsole tick={tick} /> : null}
+          {index === 1 ? <BrokerConsole tick={tick} /> : null}
+          {index === 2 ? <TravelConsole tick={tick} /> : null}
         </div>
       </div>
     </div>

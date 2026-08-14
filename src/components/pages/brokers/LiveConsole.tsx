@@ -206,11 +206,11 @@ export function LiveConsole({ variant }: LiveConsoleProps) {
 
       <div className="container-page relative z-10">
         <div className="lc-section">
-          <Reveal className="lc-section-copy">
+          <Reveal className="lc-section-copy min-w-0">
             <ConsoleCopyPanel meta={meta} isDark={isDark} />
           </Reveal>
 
-          <Reveal delay={120} className="lc-section-stage">
+          <Reveal delay={120} className="lc-section-stage min-w-0">
             <div className="lc-tilt-wrap" style={tiltStyle}>
               <div className="lc-tilt-card">
                 {meta.console}

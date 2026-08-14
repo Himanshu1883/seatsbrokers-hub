@@ -123,14 +123,14 @@ function AuditIllustration({ backdrop }: BentoIllustrationProps) {
           {track.map((r, i) => (
             <div
               key={`${r.label}-${i}`}
-              className={`bento-scene-panel flex items-center justify-between rounded-lg px-3 py-2.5 font-mono text-[10px] ring-1 backdrop-blur-sm ${
+              className={`bento-scene-panel flex min-w-0 items-center justify-between gap-2 rounded-lg px-3 py-2.5 font-mono text-[10px] ring-1 backdrop-blur-sm ${
                 r.hot
                   ? "bento-audit-hot bg-card/92 text-foreground ring-primary/25"
                   : "bg-card/85 text-muted-foreground ring-border/80"
               }`}
             >
-              <span>{r.label}</span>
-              <span className={r.hot ? "font-semibold text-primary" : ""}>{r.value}</span>
+              <span className="min-w-0 truncate">{r.label}</span>
+              <span className={`shrink-0 ${r.hot ? "font-semibold text-primary" : ""}`}>{r.value}</span>
             </div>
           ))}
         </div>
@@ -237,11 +237,11 @@ function ReportIllustration({ backdrop }: BentoIllustrationProps) {
 function LaunchIllustration({ backdrop }: BentoIllustrationProps) {
   return (
     <BentoIllustrationFrame backdrop={backdrop} variant="platform" height="wide">
-      <div className="bento-launch relative flex h-full w-full items-center justify-between px-4 sm:px-8">
+      <div className="bento-launch relative flex h-full w-full flex-col items-center justify-center gap-3 px-3 sm:flex-row sm:items-center sm:justify-between sm:gap-0 sm:px-8">
         <div className="bento-launch-ghost bento-launch-ghost-a" aria-hidden />
         <div className="bento-launch-ghost bento-launch-ghost-b" aria-hidden />
 
-        <div className="bento-scene-panel relative z-10 w-[9.5rem] rounded-lg bg-card/92 p-3.5 ring-1 ring-border backdrop-blur-sm bento-launch-panel">
+        <div className="bento-scene-panel relative z-10 w-full max-w-[11rem] rounded-lg bg-card/92 p-3.5 ring-1 ring-border backdrop-blur-sm sm:w-[9.5rem] sm:max-w-none bento-launch-panel">
           <p className="font-mono text-[10px] font-bold text-foreground">Marketplace Hub</p>
           <p className="mt-1.5 flex items-center gap-1.5 text-[10px] text-muted-foreground">
             <span className="text-primary">✓</span> 8 channels live
@@ -257,7 +257,7 @@ function LaunchIllustration({ backdrop }: BentoIllustrationProps) {
             ↗
             <span className="bento-connect-ring absolute inset-0 rounded-full bg-primary" aria-hidden />
           </div>
-          <svg width="100%" height="3" className="max-w-[88px]" aria-hidden>
+          <svg width="100%" height="3" className="hidden max-w-[88px] sm:block" aria-hidden>
             <line
               x1="0"
               y1="1.5"
@@ -271,7 +271,7 @@ function LaunchIllustration({ backdrop }: BentoIllustrationProps) {
           </svg>
         </div>
 
-        <div className="bento-scene-panel relative z-10 w-[9.5rem] rounded-lg bg-card/92 p-3.5 ring-1 ring-border backdrop-blur-sm bento-launch-panel bento-launch-panel-delay">
+        <div className="bento-scene-panel relative z-10 w-full max-w-[11rem] rounded-lg bg-card/92 p-3.5 ring-1 ring-border backdrop-blur-sm sm:w-[9.5rem] sm:max-w-none bento-launch-panel bento-launch-panel-delay">
           <p className="font-mono text-[10px] font-bold text-foreground">Market Insight API</p>
           <p className="mt-1.5 flex items-center gap-1.5 text-[10px] text-muted-foreground">
             <span className="text-primary">✓</span> ERP + webhooks
@@ -327,7 +327,7 @@ export function ProcessBento() {
   return (
     <section
       id="partner-process"
-      className="section-curve relative isolate scroll-mt-24 bg-background py-20 sm:py-24"
+      className="section-curve relative isolate scroll-mt-24 overflow-x-clip bg-background py-16 sm:py-24"
     >
       <SectionBackdrop image="footballPitch" tone="light" strength={0.12} />
       <div className="container-page relative z-10">
@@ -347,7 +347,7 @@ export function ProcessBento() {
         <div className="mt-12 grid gap-5 lg:mt-14 lg:grid-cols-3">
           {top.map((c, i) => (
             <Reveal key={c.title} delay={i * 70}>
-              <article className="process-bento-card group flex h-full flex-col rounded-2xl border border-border bg-card/50 p-6">
+              <article className="process-bento-card group flex h-full flex-col rounded-2xl border border-border bg-card/50 p-4 sm:p-6">
                 <c.Illustration backdrop={c.backdrop} />
                 <h3 className="mt-6 text-center font-display text-lg font-bold text-foreground sm:text-xl">
                   {c.title}
@@ -363,7 +363,7 @@ export function ProcessBento() {
         <div className="mt-5 grid gap-5 lg:grid-cols-2">
           {bottom.map((c, i) => (
             <Reveal key={c.title} delay={i * 70}>
-              <article className="process-bento-card group flex h-full flex-col rounded-2xl border border-border bg-card/50 p-6">
+              <article className="process-bento-card group flex h-full flex-col rounded-2xl border border-border bg-card/50 p-4 sm:p-6">
                 <c.Illustration backdrop={c.backdrop} />
                 <h3 className="mt-6 text-center font-display text-lg font-bold text-foreground sm:text-xl">
                   {c.title}

@@ -10,7 +10,7 @@ type PageShellProps = {
 
 export function PageShell({ children, showFinalCta = true }: PageShellProps) {
   return (
-    <div className="flex flex-col gap-1.5 bg-background pb-1.5 sm:gap-2 sm:pb-2">
+    <div className="flex flex-col gap-1.5 overflow-x-clip bg-background pb-1.5 sm:gap-2 sm:pb-2">
       <Nav />
       <main className="flex flex-col gap-1.5 sm:gap-2">
         {children}

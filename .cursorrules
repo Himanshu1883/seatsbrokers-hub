@@ -2,10 +2,12 @@
 (Always loaded. Keep this short — it costs tokens every message.)
 
 ## Before doing anything
-Read MEMORY.md first. It links to everything else. Do not scan the full
-src/ tree unless you are actively editing a specific file — use
-docs/COMPONENT_MAP.md and docs/PROJECT_STRUCTURE.md instead of re-reading
-the codebase to answer "does X exist" or "where does Y live."
+Read MEMORY.md, then docs/agent/PROJECT_MAP.md and docs/agent/CHANGE_MAP.md.
+Do not scan the full src/ tree unless you are actively editing a specific
+file. Use CHANGE_MAP + docs/COMPONENT_MAP.md + docs/PROJECT_STRUCTURE.md
+instead of re-reading the codebase to answer "does X exist" or "where
+does Y live." After meaningful architecture/location changes, update
+docs/agent/ (not only PROJECT_STATUS.md).
 
 ## Non-negotiables
 - Brand name is SeatsBrokers (plural). Never "SeatsBroker."

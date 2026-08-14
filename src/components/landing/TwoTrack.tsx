@@ -1,7 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowRight,
   Briefcase,
@@ -15,11 +13,9 @@ import {
   TrendingUp,
   Zap,
 } from "lucide-react";
-import { Reveal } from "@/hooks/use-scroll-motion";
+import { Reveal, useInView } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 import { ctas } from "@/content/site";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const tracks = [
   {
@@ -357,21 +353,18 @@ function TravelConsole({ track }: { track: (typeof tracks)[number] }) {
   );
 }
 
-function TrackCard3D({
-  track,
-  cardRef,
-}: {
-  track: (typeof tracks)[number];
-  cardRef: (el: HTMLElement | null) => void;
-}) {
+function TrackCard3D({ track }: { track: (typeof tracks)[number] }) {
   const Icon = track.icon;
 
   return (
     <article
       id={track.id}
-      ref={cardRef}
       className="two-track-3d-card scroll-mt-24"
       data-track={track.id}
+      style={{
+        ["--tt-tilt-y" as string]: `${track.tiltY}deg`,
+        ["--tt-tilt-z" as string]: `${track.tiltZ}deg`,
+      }}
     >
       <div className="two-track-3d-bezel">
         <div className="two-track-3d-screen">
@@ -433,98 +426,18 @@ function TrackCard3D({
 }
 
 export function TwoTrack() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLElement | null)[]>([]);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const panel = panelRef.current;
-    if (!section || !panel) return;
-
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const cards = cardRefs.current.filter(Boolean) as HTMLElement[];
-
-    if (reduced) {
-      cards.forEach((card) => {
-        gsap.set(card, { rotateX: 0, rotateY: 0, rotateZ: 0, y: 0, scale: 1 });
-        gsap.set(card.querySelectorAll(".two-track-3d-headline, .two-track-3d-stage, .two-track-3d-footer"), {
-          opacity: 1,
-          y: 0,
-        });
-      });
-      return;
-    }
-
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=175%",
-          pin: panel,
-          scrub: 2.4,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      cards.forEach((card, i) => {
-        const track = tracks[i];
-        if (!track) return;
-
-        const headline = card.querySelector<HTMLElement>(".two-track-3d-headline");
-        const stage = card.querySelector<HTMLElement>(".two-track-3d-stage");
-        const footer = card.querySelector<HTMLElement>(".two-track-3d-footer");
-
-        tl.fromTo(
-          card,
-          {
-            rotateX: 18,
-            rotateY: track.tiltY,
-            rotateZ: track.tiltZ,
-            y: 40,
-            scale: 0.94,
-            transformPerspective: 1800,
-            transformOrigin: "50% 55%",
-            force3D: true,
-          },
-          {
-            rotateX: 0,
-            rotateY: 0,
-            rotateZ: 0,
-            y: 0,
-            scale: 1,
-            ease: "power1.inOut",
-            duration: 1,
-          },
-          0,
-        );
-
-        if (headline) {
-          tl.fromTo(headline, { opacity: 0, y: 22 }, { opacity: 1, y: 0, ease: "power1.out", duration: 0.55 }, 0.12);
-        }
-        if (stage) {
-          tl.fromTo(stage, { opacity: 0, y: 28 }, { opacity: 1, y: 0, ease: "power1.out", duration: 0.55 }, 0.28);
-        }
-        if (footer) {
-          tl.fromTo(footer, { opacity: 0, y: 16 }, { opacity: 1, y: 0, ease: "power1.out", duration: 0.45 }, 0.42);
-        }
-      });
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
+  const { ref, inView } = useInView<HTMLElement>(0.1);
 
   return (
     <section
-      ref={sectionRef}
+      ref={ref}
       id="platform-tracks"
-      className="two-track-cinema section-curve relative isolate scroll-mt-24 bg-surface"
+      className="two-track-cinema section-curve relative isolate scroll-mt-24 overflow-x-clip bg-surface"
+      data-settled={inView ? "true" : "false"}
     >
       <SectionBackdrop image="concertCrowd" tone="surface" strength={0.08} />
 
-      <div ref={panelRef} className="two-track-panel">
+      <div className="two-track-panel">
         <div className="container-page relative z-10">
           <Reveal>
             <p className="section-eyebrow text-primary">One platform · Multiple parts</p>
@@ -538,14 +451,8 @@ export function TwoTrack() {
           </Reveal>
 
           <div className="two-track-stage">
-            {tracks.map((track, i) => (
-              <TrackCard3D
-                key={track.id}
-                track={track}
-                cardRef={(el) => {
-                  cardRefs.current[i] = el;
-                }}
-              />
+            {tracks.map((track) => (
+              <TrackCard3D key={track.id} track={track} />
             ))}
           </div>
         </div>

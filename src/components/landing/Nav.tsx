@@ -92,7 +92,7 @@ export function Nav() {
           type="button"
           aria-label="Toggle menu"
           onClick={() => setOpen((o) => !o)}
-          className={`lg:hidden ${scrolled ? "text-foreground" : "text-background"}`}
+          className={`inline-flex size-11 items-center justify-center lg:hidden ${scrolled ? "text-foreground" : "text-background"}`}
         >
           {open ? <X className="size-6" /> : <Menu className="size-6" />}
         </button>

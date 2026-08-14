@@ -28,7 +28,7 @@ const tiles = [
 
 export function MarketIntelligence() {
   return (
-    <section className="section-curve relative isolate bg-dark py-24 text-background">
+    <section className="section-curve relative isolate overflow-x-clip bg-dark py-16 text-background sm:py-24">
       <SectionBackdrop image="footballNight" tone="dark" strength={0.16} />
       <div className="container-page relative z-10 grid gap-14 lg:grid-cols-[1.05fr_1fr]">
         <div className="lg:sticky lg:top-28 lg:self-start">

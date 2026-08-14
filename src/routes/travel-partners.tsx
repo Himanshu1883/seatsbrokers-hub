@@ -92,8 +92,8 @@ function TravelPartnersPage() {
 function SplitPanelLocal() {
   return (
     <section className="section-curve relative isolate bg-surface py-20 sm:py-24">
-      <div className="container-page relative z-10 grid gap-10 lg:grid-cols-2 lg:items-center">
-        <div>
+      <div className="container-page relative z-10 grid min-w-0 gap-10 lg:grid-cols-2 lg:items-center">
+        <div className="min-w-0">
           <p className="section-eyebrow text-primary">Margin Management</p>
           <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">
             Add your margin. Set your customer price.
@@ -103,7 +103,7 @@ function SplitPanelLocal() {
             predictable and customer-ready.
           </p>
         </div>
-        <div className="rounded-2xl border border-border bg-card p-8">
+        <div className="min-w-0 rounded-2xl border border-border bg-card p-5 lg:p-8">
           <dl className="space-y-4">
             <div className="flex justify-between border-b border-border pb-3">
               <dt className="text-sm text-muted-foreground">Ticket price</dt>

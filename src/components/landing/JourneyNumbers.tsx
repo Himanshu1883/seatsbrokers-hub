@@ -51,9 +51,10 @@ function easeInCubic(t: number) {
   return t * t * t;
 }
 
-const AUTOPLAY_MS = milestones.length * 2800;
+const SLIDE_MS = 1000;
+const AUTOPLAY_MS = milestones.length * SLIDE_MS;
 
-/** Auto-advance progress whenever the section enters the viewport. */
+/** Auto-advance progress whenever the section enters the viewport. Loops while in view. */
 function useAutoPlayProgress(
   ref: React.RefObject<HTMLElement | null>,
   durationMs: number,
@@ -89,14 +90,9 @@ function useAutoPlayProgress(
       const tick = (now: number) => {
         if (!playing.current) return;
 
-        const t = clamp01((now - t0) / durationMs);
+        const t = ((now - t0) / durationMs) % 1;
         setProgress(t);
-
-        if (t < 1) {
-          raf.current = window.requestAnimationFrame(tick);
-        } else {
-          playing.current = false;
-        }
+        raf.current = window.requestAnimationFrame(tick);
       };
 
       raf.current = window.requestAnimationFrame(tick);
@@ -130,7 +126,7 @@ function slideLocal(progress: number, index: number, total: number) {
   return clamp01((progress - start) / segment);
 }
 
-function slideStyle(local: number, isLast: boolean, reduced: boolean) {
+function slideStyle(local: number, reduced: boolean) {
   if (reduced) {
     return {
       opacity: 1,
@@ -139,7 +135,7 @@ function slideStyle(local: number, isLast: boolean, reduced: boolean) {
     };
   }
 
-  // Enter: large + soft → settle. Long hold. Soft exit.
+  // Enter: large + soft → settle. Hold. Soft exit (including last slide, so the loop can restart).
   let opacity = 0;
   let scale = 1.85;
   let blur = 12;
@@ -156,7 +152,7 @@ function slideStyle(local: number, isLast: boolean, reduced: boolean) {
     scale = 1.85 - 0.85 * t;
     blur = 12 * (1 - t);
     y = 18 * (1 - t);
-  } else if (local < 0.78 || isLast) {
+  } else if (local < 0.78) {
     opacity = 1;
     scale = 1;
     blur = 0;
@@ -194,7 +190,7 @@ export function JourneyNumbers() {
     <section
       ref={sectionRef}
       id="journey-numbers"
-      className="journey-num section-curve-sticky relative scroll-mt-24"
+      className="journey-num section-curve-sticky relative scroll-mt-24 overflow-x-clip"
       aria-label="SeatsBrokers journey in numbers"
     >
       <div className="journey-num-viewport">
@@ -218,8 +214,7 @@ export function JourneyNumbers() {
             {milestones.map((m, i) => {
               if (reduced && i !== activeIndex) return null;
               const local = slideLocal(progress, i, milestones.length);
-              const isLast = i === milestones.length - 1;
-              const style = slideStyle(local, isLast, reduced);
+              const style = slideStyle(local, reduced);
 
               return (
                 <div

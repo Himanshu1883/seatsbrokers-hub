@@ -75,7 +75,7 @@ export function Footer() {
             Platform updates, API releases and market intelligence insights for ticket businesses.
           </p>
           <form
-            className="mt-5 flex gap-2"
+            className="mt-5 flex min-w-0 gap-2"
             onSubmit={(e) => {
               e.preventDefault();
               (e.currentTarget as HTMLFormElement).reset();

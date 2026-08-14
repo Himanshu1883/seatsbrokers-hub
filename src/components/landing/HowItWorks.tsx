@@ -194,7 +194,7 @@ export function HowItWorks() {
     <section
       ref={sectionRef}
       id="how-it-works"
-      className="section-curve-sticky relative isolate scroll-mt-24 bg-background py-24 lg:py-28"
+      className="section-curve-sticky relative isolate scroll-mt-24 overflow-x-clip bg-background py-16 sm:py-24 lg:py-28"
       aria-label="How it works"
     >
       <SectionBackdrop image="venueSeats" tone="light" strength={0.09} />
@@ -235,52 +235,13 @@ export function HowItWorks() {
         </Reveal>
 
         <div className="mt-12 grid lg:mt-14 lg:grid-cols-2 lg:gap-10 xl:gap-16">
-          <div className="relative hidden lg:block">
-            <div className="sticky top-24 flex h-[calc(100dvh-6rem)] flex-col justify-center py-8">
-              <p className="mb-2 text-center section-eyebrow text-primary">
-                Live product · step {preview.n}
-              </p>
-              <p className="mb-4 text-center text-sm font-medium text-muted-foreground">
-                {preview.caption}
-              </p>
-              <div className="how-it-desktop-viewport max-h-[calc(100dvh-13rem)] w-full overflow-y-auto overscroll-contain">
-                <ProductScreenshot key={preview.n} step={preview} variant="desktop" />
-              </div>
-              <div className="mt-4 flex flex-wrap justify-center gap-2">
-                {preview.stats.map((s) => (
-                  <span
-                    key={s.label}
-                    className="rounded-lg border border-border bg-card px-3 py-1.5 text-center"
-                  >
-                    <span className="block font-display text-sm font-bold text-foreground">
-                      {s.value}
-                    </span>
-                    <span className="font-mono text-[9px] tracking-wide text-muted-foreground uppercase">
-                      {s.label}
-                    </span>
-                  </span>
-                ))}
-              </div>
-              <div className="mt-5 flex justify-center gap-1.5" aria-hidden>
-                {steps.map((s, i) => (
-                  <span
-                    key={s.n}
-                    className={`h-1 rounded-full bg-primary transition-all duration-500 ${
-                      i === active ? "w-8 opacity-100" : "w-2 opacity-35"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
           <div className="lg:py-4">
             {steps.map((step, i) => {
               const isActive = active === i;
               return (
                 <article
                   key={step.n}
-                  className="sticky-scroll-panel flex min-h-[88dvh] flex-col justify-center py-16 lg:min-h-[100dvh] lg:py-24"
+                  className="flex min-h-0 flex-col justify-center py-12 sm:py-16 lg:min-h-[100dvh] lg:py-24"
                 >
                   <Reveal>
                     <div className="mb-8 lg:hidden">
@@ -356,6 +317,45 @@ export function HowItWorks() {
                 </article>
               );
             })}
+          </div>
+
+          <div className="relative hidden lg:block">
+            <div className="sticky top-24 flex h-[calc(100dvh-6rem)] flex-col justify-center py-8">
+              <p className="mb-2 text-center section-eyebrow text-primary">
+                Live product · step {preview.n}
+              </p>
+              <p className="mb-4 text-center text-sm font-medium text-muted-foreground">
+                {preview.caption}
+              </p>
+              <div className="how-it-desktop-viewport min-h-0 w-full max-h-[calc(100dvh-13rem)] overflow-hidden">
+                <ProductScreenshot key={preview.n} step={preview} variant="desktop" />
+              </div>
+              <div className="mt-4 flex flex-wrap justify-center gap-2">
+                {preview.stats.map((s) => (
+                  <span
+                    key={s.label}
+                    className="rounded-lg border border-border bg-card px-3 py-1.5 text-center"
+                  >
+                    <span className="block font-display text-sm font-bold text-foreground">
+                      {s.value}
+                    </span>
+                    <span className="font-mono text-[9px] tracking-wide text-muted-foreground uppercase">
+                      {s.label}
+                    </span>
+                  </span>
+                ))}
+              </div>
+              <div className="mt-5 flex justify-center gap-1.5" aria-hidden>
+                {steps.map((s, i) => (
+                  <span
+                    key={s.n}
+                    className={`h-1 rounded-full bg-primary transition-all duration-500 ${
+                      i === active ? "w-8 opacity-100" : "w-2 opacity-35"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

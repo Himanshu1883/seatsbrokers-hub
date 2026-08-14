@@ -1,11 +1,11 @@
+import { Compass } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
-import { brokerHeroCopy } from "@/content/broker-hero-data";
+import { aboutHeroCopy, aboutHeroPoints } from "@/content/about-page-data";
 import { ctas } from "@/content/site";
-import { BrokersHeroIcon } from "./BrokersConsoleCards";
-import { BrokersConsoleWall } from "./BrokersConsoleWall";
+import { AboutJourneyWall } from "./AboutJourneyWall";
 
-export function BrokersHero() {
+export function AboutHero() {
   return (
     <section className="bh-hero section-curve relative isolate scroll-mt-24 overflow-hidden bg-dark text-background">
       <div
@@ -13,22 +13,24 @@ export function BrokersHero() {
         aria-hidden
       />
       <div
-        className="bh-orb pointer-events-none absolute -right-24 top-1/4 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
+        className="pointer-events-none absolute -right-24 top-1/4 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
         aria-hidden
       />
 
       <div className="container-page relative z-10">
         <div className="bh-layout">
           <Reveal className="bh-copy min-w-0">
-            <BrokersHeroIcon className="bh-copy-icon" />
-            <p className="section-eyebrow text-primary">{brokerHeroCopy.eyebrow}</p>
-            <h1 className="bh-title">{brokerHeroCopy.title}</h1>
-            <p className="bh-subhead">{brokerHeroCopy.subhead}</p>
-            <p className="bh-body">{brokerHeroCopy.body}</p>
+            <span className="bh-copy-icon" aria-hidden>
+              <Compass className="size-4" strokeWidth={1.75} />
+            </span>
+            <p className="section-eyebrow text-primary">{aboutHeroCopy.eyebrow}</p>
+            <h1 className="bh-title">{aboutHeroCopy.title}</h1>
+            <p className="bh-subhead">{aboutHeroCopy.subhead}</p>
+            <p className="bh-body">{aboutHeroCopy.body}</p>
             <ul className="bh-points">
-              <li>Global event catalog & inventory management</li>
-              <li>Multi-marketplace sync & automated distribution</li>
-              <li>Market intelligence, AI pricing & broker POS/API</li>
+              {aboutHeroPoints.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
             </ul>
             <div className="bh-ctas">
               <SiteLink
@@ -38,16 +40,16 @@ export function BrokersHero() {
                 {ctas.bookDemo.label}
               </SiteLink>
               <SiteLink
-                to={ctas.explorePlatform.to}
+                to={ctas.talkToTeam.to}
                 className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
               >
-                {ctas.explorePlatform.label}
+                {ctas.talkToTeam.label}
               </SiteLink>
             </div>
           </Reveal>
 
           <Reveal delay={120} className="bh-stage min-w-0">
-            <BrokersConsoleWall />
+            <AboutJourneyWall />
           </Reveal>
         </div>
       </div>

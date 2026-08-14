@@ -10,7 +10,7 @@ const pillars = [
 
 export function GlobalReach() {
   return (
-    <section id="network" className="section-curve relative isolate scroll-mt-24 bg-background py-24">
+    <section id="network" className="section-curve relative isolate scroll-mt-24 overflow-x-clip bg-background py-16 sm:py-24">
       <SectionBackdrop image="motorsport" tone="light" strength={0.1} />
       <div className="container-page relative z-10 grid gap-14 lg:grid-cols-2 lg:items-center">
         <Reveal>
@@ -45,7 +45,7 @@ export function GlobalReach() {
                 ["24/7", "Platform monitoring"],
               ].map(([v, l]) => (
                 <div key={l} className="rounded-xl border border-border bg-card p-5">
-                  <div className="font-mono text-2xl font-bold text-primary">{v}</div>
+                  <div className="font-mono text-xl font-bold break-words text-primary sm:text-2xl">{v}</div>
                   <div className="mt-1.5 text-xs tracking-wide text-muted-foreground uppercase">
                     {l}
                   </div>

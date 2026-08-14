@@ -104,7 +104,7 @@ export function PartnerProductShowcase() {
   return (
     <section
       id="partner-workspace"
-      className="partner-showcase section-curve relative isolate scroll-mt-24 overflow-hidden bg-background py-14 text-foreground sm:py-16"
+      className="partner-showcase section-curve relative isolate scroll-mt-24 overflow-x-clip bg-background py-14 text-foreground sm:py-16"
       aria-label="Partner workspace product showcase"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -135,7 +135,7 @@ export function PartnerProductShowcase() {
         </Reveal>
 
         <div
-          className="partner-tabs mt-8 flex gap-2 overflow-x-auto pb-1"
+          className="partner-tabs mt-8 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1"
           role="tablist"
           aria-label="Product screens"
         >

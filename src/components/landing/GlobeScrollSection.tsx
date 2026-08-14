@@ -179,7 +179,7 @@ export function GlobeScrollSection() {
     <section
       ref={sectionRef}
       id="globe"
-      className="section-curve-sticky relative scroll-mt-24 bg-[oklch(0.965_0.005_158)]"
+      className="section-curve-sticky relative scroll-mt-24 overflow-x-clip bg-[oklch(0.965_0.005_158)]"
       aria-label="Global distribution network"
     >
       <div className="pointer-events-none sticky top-0 z-0 h-dvh w-full overflow-hidden">
@@ -187,15 +187,15 @@ export function GlobeScrollSection() {
 
         <div className="relative flex h-full w-full items-center justify-center px-4 sm:px-6">
           <div
-            className="absolute h-[88vmin] w-[88vmin] max-h-[760px] max-w-[760px] rounded-full bg-primary/15 blur-3xl"
+            className="absolute h-[70vmin] w-[70vmin] max-h-[760px] max-w-[760px] rounded-full bg-primary/15 blur-3xl sm:h-[80vmin] sm:w-[80vmin] lg:h-[88vmin] lg:w-[88vmin]"
             aria-hidden
           />
 
-          <div className="relative h-[74vmin] w-[74vmin] max-h-[680px] max-w-[680px] shrink-0">
+          <div className="relative h-[52vmin] w-[52vmin] max-h-[680px] max-w-[680px] shrink-0 sm:h-[64vmin] sm:w-[64vmin] lg:h-[74vmin] lg:w-[74vmin]">
             <GlobeCanvas scrollOffset={scrollProgress} />
           </div>
 
-          <div className="absolute inset-x-4 top-6 grid grid-cols-[1fr_auto_1fr] items-start gap-3 sm:inset-x-8 sm:top-10">
+          <div className="absolute inset-x-3 top-5 grid grid-cols-2 items-start gap-2 sm:inset-x-8 sm:top-10 sm:grid-cols-[1fr_auto_1fr] sm:gap-3">
             <div className="flex items-center gap-2.5 justify-self-start">
               <span className="relative flex h-2.5 w-2.5 shrink-0">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
@@ -206,7 +206,7 @@ export function GlobeScrollSection() {
               </span>
             </div>
 
-            <div className="flex flex-col items-center text-center justify-self-center">
+            <div className="col-span-2 mt-1 hidden flex-col items-center text-center sm:col-span-1 sm:mt-0 sm:flex sm:justify-self-center">
               <span className="font-mono text-[10px] font-bold tracking-[0.24em] text-foreground/50 uppercase sm:text-xs">
                 SeatsBrokers
               </span>
@@ -258,10 +258,10 @@ export function GlobeScrollSection() {
             </p>
           </div>
 
-          <div className="absolute inset-x-4 bottom-6 grid grid-cols-[1fr_auto] items-end gap-4 sm:inset-x-8 sm:bottom-10">
+          <div className="absolute inset-x-3 bottom-5 grid grid-cols-1 items-end gap-3 sm:inset-x-8 sm:bottom-10 sm:grid-cols-[1fr_auto] sm:gap-4">
             <div className="min-w-0 text-left">
               <div className="globe-rail-label">Active hub · {active.region}</div>
-              <div className="mt-1.5 font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+              <div className="mt-1.5 font-display text-lg font-bold tracking-tight text-foreground sm:text-2xl">
                 {active.hub}
               </div>
               <div className="mt-1 font-mono text-xs font-semibold tracking-wide text-foreground/60 sm:text-sm">
@@ -311,7 +311,7 @@ export function GlobeScrollSection() {
         {slides.map((slide, i) => (
           <article
             key={slide.index}
-            className="relative flex min-h-dvh items-center justify-center px-4 py-24 sm:px-6 lg:px-10"
+            className="relative flex min-h-0 items-center justify-center px-4 pt-28 pb-16 sm:px-6 sm:py-24 lg:min-h-dvh lg:px-10"
           >
             <span
               className="pointer-events-none absolute left-1/2 top-[8%] -translate-x-1/2 select-none font-display text-[20vw] font-bold leading-none text-foreground/[0.04] sm:text-[12vw]"
@@ -378,7 +378,7 @@ export function GlobeScrollSection() {
                 {slide.stats.map((s) => (
                   <div
                     key={s.label}
-                    className="globe-slide-stat min-w-[8.5rem] rounded-lg px-5 py-3 text-center"
+                    className="globe-slide-stat min-w-[7.5rem] rounded-lg px-4 py-3 text-center sm:min-w-[8.5rem] sm:px-5"
                   >
                     <div className="font-display text-2xl font-bold text-primary sm:text-3xl">{s.value}</div>
                     <div className="mt-1 font-mono text-[10px] font-bold tracking-wide text-background/75 uppercase sm:text-xs">

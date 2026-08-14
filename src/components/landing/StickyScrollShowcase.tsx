@@ -133,7 +133,7 @@ export function StickyScrollShowcase() {
     <section
       ref={sectionRef}
       id="platform"
-      className="section-curve-sticky relative isolate scroll-mt-24 bg-surface"
+      className="section-curve-sticky relative isolate scroll-mt-24 overflow-x-clip bg-surface"
       aria-label="Platform capabilities"
     >
       <SectionBackdrop image="arenaNight" tone="surface" strength={0.1} />
@@ -206,7 +206,7 @@ export function StickyScrollShowcase() {
             {panels.map((panel, i) => (
               <article
                 key={panel.title}
-                className="sticky-scroll-panel flex min-h-[88dvh] flex-col justify-center py-16 lg:min-h-[100dvh] lg:py-24"
+                className="sticky-scroll-panel flex min-h-0 flex-col justify-center py-12 sm:py-16 lg:min-h-[100dvh] lg:py-24"
               >
                 <div className="mb-8 overflow-hidden rounded-xl border border-border bg-card lg:hidden">
                   <img
@@ -225,7 +225,7 @@ export function StickyScrollShowcase() {
                 <p className="mt-3 font-display text-sm font-semibold tracking-[0.08em] text-muted-foreground uppercase">
                   {panel.title}
                 </p>
-                <h2 className="mt-6 max-w-xl text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.05] font-bold tracking-tight text-foreground uppercase">
+                <h2 className="mt-6 max-w-xl break-words text-[clamp(1.35rem,4.5vw,3.25rem)] leading-[1.05] font-bold tracking-tight text-foreground uppercase">
                   {panel.headline}
                   <br />
                   <span className="text-primary">{panel.accent}</span>

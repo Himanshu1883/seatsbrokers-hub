@@ -253,7 +253,7 @@ function FlowArchitecture({ blueprint }: { blueprint: FlowBlueprint }) {
   return (
     <section
       id={blueprint.id}
-      className="section-curve relative isolate scroll-mt-24 bg-background py-20 sm:py-24"
+      className="section-curve relative isolate scroll-mt-24 overflow-x-clip bg-background py-16 sm:py-24"
       aria-labelledby={`${blueprint.id}-title`}
     >
       <SectionBackdrop image={blueprint.backdrop} tone="light" strength={0.1} />
@@ -276,7 +276,7 @@ function FlowArchitecture({ blueprint }: { blueprint: FlowBlueprint }) {
         <div
           ref={ref}
           data-live={inView}
-          className="tools-flow relative mt-12 rounded-2xl border border-border bg-surface/70 px-4 pb-6 pt-4 sm:px-6 sm:pb-8 lg:px-10 lg:pb-10"
+          className="tools-flow relative mt-12 overflow-x-clip rounded-2xl border border-border bg-surface/70 px-3 pb-6 pt-4 sm:px-6 sm:pb-8 lg:px-10 lg:pb-10"
         >
           <span className="flow-corner flow-corner-tl" aria-hidden />
           <span className="flow-corner flow-corner-tr" aria-hidden />

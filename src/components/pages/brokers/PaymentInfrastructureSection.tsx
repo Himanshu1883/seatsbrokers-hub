@@ -23,11 +23,11 @@ export function PaymentInfrastructureSection() {
 
       <div className="container-page relative z-10">
         <div className="pay-infra-layout">
-          <Reveal className="pay-infra-copy">
+          <Reveal className="pay-infra-copy min-w-0">
             <PaymentCopyPanel />
           </Reveal>
 
-          <Reveal delay={120} className="pay-infra-dashboard lc-section-stage">
+          <Reveal delay={120} className="pay-infra-dashboard lc-section-stage min-w-0">
             <div className="lc-tilt-wrap pay-infra-stage" style={tiltStyle}>
               <div className="lc-tilt-card">
                 <PaymentConsole />

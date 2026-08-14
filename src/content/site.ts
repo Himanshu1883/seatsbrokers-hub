@@ -46,8 +46,6 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
       { label: "Travel Partner Platform", to: "/travel-partners" },
       { label: "Marketplace Connectivity", to: "/marketplace-connectivity" },
       { label: "Event Intelligence", to: "/event-intelligence" },
-      { label: "Market Analytics", to: "/market-analytics" },
-      { label: "AI Pricing", to: "/ai-pricing" },
       { label: "API Platform", to: "/api" },
     ],
   },
@@ -55,8 +53,6 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
     title: "Resources",
     links: [
       { label: "API Documentation", to: "/api" },
-      { label: "Platform Overview", to: "/platform" },
-      { label: "Integrations", to: "/integrations" },
       { label: "Contact", to: "/contact" },
       { label: "FAQs", to: "/contact" },
     ],
@@ -65,7 +61,6 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
     title: "Company",
     links: [
       { label: "About", to: "/about" },
-      { label: "Careers", to: "/contact" },
       { label: "Contact", to: "/contact" },
     ],
   },

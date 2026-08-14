@@ -108,10 +108,10 @@ function drawLatRing(
 }
 
 interface GlobeCanvasProps {
-  scrollOffset: number;
+  scrollOffset?: number;
 }
 
-export function GlobeCanvas({ scrollOffset }: GlobeCanvasProps) {
+export function GlobeCanvas({ scrollOffset = 0 }: GlobeCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const scrollRef = useRef(scrollOffset);
   scrollRef.current = scrollOffset;

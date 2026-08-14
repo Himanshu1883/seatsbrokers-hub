@@ -31,7 +31,7 @@ const stats = [
 export function StatsAccentLight() {
   return (
     <section
-      className="section-curve relative isolate overflow-hidden bg-white py-20 sm:py-24"
+      className="section-curve relative isolate overflow-hidden bg-white py-16 sm:py-24"
       aria-labelledby="stats-accent-heading"
     >
       {/* Soft mint + cool grey overlapping shade */}
@@ -65,7 +65,7 @@ export function StatsAccentLight() {
 
         <div className="mt-14 grid gap-6 lg:grid-cols-3">
           <Reveal className="lg:row-span-2">
-            <div className="relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden rounded-2xl border border-[#9fd9c4]/50 bg-[#d8f5ea]/85 p-9 text-foreground shadow-[0_20px_50px_-36px_rgba(25,135,84,0.35)] backdrop-blur-sm">
+            <div className="relative flex h-full min-h-[240px] flex-col justify-between overflow-hidden rounded-2xl border border-[#9fd9c4]/50 bg-[#d8f5ea]/85 p-6 text-foreground shadow-[0_20px_50px_-36px_rgba(25,135,84,0.35)] backdrop-blur-sm sm:min-h-[280px] sm:p-9">
               <div
                 className="pointer-events-none absolute -right-8 -bottom-10 h-40 w-48 rounded-[2rem] bg-[#b8f0dc]/70"
                 style={{ transform: "rotate(-18deg) skewX(-8deg)" }}
@@ -81,7 +81,7 @@ export function StatsAccentLight() {
                 {heroStat.icon}
               </div>
               <div className="relative">
-                <div className="mt-8 font-mono text-6xl font-bold tracking-tight text-primary-deep sm:text-7xl">
+                <div className="mt-8 font-mono text-5xl font-bold tracking-tight text-primary-deep sm:text-7xl">
                   {heroStat.value}
                 </div>
                 <p className="mt-4 text-lg font-semibold text-foreground">
@@ -96,7 +96,7 @@ export function StatsAccentLight() {
 
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 90}>
-              <div className="relative h-full overflow-hidden rounded-2xl border border-[#d7dde5]/90 bg-white/75 p-7 pl-8 shadow-[0_14px_36px_-30px_rgba(15,23,42,0.28)] backdrop-blur-sm">
+            <div className="relative h-full overflow-hidden rounded-2xl border border-[#d7dde5]/90 bg-white/75 p-5 pl-7 shadow-[0_14px_36px_-30px_rgba(15,23,42,0.28)] backdrop-blur-sm sm:p-7 sm:pl-8">
                 <span
                   className="absolute inset-y-0 left-0 w-1 bg-[#7ed6b5]"
                   aria-hidden

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { useTypewriter } from "@/hooks/use-scroll-motion";
 import { HeroDashboardTilt } from "@/components/landing/HeroDashboardTilt";
 import { SiteLink } from "@/components/layout/SiteLink";
@@ -18,6 +18,7 @@ const slides = [
     typePhrases: ["Modern Ticket Resale.", "Global Ticketing.", "Market Intelligence.", "Marketplace Connectivity."],
     lead: "Connect your ticket inventory, marketplaces, partners, pricing and sales operations through one powerful technology platform.",
     body: "Manage your entire ticketing operation from event discovery to listing, distribution, pricing, sales and fulfillment — the infrastructure layer connecting the global ticketing ecosystem.",
+    shortBody: "From discovery to listing, pricing and fulfillment — one infrastructure layer for the global ticketing ecosystem.",
     details: [
       "Global event data, inventory and resale marketplace connectivity",
       "Market pricing data, sales intelligence and AI-powered pricing",
@@ -37,6 +38,7 @@ const slides = [
     ],
     lead: "List once. Distribute everywhere. When inventory changes, SeatsBrokers synchronizes quantity, price and listing status across connected marketplaces.",
     body: "Global event catalog, inventory management, marketplace distribution, AI pricing recommendations, POS/API integration and payment infrastructure — built for high-volume ticket operations.",
+    shortBody: "Catalog, inventory, marketplace distribution and AI pricing — built for high-volume ticket operations.",
     details: [
       "Multi-marketplace synchronization with automatic delisting after sale",
       "Market pricing, sales intelligence and event onsale information",
@@ -51,6 +53,7 @@ const slides = [
     typePhrases: ["Formula 1.", "Football.", "Concerts.", "Championships.", "Every major event."],
     lead: "Turn ticket inventory into seamless customer experiences — access, margin, quote and sell through your travel business.",
     body: "Real-time inventory visibility, partner purchasing, custom margins, customer-ready quotes, invoice generation and WhatsApp sharing for travel agencies selling sports and event packages.",
+    shortBody: "Search inventory, add margin, and generate branded quotes for sports and event packages.",
     details: [
       "Search by event, date, venue, category, location and ticket type",
       "Add margin and generate branded PDF quotes in seconds",
@@ -65,6 +68,22 @@ function longestPhrase(phrases: readonly string[]) {
   return phrases.reduce((longest, phrase) => (phrase.length > longest.length ? phrase : longest), phrases[0] ?? "");
 }
 
+/* The ghost copy holds the longest phrase so the headline line-box never
+   resizes while the typewriter types, deletes or switches slides. */
+function HeroTypeLine({ phrases, children }: { phrases: readonly string[]; children: ReactNode }) {
+  return (
+    <span
+      className="hero-copy-typewriter hero-copy-typeline mt-2 block text-[clamp(2rem,5.5vw,4rem)] leading-[1.05] font-bold text-primary"
+      aria-live="polite"
+    >
+      <span className="hero-copy-typeline-ghost" aria-hidden>
+        {longestPhrase(phrases)}
+      </span>
+      <span className="caret hero-copy-typeline-text">{children}</span>
+    </span>
+  );
+}
+
 function HeroTypewriter({ phrases }: { phrases: readonly string[] }) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const typed = useTypewriter([...phrases], 62, 2200);
@@ -75,14 +94,7 @@ function HeroTypewriter({ phrases }: { phrases: readonly string[] }) {
 
   const display = reducedMotion ? (phrases[0] ?? "") : typed;
 
-  return (
-    <span
-      className="caret hero-copy-typewriter mt-2 block text-[clamp(2rem,5.5vw,4rem)] leading-[1.05] font-bold text-primary"
-      aria-live="polite"
-    >
-      {display}
-    </span>
-  );
+  return <HeroTypeLine phrases={phrases}>{display}</HeroTypeLine>;
 }
 
 function HeroSlideCopy({
@@ -103,7 +115,7 @@ function HeroSlideCopy({
       <p
         className={item(
           0,
-          "inline-flex items-center gap-2 rounded-full border border-background/20 bg-background/8 px-3 py-1.5 section-eyebrow text-white backdrop-blur-sm",
+          "inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-background/20 bg-background/8 px-3 py-1.5 text-pretty section-eyebrow text-white backdrop-blur-sm",
         )}
       >
         <span className="size-1.5 shrink-0 rounded-full bg-primary" />
@@ -120,9 +132,7 @@ function HeroSlideCopy({
         {isActive ? (
           <HeroTypewriter phrases={slide.typePhrases} />
         ) : (
-          <span className="caret hero-copy-typewriter mt-2 block text-[clamp(2rem,5.5vw,4rem)] leading-[1.05] font-bold text-primary">
-            {typeLine}
-          </span>
+          <HeroTypeLine phrases={slide.typePhrases}>{typeLine}</HeroTypeLine>
         )}
       </h1>
 
@@ -138,16 +148,25 @@ function HeroSlideCopy({
       <p
         className={item(
           3,
-          "mt-4 max-w-2xl text-base leading-relaxed font-semibold text-pretty text-white sm:text-[1.0625rem]",
+          "hero-copy-dense mt-4 max-w-2xl text-base leading-relaxed font-semibold text-pretty text-white sm:text-[1.0625rem]",
         )}
       >
         {slide.body}
       </p>
 
+      <p
+        className={item(
+          3,
+          "hero-copy-brief mt-3 max-w-2xl text-sm leading-snug font-semibold text-pretty text-white lg:hidden",
+        )}
+      >
+        {slide.shortBody}
+      </p>
+
       <ul
         className={item(
           4,
-          "mt-6 space-y-2.5 border-l-2 border-primary/45 pl-4 sm:mt-7 sm:pl-5",
+          "hero-copy-dense mt-6 space-y-2.5 border-l-2 border-primary/45 pl-4 sm:mt-7 sm:pl-5",
         )}
       >
         {slide.details.map((detail) => (
@@ -181,7 +200,7 @@ function HeroSlideCopy({
       <ul
         className={item(
           6,
-          "mt-8 flex flex-col gap-2 font-mono text-[10px] font-bold tracking-[0.12em] text-white uppercase sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:text-xs",
+          "hero-copy-tags mt-8 flex flex-col gap-2 font-mono text-[10px] font-bold tracking-[0.12em] text-white uppercase sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:text-xs",
         )}
       >
         {["API Connectivity", "Inventory Synchronization", "Market Intelligence"].map((label) => (
@@ -220,7 +239,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="section-curve-hero relative isolate grid h-dvh min-h-[40rem] grid-rows-[auto_1fr_auto] overflow-hidden"
+      className="section-curve-hero hero-fit relative isolate grid h-dvh min-h-0 grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden lg:min-h-[40rem]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -252,9 +271,9 @@ export function Hero() {
 
       <div className="pointer-events-none h-18 shrink-0" aria-hidden />
 
-      <div className="flex min-h-0 items-center">
-        <div className="container-page w-full py-4 sm:py-6">
-          <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-8 xl:gap-12">
+      <div className="hero-fit-main flex min-h-0 items-center overflow-hidden">
+        <div className="container-page flex min-h-0 w-full flex-col py-4 sm:py-6">
+          <div className="hero-fit-grid grid min-h-0 items-center gap-6 lg:grid-cols-[minmax(0,40rem)_minmax(0,44rem)] lg:items-start lg:justify-center lg:gap-8">
             <div className="hero-copy w-full max-w-3xl lg:max-w-[40rem]">
               {slides.map((s, i) => {
                 const isActive = i === active;
@@ -270,14 +289,14 @@ export function Hero() {
               })}
             </div>
 
-            <div className="hero-copy-item hero-copy-delay-3 mx-auto w-full max-w-xl min-h-0 lg:mx-0 lg:max-w-none">
-              <HeroDashboardTilt />
+            <div className="hero-fit-console hero-copy-item hero-copy-delay-3 mx-auto w-full min-h-0 max-w-xl lg:mx-0 lg:max-w-[44rem]">
+              <HeroDashboardTilt slide={active} swapKey={motionKey} />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="container-page flex justify-end pb-6 sm:pb-8">
+      <div className="hero-fit-dots container-page flex justify-end pb-6 sm:pb-8">
         <div className="flex items-center gap-2" role="tablist" aria-label="Hero slides">
           {slides.map((s, i) => (
             <button

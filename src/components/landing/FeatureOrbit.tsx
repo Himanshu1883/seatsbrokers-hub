@@ -9,7 +9,7 @@ import {
 import { Reveal } from "@/hooks/use-scroll-motion";
 import logo from "@/assets/seatsbrokers-logo.png";
 
-const CYCLE_MS = 4200;
+const CYCLE_MS = 1200;
 
 type Accent = "mint" | "amber" | "teal" | "cyan" | "forest";
 
@@ -130,7 +130,7 @@ export function FeatureOrbit() {
   return (
     <section
       id="platform"
-      className="relative overflow-x-clip rounded-[1.5rem] bg-[oklch(0.985_0.008_158)] py-20 sm:py-24 lg:py-28"
+      className="relative overflow-x-clip rounded-[1.5rem] bg-[oklch(0.985_0.008_158)] py-16 sm:py-24 lg:py-28"
       aria-label="SeatsBrokers platform orbit"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]" aria-hidden>
@@ -408,7 +408,7 @@ export function FeatureOrbit() {
                 key={f.id}
                 type="button"
                 onClick={() => setActive(i)}
-                className={`flex items-start gap-3 rounded-xl border px-4 py-4 text-left transition-colors ${
+                className={`flex min-h-11 items-start gap-3 rounded-xl border px-4 py-4 text-left transition-colors ${
                   isActive
                     ? "border-primary/30 bg-white shadow-sm"
                     : "border-border/80 bg-white/70"

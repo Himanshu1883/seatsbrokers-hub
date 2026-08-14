@@ -8,8 +8,8 @@ Routes listed are where the component is **mounted**, not every import.
 |---|---|---|---|
 | PageShell | `src/components/layout/PageShell.tsx` | Nav + `<main>` + FinalCTA + Footer | Every marketing route |
 | SiteLink | `src/components/layout/SiteLink.tsx` | TanStack `Link` with optional hash | Nav, Footer, CTAs, pages |
-| PageHero | `src/components/pages/shared/PageSections.tsx` | Dark product-page hero | platform, market-analytics, ai-pricing, integrations, about, contact, book-demo |
-| FeatureGrid | same | Centered title + `FeatureOrbitGrid` cards | travel-partners (Order & Delivery), platform, market-analytics, integrations, about, book-demo |
+| PageHero | `src/components/pages/shared/PageSections.tsx` | Dark product-page hero | platform, market-analytics, ai-pricing, integrations, contact, book-demo |
+| FeatureGrid | same | Centered title + `FeatureOrbitGrid` cards | travel-partners (Order & Delivery), platform, market-analytics, integrations, book-demo |
 | FeatureOrbitGrid | `src/components/pages/shared/FeatureOrbitGrid.tsx` | Orbit layout for FeatureGrid items | FeatureGrid |
 | WorkflowSteps | PageSections | Numbered infra canvas | brokers, marketplace-connectivity, event-intelligence, platform, ai-pricing, integrations, api |
 | WorkflowInfraCanvas | `src/components/pages/shared/WorkflowInfraCanvas.tsx` | Visual for WorkflowSteps | WorkflowSteps |
@@ -17,7 +17,7 @@ Routes listed are where the component is **mounted**, not every import.
 | SyncDiagram | PageSections | Four-card hub diagram | brokers, marketplace-connectivity |
 | ApiCards | PageSections | API product grid | brokers, api |
 | ContactForm | PageSections | Lead form | contact, book-demo |
-| SectionConnector | `src/components/pages/brokers/SectionConnector.tsx` | Source → payload rail → destination | brokers, travel-partners, marketplace-connectivity, event-intelligence, api |
+| SectionConnector | `src/components/pages/brokers/SectionConnector.tsx` | Source → payload rail → destination | brokers, travel-partners, marketplace-connectivity, event-intelligence, api, about |
 | ConsoleCopyPanel | `src/components/pages/brokers/ConsoleCopyPanel.tsx` | Live-console left copy (accordion) | LiveConsole, TravelLiveConsole, MarketplaceLiveConsole, EventIntelLiveConsole, ApiLiveConsole |
 | ConsoleShell | `src/components/pages/brokers/ConsoleShell.tsx` | Terminal bezel/chrome | Broker + travel + marketplace + event-intelligence + API terminal consoles |
 
@@ -81,6 +81,16 @@ Routes listed are where the component is **mounted**, not every import.
 | AuthFlowConsole | `AuthFlowConsole.tsx` | Key issue → scopes → signed request → audit (`apk-*`) | `auth` |
 | WebhookDeliveryConsole | `WebhookDeliveryConsole.tsx` | Signed POST pipeline, event payload explorer, delivery attempts (`whk-*`) | `webhooks` |
 
+### About (`src/components/pages/about/`)
+
+| Name | Path | Purpose | Used on |
+|---|---|---|---|
+| AboutHero + JourneyWall | `AboutHero.tsx`, `AboutJourneyWall.tsx` | Brokers-parity left copy; right stage is a dark company atlas (`abt-*`) — chapter rail, LON/NYC/DXB office map, proof strip | `/about` |
+| AboutJourney | `AboutJourney.tsx` | Who-we-are facts + four numbered infrastructure chapters (cycle / pin) | `/about` |
+| AboutOverview | `AboutOverview.tsx` | FeatureGrid replacement — five linked platform tiles + who-we-serve strip | `/about` |
+| AboutPrinciples | `AboutPrinciples.tsx` | How we work, from existing copy only (infrastructure, ticketing-specific, technology-first) | `/about` |
+| AboutPresence | `AboutPresence.tsx` | Dark offices band: London, New York, Dubai + partners email | `/about` |
+
 ### Planned / stubbed (not built)
 
 | Name | Status |
@@ -100,9 +110,9 @@ Used on `/` unless noted.
 | FinalCTA | `FinalCTA.tsx` | Global close CTA | PageShell (all pages) |
 | Hero | `Hero.tsx` | Homepage hero + typewriter | `/` |
 | HeroDashboardTilt | `HeroDashboardTilt.tsx` | Hero dashboard mock | Hero |
-| NetworkConstellation | `NetworkConstellation.tsx` | Platform story stages | `/` |
-| Marketplaces | `Marketplaces.tsx` | Trust / category strip | `/` |
-| TwoTrack | `TwoTrack.tsx` | Broker vs travel tracks | `/` |
+| NetworkConstellation | `NetworkConstellation.tsx` | Click-driven globe stages (no scroll pin) | `/` |
+| Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out) | `/` |
+| TwoTrack | `TwoTrack.tsx` | Broker vs travel tracks (in-view straighten) | `/` |
 | FeatureOrbit | `FeatureOrbit.tsx` | Capability orbit | `/` |
 | JourneyNumbers | `JourneyNumbers.tsx` | Milestone numbers | `/` |
 | ProcessBento | `Processbento.tsx` | Problem / platform bento | `/` |
@@ -114,7 +124,7 @@ Used on `/` unless noted.
 | SellerTools / TravelTools | `ToolsGrid.tsx` | Flow blueprints | `/` |
 | GlobalReach | `GlobalReach.tsx` | Geography | `/` |
 | GlobeScrollSection | `GlobeScrollSection.tsx` | Globe + slides | `/` |
-| GlobeCanvas | `landing/globe/GlobeCanvas.tsx` | Three/canvas globe | GlobeScrollSection |
+| GlobeCanvas | `landing/globe/GlobeCanvas.tsx` | Canvas globe (idle orbit; optional scrollOffset) | NetworkConstellation, GlobeScrollSection |
 | Stats + accent/glow/ledger | `Stats.tsx`, `stats/*` | Proof stats | `/` |
 | Testimonials | `Testimonials.tsx` | Quotes | `/` |
 | SectionBackdrop | `SectionBackdrop.tsx` | Shared photo/grid backdrops | several landing sections |
@@ -130,6 +140,7 @@ Used on `/` unless noted.
 | `src/content/marketplace-hero-data.ts` | Marketplace connectivity hero copy + channel-mesh stage data (mini-card datasets remain for `MarketplaceConsoleCards`) |
 | `src/content/event-intel-hero-data.ts` | Event intelligence hero copy + forecast-lens stage data (mini-card datasets remain for `EventIntelConsoleCards`) |
 | `src/content/api-hero-data.ts` | API hero copy + docs-console endpoints, auth scopes/roles, webhook payloads |
+| `src/content/about-page-data.ts` | About hero copy, journey chapters, platform tiles, offices |
 | `src/content/inventory-console-data.ts` | Inventory console demo rows |
 | `src/content/bento-illustrations.ts` | ProcessBento images |
 

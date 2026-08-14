@@ -23819,7 +23819,8 @@ main > .section-curve:first-child {
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
     padding: 0;
   }
 
@@ -23831,6 +23832,38 @@ main > .section-curve:first-child {
     gap: 0.5rem;
     transform: rotateY(-5deg) rotateX(2.5deg);
     overflow: hidden;
+    /* size containment + height:auto collapses the content box to 0, so
+       CHANNEL MESH / LIVE sit on a zero-height row and clip at the top. */
+    container: mkh / inline-size;
+    padding-top: 0.7rem;
+  }
+
+  .mkh-head {
+    align-items: center;
+    flex-shrink: 0;
+    min-height: 2.25rem;
+    padding-block: 0.18rem;
+    overflow: visible;
+  }
+
+  .mkh-kicker {
+    line-height: 1.35;
+    overflow: visible;
+  }
+
+  .mkh-kicker svg {
+    flex-shrink: 0;
+    overflow: visible;
+  }
+
+  .mkh-live {
+    align-items: center;
+    padding: 0.28rem 0.55rem;
+    line-height: 1.25;
+  }
+
+  .mkh-head-meta {
+    display: none;
   }
 
   .mkh-head,
@@ -23900,11 +23933,28 @@ main > .section-curve:first-child {
   .mkh-room {
     transform: none;
     gap: 0.55rem;
-    padding: 0.7rem 0.75rem 0.8rem;
+    padding: 0.85rem 0.75rem 0.85rem;
   }
 
   .mkh-head {
     flex-wrap: wrap;
+    align-items: center;
+    min-height: 2.5rem;
+    padding-block: 0.22rem 0.12rem;
+    row-gap: 0.3rem;
+    overflow: visible;
+  }
+
+  .mkh-kicker {
+    font-size: 0.68rem;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+  }
+
+  .mkh-live {
+    padding: 0.32rem 0.58rem;
+    font-size: 0.62rem;
+    line-height: 1.25;
   }
 
   .mkh-ticks {

@@ -239,7 +239,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="section-curve-hero hero-fit relative isolate grid min-h-dvh grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden max-lg:h-dvh max-lg:min-h-0"
+      className="section-curve-hero hero-fit relative isolate min-h-dvh overflow-hidden max-lg:grid max-lg:h-dvh max-lg:min-h-0 max-lg:grid-rows-[auto_minmax(0,1fr)_auto]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -269,56 +269,58 @@ export function Hero() {
         aria-hidden
       />
 
-      <div className="hero-fit-offset pointer-events-none shrink-0" aria-hidden />
+      <div className="hero-fit-zoom">
+        <div className="hero-fit-offset pointer-events-none shrink-0" aria-hidden />
 
-      <div className="hero-fit-main flex min-h-0 items-center overflow-hidden lg:overflow-visible">
-        <div className="container-page flex min-h-0 w-full flex-col py-4 sm:py-6">
-          <div className="hero-fit-grid grid min-h-0 items-center gap-6 lg:grid-cols-[minmax(0,40rem)_minmax(0,44rem)] lg:items-start lg:justify-center lg:gap-8">
-            <div className="hero-copy w-full max-w-3xl lg:max-w-[40rem]">
-              {slides.map((s, i) => {
-                const isActive = i === active;
-                return (
-                  <div
-                    key={s.alt}
-                    className={`hero-copy-layer ${isActive ? "hero-copy-layer-active" : "hero-copy-layer-measure"}`}
-                    aria-hidden={!isActive}
-                  >
-                    <HeroSlideCopy slide={s} isActive={isActive} animate={isActive} key={isActive ? motionKey : s.alt} />
-                  </div>
-                );
-              })}
-            </div>
+        <div className="hero-fit-main flex min-h-0 items-center overflow-hidden lg:overflow-visible">
+          <div className="container-page flex min-h-0 w-full flex-col py-4 sm:py-6">
+            <div className="hero-fit-grid grid min-h-0 items-center gap-6 lg:grid-cols-[minmax(0,40rem)_minmax(0,44rem)] lg:items-start lg:justify-center lg:gap-8">
+              <div className="hero-copy w-full max-w-3xl lg:max-w-[40rem]">
+                {slides.map((s, i) => {
+                  const isActive = i === active;
+                  return (
+                    <div
+                      key={s.alt}
+                      className={`hero-copy-layer ${isActive ? "hero-copy-layer-active" : "hero-copy-layer-measure"}`}
+                      aria-hidden={!isActive}
+                    >
+                      <HeroSlideCopy slide={s} isActive={isActive} animate={isActive} key={isActive ? motionKey : s.alt} />
+                    </div>
+                  );
+                })}
+              </div>
 
-            <div className="hero-fit-console hero-copy-item hero-copy-delay-3 mx-auto w-full min-h-0 max-w-xl lg:mx-0 lg:max-w-[44rem]">
-              <HeroDashboardTilt slide={active} swapKey={motionKey} />
+              <div className="hero-fit-console hero-copy-item hero-copy-delay-3 mx-auto w-full min-h-0 max-w-xl lg:mx-0 lg:max-w-[44rem]">
+                <HeroDashboardTilt slide={active} swapKey={motionKey} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="hero-fit-dots container-page flex justify-end">
-        <div className="flex items-center gap-2" role="tablist" aria-label="Hero slides">
-          {slides.map((s, i) => (
-            <button
-              key={s.alt}
-              type="button"
-              role="tab"
-              aria-selected={i === active}
-              aria-label={`Slide ${i + 1}: ${s.eyebrow}`}
-              onClick={() => goTo(i)}
-              className={`group relative h-2 overflow-hidden rounded-full transition-all duration-300 ${
-                i === active ? "w-10 bg-background/25" : "w-2 bg-background/35 hover:bg-background/50"
-              }`}
-            >
-              {i === active && (
-                <span
-                  key={motionKey}
-                  className="hero-slide-progress absolute inset-y-0 left-0 rounded-full bg-primary"
-                  style={{ animationDuration: `${SLIDE_MS}ms` }}
-                />
-              )}
-            </button>
-          ))}
+        <div className="hero-fit-dots container-page flex justify-end">
+          <div className="flex items-center gap-2" role="tablist" aria-label="Hero slides">
+            {slides.map((s, i) => (
+              <button
+                key={s.alt}
+                type="button"
+                role="tab"
+                aria-selected={i === active}
+                aria-label={`Slide ${i + 1}: ${s.eyebrow}`}
+                onClick={() => goTo(i)}
+                className={`group relative h-2 overflow-hidden rounded-full transition-all duration-300 ${
+                  i === active ? "w-10 bg-background/25" : "w-2 bg-background/35 hover:bg-background/50"
+                }`}
+              >
+                {i === active && (
+                  <span
+                    key={motionKey}
+                    className="hero-slide-progress absolute inset-y-0 left-0 rounded-full bg-primary"
+                    style={{ animationDuration: `${SLIDE_MS}ms` }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </section>

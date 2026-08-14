@@ -21,7 +21,7 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | Request | Primary | Related |
 |---|---|---|
 | Section order | `src/routes/index.tsx` | `src/components/landing/` |
-| Hero typewriter | `landing/Hero.tsx` | `useTypewriter`; `.hero-copy-typeline*` ghost reserves the longest phrase so the headline never resizes |
+| Hero typewriter | `landing/Hero.tsx` | `useTypewriter`; `.hero-copy-typeline*` ghost reserves the longest phrase so the headline never resizes. Laptop inner zoom: `.hero-fit-zoom` at `0.85` for width `1024–1919px` (not global `html` zoom; not ≥1920). |
 | Hero console (3 dark HUDs) | `landing/HeroDashboardTilt.tsx` | `hero-hud-*` block at the end of `styles.css` (dark retheme of `.hero-tilt-*`). Console index = slide index (`slide` / `swapKey` props); fixed `--hero-card-h` frame; legacy `hero-shell-*` / `hero-intel-*` / `hero-price-*` / `hero-sync-*` / `hero-mode-*` rules are unused |
 | Feature orbit | `landing/FeatureOrbit.tsx` | `.feature-orbit-*`, `--fo-*` |
 | Network constellation | `landing/NetworkConstellation.tsx` | `GlobeCanvas` idle orbit; click stages (`.nc-*`); normal `section-curve` |

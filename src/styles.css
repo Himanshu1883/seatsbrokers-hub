@@ -3221,12 +3221,28 @@ main > .section-curve:first-child {
   }
 }
 
+/* Transparent to the mobile 3-row grid. Desktop: flex column so rows size to content. */
+.hero-fit-zoom {
+  display: contents;
+}
+
 /* Homepage hero — desktop / MacBook: copy + console as one centered unit.
-   min-height 100dvh (not a locked height) so short laptops grow instead of cropping. */
+   min-height 100dvh (not a locked height) so short laptops grow instead of cropping.
+   Do not use minmax(0,1fr) here — that shrinks the middle row and clips CTAs/dots. */
 @media (min-width: 1024px) {
   .hero-fit {
+    display: flex;
+    flex-direction: column;
     height: auto;
+    max-height: none;
     min-height: 100dvh;
+  }
+
+  .hero-fit-zoom {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: min-content;
   }
 
   /* nav ~4.5–5.5rem + breathing room so headline/console clear the overlay */
@@ -3235,7 +3251,9 @@ main > .section-curve:first-child {
   }
 
   .hero-fit-main {
+    flex: 1 1 auto;
     align-items: center;
+    min-height: auto;
     overflow: visible;
   }
 
@@ -3256,6 +3274,7 @@ main > .section-curve:first-child {
   }
 
   .hero-fit-dots {
+    flex-shrink: 0;
     padding-bottom: clamp(1.75rem, 3vh, 2.75rem);
     padding-top: 0.5rem;
   }
@@ -3270,8 +3289,35 @@ main > .section-curve:first-child {
   }
 }
 
-/* Short laptop viewports (MacBook 13–14", browser chrome on 1440×900 / 1512×982) */
-@media (min-width: 1024px) and (max-height: 980px) {
+/* Laptop / MacBook CSS px (1024–1919): 85% zoom on the whole inner hero
+   (offset + copy + console + CTAs + dots). 1512×982, 1440×900, 1680×1050.
+   ≥1920px stays 100% so this does not stack on any large-screen html zoom. */
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .hero-fit-zoom {
+    flex: 0 0 auto;
+    zoom: 0.85;
+  }
+
+  .hero-fit-console {
+    --hero-console-scale: 1;
+  }
+
+  .hero-fit-console .hero-tilt-scene {
+    margin-bottom: 0;
+  }
+}
+
+@supports not (zoom: 0.85) {
+  @media (min-width: 1024px) and (max-width: 1919px) {
+    .hero-fit-zoom {
+      transform: scale(0.85);
+      transform-origin: top center;
+    }
+  }
+}
+
+/* Wide but short windows (≥1920 CSS px) — console-only scale, no extra hero zoom. */
+@media (min-width: 1920px) and (max-height: 980px) {
   .hero-fit-console {
     --hero-console-scale: 0.88;
   }
@@ -3281,13 +3327,13 @@ main > .section-curve:first-child {
   }
 }
 
-@media (min-width: 1024px) and (max-height: 900px) {
+@media (min-width: 1920px) and (max-height: 900px) {
   .hero-fit-console {
     --hero-console-scale: 0.8;
   }
 }
 
-@media (min-width: 1024px) and (max-height: 820px) {
+@media (min-width: 1920px) and (max-height: 820px) {
   .hero-fit-console {
     --hero-console-scale: 0.72;
   }

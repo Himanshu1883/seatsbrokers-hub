@@ -61,6 +61,7 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
     title: "Company",
     links: [
       { label: "About", to: "/about" },
+      { label: "Book a Demo", to: "/book-demo" },
       { label: "Contact", to: "/contact" },
     ],
   },

@@ -42,6 +42,8 @@ src/content/*.ts   (static copy + demo datasets)
 | `pages/event-intelligence/` | `/event-intelligence` |
 | `pages/api/` | `/api` |
 | `pages/about/` | `/about` company journey + overview (not a live console) |
+| `pages/book-demo/` | `/book-demo` briefing hero + demo request form |
+| `pages/platform/` | `/platform` stack-map hero + linked module board |
 | `components/ui/` | shadcn primitives — prefer not to restyle globally |
 
 ## Live Console architecture

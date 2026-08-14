@@ -36,6 +36,8 @@ seatsbrokers-hub/
 │   │   ├── event-intel-hero-data.ts
 │   │   ├── api-hero-data.ts
 │   │   ├── about-page-data.ts
+│   │   ├── book-demo-data.ts
+│   │   ├── platform-page-data.ts
 │   │   ├── inventory-console-data.ts
 │   │   └── bento-illustrations.ts
 │   ├── hooks/
@@ -58,7 +60,9 @@ seatsbrokers-hub/
 │   │       ├── marketplace/  # /marketplace-connectivity live consoles + hero + capability board
 │   │       ├── event-intelligence/  # /event-intelligence consoles + venue map
 │   │       ├── api/          # /api docs-console hero + auth/webhook consoles
-│   │       └── about/        # /about journey atlas + overview board
+│   │       ├── about/        # /about journey atlas + overview board
+│   │       ├── book-demo/    # /book-demo briefing desk, session itinerary, demo form
+│   │       └── platform/     # /platform stack map + module board
 │   └── routes/               # File-based routes (see below)
 └── .lovable/project.json
 ```
@@ -71,7 +75,7 @@ seatsbrokers-hub/
 | `index.tsx` | `/` | Homepage landing |
 | `brokers.tsx` | `/brokers` | Broker product page (live consoles) |
 | `travel-partners.tsx` | `/travel-partners` | Travel product page (live consoles) |
-| `platform.tsx` | `/platform` | Module overview (PageHero + grids) |
+| `platform.tsx` | `/platform` | Stack overview (hub-spine hero + linked module map) |
 | `marketplace-connectivity.tsx` | `/marketplace-connectivity` | Marketplace connectivity (live consoles) |
 | `event-intelligence.tsx` | `/event-intelligence` | Event intelligence product page (live consoles) |
 | `api.tsx` | `/api` | API platform (docs-console hero + live consoles) |
@@ -80,8 +84,8 @@ seatsbrokers-hub/
 | `integrations.tsx` | `/integrations` | Integration FeatureGrid |
 | `about.tsx` | `/about` | Company journey + overview (atlas hero) |
 | `contact.tsx` | `/contact` | ContactForm |
-| `book-demo.tsx` | `/book-demo` | Demo request |
+| `book-demo.tsx` | `/book-demo` | Demo briefing hero + session itinerary + request form |
 
 ## Styling
 
-All custom CSS lives in `src/styles.css` (landing, brokers consoles, travel consoles, marketplace consoles, event intelligence consoles, API consoles, about atlas, connectors). Do not add a second global CSS file. New page CSS is appended as one clearly marked block at the end.
+All custom CSS lives in `src/styles.css` (landing, brokers consoles, travel consoles, marketplace consoles, event intelligence consoles, API consoles, about atlas, book-demo briefing, platform stack, connectors). Do not add a second global CSS file. New page CSS is appended as one clearly marked block at the end.

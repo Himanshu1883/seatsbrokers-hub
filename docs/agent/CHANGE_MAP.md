@@ -8,7 +8,7 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 
 | Request | Primary | Related |
 |---|---|---|
-| Navbar links / hide Platform | `src/content/site.ts` `navLinks` | `src/components/landing/Nav.tsx` |
+| Navbar links / hide Platform | `src/content/site.ts` `navLinks` | `src/components/landing/Nav.tsx`, `.site-nav-*` in `styles.css` |
 | Active nav style | `Nav.tsx` | — |
 | Logo visibility on dark | `Nav.tsx`, `Footer.tsx` | `.brand-logo-on-dark*` in `styles.css` |
 | Footer columns | `site.ts` `footerColumns` | `Footer.tsx` |
@@ -60,13 +60,17 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | Auth / webhook consoles | API live consoles | `.apk-*` `.whk-*` |
 | `/about` | `src/routes/about.tsx` | `pages/about/`, `docs/about-page-plan.md` |
 | About hero atlas | `AboutHero.tsx` + `AboutJourneyWall.tsx` | `about-page-data.ts`, `.abt-*` |
-| Shell product pages | `src/routes/{platform,market-analytics,ai-pricing,integrations,contact,book-demo}.tsx` | `PageSections.tsx` |
+| `/book-demo` | `src/routes/book-demo.tsx` | `pages/book-demo/`, `book-demo-data.ts`, `.bdm-*` `.bds-*` |
+| What you will see (was FeatureGrid) | `DemoSessionBoard.tsx` | `.bds-*` |
+| `/platform` | `src/routes/platform.tsx` | `pages/platform/`, `platform-page-data.ts`, `.plt-*` |
+| Shell product pages | `src/routes/{market-analytics,ai-pricing,integrations,contact}.tsx` | `PageSections.tsx` |
 
 ## Shared patterns
 
 | Request | Primary | Related |
 |---|---|---|
 | PageHero / FeatureGrid / SplitPanel / WorkflowSteps / ApiCards / ContactForm | `pages/shared/PageSections.tsx` | `COMPONENT_MAP.md` |
+| Contact / demo form | `ContactForm` (contact) or `DemoRequestForm` (book-demo) | `pages/book-demo/DemoRequestForm.tsx` |
 | Workflow card hover shades | `WorkflowInfraCanvas.tsx` | `.wic-glass-*` (`#4be5ae59` bottom blob) |
 | Section connector rail | `pages/brokers/SectionConnector.tsx` | — |
 | Console bezel | `pages/brokers/ConsoleShell.tsx` | `.lc-*` |
@@ -79,6 +83,8 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | Nav, footer, CTA labels, SEO | `src/content/site.ts` | — |
 | Hero mini-card / dashboard data | `src/content/*-hero-data.ts` | matching Wall component |
 | About copy / journey / offices | `src/content/about-page-data.ts` | `pages/about/` |
+| Book-a-demo copy / form options | `src/content/book-demo-data.ts` | `pages/book-demo/` |
+| Platform overview copy / module map | `src/content/platform-page-data.ts` | `pages/platform/` |
 | shadcn primitive | `src/components/ui/` | `components.json` |
 | Vite / SSR | `vite.config.ts`, `src/start.ts`, `src/server.ts` | do not duplicate Lovable plugins |
 

@@ -8,16 +8,16 @@ Routes listed are where the component is **mounted**, not every import.
 |---|---|---|---|
 | PageShell | `src/components/layout/PageShell.tsx` | Nav + `<main>` + FinalCTA + Footer | Every marketing route |
 | SiteLink | `src/components/layout/SiteLink.tsx` | TanStack `Link` with optional hash | Nav, Footer, CTAs, pages |
-| PageHero | `src/components/pages/shared/PageSections.tsx` | Dark product-page hero | platform, market-analytics, ai-pricing, integrations, contact, book-demo |
-| FeatureGrid | same | Centered title + `FeatureOrbitGrid` cards | travel-partners (Order & Delivery), platform, market-analytics, integrations, book-demo |
+| PageHero | `src/components/pages/shared/PageSections.tsx` | Dark product-page hero | market-analytics, ai-pricing, integrations, contact |
+| FeatureGrid | same | Centered title + `FeatureOrbitGrid` cards | travel-partners (Order & Delivery), market-analytics, integrations |
 | FeatureOrbitGrid | `src/components/pages/shared/FeatureOrbitGrid.tsx` | Orbit layout for FeatureGrid items | FeatureGrid |
-| WorkflowSteps | PageSections | Numbered infra canvas | brokers, marketplace-connectivity, event-intelligence, platform, ai-pricing, integrations, api |
+| WorkflowSteps | PageSections | Numbered infra canvas | brokers, marketplace-connectivity, event-intelligence, platform, ai-pricing, integrations, api, book-demo |
 | WorkflowInfraCanvas | `src/components/pages/shared/WorkflowInfraCanvas.tsx` | Visual for WorkflowSteps | WorkflowSteps |
 | SplitPanel | PageSections | Copy + labelled value rows | market-analytics, ai-pricing |
 | SyncDiagram | PageSections | Four-card hub diagram | brokers, marketplace-connectivity |
 | ApiCards | PageSections | API product grid | brokers, api |
-| ContactForm | PageSections | Lead form | contact, book-demo |
-| SectionConnector | `src/components/pages/brokers/SectionConnector.tsx` | Source → payload rail → destination | brokers, travel-partners, marketplace-connectivity, event-intelligence, api, about |
+| ContactForm | PageSections | Lead form | contact |
+| SectionConnector | `src/components/pages/brokers/SectionConnector.tsx` | Source → payload rail → destination | brokers, travel-partners, marketplace-connectivity, event-intelligence, api, about, book-demo, platform |
 | ConsoleCopyPanel | `src/components/pages/brokers/ConsoleCopyPanel.tsx` | Live-console left copy (accordion) | LiveConsole, TravelLiveConsole, MarketplaceLiveConsole, EventIntelLiveConsole, ApiLiveConsole |
 | ConsoleShell | `src/components/pages/brokers/ConsoleShell.tsx` | Terminal bezel/chrome | Broker + travel + marketplace + event-intelligence + API terminal consoles |
 
@@ -91,6 +91,22 @@ Routes listed are where the component is **mounted**, not every import.
 | AboutPrinciples | `AboutPrinciples.tsx` | How we work, from existing copy only (infrastructure, ticketing-specific, technology-first) | `/about` |
 | AboutPresence | `AboutPresence.tsx` | Dark offices band: London, New York, Dubai + partners email | `/about` |
 
+### Book a demo (`src/components/pages/book-demo/`)
+
+| Name | Path | Purpose | Used on |
+|---|---|---|---|
+| DemoHero + BriefingWall | `DemoHero.tsx`, `DemoBriefingWall.tsx` | Brokers-parity left copy; right stage is a session briefing desk (`bdm-*`) — cycling LON/NYC/DXB slots, 45-min agenda, attendee chips | `/book-demo` |
+| DemoSessionBoard | `DemoSessionBoard.tsx` | FeatureGrid replacement — 45-min walkthrough itinerary (`bds-*`): proportional minute ruler, four numbered duration cards with outcomes, cycling “now in session” dock. Not a live console and not the marketplace/event-intel boards | `/book-demo` |
+| DemoAudience | `DemoAudience.tsx` | Two-track who-it-is-for cards (brokers vs travel) + marketplace/intel/API links | `/book-demo` |
+| DemoRequestForm | `DemoRequestForm.tsx` | Lead form: name, company, email, role, call window, message; validation + mailto success | `/book-demo` |
+
+### Platform (`src/components/pages/platform/`)
+
+| Name | Path | Purpose | Used on |
+|---|---|---|---|
+| PlatformHero + StackWall | `PlatformHero.tsx`, `PlatformStackWall.tsx` | Brokers-parity left copy; right stage is a hub + spine of five surfaces (`plt-*`) | `/platform` |
+| PlatformModuleMap | `PlatformModuleMap.tsx` | Dark 3+2 board with deep links to brokers, travel, marketplace, event-intel, API | `/platform` |
+
 ### Planned / stubbed (not built)
 
 | Name | Status |
@@ -141,6 +157,8 @@ Used on `/` unless noted.
 | `src/content/event-intel-hero-data.ts` | Event intelligence hero copy + forecast-lens stage data (mini-card datasets remain for `EventIntelConsoleCards`) |
 | `src/content/api-hero-data.ts` | API hero copy + docs-console endpoints, auth scopes/roles, webhook payloads |
 | `src/content/about-page-data.ts` | About hero copy, journey chapters, platform tiles, offices |
+| `src/content/book-demo-data.ts` | Book-a-demo hero, slots, agenda, session blocks, audiences, form options |
+| `src/content/platform-page-data.ts` | Platform hero, stack layers, module map tiles |
 | `src/content/inventory-console-data.ts` | Inventory console demo rows |
 | `src/content/bento-illustrations.ts` | ProcessBento images |
 

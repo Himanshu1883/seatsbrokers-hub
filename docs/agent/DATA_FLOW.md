@@ -39,10 +39,15 @@ No network. Numbers are illustrative. Currency £.
 ## Contact / Book a demo
 
 ```
-/contact or /book-demo
+/contact
 → ContactForm (PageSections.tsx)
-→ client form state (react-hook-form if used)
-→ no documented backend submit / CRM in this repo
+→ client form state
+→ no CRM in this repo
+
+/book-demo
+→ DemoRequestForm (pages/book-demo/DemoRequestForm.tsx)
+→ client validation (name, company, email, role; call time or message)
+→ mailto:partners@seatsbrokers.com + on-page success state
 ```
 
 Nav “Login” is the same: `ctas.login.to = "/contact"`.

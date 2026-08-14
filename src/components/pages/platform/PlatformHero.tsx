@@ -1,13 +1,13 @@
-import { Compass } from "lucide-react";
+import { Layers } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
-import { aboutHeroCopy, aboutHeroPoints } from "@/content/about-page-data";
+import { platformHeroCopy, platformHeroPoints } from "@/content/platform-page-data";
 import { ctas } from "@/content/site";
-import { AboutJourneyWall } from "./AboutJourneyWall";
+import { PlatformStackWall } from "./PlatformStackWall";
 
-export function AboutHero() {
+export function PlatformHero() {
   return (
-    <section className="bh-hero abt-hero section-curve relative isolate scroll-mt-24 overflow-hidden bg-dark text-background">
+    <section className="bh-hero plt-hero section-curve relative isolate scroll-mt-24 overflow-hidden bg-dark text-background">
       <div
         className="pointer-events-none absolute inset-0 bg-linear-to-br from-dark via-dark to-primary-deep/40"
         aria-hidden
@@ -21,14 +21,14 @@ export function AboutHero() {
         <div className="bh-layout">
           <Reveal className="bh-copy min-w-0">
             <span className="bh-copy-icon" aria-hidden>
-              <Compass className="size-4" strokeWidth={1.75} />
+              <Layers className="size-4" strokeWidth={1.75} />
             </span>
-            <p className="section-eyebrow text-primary">{aboutHeroCopy.eyebrow}</p>
-            <h1 className="bh-title">{aboutHeroCopy.title}</h1>
-            <p className="bh-subhead">{aboutHeroCopy.subhead}</p>
-            <p className="bh-body">{aboutHeroCopy.body}</p>
+            <p className="section-eyebrow text-primary">{platformHeroCopy.eyebrow}</p>
+            <h1 className="bh-title">{platformHeroCopy.title}</h1>
+            <p className="bh-subhead">{platformHeroCopy.subhead}</p>
+            <p className="bh-body">{platformHeroCopy.body}</p>
             <ul className="bh-points">
-              {aboutHeroPoints.map((point) => (
+              {platformHeroPoints.map((point) => (
                 <li key={point}>{point}</li>
               ))}
             </ul>
@@ -40,16 +40,16 @@ export function AboutHero() {
                 {ctas.bookDemo.label}
               </SiteLink>
               <SiteLink
-                to={ctas.talkToTeam.to}
+                to={ctas.exploreBrokers.to}
                 className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
               >
-                {ctas.talkToTeam.label}
+                {ctas.exploreBrokers.label}
               </SiteLink>
             </div>
           </Reveal>
 
           <Reveal delay={120} className="bh-stage min-w-0">
-            <AboutJourneyWall />
+            <PlatformStackWall />
           </Reveal>
         </div>
       </div>

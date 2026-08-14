@@ -239,7 +239,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="section-curve-hero hero-fit relative isolate grid h-dvh min-h-0 grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden lg:min-h-[40rem]"
+      className="section-curve-hero hero-fit relative isolate grid min-h-dvh grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden max-lg:h-dvh max-lg:min-h-0"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -269,9 +269,9 @@ export function Hero() {
         aria-hidden
       />
 
-      <div className="pointer-events-none h-18 shrink-0" aria-hidden />
+      <div className="hero-fit-offset pointer-events-none shrink-0" aria-hidden />
 
-      <div className="hero-fit-main flex min-h-0 items-center overflow-hidden">
+      <div className="hero-fit-main flex min-h-0 items-center overflow-hidden lg:overflow-visible">
         <div className="container-page flex min-h-0 w-full flex-col py-4 sm:py-6">
           <div className="hero-fit-grid grid min-h-0 items-center gap-6 lg:grid-cols-[minmax(0,40rem)_minmax(0,44rem)] lg:items-start lg:justify-center lg:gap-8">
             <div className="hero-copy w-full max-w-3xl lg:max-w-[40rem]">
@@ -296,7 +296,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="hero-fit-dots container-page flex justify-end pb-6 sm:pb-8">
+      <div className="hero-fit-dots container-page flex justify-end">
         <div className="flex items-center gap-2" role="tablist" aria-label="Hero slides">
           {slides.map((s, i) => (
             <button

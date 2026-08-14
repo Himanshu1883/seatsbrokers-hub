@@ -32,7 +32,7 @@ SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform
 | Routes | `src/routes/` | One file = one URL. `__root.tsx` = fonts/CSS/QueryClient/404 |
 | Layout | `src/components/layout/` | `PageShell` (Nav + main + FinalCTA + Footer), `SiteLink` |
 | Landing | `src/components/landing/` | Homepage sections |
-| Product UI | `src/components/pages/{shared,brokers,travel,marketplace,event-intelligence,api,about}/` | Heroes, consoles, boards |
+| Product UI | `src/components/pages/{shared,brokers,travel,marketplace,event-intelligence,api,about,book-demo,platform}/` | Heroes, consoles, boards |
 | Copy | `src/content/site.ts` + `*-hero-data.ts` | Nav, CTAs, pageMeta, console demo data |
 | CSS | `src/styles.css` | Tokens + all custom blocks (append, don’t rewrite) |
 | Generated | `src/routeTree.gen.ts` | Do not edit |
@@ -57,7 +57,7 @@ SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform
 | Live console | page-specific `*LiveConsole.tsx` + inner console + CSS prefix |
 | Copy / CTAs / SEO titles | `src/content/site.ts` or `*-hero-data.ts` |
 | Color / type / section chrome | `docs/DESIGN_SYSTEM.md` then `src/styles.css` `:root` |
-| Contact / demo form | `ContactForm` in `PageSections.tsx` |
+| Contact / demo form | `ContactForm` in `PageSections.tsx` or `DemoRequestForm` |
 
 ## Critical Relationships
 

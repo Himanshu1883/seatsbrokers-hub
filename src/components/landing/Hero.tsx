@@ -265,7 +265,7 @@ export function Hero() {
       </div>
 
       <div className="absolute inset-0 -z-10" aria-hidden>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_58%_at_52%_44%,rgb(0_0_0_/_0.34)_0%,rgb(0_0_0_/_0.40)_38%,rgb(0_0_0_/_0.62)_72%,rgb(0_0_0_/_0.90)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_58%_at_52%_44%,rgb(0_0_0_/_0.54)_0%,rgb(0_0_0_/_0.60)_38%,rgb(0_0_0_/_0.72)_72%,rgb(0_0_0_/_0.90)_100%)]" />
         <div className="absolute inset-0 bg-linear-to-b from-black/72 via-transparent via-42% to-black/50" />
         <div className="absolute inset-0 bg-linear-to-r from-black/58 via-transparent via-48% to-transparent" />
       </div>

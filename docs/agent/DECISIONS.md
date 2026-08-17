@@ -113,7 +113,7 @@ Never add another page-level FinalCTA section.
 2026-08-13
 
 ### Decision
-`navLinks` entry Platform has `hidden: true`. `/platform` still exists.
+`navLinks` entries Platform and Travel Partners have `hidden: true`. `/platform` and `/travel-partners` still exist. About is visible.
 
 ### Reason
 User asked to hide it from nav without deleting the page.

@@ -179,13 +179,44 @@ export function GlobeScrollSection() {
     <section
       ref={sectionRef}
       id="globe"
-      className="section-curve-sticky relative scroll-mt-24 overflow-x-clip bg-[oklch(0.965_0.005_158)]"
+      className="section-curve-sticky globe-scroll-section relative scroll-mt-24 overflow-x-clip bg-[oklch(0.965_0.005_158)]"
       aria-label="Global distribution network"
     >
-      <div className="pointer-events-none sticky top-0 z-0 h-dvh w-full overflow-hidden">
+      <div className="pointer-events-none sticky top-0 z-0 flex h-dvh w-full flex-col overflow-hidden">
         <div className="globe-top-fringe opacity-40" aria-hidden />
 
-        <div className="relative flex h-full w-full items-center justify-center px-4 sm:px-6">
+        <div className="globe-scroll-heading relative grid grid-cols-2 items-start gap-2 px-3 sm:grid-cols-[1fr_auto_1fr] sm:gap-3 sm:px-8">
+          <div className="flex items-center gap-2.5 justify-self-start">
+            <span className="relative flex h-2.5 w-2.5 shrink-0">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+            </span>
+            <span className="font-mono text-[10px] font-bold leading-tight tracking-[0.16em] text-foreground/70 uppercase sm:text-xs">
+              Live network
+            </span>
+          </div>
+
+          <div className="col-span-2 mt-1 hidden flex-col items-center text-center sm:col-span-1 sm:mt-0 sm:flex sm:justify-self-center">
+            <span className="globe-scroll-heading-kicker">
+              SeatsBrokers
+            </span>
+            <span className="globe-scroll-heading-title">
+              Global ticket infrastructure
+            </span>
+            <p className="section-eyebrow text-primary">
+              {active.eyebrow}
+            </p>
+          </div>
+
+          <div className="justify-self-end text-right">
+            <div className="globe-rail-label">Node</div>
+            <div className="mt-1 font-mono text-sm font-bold tracking-[0.08em] text-foreground sm:text-base">
+              {String(activeIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+            </div>
+          </div>
+        </div>
+
+        <div className="relative flex min-h-0 w-full flex-1 items-center justify-center px-4 sm:px-6">
           <div
             className="absolute h-[70vmin] w-[70vmin] max-h-[760px] max-w-[760px] rounded-full bg-primary/15 blur-3xl sm:h-[80vmin] sm:w-[80vmin] lg:h-[88vmin] lg:w-[88vmin]"
             aria-hidden
@@ -193,34 +224,6 @@ export function GlobeScrollSection() {
 
           <div className="relative h-[52vmin] w-[52vmin] max-h-[680px] max-w-[680px] shrink-0 sm:h-[64vmin] sm:w-[64vmin] lg:h-[74vmin] lg:w-[74vmin]">
             <GlobeCanvas scrollOffset={scrollProgress} />
-          </div>
-
-          <div className="absolute inset-x-3 top-5 grid grid-cols-2 items-start gap-2 sm:inset-x-8 sm:top-10 sm:grid-cols-[1fr_auto_1fr] sm:gap-3">
-            <div className="flex items-center gap-2.5 justify-self-start">
-              <span className="relative flex h-2.5 w-2.5 shrink-0">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
-              </span>
-              <span className="font-mono text-[10px] font-bold leading-tight tracking-[0.16em] text-foreground/70 uppercase sm:text-xs">
-                Live network
-              </span>
-            </div>
-
-            <div className="col-span-2 mt-1 hidden flex-col items-center text-center sm:col-span-1 sm:mt-0 sm:flex sm:justify-self-center">
-              <span className="font-mono text-[10px] font-bold tracking-[0.24em] text-foreground/50 uppercase sm:text-xs">
-                SeatsBrokers
-              </span>
-              <span className="mt-1 font-display text-sm font-bold tracking-tight text-foreground sm:text-base">
-                Global ticket infrastructure
-              </span>
-            </div>
-
-            <div className="justify-self-end text-right">
-              <div className="globe-rail-label">Node</div>
-              <div className="mt-1 font-mono text-sm font-bold tracking-[0.08em] text-foreground sm:text-base">
-                {String(activeIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
-              </div>
-            </div>
           </div>
 
           <div className="absolute left-4 top-1/2 hidden w-44 -translate-y-1/2 border-l-2 border-primary/25 pl-5 text-left lg:block xl:left-8 xl:w-52">
@@ -246,15 +249,6 @@ export function GlobeScrollSection() {
             </ul>
             <p className="mt-5 font-mono text-[11px] font-bold leading-relaxed tracking-wide text-primary">
               + every regional marketplace your buyers use
-            </p>
-          </div>
-
-          <div className="absolute left-1/2 top-[5rem] hidden w-full max-w-lg -translate-x-1/2 px-6 text-center lg:block">
-            <p className="section-eyebrow text-primary">
-              {active.eyebrow}
-            </p>
-            <p className="mt-2 text-sm font-bold leading-snug text-foreground/70 sm:text-base">
-              {active.headline ?? active.body}
             </p>
           </div>
 
@@ -311,7 +305,7 @@ export function GlobeScrollSection() {
         {slides.map((slide, i) => (
           <article
             key={slide.index}
-            className="relative flex min-h-0 items-center justify-center px-4 pt-28 pb-16 sm:px-6 sm:py-24 lg:min-h-dvh lg:px-10"
+            className="globe-scroll-article relative flex min-h-0 items-start justify-center px-4 pb-16 sm:px-6 sm:pb-24 lg:min-h-dvh lg:px-10"
           >
             <span
               className="pointer-events-none absolute left-1/2 top-[8%] -translate-x-1/2 select-none font-display text-[20vw] font-bold leading-none text-foreground/[0.04] sm:text-[12vw]"
@@ -391,11 +385,10 @@ export function GlobeScrollSection() {
               {"cta" in slide && slide.cta && (
                 <div className="mt-10 flex flex-wrap justify-center gap-3">
                   <SiteLink
-                    to={ctas.bookDemo.to}
-                    hash={ctas.bookDemo.hash}
+                    to={ctas.becomeSeller.to}
                     className="lift inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3.5 text-base font-bold text-primary-foreground"
                   >
-                    {ctas.bookDemo.label}
+                    {ctas.becomeSeller.label}
                     <ArrowRight className="size-4" />
                   </SiteLink>
                   <SiteLink

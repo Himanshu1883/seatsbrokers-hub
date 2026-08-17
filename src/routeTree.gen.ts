@@ -17,7 +17,9 @@ import { Route as BookDemoRouteImport } from './routes/book-demo'
 import { Route as BrokersRouteImport } from './routes/brokers'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EventIntelligenceRouteImport } from './routes/event-intelligence'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as IntegrationsRouteImport } from './routes/integrations'
+import { Route as LegalRouteImport } from './routes/legal'
 import { Route as MarketAnalyticsRouteImport } from './routes/market-analytics'
 import { Route as MarketplaceConnectivityRouteImport } from './routes/marketplace-connectivity'
 import { Route as PlatformRouteImport } from './routes/platform'
@@ -63,9 +65,19 @@ const EventIntelligenceRoute = EventIntelligenceRouteImport.update({
   path: '/event-intelligence',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IntegrationsRoute = IntegrationsRouteImport.update({
   id: '/integrations',
   path: '/integrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MarketAnalyticsRoute = MarketAnalyticsRouteImport.update({
@@ -98,7 +110,9 @@ export interface FileRoutesByFullPath {
   '/brokers': typeof BrokersRoute
   '/contact': typeof ContactRoute
   '/event-intelligence': typeof EventIntelligenceRoute
+  '/faq': typeof FaqRoute
   '/integrations': typeof IntegrationsRoute
+  '/legal': typeof LegalRoute
   '/market-analytics': typeof MarketAnalyticsRoute
   '/marketplace-connectivity': typeof MarketplaceConnectivityRoute
   '/platform': typeof PlatformRoute
@@ -113,7 +127,9 @@ export interface FileRoutesByTo {
   '/brokers': typeof BrokersRoute
   '/contact': typeof ContactRoute
   '/event-intelligence': typeof EventIntelligenceRoute
+  '/faq': typeof FaqRoute
   '/integrations': typeof IntegrationsRoute
+  '/legal': typeof LegalRoute
   '/market-analytics': typeof MarketAnalyticsRoute
   '/marketplace-connectivity': typeof MarketplaceConnectivityRoute
   '/platform': typeof PlatformRoute
@@ -129,7 +145,9 @@ export interface FileRoutesById {
   '/brokers': typeof BrokersRoute
   '/contact': typeof ContactRoute
   '/event-intelligence': typeof EventIntelligenceRoute
+  '/faq': typeof FaqRoute
   '/integrations': typeof IntegrationsRoute
+  '/legal': typeof LegalRoute
   '/market-analytics': typeof MarketAnalyticsRoute
   '/marketplace-connectivity': typeof MarketplaceConnectivityRoute
   '/platform': typeof PlatformRoute
@@ -146,7 +164,9 @@ export interface FileRouteTypes {
     | '/brokers'
     | '/contact'
     | '/event-intelligence'
+    | '/faq'
     | '/integrations'
+    | '/legal'
     | '/market-analytics'
     | '/marketplace-connectivity'
     | '/platform'
@@ -161,7 +181,9 @@ export interface FileRouteTypes {
     | '/brokers'
     | '/contact'
     | '/event-intelligence'
+    | '/faq'
     | '/integrations'
+    | '/legal'
     | '/market-analytics'
     | '/marketplace-connectivity'
     | '/platform'
@@ -176,7 +198,9 @@ export interface FileRouteTypes {
     | '/brokers'
     | '/contact'
     | '/event-intelligence'
+    | '/faq'
     | '/integrations'
+    | '/legal'
     | '/market-analytics'
     | '/marketplace-connectivity'
     | '/platform'
@@ -192,7 +216,9 @@ export interface RootRouteChildren {
   BrokersRoute: typeof BrokersRoute
   ContactRoute: typeof ContactRoute
   EventIntelligenceRoute: typeof EventIntelligenceRoute
+  FaqRoute: typeof FaqRoute
   IntegrationsRoute: typeof IntegrationsRoute
+  LegalRoute: typeof LegalRoute
   MarketAnalyticsRoute: typeof MarketAnalyticsRoute
   MarketplaceConnectivityRoute: typeof MarketplaceConnectivityRoute
   PlatformRoute: typeof PlatformRoute
@@ -257,11 +283,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventIntelligenceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/integrations': {
       id: '/integrations'
       path: '/integrations'
       fullPath: '/integrations'
       preLoaderRoute: typeof IntegrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/market-analytics': {
@@ -304,7 +344,9 @@ const rootRouteChildren: RootRouteChildren = {
   BrokersRoute: BrokersRoute,
   ContactRoute: ContactRoute,
   EventIntelligenceRoute: EventIntelligenceRoute,
+  FaqRoute: FaqRoute,
   IntegrationsRoute: IntegrationsRoute,
+  LegalRoute: LegalRoute,
   MarketAnalyticsRoute: MarketAnalyticsRoute,
   MarketplaceConnectivityRoute: MarketplaceConnectivityRoute,
   PlatformRoute: PlatformRoute,

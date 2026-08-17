@@ -12,11 +12,13 @@ export const brand = {
   name: "SeatsBrokers",
   tagline: "Ticketing Technology. Marketplace Connectivity. Market Intelligence.",
   email: "partners@seatsbrokers.com",
-  offices: "London · New York · Dubai",
+  salesEmail: "sales@seatsbrokers.com",
+  offices: "London · New York · Dubai · India",
 } as const;
 
 export const ctas = {
-  bookDemo: { label: "Book a Demo", to: "/book-demo" },
+  // bookDemo: { label: "Book a Demo", to: "/book-demo" },
+  becomeSeller: { label: "Become a seller", to: "/brokers" },
   explorePlatform: { label: "Explore Our Platform", to: "/platform" },
   talkToTeam: { label: "Talk to Our Team", to: "/contact" },
   login: { label: "Login", to: "/contact" },
@@ -32,10 +34,12 @@ export const navLinks: NavLink[] = [
   // Hidden from header for now — /platform still works if someone hits the URL.
   { label: "Platform", to: "/platform", hidden: true },
   { label: "For Brokers", to: "/brokers" },
-  { label: "Travel Partners", to: "/travel-partners" },
+  // Hidden from header for now — /travel-partners still works if someone hits the URL.
+  { label: "Travel Partners", to: "/travel-partners", hidden: true },
   { label: "Marketplace Connectivity", to: "/marketplace-connectivity" },
   { label: "Event Intelligence", to: "/event-intelligence" },
   { label: "API", to: "/api" },
+  { label: "About", to: "/about" },
 ];
 
 export const footerColumns: { title: string; links: FooterLink[] }[] = [
@@ -43,7 +47,7 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
     title: "Platform",
     links: [
       { label: "Broker Platform", to: "/brokers" },
-      { label: "Travel Partner Platform", to: "/travel-partners" },
+      // { label: "Travel Partner Platform", to: "/travel-partners" },
       { label: "Marketplace Connectivity", to: "/marketplace-connectivity" },
       { label: "Event Intelligence", to: "/event-intelligence" },
       { label: "API Platform", to: "/api" },
@@ -54,23 +58,24 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
     links: [
       { label: "API Documentation", to: "/api" },
       { label: "Contact", to: "/contact" },
-      { label: "FAQs", to: "/contact" },
+      { label: "FAQs", to: "/faq" },
     ],
   },
   {
     title: "Company",
     links: [
       { label: "About", to: "/about" },
-      { label: "Book a Demo", to: "/book-demo" },
+      // { label: "Book a Demo", to: "/book-demo" },
+      { label: "Become a seller", to: "/brokers" },
       { label: "Contact", to: "/contact" },
     ],
   },
 ];
 
 export const footerLegal: FooterLink[] = [
-  { label: "Privacy Policy", to: "/contact" },
-  { label: "Terms", to: "/contact" },
-  { label: "Cookie Policy", to: "/contact" },
+  { label: "Privacy Policy", to: "/legal", hash: "privacy" },
+  { label: "Terms", to: "/legal", hash: "terms" },
+  { label: "Cookie Policy", to: "/legal", hash: "cookies" },
   { label: "API Terms", to: "/api" },
 ];
 
@@ -134,6 +139,16 @@ export const pageMeta = {
     title: "Contact — SeatsBrokers",
     description:
       "Get in touch with the SeatsBrokers team. London, New York and Dubai — partners@seatsbrokers.com",
+  },
+  faq: {
+    title: "FAQ — SeatsBrokers",
+    description:
+      "Answers for ticket brokers and travel partners on inventory, API access, authenticity, delivery, bulk holds and platform charges in £.",
+  },
+  legal: {
+    title: "Privacy, Terms & Cookies — SeatsBrokers",
+    description:
+      "Privacy Policy, Terms of Use and Cookie Policy for the SeatsBrokers marketing site and B2B ticketing platform. Contact sales@seatsbrokers.com or partners@seatsbrokers.com.",
   },
   bookDemo: {
     title: "Book a Demo — SeatsBrokers",

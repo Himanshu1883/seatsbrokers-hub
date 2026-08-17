@@ -371,11 +371,10 @@ export function HowItWorks() {
               </p>
             </div>
             <SiteLink
-              to={ctas.bookDemo.to}
-              hash={ctas.bookDemo.hash}
+              to={ctas.becomeSeller.to}
               className="lift inline-flex shrink-0 items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-bold text-primary-foreground"
             >
-              {ctas.bookDemo.label}
+              {ctas.becomeSeller.label}
               <ArrowRight className="size-4" />
             </SiteLink>
           </div>

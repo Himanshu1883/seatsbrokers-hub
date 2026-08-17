@@ -32,7 +32,7 @@ SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform
 | Routes | `src/routes/` | One file = one URL. `__root.tsx` = fonts/CSS/QueryClient/404 |
 | Layout | `src/components/layout/` | `PageShell` (Nav + main + FinalCTA + Footer), `SiteLink` |
 | Landing | `src/components/landing/` | Homepage sections |
-| Product UI | `src/components/pages/{shared,brokers,travel,marketplace,event-intelligence,api,about,book-demo,platform}/` | Heroes, consoles, boards |
+| Product UI | `src/components/pages/{shared,brokers,travel,marketplace,event-intelligence,api,about,book-demo,platform,faq,contact,legal}/` | Heroes, consoles, boards, FAQ, contact, legal |
 | Copy | `src/content/site.ts` + `*-hero-data.ts` | Nav, CTAs, pageMeta, console demo data |
 | CSS | `src/styles.css` | Tokens + all custom blocks (append, don’t rewrite) |
 | Generated | `src/routeTree.gen.ts` | Do not edit |
@@ -57,7 +57,9 @@ SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform
 | Live console | page-specific `*LiveConsole.tsx` + inner console + CSS prefix |
 | Copy / CTAs / SEO titles | `src/content/site.ts` or `*-hero-data.ts` |
 | Color / type / section chrome | `docs/DESIGN_SYSTEM.md` then `src/styles.css` `:root` |
-| Contact / demo form | `ContactForm` in `PageSections.tsx` or `DemoRequestForm` |
+| Contact / demo form | `ContactHero` in `pages/contact/` + `ContactForm` in `PageSections.tsx`, or `DemoRequestForm` |
+| FAQ copy / accordion | `src/content/faq-data.ts` → `pages/faq/` + `src/routes/faq.tsx` |
+| Legal / privacy / terms / cookies | `src/content/legal-data.ts` → `pages/legal/` + `src/routes/legal.tsx`; full-width 3-col tabs; footer `footerLegal` hashes |
 
 ## Critical Relationships
 
@@ -77,6 +79,7 @@ TravelLiveConsole    → pages/travel
 MarketplaceLiveConsole → pages/marketplace
 EventIntelLiveConsole → pages/event-intelligence
 ApiLiveConsole       → pages/api
+AboutLiveConsole     → pages/about     (company ops only — not a product console)
 ```
 
 Shared chrome: `ConsoleCopyPanel` + `ConsoleShell` (brokers folder) used by all terminal consoles.

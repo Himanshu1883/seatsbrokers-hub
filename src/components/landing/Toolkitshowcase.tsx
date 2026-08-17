@@ -81,7 +81,7 @@ const items = [
     metric: { value: "165", label: "countries supported" },
     telemetry: ["card management", "settlement", "transaction visibility"],
     hudPath: "app.seatsbrokers.com / payments",
-    cta: "Book a Demo",
+    cta: "Become a seller",
   },
 ] as const;
 
@@ -341,8 +341,7 @@ export function ToolkitShowcase() {
 
                       {"cta" in item && item.cta ? (
                         <SiteLink
-                          to={ctas.bookDemo.to}
-                          hash={ctas.bookDemo.hash}
+                          to={ctas.becomeSeller.to}
                           className="lift mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
                         >
                           {item.cta}

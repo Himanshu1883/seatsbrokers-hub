@@ -1,4 +1,4 @@
-import { Linkedin, Twitter, Instagram, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import logo from "@/assets/seatsbrokers-logo.png";
 import { brand, footerColumns, footerLegal } from "@/content/site";
 import { SiteLink } from "@/components/layout/SiteLink";
@@ -30,6 +30,7 @@ export function Footer() {
             Powering the technology behind modern ticket resale. From event discovery and inventory
             management to marketplace distribution, market intelligence and partner sales.
           </p>
+          {/* Social icons commented out — restore if needed
           <div className="mt-8 flex gap-3">
             {[Linkedin, Twitter, Instagram].map((Icon, i) => (
               <SiteLink
@@ -42,6 +43,7 @@ export function Footer() {
               </SiteLink>
             ))}
           </div>
+          */}
         </div>
 
         <div className="grid gap-10 sm:grid-cols-3 sm:gap-8">
@@ -99,7 +101,17 @@ export function Footer() {
           <p className="mt-8 text-sm leading-relaxed text-background/55">
             {brand.offices}
             <br />
-            {brand.email}
+            <span className="inline-block whitespace-nowrap text-[13px] max-[340px]:whitespace-normal">
+              <span className="text-primary">Partners</span>
+              {": "}
+              <a href={`mailto:${brand.salesEmail}`} className="hover:text-background">
+                {brand.salesEmail}
+              </a>
+              {" · "}
+              <a href={`mailto:${brand.email}`} className="hover:text-background">
+                {brand.email}
+              </a>
+            </span>
           </p>
         </div>
       </div>

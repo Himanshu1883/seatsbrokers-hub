@@ -196,11 +196,10 @@ export function PartnerProductShowcase() {
             </ul>
             <div className="mt-7 flex flex-wrap items-center gap-4">
               <SiteLink
-                to={ctas.bookDemo.to}
-                hash={ctas.bookDemo.hash}
+                to={ctas.becomeSeller.to}
                 className="lift inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
               >
-                {ctas.bookDemo.label}
+                {ctas.becomeSeller.label}
                 <ArrowRight className="size-4" aria-hidden />
               </SiteLink>
               <button

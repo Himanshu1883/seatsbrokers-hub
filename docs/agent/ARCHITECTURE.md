@@ -41,9 +41,10 @@ src/content/*.ts   (static copy + demo datasets)
 | `pages/marketplace/` | `/marketplace-connectivity` |
 | `pages/event-intelligence/` | `/event-intelligence` |
 | `pages/api/` | `/api` |
-| `pages/about/` | `/about` company journey + overview (not a live console) |
+| `pages/about/` | `/about` company atlas + journey + one ops console |
 | `pages/book-demo/` | `/book-demo` briefing hero + demo request form |
 | `pages/platform/` | `/platform` stack-map hero + linked module board |
+| `pages/contact/` | `/contact` dark hero; HUD photo clipped to `.bh-stage` |
 | `components/ui/` | shadcn primitives — prefer not to restyle globally |
 
 ## Live Console architecture
@@ -56,9 +57,9 @@ Required shape: `docs/DESIGN_SYSTEM.md` (copy column + 3D tilt stage).
   → .lc-tilt-wrap → inner console (ConsoleShell or cockpit)
 ```
 
-Each product page has its **own** wrapper and variant union. Do not add travel/marketplace/event-intel/api variants onto broker `LiveConsole`.
+Each product page has its **own** wrapper and variant union. Do not add travel/marketplace/event-intel/api/about variants onto broker `LiveConsole`. `/about` uses `AboutLiveConsole` for company ops only — not a stack of product consoles.
 
-Hero right stages are **not** Live Consoles. They reuse `bh-hero` / `bh-stage` chrome with page-specific inner composition and a **fixed height** `clamp(22rem, 52vh, 34rem)` (see `.bh-wall-mask`, `.mkh-room`, `.eih-room`, `.apidoc-room`, `.abt-room`).
+Hero right stages are **not** Live Consoles. They reuse `bh-hero` / `bh-stage` chrome with page-specific inner composition and a **fixed height** `clamp(22rem, 52vh, 34rem)` (see `.bh-wall-mask`, `.mkh-room`, `.eih-room`, `.apidoc-room`, `.abt-room`, `.ct-hero-stage`).
 
 ## Styling architecture
 

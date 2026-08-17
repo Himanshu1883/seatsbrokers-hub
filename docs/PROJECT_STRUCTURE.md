@@ -36,6 +36,8 @@ seatsbrokers-hub/
 │   │   ├── event-intel-hero-data.ts
 │   │   ├── api-hero-data.ts
 │   │   ├── about-page-data.ts
+│   │   ├── faq-data.ts
+│   │   ├── legal-data.ts
 │   │   ├── book-demo-data.ts
 │   │   ├── platform-page-data.ts
 │   │   ├── inventory-console-data.ts
@@ -60,9 +62,12 @@ seatsbrokers-hub/
 │   │       ├── marketplace/  # /marketplace-connectivity live consoles + hero + capability board
 │   │       ├── event-intelligence/  # /event-intelligence consoles + venue map
 │   │       ├── api/          # /api docs-console hero + auth/webhook consoles
-│   │       ├── about/        # /about journey atlas + overview board
+│   │       ├── about/        # /about journey atlas + ops console + overview board
 │   │       ├── book-demo/    # /book-demo briefing desk, session itinerary, demo form
-│   │       └── platform/     # /platform stack map + module board
+│   │       ├── platform/     # /platform stack map + module board
+│   │       ├── faq/          # /faq dark bh-hero + accordion + help strip
+│   │       ├── contact/      # /contact dark bh-hero + right-stage photo
+│   │       └── legal/        # /legal short bh-hero + full-width Privacy/Terms/Cookies tabs
 │   └── routes/               # File-based routes (see below)
 └── .lovable/project.json
 ```
@@ -82,10 +87,12 @@ seatsbrokers-hub/
 | `market-analytics.tsx` | `/market-analytics` | Analytics grids |
 | `ai-pricing.tsx` | `/ai-pricing` | Pricing workflow (static, not the live console) |
 | `integrations.tsx` | `/integrations` | Integration FeatureGrid |
-| `about.tsx` | `/about` | Company journey + overview (atlas hero) |
-| `contact.tsx` | `/contact` | ContactForm |
+| `about.tsx` | `/about` | Company atlas + journey ledger + ops console |
+| `contact.tsx` | `/contact` | Dark `bh-hero` + right-stage HUD photo + ContactForm |
+| `faq.tsx` | `/faq` | Light FAQ hero + accordion + still-need-help strip |
+| `legal.tsx` | `/legal` | Privacy, Terms and Cookie Policy as 3-col tabs (hashes `#privacy` `#terms` `#cookies`) |
 | `book-demo.tsx` | `/book-demo` | Demo briefing hero + session itinerary + request form |
 
 ## Styling
 
-All custom CSS lives in `src/styles.css` (landing, brokers consoles, travel consoles, marketplace consoles, event intelligence consoles, API consoles, about atlas, book-demo briefing, platform stack, connectors). Do not add a second global CSS file. New page CSS is appended as one clearly marked block at the end.
+All custom CSS lives in `src/styles.css` (landing, brokers consoles, travel consoles, marketplace consoles, event intelligence consoles, API consoles, about atlas, book-demo briefing, platform stack, FAQ `faq-*`, contact `ct-*`, legal `legal-*`, connectors). Do not add a second global CSS file. New page CSS is appended as one clearly marked block at the end.

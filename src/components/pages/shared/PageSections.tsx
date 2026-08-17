@@ -19,7 +19,7 @@ export function PageHero({
   eyebrow,
   title,
   body,
-  primaryCta = ctas.bookDemo,
+  primaryCta = ctas.becomeSeller,
   secondaryCta,
 }: PageHeroProps) {
   return (

@@ -8,7 +8,7 @@ Routes listed are where the component is **mounted**, not every import.
 |---|---|---|---|
 | PageShell | `src/components/layout/PageShell.tsx` | Nav + `<main>` + FinalCTA + Footer | Every marketing route |
 | SiteLink | `src/components/layout/SiteLink.tsx` | TanStack `Link` with optional hash | Nav, Footer, CTAs, pages |
-| PageHero | `src/components/pages/shared/PageSections.tsx` | Dark product-page hero | market-analytics, ai-pricing, integrations, contact |
+| PageHero | `src/components/pages/shared/PageSections.tsx` | Dark product-page hero | market-analytics, ai-pricing, integrations |
 | FeatureGrid | same | Centered title + `FeatureOrbitGrid` cards | travel-partners (Order & Delivery), market-analytics, integrations |
 | FeatureOrbitGrid | `src/components/pages/shared/FeatureOrbitGrid.tsx` | Orbit layout for FeatureGrid items | FeatureGrid |
 | WorkflowSteps | PageSections | Numbered infra canvas | brokers, marketplace-connectivity, event-intelligence, platform, ai-pricing, integrations, api, book-demo |
@@ -85,11 +85,12 @@ Routes listed are where the component is **mounted**, not every import.
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| AboutHero + JourneyWall | `AboutHero.tsx`, `AboutJourneyWall.tsx` | Brokers-parity left copy; right stage is a dark company atlas (`abt-*`) — chapter rail, LON/NYC/DXB office map, proof strip | `/about` |
-| AboutJourney | `AboutJourney.tsx` | Who-we-are facts + four numbered infrastructure chapters (cycle / pin) | `/about` |
-| AboutOverview | `AboutOverview.tsx` | FeatureGrid replacement — five linked platform tiles + who-we-serve strip | `/about` |
-| AboutPrinciples | `AboutPrinciples.tsx` | How we work, from existing copy only (infrastructure, ticketing-specific, technology-first) | `/about` |
-| AboutPresence | `AboutPresence.tsx` | Dark offices band: London, New York, Dubai + partners email | `/about` |
+| AboutHero + JourneyWall | `AboutHero.tsx`, `AboutJourneyWall.tsx` | Brokers-parity left copy; right stage is a dark company atlas (`abt-*`) — clickable chapter rail, LON/NYC/DXB office map, coverage windows, proof strip | `/about` |
+| AboutJourney | `AboutJourney.tsx` | Who-we-are facts + timeline ledger (pin/live) with chapter analysis, stack chips and signals | `/about` |
+| AboutOverview | `AboutOverview.tsx` | FeatureGrid replacement — five platform tiles + analysis dock (hover/click) + who-we-serve strip | `/about` |
+| AboutLiveConsole + OpsConsole | `AboutLiveConsole.tsx`, `AboutOpsConsole.tsx` | Live Console split: company ops (follow-the-sun desks, coverage windows, partner-desk feed). Own wrapper — does not extend broker `LiveConsoleVariant` | `/about` |
+| AboutPrinciples | `AboutPrinciples.tsx` | How we work as an infrastructure board: numbered cards, systems chips, control-plane spine | `/about` |
+| AboutPresence | `AboutPresence.tsx` | Dark offices band: London, New York, Dubai with coverage windows + partners email | `/about` |
 
 ### Book a demo (`src/components/pages/book-demo/`)
 
@@ -107,6 +108,27 @@ Routes listed are where the component is **mounted**, not every import.
 | PlatformHero + StackWall | `PlatformHero.tsx`, `PlatformStackWall.tsx` | Brokers-parity left copy; right stage is a hub + spine of five surfaces (`plt-*`) | `/platform` |
 | PlatformModuleMap | `PlatformModuleMap.tsx` | Dark 3+2 board with deep links to brokers, travel, marketplace, event-intel, API | `/platform` |
 
+### FAQ (`src/components/pages/faq/`)
+
+| Name | Path | Purpose | Used on |
+|---|---|---|---|
+| FaqHero | `FaqHero.tsx` | Dark `bh-hero` chrome + unique topics glass card (not a brokers/PageHero clone) | `/faq` |
+| FaqAccordion | `FaqAccordion.tsx` | shadcn Accordion of six B2B questions (`faq-*`) | `/faq` |
+| FaqHelpStrip | `FaqHelpStrip.tsx` | Still-need-help band; mailto sales@ and partners@ | `/faq` |
+
+### Legal (`src/components/pages/legal/`)
+
+| Name | Path | Purpose | Used on |
+|---|---|---|---|
+| LegalHero | `LegalHero.tsx` | Short dark `bh-hero` copy banner (no chapter rail, not a product dashboard) | `/legal` |
+| LegalDocument | `LegalDocument.tsx` | Full-width 3-col tabs (Privacy Policy / Terms / Cookie Policy) + active panel; hashes `#privacy` `#terms` `#cookies` | `/legal` |
+
+### Contact (`src/components/pages/contact/`)
+
+| Name | Path | Purpose | Used on |
+|---|---|---|---|
+| ContactHero | `ContactHero.tsx` | Dark `bh-hero` + right-stage HUD photo clipped to banner height (`ct-*`) | `/contact` |
+
 ### Planned / stubbed (not built)
 
 | Name | Status |
@@ -121,9 +143,9 @@ Used on `/` unless noted.
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| Nav | `Nav.tsx` | Site nav | PageShell |
-| Footer | `Footer.tsx` | Footer columns | PageShell |
-| FinalCTA | `FinalCTA.tsx` | Global close CTA | PageShell (all pages) |
+| Nav | `Nav.tsx` | Site nav — visible: For Brokers, Marketplace Connectivity, Event Intelligence, API, About; hidden: Platform, Travel Partners | PageShell |
+| Footer | `Footer.tsx` | Footer columns; Resources FAQs → `/faq`; legal links Privacy / Terms / Cookie Policy → `/legal#privacy` `#terms` `#cookies`; partners mailto line; socials commented out | PageShell |
+| FinalCTA | `FinalCTA.tsx` | Global close CTA (“Become a seller” → `/brokers`) | PageShell (all pages) |
 | Hero | `Hero.tsx` | Homepage hero + typewriter | `/` |
 | HeroDashboardTilt | `HeroDashboardTilt.tsx` | Hero dashboard mock | Hero |
 | SellerTools / TravelTools | `ToolsGrid.tsx` | Flow blueprints (mounted immediately after Hero) | `/` |
@@ -158,6 +180,8 @@ Used on `/` unless noted.
 | `src/content/event-intel-hero-data.ts` | Event intelligence hero copy + forecast-lens stage data (mini-card datasets remain for `EventIntelConsoleCards`) |
 | `src/content/api-hero-data.ts` | API hero copy + docs-console endpoints, auth scopes/roles, webhook payloads |
 | `src/content/about-page-data.ts` | About hero copy, journey chapters, platform tiles, offices |
+| `src/content/faq-data.ts` | FAQ hero copy, six questions, still-need-help strip |
+| `src/content/legal-data.ts` | Legal hero + Privacy / Terms / Cookie chapters |
 | `src/content/book-demo-data.ts` | Book-a-demo hero, slots, agenda, session blocks, audiences, form options |
 | `src/content/platform-page-data.ts` | Platform hero, stack layers, module map tiles |
 | `src/content/inventory-console-data.ts` | Inventory console demo rows |

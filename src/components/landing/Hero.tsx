@@ -3,15 +3,15 @@ import { useTypewriter } from "@/hooks/use-scroll-motion";
 import { HeroDashboardTilt } from "@/components/landing/HeroDashboardTilt";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { ctas } from "@/content/site";
-import heroStadium from "@/assets/hero-stadium.jpg";
-import heroChampionship from "@/assets/cta-trophy.jpg";
-import heroTravel from "@/assets/card-travel.jpg";
+import heroStadium1 from "@/assets/hero-stadium-1.webp";
+import heroStadium2 from "@/assets/hero-stadium-2.jpg";
+import heroStadium3 from "@/assets/hero-stadium-3.jpg";
 
 const SLIDE_MS = 2100;
 
 const slides = [
   {
-    image: heroStadium,
+    image: heroStadium1,
     alt: "Ticketing technology infrastructure platform",
     eyebrow: "Ticketing Technology & Intelligence Platform",
     title: "The Technology Infrastructure Behind",
@@ -26,7 +26,7 @@ const slides = [
     ],
   },
   {
-    image: heroChampionship,
+    image: heroStadium2,
     alt: "Broker platform for ticket operations",
     eyebrow: "Broker Platform · Ticket Brokers",
     title: "Run your ticket business from",
@@ -46,7 +46,7 @@ const slides = [
     ],
   },
   {
-    image: heroTravel,
+    image: heroStadium3,
     alt: "Travel partner ticket distribution platform",
     eyebrow: "Travel Partner Platform",
     title: "Powering ticket distribution for",
@@ -182,11 +182,11 @@ function HeroSlideCopy({
 
       <div className={item(5, "hero-copy-actions mt-8 flex flex-wrap gap-3 sm:mt-9")}>
         <SiteLink
-          to={ctas.bookDemo.to}
+          to={ctas.becomeSeller.to}
           className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
           tabIndex={isActive ? 0 : -1}
         >
-          {ctas.bookDemo.label}
+          {ctas.becomeSeller.label}
         </SiteLink>
         <SiteLink
           to={ctas.explorePlatform.to}
@@ -264,10 +264,11 @@ export function Hero() {
         ))}
       </div>
 
-      <div
-        className="absolute inset-0 -z-10 bg-linear-to-br from-dark/84 via-dark/94 to-primary-deep/55"
-        aria-hidden
-      />
+      <div className="absolute inset-0 -z-10" aria-hidden>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_58%_at_52%_44%,rgb(0_0_0_/_0.34)_0%,rgb(0_0_0_/_0.40)_38%,rgb(0_0_0_/_0.62)_72%,rgb(0_0_0_/_0.90)_100%)]" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/72 via-transparent via-42% to-black/50" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/58 via-transparent via-48% to-transparent" />
+      </div>
 
       <div className="hero-fit-zoom">
         <div className="hero-fit-offset pointer-events-none shrink-0" aria-hidden />

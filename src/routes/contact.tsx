@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { pageMeta } from "@/content/site";
-import { ContactForm, PageHero } from "@/components/pages/shared/PageSections";
+import { ContactForm } from "@/components/pages/shared/PageSections";
+import { ContactHero } from "@/components/pages/contact/ContactHero";
 
 const { title, description } = pageMeta.contact;
 
@@ -20,11 +21,7 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   return (
     <PageShell showFinalCta={false}>
-      <PageHero
-        eyebrow="Contact"
-        title="Talk to Our Team"
-        body="Whether you are a ticket broker, marketplace, travel partner or technology provider — our team is ready to help you connect your ticket operation to modern infrastructure."
-      />
+      <ContactHero />
       <ContactForm
         eyebrow="Get in touch"
         title="Send us a message"

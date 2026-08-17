@@ -31,11 +31,10 @@ export function FinalCTA() {
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <SiteLink
-              to={ctas.bookDemo.to}
-              hash={ctas.bookDemo.hash}
+              to={ctas.becomeSeller.to}
               className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
             >
-              {ctas.bookDemo.label}
+              {ctas.becomeSeller.label}
             </SiteLink>
             <SiteLink
               to={ctas.talkToTeam.to}

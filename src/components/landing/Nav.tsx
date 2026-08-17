@@ -184,10 +184,10 @@ export function Nav() {
               {ctas.login.label}
             </SiteLink>
             <SiteLink
-              to={ctas.bookDemo.to}
+              to={ctas.becomeSeller.to}
               className="lift rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
             >
-              {ctas.bookDemo.label}
+              {ctas.becomeSeller.label}
             </SiteLink>
           </div>
 
@@ -265,11 +265,11 @@ export function Nav() {
               {ctas.login.label}
             </SiteLink>
             <SiteLink
-              to={ctas.bookDemo.to}
+              to={ctas.becomeSeller.to}
               onClick={() => setOpen(false)}
               className="site-nav-cta site-nav-cta-demo lift"
             >
-              {ctas.bookDemo.label}
+              {ctas.becomeSeller.label}
             </SiteLink>
           </div>
         </div>

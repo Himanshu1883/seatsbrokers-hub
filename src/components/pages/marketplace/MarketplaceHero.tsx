@@ -32,10 +32,10 @@ export function MarketplaceHero() {
             </ul>
             <div className="bh-ctas">
               <SiteLink
-                to={ctas.bookDemo.to}
+                to={ctas.becomeSeller.to}
                 className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
               >
-                {ctas.bookDemo.label}
+                {ctas.becomeSeller.label}
               </SiteLink>
               <SiteLink
                 to={ctas.viewApiDocs.to}

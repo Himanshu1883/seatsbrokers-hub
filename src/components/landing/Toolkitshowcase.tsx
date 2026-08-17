@@ -11,6 +11,7 @@ import {
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { ctas } from "@/content/site";
+import { modules } from "@/content/modules";
 
 import eventsImg from "@/assets/product-events-browser.jpg";
 import analyticsImg from "@/assets/product-analytics-dashboard.png";
@@ -21,7 +22,7 @@ const items = [
   {
     id: "event-catalog",
     icon: RefreshCw,
-    tag: "Event Catalog",
+    tag: modules.intel.name,
     headline: "Access a structured catalog of global events",
     detail:
       "Football, rugby, cricket, tennis, Formula 1, boxing, music, theatre, arts and festivals — with onsale dates, venues and demand signals.",
@@ -35,7 +36,7 @@ const items = [
   {
     id: "inventory",
     icon: Layers,
-    tag: "Inventory Management",
+    tag: modules.source.name,
     headline: "Manage tickets, sections, rows and pricing",
     detail:
       "Quantity, prices, ticket types, delivery information, restrictions, notes and packages — managed from one centralized inventory layer.",
@@ -47,7 +48,7 @@ const items = [
   {
     id: "distribution",
     icon: DollarSign,
-    tag: "Marketplace Distribution",
+    tag: modules.market.name,
     headline: "List once. Distribute everywhere.",
     detail:
       "When inventory changes, SeatsBrokers synchronizes quantity, price and listing status across connected marketplaces. When a ticket sells, other listings update automatically.",
@@ -59,7 +60,7 @@ const items = [
   {
     id: "ai-pricing",
     icon: BarChart3,
-    tag: "AI Pricing",
+    tag: modules.pulse.name,
     headline: "AI recommends. You decide.",
     detail:
       "Market data analyzed into pricing recommendations with approval workflow — once approved, prices synchronize through connected marketplace infrastructure.",
@@ -73,7 +74,7 @@ const items = [
   {
     id: "payments",
     icon: Users,
-    tag: "Payment Infrastructure",
+    tag: modules.funds.name,
     headline: "Integrated purchasing and payment infrastructure",
     detail:
       "Centralized balance, card management, ticket purchasing, funding workflows, transaction visibility and internal settlement — built into your ticketing workflow.",

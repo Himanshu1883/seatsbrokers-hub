@@ -1,334 +1,613 @@
-/** About page: company journey + platform overview. Copy polished from the old /about shell — no founding myth, no invented stats. */
+/** About page: company chapters. Product names on this page are SeatsAI, SeatsTrade, SeatsPay, SeatsAPI, SeatsData, SeatsAutomation — do not silently rewrite to official module marks. */
 
 export const aboutHeroCopy = {
   eyebrow: "About SeatsBrokers",
-  title: "Powering the Technology Behind Modern Ticket Resale",
-  subhead: "The infrastructure layer connecting the global ticketing ecosystem.",
-  body: "We build technology that helps ticket brokers, marketplaces and travel partners manage, distribute, price and sell event inventory at scale.",
+  title: "Intelligent Technology for the Future of Ticketing",
+  subhead:
+    "SeatsBrokers is an AI-powered technology company transforming the global ticketing industry.",
+  body: "We combine decades of real-world ticketing expertise with modern technology, artificial intelligence, automation, APIs and data intelligence to build smarter infrastructure for the global event economy.",
 } as const;
 
 export const aboutHeroPoints = [
-  "Three decades building systems for professional ticket businesses worldwide",
-  "10,000+ B2B partners — brokers, travel teams and marketplaces on one platform",
-  "London · New York · Dubai — three offices, one technology platform",
+  "For more than 30 years, we have understood how the ticketing industry works.",
+  "Today, we are turning that knowledge into technology.",
+  "Our mission is simple: make ticketing smarter, faster, more connected and increasingly intelligent.",
 ] as const;
 
-export const aboutFacts = [
-  { label: "In ticketing", value: "30+ years", detail: "Three decades building systems for professional ticket businesses worldwide." },
-  { label: "B2B partners", value: "10,000+", detail: "Brokers, travel teams and marketplaces connected through one platform." },
-  { label: "Offices", value: "3 cities", detail: "London · New York · Dubai — three offices, one technology platform." },
-  { label: "Stance", value: "Tech-first", detail: "API-first, cloud infrastructure, real-time sync and AI-powered pricing." },
+export const aboutPageCtas = [
+  { label: "Explore Our Technology", to: "/platform" },
+  { label: "Become a Partner", to: "/brokers" },
+  { label: "Talk to Our Team", to: "/contact" },
 ] as const;
 
-export const aboutChapters = [
+export const aboutHeroStage = {
+  kicker: "SeatsBrokers / Intelligence",
+  title: "Tech stage",
+  stamp: "AI layer",
+  core: "AI",
+  coreLabel: "Intelligence core",
+} as const;
+
+export const aboutHeroProof = [
+  { label: "Industry knowledge", value: "30 years" },
+  { label: "Stance", value: "AI-first" },
+  { label: "Architecture", value: "API-first" },
+] as const;
+
+export const aboutFormulaParts = ["Experience", "Data", "AI", "Automation"] as const;
+export const aboutFormulaResult = "Intelligent Ticketing Infrastructure";
+
+export const aboutDataSignals = [
+  "Events",
+  "Inventory",
+  "Prices",
+  "Demand",
+  "Marketplaces",
+  "Sellers",
+  "Buyers",
+  "Transactions",
+  "Customer behaviour",
+] as const;
+
+export const aboutKnowledgeCopy = {
+  eyebrow: "We Know Ticketing. We Build Technology.",
+  title: "30 Years of Industry Knowledge. Rebuilt for the AI Era.",
+  intro:
+    "The ticketing industry generates enormous amounts of data. But data alone doesn't create intelligence. SeatsBrokers is building technology that can understand this data, connect it and turn it into meaningful actions.",
+  experience:
+    "Our 30 years of industry experience gives us the knowledge of what matters. AI and technology give us the ability to scale that knowledge.",
+  formulaKicker: "The equation",
+  signalsKicker: "The data the industry generates",
+} as const;
+
+export const aboutVisionCopy = {
+  eyebrow: "Our Vision",
+  title: "To Build the Intelligence Layer for the Global Ticketing Industry.",
+  intro: "We believe the future of ticketing will not be powered by disconnected systems. It will be powered by intelligent technology.",
+  lines: [
+    "AI will help businesses understand markets.",
+    "Automation will reduce operational complexity.",
+    "APIs will connect businesses globally.",
+    "Data will drive better decisions.",
+    "And intelligent platforms will continuously optimize how inventory is sourced, priced, distributed and sold.",
+  ],
+  close: "SeatsBrokers is building that future.",
+} as const;
+
+export const aboutCapabilitiesCopy = {
+  eyebrow: "AI-Powered Ticketing Infrastructure",
+  title: "Intelligence Behind Every Transaction",
+  intro: "Our technology is designed to bring intelligence into every stage of the ticketing lifecycle.",
+  contractKicker: "The lifecycle",
+  contract:
+    "From market understanding to pricing, inventory, operations and prediction — intelligence sits behind every transaction, not beside it.",
+} as const;
+
+export const aboutCapabilities = [
   {
     index: "01",
-    title: "See the event",
-    kicker: "Event intelligence",
-    body: "Understand upcoming events and demand — structured event data before inventory moves.",
-    analysis:
-      "Every listing, quote and channel push starts from one event record: date, venue, competition, category bands and an onsale window. Demand is scored for the desk — not published as a headline number.",
-    stack: ["Catalog", "Onsale windows", "Demand score"],
-    signals: [
-      { label: "Event record", value: "Structured" },
-      { label: "Onsale clock", value: "Attached" },
-      { label: "Demand", value: "Scored" },
-    ],
-    operates: "Brokers and travel teams start from the same event layer before inventory is placed.",
+    title: "AI-Powered Market Intelligence",
+    body: "Analyse market data, inventory, pricing and demand to help businesses understand what is happening in the market.",
+    systems: ["Markets", "Inventory", "Demand"],
+    contract: "Understand what is happening — before the desk has to chase it.",
   },
   {
     index: "02",
-    title: "Place the inventory",
-    kicker: "Listings & channels",
-    body: "Manage listings from one place and connect inventory with resale marketplaces.",
-    analysis:
-      "Inventory is written once and fanned out to connected channels. Quantity, holds and delists travel with the listing so a sale on one marketplace cannot double-sell on another.",
-    stack: ["Listings", "Channel fan-out", "Qty sync"],
-    signals: [
-      { label: "Source", value: "One desk" },
-      { label: "Channels", value: "Fan-out" },
-      { label: "Holds", value: "Live" },
-    ],
-    operates: "The broker desk remains the source of truth; marketplaces receive a synchronized copy.",
+    title: "Intelligent Pricing",
+    body: "Use data and AI-driven insights to help businesses make smarter pricing and inventory decisions.",
+    systems: ["Data", "AI insights", "Inventory"],
+    contract: "Smarter pricing decisions, still made by the business.",
   },
   {
     index: "03",
-    title: "Price with the market",
-    kicker: "AI pricing",
-    body: "Market signals support pricing decisions — intelligence in, you still decide.",
-    analysis:
-      "Ask ladders, movement and comparable events feed an advisory model. Recommendations sit next to the desk's own ask — the model does not publish a price without the operator.",
-    stack: ["Ask ladder", "Signals", "Advisory AI"],
-    signals: [
-      { label: "Model", value: "Advisory" },
-      { label: "Decision", value: "The desk" },
-      { label: "Currency", value: "£" },
-    ],
-    operates: "Pricing intelligence is in the loop. Authority stays with the ticket business.",
+    title: "Inventory Intelligence",
+    body: "Connect and organize inventory from multiple sources while making it easier to discover the right tickets at the right time.",
+    systems: ["Sources", "Discovery", "Timing"],
+    contract: "The right tickets, organized, at the right time.",
   },
   {
     index: "04",
-    title: "Open the stack",
-    kicker: "APIs & partners",
-    body: "Connect POS, ERP and partner systems; travel partners source inventory and quote.",
-    analysis:
-      "The same event, inventory and order objects are exposed over API. Travel partners search, add margin and issue branded quotes; POS and ERP systems stay in sync without a second inventory book.",
-    stack: ["Auth", "Products", "Webhooks"],
-    signals: [
-      { label: "Surface", value: "API-first" },
-      { label: "Quotes", value: "Partner margin" },
-      { label: "Sync", value: "Webhooks" },
-    ],
-    operates: "Partners and internal systems consume one infrastructure layer — not a sidecar export.",
+    title: "Automated Operations",
+    body: "Reduce repetitive manual work through intelligent workflows and automation.",
+    systems: ["Workflows", "Automation", "Ops"],
+    contract: "Less repetitive work. More time on decisions that matter.",
+  },
+  {
+    index: "05",
+    title: "AI-Assisted Decisions",
+    body: "Turn complex ticketing data into useful insights that help brokers and businesses make faster decisions.",
+    systems: ["Insights", "Speed", "Brokers"],
+    contract: "Complex data, useful enough to act on.",
+  },
+  {
+    index: "06",
+    title: "Predictive Technology",
+    body: "Move from simply reacting to market changes toward anticipating opportunities.",
+    systems: ["Anticipate", "Opportunity", "Markets"],
+    contract: "From reacting to the market toward seeing what comes next.",
   },
 ] as const;
 
-export const aboutJourneyCopy = {
-  eyebrow: "The journey",
-  title: "How SeatsBrokers became ticketing infrastructure",
-  intro:
-    "We grew from systems for professional ticket businesses into the layer that connects events, inventory, marketplaces, pricing, APIs and partners — operated from London, New York and Dubai.",
-  path: "seatsbrokers / journey",
-} as const;
-
 export const aboutOverviewCopy = {
-  eyebrow: "What we do",
-  title: "One platform. Multiple business models.",
-  intro:
-    "SeatsBrokers is the technology infrastructure for the global ticketing ecosystem — not a bolt-on ERP. Explore each surface of the platform.",
-  dockKicker: "Surface analysis",
+  eyebrow: "One Intelligent Technology Ecosystem",
+  title: "Everything Connected. Everything Smarter.",
+  intro: "SeatsBrokers brings multiple technology capabilities together into one ecosystem.",
+  dockKicker: "In the ecosystem",
 } as const;
 
 export const aboutSurfaces = [
   {
     index: "01",
-    title: "Broker platform",
-    body: "Manage inventory, pricing and marketplace distribution from one centralized system.",
-    href: "/brokers",
-    cta: "For brokers",
-    layer: "Inventory · pricing · POS",
+    title: "SeatsAI",
+    body: "Our intelligence layer designed to use AI, data and automation to help ticket businesses understand markets, inventory, pricing and opportunities.",
+    href: "/platform",
+    cta: "Explore Our Technology",
+    layer: "Intelligence layer",
     analysis:
-      "Central inventory, marketplace distribution, AI pricing and POS on one broker stack. Listings are written once; channels, holds and delists stay attached to the same record.",
-    systems: ["Inventory", "Channels", "AI pricing", "POS"],
+      "SeatsAI is the intelligence layer — AI, data and automation working together so ticket businesses can understand markets, inventory, pricing and opportunities.",
+    systems: ["AI", "Data", "Automation"],
     readout: [
-      { label: "Listings", value: "One source" },
-      { label: "Channels", value: "Fan-out" },
-      { label: "Pricing", value: "Advisory" },
+      { label: "Role", value: "Intelligence" },
+      { label: "Input", value: "Markets · inventory" },
+      { label: "Output", value: "Opportunity" },
     ],
   },
   {
     index: "02",
-    title: "Travel partners",
-    body: "Source tickets and create customer-ready quotations with margin built in.",
-    href: "/travel-partners",
-    cta: "For travel teams",
-    layer: "Search · quotes · delivery",
+    title: "SeatsTrade",
+    body: "A technology-powered B2B marketplace where businesses can discover, trade and access ticket inventory.",
+    href: "/marketplace-connectivity",
+    cta: "Explore marketplace",
+    layer: "B2B marketplace",
     analysis:
-      "Travel desks search the same inventory clock, add their own margin in £, and issue branded quotes. Delivery and settlement stay on the partner terms — not a side channel.",
-    systems: ["Search", "Quotes", "Margin", "Delivery"],
+      "SeatsTrade is a technology-powered B2B marketplace where businesses discover, trade and access ticket inventory — not a disconnected listing silo.",
+    systems: ["Discover", "Trade", "Access"],
     readout: [
-      { label: "Inventory", value: "Shared clock" },
-      { label: "Margin", value: "Partner-kept" },
-      { label: "Quotes", value: "Branded" },
+      { label: "Model", value: "B2B" },
+      { label: "Object", value: "Inventory" },
+      { label: "Motion", value: "Trade" },
     ],
   },
   {
     index: "03",
-    title: "Marketplace connectivity",
-    body: "Connect inventory with resale marketplaces through centralized API infrastructure.",
-    href: "/marketplace-connectivity",
-    cta: "Channels",
-    layer: "List · sync · orders back",
+    title: "SeatsPay",
+    body: "A digital payment infrastructure designed for professional ticket businesses and their financial workflows.",
+    href: "/brokers",
+    cta: "Explore broker platform",
+    layer: "Digital payments",
     analysis:
-      "Create, push, quantity-sync and take orders back through one hub. Price acknowledgements, holds and delists are first-class so a sale on one channel cannot double-sell on another.",
-    systems: ["List", "Qty sync", "Orders in", "Delist"],
+      "SeatsPay is digital payment infrastructure built for professional ticket businesses and the financial workflows those desks actually run.",
+    systems: ["Payments", "Settlement", "Workflows"],
     readout: [
-      { label: "Push", value: "Hub" },
-      { label: "Orders", value: "Return path" },
-      { label: "Conflict", value: "Guarded" },
+      { label: "Surface", value: "Payments" },
+      { label: "Designed for", value: "Ticket businesses" },
+      { label: "Scope", value: "Financial workflows" },
     ],
   },
   {
     index: "04",
-    title: "Event intelligence",
-    body: "Understand upcoming events and demand — the event, the market and the opportunity.",
-    href: "/event-intelligence",
-    cta: "Event data",
-    layer: "Catalog · demand · forecast",
+    title: "SeatsAPI",
+    body: "An API-first infrastructure allowing partners to connect ticketing capabilities directly into their own platforms, POS systems, websites and applications.",
+    href: "/api",
+    cta: "Explore APIs",
+    layer: "API-first",
     analysis:
-      "A structured catalog with onsale windows, demand scoring and an advisory forecast. Category bands and comparable events sit on the same record that listings and quotes already use.",
-    systems: ["Catalog", "Demand", "Forecast", "Venues"],
+      "SeatsAPI is API-first infrastructure so partners can connect ticketing capabilities directly into their own platforms, POS systems, websites and applications.",
+    systems: ["API-first", "POS", "Applications"],
     readout: [
-      { label: "Events", value: "Structured" },
-      { label: "Demand", value: "Scored" },
-      { label: "Forecast", value: "Advisory" },
+      { label: "Contract", value: "API-first" },
+      { label: "Connects", value: "Partner systems" },
+      { label: "Shape", value: "Capabilities in" },
     ],
   },
   {
     index: "05",
-    title: "API infrastructure",
-    body: "Connect POS, ERP and partner systems — events, inventory, listings, orders and more.",
-    href: "/api",
-    cta: "API platform",
-    layer: "Auth · products · webhooks",
+    title: "SeatsData",
+    body: "A data intelligence layer that structures and connects information across events, inventory, markets and transactions.",
+    href: "/event-intelligence",
+    cta: "Explore event intelligence",
+    layer: "Data intelligence",
     analysis:
-      "API-first access to the same objects the consoles run on. Keys, scopes and signed webhooks keep POS, ERP and partner systems on one inventory and event layer.",
-    systems: ["Auth", "Events", "Inventory", "Webhooks"],
+      "SeatsData structures and connects information across events, inventory, markets and transactions — the data intelligence layer the rest of the ecosystem reads from.",
+    systems: ["Events", "Inventory", "Markets", "Transactions"],
     readout: [
-      { label: "Contract", value: "API-first" },
-      { label: "Objects", value: "Shared" },
-      { label: "Push", value: "Signed" },
+      { label: "Role", value: "Data intelligence" },
+      { label: "Connects", value: "Fragmented sources" },
+      { label: "Output", value: "Structured layer" },
+    ],
+  },
+  {
+    index: "06",
+    title: "SeatsAutomation",
+    body: "Technology that automates repetitive ticketing operations and helps businesses work more efficiently.",
+    href: "/platform",
+    cta: "Explore Our Technology",
+    layer: "Automation",
+    analysis:
+      "SeatsAutomation automates repetitive ticketing operations so businesses can work more efficiently — workflows that used to be manual, running as infrastructure.",
+    systems: ["Workflows", "Operations", "Efficiency"],
+    readout: [
+      { label: "Role", value: "Automation" },
+      { label: "Removes", value: "Repetitive ops" },
+      { label: "Result", value: "Efficiency" },
     ],
   },
 ] as const;
 
+export const aboutPipelineCopy = {
+  eyebrow: "From Data to Intelligence",
+  title: "Data Is the Foundation. AI Is the Future.",
+  body: "Every ticket transaction creates data. Every event creates data. Every price change creates data. Every marketplace creates data. SeatsBrokers is building technology that transforms this enormous amount of information into intelligence.",
+  detail:
+    "Our goal isn't just to show data. Our goal is to make data useful — collected, connected, understood, predicted and acted on inside one technology ecosystem.",
+  detailLabel: "Make data useful",
+  highlights: [
+    { value: "Collect", label: "from sources" },
+    { value: "Connect", label: "into one layer" },
+    { value: "Act", label: "on intelligence" },
+  ],
+  points: [
+    {
+      title: "Collect",
+      body: "Connect information from multiple ticketing sources.",
+    },
+    {
+      title: "Connect",
+      body: "Bring fragmented data into a unified technology ecosystem.",
+    },
+    {
+      title: "Understand",
+      body: "Use technology and AI to identify patterns, relationships and opportunities.",
+    },
+    {
+      title: "Predict",
+      body: "Help businesses anticipate market movements and customer demand.",
+    },
+    {
+      title: "Act",
+      body: "Turn intelligence into automated workflows and business decisions.",
+    },
+  ],
+} as const;
+
+export const aboutPipelineSteps = [
+  {
+    index: "01",
+    title: "Collect",
+    body: "Connect information from multiple ticketing sources.",
+    signal: "Sources in",
+  },
+  {
+    index: "02",
+    title: "Connect",
+    body: "Bring fragmented data into a unified technology ecosystem.",
+    signal: "One layer",
+  },
+  {
+    index: "03",
+    title: "Understand",
+    body: "Use technology and AI to identify patterns, relationships and opportunities.",
+    signal: "Patterns",
+  },
+  {
+    index: "04",
+    title: "Predict",
+    body: "Help businesses anticipate market movements and customer demand.",
+    signal: "Anticipate",
+  },
+  {
+    index: "05",
+    title: "Act",
+    body: "Turn intelligence into automated workflows and business decisions.",
+    signal: "Workflows",
+  },
+] as const;
+
+export const aboutPipelineStats = [
+  { label: "Foundation", value: "Data" },
+  { label: "Future", value: "AI" },
+  { label: "Goal", value: "Useful" },
+  { label: "Motion", value: "Act" },
+] as const;
+
+export const aboutPipelineFeed = [
+  { time: "09:42:18", msg: "collect → event · inventory · price sources joined", ok: true },
+  { time: "09:42:04", msg: "connect → fragmented feeds on one ecosystem layer", ok: true },
+  { time: "09:41:51", msg: "understand → demand pattern scored for the desk", ok: true },
+  { time: "09:41:38", msg: "predict → market movement window attached", ok: true },
+  { time: "09:41:22", msg: "act → workflow queued from intelligence, not a report", ok: true },
+  { time: "09:41:09", msg: "goal → data made useful · not merely displayed", ok: true },
+] as const;
+
+export const aboutAudiencesCopy = {
+  eyebrow: "Built for the Modern Ticketing Business",
+  title: "Technology for the businesses that power the global event economy.",
+  intro: "SeatsBrokers provides technology for the businesses that power the global event economy.",
+} as const;
+
 export const aboutAudiences = [
   {
-    title: "Ticket brokers",
-    body: "Manage inventory, pricing and marketplace distribution.",
+    title: "Brokers",
+    body: "Operate inventory, pricing, sales and marketplace distribution through intelligent technology.",
     href: "/brokers",
   },
   {
-    title: "Travel companies",
-    body: "Source tickets and create customer-ready quotations.",
-    href: "/travel-partners",
+    title: "Sellers",
+    body: "Connect inventory with professional buyers and distribution channels.",
+    href: "/brokers",
   },
   {
-    title: "Ticket marketplaces",
-    body: "Connect inventory and order infrastructure through APIs.",
+    title: "Marketplaces",
+    body: "Access scalable inventory and transaction infrastructure through APIs.",
     href: "/marketplace-connectivity",
   },
   {
-    title: "Technology partners",
-    body: "Integrate ticket inventory and event data into your applications.",
+    title: "Travel Companies",
+    body: "Discover inventory and build ticketing experiences directly into travel operations.",
+    href: "/travel-partners",
+  },
+  {
+    title: "Technology Companies",
+    body: "Integrate ticketing capabilities into their own products using modern APIs.",
     href: "/api",
   },
 ] as const;
 
 export const aboutPrinciplesCopy = {
-  eyebrow: "How we work",
-  title: "Technology built specifically for ticketing",
+  eyebrow: "Why SeatsBrokers?",
+  title: "Technology Built With Real Industry Knowledge",
   intro:
-    "Don't tell the market we have an ERP for ticket brokers — we provide the technology infrastructure for the global ticketing ecosystem.",
-  contractKicker: "Control plane",
+    "Decades of understanding the ticketing ecosystem provide the foundation for everything we build — then AI, APIs and a connected stack scale that knowledge.",
+  contractKicker: "The difference",
   contract:
-    "API-first architecture, cloud infrastructure, real-time sync and AI-powered pricing — the stack professional ticket businesses run on. Recommendations stay advisory; the desk decides.",
+    "Experience plus AI-first systems, purpose-built for ticketing, connected as one ecosystem and designed to scale across markets, events and sales channels.",
 } as const;
 
 export const aboutPrinciples = [
   {
     index: "01",
-    title: "Infrastructure, not a bolt-on",
-    body: "We provide the technology infrastructure for the global ticketing ecosystem — the layer connecting brokers, marketplaces and travel partners.",
-    systems: ["Control plane", "Shared event layer", "One inventory clock"],
-    contract: "Partners connect to the same layer — not a sidecar ERP bolted onto someone else's stack.",
+    title: "30+ Years of Experience",
+    body: "Decades of understanding the ticketing ecosystem provide the foundation for everything we build.",
+    systems: ["Industry knowledge", "Ecosystem", "Foundation"],
+    contract: "We know what matters because we have lived the market.",
   },
   {
     index: "02",
-    title: "Built for ticketing",
-    body: "Event intelligence, inventory automation, marketplace connectivity, AI pricing and partner commerce — systems designed for this market, not adapted from another one.",
-    systems: ["Event records", "Listing fan-out", "Ask vs floor"],
-    contract: "Category bands, onsale windows and marketplace holds are first-class — not generic SKUs.",
+    title: "AI-First Thinking",
+    body: "We are building intelligent systems designed to automate processes, analyse data and support better decisions.",
+    systems: ["Automate", "Analyse", "Decide"],
+    contract: "Intelligence is in the product — not a slide at the end.",
   },
   {
     index: "03",
-    title: "Technology-first",
-    body: "API-first architecture, cloud infrastructure, real-time sync and AI-powered pricing — the stack professional ticket businesses run on.",
-    systems: ["API-first", "Cloud", "Real-time sync", "Advisory AI"],
-    contract: "Pricing intelligence is in the loop. Authority stays with the ticket business.",
+    title: "Purpose-Built Technology",
+    body: "Our products are designed specifically around the unique requirements of the ticketing industry.",
+    systems: ["Ticketing-native", "Inventory", "Events"],
+    contract: "Not a generic stack adapted after the fact.",
+  },
+  {
+    index: "04",
+    title: "API-First Infrastructure",
+    body: "Businesses can connect SeatsBrokers technology directly into their own systems.",
+    systems: ["APIs", "Partner systems", "Direct connect"],
+    contract: "The stack comes to you — you do not rebuild around it.",
+  },
+  {
+    index: "05",
+    title: "Connected Ecosystem",
+    body: "Payments, inventory, trading, APIs, data and intelligence work together instead of operating as isolated systems.",
+    systems: ["Payments", "Trading", "Intelligence"],
+    contract: "One ecosystem. Not six disconnected tools.",
+  },
+  {
+    index: "06",
+    title: "Built to Scale",
+    body: "Our infrastructure is designed for businesses operating across multiple markets, events and sales channels.",
+    systems: ["Markets", "Events", "Channels"],
+    contract: "Volume and geography are the default, not an exception.",
   },
 ] as const;
 
-export const aboutOffices = [
-  {
-    city: "London",
-    region: "Europe",
-    code: "LON",
-    x: 48,
-    y: 34,
-    tz: "GMT",
-    window: "08:00–18:00",
-    desk: "Partner desk",
-    coverage: "EMEA brokers, travel desks and marketplace sync",
-    handoff: "Passes Americas coverage to NYC at 13:00 GMT",
-  },
-  {
-    city: "New York",
-    region: "Americas",
-    code: "NYC",
-    x: 22,
-    y: 42,
-    tz: "EST",
-    window: "08:00–18:00",
-    desk: "Partner desk",
-    coverage: "Americas brokers, travel quotes and channel ops",
-    handoff: "Takes Americas coverage from LON; overlaps DXB close",
-  },
-  {
-    city: "Dubai",
-    region: "Middle East",
-    code: "DXB",
-    x: 68,
-    y: 52,
-    tz: "GST",
-    window: "08:00–18:00",
-    desk: "Partner desk",
-    coverage: "MEA and early EMEA partners on the same platform",
-    handoff: "Opens the clock; hands EMEA peak to LON",
-  },
-] as const;
-
-export const aboutPresenceCopy = {
-  eyebrow: "Global operations",
-  title: "Three offices. One technology platform.",
-  body: "SeatsBrokers operates from London, New York and Dubai — the same platform, the same inventory and event layer, wherever partners work.",
-  sun: "Follow-the-sun coverage — LON, NYC and DXB share one partner desk, not three product stacks.",
+export const aboutStackCopy = {
+  eyebrow: "Our Technology Stack",
+  title: "The Building Blocks of Intelligent Ticketing",
+  intro: "The layers SeatsBrokers builds on — from machine intelligence to real-time systems.",
+  contractKicker: "The stack",
+  contract:
+    "Artificial intelligence, data intelligence, automation, APIs, cloud infrastructure and real-time systems — the building blocks of intelligent ticketing.",
 } as const;
 
-export const aboutOpsCopy = {
-  eyebrow: "Company operations",
-  title: "Three offices on one coverage clock",
-  body: "Partner desks in London, New York and Dubai cover the same platform — follow-the-sun windows, not a market ticker.",
-  detail:
-    "Each office runs the same inventory, event and channel layer. Coverage windows hand off so brokers, travel teams and marketplaces always have a live partner desk on SeatsBrokers — one technology platform, three cities.",
-  detailLabel: "How coverage works",
-  highlights: [
-    { value: "3", label: "offices" },
-    { value: "LON·NYC·DXB", label: "coverage clock" },
-    { value: "10,000+", label: "B2B partners" },
-  ],
-  points: [
-    {
-      title: "Follow-the-sun windows",
-      body: "London, New York and Dubai each cover 08:00–18:00 local. The desks overlap so EMEA, Americas and MEA partners are not waiting on a single timezone.",
-    },
-    {
-      title: "Partner desk status",
-      body: "Each office shows live, covering or standby as the clock moves. The status is operational coverage — not a price feed.",
-    },
-    {
-      title: "One platform",
-      body: "Inventory, events, channels and APIs are the same objects in every office. Partners do not get a regional fork of SeatsBrokers.",
-    },
-    {
-      title: "Handoff discipline",
-      body: "When a window closes, coverage is passed — LON to NYC for Americas quotes, DXB into LON for EMEA peak — so the partner desk stays continuous.",
-    },
-  ],
+export const aboutStack = [
+  {
+    index: "01",
+    title: "Artificial Intelligence",
+    body: "Machine intelligence designed to analyse complex ticketing data and assist decision-making.",
+    systems: ["Analyse", "Assist", "Decide"],
+    contract: "Intelligence that helps the desk — it does not replace it.",
+  },
+  {
+    index: "02",
+    title: "Data Intelligence",
+    body: "Structured data across events, inventory, pricing, sellers, buyers and markets.",
+    systems: ["Events", "Inventory", "Markets"],
+    contract: "Structure first. Then intelligence can run.",
+  },
+  {
+    index: "03",
+    title: "Automation",
+    body: "Intelligent workflows that reduce manual operations.",
+    systems: ["Workflows", "Ops", "Reduce"],
+    contract: "Repetition leaves the desk. Judgment stays.",
+  },
+  {
+    index: "04",
+    title: "APIs",
+    body: "Modern connectivity between businesses, platforms and systems.",
+    systems: ["Connect", "Platforms", "Systems"],
+    contract: "Partners plug in. They do not rebuild the market.",
+  },
+  {
+    index: "05",
+    title: "Cloud Infrastructure",
+    body: "Scalable technology infrastructure built for high-volume digital operations.",
+    systems: ["Scale", "Volume", "Digital"],
+    contract: "Built for high-volume ticketing, not a weekend site.",
+  },
+  {
+    index: "06",
+    title: "Real-Time Systems",
+    body: "Technology designed to work with continuously changing event and inventory data.",
+    systems: ["Events", "Inventory", "Live"],
+    contract: "The market does not wait for a batch job.",
+  },
+] as const;
+
+export const aboutJourneyCopy = {
+  eyebrow: "Our Journey",
+  title: "From Ticketing Expertise to AI Technology",
+  intro:
+    "We began with knowledge of how ticketing works. The industry moved to digital marketplaces and global distribution. We built technology around the real problems — and now we are taking the next step with AI.",
+  path: "seatsbrokers / journey",
+  ledgerKicker: "Five eras",
+  close: "The journey continues.",
 } as const;
 
-export const aboutOpsStats = [
-  { label: "Offices", value: "3" },
-  { label: "Clock", value: "Follow-sun" },
-  { label: "Partners", value: "10,000+" },
-  { label: "Stack", value: "1 platform" },
+export const aboutChapters = [
+  {
+    index: "01",
+    title: "30 Years Ago",
+    kicker: "Industry knowledge",
+    body: "We began building knowledge and experience in the ticketing industry.",
+    analysis:
+      "The company starts with how ticketing actually works — desks, inventory, buyers and the operational reality of live events — not with a generic software thesis.",
+    stack: ["Ticketing", "Experience", "Desks"],
+    signals: [
+      { label: "Era", value: "Knowledge" },
+      { label: "Object", value: "The industry" },
+      { label: "Motion", value: "Learn" },
+    ],
+    operates: "We began building knowledge and experience in the ticketing industry.",
+  },
+  {
+    index: "02",
+    title: "The Industry Changed",
+    kicker: "Digital distribution",
+    body: "Ticketing moved from traditional operations toward digital marketplaces and global distribution.",
+    analysis:
+      "Marketplaces, global channels and digital operations replaced local, manual workflows. The problem stopped being “have tickets” and became “operate at network scale.”",
+    stack: ["Digital", "Marketplaces", "Global"],
+    signals: [
+      { label: "From", value: "Traditional" },
+      { label: "To", value: "Digital" },
+      { label: "Scale", value: "Global" },
+    ],
+    operates: "Ticketing moved from traditional operations toward digital marketplaces and global distribution.",
+  },
+  {
+    index: "03",
+    title: "We Adapted",
+    kicker: "Real problems",
+    body: "We started building technology around the real problems businesses faced.",
+    analysis:
+      "Instead of importing a stack from another industry, SeatsBrokers built around inventory, pricing, distribution and the operational load professional ticket businesses actually carry.",
+    stack: ["Inventory", "Pricing", "Distribution"],
+    signals: [
+      { label: "Input", value: "Real problems" },
+      { label: "Output", value: "Technology" },
+      { label: "Fit", value: "Ticketing" },
+    ],
+    operates: "We started building technology around the real problems businesses faced.",
+  },
+  {
+    index: "04",
+    title: "Technology Became the Foundation",
+    kicker: "Platforms & APIs",
+    body: "Our experience evolved into platforms, APIs, automation and digital infrastructure.",
+    analysis:
+      "Knowledge became systems: platforms for the desk, APIs for partners, automation for repetitive work, and digital infrastructure the business could run on.",
+    stack: ["Platforms", "APIs", "Automation"],
+    signals: [
+      { label: "Shape", value: "Infrastructure" },
+      { label: "Connect", value: "APIs" },
+      { label: "Run", value: "Automation" },
+    ],
+    operates: "Our experience evolved into platforms, APIs, automation and digital infrastructure.",
+  },
+  {
+    index: "05",
+    title: "The AI Era",
+    kicker: "Intelligent ticketing",
+    body: "Now we are taking the next step — using artificial intelligence and data to make ticketing intelligent.",
+    analysis:
+      "The next layer is intelligence: AI and data on top of the infrastructure so ticketing is not only digital, but able to understand, predict and act.",
+    stack: ["AI", "Data", "Intelligence"],
+    signals: [
+      { label: "Layer", value: "AI" },
+      { label: "Fuel", value: "Data" },
+      { label: "Aim", value: "Intelligent" },
+    ],
+    operates: "The journey continues.",
+  },
 ] as const;
 
-export const aboutOpsFeed = [
-  { time: "09:42:18", msg: "coverage.window → LON primary · EMEA partners", ok: true },
-  { time: "09:42:04", msg: "desk.handoff → NYC taking Americas quotes", ok: true },
-  { time: "09:41:51", msg: "partner.desk → travel quote queue covered", ok: true },
-  { time: "09:41:38", msg: "platform.sync → one inventory layer · 3 offices", ok: true },
-  { time: "09:41:22", msg: "coverage.window → DXB covering MEA open", ok: true },
-  { time: "09:41:09", msg: "partner.desk → broker channel ops on LON", ok: true },
+export const aboutBuildingCopy = {
+  eyebrow: "What We Are Building",
+  title: "The Intelligent Operating System for Ticketing",
+  intro:
+    "We envision a future where a ticket business doesn't need to manually monitor hundreds of marketplaces, analyse thousands of prices or spend hours managing repetitive operations. Instead, intelligent technology can help.",
+  close: "This is the future SeatsBrokers is working toward.",
+} as const;
+
+export const aboutBuildingVerbs = [
+  { title: "Discover inventory.", body: "Find the right tickets without watching every channel by hand." },
+  { title: "Analyse markets.", body: "See what the market is doing from one intelligence layer." },
+  { title: "Understand pricing.", body: "Turn price noise into something a desk can use." },
+  { title: "Identify opportunities.", body: "Surface the next move instead of burying it in reports." },
+  { title: "Automate workflows.", body: "Let repetitive operations run as infrastructure." },
+  { title: "Connect businesses.", body: "APIs and ecosystem, not side-channel exports." },
+  { title: "Support decisions.", body: "AI-assisted judgment — the business still decides." },
+  { title: "Optimize operations.", body: "Continuously improve how inventory is sourced, priced, distributed and sold." },
 ] as const;
+
+export const aboutMissionCopy = {
+  eyebrow: "Our Mission",
+  title: "Make the Global Ticketing Industry Intelligent.",
+  intro:
+    "Our mission is to combine AI, data and technology with deep industry knowledge to create the infrastructure that powers the next generation of ticket businesses.",
+  lead: "We want to help businesses move from:",
+} as const;
+
+export const aboutTransforms = [
+  { from: "Manual", to: "Automated" },
+  { from: "Data", to: "Intelligence" },
+  { from: "Disconnected", to: "Connected" },
+  { from: "Reactive", to: "Predictive" },
+  { from: "Complex", to: "Simple" },
+] as const;
+
+export const aboutFutureCopy = {
+  eyebrow: "The Future Is Intelligent",
+  title: "Digital is not the final destination. Intelligence is.",
+  intro: "The ticketing industry is becoming increasingly digital. But digital is not the final destination.",
+  pairs: [
+    { from: "The next generation of ticketing platforms will not simply store information.", to: "They will understand it." },
+    { from: "They will not simply display prices.", to: "They will analyse them." },
+    { from: "They will not simply connect inventory.", to: "They will intelligently help businesses decide what to do with it." },
+  ],
+  close: "SeatsBrokers is building for that future.",
+} as const;
+
+export const aboutCloseCopy = {
+  eyebrow: "SeatsBrokers",
+  title: "AI + Technology + Ticketing",
+  pillars: [
+    "30 years of industry knowledge.",
+    "Modern technology.",
+    "Artificial intelligence.",
+    "Global infrastructure.",
+    "One vision.",
+  ],
+  close: "Building the Intelligent Future of Ticketing.",
+} as const;
+
+export const aboutCloseCtas = aboutPageCtas;

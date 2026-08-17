@@ -236,7 +236,7 @@ export function VenueIntelligenceSection() {
             </p>
             <h2 className="vi-title">
               Understand the venue{" "}
-              <em className="font-serif font-medium italic text-primary">before you sell.</em>
+              <em className="font-medium italic text-primary">before you sell.</em>
             </h2>
             <p className="vi-lead">
               Interactive venue maps with sections, categories, rows and seating areas — connected to

@@ -1,5 +1,7 @@
 /** Platform overview — whole-stack map. Deep-links to product pages; does not duplicate them. */
 
+import { modules } from "./modules";
+
 export const platformHeroCopy = {
   eyebrow: "Platform Overview",
   title: "One Centralized Ticketing Infrastructure",
@@ -14,11 +16,11 @@ export const platformHeroPoints = [
 ] as const;
 
 export const platformStackLayers = [
-  { id: "events", index: "01", label: "Event intelligence", tag: "CATALOG", href: "/event-intelligence" },
+  { id: "events", index: "01", label: modules.intel.name, tag: "CATALOG", href: "/event-intelligence" },
   { id: "brokers", index: "02", label: "Broker platform", tag: "INVENTORY", href: "/brokers" },
-  { id: "marketplace", index: "03", label: "Marketplace connectivity", tag: "SYNC", href: "/marketplace-connectivity" },
+  { id: "marketplace", index: "03", label: modules.market.name, tag: "SYNC", href: "/marketplace-connectivity" },
   { id: "travel", index: "04", label: "Travel partners", tag: "QUOTES", href: "/travel-partners" },
-  { id: "api", index: "05", label: "API infrastructure", tag: "CONNECT", href: "/api" },
+  { id: "api", index: "05", label: modules.link.name, tag: "CONNECT", href: "/api" },
 ] as const;
 
 export const platformModules = [
@@ -40,7 +42,7 @@ export const platformModules = [
   },
   {
     index: "03",
-    title: "Marketplace connectivity",
+    title: modules.market.name,
     body: "List once and push everywhere. Quantity, price and listing status stay aligned — orders and delivery come back the same path.",
     href: "/marketplace-connectivity",
     cta: "Explore channels",
@@ -48,7 +50,7 @@ export const platformModules = [
   },
   {
     index: "04",
-    title: "Event intelligence",
+    title: modules.intel.name,
     body: "Structured events, onsale radar, demand signals and forecast context — know the event and the market before you sell.",
     href: "/event-intelligence",
     cta: "Explore intelligence",
@@ -56,7 +58,7 @@ export const platformModules = [
   },
   {
     index: "05",
-    title: "API platform",
+    title: modules.link.name,
     body: "Events, inventory, listings, orders, pricing, delivery and partner APIs — authenticate, call the stack, receive signed webhooks.",
     href: "/api",
     cta: "Explore APIs",

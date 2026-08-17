@@ -1,8 +1,8 @@
 import type { CSSProperties } from "react";
-import { Globe2 } from "lucide-react";
+import { Workflow } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
-import { ConsoleCopyPanel } from "@/components/pages/brokers/ConsoleCopyPanel";
-import { aboutOpsCopy } from "@/content/about-page-data";
+import { ConsoleCopyPanel, type ConsoleCopyMeta } from "@/components/pages/brokers/ConsoleCopyPanel";
+import { aboutPipelineCopy } from "@/content/about-page-data";
 import { AboutOpsConsole } from "./AboutOpsConsole";
 
 const tiltStyle = {
@@ -12,11 +12,11 @@ const tiltStyle = {
 
 export function AboutLiveConsole() {
   return (
-    <section className="section-curve relative isolate scroll-mt-24 bg-surface py-20 sm:py-24">
+    <section className="section-curve relative isolate scroll-mt-24 bg-background py-20 sm:py-24">
       <div className="container-page relative z-10">
         <div className="lc-section">
           <Reveal className="lc-section-copy min-w-0">
-            <ConsoleCopyPanel meta={aboutOpsCopy} isDark={false} />
+            <ConsoleCopyPanel meta={aboutPipelineCopy as ConsoleCopyMeta} isDark={false} />
           </Reveal>
 
           <Reveal delay={120} className="lc-section-stage min-w-0">
@@ -24,7 +24,7 @@ export function AboutLiveConsole() {
               <div className="lc-tilt-card">
                 <AboutOpsConsole />
                 <span className="lc-tilt-badge" aria-hidden>
-                  <Globe2 className="size-4" />
+                  <Workflow className="size-4" />
                 </span>
                 <span className="lc-tilt-shadow" aria-hidden />
               </div>

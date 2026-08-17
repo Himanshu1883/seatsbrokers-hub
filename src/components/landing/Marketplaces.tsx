@@ -16,6 +16,7 @@ import {
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 import { brand } from "@/content/site";
+import { modules } from "@/content/modules";
 import logo from "@/assets/seatsbrokers-logo.png";
 
 type HubItem = {
@@ -101,10 +102,10 @@ export function Marketplaces() {
       <div className="container-page relative z-10">
         <Reveal>
           <p className="text-center section-eyebrow text-muted-foreground">
-            Built for the Global Ticketing Ecosystem
+            {modules.market.name}
           </p>
           <h2 className="mx-auto mt-3 max-w-lg text-center text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Everything flows through one hub.
+            {modules.market.tagline}
           </h2>
         </Reveal>
 

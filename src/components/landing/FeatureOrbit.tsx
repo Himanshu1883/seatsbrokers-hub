@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import logo from "@/assets/seatsbrokers-logo.png";
+import { modules } from "@/content/modules";
 
 const CYCLE_MS = 1200;
 
@@ -38,7 +39,7 @@ const features: {
     side: "left",
     accent: "mint",
     icon: BarChart3,
-    title: "Event Intelligence",
+    title: modules.intel.name,
     italic: "know what's coming",
     category: "Event Data",
     detail:
@@ -50,7 +51,7 @@ const features: {
     side: "left",
     accent: "amber",
     icon: RefreshCw,
-    title: "Marketplace Connectivity",
+    title: modules.market.name,
     italic: "list once, distribute",
     category: "Distribution",
     detail:
@@ -62,7 +63,7 @@ const features: {
     side: "right",
     accent: "teal",
     icon: Layers,
-    title: "Inventory Automation",
+    title: modules.source.name,
     italic: "one place to manage",
     category: "Inventory",
     detail:
@@ -74,7 +75,7 @@ const features: {
     side: "right",
     accent: "cyan",
     icon: TrendingUp,
-    title: "AI Pricing",
+    title: modules.pulse.name,
     italic: "you decide",
     category: "Intelligence",
     detail:
@@ -86,7 +87,7 @@ const features: {
     side: "right",
     accent: "forest",
     icon: ShieldCheck,
-    title: "API Infrastructure",
+    title: modules.link.name,
     italic: "connect your systems",
     category: "Integrations",
     detail:
@@ -155,7 +156,7 @@ export function FeatureOrbit() {
             </p>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.85rem]">
               Technology built specifically for{" "}
-              <em className="font-serif font-medium text-primary-deep italic">
+              <em className="font-medium text-primary-deep italic">
                 ticketing
               </em>
             </h2>
@@ -326,7 +327,7 @@ export function FeatureOrbit() {
                     </span>
                     <p className="text-[13px] leading-tight font-semibold text-foreground">
                       {f.title}{" "}
-                      <em className="font-serif font-medium text-muted-foreground italic">
+                      <em className="font-medium text-muted-foreground italic">
                         {f.italic}
                       </em>
                     </p>
@@ -446,7 +447,7 @@ export function FeatureOrbit() {
                 <span className="min-w-0 flex-1">
                   <span className="block text-[14px] font-semibold text-foreground">
                     {f.title}{" "}
-                    <em className="font-serif font-medium text-muted-foreground italic">
+                    <em className="font-medium text-muted-foreground italic">
                       {f.italic}
                     </em>
                   </span>

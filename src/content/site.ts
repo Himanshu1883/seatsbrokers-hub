@@ -1,3 +1,5 @@
+import { modules } from "./modules";
+
 export type NavLink =
   | { label: string; to: "/"; hash?: string; hidden?: boolean }
   | { label: string; to: string; hash?: never; hidden?: boolean };
@@ -7,6 +9,8 @@ export type FooterLink = {
   to: string;
   hash?: string;
 };
+
+export { modules, moduleList } from "./modules";
 
 export const brand = {
   name: "SeatsBrokers",
@@ -24,9 +28,9 @@ export const ctas = {
   login: { label: "Login", to: "/contact" },
   exploreBrokers: { label: "Explore Broker Platform", to: "/brokers" },
   exploreTravel: { label: "Explore Travel Partner Platform", to: "/travel-partners" },
-  exploreMarketplace: { label: "Explore Marketplace Connectivity", to: "/marketplace-connectivity" },
-  exploreEventIntel: { label: "Explore Event Intelligence", to: "/event-intelligence" },
-  viewApiDocs: { label: "View API Documentation", to: "/api" },
+  exploreMarketplace: { label: `Explore ${modules.market.name}`, to: "/marketplace-connectivity" },
+  exploreEventIntel: { label: `Explore ${modules.intel.name}`, to: "/event-intelligence" },
+  viewApiDocs: { label: `Explore ${modules.link.name}`, to: "/api" },
   requestApiAccess: { label: "Request API Access", to: "/contact" },
 } as const;
 
@@ -50,7 +54,7 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
       // { label: "Travel Partner Platform", to: "/travel-partners" },
       { label: "Marketplace Connectivity", to: "/marketplace-connectivity" },
       { label: "Event Intelligence", to: "/event-intelligence" },
-      { label: "API Platform", to: "/api" },
+      { label: "API", to: "/api" },
     ],
   },
   {
@@ -96,17 +100,17 @@ export const pageMeta = {
       "Turn ticket inventory into customer-ready travel experiences. Access inventory, add margins, generate quotes and sell through your travel business.",
   },
   marketplaceConnectivity: {
-    title: "Marketplace Connectivity — SeatsBrokers",
+    title: `${modules.market.name} — SeatsBrokers`,
     description:
       "One inventory. Multiple marketplaces. Connect your ticket operation to resale marketplaces through centralized API infrastructure.",
   },
   eventIntelligence: {
-    title: "Event Intelligence — SeatsBrokers",
+    title: `${modules.intel.name} — SeatsBrokers`,
     description:
       "Global events. Structured data. Actionable intelligence. Know the event, the market and the opportunity before you sell.",
   },
   api: {
-    title: "API Platform — SeatsBrokers",
+    title: `${modules.link.name} — SeatsBrokers`,
     description:
       "Build your ticket business on our APIs. Events, inventory, listings, orders, pricing, delivery and partner APIs for modern ticketing operations.",
   },
@@ -116,24 +120,24 @@ export const pageMeta = {
       "One centralized ticketing infrastructure connecting event data, inventory, marketplaces, pricing, partners and payments.",
   },
   marketAnalytics: {
-    title: "Market Analytics — SeatsBrokers",
+    title: `${modules.pulse.name} — SeatsBrokers`,
     description:
       "From ticket data to business intelligence. Event, market, broker and partner analytics for modern ticket businesses.",
   },
   aiPricing: {
-    title: "AI Pricing — SeatsBrokers",
+    title: `${modules.pulse.name} — SeatsBrokers`,
     description:
       "AI-powered pricing intelligence. Market data analyzed into pricing recommendations — AI recommends, you decide.",
   },
   integrations: {
-    title: "Integrations — SeatsBrokers",
+    title: `${modules.link.name} — SeatsBrokers`,
     description:
       "Connect POS systems, inventory systems, internal ERP, websites, mobile applications and partner systems through API-first architecture.",
   },
   about: {
     title: "About — SeatsBrokers",
     description:
-      "Powering the technology behind modern ticket resale. Thirty years building infrastructure for the global ticketing ecosystem.",
+      "SeatsBrokers is an AI-powered technology company transforming the global ticketing industry — 30 years of industry knowledge, rebuilt as intelligent infrastructure.",
   },
   contact: {
     title: "Contact — SeatsBrokers",

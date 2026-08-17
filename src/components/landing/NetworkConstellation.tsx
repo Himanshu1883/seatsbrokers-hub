@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { ctas } from "@/content/site";
+import { modules } from "@/content/modules";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { GlobeCanvas } from "@/components/landing/globe/GlobeCanvas";
 
@@ -32,7 +33,7 @@ const stages: Stage[] = [
     id: "events",
     index: "01",
     node: "Event Data",
-    label: "Global Events",
+    label: modules.intel.name,
     title: "Structured event data across every category.",
     body: "Football, rugby, cricket, tennis, Formula 1, boxing, music, theatre, arts and festivals — catalogued with onsale dates, venues and demand signals.",
     metric: "12K+",
@@ -44,7 +45,7 @@ const stages: Stage[] = [
     id: "inventory",
     index: "02",
     node: "Inventory",
-    label: "Ticket Inventory",
+    label: modules.source.name,
     title: "Manage tickets, sections, rows and pricing.",
     body: "Sections, rows, quantity, prices, ticket types, delivery information, restrictions and packages — managed from one centralized inventory layer.",
     metric: "84K+",
@@ -68,7 +69,7 @@ const stages: Stage[] = [
     id: "marketplaces",
     index: "04",
     node: "Distribute",
-    label: "Marketplace Connectivity",
+    label: modules.market.name,
     title: "List once. Distribute everywhere.",
     body: "Automated listing distribution, price synchronization, quantity sync and automatic delisting after sale — across every connected resale marketplace.",
     metric: "8+",
@@ -80,7 +81,7 @@ const stages: Stage[] = [
     id: "settle",
     index: "05",
     node: "Settle",
-    label: "Settlement",
+    label: modules.funds.name,
     title: "Brokers, travel partners and customers connected.",
     body: "Order synchronization, delivery updates, partner quotations, payment infrastructure and clean settlement — closing the loop on every ticket sale.",
     metric: "165",

@@ -1,8 +1,10 @@
-/** Marketplace Connectivity hero: left copy, channel-mesh stage data, plus unused mini-card datasets for MarketplaceConsoleCards. */
+/** SeatsMarket™ hero: left copy, channel-mesh stage data, plus unused mini-card datasets for MarketplaceConsoleCards. */
+
+import { modules } from "./modules";
 
 export const marketplaceHeroCopy = {
-  eyebrow: "Marketplace Connectivity",
-  title: "One Inventory. Multiple Marketplaces.",
+  eyebrow: modules.market.name,
+  title: modules.market.tagline,
   subhead: "List once. Distribute everywhere — listing creation, updates, synchronization and automatic delisting from one hub.",
   body: "Connect your ticket operation to multiple resale marketplaces through centralized API infrastructure. SeatsBrokers keeps quantity, price and listing status aligned across every connected channel.",
 } as const;

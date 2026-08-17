@@ -4,6 +4,7 @@ import { ConsoleCopyPanel, type ConsoleCopyMeta } from "./ConsoleCopyPanel";
 import { AiPredictionsConsole } from "./AiPredictionsConsole";
 import { MarketIntelligenceConsole } from "./MarketIntelligenceConsole";
 import { PosConsole } from "./PosConsole";
+import { modules } from "@/content/modules";
 
 export type LiveConsoleVariant =
   | "pos"
@@ -60,7 +61,7 @@ const variants: Record<LiveConsoleVariant, LiveConsoleMeta | null> = {
     tiltX: 5,
   },
   marketIntelligence: {
-    eyebrow: "Market Intelligence",
+    eyebrow: modules.pulse.name,
     title: "Read the market before you list",
     body: "An analyst terminal for ticket pricing — ask ladders, movement curves, volume signals and undercut alerts in the format brokers actually trade on.",
     detail:
@@ -95,7 +96,7 @@ const variants: Record<LiveConsoleVariant, LiveConsoleMeta | null> = {
     tiltX: 3,
   },
   aiPredictions: {
-    eyebrow: "AI Pricing",
+    eyebrow: modules.pulse.name,
     title: "AI recommends. You decide.",
     body: "Dynamic pricing recommendations powered by market intelligence — confidence scores, floor guards and full broker override before anything goes live.",
     detail:

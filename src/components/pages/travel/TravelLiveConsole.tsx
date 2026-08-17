@@ -5,6 +5,7 @@ import { ConsoleCopyPanel, type ConsoleCopyMeta } from "@/components/pages/broke
 import { InventorySearchConsole } from "./InventorySearchConsole";
 import { PartnerOrdersConsole } from "./PartnerOrdersConsole";
 import { QuotationBuilderConsole } from "./QuotationBuilderConsole";
+import { modules } from "@/content/modules";
 
 export type TravelLiveConsoleVariant = "inventorySearch" | "quotationBuilder" | "partnerOrders";
 
@@ -18,8 +19,8 @@ type TravelLiveConsoleMeta = ConsoleCopyMeta & {
 
 const variants: Record<TravelLiveConsoleVariant, TravelLiveConsoleMeta> = {
   inventorySearch: {
-    eyebrow: "Inventory Access",
-    title: "Browse broker inventory with partner pricing built in",
+    eyebrow: modules.source.name,
+    title: modules.source.tagline,
     body: "A live buying workspace — markets, events, section bands and margin preview — so travel desks see partner cost before they quote.",
     detail:
       "This is the same catalog brokers publish on their desk. When a listing syncs, it lands in the access feed with seats, delivery method and your margin math — no spreadsheet chase between broker and travel partner.",
@@ -54,8 +55,8 @@ const variants: Record<TravelLiveConsoleVariant, TravelLiveConsoleMeta> = {
     tiltX: 3,
   },
   quotationBuilder: {
-    eyebrow: "Quotation Tool",
-    title: "Create professional ticket quotes in seconds",
+    eyebrow: modules.deal.name,
+    title: modules.deal.tagline,
     body: "Select the event, lock the seats, add your margin and share a branded PDF — WhatsApp, email or download — before the customer has left the call.",
     detail:
       "The five steps that used to live as a list now run inside the builder. Ticket cost plus your margin is the customer price, using the same math as Margin Management. Nothing sends until you share.",

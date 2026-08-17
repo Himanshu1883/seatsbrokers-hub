@@ -208,10 +208,10 @@ export function StickyScrollShowcase() {
                 </div>
 
                 <p className="section-eyebrow text-primary">{panel.kicker}</p>
-                <p className="mt-3 font-display text-sm font-semibold tracking-[0.08em] text-muted-foreground uppercase">
+                <p className="mt-3 font-display text-sm font-semibold text-muted-foreground">
                   {panel.title}
                 </p>
-                <h2 className="mt-6 max-w-xl break-words text-[clamp(1.35rem,4.5vw,3.25rem)] leading-[1.05] font-bold tracking-tight text-foreground uppercase">
+                <h2 className="mt-6 max-w-xl break-words text-[clamp(1.35rem,4.5vw,3.25rem)] leading-[1.05] font-bold tracking-tight text-foreground">
                   {panel.headline}
                   <br />
                   <span className="text-primary">{panel.accent}</span>

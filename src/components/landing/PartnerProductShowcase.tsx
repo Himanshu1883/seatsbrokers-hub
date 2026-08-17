@@ -12,6 +12,7 @@ import {
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { ctas } from "@/content/site";
+import { modules } from "@/content/modules";
 import {
   Dialog,
   DialogClose,
@@ -42,7 +43,7 @@ const slides = [
   {
     id: "events",
     icon: Tags,
-    tag: "Events",
+    tag: modules.intel.name,
     title: "Global event catalog",
     body: "Browse football, rugby, cricket, tennis, Formula 1, music, theatre and arts — with onsale dates, venues and demand signals.",
     points: ["Event onsale dates", "Venue maps", "Demand indicators"],
@@ -53,7 +54,7 @@ const slides = [
   {
     id: "market",
     icon: Layers3,
-    tag: "Market",
+    tag: modules.pulse.name,
     title: "Resale market intelligence",
     body: "Average price, lowest price, price movement, inventory volume and marketplace comparison — financial intelligence for brokers.",
     points: ["Price movement charts", "Category demand", "Marketplace comparison"],
@@ -64,7 +65,7 @@ const slides = [
   {
     id: "pricing",
     icon: LineChart,
-    tag: "Pricing",
+    tag: modules.pulse.name,
     title: "AI-powered pricing intelligence",
     body: "Market data analyzed into pricing recommendations. AI recommends — broker approves — price synchronized across marketplaces.",
     points: ["Pricing recommendations", "Approval workflow", "Automated sync"],
@@ -75,7 +76,7 @@ const slides = [
   {
     id: "partners",
     icon: Settings2,
-    tag: "Partners",
+    tag: modules.deal.name,
     title: "Partner commerce hub",
     body: "Travel partner inventory access, margin management, quotation tools and order management — all from one workspace.",
     points: ["Partner inventory", "Quote generation", "Order management"],

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal, useInView } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
-import { aboutAudiences, aboutOverviewCopy, aboutSurfaces } from "@/content/about-page-data";
+import { aboutOverviewCopy, aboutSurfaces } from "@/content/about-page-data";
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -117,22 +117,6 @@ export function AboutOverview() {
             </article>
           </Reveal>
         </div>
-
-        <Reveal delay={160}>
-          <div className="abt-audiences">
-            <p className="abt-audiences-kicker">Who we serve</p>
-            <ul>
-              {aboutAudiences.map((audience) => (
-                <li key={audience.title}>
-                  <SiteLink to={audience.href} className="abt-audience">
-                    <strong>{audience.title}</strong>
-                    <p>{audience.body}</p>
-                  </SiteLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
       </div>
     </section>
   );

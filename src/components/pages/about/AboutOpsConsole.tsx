@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Globe2 } from "lucide-react";
+import { Workflow } from "lucide-react";
 import { useInView } from "@/hooks/use-scroll-motion";
 import { ConsoleShell } from "@/components/pages/brokers/ConsoleShell";
 import {
-  aboutOffices,
-  aboutOpsFeed,
-  aboutOpsStats,
+  aboutPipelineFeed,
+  aboutPipelineStats,
+  aboutPipelineSteps,
 } from "@/content/about-page-data";
 
 function usePrefersReducedMotion() {
@@ -36,20 +36,6 @@ function useCycle(length: number, ms: number, enabled: boolean) {
   return active;
 }
 
-type DeskStatus = "live" | "covering" | "standby";
-
-function deskStatus(index: number, primary: number): DeskStatus {
-  if (index === primary) return "live";
-  if (index === (primary + 1) % aboutOffices.length) return "covering";
-  return "standby";
-}
-
-function statusLabel(status: DeskStatus) {
-  if (status === "covering") return "COVERING";
-  if (status === "standby") return "STANDBY";
-  return "LIVE";
-}
-
 export function AboutOpsConsole() {
   const rootRef = useRef<HTMLDivElement>(null);
   const { ref: inViewRef, inView } = useInView<HTMLDivElement>(0.25);
@@ -60,15 +46,17 @@ export function AboutOpsConsole() {
   };
 
   const live = inView && !reduced;
-  const primary = useCycle(aboutOffices.length, 2800, live);
-  const selected = aboutOffices[primary] ?? aboutOffices[0]!;
-  const feedRows = [...aboutOpsFeed, ...aboutOpsFeed];
+  const [picked, setPicked] = useState<number | null>(null);
+  const cycle = useCycle(aboutPipelineSteps.length, 2600, live && picked === null);
+  const active = picked ?? cycle;
+  const step = aboutPipelineSteps[active] ?? aboutPipelineSteps[0]!;
+  const feedRows = [...aboutPipelineFeed, ...aboutPipelineFeed];
 
   return (
-    <div ref={setRef} className="abt-ops" data-live={live ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / company / ops" status="LIVE" icon={Globe2}>
+    <div ref={setRef} className="abt-ops abt-pipe" data-live={live ? "true" : "false"}>
+      <ConsoleShell path="seatsbrokers / intelligence / pipeline" status="LIVE" icon={Workflow}>
         <div className="abt-ops-stats">
-          {aboutOpsStats.map((stat) => (
+          {aboutPipelineStats.map((stat) => (
             <div key={stat.label} className="lc-stat">
               <span className="lc-stat-label">{stat.label}</span>
               <strong className="lc-stat-value">{stat.value}</strong>
@@ -76,77 +64,47 @@ export function AboutOpsConsole() {
           ))}
         </div>
 
-        <div className="abt-ops-sun" aria-label="Follow-the-sun coverage windows">
+        <div className="abt-pipe-rail" aria-label="From data to intelligence">
           <header className="abt-ops-panel-head">
-            <span>Coverage clock</span>
-            <span>Follow-the-sun</span>
+            <span>Pipeline</span>
+            <span>Collect → Act</span>
           </header>
-          <ul>
-            {aboutOffices.map((office, index) => {
-              const status = deskStatus(index, primary);
-              return (
-                <li key={office.code} data-status={status} data-active={index === primary ? "true" : "false"}>
-                  <strong>{office.code}</strong>
-                  <em>
-                    {office.window} {office.tz}
-                  </em>
-                  <span>{statusLabel(status)}</span>
-                  <i aria-hidden />
-                </li>
-              );
-            })}
-          </ul>
+          <ol>
+            {aboutPipelineSteps.map((item, index) => (
+              <li key={item.index}>
+                <button
+                  type="button"
+                  data-active={index === active ? "true" : "false"}
+                  aria-pressed={index === active}
+                  onClick={() => setPicked((current) => (current === index ? null : index))}
+                >
+                  <span>{item.index}</span>
+                  <strong>{item.title}</strong>
+                </button>
+              </li>
+            ))}
+          </ol>
         </div>
 
         <div className="abt-ops-work">
           <section className="abt-ops-desks">
             <header className="abt-ops-panel-head">
-              <span>Partner desks</span>
-              <span>{selected.code} primary</span>
+              <span>Active stage</span>
+              <span>{step.signal}</span>
             </header>
-            <div className="abt-ops-table" role="table" aria-label="Office partner desks">
-              <div className="abt-ops-row abt-ops-row-head" role="row">
-                <span>Office</span>
-                <span>Window</span>
-                <span>Desk</span>
-                <span>Status</span>
-              </div>
-              {aboutOffices.map((office, index) => {
-                const status = deskStatus(index, primary);
-                return (
-                  <div
-                    key={office.code}
-                    className="abt-ops-row"
-                    role="row"
-                    data-active={index === primary ? "true" : "false"}
-                  >
-                    <span>
-                      <strong>{office.code}</strong> {office.city}
-                    </span>
-                    <span>
-                      {office.window} {office.tz}
-                    </span>
-                    <span>{office.desk}</span>
-                    <span data-status={status}>{statusLabel(status)}</span>
-                  </div>
-                );
-              })}
-            </div>
-            <p className="abt-ops-handoff">
-              <span>Handoff</span>
-              {selected.handoff}
+            <p className="abt-pipe-active">
+              <strong>
+                {step.index} {step.title}
+              </strong>
+              {step.body}
             </p>
           </section>
 
           <section className="abt-ops-feed-panel">
             <header className="abt-ops-panel-head">
-              <span>Ops feed</span>
-              <span>Coverage events</span>
+              <span>Intelligence feed</span>
+              <span>Data → action</span>
             </header>
-            <p className="abt-ops-selected">
-              <strong>{selected.city}</strong>
-              {selected.coverage}
-            </p>
             <div className="lc-feed-viewport lc-feed-viewport-sm">
               <ul className="lc-feed-list abt-ops-feed">
                 {feedRows.map((row, index) => (

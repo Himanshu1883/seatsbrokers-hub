@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { pageMeta, ctas } from "@/content/site";
+import { modules } from "@/content/modules";
 import { FeatureGrid, PageHero, SplitPanel } from "@/components/pages/shared/PageSections";
 
 const { title, description } = pageMeta.marketAnalytics;
@@ -21,13 +22,13 @@ function MarketAnalyticsPage() {
   return (
     <PageShell>
       <PageHero
-        eyebrow="Market Analytics"
-        title="From Ticket Data to Business Intelligence"
+        eyebrow={modules.pulse.name}
+        title={modules.pulse.tagline}
         body="Analytics dashboards for event demand, market pricing, broker performance and partner commerce — financial intelligence for ticket businesses."
         secondaryCta={ctas.exploreEventIntel}
       />
       <FeatureGrid
-        eyebrow="Event Analytics"
+        eyebrow={modules.intel.name}
         title="Understand demand, sales and inventory per event"
         items={[
           { title: "Demand", body: "Track demand indicators and onsale performance per event." },
@@ -37,7 +38,7 @@ function MarketAnalyticsPage() {
         ]}
       />
       <FeatureGrid
-        eyebrow="Market Analytics"
+        eyebrow={modules.pulse.name}
         title="See what the resale market is doing"
         items={[
           { title: "Marketplace prices", body: "Compare pricing across connected resale marketplaces." },

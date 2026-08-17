@@ -1,8 +1,10 @@
-/** Event Intelligence hero: left copy, AI forecast-lens stage data, plus unused mini-card datasets for EventIntelConsoleCards. */
+/** SeatsIntel™ hero: left copy, AI forecast-lens stage data, plus unused mini-card datasets for EventIntelConsoleCards. */
+
+import { modules } from "./modules";
 
 export const eventIntelHeroCopy = {
-  eyebrow: "Event Intelligence",
-  title: "Global Events. Structured Data. Actionable Intelligence.",
+  eyebrow: modules.intel.name,
+  title: modules.intel.tagline,
   subhead:
     "Know the event, the market and the opportunity before you sell — catalog, onsale calendar, demand signals and forecasts in one intelligence layer.",
   body: "SeatsBrokers indexes global events into one structured record — dates, venues, category bands and onsale windows — then tracks demand, price movement and comparable events against it. The same intelligence feeds broker pricing, inventory decisions and partner quoting.",

@@ -50,12 +50,12 @@ SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform
 | If I need to change... | Start here |
 |---|---|
 | Nav / hide a link / active state | `src/content/site.ts` → `src/components/landing/Nav.tsx` |
-| Logo on dark/light | `Nav.tsx` / `Footer.tsx` + `.brand-logo-on-dark*` in `styles.css` |
+| Logo on dark/light | Header: original PNG on light bar (`Nav.tsx`). Footer: `.brand-logo-on-dark*` in `styles.css` |
 | Homepage section | `src/routes/index.tsx` → `src/components/landing/<Section>.tsx` |
 | Product page sections | `src/routes/<page>.tsx` then that folder under `pages/` |
 | Shared hero/grid/steps | `src/components/pages/shared/PageSections.tsx` |
 | Live console | page-specific `*LiveConsole.tsx` + inner console + CSS prefix |
-| Copy / CTAs / SEO titles | `src/content/site.ts` or `*-hero-data.ts` |
+| Copy / CTAs / SEO titles | `src/content/site.ts` or `*-hero-data.ts`; official product modules in `src/content/modules.ts` |
 | Color / type / section chrome | `docs/DESIGN_SYSTEM.md` then `src/styles.css` `:root` |
 | Contact / demo form | `ContactHero` in `pages/contact/` + `ContactForm` in `PageSections.tsx`, or `DemoRequestForm` |
 | FAQ copy / accordion | `src/content/faq-data.ts` → `pages/faq/` + `src/routes/faq.tsx` |
@@ -79,7 +79,7 @@ TravelLiveConsole    → pages/travel
 MarketplaceLiveConsole → pages/marketplace
 EventIntelLiveConsole → pages/event-intelligence
 ApiLiveConsole       → pages/api
-AboutLiveConsole     → pages/about     (company ops only — not a product console)
+AboutLiveConsole     → pages/about     (data→intelligence pipeline — not a product console)
 ```
 
 Shared chrome: `ConsoleCopyPanel` + `ConsoleShell` (brokers folder) used by all terminal consoles.

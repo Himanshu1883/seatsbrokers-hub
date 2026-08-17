@@ -13,6 +13,7 @@ import {
 import { Reveal, useInView } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 import type { EventBackdropKey } from "@/lib/event-backdrops";
+import { modules } from "@/content/modules";
 
 type FlowSource = { icon: LucideIcon; label: string; packet: string };
 
@@ -117,8 +118,8 @@ const sellerBlueprint: FlowBlueprint = {
 const travelBlueprint: FlowBlueprint = {
   id: "travel",
   backdrop: "footballPitch",
-  eyebrow: "Travel partner platform",
-  title: "Create professional ticket quotes in seconds",
+  eyebrow: modules.deal.name,
+  title: modules.deal.tagline,
   intro:
     "Select event, select tickets, add margin, generate quote and share with customer — PDF, invoice, WhatsApp, email or branded customer link.",
   systemName: "seatsbrokers / travel-pipeline",

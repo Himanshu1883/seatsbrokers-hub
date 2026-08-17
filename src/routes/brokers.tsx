@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BrainCircuit, Radar, RefreshCw } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { pageMeta } from "@/content/site";
+import { modules } from "@/content/modules";
 import { BrokersHero } from "@/components/pages/brokers/BrokersHero";
 import { EventCatalogSection } from "@/components/pages/brokers/EventCatalogSection";
 import { InventoryManagementSection } from "@/components/pages/brokers/InventoryManagementSection";
@@ -64,7 +65,7 @@ function BrokersPage() {
       <EventCatalogSection />
 
       <InventoryManagementSection
-        eyebrow="Inventory Management"
+        eyebrow={modules.source.name}
         title="Manage every detail of your ticket inventory"
         intro="Tickets, sections, rows, pricing, delivery rules and packages — synchronized from your POS and distributed across every connected marketplace from one live console."
         items={[
@@ -116,7 +117,7 @@ function BrokersPage() {
       <LiveConsole variant="aiPredictions" />
 
       <WorkflowSteps
-        eyebrow="Connect Your Existing Systems"
+        eyebrow={modules.link.name}
         title="Broker POS → SeatsBrokers API → Inventory → Marketplaces"
         steps={[
           "Broker POS / inventory system connects via API",

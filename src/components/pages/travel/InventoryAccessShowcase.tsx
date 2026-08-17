@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { Reveal, useInView } from "@/hooks/use-scroll-motion";
 import { ConsoleShell } from "@/components/pages/brokers/ConsoleShell";
+import { modules } from "@/content/modules";
 
 const features = [
   {
@@ -386,8 +387,8 @@ export function InventoryAccessShowcase() {
 
       <div className="container-page relative z-10">
         <Reveal className="inv-head">
-          <p className="section-eyebrow text-center text-primary">Inventory Access</p>
-          <h2 className="inv-title">Access available ticket inventory through the platform</h2>
+          <p className="section-eyebrow text-center text-primary">{modules.source.name}</p>
+          <h2 className="inv-title">{modules.source.tagline}</h2>
         </Reveal>
 
         <Reveal delay={90} className="inv-console-wrap">

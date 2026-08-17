@@ -1,5 +1,7 @@
 /** Book a Demo page — conversion copy. No competitor names. */
 
+import { modules } from "./modules";
+
 export const demoHeroCopy = {
   eyebrow: "Book a Demo",
   title: "See the SeatsBrokers Platform in Action",
@@ -91,9 +93,9 @@ export const demoAudiences = [
 ] as const;
 
 export const demoAlsoFor = [
-  { label: "Marketplaces", href: "/marketplace-connectivity" },
-  { label: "Event intelligence", href: "/event-intelligence" },
-  { label: "Technology / API", href: "/api" },
+  { label: modules.market.name, href: "/marketplace-connectivity" },
+  { label: modules.intel.name, href: "/event-intelligence" },
+  { label: modules.link.name, href: "/api" },
 ] as const;
 
 export const demoSteps = [

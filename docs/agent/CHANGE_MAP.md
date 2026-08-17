@@ -9,8 +9,9 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | Request | Primary | Related |
 |---|---|---|
 | Navbar links / hide Platform & Travel Partners | `src/content/site.ts` `navLinks` | `src/components/landing/Nav.tsx`, `.site-nav-*` in `styles.css` |
+| Nav solid light bar / no Become a seller in header | `Nav.tsx`, `.site-nav-bar` in `styles.css` | Opaque `var(--background)` + muted `--border`; Login is `bg-primary` / `text-primary-foreground`; CTA still in Hero / FinalCTA / Footer / product pages |
 | Active nav style | `Nav.tsx` | — |
-| Logo visibility on dark | `Nav.tsx`, `Footer.tsx` | `.brand-logo-on-dark*` in `styles.css` |
+| Logo visibility on dark | Footer only (`.brand-logo-on-dark`); header uses original PNG on light bar | `.brand-logo-on-dark*` in `styles.css` |
 | Footer columns | `site.ts` `footerColumns` | `Footer.tsx` |
 | Footer legal links | `site.ts` `footerLegal` | Privacy / Terms / Cookie Policy → `/legal#privacy` `#terms` `#cookies` (same page). API Terms still `/api` |
 | FAQ page | `src/routes/faq.tsx` | `pages/faq/`, `faq-data.ts`, `.faq-*` in `styles.css` (dark `bh-hero` + topics glass); footer Resources “FAQs” → `/faq` |
@@ -63,8 +64,8 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | API docs-console hero | `pages/api/` hero + wall | `.apidoc-*` |
 | Auth / webhook consoles | API live consoles | `.apk-*` `.whk-*` |
 | `/about` | `src/routes/about.tsx` | `pages/about/`, `docs/about-page-plan.md` |
-| About hero atlas | `AboutHero.tsx` + `AboutJourneyWall.tsx` | `about-page-data.ts`, `.abt-*` |
-| About company ops console | `AboutLiveConsole.tsx` + `AboutOpsConsole.tsx` | coverage windows + partner desks, `.abt-ops-*` |
+| About hero intelligence core | `AboutHero.tsx` + `AboutJourneyWall.tsx` | `about-page-data.ts`, `.abt-*` (not office atlas) |
+| About pipeline console | `AboutLiveConsole.tsx` + `AboutOpsConsole.tsx` | Collect→Act pipeline, `.abt-ops-*` `.abt-pipe-*` |
 | `/book-demo` | `src/routes/book-demo.tsx` | `pages/book-demo/`, `book-demo-data.ts`, `.bdm-*` `.bds-*` |
 | What you will see (was FeatureGrid) | `DemoSessionBoard.tsx` | `.bds-*` |
 | `/platform` | `src/routes/platform.tsx` | `pages/platform/`, `platform-page-data.ts`, `.plt-*` |
@@ -88,9 +89,9 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 
 | Request | Primary | Related |
 |---|---|---|
-| Nav, footer, CTA labels, SEO | `src/content/site.ts` | — |
+| Nav, footer, CTA labels, SEO | `src/content/site.ts` | Product module names: `src/content/modules.ts` |
 | Hero mini-card / dashboard data | `src/content/*-hero-data.ts` | matching Wall component |
-| About copy / journey / offices | `src/content/about-page-data.ts` | `pages/about/` |
+| About copy / manifesto chapters | `src/content/about-page-data.ts` | `pages/about/` |
 | Book-a-demo copy / form options | `src/content/book-demo-data.ts` | `pages/book-demo/` |
 | Platform overview copy / module map | `src/content/platform-page-data.ts` | `pages/platform/` |
 | shadcn primitive | `src/components/ui/` | `components.json` |

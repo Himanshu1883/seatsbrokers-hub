@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { pageMeta, ctas } from "@/content/site";
+import { modules } from "@/content/modules";
 import { FeatureGrid, PageHero, SplitPanel, WorkflowSteps } from "@/components/pages/shared/PageSections";
 
 const { title, description } = pageMeta.aiPricing;
@@ -21,8 +22,8 @@ function AiPricingPage() {
   return (
     <PageShell>
       <PageHero
-        eyebrow="AI Pricing"
-        title="AI-Powered Pricing Intelligence"
+        eyebrow={modules.pulse.name}
+        title={modules.pulse.tagline}
         body="Turn market data into actionable pricing recommendations. The platform analyzes market signals and recommends pricing adjustments — the broker remains in control."
         secondaryCta={ctas.exploreBrokers}
       />

@@ -7,16 +7,16 @@ Source of truth: `src/styles.css` (`@theme` + `:root` / `.dark`) and Google Font
 | Token | Expected (brief) | Actual in code | Match? |
 |---|---|---|---|
 | Primary | `#198754` | `--primary: oklch(0.548 0.117 158.2)` (~Bootstrap success green, hue 158) | Approximate — stored as oklch, not hex |
-| Headings | Space Grotesk | `--font-display: "Space Grotesk"` via `font-display` | Yes |
-| Body | Inter | `--font-sans: "Inter"` (Tailwind default sans / body) | Yes |
+| Headings | Space Grotesk | `--font-display` = Space Grotesk (same stack as body; headings inherit) | Yes |
+| Body | Space Grotesk | `--font-sans: "Space Grotesk"` on `html, body` (was Inter) | Yes |
 | Mono / data | JetBrains Mono | `--font-mono: "JetBrains Mono"` via `font-mono`, `.section-eyebrow`, console chrome | Yes |
-| Extra font | — | **Playfair Display** as `--font-serif` (italic accents, globe/stats display) | Extra — not in the brief |
+| Extra font | — | none — Playfair Display dropped; italic emphasis stays in Space Grotesk (`font-style: italic`) | Yes |
 | Light bg | white / `#F6F9F7` | `--background: oklch(1 0 0)` (white); `--surface: oklch(0.978 0.002 247)` (cool gray, hue 247 — **not** green-tinted `#F6F9F7`) | Partial |
 | Light text | `#12181A` | `--foreground` / `--ink: oklch(0.205 0.005 285)` (slightly purple-neutral, not green-black) | Partial |
 | Light border | `#E4EAE6` | `--border: oklch(0.928 0.004 247)` (cool gray) | Partial |
 | Dark sections | `#050a08` / `#0a1512` / `#0a1210` | `--dark: oklch(0.19 0.012 160)` used as `bg-dark` on **light** pages. The `.dark` class is unused shadcn purple-blue (`oklch(0.129 0.042 264)`) | **Mismatch** — dark *sections* use `--dark`, not `.dark` |
 
-**Rule:** do not silently overwrite tokens to hex. New UI uses `bg-primary`, `bg-surface`, `bg-dark`, `text-foreground`, `border-border`, `font-display` / `font-sans` / `font-mono`.
+**Rule:** do not silently overwrite tokens to hex. New UI uses `bg-primary`, `bg-surface`, `bg-dark`, `text-foreground`, `border-border`. Marketing type is one family: Space Grotesk (`font-sans` / `font-display` are the same stack). `font-mono` is JetBrains Mono for data/eyebrows only. Do not add a second display or serif face.
 
 ## Semantic tokens (light, `:root`)
 
@@ -82,5 +82,18 @@ Copy + console must stay in this split. New “alive” sections should use `Tra
 
 ## Copy rules
 
-- Brand: **SeatsBrokers** (plural)
+- Brand: **SeatsBrokers** (plural) — company name in the logo/nav. Never replace it with a module name.
+- Product modules (official names, always with ™) live in `src/content/modules.ts`. Use them on matching section eyebrows / hero titles / nav product links — not as a rewrite of every sentence:
+
+| Module | What it is | Tagline |
+|---|---|---|
+| SeatsFunds™ | Payments, credit, funding & settlement | Financial Infrastructure for Ticketing. |
+| SeatsMarket™ | Global B2B ticket inventory marketplace | The Global Marketplace for Live Events. |
+| SeatsLink™ | API, integrations & connectivity | Connect Your Business to Global Ticket Inventory. |
+| SeatsSource™ | Primary-market ticket sourcing | Intelligent Access to Primary Ticket Inventory. |
+| SeatsPulse™ | Resale-market intelligence & pricing analytics | Know the Market. Price with Confidence. |
+| SeatsIntel™ | Event & primary-market intelligence | Know What's Coming. Buy Smarter. |
+| SeatsDeal™ | Quotations, customer payments & sales | From Quote to Completed Sale. |
+| SeatsLaunch™ | White-label ticketing websites | Launch Your Ticketing Business. |
+
 - Never reuse competitor product names/taglines verbatim (e.g. never “Uptick”, “DataIQ”)

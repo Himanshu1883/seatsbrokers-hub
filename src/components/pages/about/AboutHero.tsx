@@ -1,8 +1,7 @@
-import { Compass } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
-import { aboutHeroCopy, aboutHeroPoints } from "@/content/about-page-data";
-import { ctas } from "@/content/site";
+import { aboutHeroCopy, aboutHeroPoints, aboutPageCtas } from "@/content/about-page-data";
 import { AboutJourneyWall } from "./AboutJourneyWall";
 
 export function AboutHero() {
@@ -21,7 +20,7 @@ export function AboutHero() {
         <div className="bh-layout">
           <Reveal className="bh-copy min-w-0">
             <span className="bh-copy-icon" aria-hidden>
-              <Compass className="size-4" strokeWidth={1.75} />
+              <Sparkles className="size-4" strokeWidth={1.75} />
             </span>
             <p className="section-eyebrow text-primary">{aboutHeroCopy.eyebrow}</p>
             <h1 className="bh-title">{aboutHeroCopy.title}</h1>
@@ -33,18 +32,19 @@ export function AboutHero() {
               ))}
             </ul>
             <div className="bh-ctas">
-              <SiteLink
-                to={ctas.becomeSeller.to}
-                className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
-              >
-                {ctas.becomeSeller.label}
-              </SiteLink>
-              <SiteLink
-                to={ctas.talkToTeam.to}
-                className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
-              >
-                {ctas.talkToTeam.label}
-              </SiteLink>
+              {aboutPageCtas.map((cta, index) => (
+                <SiteLink
+                  key={cta.to}
+                  to={cta.to}
+                  className={
+                    index === 0
+                      ? "lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
+                      : "lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
+                  }
+                >
+                  {cta.label}
+                </SiteLink>
+              ))}
             </div>
           </Reveal>
 

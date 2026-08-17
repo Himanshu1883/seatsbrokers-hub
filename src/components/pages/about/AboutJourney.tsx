@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Reveal, useInView } from "@/hooks/use-scroll-motion";
-import { aboutChapters, aboutFacts, aboutJourneyCopy } from "@/content/about-page-data";
+import { aboutChapters, aboutJourneyCopy } from "@/content/about-page-data";
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -56,21 +56,9 @@ export function AboutJourney() {
           </p>
         </Reveal>
 
-        <Reveal delay={60}>
-          <ul className="abt-facts">
-            {aboutFacts.map((fact) => (
-              <li key={fact.label}>
-                <strong>{fact.value}</strong>
-                <span>{fact.label}</span>
-                <p>{fact.detail}</p>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-
         <div ref={ref} className="abt-journey" data-live={inView && !reduced ? "true" : "false"}>
           <Reveal delay={80} className="abt-journey-list">
-            <p className="abt-journey-ledger-kicker">Infrastructure chapters</p>
+            <p className="abt-journey-ledger-kicker">Journey chapters</p>
             <ol>
               {aboutChapters.map((item, index) => (
                 <li key={item.index}>
@@ -128,6 +116,10 @@ export function AboutJourney() {
             </ol>
           </Reveal>
         </div>
+
+        <Reveal delay={160}>
+          <p className="abt-band-close">{aboutJourneyCopy.close}</p>
+        </Reveal>
       </div>
     </section>
   );

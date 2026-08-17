@@ -1,6 +1,23 @@
 import { useEffect, useState } from "react";
 import { useInView } from "@/hooks/use-scroll-motion";
-import { aboutChapters, aboutFacts, aboutOffices } from "@/content/about-page-data";
+import {
+  aboutDataSignals,
+  aboutFormulaParts,
+  aboutHeroProof,
+  aboutHeroStage,
+  aboutSurfaces,
+} from "@/content/about-page-data";
+
+const CORE = { x: 200, y: 104 };
+const NODE_R = 72;
+
+function nodePoint(index: number, total: number) {
+  const rad = ((-90 + (360 / total) * index) * Math.PI) / 180;
+  return {
+    x: CORE.x + NODE_R * Math.cos(rad),
+    y: CORE.y + NODE_R * Math.sin(rad),
+  };
+}
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -33,42 +50,42 @@ function useCycle(length: number, ms: number, enabled: boolean) {
 export function AboutJourneyWall() {
   const { ref, inView } = useInView<HTMLDivElement>(0.35);
   const reduced = usePrefersReducedMotion();
-  const [pinnedChapter, setPinnedChapter] = useState<number | null>(null);
+  const [pinnedLayer, setPinnedLayer] = useState<number | null>(null);
   const live = inView && !reduced;
-  const cycle = useCycle(aboutChapters.length, 2800, live && pinnedChapter === null);
-  const officeCycle = useCycle(aboutOffices.length, 3200, live);
-  const active = pinnedChapter ?? cycle;
-  const chapter = aboutChapters[active] ?? aboutChapters[0];
-  const office = aboutOffices[officeCycle] ?? aboutOffices[0];
+  const cycle = useCycle(aboutSurfaces.length, 2800, live && pinnedLayer === null);
+  const signalCycle = useCycle(aboutDataSignals.length, 1600, live);
+  const formulaCycle = useCycle(aboutFormulaParts.length, 2200, live);
+  const active = pinnedLayer ?? cycle;
+  const layer = aboutSurfaces[active] ?? aboutSurfaces[0];
 
   return (
     <div ref={ref} className="abt-stage" data-live={live ? "true" : "false"}>
-      <div className="abt-room" data-chapter={chapter.index}>
+      <div className="abt-room" data-chapter={layer.index}>
         <header className="abt-head">
           <div className="abt-head-copy">
             <p className="abt-kicker">
               <span className="abt-live-dot" aria-hidden />
-              SeatsBrokers / Atlas
+              {aboutHeroStage.kicker}
             </p>
-            <p className="abt-head-title">Company atlas</p>
+            <p className="abt-head-title">{aboutHeroStage.title}</p>
           </div>
-          <span className="abt-head-stamp">3 offices · 1 platform</span>
+          <span className="abt-head-stamp">{aboutHeroStage.stamp}</span>
         </header>
 
         <div className="abt-body">
-          <ol className="abt-rail" aria-label="Platform journey chapters">
-            {aboutChapters.map((item, index) => (
+          <ol className="abt-rail" aria-label="SeatsBrokers technology ecosystem">
+            {aboutSurfaces.map((item, index) => (
               <li key={item.index} data-active={index === active ? "true" : "false"}>
                 <button
                   type="button"
                   aria-pressed={index === active}
-                  aria-label={`Chapter ${item.index}: ${item.title}`}
-                  onClick={() => setPinnedChapter((current) => (current === index ? null : index))}
+                  aria-label={`${item.title}: ${item.layer}`}
+                  onClick={() => setPinnedLayer((current) => (current === index ? null : index))}
                 >
                   <span className="abt-rail-index">{item.index}</span>
                   <span className="abt-rail-copy">
                     <strong>{item.title}</strong>
-                    <em>{item.kicker}</em>
+                    <em>{item.layer}</em>
                   </span>
                 </button>
               </li>
@@ -76,80 +93,76 @@ export function AboutJourneyWall() {
           </ol>
 
           <div className="abt-atlas-wrap">
-            <svg className="abt-atlas" viewBox="0 0 400 220" role="img" aria-label="London, New York and Dubai connected on one platform">
-              <title>SeatsBrokers offices — London, New York, Dubai</title>
-              {Array.from({ length: 6 }, (_, i) => (
-                <line
-                  key={`lat-${i}`}
-                  className="abt-grid"
-                  x1="8"
-                  x2="392"
-                  y1={28 + i * 32}
-                  y2={28 + i * 32}
+            <svg
+              className="abt-atlas"
+              viewBox="0 0 400 220"
+              role="img"
+              aria-label="Intelligence core connecting ticketing data signals"
+            >
+              <title>SeatsBrokers intelligence core — data into AI</title>
+              {Array.from({ length: 5 }, (_, i) => (
+                <circle
+                  key={`ring-${i}`}
+                  className="abt-core-ring"
+                  cx={CORE.x}
+                  cy={CORE.y}
+                  r={28 + i * 18}
                 />
               ))}
-              {Array.from({ length: 8 }, (_, i) => (
-                <line
-                  key={`lon-${i}`}
-                  className="abt-grid"
-                  y1="12"
-                  y2="208"
-                  x1={28 + i * 48}
-                  x2={28 + i * 48}
-                />
-              ))}
-              <path className="abt-arc" d="M88 92 C 140 48, 170 48, 192 75" />
-              <path className="abt-arc" d="M192 75 C 230 110, 248 118, 272 114" />
-              <path className="abt-arc abt-arc-long" d="M88 92 C 160 170, 220 168, 272 114" />
-              {live ? (
-                <>
-                  <circle className="abt-packet" r="3.2">
-                    <animateMotion dur="4.2s" repeatCount="indefinite" path="M88 92 C 140 48, 170 48, 192 75" />
-                  </circle>
-                  <circle className="abt-packet" r="3.2">
-                    <animateMotion dur="5s" begin="0.8s" repeatCount="indefinite" path="M192 75 C 230 110, 248 118, 272 114" />
-                  </circle>
-                </>
-              ) : null}
-              {aboutOffices.map((item) => (
-                <g
-                  key={item.code}
-                  className="abt-city"
-                  data-active={item.code === office.code ? "true" : "false"}
-                  transform={`translate(${(item.x / 100) * 400} ${(item.y / 100) * 220})`}
-                >
-                  <circle className="abt-city-ring" r="14" />
-                  <circle className="abt-city-core" r="4.5" />
-                  <text className="abt-city-code" x="12" y="-8">
-                    {item.code}
-                  </text>
-                  <text className="abt-city-name" x="12" y="6">
-                    {item.city}
-                  </text>
-                </g>
-              ))}
+              {aboutDataSignals.map((signal, index) => {
+                const point = nodePoint(index, aboutDataSignals.length);
+                const on = index === signalCycle;
+                return (
+                  <g key={signal} className="abt-node" data-active={on ? "true" : "false"}>
+                    <line className="abt-spoke" x1={CORE.x} y1={CORE.y} x2={point.x} y2={point.y} />
+                    {live && on ? (
+                      <circle className="abt-packet" r="2.8">
+                        <animateMotion
+                          dur="1.6s"
+                          repeatCount="indefinite"
+                          path={`M${CORE.x} ${CORE.y} L${point.x} ${point.y}`}
+                        />
+                      </circle>
+                    ) : null}
+                    <circle className="abt-node-core" cx={point.x} cy={point.y} r={on ? 4.6 : 3.4} />
+                    {on ? (
+                      <text
+                        className="abt-node-label"
+                        x={point.x}
+                        y={point.y + (point.y >= CORE.y ? 14 : -10)}
+                        textAnchor="middle"
+                      >
+                        {signal}
+                      </text>
+                    ) : null}
+                  </g>
+                );
+              })}
+              <circle className="abt-core-glow" cx={CORE.x} cy={CORE.y} r="22" />
+              <circle className="abt-core-disc" cx={CORE.x} cy={CORE.y} r="16" />
+              <text className="abt-core-mark" x={CORE.x} y={CORE.y + 4} textAnchor="middle">
+                {aboutHeroStage.core}
+              </text>
             </svg>
 
             <p className="abt-atlas-caption">
-              <span>{chapter.index}</span>
-              {chapter.body}
+              <span>{layer.index}</span>
+              {layer.body}
             </p>
           </div>
         </div>
 
-        <div className="abt-coverage" aria-label="Office coverage windows">
-          {aboutOffices.map((item) => (
-            <div key={item.code} data-active={item.code === office.code ? "true" : "false"}>
-              <strong>{item.code}</strong>
-              <span>
-                {item.window} {item.tz}
-              </span>
+        <div className="abt-coverage abt-formula-strip" aria-label="Experience plus data plus AI plus automation">
+          {aboutFormulaParts.map((part, index) => (
+            <div key={part} data-active={index === formulaCycle ? "true" : "false"}>
+              <strong>{part}</strong>
+              <span>{index < aboutFormulaParts.length - 1 ? "+" : "="}</span>
             </div>
           ))}
         </div>
 
         <footer className="abt-foot">
-          {aboutFacts.slice(0, 3).map((fact) => (
+          {aboutHeroProof.map((fact) => (
             <div key={fact.label}>
               <strong>{fact.value}</strong>
               <span>{fact.label}</span>

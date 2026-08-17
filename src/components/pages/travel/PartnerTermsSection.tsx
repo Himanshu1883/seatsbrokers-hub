@@ -251,7 +251,7 @@ export function PartnerTermsSection() {
             </p>
             <h2 className="pt-title">
               Transparent margins.{" "}
-              <em className="font-serif font-medium italic text-primary">Predictable settlement.</em>
+              <em className="font-medium italic text-primary">Predictable settlement.</em>
             </h2>
             <p className="pt-lead">
               Travel companies, OTAs and destination specialists can partner with SeatsBrokers. You keep your

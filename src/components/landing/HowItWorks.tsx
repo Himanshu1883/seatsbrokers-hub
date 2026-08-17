@@ -3,6 +3,7 @@ import { Reveal, useTypewriter } from "@/hooks/use-scroll-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { ctas } from "@/content/site";
+import { modules } from "@/content/modules";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 
 import eventsImg from "@/assets/product-events-browser.jpg";
@@ -14,7 +15,7 @@ const steps = [
     n: "01",
     tag: "INTELLIGENCE",
     title: "Know what's coming",
-    subtitle: "Event Intelligence for every fixture.",
+    subtitle: modules.intel.tagline,
     body: "Our event intelligence technology brings together the information ticket businesses need — event name, date, venue, onsale date, sales criteria, ballot information, demand indicators and venue maps.",
     bullets: [
       "Global event catalog across football, rugby, cricket, tennis and Formula 1",
@@ -26,7 +27,7 @@ const steps = [
       { value: "12K+", label: "Events catalogued" },
       { value: "10+", label: "Event categories" },
     ],
-    proof: "Event Intelligence",
+    proof: modules.intel.name,
     proofDetail: "Structured event data with onsale information, demand signals and venue maps",
     caption: "Know the event before you buy inventory",
     image: eventsImg,
@@ -37,7 +38,7 @@ const steps = [
     n: "02",
     tag: "MARKET",
     title: "Know what's happening",
-    subtitle: "Market intelligence for ticket brokers.",
+    subtitle: modules.pulse.tagline,
     body: "See what the resale market is doing — average price, lowest price, highest price, price movement, inventory volume, sales activity and marketplace comparison in one format.",
     bullets: [
       "Average, lowest and highest price tracking per event and category",
@@ -49,7 +50,7 @@ const steps = [
       { value: "8+", label: "Market data sources" },
       { value: "<200ms", label: "Typical refresh" },
     ],
-    proof: "Market Intelligence",
+    proof: modules.pulse.name,
     proofDetail: "Bloomberg-style market analytics for ticket resale pricing decisions",
     caption: "See what the resale market is doing right now",
     image: marketInsightImg,
@@ -72,7 +73,7 @@ const steps = [
       { value: "24/7", label: "AI pricing engine" },
       { value: "Auto", label: "Marketplace sync" },
     ],
-    proof: "AI Pricing",
+    proof: modules.pulse.name,
     proofDetail: "AI-powered pricing intelligence with broker-controlled approval workflow",
     caption: "Market data into pricing decisions — you stay in control",
     image: analyticsImg,
@@ -184,7 +185,7 @@ function ProductScreenshot({
 }
 
 export function HowItWorks() {
-  const typed = useTypewriter(["Event Intelligence.", "Market Intelligence.", "AI Pricing."], 80);
+  const typed = useTypewriter([`${modules.intel.name}.`, `${modules.pulse.name}.`], 80);
   const sectionRef = useRef<HTMLElement>(null);
   const scrollProgress = useSectionScrollProgress(sectionRef, steps.length);
   const active = Math.min(Math.round(scrollProgress), steps.length - 1);

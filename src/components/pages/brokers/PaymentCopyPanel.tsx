@@ -1,4 +1,5 @@
 import { CreditCard, Eye, Lock, Shield, Wallet, Workflow } from "lucide-react";
+import { modules } from "@/content/modules";
 
 const features = [
   {
@@ -32,10 +33,10 @@ export function PaymentCopyPanel() {
     <div className="pay-copy">
       <div className="pay-copy-badge">
         <Shield className="size-3.5" strokeWidth={1.75} />
-        <span>Payment Infrastructure</span>
+        <span>{modules.funds.name}</span>
       </div>
 
-      <h2 className="pay-copy-title">Ticketing payments, built into your workflow</h2>
+      <h2 className="pay-copy-title">{modules.funds.tagline}</h2>
       <p className="pay-copy-lead">
         End-to-end payment infrastructure for ticket businesses — from purchasing to settlement.
       </p>

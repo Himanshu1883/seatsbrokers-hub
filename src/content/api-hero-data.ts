@@ -1,8 +1,10 @@
-/** API Platform hero: left copy plus documentation-console stage data. */
+/** SeatsLink™ hero: left copy plus documentation-console stage data. */
+
+import { modules } from "./modules";
 
 export const apiHeroCopy = {
-  eyebrow: "API Platform",
-  title: "Build Your Ticket Business on Our APIs",
+  eyebrow: modules.link.name,
+  title: modules.link.tagline,
   subhead:
     "Secure authentication, role-based access, audit logs and real-time synchronization — enterprise-grade API infrastructure built specifically for ticketing operations.",
   body: "API-first architecture for POS systems, inventory systems, internal ERP, websites, mobile applications and partner systems — connect at the depth you need.",

@@ -2,6 +2,7 @@ import { Activity, LineChart, RefreshCw, Route } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 import dashboardImg from "@/assets/dashboard.png";
+import { modules } from "@/content/modules";
 
 const tiles = [
   {
@@ -34,10 +35,10 @@ export function MarketIntelligence() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Reveal>
             <p className="section-eyebrow text-primary">
-              Market intelligence
+              {modules.pulse.name}
             </p>
             <h2 className="mt-4 text-3xl font-bold sm:text-4xl">
-              See What the Resale Market Is Doing
+              {modules.pulse.tagline}
             </h2>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-background/70">
               The platform analyzes available market information and presents it in a simple format

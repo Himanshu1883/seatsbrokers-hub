@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { ctas } from "@/content/site";
+import { modules } from "@/content/modules";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { GlobeCanvas } from "@/components/landing/globe/GlobeCanvas";
 import heroStadium from "@/assets/hero-stadium.jpg";
@@ -94,7 +95,7 @@ const slides = [
   },
   {
     index: "04",
-    eyebrow: "Event intelligence",
+    eyebrow: modules.intel.name,
     title: null,
     lines: [] as string[],
     headline: "Know the event. Know the market. Know the opportunity.",
@@ -116,7 +117,7 @@ const slides = [
   },
   {
     index: "05",
-    eyebrow: "Build on our technology",
+    eyebrow: modules.link.name,
     title: null,
     lines: [] as string[],
     headline: "Connect your ticket operation to modern infrastructure.",

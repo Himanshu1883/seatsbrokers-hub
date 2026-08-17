@@ -5,9 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
@@ -159,6 +159,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-family: var(--font-sans);
   }
 
   * {
@@ -168,6 +169,7 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
   }
 }
 
@@ -3729,8 +3731,17 @@ main > .section-curve:first-child {
   h1,
   h2,
   h3,
+  h4,
+  button,
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+  }
+  h1,
+  h2,
+  h3,
   h4 {
-    font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
 }
@@ -6213,7 +6224,7 @@ main > .section-curve:first-child {
 }
 
 .constellation-headline {
-  font-family: var(--font-serif);
+  font-family: inherit;
   font-style: italic;
   font-weight: 600;
   font-size: clamp(2.15rem, 4.8vw, 3.75rem);
@@ -7067,7 +7078,7 @@ main > .section-curve:first-child {
 }
 
 .netgraph-headline em {
-  font-family: var(--font-serif);
+  font-family: inherit;
   font-style: italic;
   font-weight: 500;
   color: var(--primary-deep);
@@ -8036,7 +8047,7 @@ main > .section-curve:first-child {
 }
 
 .feature-orbit-em {
-  font-family: var(--font-serif);
+  font-family: inherit;
   font-style: italic;
   font-weight: 500;
   color: var(--primary-deep);
@@ -8059,7 +8070,7 @@ main > .section-curve:first-child {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  font-family: var(--font-serif);
+  font-family: inherit;
   font-size: clamp(1.6rem, 2.8vw, 2.35rem);
   font-style: italic;
   font-weight: 500;
@@ -8355,7 +8366,7 @@ main > .section-curve:first-child {
 }
 
 .feature-orbit-card-title em {
-  font-family: var(--font-serif);
+  font-family: inherit;
   font-style: italic;
   font-weight: 500;
   color: color-mix(in oklab, var(--fo-accent, var(--primary)) 85%, var(--foreground));
@@ -30213,6 +30224,13 @@ main > .section-curve:first-child {
   min-width: 0;
 }
 
+.abt-journey-list {
+  --abt-journey-num-pad: 1rem;
+  --abt-journey-num-col: 2.4rem;
+  /* border 1px + pad + half of the 2.4rem index column */
+  --abt-journey-line-x: calc(1px + var(--abt-journey-num-pad) + (var(--abt-journey-num-col) / 2));
+}
+
 .abt-journey-ledger-kicker {
   margin: 0 0 0.7rem;
   font-family: var(--font-mono);
@@ -30238,14 +30256,15 @@ main > .section-curve:first-child {
   position: absolute;
   top: 1.1rem;
   bottom: 1.1rem;
-  left: 1.72rem;
+  left: var(--abt-journey-line-x);
   width: 1px;
+  transform: translateX(-50%);
   background: color-mix(in oklab, var(--primary) 28%, var(--border));
 }
 
 .abt-journey-list button {
   display: grid;
-  grid-template-columns: 2.4rem minmax(0, 1fr);
+  grid-template-columns: var(--abt-journey-num-col) minmax(0, 1fr);
   align-items: center;
   gap: 0.85rem;
   width: 100%;
@@ -30255,7 +30274,7 @@ main > .section-curve:first-child {
   border-radius: 0.95rem;
   border: 1px solid var(--border);
   background: var(--card);
-  padding: 0.85rem 1rem;
+  padding: 0.85rem var(--abt-journey-num-pad);
   box-shadow: var(--shadow-card);
   color: inherit;
   transition:
@@ -30284,6 +30303,9 @@ main > .section-curve:first-child {
 }
 
 .abt-journey-index {
+  position: relative;
+  z-index: 1;
+  text-align: center;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 700;
@@ -33241,8 +33263,7 @@ main > .section-curve:first-child {
 
 /* == Site nav (mobile sheet) ==
    Bar stays 4.5rem (same as .hero-fit-offset / h-18) so heroes are not re-cropped.
-   Blur lives on .site-nav-bar, not <header> — backdrop-filter would trap
-   position:fixed descendants and collapse the sheet to the bar height. */
+   Fixed overlay on heroes with an opaque light bar (not glass/blur). */
 .site-nav {
   position: fixed;
   inset-inline: 0;
@@ -33260,22 +33281,8 @@ main > .section-curve:first-child {
 .site-nav-bar {
   position: relative;
   z-index: 2;
-  border-bottom: 1px solid transparent;
-  transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    backdrop-filter 0.3s ease;
-}
-
-.site-nav-bar.is-solid {
-  border-bottom-color: var(--border);
-  background: color-mix(in oklab, var(--background) 90%, transparent);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-}
-
-.site-nav-bar.is-overlay {
-  background: transparent;
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
 }
 
 .site-nav-logo {
@@ -34271,7 +34278,7 @@ html.site-nav-locked body {
 
 .faq-hero-em {
   display: inline;
-  font-family: var(--font-serif);
+  font-family: inherit;
   font-style: italic;
   font-weight: 500;
   color: var(--primary);
@@ -34839,7 +34846,7 @@ html.site-nav-locked body {
 
 .legal-hero-em {
   display: inline;
-  font-family: var(--font-serif);
+  font-family: inherit;
   font-style: italic;
   font-weight: 500;
   color: var(--primary);
@@ -35097,6 +35104,517 @@ html.site-nav-locked body {
     transition: none;
   }
 }
+
+/* ── /about rebuild — intelligence hero + chapter bands (abt-*) ──
+   Unique tech-stage (not office atlas, not brokers wall).
+   Extra padding on .bh-hero.abt-hero already clears the 4.5rem nav. */
+
+.abt-formula-strip {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.abt-core-ring {
+  fill: none;
+  stroke: color-mix(in oklab, var(--primary) 26%, transparent);
+  stroke-width: 0.9;
+}
+
+.abt-stage[data-live="true"] .abt-core-ring {
+  animation: abt-ring 4.2s ease-in-out infinite;
+}
+
+.abt-spoke {
+  fill: none;
+  stroke: color-mix(in oklab, var(--background) 16%, transparent);
+  stroke-width: 0.75;
+}
+
+.abt-node[data-active="true"] .abt-spoke {
+  stroke: color-mix(in oklab, var(--primary) 58%, transparent);
+}
+
+.abt-node-core {
+  fill: color-mix(in oklab, var(--background) 42%, transparent);
+}
+
+.abt-node[data-active="true"] .abt-node-core {
+  fill: var(--primary);
+}
+
+.abt-node-label {
+  fill: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 7px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+.abt-core-glow {
+  fill: color-mix(in oklab, var(--primary) 26%, transparent);
+}
+
+.abt-core-disc {
+  fill: var(--primary);
+}
+
+.abt-core-mark {
+  fill: var(--primary-foreground);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.abt-band-kicker {
+  margin: 1.75rem 0 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.abt-band-kicker-center {
+  text-align: center;
+}
+
+.abt-formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.abt-formula li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.abt-formula strong {
+  border-radius: 0.7rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 0.55rem 0.85rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  box-shadow: var(--shadow-card);
+}
+
+.abt-formula span {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.abt-formula-result strong {
+  border-color: color-mix(in oklab, var(--primary) 42%, var(--border));
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in oklab, var(--primary) 10%, white) 0%,
+      var(--card) 55%
+    );
+  color: var(--foreground);
+}
+
+.abt-signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.abt-signals li {
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--primary) 28%, var(--border));
+  background: color-mix(in oklab, var(--primary) 8%, transparent);
+  padding: 0.28rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.abt-vision-lines {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 52rem;
+  margin: 1.75rem auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.abt-vision-lines li {
+  border-radius: 0.95rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 0.95rem 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--foreground);
+  box-shadow: var(--shadow-card);
+}
+
+.abt-band-close {
+  margin: 1.35rem auto 0;
+  max-width: 42rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.abt-verbs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.abt-verbs li {
+  min-width: 0;
+  border-radius: 1.05rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 1.05rem 1.15rem;
+  box-shadow: var(--shadow-card);
+}
+
+.abt-verbs strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.abt-verbs p {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+.abt-transforms {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  max-width: 40rem;
+  margin: 1.5rem auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.abt-transforms li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.7rem;
+  border-radius: 0.95rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 0.85rem 1rem;
+  box-shadow: var(--shadow-card);
+}
+
+.abt-transforms span,
+.abt-transforms strong {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.abt-transforms span {
+  color: var(--muted-foreground);
+}
+
+.abt-transforms strong {
+  text-align: right;
+  color: var(--foreground);
+}
+
+.abt-transforms em {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.abt-future-pairs {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 52rem;
+  margin: 1.75rem auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.abt-future-pairs li {
+  border-radius: 1.05rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 1.1rem 1.2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.abt-future-pairs p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+.abt-future-pairs strong {
+  display: block;
+  margin-top: 0.45rem;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.abt-close {
+  display: grid;
+  gap: 1.75rem;
+  min-width: 0;
+}
+
+.abt-close-pillars {
+  display: grid;
+  gap: 0.45rem;
+  margin: 1.35rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.abt-close-pillars li {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--background) 82%, transparent);
+}
+
+.abt-close-line {
+  margin: 1.25rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--background);
+}
+
+.abt-close-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .abt-verbs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .abt-surfaces {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .abt-surfaces > li:nth-child(-n + 3),
+  .abt-surfaces > li:nth-child(n + 4) {
+    grid-column: auto;
+  }
+
+  .abt-audiences ul {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .abt-verbs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .abt-close {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(1.5rem, 3vw, 2.75rem);
+    align-items: end;
+  }
+
+  .abt-ops-sun ul {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1512px) {
+  .abt-audiences ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .abt-verbs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1023px) {
+  .abt-formula,
+  .abt-signals,
+  .abt-verbs,
+  .abt-transforms,
+  .abt-close,
+  .abt-vision-lines,
+  .abt-future-pairs {
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 639px) {
+  .abt-formula-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .abt-ops-sun ul {
+    grid-template-columns: 1fr;
+  }
+
+  .abt-transforms li {
+    grid-template-columns: minmax(0, 1fr);
+    text-align: left;
+  }
+
+  .abt-transforms em,
+  .abt-transforms strong {
+    text-align: left;
+  }
+}
+
+.abt-close-pillars {
+  max-width: 40rem;
+  margin: 1.5rem auto 0;
+  text-align: center;
+}
+
+.abt-close-pillars li {
+  color: var(--muted-foreground);
+}
+
+.abt-close-ctas {
+  justify-content: center;
+  margin-top: 1.35rem;
+}
+
+.abt-pipe-rail {
+  min-width: 0;
+  border-radius: 0.7rem;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--primary) 5%, var(--card));
+  padding: 0.55rem 0.6rem 0.65rem;
+}
+
+.abt-pipe-rail ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.3rem;
+  margin: 0.45rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.abt-pipe-rail button {
+  display: grid;
+  gap: 0.12rem;
+  width: 100%;
+  min-width: 0;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  background: color-mix(in oklab, var(--background) 70%, transparent);
+  padding: 0.4rem 0.35rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.abt-pipe-rail button span {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted-foreground);
+}
+
+.abt-pipe-rail button strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.abt-pipe-rail button[data-active="true"] {
+  border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+  background: color-mix(in oklab, var(--primary) 12%, white);
+}
+
+.abt-pipe-rail button[data-active="true"] span {
+  color: var(--primary);
+}
+
+.abt-pipe-active {
+  margin: 0.55rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+.abt-pipe-active strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+@media (max-width: 639px) {
+  .abt-coverage.abt-formula-strip {
+    display: grid;
+  }
+
+  .abt-pipe-rail ol {
+    grid-template-columns: 1fr;
+  }
+
+  .abt-node-label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abt-stage[data-live="true"] .abt-core-ring {
+    animation: none;
+  }
+}
+
 
 
 

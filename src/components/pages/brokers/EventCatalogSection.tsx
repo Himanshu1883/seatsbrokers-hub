@@ -1,5 +1,6 @@
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { EventCatalogConsole } from "./EventCatalogConsole";
+import { modules } from "@/content/modules";
 
 const catalogTags = [
   "Football & Rugby",
@@ -16,7 +17,7 @@ export function EventCatalogSection() {
 
       <div className="container-page relative z-10">
         <Reveal className="ec-head">
-          <p className="section-eyebrow text-center text-primary">Event Catalog</p>
+          <p className="section-eyebrow text-center text-primary">{modules.intel.name}</p>
           <h2 className="ec-title">Access a structured catalog of global events</h2>
           <p className="ec-lead">
             Football, rugby, cricket, tennis, Formula 1, boxing, music, theatre, arts and other

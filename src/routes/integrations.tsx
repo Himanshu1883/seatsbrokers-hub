@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { pageMeta, ctas } from "@/content/site";
+import { modules } from "@/content/modules";
 import { FeatureGrid, PageHero, WorkflowSteps } from "@/components/pages/shared/PageSections";
 
 const { title, description } = pageMeta.integrations;
@@ -21,8 +22,8 @@ function IntegrationsPage() {
   return (
     <PageShell>
       <PageHero
-        eyebrow="Integrations"
-        title="Connect Your Existing Systems"
+        eyebrow={modules.link.name}
+        title={modules.link.tagline}
         body="Brokers should not need to change everything they already use. Connect at the depth you need through API-first architecture built specifically for ticketing."
         primaryCta={ctas.viewApiDocs}
         secondaryCta={ctas.requestApiAccess}

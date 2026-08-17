@@ -17,9 +17,9 @@ Routes listed are where the component is **mounted**, not every import.
 | SyncDiagram | PageSections | Four-card hub diagram | brokers, marketplace-connectivity |
 | ApiCards | PageSections | API product grid | brokers, api |
 | ContactForm | PageSections | Lead form | contact |
-| SectionConnector | `src/components/pages/brokers/SectionConnector.tsx` | Source → payload rail → destination | brokers, travel-partners, marketplace-connectivity, event-intelligence, api, about, book-demo, platform |
-| ConsoleCopyPanel | `src/components/pages/brokers/ConsoleCopyPanel.tsx` | Live-console left copy (accordion) | LiveConsole, TravelLiveConsole, MarketplaceLiveConsole, EventIntelLiveConsole, ApiLiveConsole |
-| ConsoleShell | `src/components/pages/brokers/ConsoleShell.tsx` | Terminal bezel/chrome | Broker + travel + marketplace + event-intelligence + API terminal consoles |
+| SectionConnector | `src/components/pages/brokers/SectionConnector.tsx` | Source → payload rail → destination | brokers, travel-partners, marketplace-connectivity, event-intelligence, api, book-demo, platform |
+| ConsoleCopyPanel | `src/components/pages/brokers/ConsoleCopyPanel.tsx` | Live-console left copy (accordion) | LiveConsole, TravelLiveConsole, MarketplaceLiveConsole, EventIntelLiveConsole, ApiLiveConsole, AboutLiveConsole |
+| ConsoleShell | `src/components/pages/brokers/ConsoleShell.tsx` | Terminal bezel/chrome | Broker + travel + marketplace + event-intelligence + API + About pipeline terminal consoles |
 
 ## Live consoles — built
 
@@ -85,12 +85,13 @@ Routes listed are where the component is **mounted**, not every import.
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| AboutHero + JourneyWall | `AboutHero.tsx`, `AboutJourneyWall.tsx` | Brokers-parity left copy; right stage is a dark company atlas (`abt-*`) — clickable chapter rail, LON/NYC/DXB office map, coverage windows, proof strip | `/about` |
-| AboutJourney | `AboutJourney.tsx` | Who-we-are facts + timeline ledger (pin/live) with chapter analysis, stack chips and signals | `/about` |
-| AboutOverview | `AboutOverview.tsx` | FeatureGrid replacement — five platform tiles + analysis dock (hover/click) + who-we-serve strip | `/about` |
-| AboutLiveConsole + OpsConsole | `AboutLiveConsole.tsx`, `AboutOpsConsole.tsx` | Live Console split: company ops (follow-the-sun desks, coverage windows, partner-desk feed). Own wrapper — does not extend broker `LiveConsoleVariant` | `/about` |
-| AboutPrinciples | `AboutPrinciples.tsx` | How we work as an infrastructure board: numbered cards, systems chips, control-plane spine | `/about` |
-| AboutPresence | `AboutPresence.tsx` | Dark offices band: London, New York, Dubai with coverage windows + partners email | `/about` |
+| AboutHero + JourneyWall | `AboutHero.tsx`, `AboutJourneyWall.tsx` | Dark unique `bh-hero` (not a brokers clone). Left manifesto copy + 3 CTAs. Right stage is an intelligence core (`abt-*`) — SeatsAI/Trade/Pay/API/Data/Automation rail, data-signal nodes, Experience+Data+AI+Automation strip | `/about` |
+| AboutChapters | `AboutChapters.tsx` | Knowledge (data list + formula), Vision, Audiences, Building, Mission, Future — light manifesto bands | `/about` |
+| AboutOverview | `AboutOverview.tsx` | Six-product ecosystem board (SeatsAI, SeatsTrade, SeatsPay, SeatsAPI, SeatsData, SeatsAutomation) + analysis dock | `/about` |
+| AboutLiveConsole + OpsConsole | `AboutLiveConsole.tsx`, `AboutOpsConsole.tsx` | Live Console split: Collect→Connect→Understand→Predict→Act pipeline (not company ops). Own wrapper — does not extend broker `LiveConsoleVariant` | `/about` |
+| AboutPrinciples | `AboutPrinciples.tsx` | Shared numbered board used as Capabilities, Why SeatsBrokers, and Technology Stack | `/about` |
+| AboutJourney | `AboutJourney.tsx` | Five-chapter timeline ledger (pin/live) from industry knowledge to the AI era | `/about` |
+| AboutClose | `AboutClose.tsx` | Light close: AI + Technology + Ticketing pillars + three CTAs (not a second FinalCTA) | `/about` |
 
 ### Book a demo (`src/components/pages/book-demo/`)
 
@@ -143,7 +144,7 @@ Used on `/` unless noted.
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| Nav | `Nav.tsx` | Site nav — visible: For Brokers, Marketplace Connectivity, Event Intelligence, API, About; hidden: Platform, Travel Partners | PageShell |
+| Nav | `Nav.tsx` | Site nav — visible: For Brokers, SeatsMarket™, SeatsIntel™, SeatsLink™, About; hidden: Platform, Travel Partners | PageShell |
 | Footer | `Footer.tsx` | Footer columns; Resources FAQs → `/faq`; legal links Privacy / Terms / Cookie Policy → `/legal#privacy` `#terms` `#cookies`; partners mailto line; socials commented out | PageShell |
 | FinalCTA | `FinalCTA.tsx` | Global close CTA (“Become a seller” → `/brokers`) | PageShell (all pages) |
 | Hero | `Hero.tsx` | Homepage hero + typewriter | `/` |
@@ -174,12 +175,13 @@ Used on `/` unless noted.
 | File | Purpose |
 |---|---|
 | `src/content/site.ts` | Brand, nav, footer, CTAs, SEO meta |
+| `src/content/modules.ts` | Official product module names + taglines (SeatsFunds™, SeatsMarket™, SeatsLink™, SeatsSource™, SeatsPulse™, SeatsIntel™, SeatsDeal™, SeatsLaunch™) |
 | `src/content/broker-hero-data.ts` | Brokers hero copy + mini-card data |
 | `src/content/travel-hero-data.ts` | Travel hero copy + partner-desk dashboard data (KPIs, earnings, charts, lists). Mini-card datasets remain for `TravelConsoleCards` |
 | `src/content/marketplace-hero-data.ts` | Marketplace connectivity hero copy + channel-mesh stage data (mini-card datasets remain for `MarketplaceConsoleCards`) |
 | `src/content/event-intel-hero-data.ts` | Event intelligence hero copy + forecast-lens stage data (mini-card datasets remain for `EventIntelConsoleCards`) |
 | `src/content/api-hero-data.ts` | API hero copy + docs-console endpoints, auth scopes/roles, webhook payloads |
-| `src/content/about-page-data.ts` | About hero copy, journey chapters, platform tiles, offices |
+| `src/content/about-page-data.ts` | About chapters, SeatsAI/Trade/Pay/API/Data/Automation names, page CTAs |
 | `src/content/faq-data.ts` | FAQ hero copy, six questions, still-need-help strip |
 | `src/content/legal-data.ts` | Legal hero + Privacy / Terms / Cookie chapters |
 | `src/content/book-demo-data.ts` | Book-a-demo hero, slots, agenda, session blocks, audiences, form options |

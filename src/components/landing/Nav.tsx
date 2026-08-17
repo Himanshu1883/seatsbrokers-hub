@@ -15,21 +15,12 @@ function hashProps(link: (typeof navLinks)[number]) {
 }
 
 export function Nav() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const visibleNavLinks = navLinks.filter((l) => !l.hidden);
-  const overlay = scrolled || open;
   const toggleRef = useRef<HTMLButtonElement>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
   const wasOpen = useRef(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     setOpen(false);
@@ -126,7 +117,7 @@ export function Nav() {
 
   return (
     <header id="site-nav" className="site-nav">
-      <div className={`site-nav-bar ${overlay ? "is-solid" : "is-overlay"}`}>
+      <div className="site-nav-bar">
         <nav
           className="container-nav relative z-10 flex h-18 w-full min-w-0 items-center justify-between gap-3 py-3 lg:gap-6 lg:py-3.5"
           aria-label="Primary"
@@ -143,9 +134,7 @@ export function Nav() {
               alt={brand.name}
               width={566}
               height={174}
-              className={`site-nav-logo h-14 w-auto object-contain sm:h-16 ${
-                overlay ? "" : "brand-logo-on-dark"
-              }`}
+              className="site-nav-logo h-14 w-auto object-contain sm:h-16"
             />
           </Link>
 
@@ -160,10 +149,8 @@ export function Nav() {
                   aria-current={active ? "page" : undefined}
                   className={`text-sm font-medium transition-colors hover:text-primary ${
                     active
-                      ? "text-primary  decoration-primary decoration-2 underline-offset-4"
-                      : scrolled
-                        ? "text-muted-foreground"
-                        : "text-background/80"
+                      ? "text-primary decoration-primary decoration-2 underline-offset-4"
+                      : "text-foreground"
                   }`}
                 >
                   {l.label}
@@ -175,19 +162,9 @@ export function Nav() {
           <div className="hidden items-center gap-3 lg:flex">
             <SiteLink
               to={ctas.login.to}
-              className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${
-                scrolled
-                  ? "text-foreground hover:bg-secondary"
-                  : "text-background hover:bg-background/10"
-              }`}
+              className="lift rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
             >
               {ctas.login.label}
-            </SiteLink>
-            <SiteLink
-              to={ctas.becomeSeller.to}
-              className="lift rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
-            >
-              {ctas.becomeSeller.label}
             </SiteLink>
           </div>
 
@@ -198,9 +175,7 @@ export function Nav() {
             aria-expanded={open}
             aria-controls="site-nav-menu"
             onClick={() => setOpen((o) => !o)}
-            className={`site-nav-toggle relative z-10 inline-flex size-11 shrink-0 items-center justify-center rounded-lg transition-colors lg:hidden ${
-              overlay ? "text-foreground" : "text-background"
-            }`}
+            className="site-nav-toggle relative z-10 inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-foreground transition-colors lg:hidden"
           >
             <Menu
               className={`absolute size-6 transition-all duration-200 ${
@@ -260,16 +235,9 @@ export function Nav() {
             <SiteLink
               to={ctas.login.to}
               onClick={() => setOpen(false)}
-              className="site-nav-cta site-nav-cta-login"
+              className="site-nav-cta bg-primary font-semibold text-primary-foreground hover:bg-primary/90"
             >
               {ctas.login.label}
-            </SiteLink>
-            <SiteLink
-              to={ctas.becomeSeller.to}
-              onClick={() => setOpen(false)}
-              className="site-nav-cta site-nav-cta-demo lift"
-            >
-              {ctas.becomeSeller.label}
             </SiteLink>
           </div>
         </div>

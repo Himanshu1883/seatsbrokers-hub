@@ -176,7 +176,7 @@ export function EventCategoryBoard() {
           </p>
           <h2 className="ecb-title">
             Structured catalog across every major{" "}
-            <em className="font-serif font-medium italic text-primary">category</em>
+            <em className="font-medium italic text-primary">category</em>
           </h2>
           <p className="ecb-lead">
             The radar scores whatever your business sells. Every category carries the same structure

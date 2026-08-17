@@ -59,6 +59,7 @@ function BrokersPage() {
   return (
     <PageShell>
       <BrokersHero />
+      <PaymentInfrastructureSection />
 
       <EventCatalogSection />
 
@@ -126,8 +127,6 @@ function BrokersPage() {
       />
 
       <ApiCards items={brokerApiProducts} />
-
-      <PaymentInfrastructureSection />
     </PageShell>
   );
 }

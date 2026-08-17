@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
-import dashboardImg from "@/assets/dashboard.png";
-import sellerImg from "@/assets/card-seller.jpg";
-import travelImg from "@/assets/card-travel.jpg";
-import stadiumImg from "@/assets/hero-stadium.jpg";
+import {
+  StickyScrollConsole,
+  type StickyScrollConsoleKind,
+} from "@/components/landing/StickyScrollConsoles";
 
 const panels = [
   {
+    kind: "brokers" as const satisfies StickyScrollConsoleKind,
     kicker: "Ticket Brokers",
     title: "Manage inventory, pricing and distribution",
     headline: "Inventory → SeatsBrokers →",
@@ -17,11 +18,11 @@ const panels = [
       "Market pricing, sales intelligence and event onsale information",
       "POS/API integration and payment infrastructure",
     ],
-    image: sellerImg,
-    imageAlt: "Ticket broker platform with inventory and marketplace distribution",
+    consoleLabel: "Live broker distribution console: listings, channel sync and auto-delist",
     caption: "One platform. Every marketplace.",
   },
   {
+    kind: "travel" as const satisfies StickyScrollConsoleKind,
     kicker: "Travel Companies",
     title: "Source tickets and create customer quotes",
     headline: "SeatsBrokers Inventory →",
@@ -32,11 +33,11 @@ const panels = [
       "Custom margins and customer-ready quotes",
       "Invoice generation and order management",
     ],
-    image: travelImg,
-    imageAlt: "Travel partner quotation and margin management tools",
+    consoleLabel: "Live travel quote desk: margin, client price and share channels",
     caption: "Customer-ready travel experiences.",
   },
   {
+    kind: "marketplaces" as const satisfies StickyScrollConsoleKind,
     kicker: "Ticket Marketplaces",
     title: "Connect inventory through APIs",
     headline: "Broker API → Inventory →",
@@ -47,11 +48,11 @@ const panels = [
       "Automated listing distribution and price sync",
       "Order synchronization and error monitoring",
     ],
-    image: dashboardImg,
-    imageAlt: "Marketplace connectivity API infrastructure",
+    consoleLabel: "Live marketplace sync console: listing fan-out, ask vs floor and channel lag",
     caption: "One inventory. Multiple marketplaces.",
   },
   {
+    kind: "partners" as const satisfies StickyScrollConsoleKind,
     kicker: "Technology Partners",
     title: "Integrate ticket data into your applications",
     headline: "Internal POS → SeatsBrokers API →",
@@ -62,8 +63,7 @@ const panels = [
       "Partner API for travel partners and external systems",
       "Secure authentication and role-based access",
     ],
-    image: stadiumImg,
-    imageAlt: "API platform for technology partner integrations",
+    consoleLabel: "Live partner API bridge: signed endpoints, roles and POS-to-distribution flow",
     caption: "Build on our technology.",
   },
 ] as const;
@@ -140,10 +140,10 @@ export function StickyScrollShowcase() {
       <div className="container-page relative z-10">
         <div className="grid lg:grid-cols-2 lg:gap-10 xl:gap-16">
           <div className="relative hidden lg:block">
-            <div className="sticky top-24 flex h-[calc(100dvh-6rem)] flex-col justify-center py-12">
-              <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-card)]">
+            <div className="sss-sticky sticky top-24">
+              <div className="sss-sticky-stage">
                 <div
-                  className="flex will-change-transform"
+                  className="sss-slider"
                   style={{
                     width: `${panels.length * 100}%`,
                     transform: `translate3d(-${(slideProgress / panels.length) * 100}%, 0, 0)`,
@@ -151,32 +151,25 @@ export function StickyScrollShowcase() {
                 >
                   {panels.map((panel, panelIndex) => (
                     <div
-                      key={panel.title}
-                      className="relative aspect-[4/3] shrink-0 overflow-hidden bg-ink/5"
+                      key={panel.kind}
+                      className="sss-slide"
                       style={{ width: `${100 / panels.length}%` }}
                     >
-                      <img
-                        src={panel.image}
-                        alt={panel.imageAlt}
-                        width={1200}
-                        height={900}
-                        loading={panelIndex === 0 ? "eager" : "lazy"}
-                        className="size-full object-cover"
-                      />
-                      <div
-                        className="pointer-events-none absolute inset-0 bg-linear-to-t from-dark/35 via-transparent to-transparent"
-                        aria-hidden
+                      <StickyScrollConsole
+                        kind={panel.kind}
+                        live={panelIndex === activeIndex}
+                        label={panel.consoleLabel}
                       />
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="relative mt-6 h-12 overflow-hidden">
+              <div className="sss-caption">
                 {panels.map((panel, i) => (
                   <p
                     key={panel.caption}
-                    className={`absolute inset-x-0 text-center font-mono text-[11px] tracking-[0.18em] text-muted-foreground uppercase transition-all duration-500 ${
+                    className={`sss-caption-line ${
                       i === activeIndex
                         ? "translate-y-0 opacity-100"
                         : i < activeIndex
@@ -189,13 +182,11 @@ export function StickyScrollShowcase() {
                 ))}
               </div>
 
-              <div className="mt-4 flex justify-center gap-1.5" aria-hidden>
+              <div className="sss-dots" aria-hidden>
                 {panels.map((panel, i) => (
                   <span
                     key={panel.kicker}
-                    className={`h-1 rounded-full bg-primary transition-all duration-500 ${
-                      i === activeIndex ? "w-8 opacity-100" : "w-2 opacity-35"
-                    }`}
+                    className={`sss-dot ${i === activeIndex ? "sss-dot-on" : ""}`}
                   />
                 ))}
               </div>
@@ -208,20 +199,15 @@ export function StickyScrollShowcase() {
                 key={panel.title}
                 className="sticky-scroll-panel flex min-h-0 flex-col justify-center py-12 sm:py-16 lg:min-h-[100dvh] lg:py-24"
               >
-                <div className="mb-8 overflow-hidden rounded-xl border border-border bg-card lg:hidden">
-                  <img
-                    src={panel.image}
-                    alt={panel.imageAlt}
-                    width={1200}
-                    height={900}
-                    loading="lazy"
-                    className="aspect-[16/10] w-full object-cover"
+                <div className="sss-mobile mb-8 lg:hidden">
+                  <StickyScrollConsole
+                    kind={panel.kind}
+                    live
+                    label={panel.consoleLabel}
                   />
                 </div>
 
-                <p className="section-eyebrow text-primary">
-                  {panel.kicker}
-                </p>
+                <p className="section-eyebrow text-primary">{panel.kicker}</p>
                 <p className="mt-3 font-display text-sm font-semibold tracking-[0.08em] text-muted-foreground uppercase">
                   {panel.title}
                 </p>

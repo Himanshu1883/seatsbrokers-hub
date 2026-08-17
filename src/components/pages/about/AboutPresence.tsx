@@ -19,6 +19,7 @@ export function AboutPresence() {
             <p className="mt-4 max-w-lg text-sm leading-relaxed text-background/70 sm:text-base">
               {aboutPresenceCopy.body}
             </p>
+            <p className="abt-presence-sun">{aboutPresenceCopy.sun}</p>
             <p className="abt-presence-mail">
               <span>Partners</span>
               <a href={`mailto:${brand.email}`}>{brand.email}</a>
@@ -31,8 +32,14 @@ export function AboutPresence() {
                 <li key={office.code}>
                   <span className="abt-office-index">0{index + 1}</span>
                   <strong>{office.city}</strong>
-                  <em>{office.region}</em>
+                  <em>
+                    {office.region} · {office.tz}
+                  </em>
                   <span className="abt-office-code">{office.code}</span>
+                  <p className="abt-office-window">
+                    {office.window} {office.tz} · {office.desk}
+                  </p>
+                  <p className="abt-office-coverage">{office.coverage}</p>
                 </li>
               ))}
             </ul>

@@ -126,18 +126,19 @@ Used on `/` unless noted.
 | FinalCTA | `FinalCTA.tsx` | Global close CTA | PageShell (all pages) |
 | Hero | `Hero.tsx` | Homepage hero + typewriter | `/` |
 | HeroDashboardTilt | `HeroDashboardTilt.tsx` | Hero dashboard mock | Hero |
-| NetworkConstellation | `NetworkConstellation.tsx` | Click-driven globe stages (no scroll pin) | `/` |
-| Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out) | `/` |
+| SellerTools / TravelTools | `ToolsGrid.tsx` | Flow blueprints (mounted immediately after Hero) | `/` |
 | TwoTrack | `TwoTrack.tsx` | Broker vs travel tracks (in-view straighten) | `/` |
+| Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out) | `/` |
+| NetworkConstellation | `NetworkConstellation.tsx` | 100dvh click-driven globe stages (no scroll pin) | `/` |
 | FeatureOrbit | `FeatureOrbit.tsx` | Capability orbit | `/` |
-| JourneyNumbers | `JourneyNumbers.tsx` | Milestone numbers | `/` |
 | ProcessBento | `Processbento.tsx` | Problem / platform bento | `/` |
 | HowItWorks | `HowItWorks.tsx` | Event / market / AI pricing | `/` |
 | PartnerProductShowcase | `PartnerProductShowcase.tsx` | Tabbed product shots | `/` |
 | ToolkitShowcase | `Toolkitshowcase.tsx` | Module toolkit | `/` |
-| StickyScrollShowcase | `StickyScrollShowcase.tsx` | Who we serve | `/` |
+| StickyScrollShowcase | `StickyScrollShowcase.tsx` | Who we serve — sticky-scroll; right visual swaps with the active audience | `/` |
+| StickyScrollConsoles | `StickyScrollConsoles.tsx` | Four unique light `ConsoleShell` mini-consoles (broker distribution, travel quote desk, marketplace sync, partner API bridge); `sss-*` | StickyScrollShowcase |
 | MarketIntelligence | `MarketIntelligence.tsx` | Intel tiles | `/` |
-| SellerTools / TravelTools | `ToolsGrid.tsx` | Flow blueprints | `/` |
+| JourneyNumbers | `JourneyNumbers.tsx` | Milestone numbers | `/` |
 | GlobalReach | `GlobalReach.tsx` | Geography | `/` |
 | GlobeScrollSection | `GlobeScrollSection.tsx` | Globe + slides | `/` |
 | GlobeCanvas | `landing/globe/GlobeCanvas.tsx` | Canvas globe (idle orbit; optional scrollOffset) | NetworkConstellation, GlobeScrollSection |

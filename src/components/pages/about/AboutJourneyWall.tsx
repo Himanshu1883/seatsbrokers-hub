@@ -33,9 +33,13 @@ function useCycle(length: number, ms: number, enabled: boolean) {
 export function AboutJourneyWall() {
   const { ref, inView } = useInView<HTMLDivElement>(0.35);
   const reduced = usePrefersReducedMotion();
+  const [pinnedChapter, setPinnedChapter] = useState<number | null>(null);
   const live = inView && !reduced;
-  const active = useCycle(aboutChapters.length, 2800, live);
+  const cycle = useCycle(aboutChapters.length, 2800, live && pinnedChapter === null);
+  const officeCycle = useCycle(aboutOffices.length, 3200, live);
+  const active = pinnedChapter ?? cycle;
   const chapter = aboutChapters[active] ?? aboutChapters[0];
+  const office = aboutOffices[officeCycle] ?? aboutOffices[0];
 
   return (
     <div ref={ref} className="abt-stage" data-live={live ? "true" : "false"}>
@@ -44,7 +48,7 @@ export function AboutJourneyWall() {
           <div className="abt-head-copy">
             <p className="abt-kicker">
               <span className="abt-live-dot" aria-hidden />
-              SeatsBrokers / Journey
+              SeatsBrokers / Atlas
             </p>
             <p className="abt-head-title">Company atlas</p>
           </div>
@@ -55,11 +59,18 @@ export function AboutJourneyWall() {
           <ol className="abt-rail" aria-label="Platform journey chapters">
             {aboutChapters.map((item, index) => (
               <li key={item.index} data-active={index === active ? "true" : "false"}>
-                <span className="abt-rail-index">{item.index}</span>
-                <span className="abt-rail-copy">
-                  <strong>{item.title}</strong>
-                  <em>{item.kicker}</em>
-                </span>
+                <button
+                  type="button"
+                  aria-pressed={index === active}
+                  aria-label={`Chapter ${item.index}: ${item.title}`}
+                  onClick={() => setPinnedChapter((current) => (current === index ? null : index))}
+                >
+                  <span className="abt-rail-index">{item.index}</span>
+                  <span className="abt-rail-copy">
+                    <strong>{item.title}</strong>
+                    <em>{item.kicker}</em>
+                  </span>
+                </button>
               </li>
             ))}
           </ol>
@@ -100,15 +111,20 @@ export function AboutJourneyWall() {
                   </circle>
                 </>
               ) : null}
-              {aboutOffices.map((office) => (
-                <g key={office.code} className="abt-city" transform={`translate(${(office.x / 100) * 400} ${(office.y / 100) * 220})`}>
+              {aboutOffices.map((item) => (
+                <g
+                  key={item.code}
+                  className="abt-city"
+                  data-active={item.code === office.code ? "true" : "false"}
+                  transform={`translate(${(item.x / 100) * 400} ${(item.y / 100) * 220})`}
+                >
                   <circle className="abt-city-ring" r="14" />
                   <circle className="abt-city-core" r="4.5" />
                   <text className="abt-city-code" x="12" y="-8">
-                    {office.code}
+                    {item.code}
                   </text>
                   <text className="abt-city-name" x="12" y="6">
-                    {office.city}
+                    {item.city}
                   </text>
                 </g>
               ))}
@@ -119,6 +135,17 @@ export function AboutJourneyWall() {
               {chapter.body}
             </p>
           </div>
+        </div>
+
+        <div className="abt-coverage" aria-label="Office coverage windows">
+          {aboutOffices.map((item) => (
+            <div key={item.code} data-active={item.code === office.code ? "true" : "false"}>
+              <strong>{item.code}</strong>
+              <span>
+                {item.window} {item.tz}
+              </span>
+            </div>
+          ))}
         </div>
 
         <footer className="abt-foot">

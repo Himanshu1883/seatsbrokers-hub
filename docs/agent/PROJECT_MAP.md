@@ -40,7 +40,7 @@ SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform
 ## Important Entry Points
 
 - `src/routes/__root.tsx` — app shell, fonts, `styles.css`
-- `src/routes/index.tsx` — homepage section order
+- `src/routes/index.tsx` — homepage section order: Hero → SellerTools → TravelTools → TwoTrack → Marketplaces → NetworkConstellation → FeatureOrbit → ProcessBento → HowItWorks → PartnerProductShowcase → ToolkitShowcase → StickyScrollShowcase → MarketIntelligence → JourneyNumbers → GlobalReach → GlobeScrollSection → Stats → Testimonials (FinalCTA is PageShell, not duplicated)
 - `src/components/layout/PageShell.tsx` — every marketing page chrome
 - `src/content/site.ts` — nav (`hidden` flag), CTAs, SEO `pageMeta`
 - `src/styles.css` — design tokens + page CSS prefixes

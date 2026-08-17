@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   ArrowRight,
   BarChart3,
@@ -11,6 +11,8 @@ import { SiteLink } from "@/components/layout/SiteLink";
 import { ctas } from "@/content/site";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { GlobeCanvas } from "@/components/landing/globe/GlobeCanvas";
+
+const STAGE_MS = 1800;
 
 type Stage = {
   id: string;
@@ -97,12 +99,29 @@ function nodePos(i: number) {
 
 export function NetworkConstellation() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [resumeKey, setResumeKey] = useState(0);
   const active = stages[activeIndex]!;
+
+  const goTo = useCallback((index: number) => {
+    setActiveIndex(index);
+    setResumeKey((k) => k + 1);
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) return;
+
+    const id = window.setInterval(() => {
+      setActiveIndex((i) => (i + 1) % stages.length);
+    }, STAGE_MS);
+
+    return () => window.clearInterval(id);
+  }, [resumeKey]);
 
   return (
     <section
       id="network-hub"
-      className="section-curve constellation nc-section relative isolate scroll-mt-24 overflow-x-clip py-16 sm:py-24"
+      className="section-curve constellation nc-section relative isolate scroll-mt-24 overflow-x-clip"
       aria-label="SeatsBrokers distribution network"
     >
       <div className="constellation-bg" aria-hidden />
@@ -135,7 +154,7 @@ export function NetworkConstellation() {
                     type="button"
                     aria-pressed={on}
                     aria-label={`Show ${s.label}`}
-                    onClick={() => setActiveIndex(i)}
+                    onClick={() => goTo(i)}
                     className={`nc-chip ${on ? "nc-chip-on" : ""}`}
                   >
                     {s.node}
@@ -152,7 +171,7 @@ export function NetworkConstellation() {
                   <li key={s.id}>
                     <button
                       type="button"
-                      onClick={() => setActiveIndex(i)}
+                      onClick={() => goTo(i)}
                       aria-pressed={on}
                       aria-label={`Show ${s.label}`}
                       className={`flex w-full items-center gap-3.5 rounded-xl px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
@@ -177,8 +196,8 @@ export function NetworkConstellation() {
                         </span>
                         <span className="mt-1.5 block h-1 w-full overflow-hidden rounded-full bg-border">
                           <span
-                            className="block h-full origin-left bg-primary transition-transform duration-300"
-                            style={{ transform: `scaleX(${on ? 1 : 0})` }}
+                            key={on ? `${s.id}-${resumeKey}` : s.id}
+                            className={`nc-rail-fill ${on ? "nc-rail-fill-on" : ""}`}
                           />
                         </span>
                       </span>
@@ -188,7 +207,7 @@ export function NetworkConstellation() {
               })}
             </ol>
 
-            <div className="mt-7 hidden flex-wrap gap-3.5 lg:flex">
+            <div className="nc-ctas mt-7 hidden flex-wrap gap-3.5 lg:flex">
               <SiteLink
                 to="/brokers"
                 className="inline-flex items-center rounded-full border border-border px-6 py-3 text-base font-semibold text-foreground transition-colors hover:border-primary/50"
@@ -230,7 +249,7 @@ export function NetworkConstellation() {
                     <button
                       key={s.id}
                       type="button"
-                      onClick={() => setActiveIndex(i)}
+                      onClick={() => goTo(i)}
                       aria-pressed={on}
                       aria-label={`Show ${s.label}`}
                       className={`nc-node ${on ? "nc-node-on" : ""}`}
@@ -243,7 +262,7 @@ export function NetworkConstellation() {
                         <span className={`text-sm font-semibold ${on ? "text-foreground" : "text-muted-foreground"}`}>
                           {s.node}
                         </span>
-                        <span className="mt-0.5 font-mono text-[11px] text-muted-foreground/60">{s.metric}</span>
+                        <span className="nc-node-metric mt-0.5 font-mono text-[11px] text-muted-foreground/60">{s.metric}</span>
                       </span>
                     </button>
                   );
@@ -261,7 +280,7 @@ export function NetworkConstellation() {
               <h3 className="mt-2 text-xl font-bold text-foreground">{active.title}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{active.body}</p>
 
-              <div className="mt-4 inline-flex flex-col rounded-xl border border-primary/20 bg-primary/[0.06] px-4 py-2.5">
+              <div className="nc-metric mt-4 inline-flex flex-col rounded-xl border border-primary/20 bg-primary/[0.06] px-4 py-2.5">
                 <strong className="text-2xl font-bold leading-none text-primary">
                   {active.metric}
                 </strong>
@@ -291,7 +310,7 @@ export function NetworkConstellation() {
                 <button
                   key={s.id}
                   type="button"
-                  onClick={() => setActiveIndex(i)}
+                  onClick={() => goTo(i)}
                   aria-pressed={i === activeIndex}
                   aria-label={`Show ${s.label}`}
                   className={`absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[var(--surface)] transition-transform hover:scale-125 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${

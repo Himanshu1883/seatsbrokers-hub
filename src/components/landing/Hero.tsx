@@ -7,7 +7,7 @@ import heroStadium from "@/assets/hero-stadium.jpg";
 import heroChampionship from "@/assets/cta-trophy.jpg";
 import heroTravel from "@/assets/card-travel.jpg";
 
-const SLIDE_MS = 9000;
+const SLIDE_MS = 2100;
 
 const slides = [
   {

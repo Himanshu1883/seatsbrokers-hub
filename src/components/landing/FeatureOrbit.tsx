@@ -178,25 +178,35 @@ export function FeatureOrbit() {
                   Live sync feed
                 </p>
               </div>
-              <div className="mt-5 flex flex-col gap-4">
-                {syncFeed.map((s) => (
-                  <div
-                    key={s.label + s.ago}
-                    className="border-b border-border/70 pb-3.5 last:border-0 last:pb-0"
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="font-mono text-[12px] font-semibold text-foreground">
-                        {s.label}
-                      </span>
-                      <span className="font-mono text-[10px] text-muted-foreground/70">
-                        {s.ago}
-                      </span>
+              <div className="fo-feed-window">
+                <div className="fo-feed-track fo-feed-track--up">
+                  {[0, 1].map((copy) => (
+                    <div
+                      key={copy}
+                      className={`fo-feed-list${copy === 1 ? " fo-feed-list--clone" : ""}`}
+                      aria-hidden={copy === 1 || undefined}
+                    >
+                      {syncFeed.map((s) => (
+                        <div
+                          key={s.label + s.ago}
+                          className="border-b border-border/70 pb-3.5"
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="font-mono text-[12px] font-semibold text-foreground">
+                              {s.label}
+                            </span>
+                            <span className="font-mono text-[10px] text-muted-foreground/70">
+                              {s.ago}
+                            </span>
+                          </div>
+                          <p className="mt-0.5 truncate font-mono text-[11px] text-muted-foreground">
+                            {s.detail}
+                          </p>
+                        </div>
+                      ))}
                     </div>
-                    <p className="mt-0.5 truncate font-mono text-[11px] text-muted-foreground">
-                      {s.detail}
-                    </p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
               <div className="mt-6 grid grid-cols-2 gap-3 border-t border-border/70 pt-5">
                 <div>
@@ -360,26 +370,36 @@ export function FeatureOrbit() {
               <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
                 Connected marketplaces
               </p>
-              <div className="mt-5 flex flex-col gap-3.5">
-                {marketplaces.map((m) => (
-                  <div key={m.name} className="flex items-center justify-between gap-2">
-                    <span className="font-mono text-[12px] text-foreground/85">
-                      {m.name}
-                    </span>
-                    <span
-                      className={`flex items-center gap-1.5 font-mono text-[11px] ${
-                        m.status === "Synced" ? "text-primary" : "text-muted-foreground"
-                      }`}
+              <div className="fo-feed-window">
+                <div className="fo-feed-track fo-feed-track--down">
+                  {[0, 1].map((copy) => (
+                    <div
+                      key={copy}
+                      className={`fo-feed-list fo-feed-list--markets${copy === 1 ? " fo-feed-list--clone" : ""}`}
+                      aria-hidden={copy === 1 || undefined}
                     >
-                      <span
-                        className={`h-1.5 w-1.5 rounded-full ${
-                          m.status === "Synced" ? "bg-primary" : "bg-muted-foreground/40"
-                        }`}
-                      />
-                      {m.status}
-                    </span>
-                  </div>
-                ))}
+                      {marketplaces.map((m) => (
+                        <div key={m.name} className="flex items-center justify-between gap-2">
+                          <span className="font-mono text-[12px] text-foreground/85">
+                            {m.name}
+                          </span>
+                          <span
+                            className={`flex items-center gap-1.5 font-mono text-[11px] ${
+                              m.status === "Synced" ? "text-primary" : "text-muted-foreground"
+                            }`}
+                          >
+                            <span
+                              className={`h-1.5 w-1.5 rounded-full ${
+                                m.status === "Synced" ? "bg-primary" : "bg-muted-foreground/40"
+                              }`}
+                            />
+                            {m.status}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="mt-6 border-t border-border/70 pt-5">
                 <p className="font-mono text-[9px] tracking-[0.16em] text-muted-foreground uppercase">

@@ -20,15 +20,27 @@ export function AboutPrinciples() {
         </Reveal>
 
         <Reveal delay={80}>
-          <ol className="abt-principles">
-            {aboutPrinciples.map((item) => (
-              <li key={item.index}>
-                <span>{item.index}</span>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </li>
-            ))}
-          </ol>
+          <div className="abt-principles-board">
+            <ol className="abt-principles">
+              {aboutPrinciples.map((item) => (
+                <li key={item.index}>
+                  <span>{item.index}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                  <ul className="abt-chips">
+                    {item.systems.map((system) => (
+                      <li key={system}>{system}</li>
+                    ))}
+                  </ul>
+                  <p className="abt-principle-contract">{item.contract}</p>
+                </li>
+              ))}
+            </ol>
+            <div className="abt-principles-spine">
+              <p className="abt-principles-spine-kicker">{aboutPrinciplesCopy.contractKicker}</p>
+              <p>{aboutPrinciplesCopy.contract}</p>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>

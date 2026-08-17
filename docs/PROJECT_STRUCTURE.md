@@ -72,7 +72,7 @@ seatsbrokers-hub/
 | File | Path | Role |
 |---|---|---|
 | `__root.tsx` | shell | Fonts, CSS, QueryClient, 404/error |
-| `index.tsx` | `/` | Homepage landing |
+| `index.tsx` | `/` | Homepage landing (Hero → SellerTools → TravelTools → TwoTrack → Marketplaces → NetworkConstellation → FeatureOrbit → ProcessBento → HowItWorks → PartnerProductShowcase → ToolkitShowcase → StickyScrollShowcase → MarketIntelligence → JourneyNumbers → GlobalReach → GlobeScrollSection → Stats → Testimonials) |
 | `brokers.tsx` | `/brokers` | Broker product page (live consoles) |
 | `travel-partners.tsx` | `/travel-partners` | Travel product page (live consoles) |
 | `platform.tsx` | `/platform` | Stack overview (hub-spine hero + linked module map) |

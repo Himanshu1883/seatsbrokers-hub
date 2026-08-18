@@ -47,12 +47,12 @@ const slides = [
   },
   {
     image: heroStadium3,
-    alt: "Travel partner ticket distribution platform",
-    eyebrow: "Travel Partner Platform",
+    alt: "B2B partner ticket distribution platform",
+    eyebrow: "B2B Partner Platform",
     title: "Powering ticket distribution for",
     typePhrases: ["Formula 1.", "Football.", "Concerts.", "Championships.", "Every major event."],
-    lead: "Turn ticket inventory into seamless customer experiences — access, margin, quote and sell through your travel business.",
-    body: "Real-time inventory visibility, partner purchasing, custom margins, customer-ready quotes, invoice generation and WhatsApp sharing for travel agencies selling sports and event packages.",
+    lead: "Turn ticket inventory into seamless customer experiences — access, margin, quote and sell through your B2B business.",
+    body: "Real-time inventory visibility, partner purchasing, custom margins, customer-ready quotes, invoice generation and WhatsApp sharing for B2B agencies selling sports and event packages.",
     shortBody: "Search inventory, add margin, and generate branded quotes for sports and event packages.",
     details: [
       "Search by event, date, venue, category, location and ticket type",
@@ -279,8 +279,8 @@ export function Hero() {
 
         <div className="hero-fit-main flex min-h-0 items-center overflow-visible">
           <div className="container-page flex min-h-0 w-full flex-col py-4 sm:py-6">
-            <div className="hero-fit-grid grid min-h-0 items-center gap-6 lg:grid-cols-[minmax(0,40rem)_minmax(0,44rem)] lg:items-start lg:justify-center lg:gap-8">
-              <div className="hero-copy w-full max-w-3xl lg:max-w-[40rem]">
+            <div className="hero-fit-grid grid min-h-0 items-center gap-6 lg:isolate lg:grid-cols-[minmax(0,40rem)_minmax(0,44rem)] lg:items-start lg:justify-center lg:gap-8">
+              <div className="hero-copy w-full min-w-0 max-w-3xl lg:relative lg:z-20 lg:max-w-[40rem] lg:pr-[clamp(1.75rem,5vw,3.5rem)]">
                 {slides.map((s, i) => {
                   const isActive = i === active;
                   return (
@@ -295,7 +295,7 @@ export function Hero() {
                 })}
               </div>
 
-              <div className="hero-fit-console hero-copy-item hero-copy-delay-3 mx-auto w-full min-h-0 max-w-xl lg:mx-0 lg:max-w-[44rem]">
+              <div className="hero-fit-console hero-copy-item hero-copy-delay-3 relative z-0 mx-auto w-full min-h-0 max-w-xl lg:mx-0 lg:max-w-[44rem] lg:pl-[clamp(2rem,5.5vw,4rem)] lg:[clip-path:inset(-3rem_0_-3rem_0)] lg:[&_.hero-tilt-card]:origin-[right_center]">
                 <HeroDashboardTilt slide={active} swapKey={motionKey} />
               </div>
             </div>

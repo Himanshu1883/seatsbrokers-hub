@@ -31,7 +31,7 @@ const slides = [
     index: "01",
     eyebrow: "Ecosystem",
     title: "One platform.",
-    lines: ["Brokers.", "Marketplaces.", "Travel partners."],
+    lines: ["Brokers.", "Marketplaces.", "B2B partners."],
     headline: null,
     body: "SeatsBrokers is the technology infrastructure connecting the global ticketing ecosystem — event data, inventory, marketplace connectivity, AI pricing and partner commerce.",
     bullets: [
@@ -73,11 +73,11 @@ const slides = [
   },
   {
     index: "03",
-    eyebrow: "Travel partners",
+    eyebrow: "B2B partners",
     title: null,
     lines: [] as string[],
     headline: "Buy, margin, quote and sell.",
-    body: "Turn ticket inventory into customer-ready travel experiences — access inventory, add margins, generate professional quotes and share via PDF, WhatsApp or email.",
+    body: "Turn ticket inventory into customer-ready experiences — access inventory, add margins, generate professional quotes and share via PDF, WhatsApp or email.",
     bullets: [
       "Real-time inventory visibility and partner purchasing",
       "Custom margins and customer-ready quotation tools",
@@ -91,7 +91,7 @@ const slides = [
     hub: "Gulf & leisure routes",
     region: "Dubai",
     image: travelImg,
-    imageAlt: "Travel partner quotation and margin tools",
+    imageAlt: "B2B partner quotation and margin tools",
   },
   {
     index: "04",
@@ -121,7 +121,7 @@ const slides = [
     title: null,
     lines: [] as string[],
     headline: "Connect your ticket operation to modern infrastructure.",
-    body: "Whether you are a ticket broker, marketplace, travel partner or technology provider — build your ticket business on better technology.",
+    body: "Whether you are a ticket broker, marketplace, B2B partner or technology provider — build your ticket business on better technology.",
     bullets: [
       "Book a demo to see the platform in action",
       "API documentation and developer access available",

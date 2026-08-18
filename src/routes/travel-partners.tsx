@@ -99,7 +99,7 @@ function SplitPanelLocal() {
             Add your margin. Set your customer price.
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Travel partners can add their own margin on top of ticket inventory pricing — transparent,
+            B2B partners can add their own margin on top of ticket inventory pricing — transparent,
             predictable and customer-ready.
           </p>
         </div>

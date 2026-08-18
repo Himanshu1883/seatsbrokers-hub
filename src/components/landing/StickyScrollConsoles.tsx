@@ -205,7 +205,7 @@ function TravelQuoteConsole({ ticking }: { ticking: boolean }) {
   const ShareIcon = travelShares[shareTick]?.icon ?? FileText;
 
   return (
-    <ConsoleShell path="seatsbrokers / travel / quote-desk" status="QUOTE" icon={FileText}>
+    <ConsoleShell path="seatsbrokers / b2b / quote-desk" status="QUOTE" icon={FileText}>
       <div className="sss-stats">
         <div className="lc-stat">
           <span className="lc-stat-label">Cost</span>

@@ -67,7 +67,7 @@ const managedCards = [
     brand: "amex" as const,
     last4: "1005",
     holder: "SEATS BROKERS LTD",
-    account: "Travel & Events",
+    account: "B2B & Events",
     primary: false,
     type: "Amex Credit",
     status: "Inactive" as const,

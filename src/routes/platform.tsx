@@ -40,7 +40,7 @@ function PlatformPage() {
           label: "The surfaces",
           detail: "Open the product page that matches how you work — this map does not rebuild them.",
         }}
-        payload={["brokers", "travel", "channels", "APIs"]}
+        payload={["brokers", "B2B", "channels", "APIs"]}
       />
 
       <PlatformModuleMap />

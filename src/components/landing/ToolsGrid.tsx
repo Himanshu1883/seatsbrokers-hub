@@ -1,17 +1,33 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   BadgeCheck,
   Car,
+  Check,
   FileSpreadsheet,
+  FileText,
   Globe2,
   Link2,
+  ListChecks,
   Package,
+  Percent,
+  Play,
   Radio,
   Settings2,
+  Share2,
 } from "lucide-react";
 import { Reveal, useInView } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
+import {
+  SeatMapTicketsConsole,
+  autoInvoiceRef,
+  autoQuoteRef,
+  categoryLabel,
+  formatGbp,
+  formatGbpCompact,
+  listingLineTotal,
+  useSeatMapTickets,
+} from "@/components/landing/SeatMapTicketsConsole";
 import type { EventBackdropKey } from "@/lib/event-backdrops";
 import { modules } from "@/content/modules";
 
@@ -122,7 +138,7 @@ const travelBlueprint: FlowBlueprint = {
   title: modules.deal.tagline,
   intro:
     "Select event, select tickets, add margin, generate quote and share with customer — PDF, invoice, WhatsApp, email or branded customer link.",
-  systemName: "seatsbrokers / travel-pipeline",
+  systemName: "seatsbrokers / b2b-pipeline",
   ingestLabel: "Search layer",
   sources: [
     { icon: Globe2, label: "Event & date search", packet: "query" },
@@ -130,7 +146,7 @@ const travelBlueprint: FlowBlueprint = {
     { icon: Link2, label: "Ticket type & price", packet: "catalog" },
     { icon: Car, label: "Location search", packet: "location" },
   ],
-  gateway: "Travel partner portal / API",
+  gateway: "B2B partner portal / API",
   branches: [
     {
       lineLabel: "inventory access",
@@ -161,7 +177,7 @@ const travelBlueprint: FlowBlueprint = {
     {
       lineLabel: "whatsapp share",
       title: "Share with customer",
-      body: "Share quotes via PDF, WhatsApp, email or customer link — branded for your travel business.",
+      body: "Share quotes via PDF, WhatsApp, email or customer link — branded for your B2B business.",
       status: "Multi-channel",
     },
     {
@@ -396,6 +412,348 @@ export function SellerTools() {
   return <FlowArchitecture blueprint={sellerBlueprint} />;
 }
 
+const travelSteps = [
+  { id: "select", label: "Select", icon: ListChecks },
+  { id: "quote", label: "Quote", icon: FileText },
+  { id: "margin", label: "Margin", icon: Percent },
+  { id: "share", label: "Share", icon: Share2 },
+] as const;
+
+/** One fixed-height line inside a pipeline mini console. */
+function PipeRow({ label, value, on }: { label: string; value: string; on: boolean }) {
+  return (
+    <li className="tpa-row" data-on={on ? "true" : "false"}>
+      <span className="tpa-row-tick" aria-hidden>
+        <Check className="size-2.5" strokeWidth={3.5} />
+      </span>
+      <span className="tpa-row-label">{label}</span>
+      <span className="tpa-row-value font-mono">{value}</span>
+    </li>
+  );
+}
+
 export function TravelTools() {
-  return <FlowArchitecture blueprint={travelBlueprint} />;
+  const { ref, inView } = useInView<HTMLDivElement>(0.12);
+  const desk = useSeatMapTickets({ active: inView });
+  const pipe = desk.pipeline;
+
+  const inventoryBranch = travelBlueprint.branches[0]!;
+  const marginBranch = travelBlueprint.branches[1]!;
+  const quoteBranch = travelBlueprint.branches[2]!;
+  const shareMid = travelBlueprint.midRow[0]!;
+
+  /* Fixed slot counts keep every mini console the same height all loop long. */
+  const selectSlots = Array.from({ length: 4 }, (_, index) => desk.selected[index] ?? null);
+  const quoteSlots = Array.from({ length: 4 }, (_, index) =>
+    index < pipe.lines ? desk.selected[index] ?? null : null,
+  );
+
+  const pipelineCards: {
+    id: string;
+    title: string;
+    icon: LucideIcon;
+    note: string;
+    metric: string;
+    metricLabel: string;
+    process: string;
+    body: ReactNode;
+  }[] = [
+    {
+      id: "select",
+      title: inventoryBranch.cardTitle,
+      icon: ListChecks,
+      note:
+        desk.selectedCount > 0
+          ? `${desk.selectedCount} listing${desk.selectedCount === 1 ? "" : "s"} held from live Etihad inventory — ${pipe.tickets} tickets.`
+          : inventoryBranch.cardBody,
+      metric: String(desk.selectedCount),
+      metricLabel: "Selected listings",
+      process: inventoryBranch.processLabel,
+      body: (
+        <>
+          <p className="tpa-meta">
+            <span>etihad · live feed</span>
+            <span>{desk.selectedCount} held</span>
+          </p>
+          <ul className="tpa-rows">
+            {selectSlots.map((row, index) => (
+              <PipeRow
+                key={row ? row.id : `select-slot-${index}`}
+                on={Boolean(row)}
+                label={row ? `${row.qty} × ${categoryLabel(row.category)}` : "Awaiting row"}
+                value={row ? formatGbp(row.basePrice) : "—"}
+              />
+            ))}
+          </ul>
+          <p className="tpa-foot">
+            <span>Tickets held</span>
+            <strong>{pipe.tickets}</strong>
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "quote",
+      title: quoteBranch.cardTitle,
+      icon: FileText,
+      note:
+        pipe.lines > 0
+          ? `${pipe.lines} of 4 lines written into ${autoQuoteRef} — priced in £.`
+          : quoteBranch.cardBody,
+      metric: formatGbpCompact(pipe.customerTotal),
+      metricLabel: "Quote value",
+      process: quoteBranch.processLabel,
+      body: (
+        <>
+          <p className="tpa-meta">
+            <span>{autoQuoteRef}</span>
+            <span>{pipe.lines}/4 lines</span>
+          </p>
+          <ul className="tpa-rows">
+            {quoteSlots.map((row, index) => (
+              <PipeRow
+                key={row ? `quote-${row.id}` : `quote-slot-${index}`}
+                on={Boolean(row)}
+                label={row ? `${row.qty} × ${categoryLabel(row.category)}` : "Line pending"}
+                value={row ? formatGbp(listingLineTotal(row, pipe.pricingPct)) : "—"}
+              />
+            ))}
+          </ul>
+          <p className="tpa-foot">
+            <span>Quote total</span>
+            <strong>{formatGbp(pipe.customerTotal)}</strong>
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "margin",
+      title: marginBranch.cardTitle,
+      icon: Percent,
+      note: pipe.marginLocked
+        ? `${pipe.marginPct}% partner margin applied — ticket price and margin value recalculated.`
+        : pipe.marginPct > 0
+          ? `Staging ${pipe.marginPct}% against ${formatGbpCompact(pipe.baseTotal)} of ticket value.`
+          : marginBranch.cardBody,
+      metric: `${pipe.marginPct}%`,
+      metricLabel: "Partner margin",
+      process: marginBranch.processLabel,
+      body: (
+        <>
+          <p className="tpa-meta">
+            <span>margin engine</span>
+            <span>{pipe.marginLocked ? "applied" : "staging"}</span>
+          </p>
+          <div className="tpa-dial" data-locked={pipe.marginLocked ? "true" : "false"}>
+            <span className="tpa-dial-value font-mono">+{pipe.marginPct}%</span>
+            <span className="tpa-dial-track" aria-hidden>
+              <span style={{ transform: `scaleX(${Math.min(1, pipe.marginPct / 20)})` }} />
+            </span>
+          </div>
+          <ul className="tpa-rows">
+            <PipeRow on={pipe.baseTotal > 0} label="Ticket price" value={formatGbp(pipe.baseTotal)} />
+            <PipeRow
+              on={pipe.marginLocked}
+              label="Customer price"
+              value={formatGbp(pipe.customerTotal)}
+            />
+          </ul>
+          <p className="tpa-foot">
+            <span>Margin value</span>
+            <strong>{formatGbp(pipe.marginTotal)}</strong>
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "share",
+      title: "Share & confirm",
+      icon: Share2,
+      note: pipe.confirmed
+        ? `Order confirmed and invoice ${autoInvoiceRef} issued with margin reporting.`
+        : pipe.channels > 0
+          ? `${pipe.channels} of 3 outputs sent from one branded package.`
+          : shareMid.body,
+      metric: pipe.confirmed ? "Sent" : `${pipe.channels}/3`,
+      metricLabel: "Channels fired",
+      process: "Order, invoice & delivery",
+      body: (
+        <>
+          <p className="tpa-meta">
+            <span>output bus</span>
+            <span>{pipe.confirmed ? "confirmed" : `${pipe.channels}/3 sent`}</span>
+          </p>
+          <ul className="tpa-rows">
+            <PipeRow
+              on={pipe.channels >= 1}
+              label="Quote copied to thread"
+              value={pipe.channels >= 1 ? "sent" : "queued"}
+            />
+            <PipeRow
+              on={pipe.channels >= 2}
+              label="Venue map attached"
+              value={pipe.channels >= 2 ? "sent" : "queued"}
+            />
+            <PipeRow
+              on={pipe.channels >= 3}
+              label="Branded quote PDF"
+              value={pipe.channels >= 3 ? "ready" : "queued"}
+            />
+            <PipeRow
+              on={pipe.confirmed}
+              label="Order confirmed"
+              value={pipe.confirmed ? "ok" : "—"}
+            />
+          </ul>
+          <p className="tpa-foot">
+            <span>Invoice</span>
+            <strong>{pipe.confirmed ? autoInvoiceRef : "pending"}</strong>
+          </p>
+        </>
+      ),
+    },
+  ];
+
+  return (
+    <section
+      id={travelBlueprint.id}
+      className="section-curve relative isolate scroll-mt-24 overflow-x-clip bg-background py-16 sm:py-24"
+      aria-labelledby={`${travelBlueprint.id}-title`}
+    >
+      <SectionBackdrop image={travelBlueprint.backdrop} tone="light" strength={0.1} />
+      <div className="container-page relative z-10">
+        <Reveal>
+          <p className="section-eyebrow text-primary">{travelBlueprint.eyebrow}</p>
+          <h2
+            id={`${travelBlueprint.id}-title`}
+            className="mt-4 max-w-3xl text-3xl font-bold text-foreground sm:text-4xl"
+          >
+            {travelBlueprint.title}
+          </h2>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            {travelBlueprint.intro}
+          </p>
+        </Reveal>
+
+        <div
+          ref={ref}
+          data-live={inView}
+          className="tools-flow relative mt-12 overflow-x-clip rounded-2xl border border-border bg-surface/70 px-3 pb-6 pt-4 sm:px-6 sm:pb-8 lg:px-10 lg:pb-10"
+        >
+          <span className="flow-corner flow-corner-tl" aria-hidden />
+          <span className="flow-corner flow-corner-tr" aria-hidden />
+          <span className="flow-corner flow-corner-bl" aria-hidden />
+          <span className="flow-corner flow-corner-br" aria-hidden />
+
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
+            <p className="font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase sm:text-[11px]">
+              {travelBlueprint.systemName}
+            </p>
+            <p className="flex items-center gap-2 font-mono text-[10px] tracking-[0.16em] text-primary uppercase sm:text-[11px]">
+              <span className="flow-status-dot" aria-hidden />
+              pipeline live · streaming
+            </p>
+          </div>
+
+          <p className="flow-tier-label mt-6">Quote desk</p>
+
+          <div className="tpa-rail" data-manual={pipe.manual ? "true" : "false"}>
+            <div className="tpa-rail-top">
+              <p className="tpa-rail-title">
+                <span className="tpa-rail-dot" aria-hidden />
+                Auto-run quote pipeline
+              </p>
+              {pipe.manual ? (
+                <button type="button" className="tpa-resume" onClick={desk.resumeAuto}>
+                  <Play className="size-3" strokeWidth={2.5} />
+                  Resume auto-run
+                </button>
+              ) : (
+                <span className="tpa-rail-badge font-mono">
+                  {pipe.reducedMotion ? "static · reduced motion" : "self-running · no input needed"}
+                </span>
+              )}
+            </div>
+            <p className="tpa-rail-status">{pipe.label}</p>
+            <ol className="smt-pipe tpa-steps" aria-label="Quote pipeline">
+              {travelSteps.map((step, index) => {
+                const done = index < pipe.stageIndex;
+                const current = index === pipe.stageIndex;
+                return (
+                  <li
+                    key={step.id}
+                    data-current={current ? "true" : "false"}
+                    data-done={done ? "true" : "false"}
+                  >
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <step.icon className="tpa-step-icon size-3.5" strokeWidth={2} />
+                    {step.label}
+                    <i
+                      className="tpa-step-fill"
+                      aria-hidden
+                      style={{
+                        transform: `scaleX(${done ? 1 : current ? pipe.stageProgress : 0})`,
+                      }}
+                    />
+                  </li>
+                );
+              })}
+            </ol>
+            <div className="tpa-scrub" aria-hidden>
+              <span style={{ transform: `scaleX(${pipe.progress})` }} />
+            </div>
+          </div>
+
+          <div onPointerDownCapture={desk.takeControl} onKeyDownCapture={desk.takeControl}>
+            <SeatMapTicketsConsole desk={desk} />
+          </div>
+
+          <div className="tpa-grid mt-6 grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-4">
+            {pipelineCards.map((card, index) => {
+              const state =
+                index < pipe.stageIndex ? "done" : index === pipe.stageIndex ? "live" : "queued";
+              return (
+                <div key={card.id} className="flow-col group flex flex-col" data-smt-active={state === "live" ? "true" : "false"}>
+                  <article className="tpa-card flow-card flex flex-1 flex-col" data-state={state}>
+                    <header className="tpa-card-head">
+                      <span className="tpa-card-step font-mono">{String(index + 1).padStart(2, "0")}</span>
+                      <card.icon className="size-4 shrink-0 text-primary" strokeWidth={2} />
+                      <h3>{card.title}</h3>
+                      <span className="tpa-card-chip font-mono">{state}</span>
+                    </header>
+                    <p className="tpa-card-note">{card.note}</p>
+                    <div className="tpa-card-body">{card.body}</div>
+                    <div className="tpa-card-metric">
+                      <span className="font-display">{card.metric}</span>
+                      <span className="font-mono">{card.metricLabel}</span>
+                    </div>
+                  </article>
+                  <div className="flow-link flow-link-short" aria-hidden>
+                    <span className="flow-line-v flow-link-segment">
+                      <span className="flow-pulse" />
+                    </span>
+                  </div>
+                  <div className="flow-process rounded-lg px-3 py-2.5 text-center font-mono text-[10px] font-bold tracking-[0.12em] text-primary-foreground uppercase sm:text-[11px]">
+                    {card.process}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <FlowJunction cols={4} direction="in" />
+
+          <div className="mb-3 flex flex-wrap justify-center gap-x-6 gap-y-1">
+            {travelBlueprint.terminalLines.map((line) => (
+              <span key={line} className="font-mono text-[10px] tracking-[0.12em] text-muted-foreground">
+                {line}
+              </span>
+            ))}
+          </div>
+
+          <FlowBar tone="terminal">{travelBlueprint.terminal}</FlowBar>
+        </div>
+      </div>
+    </section>
+  );
 }

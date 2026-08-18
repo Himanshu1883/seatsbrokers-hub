@@ -62,7 +62,7 @@ function MarketAnalyticsPage() {
         title="Performance across your operation"
         items={[
           { title: "Broker analytics", body: "Sales, revenue, inventory, margins and marketplace performance." },
-          { title: "Partner analytics", body: "Orders, quotes, conversion and revenue for travel partners." },
+          { title: "Partner analytics", body: "Orders, quotes, conversion and revenue for B2B partners." },
         ]}
       />
     </PageShell>

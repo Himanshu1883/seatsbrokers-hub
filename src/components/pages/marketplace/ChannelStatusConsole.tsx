@@ -15,7 +15,7 @@ const channels = [
   { code: "CH-02", label: "Sports exchange", dest: "LF", status: "synced" as const, latency: "58ms", errors: "0.1%" },
   { code: "CH-03", label: "Regional OTA", dest: "TM", status: "pushing" as const, latency: "96ms", errors: "0.4%" },
   { code: "CH-04", label: "Broker desk", dest: "POS", status: "synced" as const, latency: "18ms", errors: "0.0%" },
-  { code: "CH-05", label: "Travel partners", dest: "OTA", status: "synced" as const, latency: "71ms", errors: "0.0%" },
+  { code: "CH-05", label: "B2B partners", dest: "OTA", status: "synced" as const, latency: "71ms", errors: "0.0%" },
   { code: "CH-06", label: "White-label", dest: "WL", status: "queued" as const, latency: "—", errors: "—" },
   { code: "CH-07", label: "Marketplace 05", dest: "SH", status: "synced" as const, latency: "64ms", errors: "0.2%" },
   { code: "CH-08", label: "Marketplace 06", dest: "VGG", status: "synced" as const, latency: "81ms", errors: "0.0%" },

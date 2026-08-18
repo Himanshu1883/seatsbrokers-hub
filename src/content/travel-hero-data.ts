@@ -1,8 +1,8 @@
 export const travelHeroCopy = {
-  eyebrow: "Travel Partner Platform",
-  title: "Turn Ticket Inventory Into Customer-Ready Travel Experiences",
+  eyebrow: "B2B Partner Platform",
+  title: "Turn Ticket Inventory Into Customer-Ready Experiences",
   subhead: "Search live inventory, add your margin, share a branded quote — then track the order through delivery.",
-  body: "Give travel partners direct access to the same inventory brokers manage — search, buy, margin, quotation and fulfillment from one workspace.",
+  body: "Give B2B partners direct access to the same inventory brokers manage — search, buy, margin, quotation and fulfillment from one workspace.",
 } as const;
 
 export type TravelHeroCardType =
@@ -87,7 +87,7 @@ export const heroPartnerPricing = {
 
 export const travelHeroDesk = {
   title: "Partner desk",
-  path: "seatsbrokers / travel",
+  path: "seatsbrokers / b2b",
 } as const;
 
 export const travelHeroKpis = [

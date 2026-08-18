@@ -23,9 +23,9 @@ const tiles = [
   {
     icon: Users,
     title: "Who can partner",
-    body: "Travel companies · OTAs · DMCs",
+    body: "B2B companies · OTAs · DMCs",
     detail:
-      "Travel companies, OTAs and destination specialists join on one set of partner terms — same inventory clock, same settlement.",
+      "B2B companies, OTAs and destination specialists join on one set of partner terms — same inventory clock, same settlement.",
   },
   {
     icon: Percent,
@@ -254,7 +254,7 @@ export function PartnerTermsSection() {
               <em className="font-medium italic text-primary">Predictable settlement.</em>
             </h2>
             <p className="pt-lead">
-              Travel companies, OTAs and destination specialists can partner with SeatsBrokers. You keep your
+              B2B companies, OTAs and destination specialists can partner with SeatsBrokers. You keep your
               margin, we keep the inventory and fulfillment clock honest — KYC-ready onboarding, partner pricing
               and a published settlement schedule.
             </p>

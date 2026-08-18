@@ -149,7 +149,8 @@ Used on `/` unless noted.
 | FinalCTA | `FinalCTA.tsx` | Global close CTA (“Become a seller” → `/brokers`) | PageShell (all pages) |
 | Hero | `Hero.tsx` | Homepage hero + typewriter | `/` |
 | HeroDashboardTilt | `HeroDashboardTilt.tsx` | Hero dashboard mock | Hero |
-| SellerTools / TravelTools | `ToolsGrid.tsx` | Flow blueprints (mounted immediately after Hero) | `/` |
+| SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: flow blueprint. Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus three synced pipeline cards | `/` |
+| SeatMapTicketsConsole | `SeatMapTicketsConsole.tsx` | Interactive inventory/quote mini-console (select, margin, copy, PDF) in `ConsoleShell` | TravelTools |
 | TwoTrack | `TwoTrack.tsx` | Broker vs travel tracks (in-view straighten) | `/` |
 | Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out) | `/` |
 | NetworkConstellation | `NetworkConstellation.tsx` | 100dvh click-driven globe stages (no scroll pin) | `/` |
@@ -187,6 +188,7 @@ Used on `/` unless noted.
 | `src/content/book-demo-data.ts` | Book-a-demo hero, slots, agenda, session blocks, audiences, form options |
 | `src/content/platform-page-data.ts` | Platform hero, stack layers, module map tiles |
 | `src/content/inventory-console-data.ts` | Inventory console demo rows |
+| `src/content/seat-map-tickets-data.ts` | Homepage TravelTools Seat Map & Tickets demo listings / map blocks (£) |
 | `src/content/bento-illustrations.ts` | ProcessBento images |
 
 ## UI kit

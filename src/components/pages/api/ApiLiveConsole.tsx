@@ -35,7 +35,7 @@ const variants: Record<ApiLiveConsoleVariant, ApiLiveConsoleMeta> = {
       },
       {
         title: "Role-based access",
-        body: "Broker operations, travel partners and platform admins receive different scopes. A partner key can read inventory and post quotes without listing across marketplaces.",
+        body: "Broker operations, B2B partners and platform admins receive different scopes. A partner key can read inventory and post quotes without listing across marketplaces.",
       },
       {
         title: "Audit logs",

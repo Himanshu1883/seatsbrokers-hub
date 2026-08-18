@@ -44,7 +44,7 @@ export const bentoBackdrops = {
   travel: {
     id: "travel",
     src: bentoPartnerPayments,
-    alt: "Travel partner commerce dashboard",
+    alt: "B2B partner commerce dashboard",
     position: "50% 28%",
     opacity: 0.9,
     blur: "0px",

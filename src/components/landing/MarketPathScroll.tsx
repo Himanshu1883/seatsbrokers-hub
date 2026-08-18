@@ -449,7 +449,7 @@ export function MarketPathScroll() {
                 Seller Partner
               </a>
               <a href="#travel" className="market-path-cta">
-                Travel Partner
+                B2B Partner
                 <ArrowRight className="size-3.5" aria-hidden />
               </a>
             </div>
@@ -497,7 +497,7 @@ export function MarketPathScroll() {
               Seller Partner
             </a>
             <a href="#travel" className="market-path-cta">
-              Travel Partner
+              B2B Partner
               <ArrowRight className="size-3.5" aria-hidden />
             </a>
           </div>

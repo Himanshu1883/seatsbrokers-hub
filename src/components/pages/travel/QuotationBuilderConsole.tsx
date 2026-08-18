@@ -27,10 +27,10 @@ const ticketLines = [
 
 const recentQuotes = [
   { id: "QT-1842", customer: "Atlas Journeys", event: "UCL Final", status: "accepted" as const, value: "£550" },
-  { id: "QT-1841", customer: "Northstar Travel", event: "Arsenal vs Chelsea", status: "viewed" as const, value: "£720" },
+  { id: "QT-1841", customer: "Northstar Partners", event: "Arsenal vs Chelsea", status: "viewed" as const, value: "£720" },
   { id: "QT-1840", customer: "Helix Tours", event: "Monaco GP", status: "sent" as const, value: "£1,240" },
   { id: "QT-1839", customer: "Vista Groups", event: "Oasis · Wembley", status: "accepted" as const, value: "£380" },
-  { id: "QT-1838", customer: "Meridian Travel", event: "Six Nations", status: "sent" as const, value: "£540" },
+  { id: "QT-1838", customer: "Meridian Partners", event: "Six Nations", status: "sent" as const, value: "£540" },
 ] as const;
 
 const shareChannels = [

@@ -25,7 +25,7 @@ export function FinalCTA() {
             Build Your Ticket Business on Better Technology
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-sm text-background/75 sm:text-base">
-            Whether you are a ticket broker, marketplace, travel partner or technology provider,
+            Whether you are a ticket broker, marketplace, B2B partner or technology provider,
             connect your ticket operation to a modern technology infrastructure built for the global
             event economy.
           </p>

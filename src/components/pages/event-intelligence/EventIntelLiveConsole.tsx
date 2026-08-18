@@ -115,7 +115,7 @@ const variants: Record<EventIntelLiveConsoleVariant, EventIntelLiveConsoleMeta> 
       },
       {
         title: "Feeds pricing and inventory",
-        body: "The same forecast drives AI pricing recommendations, inventory release decisions and the numbers travel partners quote from.",
+        body: "The same forecast drives AI pricing recommendations, inventory release decisions and the numbers B2B partners quote from.",
       },
     ],
     tone: "light",

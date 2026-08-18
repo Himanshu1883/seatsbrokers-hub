@@ -12,7 +12,7 @@ const stats = [
     icon: "⌂",
     value: "10K+",
     label: "B2B Partners",
-    desc: "Brokers, travel partners and marketplaces connected through SeatsBrokers.",
+    desc: "Brokers, B2B partners and marketplaces connected through SeatsBrokers.",
   },
   {
     icon: "▤",

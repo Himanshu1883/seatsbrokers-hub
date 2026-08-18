@@ -55,7 +55,7 @@ SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform
 | Product page sections | `src/routes/<page>.tsx` then that folder under `pages/` |
 | Shared hero/grid/steps | `src/components/pages/shared/PageSections.tsx` |
 | Live console | page-specific `*LiveConsole.tsx` + inner console + CSS prefix |
-| Copy / CTAs / SEO titles | `src/content/site.ts` or `*-hero-data.ts`; official product modules in `src/content/modules.ts` |
+| Copy / CTAs / SEO titles | `src/content/site.ts` or `*-hero-data.ts`; official product modules in `src/content/modules.ts`; homepage quote-desk demo in `seat-map-tickets-data.ts` |
 | Color / type / section chrome | `docs/DESIGN_SYSTEM.md` then `src/styles.css` `:root` |
 | Contact / demo form | `ContactHero` in `pages/contact/` + `ContactForm` in `PageSections.tsx`, or `DemoRequestForm` |
 | FAQ copy / accordion | `src/content/faq-data.ts` → `pages/faq/` + `src/routes/faq.tsx` |

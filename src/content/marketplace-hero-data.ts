@@ -118,7 +118,7 @@ export const marketplaceHeroMesh = [
   { code: "CH-02", name: "Sports exchange", status: "synced" as const, listings: 318, pips: 8, latency: "58ms" },
   { code: "CH-03", name: "Regional OTA", status: "lagging" as const, listings: 186, pips: 5, latency: "96ms" },
   { code: "CH-04", name: "Broker desk", status: "synced" as const, listings: 540, pips: 12, latency: "18ms" },
-  { code: "CH-05", name: "Travel partners", status: "synced" as const, listings: 274, pips: 7, latency: "71ms" },
+  { code: "CH-05", name: "B2B partners", status: "synced" as const, listings: 274, pips: 7, latency: "71ms" },
   { code: "CH-06", name: "White-label", status: "conflict" as const, listings: 91, pips: 3, latency: "—" },
 ] as const;
 

@@ -26,7 +26,7 @@ const orders = [
   {
     id: "QT-1841",
     invoice: null,
-    customer: "Northstar Travel",
+    customer: "Northstar Partners",
     event: "Arsenal vs Chelsea",
     package: "Longside · 12 × 4",
     venue: "Emirates Stadium",
@@ -44,7 +44,7 @@ const orders = [
   {
     id: "QT-1838",
     invoice: null,
-    customer: "Meridian Travel",
+    customer: "Meridian Partners",
     event: "Six Nations",
     package: "West stand × 3",
     venue: "Twickenham",

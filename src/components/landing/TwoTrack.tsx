@@ -59,10 +59,10 @@ const tracks = [
   },
   {
     id: "travel",
-    code: "TRAVEL",
+    code: "B2B",
     icon: Plane,
-    eyebrow: "Travel Partners",
-    consolePath: "seatsbrokers / travel-partners",
+    eyebrow: "B2B Partners",
+    consolePath: "seatsbrokers / b2b-partners",
     consoleStatus: "LIVE",
     lineA: "Turn inventory",
     lineAccent: "into experience",
@@ -445,7 +445,7 @@ export function TwoTrack() {
               Built for the global ticketing ecosystem
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Ticket brokers and travel partners — connected through one intelligent infrastructure layer for catalog,
+              Ticket brokers and B2B partners — connected through one intelligent infrastructure layer for catalog,
               distribution, pricing and partner commerce.
             </p>
           </Reveal>

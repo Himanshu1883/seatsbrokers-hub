@@ -241,7 +241,7 @@ export function VenueIntelligenceSection() {
             <p className="vi-lead">
               Interactive venue maps with sections, categories, rows and seating areas — connected to
               actual inventory listing data. A listing is a location in a mapped stadium, not a line of
-              free text, so brokers, travel partners and the Events API all read the same structure.
+              free text, so brokers, B2B partners and the Events API all read the same structure.
             </p>
 
             <ul className="vi-tiles">

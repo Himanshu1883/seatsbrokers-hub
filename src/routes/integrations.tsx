@@ -37,7 +37,7 @@ function IntegrationsPage() {
           { title: "Internal ERP", body: "Feed ticket data into your internal ERP and finance systems." },
           { title: "Websites", body: "Embed inventory and pricing into your own customer-facing websites." },
           { title: "Mobile applications", body: "Build mobile experiences on top of SeatsBrokers APIs." },
-          { title: "Partner systems", body: "Allow travel partners and external systems to interact with inventory." },
+          { title: "Partner systems", body: "Allow B2B partners and external systems to interact with inventory." },
           { title: "Marketplace integrations", body: "Centralized connectivity to resale marketplaces through one hub." },
         ]}
       />

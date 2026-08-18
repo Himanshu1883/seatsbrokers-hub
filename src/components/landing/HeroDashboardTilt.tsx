@@ -27,7 +27,7 @@ const TICK_MS = 1600;
 const consoleMeta = [
   { id: "platform", path: "platform · infrastructure", badge: "LIVE" },
   { id: "broker", path: "broker · distribution", badge: "SYNC" },
-  { id: "travel", path: "travel · quote desk", badge: "QUOTE" },
+  { id: "travel", path: "b2b · quote desk", badge: "QUOTE" },
 ] as const;
 
 function HudBar({ path, badge, spin = false }: { path: string; badge: string; spin?: boolean }) {
@@ -68,7 +68,7 @@ const platformFeed = [
   { tag: "event", line: "Onsale detected · Monaco GP" },
   { tag: "sync", line: "Listing pushed · 6 channels" },
   { tag: "price", line: "Ask updated £182 → £188" },
-  { tag: "partner", line: "Quote sent · travel partner" },
+  { tag: "partner", line: "Quote sent · B2B partner" },
   { tag: "pay", line: "Settlement queued · £14,820" },
   { tag: "event", line: "Venue map refreshed · Wembley" },
   { tag: "sync", line: "Quantity synced · 4 remaining" },

@@ -310,7 +310,7 @@ const cards = [
   },
   {
     title: "Managing partners, payments and delivery",
-    body: "Travel partner purchases, creating quotations, managing payments, delivering tickets and keeping data synchronized across every channel.",
+    body: "B2B partner purchases, creating quotations, managing payments, delivering tickets and keeping data synchronized across every channel.",
     backdrop: bentoBackdrops.travel,
     Illustration: DemandIllustration,
   },
@@ -349,7 +349,7 @@ export function ProcessBento() {
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Managing inventory across multiple marketplaces, updating prices manually, finding new events,
-            connecting POS systems, managing travel partner purchases and delivering tickets — we built
+            connecting POS systems, managing B2B partner purchases and delivering tickets — we built
             the technology layer that connects all of it.
           </p>
         </Reveal>

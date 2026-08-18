@@ -56,7 +56,7 @@ export const legalPrivacy: {
     {
       heading: "Who we are",
       paragraphs: [
-        "SeatsBrokers is B2B ticketing infrastructure for ticket brokers and travel partners — inventory, marketplace connectivity, event intelligence and APIs on one platform. This website is the public marketing site for that platform. It is not a consumer ticket shop.",
+        "SeatsBrokers is B2B ticketing infrastructure for ticket brokers and B2B partners — inventory, marketplace connectivity, event intelligence and APIs on one platform. This website is the public marketing site for that platform. It is not a consumer ticket shop.",
         "We have not published a registered company number or street address on this site. For privacy questions, write to the desks below. Offices are in London, New York and Dubai.",
       ],
     },
@@ -64,7 +64,7 @@ export const legalPrivacy: {
       heading: "How to contact us",
       paragraphs: [
         "Brokers, marketplace connectivity and API: sales@seatsbrokers.com.",
-        "Travel partners: partners@seatsbrokers.com.",
+        "B2B partners: partners@seatsbrokers.com.",
         "Those are the addresses we use for enquiries. We do not publish a phone number or postal address on this site.",
       ],
     },
@@ -85,14 +85,14 @@ export const legalPrivacy: {
     {
       heading: "How we use it",
       paragraphs: [
-        "We use enquiry details to respond, to discuss becoming a seller or a travel partner, and to send platform or API updates if you asked for them.",
+        "We use enquiry details to respond, to discuss becoming a seller or a B2B partner, and to send platform or API updates if you asked for them.",
         "We do not sell personal information. We do not operate a public checkout or consumer ticket basket on this site. Currency on the platform is £; commercial charges are agreed per account, not as a public consumer fee.",
       ],
     },
     {
       heading: "Platform accounts",
       paragraphs: [
-        "Broker and travel-partner accounts may include business contact details and operational records needed to run inventory, listings, marketplace channels, event intelligence and API access.",
+        "Broker and B2B partner accounts may include business contact details and operational records needed to run inventory, listings, marketplace channels, event intelligence and API access.",
         "Those records exist to operate the platform for your business. They are not used to sell tickets to the general public through this marketing site.",
       ],
     },
@@ -113,7 +113,7 @@ export const legalPrivacy: {
     {
       heading: "Children",
       paragraphs: [
-        "This site is for professional ticket businesses — brokers, travel partners and related B2B teams. It is not directed at children.",
+        "This site is for professional ticket businesses — brokers, B2B partners and related teams. It is not directed at children.",
       ],
     },
   ],
@@ -131,7 +131,7 @@ export const legalTerms: {
       heading: "Using this site",
       paragraphs: [
         "By using seatsbrokers.com (this marketing site), you agree to these terms. If you do not agree, do not use the site.",
-        "SeatsBrokers provides B2B ticketing infrastructure. Become a seller via the broker platform. Travel partners search the same inventory, add margin and quote. Marketplace connectivity, event intelligence and the API are product surfaces of that platform — not a public ticket checkout.",
+        "SeatsBrokers provides B2B ticketing infrastructure. Become a seller via the broker platform. B2B partners search the same inventory, add margin and quote. Marketplace connectivity, event intelligence and the API are product surfaces of that platform — not a public ticket checkout.",
       ],
     },
     {
@@ -144,7 +144,7 @@ export const legalTerms: {
     {
       heading: "Accounts and commercial terms",
       paragraphs: [
-        "Broker access, travel-partner access, marketplace distribution and API access are agreed with our team. Charges are in £ and set per account — there is no public consumer checkout fee on this site.",
+        "Broker access, B2B partner access, marketplace distribution and API access are agreed with our team. Charges are in £ and set per account — there is no public consumer checkout fee on this site.",
         "Those account terms sit alongside this page. If they conflict for a paying or contracted partner, the account terms govern the platform service.",
       ],
     },
@@ -177,7 +177,7 @@ export const legalTerms: {
     {
       heading: "Questions",
       paragraphs: [
-        "Write to sales@seatsbrokers.com (brokers, marketplaces and API) or partners@seatsbrokers.com (travel partners). Offices: London, New York and Dubai.",
+        "Write to sales@seatsbrokers.com (brokers, marketplaces and API) or partners@seatsbrokers.com (B2B partners). Offices: London, New York and Dubai.",
       ],
     },
   ],

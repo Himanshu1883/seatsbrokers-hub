@@ -414,7 +414,7 @@ export function HowItWorks() {
                 Ready to onboard
               </p>
               <p className="mt-2 max-w-xl text-base font-semibold text-foreground">
-                Ticket brokers, travel partners and technology providers — know what's coming,
+                Ticket brokers, B2B partners and technology providers — know what's coming,
                 know what's happening, know what to price.
               </p>
             </div>

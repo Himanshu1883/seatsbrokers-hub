@@ -258,7 +258,7 @@ export function TravelConsoleWall() {
       </article>
 
       <p className="sr-only">
-        Partner intelligence preview for SeatsBrokers travel desks: 48 active partners, 312 live
+        Partner intelligence preview for SeatsBrokers B2B desks: 48 active partners, 312 live
         bookings, £54,671 partner earnings this month, 94% on-time delivery and T+3 settlement.
       </p>
     </div>

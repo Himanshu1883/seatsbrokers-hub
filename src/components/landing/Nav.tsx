@@ -119,23 +119,27 @@ export function Nav() {
     <header id="site-nav" className="site-nav">
       <div className="site-nav-bar">
         <nav
-          className="container-nav relative z-10 flex h-18 w-full min-w-0 items-center justify-between gap-3 py-3 lg:gap-6 lg:py-3.5"
+          className="container-nav relative z-10 flex h-18 w-full min-w-0 items-center justify-between gap-3 lg:gap-6"
           aria-label="Primary"
         >
           <Link
             to="/"
-            hash="top"
             activeOptions={{ exact: true }}
-            className="flex min-w-0 items-center"
-            onClick={() => setOpen(false)}
+            className="site-nav-brand flex min-w-0 items-center"
+            onClick={() => {
+              setOpen(false);
+              window.scrollTo(0, 0);
+            }}
           >
-            <img
-              src={logo}
-              alt={brand.name}
-              width={566}
-              height={174}
-              className="site-nav-logo h-14 w-auto object-contain sm:h-16"
-            />
+            <span className="site-nav-logo-fit">
+              <img
+                src={logo}
+                alt={brand.name}
+                width={300}
+                height={92}
+                className="site-nav-logo-img"
+              />
+            </span>
           </Link>
 
           <div className="hidden items-center gap-7 lg:flex">

@@ -27,7 +27,7 @@ export const ctas = {
   talkToTeam: { label: "Talk to Our Team", to: "/contact" },
   login: { label: "Login", to: "/contact" },
   exploreBrokers: { label: "Explore Broker Platform", to: "/brokers" },
-  exploreTravel: { label: "Explore Travel Partner Platform", to: "/travel-partners" },
+  exploreTravel: { label: "Explore B2B Partner Platform", to: "/travel-partners" },
   exploreMarketplace: { label: `Explore ${modules.market.name}`, to: "/marketplace-connectivity" },
   exploreEventIntel: { label: `Explore ${modules.intel.name}`, to: "/event-intelligence" },
   viewApiDocs: { label: `Explore ${modules.link.name}`, to: "/api" },
@@ -39,7 +39,7 @@ export const navLinks: NavLink[] = [
   { label: "Platform", to: "/platform", hidden: true },
   { label: "For Brokers", to: "/brokers" },
   // Hidden from header for now — /travel-partners still works if someone hits the URL.
-  { label: "Travel Partners", to: "/travel-partners", hidden: true },
+  { label: "B2B Partners", to: "/travel-partners", hidden: true },
   { label: "Marketplace Connectivity", to: "/marketplace-connectivity" },
   { label: "Event Intelligence", to: "/event-intelligence" },
   { label: "API", to: "/api" },
@@ -51,7 +51,7 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
     title: "Platform",
     links: [
       { label: "Broker Platform", to: "/brokers" },
-      // { label: "Travel Partner Platform", to: "/travel-partners" },
+      // { label: "B2B Partner Platform", to: "/travel-partners" },
       { label: "Marketplace Connectivity", to: "/marketplace-connectivity" },
       { label: "Event Intelligence", to: "/event-intelligence" },
       { label: "API", to: "/api" },
@@ -95,9 +95,9 @@ export const pageMeta = {
       "Run your entire ticket business from one platform. Manage inventory, marketplaces, pricing, events, sales and fulfillment from one centralized system.",
   },
   travelPartners: {
-    title: "Travel Partner Platform — SeatsBrokers",
+    title: "B2B Partner Platform — SeatsBrokers",
     description:
-      "Turn ticket inventory into customer-ready travel experiences. Access inventory, add margins, generate quotes and sell through your travel business.",
+      "Turn ticket inventory into customer-ready experiences. Access inventory, add margins, generate quotes and sell through your B2B business.",
   },
   marketplaceConnectivity: {
     title: `${modules.market.name} — SeatsBrokers`,
@@ -147,7 +147,7 @@ export const pageMeta = {
   faq: {
     title: "FAQ — SeatsBrokers",
     description:
-      "Answers for ticket brokers and travel partners on inventory, API access, authenticity, delivery, bulk holds and platform charges in £.",
+      "Answers for ticket brokers and B2B partners on inventory, API access, authenticity, delivery, bulk holds and platform charges in £.",
   },
   legal: {
     title: "Privacy, Terms & Cookies — SeatsBrokers",

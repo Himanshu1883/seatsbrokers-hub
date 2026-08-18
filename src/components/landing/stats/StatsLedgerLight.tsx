@@ -12,7 +12,7 @@ const stats = [
     icon: "⌂",
     value: "10,000+",
     label: "Partner Network",
-    desc: "Verified sellers and travel partners, active today.",
+    desc: "Verified sellers and B2B partners, active today.",
   },
   {
     icon: "▤",

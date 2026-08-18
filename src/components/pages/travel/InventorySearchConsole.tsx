@@ -138,7 +138,7 @@ const accessFeed = [
   { time: "09:41:52", msg: "partner.price · EV-28401 · longside lower £186", ok: true },
   { time: "09:41:44", msg: "hold.release · EV-28407 · Grandstand K · 2 seats", ok: true },
   { time: "09:41:38", msg: "inventory.sync · EV-28411 · lower tier +6 seats", ok: true },
-  { time: "09:41:22", msg: "partner.access · travel-desk-04 · catalog refresh", ok: true },
+  { time: "09:41:22", msg: "partner.access · b2b-desk-04 · catalog refresh", ok: true },
 ] as const;
 
 function useCycle(length: number, ms: number, enabled: boolean) {

@@ -87,7 +87,7 @@ export function PlatformStackWall() {
 
       <p className="sr-only">
         SeatsBrokers platform map. Five surfaces on one infrastructure layer: event intelligence,
-        broker platform, marketplace connectivity, travel partners and API. Active surface:{" "}
+        broker platform, marketplace connectivity, B2B partners and API. Active surface:{" "}
         {layer.label}.
       </p>
     </div>

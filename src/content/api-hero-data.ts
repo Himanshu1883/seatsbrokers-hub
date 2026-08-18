@@ -193,7 +193,7 @@ export const apiProducts = [
   },
   {
     title: "Partner API",
-    body: "Allow travel partners and external systems to interact with inventory, margins and quotations.",
+    body: "Allow B2B partners and external systems to interact with inventory, margins and quotations.",
   },
 ] as const;
 
@@ -223,7 +223,7 @@ export const apiAuthRoles = [
   },
   {
     id: "partner",
-    label: "Travel partner",
+    label: "B2B partner",
     detail: "Inventory, margins, quotes",
     scopes: "3 / 7",
   },

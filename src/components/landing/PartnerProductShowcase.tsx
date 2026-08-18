@@ -78,7 +78,7 @@ const slides = [
     icon: Settings2,
     tag: modules.deal.name,
     title: "Partner commerce hub",
-    body: "Travel partner inventory access, margin management, quotation tools and order management — all from one workspace.",
+    body: "B2B partner inventory access, margin management, quotation tools and order management — all from one workspace.",
     points: ["Partner inventory", "Quote generation", "Order management"],
     badge: "Partners",
     image: adminSources,

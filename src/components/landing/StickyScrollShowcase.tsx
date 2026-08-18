@@ -23,7 +23,7 @@ const panels = [
   },
   {
     kind: "travel" as const satisfies StickyScrollConsoleKind,
-    kicker: "Travel Companies",
+    kicker: "B2B Companies",
     title: "Source tickets and create customer quotes",
     headline: "SeatsBrokers Inventory →",
     accent: "Margin → Quote → Customer",
@@ -33,8 +33,8 @@ const panels = [
       "Custom margins and customer-ready quotes",
       "Invoice generation and order management",
     ],
-    consoleLabel: "Live travel quote desk: margin, client price and share channels",
-    caption: "Customer-ready travel experiences.",
+    consoleLabel: "Live B2B quote desk: margin, client price and share channels",
+    caption: "Customer-ready experiences.",
   },
   {
     kind: "marketplaces" as const satisfies StickyScrollConsoleKind,
@@ -60,7 +60,7 @@ const panels = [
     body: "Connect POS systems, inventory systems, internal ERP, websites and partner systems through API-first architecture built for ticketing.",
     points: [
       "Events, Inventory, Listing, Order and Pricing APIs",
-      "Partner API for travel partners and external systems",
+      "Partner API for B2B partners and external systems",
       "Secure authentication and role-based access",
     ],
     consoleLabel: "Live partner API bridge: signed endpoints, roles and POS-to-distribution flow",

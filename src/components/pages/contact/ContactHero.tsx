@@ -12,7 +12,7 @@ export function ContactHero() {
             <p className="section-eyebrow text-primary">Contact</p>
             <h1 className="bh-title ct-hero-title">Talk to Our Team</h1>
             <p className="bh-body">
-              Whether you are a ticket broker, marketplace, travel partner or technology
+              Whether you are a ticket broker, marketplace, B2B partner or technology
               provider — our team is ready to help you connect your ticket operation to
               modern infrastructure.
             </p>

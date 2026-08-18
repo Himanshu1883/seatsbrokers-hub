@@ -20,9 +20,9 @@ const quotes = [
   },
   {
     quote:
-      "Our travel team generates branded quotes in seconds. PDF, WhatsApp, email — customers get professional output instantly.",
+      "Our B2B team generates branded quotes in seconds. PDF, WhatsApp, email — customers get professional output instantly.",
     name: "Priya Raman",
-    role: "Product Lead, Meridian Travel",
+    role: "Product Lead, Meridian Partners",
     initials: "PR",
     tone: "teal",
   },

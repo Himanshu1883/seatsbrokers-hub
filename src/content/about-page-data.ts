@@ -342,8 +342,8 @@ export const aboutAudiences = [
     href: "/marketplace-connectivity",
   },
   {
-    title: "Travel Companies",
-    body: "Discover inventory and build ticketing experiences directly into travel operations.",
+    title: "B2B Companies",
+    body: "Discover inventory and build ticketing experiences directly into B2B operations.",
     href: "/travel-partners",
   },
   {

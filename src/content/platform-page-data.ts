@@ -6,7 +6,7 @@ export const platformHeroCopy = {
   eyebrow: "Platform Overview",
   title: "One Centralized Ticketing Infrastructure",
   subhead: "Event data, inventory, marketplaces, pricing, partners and payments — one stack.",
-  body: "SeatsBrokers is the technology layer connecting the global ticketing ecosystem. Brokers list and price inventory across channels; travel partners search the same inventory, add margin and share branded quotes. Explore each surface, then go deep on the product pages.",
+  body: "SeatsBrokers is the technology layer connecting the global ticketing ecosystem. Brokers list and price inventory across channels; B2B partners search the same inventory, add margin and share branded quotes. Explore each surface, then go deep on the product pages.",
 } as const;
 
 export const platformHeroPoints = [
@@ -19,7 +19,7 @@ export const platformStackLayers = [
   { id: "events", index: "01", label: modules.intel.name, tag: "CATALOG", href: "/event-intelligence" },
   { id: "brokers", index: "02", label: "Broker platform", tag: "INVENTORY", href: "/brokers" },
   { id: "marketplace", index: "03", label: modules.market.name, tag: "SYNC", href: "/marketplace-connectivity" },
-  { id: "travel", index: "04", label: "Travel partners", tag: "QUOTES", href: "/travel-partners" },
+  { id: "travel", index: "04", label: "B2B partners", tag: "QUOTES", href: "/travel-partners" },
   { id: "api", index: "05", label: modules.link.name, tag: "CONNECT", href: "/api" },
 ] as const;
 
@@ -34,10 +34,10 @@ export const platformModules = [
   },
   {
     index: "02",
-    title: "Travel partners",
+    title: "B2B partners",
     body: "Search live inventory, add margin, generate branded quotes in £ and manage orders and delivery for event packages.",
     href: "/travel-partners",
-    cta: "Explore travel",
+    cta: "Explore B2B",
     layer: "Search · quote · fulfil",
   },
   {
@@ -77,6 +77,6 @@ export const platformSteps = [
   "Event data and intelligence structure the catalog",
   "Brokers place inventory and price against the market",
   "SeatsBrokers synchronizes listings across connected marketplaces",
-  "Travel partners search, add margin and quote in £",
+  "B2B partners search, add margin and quote in £",
   "APIs and webhooks keep POS, ERP and partner systems on the same stack",
 ] as const;

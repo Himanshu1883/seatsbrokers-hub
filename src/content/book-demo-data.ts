@@ -6,12 +6,12 @@ export const demoHeroCopy = {
   eyebrow: "Book a Demo",
   title: "See the SeatsBrokers Platform in Action",
   subhead: "A live walkthrough tailored to how you list, distribute or quote tickets.",
-  body: "Forty-five minutes with our team — event intelligence, marketplace connectivity, inventory, pricing and partner commerce, scoped to your operation. Broker desk, travel partner or API integration: we show what is relevant.",
+  body: "Forty-five minutes with our team — event intelligence, marketplace connectivity, inventory, pricing and partner commerce, scoped to your operation. Broker desk, B2B partner or API integration: we show what is relevant.",
 } as const;
 
 export const demoHeroPoints = [
   "Live walkthrough of the surfaces that match your business",
-  "Broker, travel partner and API tracks — not a generic slideshow",
+  "Broker, B2B partner and API tracks — not a generic slideshow",
   "London, New York and Dubai — we schedule around your timezone",
 ] as const;
 
@@ -66,7 +66,7 @@ export const demoSessionBlocks = [
     minutes: 11,
     duration: "11 min",
     title: "Partners & APIs",
-    body: "Travel-partner quoting, margin and the APIs that connect POS, ERP and sites.",
+    body: "B2B partner quoting, margin and the APIs that connect POS, ERP and sites.",
     outcome: "How quotes, margin and APIs connect to your stack.",
   },
 ] as const;
@@ -83,11 +83,11 @@ export const demoAudiences = [
   },
   {
     id: "travel",
-    kicker: "Travel partners",
+    kicker: "B2B partners",
     title: "Search, add margin and send a branded quote",
     body: "Walk through partner inventory access, customer-ready quotations in £, orders and delivery — built for agencies packaging events.",
     href: "/travel-partners",
-    cta: "Travel partner platform",
+    cta: "B2B partner platform",
     points: ["Inventory access", "Margin & PDF quotes", "Orders & delivery"],
   },
 ] as const;
@@ -106,7 +106,7 @@ export const demoSteps = [
 
 export const demoRoles = [
   "Ticket broker",
-  "Travel partner",
+  "B2B partner",
   "Marketplace",
   "Technology / API",
   "Other",
@@ -124,7 +124,7 @@ export const demoFormCopy = {
   eyebrow: "Request a demo",
   title: "Book your platform walkthrough",
   intro:
-    "Share a few details and we will schedule a live session. Broker desk, travel partner or API — we prepare the walkthrough around your operation.",
+    "Share a few details and we will schedule a live session. Broker desk, B2B partner or API — we prepare the walkthrough around your operation.",
   submitLabel: "Request demo",
   successTitle: "Request ready to send",
   successBody:

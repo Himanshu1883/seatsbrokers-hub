@@ -82,7 +82,7 @@ const stages: Stage[] = [
     index: "05",
     node: "Settle",
     label: modules.funds.name,
-    title: "Brokers, travel partners and customers connected.",
+    title: "Brokers, B2B partners and customers connected.",
     body: "Order synchronization, delivery updates, partner quotations, payment infrastructure and clean settlement — closing the loop on every ticket sale.",
     metric: "165",
     metricLabel: "countries supported",

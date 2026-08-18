@@ -119,7 +119,7 @@ const accessFeed = [
   { time: "09:42:08", msg: "inventory.sync · UCL Final · Cat 1 +18 seats", ok: true },
   { time: "09:41:52", msg: "partner.price · Arsenal · longside £186", ok: true },
   { time: "09:41:44", msg: "hold.release · Monaco GP · Grandstand K", ok: true },
-  { time: "09:41:38", msg: "order.hold · travel-desk-04 · 4 seats locked", ok: true },
+  { time: "09:41:38", msg: "order.hold · b2b-desk-04 · 4 seats locked", ok: true },
 ] as const;
 
 function useCycle(length: number, ms: number, enabled: boolean) {

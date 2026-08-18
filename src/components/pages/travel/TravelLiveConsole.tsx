@@ -21,9 +21,9 @@ const variants: Record<TravelLiveConsoleVariant, TravelLiveConsoleMeta> = {
   inventorySearch: {
     eyebrow: modules.source.name,
     title: modules.source.tagline,
-    body: "A live buying workspace — markets, events, section bands and margin preview — so travel desks see partner cost before they quote.",
+    body: "A live buying workspace — markets, events, section bands and margin preview — so B2B desks see partner cost before they quote.",
     detail:
-      "This is the same catalog brokers publish on their desk. When a listing syncs, it lands in the access feed with seats, delivery method and your margin math — no spreadsheet chase between broker and travel partner.",
+      "This is the same catalog brokers publish on their desk. When a listing syncs, it lands in the access feed with seats, delivery method and your margin math — no spreadsheet chase between broker and B2B partner.",
     detailLabel: "How partner access works",
     highlights: [
       { value: "4.8k+", label: "events live" },
@@ -33,7 +33,7 @@ const variants: Record<TravelLiveConsoleVariant, TravelLiveConsoleMeta> = {
     points: [
       {
         title: "Market rail",
-        body: "Football, F1, music, last-minute and group holds — the cuts travel desks actually package from, not a flat search dump.",
+        body: "Football, F1, music, last-minute and group holds — the cuts B2B desks actually package from, not a flat search dump.",
       },
       {
         title: "Partner view",
@@ -81,7 +81,7 @@ const variants: Record<TravelLiveConsoleVariant, TravelLiveConsoleMeta> = {
       },
       {
         title: "Generate quote",
-        body: "A branded PDF preview with your travel company name, seats, arrangement fee and total due.",
+        body: "A branded PDF preview with your B2B company name, seats, arrangement fee and total due.",
       },
       {
         title: "Share with customer",

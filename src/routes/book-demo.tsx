@@ -42,7 +42,7 @@ function BookDemoPage() {
         to={{
           icon: Users,
           label: "Your track",
-          detail: "Broker operations or travel-partner quoting — we prepare the session around that work.",
+          detail: "Broker operations or B2B partner quoting — we prepare the session around that work.",
         }}
         payload={["events", "inventory", "channels", "quotes"]}
       />
@@ -61,7 +61,7 @@ function BookDemoPage() {
         from={{
           icon: Users,
           label: "Your track",
-          detail: "Broker desk, travel partner or API — tell us which operation to open.",
+          detail: "Broker desk, B2B partner or API — tell us which operation to open.",
         }}
         to={{
           icon: CalendarClock,

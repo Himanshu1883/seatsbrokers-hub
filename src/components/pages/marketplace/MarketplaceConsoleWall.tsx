@@ -194,7 +194,7 @@ export function MarketplaceConsoleWall() {
         {marketplaceHeroOps.listingsPushed} listings pushed, last sync {marketplaceHeroOps.lastSync},{" "}
         {marketplaceHeroOps.conflictsOpen} conflict open, price alignment {marketplaceHeroOps.alignment}.
         Listing {marketplaceHeroOrigin.id} fans out from {marketplaceHeroOrigin.ask} across Global resale,
-        Sports exchange, Regional OTA, Broker desk, Travel partners and White-label.
+        Sports exchange, Regional OTA, Broker desk, B2B partners and White-label.
       </p>
     </div>
   );

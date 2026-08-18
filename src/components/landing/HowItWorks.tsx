@@ -219,11 +219,14 @@ export function HowItWorks() {
               </p>
               <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">
                 Know the market with{" "}
-                <span className="how-it-typeline caret text-primary">
+                <span className="how-it-typeline text-primary">
                   <span className="how-it-typeline-ghost" aria-hidden>
                     {longestTypePhrase}
                   </span>
-                  <span className="how-it-typeline-text">{typed}</span>
+                  <span className="how-it-typeline-text">
+                    {typed}
+                    <span className="caret" aria-hidden />
+                  </span>
                 </span>
               </h2>
             </div>

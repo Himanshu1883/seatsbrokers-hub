@@ -3805,6 +3805,7 @@ main > .section-curve:first-child {
 .how-it-typeline {
   position: relative;
   display: inline-block;
+  padding-right: 0.2em;
 }
 
 .how-it-typeline-ghost {
@@ -3813,8 +3814,10 @@ main > .section-curve:first-child {
 
 .how-it-typeline-text {
   position: absolute;
-  inset: 0;
-  display: block;
+  left: 0;
+  top: 0;
+  width: max-content;
+  max-width: 100%;
   overflow: visible;
 }
 
@@ -28667,6 +28670,7 @@ main > .section-curve:first-child {
    box never grows or shrinks while typing or switching slides. */
 .hero-copy-typeline {
   position: relative;
+  padding-right: 0.2em;
 }
 
 .hero-copy-typeline-ghost {
@@ -28676,8 +28680,10 @@ main > .section-curve:first-child {
 
 .hero-copy-typeline-text {
   position: absolute;
-  inset: 0;
-  display: block;
+  left: 0;
+  top: 0;
+  width: max-content;
+  max-width: 100%;
   overflow: visible;
 }
 

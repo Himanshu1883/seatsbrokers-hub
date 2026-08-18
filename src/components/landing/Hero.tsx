@@ -79,7 +79,10 @@ function HeroTypeLine({ phrases, children }: { phrases: readonly string[]; child
       <span className="hero-copy-typeline-ghost" aria-hidden>
         {longestPhrase(phrases)}
       </span>
-      <span className="caret hero-copy-typeline-text">{children}</span>
+      <span className="hero-copy-typeline-text">
+        {children}
+        <span className="caret" aria-hidden />
+      </span>
     </span>
   );
 }

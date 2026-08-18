@@ -1,7 +1,7 @@
 # Project Status
 (Living doc — update after every session, read first in every new one.)
 
-Last updated: 2026-08-18 (HowItWorks / Hero typewriter: caret is an inline sibling of the visible typed string; ghost still reserves the longest phrase so the line does not resize. ToolkitShowcase lock: desktop `100svh` not `100dvh`/min-height; no sticky panel; stage/HUD/metric/copy overlay without remount keys; mobile ghost rail with absolute live overlay so auto-advance cannot shift neighbors. PartnerProductShowcase / NetworkConstellation unchanged.)
+Last updated: 2026-08-18 (HowItWorks / Hero typewriter: live phrase + caret are one nowrap inline group so the bar never wraps alone after SeatsPulse™.; stacked ghosts still reserve the widest phrase. ToolkitShowcase lock and PartnerProductShowcase / NetworkConstellation unchanged.)
 
 ## Current state
 

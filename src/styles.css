@@ -3805,20 +3805,28 @@ main > .section-curve:first-child {
 .how-it-typeline {
   position: relative;
   display: inline-block;
+  white-space: nowrap;
   padding-right: 0.2em;
 }
 
+.how-it-typeline-ghosts {
+  display: grid;
+}
+
 .how-it-typeline-ghost {
+  grid-area: 1 / 1;
   visibility: hidden;
+  white-space: nowrap;
 }
 
 .how-it-typeline-text {
   position: absolute;
   left: 0;
   top: 0;
+  display: inline;
   width: max-content;
-  max-width: 100%;
   overflow: visible;
+  white-space: nowrap;
 }
 
 .how-it-caption-slot,
@@ -28671,20 +28679,27 @@ main > .section-curve:first-child {
 .hero-copy-typeline {
   position: relative;
   padding-right: 0.2em;
+  white-space: nowrap;
+}
+
+.hero-copy-typeline-ghosts {
+  display: grid;
 }
 
 .hero-copy-typeline-ghost {
-  display: block;
+  grid-area: 1 / 1;
   visibility: hidden;
+  white-space: nowrap;
 }
 
 .hero-copy-typeline-text {
   position: absolute;
   left: 0;
   top: 0;
+  display: inline;
   width: max-content;
-  max-width: 100%;
   overflow: visible;
+  white-space: nowrap;
 }
 
 /* Light glass stage */

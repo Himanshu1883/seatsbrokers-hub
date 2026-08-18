@@ -89,7 +89,6 @@ const steps = [
 ] as const;
 
 const typePhrases = [`${modules.intel.name}.`, `${modules.pulse.name}.`] as const;
-const longestTypePhrase = typePhrases.reduce((a, b) => (a.length >= b.length ? a : b));
 
 function useSectionScrollProgress(
   sectionRef: React.RefObject<HTMLElement | null>,
@@ -220,13 +219,14 @@ export function HowItWorks() {
               <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">
                 Know the market with{" "}
                 <span className="how-it-typeline text-primary">
-                  <span className="how-it-typeline-ghost" aria-hidden>
-                    {longestTypePhrase}
+                  <span className="how-it-typeline-ghosts" aria-hidden>
+                    {typePhrases.map((phrase) => (
+                      <span key={phrase} className="how-it-typeline-ghost">
+                        {phrase}
+                      </span>
+                    ))}
                   </span>
-                  <span className="how-it-typeline-text">
-                    {typed}
-                    <span className="caret" aria-hidden />
-                  </span>
+                  <span className="how-it-typeline-text caret">{typed}</span>
                 </span>
               </h2>
             </div>

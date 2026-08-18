@@ -76,13 +76,14 @@ function HeroTypeLine({ phrases, children }: { phrases: readonly string[]; child
       className="hero-copy-typewriter hero-copy-typeline mt-2 block text-[clamp(2rem,5.5vw,4rem)] leading-[1.2] font-bold text-primary"
       aria-live="polite"
     >
-      <span className="hero-copy-typeline-ghost" aria-hidden>
-        {longestPhrase(phrases)}
+      <span className="hero-copy-typeline-ghosts" aria-hidden>
+        {phrases.map((phrase) => (
+          <span key={phrase} className="hero-copy-typeline-ghost">
+            {phrase}
+          </span>
+        ))}
       </span>
-      <span className="hero-copy-typeline-text">
-        {children}
-        <span className="caret" aria-hidden />
-      </span>
+      <span className="hero-copy-typeline-text caret">{children}</span>
     </span>
   );
 }

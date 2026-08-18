@@ -253,7 +253,7 @@ export function GlobeScrollSection() {
             </p>
           </div>
 
-          <div className="absolute inset-x-3 bottom-5 grid grid-cols-1 items-end gap-3 sm:inset-x-8 sm:bottom-10 sm:grid-cols-[1fr_auto] sm:gap-4">
+          <div className="globe-pin-caption absolute inset-x-3 bottom-5 grid grid-cols-1 items-end gap-3 sm:inset-x-8 sm:bottom-10 sm:grid-cols-[1fr_auto] sm:gap-4">
             <div className="min-w-0 text-left">
               <div className="globe-rail-label">Active hub · {active.region}</div>
               <div className="mt-1.5 font-display text-lg font-bold tracking-tight text-foreground sm:text-2xl">
@@ -402,7 +402,7 @@ export function GlobeScrollSection() {
                 </div>
               )}
 
-              <div className="mx-auto mt-10 flex items-center justify-center gap-3 font-mono text-xs font-bold tracking-widest text-background/65 uppercase">
+              <div className="globe-slide-card-foot mx-auto mt-10 flex items-center justify-center gap-3 font-mono text-xs font-bold tracking-widest text-background/65 uppercase">
                 <span>{slide.region}</span>
                 <span className="size-1.5 rounded-full bg-primary/70" aria-hidden />
                 <span>

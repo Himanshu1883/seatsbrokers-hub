@@ -23,7 +23,7 @@ export function PageHero({
   secondaryCta,
 }: PageHeroProps) {
   return (
-    <section className="section-curve relative isolate scroll-mt-24 bg-dark py-24 text-background sm:py-32">
+    <section className="bh-hero section-curve relative isolate scroll-mt-24 bg-dark text-background">
       <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-dark via-dark to-primary-deep/40" aria-hidden />
       <div className="container-page relative z-10 max-w-3xl">
         <Reveal>

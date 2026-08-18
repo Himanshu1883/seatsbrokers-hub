@@ -91,7 +91,6 @@ export function PartnerProductShowcase() {
   const [paused, setPaused] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const slide = slides[active] ?? slides[0];
-  const Icon = slide.icon;
 
   useEffect(() => {
     if (paused || lightboxOpen) return;
@@ -178,40 +177,55 @@ export function PartnerProductShowcase() {
           aria-labelledby={`partner-tab-${slide.id}`}
           className="partner-stage mt-5 grid gap-6 lg:mt-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.35fr)] lg:items-start lg:gap-8"
         >
-          <div key={slide.id} className="partner-copy flex flex-col justify-center lg:sticky lg:top-28">
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-mono text-[10px] font-bold tracking-[0.16em] text-primary uppercase">
-              <Icon className="size-3.5" aria-hidden />
-              {slide.badge}
-            </div>
-            <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-foreground sm:text-[1.75rem]">
-              {slide.title}
-            </h3>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">{slide.body}</p>
-            <ul className="mt-5 space-y-2.5">
-              {slide.points.map((p) => (
-                <li key={p} className="flex items-start gap-2.5 text-sm text-foreground/85">
-                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" aria-hidden />
-                  {p}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-7 flex flex-wrap items-center gap-4">
-              <SiteLink
-                to={ctas.becomeSeller.to}
-                className="lift inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
-              >
-                {ctas.becomeSeller.label}
-                <ArrowRight className="size-4" aria-hidden />
-              </SiteLink>
-              <button
-                type="button"
-                onClick={() => setActive((prev) => (prev + 1) % slides.length)}
-                className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.14em] text-primary uppercase"
-              >
-                Next screen
-                <ArrowRight className="size-3.5" aria-hidden />
-              </button>
-            </div>
+          <div className="partner-copy-slot lg:sticky lg:top-28">
+            {slides.map((s, i) => {
+              const PanelIcon = s.icon;
+              const on = i === active;
+              return (
+                <div
+                  key={s.id}
+                  className="partner-copy flex flex-col"
+                  data-active={on ? "true" : "false"}
+                  aria-hidden={on ? undefined : true}
+                >
+                  <div className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-mono text-[10px] font-bold tracking-[0.16em] text-primary uppercase">
+                    <PanelIcon className="size-3.5" aria-hidden />
+                    {s.badge}
+                  </div>
+                  <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-foreground sm:text-[1.75rem]">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+                  <ul className="mt-5 space-y-2.5">
+                    {s.points.map((p) => (
+                      <li key={p} className="flex items-start gap-2.5 text-sm text-foreground/85">
+                        <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" aria-hidden />
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-7 flex flex-wrap items-center gap-4">
+                    <SiteLink
+                      to={ctas.becomeSeller.to}
+                      className="lift inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
+                      tabIndex={on ? undefined : -1}
+                    >
+                      {ctas.becomeSeller.label}
+                      <ArrowRight className="size-4" aria-hidden />
+                    </SiteLink>
+                    <button
+                      type="button"
+                      onClick={() => setActive((prev) => (prev + 1) % slides.length)}
+                      className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.14em] text-primary uppercase"
+                      tabIndex={on ? undefined : -1}
+                    >
+                      Next screen
+                      <ArrowRight className="size-3.5" aria-hidden />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           <div className="partner-frame">
@@ -236,14 +250,17 @@ export function PartnerProductShowcase() {
               onClick={() => setLightboxOpen(true)}
               aria-label={`View full size: ${slide.alt}`}
             >
-              <img
-                key={slide.id}
-                src={slide.image}
-                alt={slide.alt}
-                className="partner-shot"
-                loading="eager"
-                decoding="async"
-              />
+              {slides.map((s, i) => (
+                <img
+                  key={s.id}
+                  src={s.image}
+                  alt={i === active ? s.alt : ""}
+                  className="partner-shot"
+                  data-active={i === active ? "true" : "false"}
+                  loading="eager"
+                  decoding="async"
+                />
+              ))}
               <span className="partner-expand-hint">
                 <Expand className="size-3.5" aria-hidden />
                 Click to expand

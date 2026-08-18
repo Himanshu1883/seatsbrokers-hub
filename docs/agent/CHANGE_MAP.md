@@ -18,7 +18,7 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | Legal page | `src/routes/legal.tsx` | `pages/legal/`, `legal-data.ts`, `.legal-*` in `styles.css` (short dark `bh-hero`; full-width 3-col tabs + panel; hashes `#privacy` `#terms` `#cookies`) |
 | Global CTA band | `src/components/landing/FinalCTA.tsx` | PageShell `showFinalCta` |
 | Page wrapper / gaps | `PageShell.tsx` | `.section-curve` in `styles.css` |
-| Hero top inset | `.bh-hero` and `main > .section-curve:first-child` | not homepage `.section-curve-hero` |
+| Hero top inset | `.bh-hero` `padding-top: clamp(5.75rem, 8vh, 7.5rem)` (4.5rem nav + gap). Homepage `.hero-fit-offset` `calc(4.5rem + 1.25rem)` mobile / larger desktop clamp | unique `abt/bdm/plt/faq/legal` inherit top; `.ct-hero-copy` on desktop; `PageHero` uses `bh-hero`; not homepage `.section-curve-hero` |
 
 ## Homepage `/`
 
@@ -27,13 +27,15 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | Section order | `src/routes/index.tsx` | `src/components/landing/` |
 | Hero typewriter | `landing/Hero.tsx` | `useTypewriter`; `.hero-copy-typeline*` ghost reserves the longest phrase so the headline never resizes. Laptop inner zoom: `.hero-fit-zoom` at `0.85` for width `1024–1919px` (not global `html` zoom; not ≥1920). Backgrounds `src/assets/hero-stadium-{1,2,3}.*` crossfade with the same `active` index / `SLIDE_MS` 2100 as the three consoles; overlay is a black vignette (radial center `0.54` → `0.60` at 38% → mid `0.72` at 72% → edges `0.90`, plus top/left linear; no `primary-deep`). |
 | Hero console (3 light HUDs) | `landing/HeroDashboardTilt.tsx` | `hero-hud-*` block in `styles.css` (light-glass retheme of `.hero-tilt-*`: `--ht-bg` / `--ht-text` / `--ht-glass` / `--ht-well`). Console index = slide index (`slide` / `swapKey` props); `SLIDE_MS` 2100 in `Hero.tsx` (typewriter independent); fixed `--hero-card-h` frame; legacy `hero-shell-*` / `hero-intel-*` / `hero-price-*` / `hero-sync-*` / `hero-mode-*` rules are unused |
-| Feature orbit | `landing/FeatureOrbit.tsx` | `.feature-orbit-*`, `--fo-*` |
-| Network constellation | `landing/NetworkConstellation.tsx` | `GlobeCanvas` idle orbit; click stages (`.nc-*`); `100dvh` lock at `≥1024px` (globe clamped); tabs auto-advance 1800ms (no hover pause); no 340vh pin |
+| Feature orbit | `landing/FeatureOrbit.tsx` | `.feature-orbit-*`, `--fo-*`. First node open by default; others click-only (no auto-cycle). Mobile detail is a stacked fixed-height slot; desktop keeps a 7.5rem reserve under the orbit so opening a panel does not shift the page. |
+| Network constellation | `landing/NetworkConstellation.tsx` | `GlobeCanvas` idle orbit; click stages (`.nc-*`); `100svh` lock at `≥1024px` (not `dvh`); globe square + reserved console title/body/metric so 1.8s auto-advance never shifts page height; no hover pause; no 340vh pin |
 | Marketplaces strip | `landing/Marketplaces.tsx` | Full-width hub: center logo + inward glass pods with dual marquees (`.mps-hub-*`). Left LTR / right RTL into the logo. |
-| Two-track (broker / travel) | `landing/TwoTrack.tsx` | `.two-track-*` — cards straighten once via `useInView` (`data-settled`); no GSAP pin / 175% scrub |
-| How it works | `landing/HowItWorks.tsx` | `.how-it-*` — `section-curve-sticky`; left cards scroll, right screenshot `sticky` (no nested overflow-y-auto; wheel over image scrolls the page) and swaps with active step |
+| Two-track (broker / travel) | `landing/TwoTrack.tsx` | `.two-track-*` — cards straighten once via `useInView` (`data-settled`); no GSAP pin / 175% scrub. Mobile card column uses equal `padding-inline` (`clamp(1rem, 4.5vw, 1.35rem)` / `1.25rem` inner at ≤479px). |
+| How it works | `landing/HowItWorks.tsx` | `.how-it-*` — `section-curve-sticky`; left cards scroll, right screenshot `sticky` (no nested overflow-y-auto; wheel over image scrolls the page). Desktop caption/screenshot/stats overlay the tallest variant (no `key=` remount); typewriter ghost holds the longest phrase so typing never resizes the section |
+| Partner product showcase | `landing/PartnerProductShowcase.tsx` | `.partner-*` — five product tabs; copy + shots overlay the tallest variant (no `key=` remount) so auto-advance does not shift neighbors |
+| Platform toolkit | `landing/Toolkitshowcase.tsx` | `.toolkit-*` — module rail + screenshot stack; below `lg` ghost rail + absolute live overlay + reserved reveal/HUD/metric/screen slots; `≥1024px` is `100svh` (not `dvh`), no sticky, no remount keys; auto-advance cannot shift neighbors |
 | Who we serve (sticky consoles) | `landing/StickyScrollShowcase.tsx` | `.sss-*` + `StickyScrollConsoles.tsx` — sticky-scroll; right column swaps 4 unique light `ConsoleShell` mini-consoles (broker distribution, travel quote desk, marketplace sync, partner API bridge). Shared `--sss-console-h` on `.sss-stage` (and desktop `.sss-sticky-stage`). Stacked console-above-copy below `lg`. `prefers-reduced-motion` freezes ticks. |
-| Stats / globe / testimonials | `Stats.tsx`, `GlobeScrollSection.tsx`, `Testimonials.tsx` | Globe pin: in-flow `.globe-scroll-heading` slot (`flex-shrink: 0`, `--globe-heading-band`) + matching article padding; short `max-height` shrinks type/inset, `≥1080px` keeps 13.75rem first-card gap (`styles.css`) |
+| Stats / globe / testimonials | `Stats.tsx`, `GlobeScrollSection.tsx`, `Testimonials.tsx` | Globe pin: in-flow `.globe-scroll-heading` slot (`flex-shrink: 0`, `--globe-heading-band`) + matching article padding; short `max-height` shrinks type/inset, `≥1080px` keeps 13.75rem first-card gap. Last slide `--globe-last-pad` + z-index so Sydney coords/footer stay above Stats; mobile `--globe-card-gutter` 1.25rem. |
 
 ## Product pages
 

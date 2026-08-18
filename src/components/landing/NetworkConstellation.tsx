@@ -93,6 +93,14 @@ const stages: Stage[] = [
 
 const CX = 50, CY = 50, R = 46;
 
+function longestCopy(values: string[]) {
+  return values.reduce((a, b) => (a.length >= b.length ? a : b));
+}
+
+const longestTitle = longestCopy(stages.map((s) => s.title));
+const longestBody = longestCopy(stages.map((s) => s.body));
+const longestMetricLabel = longestCopy(stages.map((s) => s.metricLabel));
+
 function nodePos(i: number) {
   const angle = ((-90 + (360 / stages.length) * i) * Math.PI) / 180;
   return { x: CX + R * Math.cos(angle), y: CY + R * Math.sin(angle) };
@@ -271,22 +279,35 @@ export function NetworkConstellation() {
               </div>
             </div>
 
-            <div key={active.id} className="nc-console mt-5">
+            <div className="nc-console mt-5">
               <div className="flex items-center gap-2.5">
                 <span className="font-mono text-xs tracking-[0.18em] text-primary uppercase">
                   {active.label}
                 </span>
                 <span className="h-2 w-2 rounded-full bg-primary" />
               </div>
-              <h3 className="mt-2 text-xl font-bold text-foreground">{active.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{active.body}</p>
+              <h3 className="nc-console-title mt-2 text-xl font-bold text-foreground">
+                <span className="nc-console-ghost" aria-hidden>
+                  {longestTitle}
+                </span>
+                <span className="nc-console-live">{active.title}</span>
+              </h3>
+              <p className="nc-console-body mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                <span className="nc-console-ghost" aria-hidden>
+                  {longestBody}
+                </span>
+                <span className="nc-console-live">{active.body}</span>
+              </p>
 
               <div className="nc-metric mt-4 inline-flex flex-col rounded-xl border border-primary/20 bg-primary/[0.06] px-4 py-2.5">
                 <strong className="text-2xl font-bold leading-none text-primary">
                   {active.metric}
                 </strong>
-                <span className="mt-1.5 font-mono text-[10px] tracking-[0.14em] text-muted-foreground uppercase">
-                  {active.metricLabel}
+                <span className="nc-metric-label mt-1.5 font-mono text-[10px] tracking-[0.14em] text-muted-foreground uppercase">
+                  <span className="nc-console-ghost" aria-hidden>
+                    {longestMetricLabel}
+                  </span>
+                  <span className="nc-console-live">{active.metricLabel}</span>
                 </span>
               </div>
 

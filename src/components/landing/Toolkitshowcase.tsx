@@ -197,13 +197,45 @@ function TableMock() {
   );
 }
 
+function ToolkitRevealBody({
+  item,
+  interactive = true,
+}: {
+  item: (typeof items)[number];
+  interactive?: boolean;
+}) {
+  return (
+    <>
+      <p className="max-w-md pt-3 text-sm leading-relaxed text-background/80">{item.detail}</p>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-4">
+        {item.telemetry.map((t) => (
+          <span key={t} className="toolkit-telemetry font-mono">
+            {t}
+          </span>
+        ))}
+      </div>
+      {"cta" in item && item.cta ? (
+        <SiteLink
+          to={ctas.becomeSeller.to}
+          tabIndex={interactive ? undefined : -1}
+          className="lift mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
+        >
+          {item.cta}
+          <ArrowRight className="size-4" aria-hidden />
+        </SiteLink>
+      ) : null}
+    </>
+  );
+}
+
 function MockSurface({ item }: { item: (typeof items)[number] }) {
   if (item.kind === "screenshot") {
     return (
       <img
         src={item.image}
         alt={item.imageAlt}
-        loading="lazy"
+        loading="eager"
+        decoding="async"
         className="size-full bg-background object-cover object-top"
       />
     );
@@ -243,12 +275,11 @@ export function ToolkitShowcase() {
   }, []);
 
   const activeItem = items[active] ?? items[0];
-  const nextItem = items[(active + 1) % items.length] ?? items[0];
 
   return (
     <section
       id="platform-toolkit"
-      className="toolkit section-curve-sticky relative isolate scroll-mt-24 overflow-x-clip overflow-y-visible text-background min-h-0 flex flex-col py-10 sm:py-12 lg:min-h-[100dvh] lg:overflow-hidden lg:py-14"
+      className="toolkit section-curve-sticky relative isolate scroll-mt-24 overflow-hidden text-background min-h-0 flex flex-col py-10 sm:py-12 lg:py-14"
       aria-label="Platform toolkit"
     >
       <span className="toolkit-bg-grid" aria-hidden />
@@ -283,85 +314,105 @@ export function ToolkitShowcase() {
             if (!e.currentTarget.contains(e.relatedTarget as Node)) setPaused(false);
           }}
         >
-          {/* Progressive rail */}
-          <ul
-            className="toolkit-rail-list flex min-h-0 flex-col lg:max-h-[calc(100dvh-12rem)] lg:overflow-y-auto lg:pr-2"
-            role="tablist"
-            aria-label="Platform modules"
-          >
-            {items.map((item, i) => {
-              const state = i === active ? "active" : i < active ? "done" : "idle";
-              const Icon = item.icon;
-              return (
-                <li key={item.id} className="toolkit-step relative pl-6" data-state={state}>
-                  <span className="toolkit-rail" aria-hidden>
-                    <span
-                      key={`${item.id}-${active}-${paused}`}
-                      className="toolkit-rail-fill"
-                      style={
-                        state === "active"
-                          ? {
-                              animationDuration: `${AUTO_ADVANCE_MS}ms`,
-                              animationPlayState: paused ? "paused" : "running",
-                            }
-                          : undefined
-                      }
-                    />
-                  </span>
+          {/* Rail height is the tallest state: all headlines + overlaid reveal copy. */}
+          <div className="toolkit-rail-lock">
+            <ul className="toolkit-rail-ghost toolkit-rail-list flex min-h-0 flex-col" aria-hidden inert>
+              {items.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li key={item.id} className="toolkit-step relative pl-6" data-state="idle">
+                    <span className="toolkit-step-button w-full py-4 text-left sm:py-5 lg:py-3.5 xl:py-4">
+                      <span className="toolkit-chip">
+                        <Icon className="size-3.5" strokeWidth={2} aria-hidden />
+                        {item.tag}
+                      </span>
+                      <p className="toolkit-headline mt-3 font-display text-lg font-bold leading-snug tracking-tight sm:text-xl">
+                        {item.headline}
+                      </p>
+                    </span>
+                  </li>
+                );
+              })}
+              <li className="toolkit-reveal-slot relative pl-6">
+                <div className="toolkit-reveal-ghost-slot">
+                  {items.map((item) => (
+                    <div key={item.id} className="toolkit-reveal-ghost-panel">
+                      <ToolkitRevealBody item={item} />
+                    </div>
+                  ))}
+                </div>
+              </li>
+            </ul>
 
-                  <button
-                    type="button"
-                    role="tab"
-                    id={`toolkit-tab-${item.id}`}
-                    aria-selected={state === "active"}
-                    aria-controls="toolkit-panel"
-                    onClick={() => setActive(i)}
-                    className="toolkit-step-button w-full py-4 text-left sm:py-5 lg:py-3.5 xl:py-4"
-                  >
-                    <span className="toolkit-chip">
-                      <Icon className="size-3.5" strokeWidth={2} aria-hidden />
-                      {item.tag}
+            <ul
+              className="toolkit-rail-list flex min-h-0 flex-col"
+              role="tablist"
+              aria-label="Platform modules"
+            >
+              {items.map((item, i) => {
+                const state = i === active ? "active" : i < active ? "done" : "idle";
+                const Icon = item.icon;
+                return (
+                  <li key={item.id} className="toolkit-step relative pl-6" data-state={state}>
+                    <span className="toolkit-rail" aria-hidden>
+                      <span
+                        key={`${item.id}-${active}-${paused}`}
+                        className="toolkit-rail-fill"
+                        style={
+                          state === "active"
+                            ? {
+                                animationDuration: `${AUTO_ADVANCE_MS}ms`,
+                                animationPlayState: paused ? "paused" : "running",
+                              }
+                            : undefined
+                        }
+                      />
                     </span>
 
-                    <p className="toolkit-headline mt-3 font-display text-lg font-bold leading-snug tracking-tight sm:text-xl">
-                      {item.headline}
-                    </p>
+                    <button
+                      type="button"
+                      role="tab"
+                      id={`toolkit-tab-${item.id}`}
+                      aria-selected={state === "active"}
+                      aria-controls="toolkit-panel"
+                      onClick={() => setActive(i)}
+                      className="toolkit-step-button w-full py-4 text-left sm:py-5 lg:py-3.5 xl:py-4"
+                    >
+                      <span className="toolkit-chip">
+                        <Icon className="size-3.5" strokeWidth={2} aria-hidden />
+                        {item.tag}
+                      </span>
 
-                    <div className="toolkit-reveal">
-                      <p className="max-w-md pt-3 text-sm leading-relaxed text-background/80">
-                        {item.detail}
+                      <p className="toolkit-headline mt-3 font-display text-lg font-bold leading-snug tracking-tight sm:text-xl">
+                        {item.headline}
                       </p>
-
-                      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-4">
-                        {item.telemetry.map((t) => (
-                          <span key={t} className="toolkit-telemetry font-mono">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-
-                      {"cta" in item && item.cta ? (
-                        <SiteLink
-                          to={ctas.becomeSeller.to}
-                          className="lift mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground"
-                        >
-                          {item.cta}
-                          <ArrowRight className="size-4" aria-hidden />
-                        </SiteLink>
-                      ) : null}
+                    </button>
+                  </li>
+                );
+              })}
+              <li className="toolkit-reveal-slot relative pl-6" role="presentation">
+                <div className="toolkit-reveal-ghost-slot">
+                  {items.map((item, i) => (
+                    <div
+                      key={item.id}
+                      className="toolkit-reveal-ghost-panel"
+                      data-active={i === active ? "true" : "false"}
+                      aria-hidden={i === active ? undefined : true}
+                    >
+                      <ToolkitRevealBody item={item} interactive={i === active} />
                     </div>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+                  ))}
+                </div>
+              </li>
+            </ul>
+          </div>
 
           {/* Layered panel stack */}
           <div
             id="toolkit-panel"
             role="tabpanel"
             aria-labelledby={`toolkit-tab-${activeItem.id}`}
-            className="lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100dvh-12rem)]"
+            className="toolkit-panel"
           >
             <div
               ref={stackRef}
@@ -373,8 +424,16 @@ export function ToolkitShowcase() {
 
               <div className="toolkit-main toolkit-layer">
                 <div className="toolkit-hud">
-                  <span className="font-mono text-[10px] tracking-[0.16em] text-background/55 uppercase">
-                    {activeItem.hudPath}
+                  <span className="toolkit-hud-path font-mono text-[10px] tracking-[0.16em] text-background/55 uppercase">
+                    {items.map((item, i) => (
+                      <span
+                        key={item.id}
+                        data-active={i === active ? "true" : "false"}
+                        aria-hidden={i === active ? undefined : true}
+                      >
+                        {item.hudPath}
+                      </span>
+                    ))}
                   </span>
                   <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.16em] text-primary uppercase">
                     <span className="toolkit-live-dot" aria-hidden />
@@ -383,9 +442,16 @@ export function ToolkitShowcase() {
                 </div>
 
                 <div className="toolkit-screen">
-                  <div key={activeItem.id} className="toolkit-swap absolute inset-0">
-                    <MockSurface item={activeItem} />
-                  </div>
+                  {items.map((item, i) => (
+                    <div
+                      key={item.id}
+                      className="toolkit-swap-layer"
+                      data-active={i === active ? "true" : "false"}
+                      aria-hidden={i === active ? undefined : true}
+                    >
+                      <MockSurface item={item} />
+                    </div>
+                  ))}
                 </div>
 
                 <div className="toolkit-segments" aria-hidden>
@@ -400,27 +466,52 @@ export function ToolkitShowcase() {
               </div>
 
               <div className="toolkit-float toolkit-layer">
-                <div key={`float-${activeItem.id}`} className="toolkit-swap">
-                  <p className="font-display text-2xl font-bold text-primary sm:text-3xl">
-                    {activeItem.metric.value}
-                  </p>
-                  <p className="mt-1 font-mono text-[9px] tracking-[0.14em] text-background/70 uppercase">
-                    {activeItem.metric.label}
-                  </p>
-                </div>
+                {items.map((item, i) => (
+                  <div
+                    key={item.id}
+                    className="toolkit-float-panel"
+                    data-active={i === active ? "true" : "false"}
+                    aria-hidden={i === active ? undefined : true}
+                  >
+                    <p className="font-display text-2xl font-bold text-primary sm:text-3xl">
+                      {item.metric.value}
+                    </p>
+                    <p className="mt-1 font-mono text-[9px] tracking-[0.14em] text-background/70 uppercase">
+                      {item.metric.label}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-              <p className="font-mono text-[10px] tracking-[0.14em] text-background/55 uppercase">
-                {activeItem.tag} · live on SeatsBrokers inventory
+            <div className="toolkit-meta mt-5 flex flex-wrap items-center justify-between gap-3">
+              <p className="toolkit-meta-tag font-mono text-[10px] tracking-[0.14em] text-background/55 uppercase">
+                {items.map((item, i) => (
+                  <span
+                    key={item.id}
+                    data-active={i === active ? "true" : "false"}
+                    aria-hidden={i === active ? undefined : true}
+                  >
+                    {item.tag} · live on SeatsBrokers inventory
+                  </span>
+                ))}
               </p>
               <button
                 type="button"
                 onClick={() => setActive((prev) => (prev + 1) % items.length)}
                 className="toolkit-next inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] text-primary uppercase"
               >
-                next · {nextItem.tag}
+                <span className="toolkit-next-label">
+                  {items.map((item, i) => (
+                    <span
+                      key={item.id}
+                      data-active={i === ((active + 1) % items.length) ? "true" : "false"}
+                      aria-hidden={i === (active + 1) % items.length ? undefined : true}
+                    >
+                      next · {item.tag}
+                    </span>
+                  ))}
+                </span>
                 <ArrowRight className="size-3.5" aria-hidden />
               </button>
             </div>

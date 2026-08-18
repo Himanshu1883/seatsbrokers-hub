@@ -5,7 +5,7 @@ import { SiteLink } from "@/components/layout/SiteLink";
 
 export function Footer() {
   return (
-    <footer className="section-curve bg-dark text-background">
+    <footer className="site-footer section-curve bg-dark text-background">
       <div className="border-b border-background/10 bg-background/[0.03] py-8 sm:py-10">
         <div className="container-page flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <p className="section-eyebrow text-primary">Built for the Global Ticketing Ecosystem</p>
@@ -77,7 +77,7 @@ export function Footer() {
             Platform updates, API releases and market intelligence insights for ticket businesses.
           </p>
           <form
-            className="mt-5 flex min-w-0 gap-2"
+            className="site-footer-newsletter mt-5 flex min-w-0 gap-2"
             onSubmit={(e) => {
               e.preventDefault();
               (e.currentTarget as HTMLFormElement).reset();
@@ -88,7 +88,7 @@ export function Footer() {
               required
               placeholder="you@company.com"
               aria-label="Email address"
-              className="w-full rounded-md border border-background/15 bg-background/5 px-3 py-3 text-sm text-background placeholder:text-background/40 focus:border-primary focus:outline-none"
+              className="min-w-0 flex-1 rounded-md border border-background/15 bg-background/5 px-3 py-3 text-sm text-background placeholder:text-background/40 focus:border-primary focus:outline-none"
             />
             <button
               type="submit"
@@ -98,10 +98,10 @@ export function Footer() {
               <ArrowRight className="size-4" />
             </button>
           </form>
-          <p className="mt-8 text-sm leading-relaxed text-background/55">
-            {brand.offices}
+          <p className="site-footer-meta mt-8 text-sm leading-relaxed text-background/55">
+            <span className="site-footer-offices">{brand.offices}</span>
             <br />
-            <span className="inline-block whitespace-nowrap text-[13px] max-[340px]:whitespace-normal">
+            <span className="site-footer-partners text-[13px]">
               <span className="text-primary">Partners</span>
               {": "}
               <a href={`mailto:${brand.salesEmail}`} className="hover:text-background">

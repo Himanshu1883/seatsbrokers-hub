@@ -33,6 +33,8 @@ const steps = [
     image: eventsImg,
     imageAlt: "SeatsBrokers event intelligence dashboard showing event catalog and onsale dates",
     url: "app.seatsbrokers.com / events",
+    imageW: 1408,
+    imageH: 1008,
   },
   {
     n: "02",
@@ -56,6 +58,8 @@ const steps = [
     image: marketInsightImg,
     imageAlt: "Market intelligence dashboard with pricing trends and marketplace comparison",
     url: "app.seatsbrokers.com / market",
+    imageW: 1777,
+    imageH: 885,
   },
   {
     n: "03",
@@ -79,8 +83,13 @@ const steps = [
     image: analyticsImg,
     imageAlt: "AI pricing dashboard with recommendations and approval workflow",
     url: "app.seatsbrokers.com / pricing",
+    imageW: 1718,
+    imageH: 915,
   },
 ] as const;
+
+const typePhrases = [`${modules.intel.name}.`, `${modules.pulse.name}.`] as const;
+const longestTypePhrase = typePhrases.reduce((a, b) => (a.length >= b.length ? a : b));
 
 function useSectionScrollProgress(
   sectionRef: React.RefObject<HTMLElement | null>,
@@ -175,6 +184,8 @@ function ProductScreenshot({
         <img
           src={step.image}
           alt={step.imageAlt}
+          width={step.imageW}
+          height={step.imageH}
           loading="eager"
           decoding="async"
           className="block h-auto w-full"
@@ -185,7 +196,7 @@ function ProductScreenshot({
 }
 
 export function HowItWorks() {
-  const typed = useTypewriter([`${modules.intel.name}.`, `${modules.pulse.name}.`], 80);
+  const typed = useTypewriter([...typePhrases], 80);
   const sectionRef = useRef<HTMLElement>(null);
   const scrollProgress = useSectionScrollProgress(sectionRef, steps.length);
   const active = Math.min(Math.round(scrollProgress), steps.length - 1);
@@ -207,7 +218,13 @@ export function HowItWorks() {
                 Intelligence stack
               </p>
               <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">
-                Know the market with <span className="caret text-primary">{typed}</span>
+                Know the market with{" "}
+                <span className="how-it-typeline caret text-primary">
+                  <span className="how-it-typeline-ghost" aria-hidden>
+                    {longestTypePhrase}
+                  </span>
+                  <span className="how-it-typeline-text">{typed}</span>
+                </span>
               </h2>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-muted-foreground lg:text-right lg:text-base">
@@ -325,25 +342,52 @@ export function HowItWorks() {
               <p className="mb-2 text-center section-eyebrow text-primary">
                 Live product · step {preview.n}
               </p>
-              <p className="mb-4 text-center text-sm font-medium text-muted-foreground">
-                {preview.caption}
-              </p>
-              <div className="how-it-desktop-viewport min-h-0 w-full max-h-[calc(100dvh-13rem)] overflow-hidden">
-                <ProductScreenshot key={preview.n} step={preview} variant="desktop" />
-              </div>
-              <div className="mt-4 flex flex-wrap justify-center gap-2">
-                {preview.stats.map((s) => (
-                  <span
-                    key={s.label}
-                    className="rounded-lg border border-border bg-card px-3 py-1.5 text-center"
+              <div className="how-it-caption-slot mb-4">
+                {steps.map((step) => (
+                  <p
+                    key={step.n}
+                    className="text-center text-sm font-medium text-muted-foreground"
+                    data-active={step.n === preview.n ? "true" : "false"}
+                    aria-hidden={step.n === preview.n ? undefined : true}
                   >
-                    <span className="block font-display text-sm font-bold text-foreground">
-                      {s.value}
-                    </span>
-                    <span className="font-mono text-[9px] tracking-wide text-muted-foreground uppercase">
-                      {s.label}
-                    </span>
-                  </span>
+                    {step.caption}
+                  </p>
+                ))}
+              </div>
+              <div className="how-it-desktop-viewport min-h-0 w-full">
+                {steps.map((step) => (
+                  <div
+                    key={step.n}
+                    className={step.n === preview.n ? "how-it-desktop-shot how-it-preview-swap" : "how-it-desktop-shot"}
+                    data-active={step.n === preview.n ? "true" : "false"}
+                    aria-hidden={step.n === preview.n ? undefined : true}
+                  >
+                    <ProductScreenshot step={step} variant="desktop" />
+                  </div>
+                ))}
+              </div>
+              <div className="how-it-stats-slot mt-4">
+                {steps.map((step) => (
+                  <div
+                    key={step.n}
+                    className="flex flex-wrap justify-center gap-2"
+                    data-active={step.n === preview.n ? "true" : "false"}
+                    aria-hidden={step.n === preview.n ? undefined : true}
+                  >
+                    {step.stats.map((s) => (
+                      <span
+                        key={s.label}
+                        className="rounded-lg border border-border bg-card px-3 py-1.5 text-center"
+                      >
+                        <span className="block font-display text-sm font-bold text-foreground">
+                          {s.value}
+                        </span>
+                        <span className="font-mono text-[9px] tracking-wide text-muted-foreground uppercase">
+                          {s.label}
+                        </span>
+                      </span>
+                    ))}
+                  </div>
                 ))}
               </div>
               <div className="mt-5 flex justify-center gap-1.5" aria-hidden>

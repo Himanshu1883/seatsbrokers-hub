@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   BarChart3,
   Layers,
@@ -9,8 +9,6 @@ import {
 import { Reveal } from "@/hooks/use-scroll-motion";
 import logo from "@/assets/seatsbrokers-logo.png";
 import { modules } from "@/content/modules";
-
-const CYCLE_MS = 1200;
 
 type Accent = "mint" | "amber" | "teal" | "cyan" | "forest";
 
@@ -112,18 +110,8 @@ const marketplaces = [
   { name: "Marketplace 06", status: "Synced" },
 ];
 
-function useAutoCycle(len: number) {
-  const [active, setActive] = useState(0);
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(() => setActive((i) => (i + 1) % len), CYCLE_MS);
-    return () => window.clearInterval(id);
-  }, [len]);
-  return [active, setActive] as const;
-}
-
 export function FeatureOrbit() {
-  const [active, setActive] = useAutoCycle(features.length);
+  const [active, setActive] = useState(0);
   const cx = 50;
   const cy = 50;
   const ringR = 38;
@@ -331,18 +319,6 @@ export function FeatureOrbit() {
                         {f.italic}
                       </em>
                     </p>
-                    {isActive ? (
-                      <span className="absolute inset-x-3 bottom-1.5 h-[2px] overflow-hidden rounded-full bg-border">
-                        <span
-                          key={f.id}
-                          className="block h-full origin-left"
-                          style={{
-                            background: accentHex[f.accent],
-                            animation: `orbitFill ${CYCLE_MS}ms linear forwards`,
-                          }}
-                        />
-                      </span>
-                    ) : null}
                   </button>
 
                   {isActive ? (
@@ -420,46 +396,72 @@ export function FeatureOrbit() {
           </Reveal>
         </div>
 
-        <div className="mt-10 grid gap-3 lg:hidden">
-          {features.map((f, i) => {
-            const Icon = f.icon;
-            const isActive = i === active;
-            return (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => setActive(i)}
-                className={`flex min-h-11 items-start gap-3 rounded-xl border px-4 py-4 text-left transition-colors ${
-                  isActive
-                    ? "border-primary/30 bg-white shadow-sm"
-                    : "border-border/80 bg-white/70"
-                }`}
-              >
-                <span
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
-                  style={{
-                    color: accentHex[f.accent],
-                    background: `${accentHex[f.accent]}14`,
-                  }}
+        <div className="feature-orbit-detail-reserve hidden lg:block" aria-hidden />
+
+        <div className="feature-orbit-mobile mt-10 lg:hidden">
+          <div className="feature-orbit-mobile-list">
+            {features.map((f, i) => {
+              const Icon = f.icon;
+              const isActive = i === active;
+              return (
+                <button
+                  key={f.id}
+                  type="button"
+                  aria-expanded={isActive}
+                  aria-controls="feature-orbit-mobile-detail"
+                  onClick={() => setActive(i)}
+                  className={`flex min-h-11 items-start gap-3 rounded-xl border px-4 py-4 text-left transition-colors ${
+                    isActive
+                      ? "border-primary/30 bg-white shadow-sm"
+                      : "border-border/80 bg-white/70"
+                  }`}
                 >
-                  <Icon className="size-4.5" strokeWidth={1.75} />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block text-[14px] font-semibold text-foreground">
-                    {f.title}{" "}
-                    <em className="font-medium text-muted-foreground italic">
-                      {f.italic}
-                    </em>
+                  <span
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+                    style={{
+                      color: accentHex[f.accent],
+                      background: `${accentHex[f.accent]}14`,
+                    }}
+                  >
+                    <Icon className="size-4.5" strokeWidth={1.75} />
                   </span>
-                  {isActive ? (
-                    <span className="mt-2 block text-[13px] leading-relaxed text-muted-foreground">
-                      {f.detail}
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[14px] font-semibold text-foreground">
+                      {f.title}{" "}
+                      <em className="font-medium text-muted-foreground italic">
+                        {f.italic}
+                      </em>
                     </span>
-                  ) : null}
-                </span>
-              </button>
-            );
-          })}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <div
+            id="feature-orbit-mobile-detail"
+            className="feature-orbit-mobile-detail-slot"
+            aria-live="polite"
+          >
+            {features.map((f, i) => (
+              <div
+                key={f.id}
+                className="feature-orbit-mobile-detail-panel"
+                data-accent={f.accent}
+                data-active={i === active ? "true" : "false"}
+                aria-hidden={i === active ? undefined : true}
+              >
+                <p
+                  className="font-mono text-[10px] font-bold tracking-[0.16em] uppercase"
+                  style={{ color: accentHex[f.accent] }}
+                >
+                  {f.category}
+                </p>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
+                  {f.detail}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-8 hidden justify-center gap-2 lg:flex">
@@ -482,12 +484,6 @@ export function FeatureOrbit() {
         </div>
       </div>
 
-      <style>{`
-        @keyframes orbitFill {
-          from { transform: scaleX(0); }
-          to { transform: scaleX(1); }
-        }
-      `}</style>
     </section>
   );
 }

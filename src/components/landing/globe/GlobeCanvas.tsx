@@ -285,5 +285,5 @@ export function GlobeCanvas({ scrollOffset = 0 }: GlobeCanvasProps) {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="h-full w-full" aria-hidden="true" />;
+  return <canvas ref={canvasRef} className="block h-full w-full" aria-hidden="true" />;
 }

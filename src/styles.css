@@ -275,12 +275,26 @@ main > .section-curve:first-child {
 }
 
 @media (max-width: 639px) {
+  .globe-scroll-section {
+    --globe-last-pad: 8rem;
+    --globe-card-gutter: 1.25rem;
+  }
+
+  .globe-scroll-article {
+    padding-inline: var(--globe-card-gutter);
+  }
+
   .globe-slide-card {
     min-height: 0;
   }
 
   .globe-slide-card-content {
     padding: 1.35rem 1.15rem 1.5rem;
+  }
+
+  .globe-pin-caption {
+    inset-inline: 0.85rem;
+    bottom: 2.35rem;
   }
 
   .globe-rail-label {
@@ -328,6 +342,8 @@ main > .section-curve:first-child {
   --globe-heading-band: 8.5rem;
   --globe-card-inset: 8rem;
   --globe-card-inset-first: 9rem;
+  --globe-last-pad: 6.75rem;
+  --globe-card-gutter: 1.25rem;
 }
 
 .globe-scroll-heading {
@@ -371,11 +387,31 @@ main > .section-curve:first-child {
   padding-top: var(--globe-card-inset-first);
 }
 
+.globe-scroll-article:last-of-type {
+  z-index: 12;
+  padding-bottom: var(--globe-last-pad);
+}
+
+.globe-scroll-article:last-of-type .globe-slide-card {
+  position: relative;
+  z-index: 13;
+}
+
+.globe-pin-caption {
+  z-index: 3;
+}
+
+.globe-slide-card-foot {
+  position: relative;
+  z-index: 2;
+}
+
 @media (min-width: 640px) {
   .globe-scroll-section {
     --globe-heading-band: 10.25rem;
     --globe-card-inset: 11.25rem;
     --globe-card-inset-first: 12.5rem;
+    --globe-last-pad: 7.5rem;
   }
 }
 
@@ -3168,9 +3204,10 @@ main > .section-curve:first-child {
   }
 }
 
-/* Nav-height spacer. Mobile stays 4.5rem (same as nav h-18) so the 100svh lock still fits. */
+/* Nav-height spacer. 4.5rem bar + 1.25rem gap so copy clears the light overlay.
+   Desktop (≥1024px) uses a larger clamp below — do not shrink it. */
 .hero-fit-offset {
-  height: 4.5rem;
+  height: calc(4.5rem + 1.25rem);
 }
 
 /* Homepage hero — mobile (<1024px): one locked frame, console-led.
@@ -3765,6 +3802,38 @@ main > .section-curve:first-child {
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
+.how-it-typeline {
+  position: relative;
+  display: inline-block;
+}
+
+.how-it-typeline-ghost {
+  visibility: hidden;
+}
+
+.how-it-typeline-text {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: visible;
+}
+
+.how-it-caption-slot,
+.how-it-stats-slot {
+  display: grid;
+}
+
+.how-it-caption-slot > p,
+.how-it-stats-slot > div {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.how-it-caption-slot > p[data-active="true"],
+.how-it-stats-slot > div[data-active="true"] {
+  visibility: visible;
+}
+
 .how-it-sticky-preview-shell {
   max-height: min(72vh, 720px);
   min-height: min(420px, 52vh);
@@ -3790,8 +3859,23 @@ main > .section-curve:first-child {
 }
 
 .how-it-desktop-viewport {
+  display: grid;
+  width: 100%;
+  max-height: calc(100dvh - 13rem);
+  overflow: hidden;
   scrollbar-width: none;
   overscroll-behavior: auto;
+}
+
+.how-it-desktop-shot {
+  grid-area: 1 / 1;
+  min-width: 0;
+  align-self: start;
+  visibility: hidden;
+}
+
+.how-it-desktop-shot[data-active="true"] {
+  visibility: visible;
 }
 
 .how-it-bg-photo {
@@ -3867,6 +3951,13 @@ main > .section-curve:first-child {
 @media (min-width: 640px) and (max-width: 1023px) {
   .how-it-product-frame-mobile {
     transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .how-it-preview-swap,
+  .how-it-bg-photo {
+    animation: none;
   }
 }
 
@@ -4522,12 +4613,129 @@ main > .section-curve:first-child {
 /* Layered panel stack ------------------------------------------ */
 
 .toolkit-stage {
-  max-height: calc(100dvh - 11.5rem);
+  min-height: 0;
 }
 
 .toolkit-rail-list {
   scrollbar-width: thin;
   scrollbar-color: color-mix(in oklab, var(--primary) 35%, transparent) transparent;
+}
+
+.toolkit-rail-lock {
+  position: relative;
+  display: grid;
+  min-height: 0;
+}
+
+.toolkit-rail-ghost {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.toolkit-reveal-ghost-slot {
+  display: grid;
+}
+
+.toolkit-reveal-ghost-panel {
+  grid-area: 1 / 1;
+}
+
+.toolkit-reveal-slot {
+  border-top: 1px solid color-mix(in oklab, var(--background) 10%, transparent);
+}
+
+.toolkit-rail-list:not(.toolkit-rail-ghost) .toolkit-reveal-ghost-panel {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.toolkit-rail-list:not(.toolkit-rail-ghost) .toolkit-reveal-ghost-panel[data-active="true"] {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Live rail overlays the ghost so reserved copy cannot grow the page. */
+@media (max-width: 1023px) {
+  .toolkit-rail-lock > .toolkit-rail-list:not(.toolkit-rail-ghost) {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* svh, not dvh: dvh remeasures with browser chrome and the min-height
+     flex column then shoves every section below this one. */
+  .toolkit {
+    height: 100vh;
+    height: 100svh;
+    max-height: 100svh;
+    overflow: hidden;
+  }
+
+  .toolkit > .container-page {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .toolkit-stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    align-items: stretch;
+  }
+
+  .toolkit-rail-lock {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .toolkit-rail-ghost {
+    display: none;
+  }
+
+  .toolkit-rail-lock > .toolkit-rail-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+
+  .toolkit-panel {
+    display: flex;
+    min-height: 0;
+    max-height: 100%;
+    flex-direction: column;
+    align-self: stretch;
+    overflow: hidden;
+  }
+
+  .toolkit-stack {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    flex-direction: column;
+  }
+
+  .toolkit-main {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    flex-direction: column;
+  }
+
+  .toolkit-screen {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+    max-height: 100%;
+  }
 }
 
 .toolkit-rail-list::-webkit-scrollbar {
@@ -4540,9 +4748,6 @@ main > .section-curve:first-child {
 }
 
 @media (max-width: 1023px) {
-  .toolkit-stage {
-    max-height: none;
-  }
   .toolkit-stack {
     padding-inline-end: 0;
     padding-bottom: 0.25rem;
@@ -4574,9 +4779,13 @@ main > .section-curve:first-child {
   }
 }
 
+.toolkit-stack {
+  --tk-px: 0;
+  --tk-py: 0;
+}
+
 .toolkit-layer {
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
 }
 
 .toolkit-ghost {
@@ -4613,12 +4822,51 @@ main > .section-curve:first-child {
   background: color-mix(in oklab, var(--background) 6%, transparent);
 }
 
+.toolkit-hud-path {
+  display: grid;
+  min-width: 0;
+}
+
+.toolkit-hud-path > span {
+  grid-area: 1 / 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  visibility: hidden;
+}
+
+.toolkit-hud-path > span[data-active="true"] {
+  visibility: visible;
+}
+
 .toolkit-screen {
   position: relative;
+  display: grid;
   aspect-ratio: 4 / 3;
   width: 100%;
   overflow: hidden;
   background: color-mix(in oklab, var(--background) 96%, var(--primary));
+}
+
+.toolkit-swap-layer {
+  grid-area: 1 / 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.toolkit-swap-layer[data-active="true"] {
+  visibility: visible;
+  pointer-events: auto;
+  animation: toolkit-swap 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.toolkit-swap-layer > * {
+  width: 100%;
+  height: 100%;
 }
 
 .toolkit-segments {
@@ -4652,14 +4900,43 @@ main > .section-curve:first-child {
   position: absolute;
   right: 0;
   bottom: 0;
+  display: grid;
   min-width: 8.5rem;
   padding: 0.9rem 1.1rem;
   border-radius: 0.9rem;
   border: 1px solid color-mix(in oklab, var(--primary) 32%, transparent);
-  background: color-mix(in oklab, var(--dark) 72%, var(--background));
-  backdrop-filter: blur(8px);
+  background: color-mix(in oklab, var(--dark) 88%, var(--background));
   box-shadow: 0 24px 55px -30px oklch(0 0 0 / 0.8);
   transform: translate3d(calc(var(--tk-px) * -22px), calc(var(--tk-py) * -16px), 0);
+}
+
+.toolkit-float-panel {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.toolkit-float-panel[data-active="true"] {
+  visibility: visible;
+  pointer-events: auto;
+  animation: toolkit-swap 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.toolkit-meta-tag,
+.toolkit-next-label {
+  display: grid;
+  min-width: 0;
+}
+
+.toolkit-meta-tag > span,
+.toolkit-next-label > span {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.toolkit-meta-tag > span[data-active="true"],
+.toolkit-next-label > span[data-active="true"] {
+  visibility: visible;
 }
 
 .toolkit-swap {
@@ -4722,7 +4999,9 @@ main > .section-curve:first-child {
   .toolkit-live-dot,
   .toolkit-bar,
   .toolkit-row,
-  .toolkit-swap {
+  .toolkit-swap,
+  .toolkit-swap-layer[data-active="true"],
+  .toolkit-float-panel[data-active="true"] {
     animation: none;
   }
   .toolkit-step[data-state="active"] .toolkit-rail-fill {
@@ -5673,7 +5952,22 @@ main > .section-curve:first-child {
   }
 }
 
+.partner-copy-slot {
+  display: grid;
+}
+
 .partner-copy {
+  grid-area: 1 / 1;
+  align-self: start;
+  min-width: 0;
+  visibility: hidden;
+  pointer-events: none;
+  animation: none;
+}
+
+.partner-copy[data-active="true"] {
+  visibility: visible;
+  pointer-events: auto;
   animation: partner-copy-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -5713,7 +6007,7 @@ main > .section-curve:first-child {
 
 .partner-frame-screen {
   position: relative;
-  display: block;
+  display: grid;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -5729,6 +6023,7 @@ main > .section-curve:first-child {
 }
 
 .partner-shot {
+  grid-area: 1 / 1;
   display: block;
   width: 100%;
   height: auto;
@@ -5736,6 +6031,12 @@ main > .section-curve:first-child {
   object-fit: contain;
   object-position: top center;
   background: var(--card);
+  visibility: hidden;
+  animation: none;
+}
+
+.partner-shot[data-active="true"] {
+  visibility: visible;
   animation: partner-shot-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -5843,7 +6144,9 @@ main > .section-curve:first-child {
   .partner-live-dot,
   .partner-tab-progress,
   .partner-copy,
-  .partner-shot {
+  .partner-copy[data-active="true"],
+  .partner-shot,
+  .partner-shot[data-active="true"] {
     animation: none;
   }
   .partner-tab-progress {
@@ -6606,12 +6909,16 @@ main > .section-curve:first-child {
   width: 100%;
   max-width: 18rem;
   margin-inline: auto;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  overflow: hidden;
 }
 
 .nc-globe {
   position: relative;
   aspect-ratio: 1 / 1;
   width: 100%;
+  height: 100%;
 }
 
 .nc-node {
@@ -6648,6 +6955,27 @@ main > .section-curve:first-child {
   background: var(--background);
   padding: 1.25rem;
   box-shadow: 0 1px 2px color-mix(in oklab, var(--foreground) 6%, transparent);
+  /* Stage copy is reserved (ghost longest title/body) so 1.8s auto-advance
+     never grows or shrinks this card — or the sections around it. */
+  flex-shrink: 0;
+  min-height: 16.75rem;
+}
+
+.nc-console-title,
+.nc-console-body,
+.nc-metric-label {
+  position: relative;
+}
+
+.nc-console-ghost {
+  display: block;
+  visibility: hidden;
+}
+
+.nc-console-live {
+  position: absolute;
+  inset: 0;
+  display: block;
 }
 
 .nc-dots {
@@ -6666,8 +6994,11 @@ main > .section-curve:first-child {
 
 @media (min-width: 1024px) {
   .nc-section {
-    height: 100dvh;
-    max-height: 100dvh;
+    /* svh, not dvh: dvh remeasures when the browser chrome shows/hides and
+       recenters this flex column, which looks like the page bouncing. */
+    height: 100vh;
+    height: 100svh;
+    max-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6745,9 +7076,10 @@ main > .section-curve:first-child {
 
   .nc-globe-wrap {
     aspect-ratio: 1 / 1;
-    width: min(100%, 30rem, 42dvh);
+    width: min(100%, 30rem, 42svh);
+    height: auto;
     max-width: 30rem;
-    max-height: 42dvh;
+    max-height: 42svh;
     padding: clamp(2.1rem, 3.8vh, 3.25rem);
     overflow: visible;
   }
@@ -6768,19 +7100,24 @@ main > .section-curve:first-child {
 
   .nc-section .nc-console {
     flex: 0 0 auto;
+    min-height: 11.75rem;
     margin-top: clamp(0.4rem, 1vh, 1rem);
     padding: clamp(0.7rem, 1.3vh, 1.15rem) clamp(0.85rem, 1.4vh, 1.25rem);
   }
 
-  .nc-section .nc-console h3 {
+  .nc-section .nc-console-title {
     margin-top: 0.35rem;
     font-size: clamp(0.95rem, 0.7rem + 0.9vh, 1.2rem);
   }
 
-  .nc-section .nc-console p {
+  .nc-section .nc-console-body {
     margin-top: 0.35rem;
     font-size: 0.8125rem;
     line-height: 1.45;
+  }
+
+  .nc-section .nc-console-body .nc-console-ghost,
+  .nc-section .nc-console-body .nc-console-live {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -6810,9 +7147,9 @@ main > .section-curve:first-child {
 
 @media (min-width: 1024px) and (min-height: 900px) {
   .nc-globe-wrap {
-    width: min(100%, 32rem, 46dvh);
+    width: min(100%, 32rem, 46svh);
     max-width: 32rem;
-    max-height: 46dvh;
+    max-height: 46svh;
     padding: clamp(2.4rem, 4.2vh, 3.6rem);
   }
 
@@ -6837,8 +7174,8 @@ main > .section-curve:first-child {
 
 @media (min-width: 1512px) and (min-height: 960px) {
   .nc-globe-wrap {
-    width: min(100%, 32rem, 48dvh);
-    max-height: 48dvh;
+    width: min(100%, 32rem, 48svh);
+    max-height: 48svh;
   }
 }
 
@@ -6848,9 +7185,9 @@ main > .section-curve:first-child {
   }
 
   .nc-globe-wrap {
-    width: min(100%, 34rem, 50dvh);
+    width: min(100%, 34rem, 50svh);
     max-width: 34rem;
-    max-height: 50dvh;
+    max-height: 50svh;
   }
 }
 
@@ -6861,26 +7198,28 @@ main > .section-curve:first-child {
   }
 
   .nc-globe-wrap {
-    width: min(100%, 34rem, 52dvh);
+    width: min(100%, 34rem, 52svh);
     max-width: 34rem;
-    max-height: 52dvh;
+    max-height: 52svh;
     padding: 3.5rem;
   }
 
   .nc-section .nc-console {
     padding: 1.15rem 1.35rem;
+    min-height: 13.25rem;
   }
 
-  .nc-section .nc-console p {
+  .nc-section .nc-console-body .nc-console-ghost,
+  .nc-section .nc-console-body .nc-console-live {
     -webkit-line-clamp: 3;
   }
 }
 
 @media (min-width: 2560px) and (min-height: 1400px) {
   .nc-globe-wrap {
-    width: min(100%, 36rem, 48dvh);
+    width: min(100%, 36rem, 48svh);
     max-width: 36rem;
-    max-height: 48dvh;
+    max-height: 48svh;
   }
 }
 
@@ -6890,8 +7229,8 @@ main > .section-curve:first-child {
   }
 
   .nc-globe-wrap {
-    width: min(100%, 26rem, 38dvh);
-    max-height: 38dvh;
+    width: min(100%, 26rem, 38svh);
+    max-height: 38svh;
     padding: 2rem;
   }
 
@@ -8473,6 +8812,42 @@ main > .section-curve:first-child {
   box-shadow: 0 14px 32px -24px color-mix(in oklab, var(--fo-accent, var(--primary)) 40%, transparent);
 }
 
+.feature-orbit-detail-reserve {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .feature-orbit-detail-reserve {
+    display: block;
+    height: 7.5rem;
+    flex-shrink: 0;
+  }
+}
+
+.feature-orbit-mobile-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.feature-orbit-mobile-detail-slot {
+  display: grid;
+  margin-top: 0.75rem;
+  min-height: 7.25rem;
+  border-radius: 1.1rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  background: white;
+  padding: 1rem 1.05rem;
+}
+
+.feature-orbit-mobile-detail-panel {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.feature-orbit-mobile-detail-panel[data-active="true"] {
+  visibility: visible;
+}
+
 @media (max-width: 1279px) and (min-width: 1024px) {
   .feature-orbit-stage {
     --orbit-r: 12rem;
@@ -9770,8 +10145,44 @@ main > .section-curve:first-child {
 }
 
 @media (max-width: 639px) {
+  .two-track-panel > .container-page {
+    padding-inline: clamp(1rem, 4.5vw, 1.35rem);
+  }
+
   .two-track-stage {
     --tt-screen-h: auto;
+    --tt-panel-pad: 0.75rem 0.9rem;
+    padding-inline: 0.15rem;
+  }
+
+  .two-track-3d-card,
+  .two-track-3d-bezel,
+  .two-track-3d-screen,
+  .two-track-3d-inner,
+  .two-track-console,
+  .two-track-side-stack,
+  .two-track-hub-panel,
+  .two-track-log-panel,
+  .two-track-pricing-panel {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .two-track-3d-bezel {
+    padding: 0.7rem;
+  }
+
+  .two-track-3d-inner {
+    padding-inline: 1.125rem;
+    padding-block: 0.9rem;
+    overflow: hidden;
+  }
+
+  .two-track-log-row span:last-child,
+  .two-track-pricing-head,
+  .two-track-pricing-bars {
+    padding-right: 0.2rem;
   }
 
   .two-track-3d-line {
@@ -9820,6 +10231,25 @@ main > .section-curve:first-child {
 }
 
 @media (max-width: 479px) {
+  .two-track-panel > .container-page {
+    padding-inline: clamp(1.125rem, 5.2vw, 1.35rem);
+  }
+
+  .two-track-stage {
+    padding-inline: 0.25rem;
+    --tt-panel-pad: 0.8rem 0.95rem;
+  }
+
+  .two-track-3d-inner {
+    padding-inline: 1.25rem;
+  }
+
+  .two-track-log-row span:last-child,
+  .two-track-pricing-head,
+  .two-track-pricing-bars {
+    padding-right: 0.2rem;
+  }
+
   .two-track-console-top,
   .two-track-console-split {
     grid-template-columns: minmax(0, 1fr);
@@ -11262,10 +11692,15 @@ main > .section-curve:first-child {
   }
 }
 
-/* Brokers hero — live console wall */
+/* Brokers hero — live console wall.
+   Shared padding-top clears the 4.5rem fixed light nav + 1.25rem gap
+   (`clamp(5.75rem, 8vh, 7.5rem)`). Product/company heroes inherit this
+   (abt/bdm/plt/faq/legal/ct + PageHero). Contact desktop zeros section
+   padding and applies the same value on `.ct-hero-copy`. */
 
 .bh-hero {
-  padding-block: clamp(4.5rem, 10vw, 7rem);
+  padding-top: clamp(5.75rem, 8vh, 7.5rem);
+  padding-bottom: clamp(4.5rem, 10vw, 7rem);
   margin-top: clamp(0.25rem, 0.65vw, 0.5rem);
 }
 
@@ -12654,7 +13089,7 @@ main > .section-curve:first-child {
 /* ── /brokers phone + small-tablet (desktop ≥1024px unchanged) ── */
 @media (max-width: 639px) {
   .bh-hero {
-    padding-block: clamp(3.25rem, 12vw, 4.35rem);
+    padding-bottom: clamp(3.25rem, 12vw, 4.35rem);
   }
 
   .bh-layout,
@@ -17416,7 +17851,7 @@ main > .section-curve:first-child {
    Desktop ≥1024px is unchanged. Placed here so phone rules win. */
 @media (max-width: 639px) {
   .bh-hero {
-    padding-block: clamp(3.25rem, 12vw, 4.35rem);
+    padding-bottom: clamp(3.25rem, 12vw, 4.35rem);
   }
 
   .bh-stage,
@@ -27205,6 +27640,62 @@ main > .section-curve:first-child {
   transition: filter 0.3s ease;
 }
 
+/* ── Footer — equal inline padding, wrap partners, no clipped form ── */
+.site-footer {
+  --footer-inline: clamp(1rem, 4.8vw, 1.75rem);
+}
+
+.site-footer .container-page {
+  padding-inline: var(--footer-inline);
+}
+
+.site-footer-newsletter {
+  max-width: 100%;
+}
+
+.site-footer-newsletter input {
+  min-width: 0;
+  width: auto;
+  flex: 1 1 auto;
+}
+
+.site-footer-newsletter button {
+  flex-shrink: 0;
+}
+
+.site-footer-offices,
+.site-footer-partners {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.site-footer-partners {
+  margin-top: 0.15rem;
+}
+
+@media (min-width: 400px) {
+  .site-footer-partners {
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+}
+
+@media (max-width: 379px) {
+  .site-footer-newsletter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .site-footer-newsletter button {
+    min-height: 2.75rem;
+    width: 100%;
+  }
+}
+
 /* ── /travel-partners phone + small-tablet (desktop ≥1024px unchanged) ── */
 
 @media (max-width: 1023px) {
@@ -29700,27 +30191,23 @@ main > .section-curve:first-child {
    Distinct from tpd-* mkh-* eih-* apidoc-* wic-glass-* mps-hub-*. */
 
 .bh-hero.abt-hero {
-  padding-top: clamp(5.5rem, 4.75rem + 3vh, 7.25rem);
   padding-bottom: clamp(2.75rem, 5.5vw, 5rem);
 }
 
 @media (min-width: 1024px) {
   .bh-hero.abt-hero {
-    padding-top: clamp(6.5rem, 5.25rem + 4vh, 8.25rem);
     padding-bottom: clamp(3.25rem, 5vh, 5.25rem);
   }
 }
 
 @media (min-width: 1024px) and (max-height: 900px) {
   .bh-hero.abt-hero {
-    padding-top: clamp(5.75rem, 4.75rem + 3.5vh, 7rem);
     padding-bottom: clamp(2.25rem, 3.5vh, 3.25rem);
   }
 }
 
 @media (max-width: 639px) {
   .bh-hero.abt-hero {
-    padding-top: clamp(5.25rem, 18vw, 6.25rem);
     padding-bottom: clamp(2.35rem, 8vw, 3.5rem);
   }
 }
@@ -31614,14 +32101,12 @@ main > .section-curve:first-child {
 
 .bh-hero.bdm-hero,
 .bh-hero.plt-hero {
-  padding-top: clamp(5.5rem, 4.75rem + 3vh, 7.25rem);
   padding-bottom: clamp(2.75rem, 5.5vw, 5rem);
 }
 
 @media (min-width: 1024px) {
   .bh-hero.bdm-hero,
   .bh-hero.plt-hero {
-    padding-top: clamp(6.5rem, 5.25rem + 4vh, 8.25rem);
     padding-bottom: clamp(3.25rem, 5vh, 5.25rem);
   }
 }
@@ -31629,7 +32114,6 @@ main > .section-curve:first-child {
 @media (min-width: 1024px) and (max-height: 900px) {
   .bh-hero.bdm-hero,
   .bh-hero.plt-hero {
-    padding-top: clamp(5.75rem, 4.75rem + 3.5vh, 7rem);
     padding-bottom: clamp(2.25rem, 3.5vh, 3.25rem);
   }
 }
@@ -31637,7 +32121,6 @@ main > .section-curve:first-child {
 @media (max-width: 639px) {
   .bh-hero.bdm-hero,
   .bh-hero.plt-hero {
-    padding-top: clamp(5.25rem, 18vw, 6.25rem);
     padding-bottom: clamp(2.35rem, 8vw, 3.5rem);
   }
 }
@@ -34239,15 +34722,13 @@ html.site-nav-locked body {
   overflow-x: clip;
 }
 
-/* Extra padding clears overlay nav (including MacBook heights). */
+/* Top padding inherits .bh-hero (4.5rem nav + gap). */
 .bh-hero.faq-hero {
-  padding-top: clamp(5.5rem, 4.75rem + 3vh, 7.25rem);
   padding-bottom: clamp(2.75rem, 5.5vw, 5rem);
 }
 
 @media (min-width: 1024px) {
   .bh-hero.faq-hero {
-    padding-top: clamp(6.5rem, 5.25rem + 4vh, 8.25rem);
     padding-bottom: clamp(3.25rem, 5vh, 5.25rem);
   }
 
@@ -34259,14 +34740,12 @@ html.site-nav-locked body {
 
 @media (min-width: 1024px) and (max-height: 900px) {
   .bh-hero.faq-hero {
-    padding-top: clamp(5.75rem, 4.75rem + 3.5vh, 7rem);
     padding-bottom: clamp(2.25rem, 3.5vh, 3.25rem);
   }
 }
 
 @media (max-width: 639px) {
   .bh-hero.faq-hero {
-    padding-top: clamp(5.25rem, 18vw, 6.25rem);
     padding-bottom: clamp(2.35rem, 8vw, 3.5rem);
   }
 }
@@ -34614,7 +35093,6 @@ html.site-nav-locked body {
 }
 
 .bh-hero.ct-hero {
-  padding-top: clamp(5.25rem, 18vw, 6.25rem);
   padding-bottom: 0;
 }
 
@@ -34688,10 +35166,6 @@ html.site-nav-locked body {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .bh-hero.ct-hero {
-    padding-top: clamp(5.5rem, 4.75rem + 3vh, 7rem);
-  }
-
   .ct-hero-stage {
     height: clamp(16rem, 38vh, 22rem);
     max-height: 22rem;
@@ -34722,7 +35196,7 @@ html.site-nav-locked body {
     flex-direction: column;
     justify-content: center;
     min-height: 0;
-    padding-top: clamp(5.25rem, 5.75rem + 1.5vh, 6.75rem);
+    padding-top: clamp(5.75rem, 8vh, 7.5rem);
     padding-bottom: clamp(1.75rem, 3vh, 2.75rem);
     padding-left: clamp(1.5rem, 4.5vw, 4.25rem);
     padding-right: clamp(1rem, 2.5vw, 2rem);
@@ -34767,7 +35241,7 @@ html.site-nav-locked body {
   }
 
   .ct-hero-copy {
-    padding-top: clamp(4.75rem, 6vh, 5.75rem);
+    padding-top: clamp(5.75rem, 8vh, 7.5rem);
     padding-bottom: clamp(1.25rem, 2.5vh, 2rem);
   }
 }
@@ -34804,27 +35278,23 @@ html.site-nav-locked body {
 }
 
 .bh-hero.legal-hero {
-  padding-top: clamp(5.5rem, 4.75rem + 3vh, 7.25rem);
   padding-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
 }
 
 @media (min-width: 1024px) {
   .bh-hero.legal-hero {
-    padding-top: clamp(6.5rem, 5.25rem + 4vh, 8.25rem);
     padding-bottom: clamp(2.75rem, 4.5vh, 4.25rem);
   }
 }
 
 @media (min-width: 1024px) and (max-height: 900px) {
   .bh-hero.legal-hero {
-    padding-top: clamp(5.75rem, 4.75rem + 3.5vh, 7rem);
     padding-bottom: clamp(2rem, 3vh, 2.75rem);
   }
 }
 
 @media (max-width: 639px) {
   .bh-hero.legal-hero {
-    padding-top: clamp(5.25rem, 18vw, 6.25rem);
     padding-bottom: clamp(1.85rem, 6vw, 2.75rem);
   }
 }
@@ -35107,7 +35577,7 @@ html.site-nav-locked body {
 
 /* ── /about rebuild — intelligence hero + chapter bands (abt-*) ──
    Unique tech-stage (not office atlas, not brokers wall).
-   Extra padding on .bh-hero.abt-hero already clears the 4.5rem nav. */
+   Top padding inherits .bh-hero (4.5rem nav + gap). */
 
 .abt-formula-strip {
   grid-template-columns: repeat(4, minmax(0, 1fr));

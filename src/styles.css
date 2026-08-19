@@ -37547,6 +37547,229 @@ html.site-nav-locked body {
   }
 }
 
+/* == Homepage seat-map venue chart (smt-map-*) 2026-08-19 ==
+   Centered zoom/reset/close icons; in-block stand + block IDs clipped
+   to each pad; selected-count pill parked in the map header; desk toast
+   moved off the Hide Filters / refresh cluster. */
+.smt-map-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 0.55rem;
+}
+
+.smt-map-head h3 {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smt-map-head-end {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  margin-left: auto;
+}
+
+.smt-map-picked {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: 11.75rem;
+  min-height: 1.7rem;
+  margin: 0;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--primary) 28%, var(--border));
+  background: var(--primary);
+  padding: 0.2rem 0.65rem 0.2rem 0.5rem;
+  color: var(--primary-foreground);
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.smt-map-picked svg {
+  display: block;
+  flex-shrink: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.smt-map-picked span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smt-map-tools {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+}
+
+.smt-map-tools button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 0.4rem;
+  line-height: 1;
+  text-align: center;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.smt-map-tools button svg {
+  display: block;
+  flex-shrink: 0;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.smt-map-stage {
+  height: 20.5rem;
+}
+
+.smt-map-hint {
+  min-height: 1.35rem;
+  margin: 0;
+  padding: 0.28rem 0.7rem 0;
+  overflow: hidden;
+  color: var(--muted-foreground);
+  font-size: 0.62rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.smt-map-seat {
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.16s ease;
+}
+
+.smt-map-seat .smt-map-label {
+  fill: #fff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  paint-order: stroke;
+  stroke: color-mix(in oklab, black 28%, transparent);
+  stroke-width: 0.35;
+}
+
+.smt-map-seat .smt-map-stand {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.smt-map-ring {
+  stroke: rgba(255, 255, 255, 0.72);
+  stroke-width: 0.85;
+  pointer-events: none;
+}
+
+.smt-map-svg[data-has-sel="true"] .smt-map-seat[data-dim="true"] {
+  opacity: 0.4;
+}
+
+.smt-map-svg[data-has-sel="true"] .smt-map-seat[data-dim="true"]:hover,
+.smt-map-svg[data-has-sel="true"] .smt-map-seat[data-dim="true"]:focus-visible {
+  opacity: 0.78;
+}
+
+.smt-map-seat[data-selected="true"] .smt-map-ring {
+  stroke: var(--primary);
+  stroke-width: 2.35;
+}
+
+.smt-map-seat[data-selected="true"] {
+  filter: brightness(1.07);
+}
+
+.smt-map-seat:hover .smt-map-ring,
+.smt-map-seat:focus-visible .smt-map-ring {
+  stroke: var(--primary-deep);
+  stroke-width: 1.85;
+}
+
+.smt-map-seat:hover .smt-map-label,
+.smt-map-seat:focus-visible .smt-map-label {
+  font-weight: 800;
+}
+
+.smt-map-pitch-label {
+  fill: color-mix(in oklab, var(--primary-deep) 55%, white);
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  pointer-events: none;
+}
+
+.smt-toast {
+  top: auto;
+  right: auto;
+  bottom: 3.55rem;
+  left: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  max-width: min(18rem, calc(100% - 1.7rem));
+  overflow: hidden;
+  border-radius: 999px;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 1023px) {
+  .smt-map-stage {
+    height: 16.5rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .smt-map-stage {
+    height: 15rem;
+  }
+
+  .smt-map-picked {
+    max-width: 8.75rem;
+  }
+
+  .smt-toast {
+    bottom: 4.35rem;
+    left: 0.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smt-map-seat {
+    transition: none;
+  }
+
+  .smt-map-seat[data-selected="true"] {
+    filter: none;
+  }
+}
+
 
 
 

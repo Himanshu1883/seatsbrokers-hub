@@ -28,6 +28,7 @@ import {
   seatMapQtyFilters,
   seatMapTicketTypes,
   type SeatListing,
+  type SeatMapBlock,
   type SeatMapCategoryId,
 } from "@/content/seat-map-tickets-data";
 
@@ -683,59 +684,223 @@ export function useSeatMapTickets({
 
 export type SeatMapDesk = ReturnType<typeof useSeatMapTickets>;
 
+function lowestPriceForBlock(blockId: string, margins: Record<string, number>) {
+  let lowest = Number.POSITIVE_INFINITY;
+  for (const row of seatMapListings) {
+    if (row.mapId !== blockId) continue;
+    const price = priced(row, margins[row.id] ?? 0).ticketPrice;
+    if (price < lowest) lowest = price;
+  }
+  return Number.isFinite(lowest) ? lowest : null;
+}
+
+function blockSubPads(block: SeatMapBlock) {
+  const n = block.splits;
+  const gap = 1.15;
+  const stacked = block.h > block.w * 1.12;
+  if (stacked) {
+    const h = (block.h - gap * (n - 1)) / n;
+    return Array.from({ length: n }, (_, index) => ({
+      x: block.x,
+      y: block.y + index * (h + gap),
+      w: block.w,
+      h,
+    }));
+  }
+  const w = (block.w - gap * (n - 1)) / n;
+  return Array.from({ length: n }, (_, index) => ({
+    x: block.x + index * (w + gap),
+    y: block.y,
+    w,
+    h: block.h,
+  }));
+}
+
+function MapSeatBlock({
+  block,
+  selected,
+  dimmed,
+  fromPrice,
+  onSelect,
+  onHover,
+}: {
+  block: SeatMapBlock;
+  selected: boolean;
+  dimmed: boolean;
+  fromPrice: number | null;
+  onSelect: () => void;
+  onHover: (id: string | null) => void;
+}) {
+  const cx = block.x + block.w / 2;
+  const cy = block.y + block.h / 2;
+  const stacked = block.h > block.w * 1.12;
+  const hatch = stacked ? "smt-hatch-v" : "smt-hatch-h";
+  const showStand = block.w >= 42 && block.h >= 22 && !stacked;
+  const fill = categoryColor(block.category);
+  const pads = blockSubPads(block);
+  const codeSize = stacked ? 8.2 : block.w >= 40 ? 8.6 : 7.2;
+
+  return (
+    <g
+      className="smt-map-seat"
+      data-selected={selected ? "true" : "false"}
+      data-dim={dimmed ? "true" : "false"}
+      tabIndex={0}
+      role="button"
+      aria-pressed={selected}
+      aria-label={`${block.stand} ${block.code}${fromPrice ? `, from ${formatGbpCompact(fromPrice)}` : ""}`}
+      onClick={onSelect}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onSelect();
+        }
+      }}
+      onMouseEnter={() => onHover(block.id)}
+      onMouseLeave={() => onHover(null)}
+      onFocus={() => onHover(block.id)}
+      onBlur={() => onHover(null)}
+    >
+      <rect x={block.x} y={block.y} width={block.w} height={block.h} rx="4" fill={fill} />
+      <g clipPath={`url(#smt-clip-${block.id})`}>
+        {pads.map((pad, index) => (
+          <rect
+            key={`${block.id}-pad-${index}`}
+            x={pad.x}
+            y={pad.y}
+            width={pad.w}
+            height={pad.h}
+            rx="2.2"
+            fill={fill}
+            fillOpacity={index % 2 === 0 ? 1 : 0.82}
+          />
+        ))}
+        <rect x={block.x} y={block.y} width={block.w} height={block.h} fill={`url(#${hatch})`} pointerEvents="none" />
+        <text
+          className="smt-map-label smt-map-code"
+          x={cx}
+          y={showStand ? cy - 3.4 : cy}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize={codeSize}
+          transform={stacked ? `rotate(-90 ${cx} ${cy})` : undefined}
+        >
+          {block.code}
+        </text>
+        {showStand ? (
+          <text
+            className="smt-map-label smt-map-stand"
+            x={cx}
+            y={cy + 5.6}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fontSize="5.4"
+          >
+            {block.stand}
+          </text>
+        ) : null}
+      </g>
+      <rect
+        className="smt-map-ring"
+        x={block.x}
+        y={block.y}
+        width={block.w}
+        height={block.h}
+        rx="4"
+        fill="none"
+      />
+    </g>
+  );
+}
+
 function VenueMapPanel({ desk }: { desk: SeatMapDesk }) {
+  const [hoverId, setHoverId] = useState<string | null>(null);
   const selectedMapIds = new Set(desk.selected.map((row) => row.mapId));
+  const hasSelection = selectedMapIds.size > 0;
+  const hoverBlock = seatMapBlocks.find((block) => block.id === hoverId) ?? null;
+  const hoverPrice = hoverBlock ? lowestPriceForBlock(hoverBlock.id, desk.margins) : null;
+  const hint = hoverBlock
+    ? `${hoverBlock.stand} · ${hoverBlock.code}${hoverPrice ? ` · from ${formatGbpCompact(hoverPrice)}` : " · no live listings"}`
+    : hasSelection
+      ? `${desk.selectedCount} listing${desk.selectedCount === 1 ? "" : "s"} held on the map`
+      : "Select a section to hold listings";
 
   return (
     <section className="smt-map-card">
       <header className="smt-map-head">
         <h3>Venue Map</h3>
-        <div className="smt-map-tools">
-          <button type="button" aria-label="Zoom in" onClick={() => desk.setZoom((value) => Math.min(1.7, roundMoney(value + 0.15)))}>
-            <Plus className="size-3.5" strokeWidth={2} />
-          </button>
-          <button type="button" aria-label="Zoom out" onClick={() => desk.setZoom((value) => Math.max(0.75, roundMoney(value - 0.15)))}>
-            <Minus className="size-3.5" strokeWidth={2} />
-          </button>
-          <button type="button" aria-label="Reset map" onClick={() => desk.setZoom(1)}>
-            <RefreshCw className="size-3.5" strokeWidth={2} />
-          </button>
-          <button type="button" aria-label="Hide map" onClick={() => desk.setShowMap(false)}>
-            <X className="size-3.5" strokeWidth={2} />
-          </button>
+        <div className="smt-map-head-end">
+          {desk.selectedCount > 0 ? (
+            <p className="smt-map-picked">
+              <Ticket className="size-3" strokeWidth={2.2} aria-hidden />
+              <span>
+                {desk.selectedCount} listing{desk.selectedCount === 1 ? "" : "s"} selected
+              </span>
+            </p>
+          ) : null}
+          <div className="smt-map-tools">
+            <button type="button" aria-label="Zoom in" onClick={() => desk.setZoom((value) => Math.min(1.7, roundMoney(value + 0.15)))}>
+              <Plus className="size-3.5" strokeWidth={2} aria-hidden />
+            </button>
+            <button type="button" aria-label="Zoom out" onClick={() => desk.setZoom((value) => Math.max(0.75, roundMoney(value - 0.15)))}>
+              <Minus className="size-3.5" strokeWidth={2} aria-hidden />
+            </button>
+            <button type="button" aria-label="Reset map" onClick={() => desk.setZoom(1)}>
+              <RefreshCw className="size-3.5" strokeWidth={2} aria-hidden />
+            </button>
+            <button type="button" aria-label="Hide map" onClick={() => desk.setShowMap(false)}>
+              <X className="size-3.5" strokeWidth={2} aria-hidden />
+            </button>
+          </div>
         </div>
       </header>
 
       <div className="smt-map-stage">
         <div className="smt-map-zoom" style={{ transform: `scale(${desk.zoom})` }}>
-          <svg viewBox="0 0 400 300" className="smt-map-svg" role="img" aria-label="Etihad stadium seating map">
+          <svg
+            viewBox="0 0 400 300"
+            className="smt-map-svg"
+            data-has-sel={hasSelection ? "true" : "false"}
+            aria-label="Etihad stadium seating map"
+          >
+            <defs>
+              <pattern id="smt-hatch-h" width="6" height="3.2" patternUnits="userSpaceOnUse">
+                <path d="M0 2.6 H6" stroke="#fff" strokeOpacity="0.28" strokeWidth="0.55" />
+              </pattern>
+              <pattern id="smt-hatch-v" width="3.2" height="6" patternUnits="userSpaceOnUse">
+                <path d="M2.6 0 V6" stroke="#fff" strokeOpacity="0.28" strokeWidth="0.55" />
+              </pattern>
+              {seatMapBlocks.map((block) => (
+                <clipPath key={`smt-clip-${block.id}`} id={`smt-clip-${block.id}`}>
+                  <rect x={block.x} y={block.y} width={block.w} height={block.h} rx="4" />
+                </clipPath>
+              ))}
+            </defs>
             <rect x="8" y="8" width="384" height="284" rx="86" className="smt-map-bowl" />
             <rect x="148" y="108" width="104" height="84" rx="6" className="smt-map-pitch" />
             <line x1="200" y1="108" x2="200" y2="192" className="smt-map-line" />
             <circle cx="200" cy="150" r="14" className="smt-map-line" fill="none" />
             <rect x="148" y="128" width="18" height="44" rx="2" className="smt-map-line" fill="none" />
             <rect x="234" y="128" width="18" height="44" rx="2" className="smt-map-line" fill="none" />
-            {seatMapBlocks.map((block) => {
-              const selected = selectedMapIds.has(block.id);
-              return (
-                <rect
-                  key={block.id}
-                  x={block.x}
-                  y={block.y}
-                  width={block.w}
-                  height={block.h}
-                  rx="4"
-                  className="smt-map-block"
-                  data-selected={selected ? "true" : "false"}
-                  fill={categoryColor(block.category)}
-                  title={categoryLabel(block.category)}
-                  onClick={() => desk.selectByMap(block.id, block.category)}
-                />
-              );
-            })}
+            <text className="smt-map-pitch-label" x="200" y="152" textAnchor="middle" dominantBaseline="middle">
+              PITCH
+            </text>
+            {seatMapBlocks.map((block) => (
+              <MapSeatBlock
+                key={block.id}
+                block={block}
+                selected={selectedMapIds.has(block.id)}
+                dimmed={hasSelection && !selectedMapIds.has(block.id)}
+                fromPrice={lowestPriceForBlock(block.id, desk.margins)}
+                onSelect={() => desk.selectByMap(block.id, block.category)}
+                onHover={setHoverId}
+              />
+            ))}
           </svg>
         </div>
       </div>
+
+      <p className="smt-map-hint">{hint}</p>
 
       <ul className="smt-legend">
         {seatMapCategories.map((item) => (

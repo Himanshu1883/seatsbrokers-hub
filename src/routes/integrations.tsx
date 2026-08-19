@@ -29,7 +29,7 @@ function IntegrationsPage() {
         secondaryCta={ctas.requestApiAccess}
       />
       <FeatureGrid
-        eyebrow="Connect To"
+        eyebrow="Connect to"
         title="Integrate with the tools your business already runs on"
         items={[
           { title: "POS systems", body: "Connect broker point-of-sale systems for inventory and order sync." },
@@ -42,7 +42,7 @@ function IntegrationsPage() {
         ]}
       />
       <WorkflowSteps
-        eyebrow="Integration Flow"
+        eyebrow="Integration flow"
         title="Broker POS → SeatsBrokers API → Inventory → Marketplaces"
         steps={[
           "Connect your POS or inventory system",

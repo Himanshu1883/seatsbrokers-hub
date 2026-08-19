@@ -117,14 +117,14 @@ function PartnerTermsConsole({
 
   return (
     <div className="pt-console" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / partner-terms / settlement" status="LIVE" icon={BarChart3}>
+      <ConsoleShell path="seatsbrokers / partner-terms / settlement" status="Live" icon={BarChart3}>
         <header className="pt-desk-head">
           <div className="pt-desk-copy">
             <span className="pt-desk-kicker">
               <BarChart3 className="size-3.5" strokeWidth={1.75} />
               Live settlement desk
             </span>
-            <span className="lc-mono pt-desk-demo">DEMO DATA</span>
+            <span className="lc-mono pt-desk-demo">Demo data</span>
           </div>
           <span className="pt-live-view">
             <span className="pt-live-dot" aria-hidden />

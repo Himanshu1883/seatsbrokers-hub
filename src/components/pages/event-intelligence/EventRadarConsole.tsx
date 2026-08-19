@@ -212,7 +212,7 @@ export function EventRadarConsole() {
 
   return (
     <div ref={setRef} className="er-console" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / event-intelligence / radar" status="SCAN" icon={Radar}>
+      <ConsoleShell path="seatsbrokers / event-intelligence / radar" status="Scan" icon={Radar}>
         <div className="er-stats">
           {radarStats.map((stat) => (
             <div key={stat.label} className="lc-stat">

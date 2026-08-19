@@ -1,14 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { ctas } from "@/content/site";
-import { modules } from "@/content/modules";
-import { SiteLink } from "@/components/layout/SiteLink";
 import { GlobeCanvas } from "@/components/landing/globe/GlobeCanvas";
 import heroStadium from "@/assets/hero-stadium.jpg";
-import sellerImg from "@/assets/card-seller.jpg";
 import travelImg from "@/assets/card-travel.jpg";
-import dashboardImg from "@/assets/dashboard.png";
-import ctaImg from "@/assets/cta-trophy.jpg";
 
 const GLOBAL_STATS = [
   { value: "30+", label: "Years moving real seats" },
@@ -51,28 +44,6 @@ const slides = [
   },
   {
     index: "02",
-    eyebrow: "Broker platform",
-    title: null,
-    lines: [] as string[],
-    headline: "Manage inventory, pricing and marketplace distribution.",
-    body: "Run your entire ticket business from one platform — global event catalog, inventory management, multi-marketplace synchronization, AI pricing and POS/API integration.",
-    bullets: [
-      "List once. Distribute everywhere. Automatic delisting after sale.",
-      "Market pricing, sales intelligence and event onsale information",
-      "Payment infrastructure and ticket delivery management",
-    ],
-    stats: [
-      { value: "84K+", label: "Active listings" },
-      { value: "24/7", label: "Automated distribution" },
-    ],
-    coord: "51.51°N 0.13°W",
-    hub: "EMEA trading desk",
-    region: "London",
-    image: sellerImg,
-    imageAlt: "Broker platform with inventory and marketplace distribution",
-  },
-  {
-    index: "03",
     eyebrow: "B2B partners",
     title: null,
     lines: [] as string[],
@@ -92,51 +63,6 @@ const slides = [
     region: "Dubai",
     image: travelImg,
     imageAlt: "B2B partner quotation and margin tools",
-  },
-  {
-    index: "04",
-    eyebrow: modules.intel.name,
-    title: null,
-    lines: [] as string[],
-    headline: "Know the event. Know the market. Know the opportunity.",
-    body: "Event intelligence, market intelligence and AI pricing — three layers of data that help ticket businesses make better inventory and pricing decisions.",
-    bullets: [
-      "Global event catalog with onsale dates and demand indicators",
-      "Market pricing, category analysis and resale marketplace comparison",
-      "AI-powered pricing recommendations with broker approval workflow",
-    ],
-    stats: [
-      { value: "Live", label: "Market data" },
-      { value: "AI", label: "Pricing engine" },
-    ],
-    coord: "1.35°N 103.82°E",
-    hub: "APAC distribution",
-    region: "Singapore",
-    image: dashboardImg,
-    imageAlt: "Event and market intelligence dashboard",
-  },
-  {
-    index: "05",
-    eyebrow: modules.link.name,
-    title: null,
-    lines: [] as string[],
-    headline: "Connect your ticket operation to modern infrastructure.",
-    body: "Whether you are a ticket broker, marketplace, B2B partner or technology provider — build your ticket business on better technology.",
-    bullets: [
-      "Book a demo to see the platform in action",
-      "API documentation and developer access available",
-      "Dedicated support — partners@seatsbrokers.com",
-    ],
-    stats: [
-      { value: "30+", label: "Years in ticketing" },
-      { value: "10K+", label: "B2B partners" },
-    ],
-    coord: "33.87°S 151.21°E",
-    hub: "Pacific corridor",
-    region: "Sydney",
-    image: ctaImg,
-    imageAlt: "Build your ticket business on SeatsBrokers technology",
-    cta: true,
   },
 ] as const;
 
@@ -192,7 +118,7 @@ export function GlobeScrollSection() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
             </span>
-            <span className="font-mono text-[10px] font-bold leading-tight tracking-[0.16em] text-foreground/70 uppercase sm:text-xs">
+            <span className="font-mono text-[10px] font-bold leading-tight tracking-[0.16em] text-foreground/70 sm:text-xs">
               Live network
             </span>
           </div>
@@ -333,14 +259,14 @@ export function GlobeScrollSection() {
 
               {slide.title ? (
                 <div className="mt-5 sm:mt-6">
-                  <p className="font-display text-[clamp(2.25rem,6vw,3.75rem)] leading-[0.95] font-bold tracking-tight text-background uppercase">
+                  <p className="font-display text-[clamp(2.25rem,6vw,3.75rem)] leading-[0.95] font-bold tracking-tight text-background">
                     {slide.title}
                   </p>
                   <ul className="mt-5 space-y-2">
                     {slide.lines.map((line) => (
                       <li
                         key={line}
-                        className="font-display text-base font-bold tracking-[0.1em] text-primary uppercase sm:text-lg"
+                        className="font-display text-base font-bold tracking-[0.1em] text-primary sm:text-lg"
                       >
                         {line}
                       </li>
@@ -376,33 +302,14 @@ export function GlobeScrollSection() {
                     className="globe-slide-stat min-w-[7.5rem] rounded-lg px-4 py-3 text-center sm:min-w-[8.5rem] sm:px-5"
                   >
                     <div className="font-display text-2xl font-bold text-primary sm:text-3xl">{s.value}</div>
-                    <div className="mt-1 font-mono text-[10px] font-bold tracking-wide text-background/75 uppercase sm:text-xs">
+                    <div className="mt-1 font-mono text-[10px] font-bold tracking-wide text-background/75 sm:text-xs">
                       {s.label}
                     </div>
                   </div>
                 ))}
               </div>
 
-              {"cta" in slide && slide.cta && (
-                <div className="mt-10 flex flex-wrap justify-center gap-3">
-                  <SiteLink
-                    to={ctas.becomeSeller.to}
-                    className="lift inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3.5 text-base font-bold text-primary-foreground"
-                  >
-                    {ctas.becomeSeller.label}
-                    <ArrowRight className="size-4" />
-                  </SiteLink>
-                  <SiteLink
-                    to={ctas.talkToTeam.to}
-                    hash={ctas.talkToTeam.hash}
-                    className="lift inline-flex items-center gap-2 rounded-md border border-background/35 bg-background/15 px-6 py-3.5 text-base font-bold text-background backdrop-blur-sm"
-                  >
-                    {ctas.talkToTeam.label}
-                  </SiteLink>
-                </div>
-              )}
-
-              <div className="globe-slide-card-foot mx-auto mt-10 flex items-center justify-center gap-3 font-mono text-xs font-bold tracking-widest text-background/65 uppercase">
+              <div className="globe-slide-card-foot mx-auto mt-10 flex items-center justify-center gap-3 font-mono text-xs font-bold tracking-widest text-background/65 ">
                 <span>{slide.region}</span>
                 <span className="size-1.5 rounded-full bg-primary/70" aria-hidden />
                 <span>

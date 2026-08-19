@@ -45,10 +45,10 @@ function Index() {
       <FeatureOrbit />
       <ProcessBento />
       <HowItWorks />
-      <PartnerProductShowcase />
+      {/* <PartnerProductShowcase /> */}
       <ToolkitShowcase />
-      <StickyScrollShowcase />
-      <MarketIntelligence />
+      {/* <StickyScrollShowcase /> */}
+      {/* <MarketIntelligence /> */}
       <JourneyNumbers />
       <GlobalReach />
       <GlobeScrollSection />

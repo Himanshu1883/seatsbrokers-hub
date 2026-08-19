@@ -22,7 +22,7 @@ src/content/site.ts
   → Nav / Footer / route head() / CTA buttons
 ```
 
-Hero/console datasets: `src/content/{broker,travel,marketplace,event-intel,api}-hero-data.ts`, `inventory-console-data.ts`, `seat-map-tickets-data.ts`. FAQ: `faq-data.ts`. Legal: `legal-data.ts`.
+Hero/console datasets: `src/content/{broker,travel,marketplace,event-intel,api}-hero-data.ts`, `inventory-console-data.ts`, `crypto-payout-data.ts`, `seat-map-tickets-data.ts`. FAQ: `faq-data.ts`. Legal: `legal-data.ts`.
 
 ## Live console (typical)
 

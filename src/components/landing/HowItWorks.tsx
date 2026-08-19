@@ -13,7 +13,7 @@ import analyticsImg from "@/assets/product-analytics-dashboard.png";
 const steps = [
   {
     n: "01",
-    tag: "INTELLIGENCE",
+    tag: "Intelligence",
     title: "Know what's coming",
     subtitle: modules.intel.tagline,
     body: "Our event intelligence technology brings together the information ticket businesses need — event name, date, venue, onsale date, sales criteria, ballot information, demand indicators and venue maps.",
@@ -38,7 +38,7 @@ const steps = [
   },
   {
     n: "02",
-    tag: "MARKET",
+    tag: "Market",
     title: "Know what's happening",
     subtitle: modules.pulse.tagline,
     body: "See what the resale market is doing — average price, lowest price, highest price, price movement, inventory volume, sales activity and marketplace comparison in one format.",
@@ -63,7 +63,7 @@ const steps = [
   },
   {
     n: "03",
-    tag: "PRICING",
+    tag: "Pricing",
     title: "Know what to price",
     subtitle: "AI recommends. You decide.",
     body: "Turn market data into actionable pricing recommendations. The platform analyzes market signals and recommends pricing adjustments — once approved, the new price synchronizes through connected marketplace infrastructure.",
@@ -247,7 +247,7 @@ export function HowItWorks() {
             ].map((label) => (
               <span
                 key={label}
-                className="rounded-full border border-border bg-muted/50 px-3 py-1 font-mono text-[10px] tracking-wide text-muted-foreground uppercase"
+                className="rounded-full border border-border bg-muted/50 px-3 py-1 font-mono text-[10px] tracking-wide text-muted-foreground"
               >
                 {label}
               </span>
@@ -278,7 +278,7 @@ export function HowItWorks() {
                     >
                       <div className="flex flex-wrap items-start justify-between gap-3">
                         <span className="font-mono text-5xl font-bold text-primary/25">{step.n}</span>
-                        <span className="rounded-full border border-primary/25 bg-primary/[0.06] px-3 py-1 font-mono text-[10px] tracking-[0.16em] text-primary uppercase">
+                        <span className="rounded-full border border-primary/25 bg-primary/[0.06] px-3 py-1 font-mono text-[10px] tracking-[0.16em] text-primary ">
                           {step.tag}
                         </span>
                       </div>
@@ -314,7 +314,7 @@ export function HowItWorks() {
                             <div className="font-display text-lg font-bold text-foreground">
                               {s.value}
                             </div>
-                            <div className="font-mono text-[9px] tracking-wide text-muted-foreground uppercase">
+                            <div className="font-mono text-[9px] tracking-wide text-muted-foreground ">
                               {s.label}
                             </div>
                           </div>
@@ -327,7 +327,7 @@ export function HowItWorks() {
                           <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                         </span>
                         <div>
-                          <p className="font-mono text-[10px] tracking-[0.14em] text-primary uppercase">
+                          <p className="font-mono text-[10px] tracking-[0.14em] text-primary ">
                             {step.proof}
                           </p>
                           <p className="mt-1 text-sm text-muted-foreground">{step.proofDetail}</p>
@@ -385,7 +385,7 @@ export function HowItWorks() {
                         <span className="block font-display text-sm font-bold text-foreground">
                           {s.value}
                         </span>
-                        <span className="font-mono text-[9px] tracking-wide text-muted-foreground uppercase">
+                        <span className="font-mono text-[9px] tracking-wide text-muted-foreground ">
                           {s.label}
                         </span>
                       </span>

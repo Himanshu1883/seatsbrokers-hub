@@ -163,7 +163,7 @@ export function FeatureOrbit() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
                 </span>
-                <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
+                <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground ">
                   Live sync feed
                 </p>
               </div>
@@ -199,7 +199,7 @@ export function FeatureOrbit() {
               </div>
               <div className="mt-6 grid grid-cols-2 gap-3 border-t border-border/70 pt-5">
                 <div>
-                  <p className="font-mono text-[9px] tracking-[0.16em] text-muted-foreground uppercase">
+                  <p className="font-mono text-[9px] tracking-[0.16em] text-muted-foreground ">
                     Uptime
                   </p>
                   <p className="mt-0.5 font-mono text-base font-semibold text-primary">
@@ -207,7 +207,7 @@ export function FeatureOrbit() {
                   </p>
                 </div>
                 <div>
-                  <p className="font-mono text-[9px] tracking-[0.16em] text-muted-foreground uppercase">
+                  <p className="font-mono text-[9px] tracking-[0.16em] text-muted-foreground ">
                     Latency
                   </p>
                   <p className="mt-0.5 font-mono text-base font-semibold text-foreground">
@@ -272,7 +272,7 @@ export function FeatureOrbit() {
                 alt=""
                 className="h-14 w-auto max-w-[70%] object-contain xl:h-16"
               />
-              <span className="absolute -bottom-2.5 flex items-center gap-1 rounded-full border border-primary/25 bg-white px-2.5 py-1 font-mono text-[10px] font-bold tracking-[0.12em] text-primary uppercase">
+              <span className="absolute -bottom-2.5 flex items-center gap-1 rounded-full border border-primary/25 bg-white px-2.5 py-1 font-mono text-[10px] font-bold tracking-[0.12em] text-primary ">
                 <ShieldCheck className="size-3" />
                 Live
               </span>
@@ -327,7 +327,7 @@ export function FeatureOrbit() {
                       data-accent={f.accent}
                     >
                       <p
-                        className="font-mono text-[10px] font-bold tracking-[0.16em] uppercase"
+                        className="font-mono text-[10px] font-bold tracking-[0.16em] "
                         style={{ color: accentHex[f.accent] }}
                       >
                         {f.category}
@@ -344,7 +344,7 @@ export function FeatureOrbit() {
 
           <Reveal delay={60} className="relative z-0">
             <div className="rounded-2xl border border-border/80 bg-white/80 p-6 shadow-[0_18px_40px_-32px_rgba(0,0,0,0.25)] backdrop-blur-sm">
-              <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
+              <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground ">
                 Connected marketplaces
               </p>
               <div className="fo-feed-window">
@@ -379,7 +379,7 @@ export function FeatureOrbit() {
                 </div>
               </div>
               <div className="mt-6 border-t border-border/70 pt-5">
-                <p className="font-mono text-[9px] tracking-[0.16em] text-muted-foreground uppercase">
+                <p className="font-mono text-[9px] tracking-[0.16em] text-muted-foreground ">
                   Network throughput
                 </p>
                 <div className="mt-3 flex h-10 items-end gap-1.5">
@@ -451,7 +451,7 @@ export function FeatureOrbit() {
                 aria-hidden={i === active ? undefined : true}
               >
                 <p
-                  className="font-mono text-[10px] font-bold tracking-[0.16em] uppercase"
+                  className="font-mono text-[10px] font-bold tracking-[0.16em] "
                   style={{ color: accentHex[f.accent] }}
                 >
                   {f.category}

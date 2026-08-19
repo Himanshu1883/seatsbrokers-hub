@@ -84,7 +84,7 @@ function BrokerDistributionConsole({ ticking }: { ticking: boolean }) {
   const ask = brokerAsks[askTick] ?? brokerAsks[0];
 
   return (
-    <ConsoleShell path="seatsbrokers / brokers / distribution" status="LIVE" icon={Layers3}>
+    <ConsoleShell path="seatsbrokers / brokers / distribution" status="Live" icon={Layers3}>
       <div className="sss-stats">
         <div className="lc-stat">
           <span className="lc-stat-label">Listed</span>
@@ -113,7 +113,7 @@ function BrokerDistributionConsole({ ticking }: { ticking: boolean }) {
           <header className="lc-panel-head">
             <span className="lc-panel-dot" />
             Channels
-            <span className="lc-panel-badge lc-panel-badge-live">SYNC</span>
+            <span className="lc-panel-badge lc-panel-badge-live">Sync</span>
           </header>
           <ul className="sss-channels">
             {brokerChannels.map((channel, index) => (
@@ -205,7 +205,7 @@ function TravelQuoteConsole({ ticking }: { ticking: boolean }) {
   const ShareIcon = travelShares[shareTick]?.icon ?? FileText;
 
   return (
-    <ConsoleShell path="seatsbrokers / b2b / quote-desk" status="QUOTE" icon={FileText}>
+    <ConsoleShell path="seatsbrokers / b2b / quote-desk" status="Quote" icon={FileText}>
       <div className="sss-stats">
         <div className="lc-stat">
           <span className="lc-stat-label">Cost</span>
@@ -242,7 +242,7 @@ function TravelQuoteConsole({ ticking }: { ticking: boolean }) {
         <section className="lc-panel lc-panel-accent sss-panel">
           <header className="lc-panel-head">
             Quote sheet
-            <span className="lc-panel-badge lc-panel-badge-live">CUSTOMER</span>
+            <span className="lc-panel-badge lc-panel-badge-live">Customer</span>
           </header>
           <dl className="sss-quote">
             <div>
@@ -331,7 +331,7 @@ function MarketplaceSyncConsole({ ticking }: { ticking: boolean }) {
   const floorPct = Math.round((price.floor / 280) * 100);
 
   return (
-    <ConsoleShell path="seatsbrokers / channels / sync" status="SYNC" icon={ArrowRightLeft}>
+    <ConsoleShell path="seatsbrokers / channels / sync" status="Sync" icon={ArrowRightLeft}>
       <div className="sss-stats">
         <div className="lc-stat">
           <span className="lc-stat-label">Channels</span>
@@ -385,7 +385,7 @@ function MarketplaceSyncConsole({ ticking }: { ticking: boolean }) {
         <section className="lc-panel sss-panel">
           <header className="lc-panel-head">
             Ask vs floor
-            <span className="lc-panel-badge lc-panel-badge-live">GUARD</span>
+            <span className="lc-panel-badge lc-panel-badge-live">Guard</span>
           </header>
           <div className="sss-bars">
             <div>
@@ -458,7 +458,7 @@ function PartnerBridgeConsole({ ticking }: { ticking: boolean }) {
   const role = partnerRoles[roleTick] ?? partnerRoles[1];
 
   return (
-    <ConsoleShell path="seatsbrokers / api / partner-bridge" status="AUTH" icon={KeyRound}>
+    <ConsoleShell path="seatsbrokers / api / partner-bridge" status="Auth" icon={KeyRound}>
       <div className="sss-stats">
         <div className="lc-stat">
           <span className="lc-stat-label">Live keys</span>

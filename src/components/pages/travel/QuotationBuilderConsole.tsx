@@ -88,7 +88,7 @@ export function QuotationBuilderConsole() {
           <span className="qb-quote-id">QT-1842</span>
           <span className="qb-status" data-sharing={sharing ? "true" : "false"}>
             <i aria-hidden />
-            {sharing ? "SHARED" : "DRAFT"}
+            {sharing ? "Shared" : "Draft"}
           </span>
         </header>
 
@@ -193,7 +193,7 @@ export function QuotationBuilderConsole() {
 
             <article className="qb-sheet">
               <div className="qb-sheet-brand">
-                <span>ATLAS JOURNEYS</span>
+                <span>Atlas Journeys</span>
                 <span>Quote QT-1842</span>
               </div>
               <h3>Champions League Final</h3>

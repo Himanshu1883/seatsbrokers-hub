@@ -173,7 +173,7 @@ export function InventorySearchConsole() {
 
   return (
     <div ref={setRef} className="ia-console" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / partner-access" status="LIVE" icon={Layers}>
+      <ConsoleShell path="seatsbrokers / partner-access" status="Live" icon={Layers}>
         <div className="ia-stats">
           {accessStats.map((stat) => (
             <div key={stat.label} className="lc-stat">

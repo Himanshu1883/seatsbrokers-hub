@@ -195,7 +195,7 @@ export function DemandSignalConsole() {
 
   return (
     <div ref={setRef} className="ds-console" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / event-intelligence / demand" status="LIVE" icon={Activity}>
+      <ConsoleShell path="seatsbrokers / event-intelligence / demand" status="Live" icon={Activity}>
         <header className="ds-head">
           <div className="ds-head-copy">
             <p className="ds-head-title">{active.name}</p>

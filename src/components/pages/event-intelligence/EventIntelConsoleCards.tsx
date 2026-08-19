@@ -46,7 +46,7 @@ function CardShell({
         <span className="bh-card-label">{label}</span>
         <span className="bh-card-live">
           <span className="bh-card-live-dot" aria-hidden />
-          LIVE
+          Live
         </span>
       </header>
       <div className="bh-card-body">{children}</div>
@@ -65,7 +65,7 @@ function OnsaleRadarCard({ index }: { index: number }) {
             <span>{row.name}</span>
             <span className="bh-mp-meta">
               <span className="bh-mp-count">{row.window}</span>
-              <span className="bh-mp-status">{row.status === "pushing" ? "OPENS" : "TRACKED"}</span>
+              <span className="bh-mp-status">{row.status === "pushing" ? "Opens" : "Tracked"}</span>
             </span>
           </li>
         ))}

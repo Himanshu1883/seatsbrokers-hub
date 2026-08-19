@@ -172,7 +172,7 @@ function InventoryAccessStack() {
     <div ref={setRef} className="ia-showcase inv-console" data-live={inView ? "true" : "false"}>
       <div className="inv-stack">
         <div className="inv-console-base">
-          <ConsoleShell path="seatsbrokers / partner-access / tickets" status="LIVE" icon={Layers3}>
+          <ConsoleShell path="seatsbrokers / partner-access / tickets" status="Live" icon={Layers3}>
             <div className="inv-stats">
               {catalogStats.map((stat) => (
                 <div key={stat.label} className="lc-stat inv-stat">
@@ -204,7 +204,7 @@ function InventoryAccessStack() {
                   </span>
                 ))}
               </div>
-              <span className="inv-dash-chip">SHOWING {catalogRows.length}</span>
+              <span className="inv-dash-chip">Showing {catalogRows.length}</span>
             </div>
 
             <table className="inv-dash-table ia-showcase-table">
@@ -263,7 +263,7 @@ function InventoryAccessStack() {
         </div>
 
         <div className="inv-console-detail">
-          <ConsoleShell path="seatsbrokers / partner-access / detail" status="SYNC" icon={Ticket}>
+          <ConsoleShell path="seatsbrokers / partner-access / detail" status="Sync" icon={Ticket}>
             <header className="inv-detail-head ia-showcase-detail-head">
               <div className="inv-detail-head-copy">
                 <div className="ia-showcase-title-row">

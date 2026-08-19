@@ -1,7 +1,7 @@
 /** Mini console card data for the Brokers hero wall — sourced from existing broker consoles. */
 
 export const brokerHeroCopy = {
-  eyebrow: "Broker Platform",
+  eyebrow: "Broker platform",
   title: "Run Your Entire Ticket Business From One Platform",
   subhead:
     "List once. Distribute everywhere — one live operating system for inventory, marketplaces, pricing and sales.",
@@ -61,7 +61,7 @@ export const heroAiPricing = {
   ask: "£248",
   floor: "£185",
   confidence: "87%",
-  badge: "BEST",
+  badge: "Best",
   event: "UCL Final · Cat A",
 } as const;
 

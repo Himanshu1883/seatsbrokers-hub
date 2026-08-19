@@ -72,7 +72,7 @@ function TravelPartnersPage() {
       />
 
       {/* <FeatureGrid
-        eyebrow="Order & Delivery"
+        eyebrow="Order & delivery"
         title="After the customer says yes"
         intro="The fulfillment desk below is the source of truth. These are the three jobs it closes."
         items={[
@@ -94,7 +94,7 @@ function SplitPanelLocal() {
     <section className="section-curve relative isolate bg-surface py-20 sm:py-24">
       <div className="container-page relative z-10 grid min-w-0 gap-10 lg:grid-cols-2 lg:items-center">
         <div className="min-w-0">
-          <p className="section-eyebrow text-primary">Margin Management</p>
+          <p className="section-eyebrow text-primary">Margin management</p>
           <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">
             Add your margin. Set your customer price.
           </h2>

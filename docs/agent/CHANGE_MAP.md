@@ -18,7 +18,7 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | Legal page | `src/routes/legal.tsx` | `pages/legal/`, `legal-data.ts`, `.legal-*` in `styles.css` (short dark `bh-hero`; full-width 3-col tabs + panel; hashes `#privacy` `#terms` `#cookies`) |
 | Global CTA band | `src/components/landing/FinalCTA.tsx` | PageShell `showFinalCta` |
 | Page wrapper / gaps | `PageShell.tsx` | `.section-curve` in `styles.css` |
-| Hero top inset | `.bh-hero` `padding-top: clamp(5.75rem, 8vh, 7.5rem)` (4.5rem nav + gap). Homepage `.hero-fit-offset` `calc(4.5rem + 1.25rem)` mobile / larger desktop clamp | unique `abt/bdm/plt/faq/legal` inherit top; `.ct-hero-copy` on desktop; `PageHero` uses `bh-hero`; not homepage `.section-curve-hero` |
+| Hero top inset | `.bh-hero` `padding-top: clamp(5.75rem, 8vh, 7.5rem)` (4.5rem nav + gap). Homepage `.hero-fit-offset` `calc(4.5rem + 1.75rem)` mobile / desktop `clamp(7.5rem, 6.25rem + 4.5vh, 9.25rem)` / laptop 1024–1919 `clamp(8.65rem, 7.25rem + 5.5vh, 11rem)` (inside `.hero-fit-zoom` 0.85) | unique `abt/bdm/plt/faq/legal` inherit top; `.ct-hero-copy` on desktop; `PageHero` uses `bh-hero`; not homepage `.section-curve-hero` |
 
 ## Homepage `/`
 
@@ -35,9 +35,9 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | Partner product showcase | `landing/PartnerProductShowcase.tsx` | `.partner-*` — five product tabs; copy + shots overlay the tallest variant (no `key=` remount) so auto-advance does not shift neighbors |
 | Platform toolkit | `landing/Toolkitshowcase.tsx` | `.toolkit-*` — module rail + screenshot stack; below `lg` ghost rail + absolute live overlay + reserved reveal/HUD/metric/screen slots; `≥1024px` is `100svh` (not `dvh`), no sticky, no remount keys; auto-advance cannot shift neighbors |
 | Who we serve (sticky consoles) | `landing/StickyScrollShowcase.tsx` | `.sss-*` + `StickyScrollConsoles.tsx` — sticky-scroll; right column swaps 4 unique light `ConsoleShell` mini-consoles (broker distribution, travel quote desk, marketplace sync, partner API bridge). Shared `--sss-console-h` on `.sss-stage` (and desktop `.sss-sticky-stage`). Stacked console-above-copy below `lg`. `prefers-reduced-motion` freezes ticks. |
-| Seller / travel tools | `landing/ToolsGrid.tsx` | SellerTools stays the broker pipeline diagram. TravelTools (`#travel`) mounts `SeatMapTicketsConsole` (`smt-*`, `seat-map-tickets-data.ts`): one `ConsoleShell` Seat Map & Tickets desk (Manchester City vs Liverpool · Etihad · £). Shared React state: select rows → Quote → % Margin popover Apply (updates Ticket Price / Margin Value) → share bar Copy / Copy Map / Clear / Download PDF. Hide Map / Hide Filters toggle. Venue map (`smt-map-*`) is labeled stands + block IDs with a header selected-count pill and centered zoom/reset/close. Map stacks above listings below `lg`; table scrolls-x inside the card. |
+| Seller / travel tools | `landing/ToolsGrid.tsx` | SellerTools stays the broker pipeline diagram. TravelTools (`#travel`, `.tpa-section`) is a locked quote-desk viewport: compact SeatsDeal™ intro + reserved `tpa-rail` row, then `.tpa-boards` (`minmax(0,1.22fr) minmax(0,0.78fr)` at `≥900px`) — left Live `SeatMapTicketsConsole`, right 2×2 `.tpa-minis`. Desktop `100svh` (not `dvh`); `<900px` stacks rail → live → 2×2 (1×4 under 480px) with `min-height: 100svh`. Desk fill is scoped `.tpa-section .smt-*` only. Overflow panes inherit the global `--primary` custom scrollbar (end of `styles.css`); no scoped TravelTools colors. `% Margin` popover (`smt-margin-pop`) is absolute under `.smt-list-head` (`right: 0`, `width: min(17rem, 100%)`) so the 100svh overflow lock cannot crop it; table/map stay the scroll bodies. Function/data unchanged (`smt-*`, `seat-map-tickets-data.ts`): select → Quote → % Margin Apply → Copy / Copy Map / Clear / Download PDF. |
 | Quote desk auto-run loop / mini consoles | `autoFrames` + `pipeline` in `landing/SeatMapTicketsConsole.tsx` | Declarative frame snapshots (stage, holds, picks, lines, margin %, channels) driven by one `setTimeout` effect, gated on `useInView` via `useSeatMapTickets({ active })`. `desk.pipeline` feeds the `tpa-*` stage rail and the four mini consoles in `ToolsGrid.tsx`. Edit timings/copy in `autoFrames` only — never push desk state from the cards. `takeControl` / `resumeAuto` handle manual override; share bar is always mounted so heights stay locked. |
-| Stats / globe / testimonials | `Stats.tsx`, `GlobeScrollSection.tsx`, `Testimonials.tsx` | Globe pin: in-flow `.globe-scroll-heading` slot (`flex-shrink: 0`, `--globe-heading-band`) + matching article padding; short `max-height` shrinks type/inset, `≥1080px` keeps 13.75rem first-card gap. Last slide `--globe-last-pad` + z-index so Sydney coords/footer stay above Stats; mobile `--globe-card-gutter` 1.25rem. |
+| Stats / globe / testimonials | `Stats.tsx`, `stats/StatsAccentLight.tsx`, `GlobeScrollSection.tsx`, `Testimonials.tsx` | Stats accent is a 4-card wallet shuffle (`.stats-wallet-*`): idle fan/deck, `useInView({ once: false })` peel→riffle→spread into 2×2 / 4-col grid on every enter; leave viewport resets to stacked wallet (no leftover shuffle). Settled height reserved by grid cells; `prefers-reduced-motion` skips to spread and stays settled. Ledger/glow still unmounted. Wallet cards keep the original light-face look (`var(--card)`, primary left edge, mint `::before` blob; hero is a pale mint wash — not grey/teal slabs or hex fills). Testimonials are pale-mint `.testimonials-card` marquee cards with a 1.35rem top-only diagonal cap (`#595C62` left `polygon(0 0, 58% 0, 38% 100%, 0 100%)` / `#4BE5AE` right `polygon(59% 0, 100% 0, 100% 100%, 39% 100%)`; not a full-card fill), mint avatars, teal stars. Copy unchanged. Globe slides are 2 unique cards (NY ecosystem + Dubai B2B). London / Singapore / Sydney dropped as capability/audience restatements of card 1. `activeIndex` = `round(progress * (slides.length - 1))`; pin dots and `01 / 02` follow length. GlobeCanvas hubs stay decorative (6 cities, not 1:1). Last slide `--globe-last-pad` + z-index so the last hub (Dubai) coords/footer stay above Stats; heading band + first-card inset unchanged; mobile `--globe-card-gutter` 1.25rem. |
 
 ## Product pages
 
@@ -50,6 +50,7 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | AI pricing console (brokers) | `AiPredictionsConsole.tsx` | LiveConsole `aiPredictions` |
 | POS console | `PosConsole.tsx` | **built, not mounted** in `brokers.tsx` |
 | Payments dashboard | `PaymentInfrastructureSection.tsx` | not LiveConsole |
+| USDT / crypto payouts desk | `CryptoPayoutConsole.tsx` | LiveConsole `cryptoPayouts`, `crypto-payout-data.ts`, `.sfp-*`. Wallet / on-chain USDT hero; qualitative Standard switch; no ladder or sale maths. Payout track: two stacked cards size to content (`overflow: visible`, no `height: 100%` / 7.5rem min-height clip) |
 | `/travel-partners` | `src/routes/travel-partners.tsx` | `pages/travel/`, `docs/travel-partners-page-plan.md` |
 | Travel hero dashboard | `TravelConsoleWall.tsx` | `travel-hero-data.ts`, `.tpd-*` |
 | Inventory search console | `InventorySearchConsole.tsx` | TravelLiveConsole `inventorySearch` |
@@ -88,6 +89,7 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | Section connector rail | `pages/brokers/SectionConnector.tsx` | — |
 | Console bezel | `pages/brokers/ConsoleShell.tsx` | `.lc-*` |
 | Tokens / new CSS | `src/styles.css` **append marked block** | `docs/DESIGN_SYSTEM.md` |
+| Global custom scrollbar | `src/styles.css` (`--sb-thumb` / `--sb-track` block at end) | Thumb `--primary`; do not reintroduce per-section colors |
 
 ## Content & config
 
@@ -95,6 +97,7 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 |---|---|---|
 | Nav, footer, CTA labels, SEO | `src/content/site.ts` | Product module names: `src/content/modules.ts` |
 | Hero mini-card / dashboard data | `src/content/*-hero-data.ts` | matching Wall component |
+| Brokers USDT payout desk data | `src/content/crypto-payout-data.ts` | `CryptoPayoutConsole.tsx`, LiveConsole `cryptoPayouts` — qualitative rails/path/ledger, no £ or USDT amounts |
 | About copy / manifesto chapters | `src/content/about-page-data.ts` | `pages/about/` |
 | Book-a-demo copy / form options | `src/content/book-demo-data.ts` | `pages/book-demo/` |
 | Platform overview copy / module map | `src/content/platform-page-data.ts` | `pages/platform/` |

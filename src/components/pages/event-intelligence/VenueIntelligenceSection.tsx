@@ -109,14 +109,14 @@ function VenueMapConsole({ inView, selected }: { inView: boolean; selected: MapS
 
   return (
     <div className="vm-console" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / event-intelligence / venue-map" status="LIVE" icon={MapPin}>
+      <ConsoleShell path="seatsbrokers / event-intelligence / venue-map" status="Live" icon={MapPin}>
         <header className="vm-head">
           <div className="vm-head-copy">
             <span className="vm-head-kicker">
               <Map className="size-3.5" strokeWidth={1.75} />
               Wembley · London
             </span>
-            <span className="lc-mono vm-head-demo">DEMO DATA</span>
+            <span className="lc-mono vm-head-demo">Demo data</span>
           </div>
           <span className="vm-live">
             <span className="vm-live-dot" aria-hidden />

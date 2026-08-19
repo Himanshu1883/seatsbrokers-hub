@@ -138,7 +138,7 @@ export function MarketIntelligenceConsole() {
 
   return (
     <div ref={setRef} className="mi-console" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / market-intelligence" status="SYNC" icon={Radar}>
+      <ConsoleShell path="seatsbrokers / market-intelligence" status="Sync" icon={Radar}>
         <header className="mi-head">
           <div className="mi-head-event">
             <p className="mi-head-title">{eventContext.name}</p>

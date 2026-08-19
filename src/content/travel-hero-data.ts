@@ -1,5 +1,5 @@
 export const travelHeroCopy = {
-  eyebrow: "B2B Partner Platform",
+  eyebrow: "B2B partner platform",
   title: "Turn Ticket Inventory Into Customer-Ready Experiences",
   subhead: "Search live inventory, add your margin, share a branded quote — then track the order through delivery.",
   body: "Give B2B partners direct access to the same inventory brokers manage — search, buy, margin, quotation and fulfillment from one workspace.",

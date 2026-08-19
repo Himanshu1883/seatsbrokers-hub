@@ -23,15 +23,15 @@ export const brand = {
 export const ctas = {
   // bookDemo: { label: "Book a Demo", to: "/book-demo" },
   becomeSeller: { label: "Become a seller", to: "/brokers" },
-  explorePlatform: { label: "Explore Our Platform", to: "/platform" },
-  talkToTeam: { label: "Talk to Our Team", to: "/contact" },
+  explorePlatform: { label: "Explore our platform", to: "/platform" },
+  talkToTeam: { label: "Talk to our team", to: "/contact" },
   login: { label: "Login", to: "/contact" },
-  exploreBrokers: { label: "Explore Broker Platform", to: "/brokers" },
-  exploreTravel: { label: "Explore B2B Partner Platform", to: "/travel-partners" },
+  exploreBrokers: { label: "Explore broker platform", to: "/brokers" },
+  exploreTravel: { label: "Explore B2B partner platform", to: "/travel-partners" },
   exploreMarketplace: { label: `Explore ${modules.market.name}`, to: "/marketplace-connectivity" },
   exploreEventIntel: { label: `Explore ${modules.intel.name}`, to: "/event-intelligence" },
   viewApiDocs: { label: `Explore ${modules.link.name}`, to: "/api" },
-  requestApiAccess: { label: "Request API Access", to: "/contact" },
+  requestApiAccess: { label: "Request API access", to: "/contact" },
 } as const;
 
 export const navLinks: NavLink[] = [
@@ -60,7 +60,7 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
   {
     title: "Resources",
     links: [
-      { label: "API Documentation", to: "/api" },
+      { label: "API documentation", to: "/api" },
       { label: "Contact", to: "/contact" },
       { label: "FAQs", to: "/faq" },
     ],

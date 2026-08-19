@@ -3,7 +3,7 @@
 import { modules } from "./modules";
 
 export const demoHeroCopy = {
-  eyebrow: "Book a Demo",
+  eyebrow: "Book a demo",
   title: "See the SeatsBrokers Platform in Action",
   subhead: "A live walkthrough tailored to how you list, distribute or quote tickets.",
   body: "Forty-five minutes with our team — event intelligence, marketplace connectivity, inventory, pricing and partner commerce, scoped to your operation. Broker desk, B2B partner or API integration: we show what is relevant.",

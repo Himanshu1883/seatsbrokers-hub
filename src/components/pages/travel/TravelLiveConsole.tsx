@@ -95,7 +95,7 @@ const variants: Record<TravelLiveConsoleVariant, TravelLiveConsoleMeta> = {
     tiltX: 2,
   },
   partnerOrders: {
-    eyebrow: "Order & Delivery",
+    eyebrow: "Order & delivery",
     title: "From accepted quote to tickets in hand",
     body: "Pending → confirmed → invoiced → delivered. Invoice generation, delivery confirmation and last-minute or group holds — on the same inventory the broker POS fulfills.",
     detail:

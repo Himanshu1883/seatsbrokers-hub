@@ -262,7 +262,7 @@ function LaunchIllustration({ backdrop }: BentoIllustrationProps) {
         </div>
 
         <div className="relative z-10 flex flex-1 flex-col items-center px-2">
-          <span className="font-mono text-[9px] tracking-[0.18em] text-muted-foreground uppercase">Publish</span>
+          <span className="font-mono text-[9px] tracking-[0.18em] text-muted-foreground ">Publish</span>
           <div className="relative my-1.5 flex h-9 w-9 items-center justify-center rounded-full bg-primary font-mono text-xs font-bold text-primary-foreground shadow-[0_0_20px_color-mix(in_oklab,var(--primary)_35%,transparent)]">
             ↗
             <span className="bento-connect-ring absolute inset-0 rounded-full bg-primary" aria-hidden />

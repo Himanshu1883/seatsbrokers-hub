@@ -37,9 +37,9 @@ function useCycle(length: number, ms: number, enabled: boolean) {
 }
 
 function statusLabel(status: MarketplaceHeroMeshStatus) {
-  if (status === "lagging") return "LAGGING";
-  if (status === "conflict") return "CONFLICT";
-  return "SYNCED";
+  if (status === "lagging") return "Lagging";
+  if (status === "conflict") return "Conflict";
+  return "Synced";
 }
 
 function DensityPips({ filled }: { filled: number }) {
@@ -75,7 +75,7 @@ export function MarketplaceConsoleWall() {
           </div>
           <span className="mkh-live">
             <span className="mkh-live-dot" aria-hidden />
-            LIVE
+            Live
           </span>
         </header>
 

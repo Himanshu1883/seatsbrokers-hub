@@ -46,7 +46,7 @@ function CardShell({
         <span className="bh-card-label">{label}</span>
         <span className="bh-card-live">
           <span className="bh-card-live-dot" aria-hidden />
-          LIVE
+          Live
         </span>
       </header>
       <div className="bh-card-body">{children}</div>
@@ -147,7 +147,7 @@ function RecentQuotesCard() {
           <li key={row.id} className="bh-mp-row" data-status={row.status === "accepted" ? "synced" : "pushing"}>
             <span>{row.id}</span>
             <span className="bh-mp-meta">
-              <span className="bh-mp-status">{row.status.toUpperCase()}</span>
+              <span className="bh-mp-status">{row.status.charAt(0).toUpperCase() + row.status.slice(1)}</span>
             </span>
           </li>
         ))}

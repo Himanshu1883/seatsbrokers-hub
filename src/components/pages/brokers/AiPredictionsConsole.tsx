@@ -105,7 +105,7 @@ export function AiPredictionsConsole() {
           <span className="ap-version">v4.2</span>
           <span className="ap-status" data-decision={decision}>
             <i aria-hidden />
-            {decision === "pending" ? "REVIEW" : "LIVE"}
+            {decision === "pending" ? "Review" : "Live"}
           </span>
         </header>
 

@@ -72,7 +72,7 @@ export function StatsLedgerLight() {
                 <CrosshairTicks />
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-sm text-primary">{s.icon}</span>
-                  <span className="font-mono text-[10px] tracking-[0.16em] text-muted-foreground/60 uppercase">
+                  <span className="font-mono text-[10px] tracking-[0.16em] text-muted-foreground/60 ">
                     Live
                   </span>
                 </div>

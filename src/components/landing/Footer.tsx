@@ -8,7 +8,7 @@ export function Footer() {
     <footer className="site-footer section-curve bg-dark text-background">
       <div className="border-b border-background/10 bg-background/[0.03] py-8 sm:py-10">
         <div className="container-page flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-          <p className="section-eyebrow text-primary">Built for the Global Ticketing Ecosystem</p>
+          <p className="section-eyebrow text-primary">Built for the global ticketing ecosystem</p>
           <p className="max-w-xl text-sm leading-relaxed text-background/65 sm:text-right">
             {brand.tagline} — connecting event data, inventory, marketplaces, pricing and partners
             through one technology platform.
@@ -49,7 +49,7 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-3 sm:gap-8">
           {footerColumns.map((c) => (
             <div key={c.title}>
-              <h3 className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
+              <h3 className="font-mono text-[11px] tracking-[0.2em] text-primary">
                 {c.title}
               </h3>
               <ul className="mt-5 space-y-3">
@@ -70,7 +70,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
+          <h3 className="font-mono text-[11px] tracking-[0.2em] text-primary">
             Newsletter
           </h3>
           <p className="mt-5 text-sm leading-relaxed text-background/65">

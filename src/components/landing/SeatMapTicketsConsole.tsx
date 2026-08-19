@@ -939,7 +939,7 @@ export function SeatMapTicketsConsole({ desk }: { desk: SeatMapDesk }) {
 
   return (
     <div className="smt-console">
-      <ConsoleShell path="seatsbrokers / b2b / seat-map-tickets" status="LIVE" icon={Ticket}>
+      <ConsoleShell path="seatsbrokers / b2b / seat-map-tickets" status="Live" icon={Ticket}>
         <div
           className="smt-desk"
           data-stage={desk.pipeline.stage}

@@ -79,7 +79,7 @@ export function PriceConflictConsole() {
 
   return (
     <div ref={setRef} className="pc-console" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / marketplace / price-sync" status="GUARD" icon={ShieldCheck}>
+      <ConsoleShell path="seatsbrokers / marketplace / price-sync" status="Guard" icon={ShieldCheck}>
         <div className="pc-price">
           <div>
             <span className="lc-stat-label">Price push</span>
@@ -119,7 +119,7 @@ export function PriceConflictConsole() {
                 data-active={ackHighlight === index ? "true" : "false"}
               >
                 <strong>{ack.dest}</strong>
-                <span>{ack.status === "acked" ? "ACK" : "WAIT"}</span>
+                <span>{ack.status === "acked" ? "Ack" : "Wait"}</span>
               </li>
             ))}
           </ul>

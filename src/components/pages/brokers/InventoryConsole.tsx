@@ -68,7 +68,7 @@ export function InventoryConsole() {
     <div ref={setRef} className="inv-console" data-live={inView ? "true" : "false"}>
       <div className="inv-stack">
         <div className="inv-console-base">
-          <ConsoleShell path="seatsbrokers / inventory / listings" status="LIVE" icon={Layers3}>
+          <ConsoleShell path="seatsbrokers / inventory / listings" status="Live" icon={Layers3}>
             <div className="inv-stats">
               {inventoryStats.map((stat) => (
                 <div key={stat.label} className="lc-stat inv-stat">
@@ -102,7 +102,7 @@ export function InventoryConsole() {
                       </span>
                     ))}
                   </div>
-                  <span className="inv-dash-chip">LOWEST ASK · £135</span>
+                  <span className="inv-dash-chip">Lowest ask · £135</span>
                 </div>
 
                 <table className="inv-dash-table">
@@ -166,7 +166,7 @@ export function InventoryConsole() {
         </div>
 
         <div className="inv-console-detail">
-          <ConsoleShell path="seatsbrokers / inventory / ticket-detail" status="SYNC" icon={Ticket}>
+          <ConsoleShell path="seatsbrokers / inventory / ticket-detail" status="Sync" icon={Ticket}>
             <header className="inv-detail-head">
               <div className="inv-detail-head-copy">
                 <h3 className="inv-detail-title">Select tickets to list</h3>

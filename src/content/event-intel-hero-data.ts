@@ -95,7 +95,7 @@ export const heroCatalog = {
 export const heroForecast = {
   sellout: "T-6",
   confidence: "87%",
-  badge: "MODEL",
+  badge: "Model",
   event: "Champions League Final",
 } as const;
 

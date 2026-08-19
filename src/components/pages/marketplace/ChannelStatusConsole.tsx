@@ -45,9 +45,9 @@ function useCycle(length: number, ms: number, enabled: boolean) {
 }
 
 function statusLabel(status: (typeof channels)[number]["status"]) {
-  if (status === "pushing") return "PUSHING";
-  if (status === "queued") return "QUEUED";
-  return "SYNCED";
+  if (status === "pushing") return "Pushing";
+  if (status === "queued") return "Queued";
+  return "Synced";
 }
 
 export function ChannelStatusConsole() {
@@ -64,7 +64,7 @@ export function ChannelStatusConsole() {
 
   return (
     <div ref={setRef} className="ch-console" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / marketplace / channels" status="SYNC" icon={Radio}>
+      <ConsoleShell path="seatsbrokers / marketplace / channels" status="Sync" icon={Radio}>
         <div className="ch-stats">
           {stats.map((stat) => (
             <div key={stat.label} className="lc-stat">
@@ -85,7 +85,7 @@ export function ChannelStatusConsole() {
               <span className="ch-map-ring ch-map-ring-2" />
               <span className="ch-hub">
                 SB
-                <small>HUB</small>
+                <small>Hub</small>
               </span>
               {channels.map((channel, index) => (
                 <span

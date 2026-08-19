@@ -10,7 +10,7 @@ type ConsoleShellProps = {
 
 export function ConsoleShell({
   path,
-  status = "LIVE",
+  status = "Live",
   icon: Icon,
   children,
 }: ConsoleShellProps) {

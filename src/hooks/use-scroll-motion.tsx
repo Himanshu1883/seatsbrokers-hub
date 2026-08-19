@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
-export function useInView<T extends HTMLElement>(threshold = 0.18) {
+type InViewOptions = {
+  once?: boolean;
+  rootMargin?: string;
+};
+
+export function useInView<T extends HTMLElement>(
+  threshold = 0.18,
+  { once = true, rootMargin = "0px 0px -8% 0px" }: InViewOptions = {},
+) {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
 
@@ -9,13 +17,16 @@ export function useInView<T extends HTMLElement>(threshold = 0.18) {
     if (!el) return;
     const io = new IntersectionObserver(
       (entries) => {
-        for (const e of entries) if (e.isIntersecting) setInView(true);
+        for (const e of entries) {
+          if (e.isIntersecting) setInView(true);
+          else if (!once) setInView(false);
+        }
       },
-      { threshold, rootMargin: "0px 0px -8% 0px" },
+      { threshold, rootMargin },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [threshold]);
+  }, [threshold, once, rootMargin]);
 
   return { ref, inView };
 }

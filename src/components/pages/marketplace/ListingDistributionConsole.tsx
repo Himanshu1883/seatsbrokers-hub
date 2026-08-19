@@ -60,9 +60,9 @@ function useCycle(length: number, ms: number, enabled: boolean) {
 }
 
 function destLabel(status: (typeof destinations)[number]["status"]) {
-  if (status === "pushing") return "PUSHING";
-  if (status === "queued") return "QUEUED";
-  return "LIVE";
+  if (status === "pushing") return "Pushing";
+  if (status === "queued") return "Queued";
+  return "Live";
 }
 
 export function ListingDistributionConsole() {
@@ -80,7 +80,7 @@ export function ListingDistributionConsole() {
 
   return (
     <div ref={setRef} className="ld-console" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / marketplace / listings" status="PUSH" icon={ArrowRightLeft}>
+      <ConsoleShell path="seatsbrokers / marketplace / listings" status="Push" icon={ArrowRightLeft}>
         <div className="ld-context">
           <div>
             <span className="lc-mono">{listing.id}</span>

@@ -8,7 +8,7 @@ import {
 const panels = [
   {
     kind: "brokers" as const satisfies StickyScrollConsoleKind,
-    kicker: "Ticket Brokers",
+    kicker: "Ticket brokers",
     title: "Manage inventory, pricing and distribution",
     headline: "Inventory → SeatsBrokers →",
     accent: "Marketplaces → Sale",
@@ -23,7 +23,7 @@ const panels = [
   },
   {
     kind: "travel" as const satisfies StickyScrollConsoleKind,
-    kicker: "B2B Companies",
+    kicker: "B2B companies",
     title: "Source tickets and create customer quotes",
     headline: "SeatsBrokers Inventory →",
     accent: "Margin → Quote → Customer",
@@ -38,7 +38,7 @@ const panels = [
   },
   {
     kind: "marketplaces" as const satisfies StickyScrollConsoleKind,
-    kicker: "Ticket Marketplaces",
+    kicker: "Ticket marketplaces",
     title: "Connect inventory through APIs",
     headline: "Broker API → Inventory →",
     accent: "Marketplace → Order",
@@ -53,7 +53,7 @@ const panels = [
   },
   {
     kind: "partners" as const satisfies StickyScrollConsoleKind,
-    kicker: "Technology Partners",
+    kicker: "Technology partners",
     title: "Integrate ticket data into your applications",
     headline: "Internal POS → SeatsBrokers API →",
     accent: "Inventory → Distribution",
@@ -230,7 +230,7 @@ export function StickyScrollShowcase() {
                   ))}
                 </ul>
 
-                <span className="mt-10 font-mono text-[10px] tracking-widest text-muted-foreground/80 uppercase">
+                <span className="mt-10 font-mono text-[10px] tracking-widest text-muted-foreground/80 ">
                   {String(i + 1).padStart(2, "0")} / {String(panels.length).padStart(2, "0")}
                 </span>
               </article>

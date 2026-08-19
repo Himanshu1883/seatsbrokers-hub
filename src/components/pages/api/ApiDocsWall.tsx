@@ -116,7 +116,7 @@ export function ApiDocsWall() {
             <span className="apidoc-status">{apiDocAuth.status}</span>
             <span className="apidoc-live">
               <span className="apidoc-live-dot" aria-hidden />
-              LIVE
+              Live
             </span>
           </div>
         </header>

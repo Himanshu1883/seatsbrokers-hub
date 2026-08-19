@@ -1,7 +1,7 @@
 /** FAQ page copy — B2B infrastructure, not a consumer ticket shop. */
 
 export const faqHeroCopy = {
-  eyebrow: "Frequently Asked Questions",
+  eyebrow: "Frequently asked questions",
   titleLead: "Got questions?",
   titleAccent: "We've got answers.",
   intro:

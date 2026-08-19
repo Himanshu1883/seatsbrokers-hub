@@ -196,7 +196,7 @@ export function PartnerOrdersConsole() {
 
   return (
     <div ref={setRef} className="po-console" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / order-desk" status="LIVE" icon={ClipboardList}>
+      <ConsoleShell path="seatsbrokers / order-desk" status="Live" icon={ClipboardList}>
         <div className="po-stats">
           {stats.map((stat) => (
             <div key={stat.label} className="po-stat">

@@ -81,7 +81,7 @@ export function PosConsole() {
 
   return (
     <div ref={setRef} className="lc-pos" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / broker-pos" status="LIVE" icon={MonitorSmartphone}>
+      <ConsoleShell path="seatsbrokers / broker-pos" status="Live" icon={MonitorSmartphone}>
         <div className="lc-pos-stats">
           {todayStats.map((stat) => (
             <div key={stat.label} className="lc-stat">

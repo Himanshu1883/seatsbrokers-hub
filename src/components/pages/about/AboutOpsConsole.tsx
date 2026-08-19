@@ -54,7 +54,7 @@ export function AboutOpsConsole() {
 
   return (
     <div ref={setRef} className="abt-ops abt-pipe" data-live={live ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / intelligence / pipeline" status="LIVE" icon={Workflow}>
+      <ConsoleShell path="seatsbrokers / intelligence / pipeline" status="Live" icon={Workflow}>
         <div className="abt-ops-stats">
           {aboutPipelineStats.map((stat) => (
             <div key={stat.label} className="lc-stat">

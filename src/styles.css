@@ -216,7 +216,7 @@ main > .section-curve:first-child {
   font-weight: 700;
   letter-spacing: 0.14em;
   line-height: 1.35;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .sticky-scroll-panel {
@@ -314,7 +314,7 @@ main > .section-curve:first-child {
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.2em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--foreground) 45%, transparent);
 }
 
@@ -361,7 +361,7 @@ main > .section-curve:first-child {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.24em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--foreground) 50%, transparent);
 }
 
@@ -1001,7 +1001,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
 }
 
@@ -1012,7 +1012,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
 }
 
@@ -1034,7 +1034,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 8px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
   white-space: nowrap;
 }
@@ -1063,7 +1063,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -1091,7 +1091,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -1264,7 +1264,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 7px;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -1342,7 +1342,7 @@ main > .section-curve:first-child {
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
   cursor: pointer;
   transition:
@@ -1411,7 +1411,7 @@ main > .section-curve:first-child {
   font-size: 7px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-faint);
 }
 
@@ -1545,7 +1545,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 7px;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
   text-align: right;
 }
@@ -1622,7 +1622,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 7px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
 }
 
@@ -1650,7 +1650,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 7px;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -1709,7 +1709,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 7px;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
 }
 
@@ -1771,7 +1771,7 @@ main > .section-curve:first-child {
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
 }
 
@@ -1908,7 +1908,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
 }
 
@@ -2293,7 +2293,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
 }
 
@@ -2312,7 +2312,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -2352,7 +2352,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -2373,7 +2373,7 @@ main > .section-curve:first-child {
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--primary);
-  text-transform: uppercase;
+  text-transform: none;
   box-shadow: 0 0 18px color-mix(in oklab, var(--primary) 18%, transparent);
 }
 
@@ -2382,7 +2382,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 8px;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-faint);
 }
 
@@ -2397,7 +2397,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
 }
 
@@ -2644,7 +2644,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
 }
 
@@ -2675,7 +2675,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
   text-align: right;
 }
@@ -2930,7 +2930,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 8px;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
 }
 
@@ -2968,7 +2968,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 8px;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -3004,7 +3004,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-muted);
   cursor: pointer;
   transition:
@@ -3204,10 +3204,23 @@ main > .section-curve:first-child {
   }
 }
 
-/* Nav-height spacer. 4.5rem bar + 1.25rem gap so copy clears the light overlay.
-   Desktop (≥1024px) uses a larger clamp below — do not shrink it. */
+/* Nav-height spacer. 4.5rem bar + extra gap so the pill clears the light overlay.
+   Desktop (≥1024px) uses a larger clamp below — do not shrink it.
+   Laptop 1024–1919 zooms .hero-fit-zoom to 0.85, so that band bumps the
+   offset further so the extra pad still reads after zoom. */
 .hero-fit-offset {
-  height: calc(4.5rem + 1.25rem);
+  height: calc(4.5rem + 1.75rem);
+}
+
+/* Homepage hero pill only — smaller than .section-eyebrow, not uppercase. */
+.hero-fit .hero-copy .hero-copy-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  text-transform: none;
+  padding: 0.18rem 0.5rem;
 }
 
 /* Homepage hero — mobile (<1024px): one locked frame, console-led.
@@ -3271,11 +3284,12 @@ main > .section-curve:first-child {
     display: inline-flex;
     max-width: 100%;
     margin: 0;
-    padding: 0.3rem 0.65rem;
+    padding: 0.2rem 0.5rem;
     font-size: clamp(0.5625rem, 2.4vw, 0.6875rem);
-    letter-spacing: 0.1em;
-    line-height: 1.35;
-    border-radius: 0.5rem;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    text-transform: none;
+    border-radius: 9999px;
   }
 
   .hero-fit .hero-copy .hero-copy-head {
@@ -3391,7 +3405,9 @@ main > .section-curve:first-child {
 @media (max-width: 1023px) and (max-height: 700px) {
   .hero-fit .hero-copy .hero-copy-eyebrow {
     font-size: 0.5625rem;
-    padding: 0.22rem 0.55rem;
+    padding: 0.16rem 0.45rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
   }
 
   .hero-fit .hero-copy .hero-copy-head {
@@ -3431,7 +3447,8 @@ main > .section-curve:first-child {
    keeps the short-screen sizes above. */
 @media (min-width: 640px) and (max-width: 1023px) and (min-height: 701px) {
   .hero-fit .hero-copy .hero-copy-eyebrow {
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
+    padding: 0.18rem 0.5rem;
   }
 
   .hero-fit .hero-copy .hero-copy-head {
@@ -3518,9 +3535,16 @@ main > .section-curve:first-child {
     min-height: min-content;
   }
 
-  /* nav ~4.5–5.5rem + breathing room so headline/console clear the overlay */
+  /* nav ~4.5rem + extra breathing room so the pill clears the overlay */
   .hero-fit-offset {
-    height: clamp(6.75rem, 5.25rem + 4vh, 8.5rem);
+    height: clamp(7.5rem, 6.25rem + 4.5vh, 9.25rem);
+  }
+
+  .hero-fit .hero-copy .hero-copy-eyebrow {
+    font-size: 0.6875rem;
+    padding: 0.18rem 0.5rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
   }
 
   .hero-fit-main {
@@ -3569,6 +3593,12 @@ main > .section-curve:first-child {
   .hero-fit-zoom {
     flex: 0 0 auto;
     zoom: 0.85;
+  }
+
+  /* Offset lives inside .hero-fit-zoom. Bump it so extra top pad still reads
+     after 0.85 zoom (~2.85rem visual gap below the 4.5rem nav). */
+  .hero-fit-offset {
+    height: clamp(8.65rem, 7.25rem + 5.5vh, 11rem);
   }
 
   .hero-fit-console {
@@ -4032,7 +4062,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.2em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--foreground) 45%, transparent);
 }
 
@@ -4188,7 +4218,7 @@ main > .section-curve:first-child {
   background: var(--background);
   font-size: 9.5px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--foreground) 55%, transparent);
   white-space: nowrap;
 }
@@ -4200,7 +4230,7 @@ main > .section-curve:first-child {
   background: color-mix(in oklab, var(--primary) 10%, transparent);
   font-size: 9px;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--primary-deep) 90%, transparent);
 }
 
@@ -4555,7 +4585,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 75%, transparent);
   transition:
     color 0.3s ease,
@@ -4605,7 +4635,7 @@ main > .section-curve:first-child {
   padding-left: 0.7rem;
   font-size: 9.5px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 55%, transparent);
 }
 
@@ -5917,7 +5947,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
   transition:
     color 0.3s ease,
@@ -6077,7 +6107,7 @@ main > .section-curve:first-child {
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--foreground);
   opacity: 0;
   transform: translateY(4px);
@@ -6287,7 +6317,7 @@ main > .section-curve:first-child {
   font-size: clamp(0.875rem, 0.8rem + 0.35vw, 1.0625rem);
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -6616,7 +6646,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
   pointer-events: none;
 }
@@ -7401,7 +7431,7 @@ main > .section-curve:first-child {
   font-size: clamp(0.875rem, 0.8rem + 0.35vw, 1.0625rem);
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -7664,7 +7694,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -7754,7 +7784,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -7809,7 +7839,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--foreground) 50%, transparent);
 }
 
@@ -8115,7 +8145,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -8160,7 +8190,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--foreground) 48%, transparent);
 }
 
@@ -8194,7 +8224,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--foreground) 38%, transparent);
   transition:
     color 0.35s ease,
@@ -8315,7 +8345,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -8436,7 +8466,7 @@ main > .section-curve:first-child {
   font-style: normal;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--primary) 28%, transparent);
 }
 
@@ -8577,7 +8607,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -8775,7 +8805,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--fo-accent, var(--primary));
 }
 
@@ -9402,7 +9432,7 @@ main > .section-curve:first-child {
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: 0.07em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
   flex-shrink: 0;
 }
@@ -10086,7 +10116,7 @@ main > .section-curve:first-child {
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -10513,7 +10543,7 @@ main > .section-curve:first-child {
   font-size: 7px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -10540,7 +10570,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 7px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -10889,7 +10919,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -10926,7 +10956,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -11249,7 +11279,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -11481,7 +11511,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -11596,7 +11626,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -11986,7 +12016,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 58%, transparent);
 }
 
@@ -12053,7 +12083,7 @@ main > .section-curve:first-child {
   font-size: 8px;
   font-weight: 600;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 48%, transparent);
 }
 
@@ -12675,7 +12705,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
   transition:
     border-color 0.25s ease,
@@ -12761,7 +12791,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -12813,7 +12843,7 @@ main > .section-curve:first-child {
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .ec-catalog-active {
@@ -12870,7 +12900,7 @@ main > .section-curve:first-child {
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -12909,7 +12939,7 @@ main > .section-curve:first-child {
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -13852,7 +13882,7 @@ main > .section-curve:first-child {
   font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -14013,7 +14043,7 @@ main > .section-curve:first-child {
   font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .inv-badge[data-status="listed"] {
@@ -14590,7 +14620,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -14687,7 +14717,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -14870,7 +14900,7 @@ main > .section-curve:first-child {
 .pay-dash-live-label {
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -15374,7 +15404,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 0.48rem;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   opacity: 0.62;
 }
 
@@ -15405,7 +15435,7 @@ main > .section-curve:first-child {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-align: left;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -15459,7 +15489,7 @@ main > .section-curve:first-child {
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -15855,7 +15885,7 @@ main > .section-curve:first-child {
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--primary) 78%, var(--foreground));
 }
 
@@ -16054,7 +16084,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
+  text-transform: none;
   opacity: 0.55;
 }
 
@@ -16344,7 +16374,7 @@ main > .section-curve:first-child {
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -16517,7 +16547,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -16569,7 +16599,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
   transition:
     border-color 0.25s ease,
@@ -16615,7 +16645,7 @@ main > .section-curve:first-child {
   font-size: 9.5px;
   font-weight: 600;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -16785,7 +16815,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -16821,7 +16851,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--muted-foreground) 75%, transparent);
 }
 
@@ -17127,7 +17157,7 @@ main > .section-curve:first-child {
   font-size: 9.5px;
   font-weight: 600;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -17315,7 +17345,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--foreground);
 }
 
@@ -17367,7 +17397,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -17489,7 +17519,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 8px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -17575,7 +17605,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   white-space: nowrap;
 }
 
@@ -17627,7 +17657,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 600;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -17659,7 +17689,7 @@ main > .section-curve:first-child {
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -18025,7 +18055,7 @@ main > .section-curve:first-child {
   font-size: 9.5px;
   font-weight: 600;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -18208,7 +18238,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--foreground);
 }
 
@@ -18257,7 +18287,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -18363,7 +18393,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 8.5px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -18502,7 +18532,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 8.5px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -18563,7 +18593,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .qb-recent-row[data-status="accepted"] .qb-recent-status {
@@ -18667,7 +18697,7 @@ main > .section-curve:first-child {
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -18702,7 +18732,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -18827,7 +18857,7 @@ main > .section-curve:first-child {
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -18836,7 +18866,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -18879,7 +18909,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -18977,7 +19007,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 600;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -19064,7 +19094,7 @@ main > .section-curve:first-child {
   font-size: 0.48rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -19161,7 +19191,7 @@ main > .section-curve:first-child {
   font-size: 0.46rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
   background: color-mix(in oklab, var(--surface) 88%, white);
 }
@@ -19294,7 +19324,7 @@ main > .section-curve:first-child {
   font-size: 0.48rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -19461,7 +19491,7 @@ main > .section-curve:first-child {
   font-size: 0.46rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
   background: color-mix(in oklab, var(--surface) 88%, white);
 }
@@ -19615,7 +19645,7 @@ main > .section-curve:first-child {
   font-size: 9.5px;
   font-weight: 600;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -19724,7 +19754,7 @@ main > .section-curve:first-child {
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--foreground);
 }
 
@@ -19828,7 +19858,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -19838,7 +19868,7 @@ main > .section-curve:first-child {
   border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
   padding: 0.08rem 0.38rem;
   font-size: 9px;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .po-badge[data-status="pending"] {
@@ -19921,7 +19951,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -19982,7 +20012,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -20253,7 +20283,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -20551,7 +20581,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -20602,7 +20632,7 @@ main > .section-curve:first-child {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--foreground);
 }
 
@@ -20789,7 +20819,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-style: normal;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -21036,7 +21066,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
   background: color-mix(in oklab, var(--surface) 80%, white);
 }
@@ -21069,7 +21099,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   white-space: nowrap;
 }
 
@@ -21202,7 +21232,7 @@ main > .section-curve:first-child {
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -21218,7 +21248,7 @@ main > .section-curve:first-child {
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -21357,7 +21387,7 @@ main > .section-curve:first-child {
 .pt-pipeline-detail {
   font-size: 9px;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -21506,7 +21536,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -21585,7 +21615,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--muted-foreground) 80%, transparent);
 }
 
@@ -21767,7 +21797,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -21800,7 +21830,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -21903,7 +21933,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
   cursor: pointer;
   transition:
@@ -22061,7 +22091,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--muted-foreground) 80%, transparent);
 }
 
@@ -22453,7 +22483,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -22552,7 +22582,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -22737,7 +22767,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -22946,7 +22976,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -22979,7 +23009,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -23010,7 +23040,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -23145,7 +23175,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -23287,7 +23317,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -23526,7 +23556,7 @@ main > .section-curve:first-child {
   font-size: 7.5px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 46%, transparent);
 }
 
@@ -23583,7 +23613,7 @@ main > .section-curve:first-child {
   font-size: 8px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 38%, transparent);
 }
 
@@ -23638,7 +23668,7 @@ main > .section-curve:first-child {
   font-size: 8px;
   font-weight: 600;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 42%, transparent);
 }
 
@@ -24119,7 +24149,7 @@ main > .section-curve:first-child {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -24231,7 +24261,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 0.5rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 42%, transparent);
 }
 
@@ -24479,7 +24509,7 @@ main > .section-curve:first-child {
   font-size: 0.52rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 48%, transparent);
 }
 
@@ -24588,7 +24618,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 0.5rem;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 42%, transparent);
 }
 
@@ -25199,7 +25229,7 @@ main > .section-curve:first-child {
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -25355,7 +25385,7 @@ main > .section-curve:first-child {
   font-size: 0.52rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 58%, transparent);
 }
 
@@ -25460,7 +25490,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 0.5rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 42%, transparent);
 }
 
@@ -25514,7 +25544,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 0.5rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 46%, transparent);
 }
 
@@ -25577,7 +25607,7 @@ main > .section-curve:first-child {
   font-size: 0.46rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 50%, transparent);
 }
 
@@ -25700,7 +25730,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 72%, transparent);
 }
 
@@ -25998,7 +26028,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 62%, transparent);
 }
 
@@ -26185,7 +26215,7 @@ main > .section-curve:first-child {
 .apidoc-params dt {
   font-size: 0.52rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 48%, transparent);
 }
 
@@ -26215,7 +26245,7 @@ main > .section-curve:first-child {
   font-size: 0.52rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 48%, transparent);
 }
 
@@ -26307,7 +26337,7 @@ main > .section-curve:first-child {
   flex-shrink: 0;
   font-size: 0.52rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 48%, transparent);
 }
 
@@ -26480,7 +26510,7 @@ main > .section-curve:first-child {
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--foreground);
 }
 
@@ -26579,7 +26609,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 0.52rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -26686,7 +26716,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 0.52rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -26778,7 +26808,7 @@ main > .section-curve:first-child {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--foreground);
 }
 
@@ -26805,7 +26835,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 650;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary-deep);
 }
 
@@ -26882,7 +26912,7 @@ main > .section-curve:first-child {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -26910,7 +26940,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary-deep);
 }
 
@@ -26988,7 +27018,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 650;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -27017,7 +27047,7 @@ main > .section-curve:first-child {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -27044,7 +27074,7 @@ main > .section-curve:first-child {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -27202,7 +27232,7 @@ main > .section-curve:first-child {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -27218,7 +27248,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -27286,7 +27316,7 @@ main > .section-curve:first-child {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -27371,7 +27401,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 58%, transparent);
 }
 
@@ -28861,7 +28891,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 8.5px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   white-space: nowrap;
   text-overflow: ellipsis;
   color: var(--ht-muted);
@@ -28876,7 +28906,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -28911,7 +28941,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 8.5px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-faint);
 }
 
@@ -28948,7 +28978,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -28970,7 +29000,7 @@ main > .section-curve:first-child {
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
   box-shadow: 0 0 18px color-mix(in oklab, var(--primary) 18%, transparent);
 }
@@ -28980,7 +29010,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 7.5px;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-faint);
 }
 
@@ -29176,7 +29206,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 7.5px;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-faint);
 }
 
@@ -29236,7 +29266,7 @@ main > .section-curve:first-child {
   font-size: 7.5px;
   font-style: normal;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -29267,7 +29297,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 7.5px;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-faint);
 }
 
@@ -29316,7 +29346,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 7.5px;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ht-faint);
 }
 
@@ -29727,7 +29757,7 @@ main > .section-curve:first-child {
   font-family: var(--font-mono);
   font-size: 7px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   white-space: nowrap;
   text-overflow: ellipsis;
   color: var(--ht-faint);
@@ -29797,7 +29827,7 @@ main > .section-curve:first-child {
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary-foreground);
   box-shadow: 0 0 18px -4px color-mix(in oklab, var(--primary) 55%, transparent);
 }
@@ -30324,7 +30354,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 62%, transparent);
 }
 
@@ -30363,7 +30393,7 @@ main > .section-curve:first-child {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -30459,7 +30489,7 @@ main > .section-curve:first-child {
   font-style: normal;
   font-weight: 650;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 42%, transparent);
 }
 
@@ -30650,7 +30680,7 @@ main > .section-curve:first-child {
   font-size: 0.48rem;
   font-weight: 650;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 48%, transparent);
 }
 
@@ -30709,7 +30739,7 @@ main > .section-curve:first-child {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -30745,7 +30775,7 @@ main > .section-curve:first-child {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -30838,7 +30868,7 @@ main > .section-curve:first-child {
   font-style: normal;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -30860,7 +30890,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 650;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -30898,7 +30928,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -30916,7 +30946,7 @@ main > .section-curve:first-child {
   font-size: 0.52rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -30932,7 +30962,7 @@ main > .section-curve:first-child {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -30952,7 +30982,7 @@ main > .section-curve:first-child {
   font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -30982,7 +31012,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -31009,7 +31039,7 @@ main > .section-curve:first-child {
   font-size: 0.52rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -31124,7 +31154,7 @@ main > .section-curve:first-child {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .abt-surface-meta span:first-child {
@@ -31167,7 +31197,7 @@ main > .section-curve:first-child {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -31206,7 +31236,7 @@ main > .section-curve:first-child {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -31262,7 +31292,7 @@ main > .section-curve:first-child {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -31289,7 +31319,7 @@ main > .section-curve:first-child {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -31426,7 +31456,7 @@ main > .section-curve:first-child {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -31469,7 +31499,7 @@ main > .section-curve:first-child {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 52%, transparent);
 }
 
@@ -31535,7 +31565,7 @@ main > .section-curve:first-child {
   font-style: normal;
   font-weight: 650;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 55%, transparent);
 }
 
@@ -31870,7 +31900,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -32023,7 +32053,7 @@ main > .section-curve:first-child {
   font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .abt-ops-row[data-active="true"] {
@@ -32070,7 +32100,7 @@ main > .section-curve:first-child {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -32233,7 +32263,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 62%, transparent);
 }
 
@@ -32275,7 +32305,7 @@ main > .section-curve:first-child {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 72%, transparent);
 }
 
@@ -32374,7 +32404,7 @@ main > .section-curve:first-child {
   font-style: normal;
   font-weight: 650;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 42%, transparent);
 }
 
@@ -32417,7 +32447,7 @@ main > .section-curve:first-child {
   font-size: 0.52rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -32493,7 +32523,7 @@ main > .section-curve:first-child {
   font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 68%, transparent);
 }
 
@@ -32508,7 +32538,7 @@ main > .section-curve:first-child {
   font-size: 0.52rem;
   font-weight: 650;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 48%, transparent);
 }
 
@@ -32553,7 +32583,7 @@ main > .section-curve:first-child {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -32610,7 +32640,7 @@ main > .section-curve:first-child {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
   text-decoration: none;
 }
@@ -32666,7 +32696,7 @@ main > .section-curve:first-child {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -32875,7 +32905,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 62%, transparent);
 }
 
@@ -32911,7 +32941,7 @@ main > .section-curve:first-child {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -32965,7 +32995,7 @@ main > .section-curve:first-child {
   font-style: normal;
   font-weight: 650;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 58%, transparent);
 }
 
@@ -33062,7 +33092,7 @@ main > .section-curve:first-child {
   font-style: normal;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 40%, transparent);
 }
 
@@ -33081,7 +33111,7 @@ main > .section-curve:first-child {
   font-size: 0.52rem;
   font-weight: 650;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 48%, transparent);
 }
 
@@ -33133,7 +33163,7 @@ main > .section-curve:first-child {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .plt-map-meta span:first-child {
@@ -33175,7 +33205,7 @@ main > .section-curve:first-child {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -33346,7 +33376,7 @@ main > .section-curve:first-child {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -33369,7 +33399,7 @@ main > .section-curve:first-child {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary-deep);
 }
 
@@ -33589,7 +33619,7 @@ main > .section-curve:first-child {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -33623,7 +33653,7 @@ main > .section-curve:first-child {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -34098,7 +34128,7 @@ html.site-nav-locked body {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
   transition:
     opacity 0.5s ease,
@@ -34227,7 +34257,7 @@ html.site-nav-locked body {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -34339,7 +34369,7 @@ html.site-nav-locked body {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-align: left;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -34369,7 +34399,7 @@ html.site-nav-locked body {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
   background: color-mix(in oklab, var(--primary) 10%, transparent);
 }
@@ -34811,7 +34841,7 @@ html.site-nav-locked body {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 55%, transparent);
 }
 
@@ -35349,7 +35379,7 @@ html.site-nav-locked body {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--background) 55%, transparent);
 }
 
@@ -35445,7 +35475,7 @@ html.site-nav-locked body {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -35478,7 +35508,7 @@ html.site-nav-locked body {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -35661,7 +35691,7 @@ html.site-nav-locked body {
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -35734,7 +35764,7 @@ html.site-nav-locked body {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
 }
 
@@ -36129,7 +36159,7 @@ html.site-nav-locked body {
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -36580,7 +36610,7 @@ html.site-nav-locked body {
   font-family: var(--font-mono);
   font-size: 0.58rem;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -36903,7 +36933,7 @@ html.site-nav-locked body {
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.13em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary-deep);
 }
 
@@ -36920,7 +36950,7 @@ html.site-nav-locked body {
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary-deep);
   cursor: pointer;
 }
@@ -37082,7 +37112,7 @@ html.site-nav-locked body {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -37130,7 +37160,7 @@ html.site-nav-locked body {
   font-family: var(--font-mono);
   font-size: 0.56rem;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: color-mix(in oklab, var(--foreground) 48%, transparent);
 }
 
@@ -37261,7 +37291,7 @@ html.site-nav-locked body {
   font-family: var(--font-mono);
   font-size: 0.58rem;
   letter-spacing: 0.09em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -37296,7 +37326,7 @@ html.site-nav-locked body {
   font-size: 0.58rem;
   line-height: 1.2;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--muted-foreground);
 }
 
@@ -37432,7 +37462,7 @@ html.site-nav-locked body {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--primary);
   white-space: nowrap;
 }
@@ -37770,8 +37800,1717 @@ html.site-nav-locked body {
   }
 }
 
+/* == Homepage TravelTools quote-desk viewport (tpa-section) ==
+   ToolsGrid TravelTools only. Rail is its own row; Live console + 2×2
+   minis share leftover height. svh, never dvh: dvh remeasures with
+   browser chrome and shoves every section below this one. Section is
+   not the first homepage band, so 100svh is the section box itself.
+   Mobile grows (min-height) instead of clipping. */
 
+.tpa-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-block: clamp(0.75rem, 1.8vh, 1.25rem);
+}
 
+.tpa-shell {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  flex-direction: column;
+  gap: clamp(0.55rem, 1.2vh, 0.9rem);
+}
 
+.tpa-head {
+  flex-shrink: 0;
+}
 
+.tpa-section .tpa-head h2 {
+  margin-top: 0.35rem;
+  font-size: clamp(1.35rem, 1.05rem + 1.5vh, 2rem);
+  line-height: 1.15;
+}
+
+.tpa-lead {
+  margin-top: 0.4rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.tpa-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  gap: 0.7rem;
+}
+
+.tpa-section .tpa-rail {
+  grid-row: 1;
+  flex-shrink: 0;
+  margin: 0;
+  min-height: 0;
+}
+
+.tpa-section .tpa-steps {
+  margin: 0.4rem 0 0.45rem;
+}
+
+.tpa-boards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  gap: 0.7rem;
+  min-width: 0;
+  min-height: 0;
+}
+
+.tpa-live,
+.tpa-minis,
+.tpa-mini {
+  min-width: 0;
+  min-height: 0;
+}
+
+.tpa-live {
+  display: flex;
+  flex-direction: column;
+}
+
+.tpa-minis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, auto);
+  gap: 0.65rem;
+}
+
+.tpa-mini {
+  display: flex;
+  flex-direction: column;
+}
+
+.tpa-minis .tpa-card {
+  min-height: 0;
+}
+
+@media (max-width: 479px) {
+  .tpa-minis {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+}
+
+@media (min-width: 900px) {
+  /* svh, not dvh — same lock as Toolkit / NetworkConstellation. */
+  .tpa-section {
+    height: 100vh;
+    height: 100svh;
+    max-height: 100svh;
+    overflow: hidden;
+  }
+
+  .tpa-shell {
+    height: 100%;
+    max-height: 100%;
+  }
+
+  .tpa-stage {
+    grid-template-rows: auto minmax(0, 1fr);
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .tpa-boards {
+    grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
+    grid-template-rows: minmax(0, 1fr);
+    height: 100%;
+  }
+
+  .tpa-live,
+  .tpa-minis {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .tpa-minis {
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .tpa-mini {
+    height: 100%;
+  }
+
+  .tpa-minis .tpa-card {
+    --tpa-body-h: 0px;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .tpa-minis .tpa-card-note {
+    height: 2.5rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .tpa-minis .tpa-card-body {
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  .tpa-minis .tpa-card-metric span:first-child {
+    font-size: clamp(1.15rem, 2.2vh, 1.5rem);
+  }
+
+  /* Fill the Live column without gutted chrome — wrap the existing desk. */
+  .tpa-section .smt-console,
+  .tpa-section .smt-console .lc-frame,
+  .tpa-section .smt-console .lc-bezel,
+  .tpa-section .smt-console .lc-screen {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    max-height: 100%;
+    flex-direction: column;
+  }
+
+  .tpa-section .smt-console .lc-bezel {
+    padding: 0.45rem;
+  }
+
+  .tpa-section .smt-console .lc-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+
+  .tpa-section .smt-console .two-track-chrome {
+    flex-shrink: 0;
+  }
+
+  .tpa-section .smt-desk {
+    flex: 1 1 auto;
+    min-height: 0;
+    gap: 0.5rem;
+    padding: 0.65rem 0.7rem 0.7rem;
+  }
+
+  .tpa-section .smt-split {
+    display: grid;
+    flex: 1 1 auto;
+    grid-template-columns: minmax(10rem, 0.92fr) minmax(0, 1.18fr);
+    min-height: 0;
+  }
+
+  .tpa-section .smt-split[data-map="false"] {
+    grid-template-columns: 1fr;
+  }
+
+  .tpa-section .smt-map-card,
+  .tpa-section .smt-list-card {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .tpa-section .smt-map-stage {
+    flex: 1 1 auto;
+    min-height: 7.5rem;
+    height: auto;
+  }
+
+  .tpa-section .smt-table-wrap {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+  }
+
+  .tpa-section .smt-top,
+  .tpa-section .smt-eventbar,
+  .tpa-section .smt-filters,
+  .tpa-section .smt-stats,
+  .tpa-section .smt-share,
+  .tpa-section .smt-loaded {
+    flex-shrink: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tpa-section .smt-console .lc-body,
+  .tpa-minis .tpa-card-body {
+    scroll-behavior: auto;
+  }
+}
+
+/* == Brokers SeatsFunds™ payout desk (sfp-*) 2026-08-19 ==
+   Live Console on /brokers after PaymentInfrastructureSection.
+   USDT / wallet rail is the hero. Qualitative Standard vs crypto switch.
+   No volume ladder, sale maths, or KPI amounts. Reserved path / ledger /
+   chips / feed slots so auto-run (sale → withhold → USDT transfer →
+   settled, plus a Standard contrast) never shifts layout. */
+
+.sfp-console .lc-screen {
+  height: clamp(40.5rem, 68vh, 48rem);
+  min-height: clamp(40.5rem, 68vh, 48rem);
+  max-height: clamp(40.5rem, 68vh, 48rem);
+}
+
+.sfp-body {
+  display: grid;
+  grid-template-rows: auto auto minmax(min-content, 1fr) auto;
+  gap: 0.5rem;
+  height: 100%;
+  min-height: 0;
+}
+
+.sfp-sale {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  min-height: 3.2rem;
+}
+
+.sfp-sale-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+
+.sfp-sale-copy strong {
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.sfp-sale-copy span {
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: var(--muted-foreground);
+}
+
+.sfp-sale-rail {
+  display: flex;
+  flex-shrink: 0;
+  min-width: 6.6rem;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.08rem;
+}
+
+.sfp-sale-rail span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: none;
+  color: var(--muted-foreground);
+}
+
+.sfp-sale-rail strong {
+  min-width: 5.5rem;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: right;
+  color: var(--foreground);
+}
+
+.sfp-sale-rail[data-usdt="true"] strong {
+  color: var(--primary);
+}
+
+.sfp-pipe {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.35rem;
+  flex-shrink: 0;
+  margin: 0;
+  min-height: 3.55rem;
+  list-style: none;
+  padding: 0;
+}
+
+.sfp-pipe-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 0.35rem;
+  row-gap: 0.04rem;
+  border-radius: 0.6rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  background: color-mix(in oklab, var(--background) 72%, white);
+  padding: 0.4rem 0.45rem;
+}
+
+.sfp-pipe-step[data-done="true"] {
+  border-color: color-mix(in oklab, var(--primary) 22%, var(--border));
+}
+
+.sfp-pipe-step[data-current="true"] {
+  border-color: color-mix(in oklab, var(--primary) 34%, var(--border));
+  background: color-mix(in oklab, var(--primary) 8%, white);
+}
+
+.sfp-pipe-icon {
+  display: grid;
+  grid-row: 1 / span 2;
+  place-items: center;
+  color: var(--muted-foreground);
+}
+
+.sfp-pipe-step[data-done="true"] .sfp-pipe-icon,
+.sfp-pipe-step[data-current="true"] .sfp-pipe-icon {
+  color: var(--primary);
+}
+
+.sfp-pipe-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: none;
+  color: var(--foreground);
+}
+
+.sfp-pipe-detail {
+  grid-column: 2;
+  overflow: hidden;
+  font-size: 0.62rem;
+  line-height: 1.3;
+  color: var(--muted-foreground);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sfp-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 0.5rem;
+  min-height: min-content;
+}
+
+.sfp-canvas,
+.sfp-tracks {
+  display: flex;
+  flex-direction: column;
+}
+
+.sfp-canvas {
+  min-height: 0;
+  height: 100%;
+}
+
+.sfp-tracks {
+  height: auto;
+  min-height: min-content;
+  gap: 0.4rem;
+  overflow: visible;
+  padding: 0.5rem 0.55rem;
+}
+
+.sfp-tracks > .lc-panel-head {
+  flex-shrink: 0;
+  width: 100%;
+  min-height: 1.35rem;
+  margin: 0;
+  padding: 0;
+}
+
+.sfp-canvas[data-pulse="true"] {
+  border-color: color-mix(in oklab, var(--primary) 34%, var(--border));
+}
+
+.sfp-path {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1.65rem minmax(0, 1fr) 1.65rem minmax(0, 1fr);
+  align-items: stretch;
+  flex-shrink: 0;
+  min-height: 4.55rem;
+  margin: 0;
+}
+
+.sfp-node {
+  display: flex;
+  min-width: 0;
+  min-height: 4.55rem;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.18rem;
+  border-radius: 0.6rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+  background: color-mix(in oklab, var(--background) 80%, white);
+  padding: 0.45rem 0.5rem;
+}
+
+.sfp-node[data-state="done"] {
+  border-color: color-mix(in oklab, var(--primary) 22%, var(--border));
+}
+
+.sfp-node[data-state="current"] {
+  border-color: color-mix(in oklab, var(--primary) 36%, var(--border));
+  background: color-mix(in oklab, var(--primary) 8%, white);
+}
+
+.sfp-node[data-dest="true"][data-state="current"] {
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 20%, transparent);
+}
+
+.sfp-console[data-stage="settle"][data-rail="usdt"] .sfp-node[data-dest="true"] {
+  animation: sfp-settle-pulse 1.6s ease-in-out infinite;
+}
+
+.sfp-node strong {
+  overflow: hidden;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sfp-node span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  color: var(--muted-foreground);
+}
+
+.sfp-node[data-state="current"] span,
+.sfp-node[data-state="done"] span {
+  color: var(--primary);
+}
+
+.sfp-link {
+  position: relative;
+  align-self: center;
+  width: 1.65rem;
+  height: 2px;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--foreground) 12%, transparent);
+}
+
+.sfp-link[data-live="true"] {
+  background: color-mix(in oklab, var(--primary) 38%, transparent);
+}
+
+.sfp-packet {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: none;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: var(--primary);
+  transform: translate(-50%, -50%);
+}
+
+.sfp-link[data-live="true"] .sfp-packet {
+  display: block;
+  animation: sfp-packet-move 1.35s linear infinite;
+}
+
+.sfp-chips {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+  flex-shrink: 0;
+  min-height: 1.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sfp-chips li {
+  display: grid;
+  min-height: 1.7rem;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  color: var(--muted-foreground);
+}
+
+.sfp-chips li[data-on="true"] {
+  border-color: color-mix(in oklab, var(--primary) 34%, var(--border));
+  background: color-mix(in oklab, var(--primary) 10%, white);
+  color: var(--primary);
+}
+
+.sfp-ledger {
+  display: grid;
+  grid-template-rows: repeat(4, 1.4rem);
+  gap: 0.2rem;
+  min-height: 6.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sfp-ledger li {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 1.4rem;
+  overflow: hidden;
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: var(--muted-foreground);
+}
+
+.sfp-ledger li[data-done="true"],
+.sfp-ledger li[data-current="true"] {
+  color: var(--foreground);
+}
+
+.sfp-ledger li[data-current="true"] {
+  color: var(--primary);
+}
+
+.sfp-ledger li span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sfp-track-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-content: start;
+  justify-items: stretch;
+  gap: 0.45rem;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  flex: 0 0 auto;
+}
+
+.sfp-track {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  flex-direction: column;
+  align-items: stretch;
+  justify-self: stretch;
+  align-self: stretch;
+  gap: 0.14rem;
+  overflow: visible;
+  border-radius: 0.65rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+  background: color-mix(in oklab, var(--background) 80%, white);
+  padding: 0.45rem 0.55rem 0.5rem;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  appearance: none;
+}
+
+.sfp-track[data-hero="true"] {
+  min-height: 0;
+}
+
+.sfp-track:hover,
+.sfp-track:focus-visible {
+  border-color: color-mix(in oklab, var(--primary) 28%, var(--border));
+  outline: none;
+}
+
+.sfp-track[data-active="true"] {
+  border-color: color-mix(in oklab, var(--primary) 36%, var(--border));
+  background: color-mix(in oklab, var(--primary) 8%, white);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primary) 18%, transparent);
+}
+
+.sfp-track-top {
+  display: flex;
+  flex-shrink: 0;
+  width: 100%;
+  min-height: 1.2rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.sfp-track-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primary) 12%, transparent);
+  color: var(--primary);
+}
+
+.sfp-track-top em {
+  flex-shrink: 0;
+  max-width: calc(100% - 1.6rem);
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2rem;
+  text-overflow: ellipsis;
+  text-transform: none;
+  white-space: nowrap;
+  color: var(--muted-foreground);
+}
+
+.sfp-track[data-active="true"] .sfp-track-top em {
+  color: var(--primary);
+}
+
+.sfp-track strong {
+  width: 100%;
+  margin-top: 0.04rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sfp-track-settle {
+  width: 100%;
+  overflow: visible;
+  font-size: 0.62rem;
+  line-height: 1.3;
+  color: var(--muted-foreground);
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.sfp-track-fee {
+  width: 100%;
+  flex-shrink: 0;
+  margin-top: 0.08rem;
+  padding-top: 0.1rem;
+  overflow: visible;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: normal;
+  overflow-wrap: break-word;
+  color: var(--foreground) !important;
+}
+
+.sfp-track[data-active="true"] .sfp-track-fee {
+  color: var(--primary) !important;
+}
+
+.sfp-confirm {
+  flex-shrink: 0;
+}
+
+.sfp-confirm[data-pulse="true"] {
+  border-color: color-mix(in oklab, var(--primary) 34%, var(--border));
+}
+
+.sfp-confirm-line {
+  min-height: 2.15rem;
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--foreground);
+}
+
+.sfp-feed {
+  display: grid;
+  grid-template-rows: repeat(4, 1.15rem);
+  gap: 0.08rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sfp-feed li {
+  overflow: hidden;
+  font-size: 0.62rem;
+  line-height: 1.15rem;
+  color: color-mix(in oklab, var(--muted-foreground) 55%, transparent);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0.45;
+}
+
+.sfp-feed li[data-on="true"] {
+  color: var(--foreground);
+  opacity: 1;
+}
+
+@keyframes sfp-packet-move {
+  from {
+    left: 0;
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  82% {
+    opacity: 1;
+  }
+  to {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes sfp-settle-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 16%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary) 32%, transparent);
+  }
+}
+
+@media (max-width: 1023px) {
+  .sfp-console .lc-screen {
+    height: clamp(42rem, 84vh, 52rem);
+    min-height: clamp(42rem, 84vh, 52rem);
+    max-height: clamp(42rem, 84vh, 52rem);
+  }
+
+  .sfp-main {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+  }
+
+  .sfp-canvas {
+    min-height: 16.5rem;
+  }
+
+  .sfp-track-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    min-height: 0;
+  }
+
+  .sfp-track,
+  .sfp-track[data-hero="true"] {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .sfp-console .lc-screen {
+    height: auto;
+    min-height: 36rem;
+    max-height: none;
+  }
+
+  .sfp-body {
+    grid-template-rows: none;
+    height: auto;
+  }
+
+  .sfp-pipe {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 7.2rem;
+  }
+
+  .sfp-pipe-detail {
+    white-space: normal;
+  }
+
+  .sfp-sale {
+    flex-direction: column;
+    min-height: 4.6rem;
+  }
+
+  .sfp-sale-rail {
+    align-items: flex-start;
+  }
+
+  .sfp-sale-rail strong {
+    text-align: left;
+  }
+
+  .sfp-path {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 0.7rem auto 0.7rem auto;
+    min-height: 15.4rem;
+  }
+
+  .sfp-link {
+    width: 2px;
+    height: 0.7rem;
+    justify-self: center;
+  }
+
+  .sfp-packet {
+    left: 50%;
+    top: 0;
+  }
+
+  .sfp-link[data-live="true"] .sfp-packet {
+    animation-name: sfp-packet-move-y;
+  }
+
+  .sfp-track-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    min-height: 0;
+  }
+
+  .sfp-track,
+  .sfp-track[data-hero="true"] {
+    min-height: 0;
+  }
+
+  .sfp-ledger {
+    min-height: 8.4rem;
+    grid-template-rows: repeat(4, minmax(1.8rem, auto));
+  }
+
+  .sfp-ledger li {
+    min-height: 1.8rem;
+    align-items: start;
+  }
+
+  .sfp-ledger li span:last-child {
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sfp-console .lc-spin,
+  .sfp-console .lc-panel-dot,
+  .sfp-packet,
+  .sfp-console[data-stage="settle"][data-rail="usdt"] .sfp-node[data-dest="true"] {
+    animation: none;
+  }
+
+  .sfp-link[data-live="true"] .sfp-packet {
+    display: none;
+  }
+}
+
+@keyframes sfp-packet-move-y {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  82% {
+    opacity: 1;
+  }
+  to {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* == TravelTools custom scrollbar (tpa-section) 2026-08-19 ==
+   Homepage ToolsGrid quote desk only. Reuses the site scrollbar
+   vocabulary (scrollbar-width / scrollbar-color / ::-webkit-scrollbar)
+   with brand --primary thumb on a light desk track. Covers Live Seat
+   Map console body, listings table, map legend, mini-console panes. */
+
+.tpa-section :is(.smt-table-wrap, .smt-legend, .lc-body, .tpa-card-body) {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) color-mix(in oklab, var(--surface) 70%, white);
+}
+
+.tpa-section :is(.smt-table-wrap, .smt-legend, .lc-body, .tpa-card-body)::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.tpa-section :is(.smt-table-wrap, .smt-legend, .lc-body, .tpa-card-body)::-webkit-scrollbar-track {
+  background: color-mix(in oklab, var(--surface) 70%, white);
+  border-radius: 999px;
+}
+
+.tpa-section :is(.smt-table-wrap, .smt-legend, .lc-body, .tpa-card-body)::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+.tpa-section :is(.smt-table-wrap, .smt-legend, .lc-body, .tpa-card-body)::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-deep);
+}
+
+.tpa-section :is(.smt-table-wrap, .smt-legend, .lc-body, .tpa-card-body)::-webkit-scrollbar-corner {
+  background: color-mix(in oklab, var(--surface) 70%, white);
+}
+
+/* == TravelTools margin popover + desk spacing (tpa-section) 2026-08-19 ==
+   % Margin card was `position:absolute; right:0` on `.smt-margin-wrap` (the
+   button). At 15.5rem it hung left of the listings column and was cropped by
+   `.tpa-live` / `.smt-list-card` / `.lc-screen` overflow:hidden. Anchor to the
+   full listings header instead; keep overflow on the table/map scroll bodies.
+   Absolute overlay — does not grow the 100svh section. */
+
+.smt-list-head {
+  position: relative;
+  z-index: 6;
+  overflow: visible;
+}
+
+.smt-margin-wrap {
+  position: static;
+}
+
+.smt-margin-pop {
+  top: calc(100% + 0.45rem);
+  right: 0;
+  left: auto;
+  width: min(17rem, 100%);
+  max-width: 100%;
+  box-sizing: border-box;
+  z-index: 14;
+  padding: 0.9rem 1rem 1rem;
+}
+
+.smt-margin-title {
+  margin: 0 0 0.65rem;
+  overflow: visible;
+  white-space: normal;
+}
+
+.smt-stepper {
+  gap: 0.4rem;
+}
+
+.smt-margin-note {
+  margin: 0.65rem 0 0.8rem;
+  overflow: visible;
+  white-space: normal;
+}
+
+.tpa-section {
+  --tpa-gap: 0.75rem;
+  --tpa-gap-inner: 0.6rem;
+}
+
+.tpa-shell,
+.tpa-stage,
+.tpa-boards {
+  gap: var(--tpa-gap);
+}
+
+.tpa-minis {
+  gap: var(--tpa-gap-inner);
+}
+
+.tpa-section .tpa-rail {
+  padding: 0.75rem 0.85rem 0.8rem;
+}
+
+@media (min-width: 900px) {
+  .tpa-live {
+    overflow: hidden;
+  }
+
+  .tpa-section .smt-list-card {
+    overflow: visible;
+  }
+
+  .tpa-section .smt-map-card {
+    overflow: hidden;
+  }
+
+  .tpa-section .smt-list-head,
+  .tpa-section .smt-map-head {
+    flex-shrink: 0;
+    padding: 0.6rem 0.75rem 0.5rem;
+  }
+
+  .tpa-section .smt-console .lc-bezel {
+    padding: 0.5rem;
+  }
+
+  .tpa-section .smt-console .lc-body {
+    padding: 0;
+  }
+
+  .tpa-section .smt-desk {
+    gap: var(--tpa-gap-inner);
+    padding: 0.7rem 0.75rem 0.75rem;
+  }
+
+  .tpa-section .smt-split {
+    gap: var(--tpa-gap-inner);
+  }
+
+  .tpa-section .smt-table-wrap {
+    overflow: auto;
+    border-radius: 0 0 0.85rem 0.85rem;
+  }
+}
+
+/* == Global custom scrollbar 2026-08-19 ==
+   One recipe for html / body / every overflow pane.
+   Thumb: --primary (hover --primary-deep). Track: light
+   --surface / --background mix. Dark chrome (.bh-hero,
+   .bg-dark, .toolkit) swaps only the track to a --dark mix
+   so a white gutter does not sit on dark sections; thumb
+   stays --primary. Firefox: scrollbar-width thin +
+   scrollbar-color. WebKit: ~7px rounded.
+   Does not change overflow or layout. Hidden-scrollbar
+   hosts (.hero-eco-pipeline, .partner-tabs,
+   .how-it-desktop-viewport scrollbar-width: none) stay hidden.
+   Class-colored thumbs below are restated so cascade matches. */
+
+:root {
+  --sb-thumb: var(--primary);
+  --sb-thumb-hover: var(--primary-deep);
+  --sb-track: color-mix(in oklab, var(--surface) 70%, var(--background));
+}
+
+html,
+body,
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sb-track);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--sb-thumb);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--sb-track);
+}
+
+.bh-hero,
+.bg-dark,
+.toolkit {
+  --sb-track: color-mix(in oklab, var(--dark) 82%, var(--background));
+}
+
+.toolkit-rail-list,
+.ec-catalog-scroll,
+.ec-catalog-scroll-x,
+.pay-dash-scroll-x,
+.er-scroll,
+.ds-scroll,
+.apidoc-nav,
+.tpa-section :is(.smt-table-wrap, .smt-legend, .lc-body, .tpa-card-body) {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+}
+
+.toolkit-rail-list::-webkit-scrollbar-thumb,
+.ec-catalog-scroll::-webkit-scrollbar-thumb,
+.ec-catalog-scroll-x::-webkit-scrollbar-thumb,
+.pay-dash-scroll-x::-webkit-scrollbar-thumb,
+.apidoc-nav::-webkit-scrollbar-thumb,
+.how-it-desktop-viewport::-webkit-scrollbar-thumb,
+.tpa-section :is(.smt-table-wrap, .smt-legend, .lc-body, .tpa-card-body)::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--sb-thumb);
+}
+
+.toolkit-rail-list::-webkit-scrollbar-thumb:hover,
+.ec-catalog-scroll::-webkit-scrollbar-thumb:hover,
+.ec-catalog-scroll-x::-webkit-scrollbar-thumb:hover,
+.pay-dash-scroll-x::-webkit-scrollbar-thumb:hover,
+.apidoc-nav::-webkit-scrollbar-thumb:hover,
+.how-it-desktop-viewport::-webkit-scrollbar-thumb:hover,
+.tpa-section :is(.smt-table-wrap, .smt-legend, .lc-body, .tpa-card-body)::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
+}
+
+.toolkit-rail-list::-webkit-scrollbar-track,
+.ec-catalog-scroll::-webkit-scrollbar-track,
+.ec-catalog-scroll-x::-webkit-scrollbar-track,
+.pay-dash-scroll-x::-webkit-scrollbar-track,
+.apidoc-nav::-webkit-scrollbar-track,
+.tpa-section :is(.smt-table-wrap, .smt-legend, .lc-body, .tpa-card-body)::-webkit-scrollbar-track,
+.tpa-section :is(.smt-table-wrap, .smt-legend, .lc-body, .tpa-card-body)::-webkit-scrollbar-corner {
+  background: var(--sb-track);
+  border-radius: 999px;
+}
+
+/* ── Stats wallet shuffle (homepage #network-stats) ── */
+/* Idle: four cards fanned as a deck. On view: peel, riffle, settle into grid.
+   Grid cells always occupy the settled height — transforms only. */
+
+.stats-wallet {
+  overflow: hidden;
+}
+
+.stats-wallet-shade {
+  background:
+    radial-gradient(
+      70% 55% at 88% 108%,
+      color-mix(in oklab, var(--primary) 16%, transparent) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      55% 45% at 8% -8%,
+      color-mix(in oklab, var(--surface) 88%, var(--primary) 8%) 0%,
+      transparent 70%
+    );
+}
+
+.stats-wallet-stage {
+  --sw-gap: 0.85rem;
+  --sw-scale: 0.88;
+  --sw-dur: 920ms;
+  --sw-ease: cubic-bezier(0.33, 0.08, 0.22, 1);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sw-gap);
+  padding-block: 1.15rem;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.stats-wallet-stage::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+  width: min(16rem, 72%);
+  height: 3.75rem;
+  pointer-events: none;
+  translate: -50% 55%;
+  border-radius: 999px;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--primary) 28%, transparent),
+    transparent 78%
+  );
+  opacity: 0.42;
+  filter: blur(6px);
+  transition: opacity 0.55s var(--sw-ease);
+}
+
+.stats-wallet[data-phase="shuffle"] .stats-wallet-stage::after,
+.stats-wallet[data-phase="spread"] .stats-wallet-stage::after {
+  opacity: 0;
+}
+
+.stats-wallet-card {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  min-height: 11.25rem;
+  transform-origin: 50% 55%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.stats-wallet-edge {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 2;
+  width: 0.28rem;
+  border-radius: 0.875rem 0 0 0.875rem;
+  background: var(--primary);
+  pointer-events: none;
+}
+
+.stats-wallet-card-face {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: inherit;
+  overflow: hidden;
+  padding: 1rem 1rem 1.05rem 1.2rem;
+  border: 1px solid color-mix(in oklab, var(--border) 78%, var(--primary) 22%);
+  border-radius: 0.875rem;
+  background: var(--card);
+  box-shadow:
+    var(--shadow-card),
+    0 18px 36px -28px color-mix(in oklab, var(--primary) 32%, transparent);
+}
+
+.stats-wallet-card-face::before {
+  content: "";
+  position: absolute;
+  right: -1.4rem;
+  bottom: -1.6rem;
+  width: 6.5rem;
+  height: 5.5rem;
+  pointer-events: none;
+  border-radius: 1.25rem;
+  background: color-mix(in oklab, var(--primary-soft) 70%, transparent);
+  transform: rotate(-18deg);
+  opacity: 0.7;
+}
+
+.stats-wallet-card[data-hero="true"] .stats-wallet-card-face {
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in oklab, var(--primary-soft) 88%, white) 0%,
+      var(--card) 58%
+    );
+  border-color: color-mix(in oklab, var(--primary) 28%, var(--border));
+}
+
+.stats-wallet-card-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.stats-wallet-index {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: color-mix(in oklab, var(--muted-foreground) 80%, var(--primary) 20%);
+}
+
+.stats-wallet-icon {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.55rem;
+  background: color-mix(in oklab, var(--primary-soft) 92%, var(--primary) 8%);
+  color: var(--primary);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 18%, transparent);
+}
+
+.stats-wallet-value {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: clamp(1.65rem, 4.6vw, 2.15rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--primary-deep);
+}
+
+.stats-wallet-card[data-hero="true"] .stats-wallet-value {
+  font-size: clamp(1.85rem, 5.2vw, 2.55rem);
+}
+
+.stats-wallet-label {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--foreground);
+}
+
+.stats-wallet-desc {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}
+
+/* Wallet fan — 2×2 (375 / tablet). % is the card itself, so 50% + half-gap
+   moves each cell toward the stage centre. */
+.stats-wallet-card:nth-child(1) {
+  --sw-x: calc(50% + var(--sw-gap) / 2 - 6px);
+  --sw-y: calc(50% + var(--sw-gap) / 2 + 8px);
+  --sw-r: -12deg;
+  --sw-peel-r: -20deg;
+  --sw-mid-x: 26%;
+  --sw-mid-y: -20%;
+  --sw-mid-r: 16deg;
+  z-index: 1;
+}
+
+.stats-wallet-card:nth-child(2) {
+  --sw-x: calc(-50% - var(--sw-gap) / 2 + 4px);
+  --sw-y: calc(50% + var(--sw-gap) / 2 - 4px);
+  --sw-r: -4deg;
+  --sw-peel-r: 10deg;
+  --sw-mid-x: -30%;
+  --sw-mid-y: -16%;
+  --sw-mid-r: -14deg;
+  z-index: 2;
+}
+
+.stats-wallet-card:nth-child(3) {
+  --sw-x: calc(50% + var(--sw-gap) / 2 + 2px);
+  --sw-y: calc(-50% - var(--sw-gap) / 2 + 6px);
+  --sw-r: 6deg;
+  --sw-peel-r: 14deg;
+  --sw-mid-x: 20%;
+  --sw-mid-y: 22%;
+  --sw-mid-r: -12deg;
+  z-index: 3;
+}
+
+.stats-wallet-card:nth-child(4) {
+  --sw-x: calc(-50% - var(--sw-gap) / 2 - 4px);
+  --sw-y: calc(-50% - var(--sw-gap) / 2 - 2px);
+  --sw-r: 11deg;
+  --sw-peel-r: 18deg;
+  --sw-mid-x: -22%;
+  --sw-mid-y: 14%;
+  --sw-mid-r: 11deg;
+  z-index: 4;
+}
+
+.stats-wallet[data-phase="wallet"] .stats-wallet-card {
+  animation: none;
+  transform: translate3d(var(--sw-x), var(--sw-y), 0) rotate(var(--sw-r)) rotateX(7deg)
+    scale(var(--sw-scale));
+}
+
+.stats-wallet[data-phase="shuffle"] .stats-wallet-card {
+  animation: stats-wallet-deal var(--sw-dur) var(--sw-ease) both;
+  animation-delay: calc(var(--sw-i) * 75ms);
+}
+
+.stats-wallet[data-phase="shuffle"] .stats-wallet-card:nth-child(1) {
+  z-index: 5;
+}
+.stats-wallet[data-phase="shuffle"] .stats-wallet-card:nth-child(2) {
+  z-index: 4;
+}
+.stats-wallet[data-phase="shuffle"] .stats-wallet-card:nth-child(3) {
+  z-index: 3;
+}
+.stats-wallet[data-phase="shuffle"] .stats-wallet-card:nth-child(4) {
+  z-index: 2;
+}
+
+.stats-wallet[data-phase="spread"] .stats-wallet-card {
+  transform: none;
+  will-change: auto;
+  z-index: 1;
+}
+
+@keyframes stats-wallet-deal {
+  0% {
+    transform: translate3d(var(--sw-x), var(--sw-y), 0) rotate(var(--sw-r)) rotateX(7deg)
+      scale(var(--sw-scale));
+  }
+  24% {
+    transform: translate3d(var(--sw-x), calc(var(--sw-y) - 36px), 18px) rotate(var(--sw-peel-r))
+      rotateX(12deg) scale(1.05);
+  }
+  52% {
+    transform: translate3d(var(--sw-mid-x), var(--sw-mid-y), 24px) rotate(var(--sw-mid-r))
+      rotateX(4deg) scale(1.03);
+  }
+  78% {
+    transform: translate3d(0, -6px, 0) rotate(-1.4deg) rotateX(0deg) scale(1.01);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) rotateX(0deg) scale(1);
+  }
+}
+
+@media (min-width: 640px) {
+  .stats-wallet-stage {
+    --sw-gap: 1.1rem;
+    --sw-scale: 0.92;
+    padding-block: 1.35rem;
+  }
+
+  .stats-wallet-card {
+    min-height: 12.25rem;
+  }
+
+  .stats-wallet-card-face {
+    padding: 1.15rem 1.2rem 1.2rem 1.4rem;
+  }
+
+  .stats-wallet-desc {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .stats-wallet-stage {
+    --sw-gap: 1.2rem;
+    --sw-scale: 0.94;
+  }
+
+  .stats-wallet-card {
+    min-height: 13rem;
+  }
+
+  .stats-wallet-value {
+    font-size: 2.15rem;
+  }
+
+  .stats-wallet-card[data-hero="true"] .stats-wallet-value {
+    font-size: 2.55rem;
+  }
+}
+
+/* Desktop / 1440: one row. Fan toward the horizontal centre. */
+@media (min-width: 1024px) {
+  .stats-wallet-stage {
+    --sw-gap: 1.25rem;
+    --sw-scale: 0.96;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-block: 1.5rem;
+  }
+
+  .stats-wallet-card {
+    min-height: 16.25rem;
+  }
+
+  .stats-wallet-card-face {
+    padding: 1.25rem 1.25rem 1.35rem 1.5rem;
+  }
+
+  .stats-wallet-value {
+    margin-top: 1.35rem;
+    font-size: 2.35rem;
+  }
+
+  .stats-wallet-card[data-hero="true"] .stats-wallet-value {
+    font-size: 2.85rem;
+  }
+
+  .stats-wallet-label {
+    margin-top: 0.65rem;
+    font-size: 0.9375rem;
+  }
+
+  .stats-wallet-desc {
+    margin-top: 0.4rem;
+    max-width: 16.5rem;
+  }
+
+  .stats-wallet-card:nth-child(1) {
+    --sw-x: calc(1.5 * (100% + var(--sw-gap)) - 10px);
+    --sw-y: 14px;
+    --sw-r: -13deg;
+    --sw-peel-r: -22deg;
+    --sw-mid-x: 38%;
+    --sw-mid-y: -28%;
+    --sw-mid-r: 18deg;
+  }
+
+  .stats-wallet-card:nth-child(2) {
+    --sw-x: calc(0.5 * (100% + var(--sw-gap)) + 4px);
+    --sw-y: -8px;
+    --sw-r: -5deg;
+    --sw-peel-r: 8deg;
+    --sw-mid-x: -18%;
+    --sw-mid-y: -32%;
+    --sw-mid-r: -16deg;
+  }
+
+  .stats-wallet-card:nth-child(3) {
+    --sw-x: calc(-0.5 * (100% + var(--sw-gap)) - 2px);
+    --sw-y: 10px;
+    --sw-r: 5deg;
+    --sw-peel-r: 14deg;
+    --sw-mid-x: 16%;
+    --sw-mid-y: 24%;
+    --sw-mid-r: -10deg;
+  }
+
+  .stats-wallet-card:nth-child(4) {
+    --sw-x: calc(-1.5 * (100% + var(--sw-gap)) + 8px);
+    --sw-y: -6px;
+    --sw-r: 12deg;
+    --sw-peel-r: 20deg;
+    --sw-mid-x: -36%;
+    --sw-mid-y: 18%;
+    --sw-mid-r: 12deg;
+  }
+}
+
+@media (min-width: 1440px) {
+  .stats-wallet-stage {
+    --sw-gap: 1.5rem;
+  }
+
+  .stats-wallet-card {
+    min-height: 17rem;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .stats-wallet[data-phase="spread"] .stats-wallet-card {
+    transition: transform 0.38s var(--sw-ease);
+  }
+
+  .stats-wallet[data-phase="spread"] .stats-wallet-card:hover {
+    transform: translateY(-7px);
+    z-index: 3;
+  }
+
+  .stats-wallet[data-phase="spread"] .stats-wallet-card:hover .stats-wallet-card-face {
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@media (max-width: 479px) {
+  .stats-wallet-stage {
+    --sw-scale: 0.84;
+    --sw-gap: 0.7rem;
+    padding-block: 0.85rem;
+  }
+
+  .stats-wallet-card {
+    min-height: 10.75rem;
+  }
+
+  .stats-wallet-card-face {
+    padding: 0.85rem 0.8rem 0.9rem 1.05rem;
+  }
+
+  .stats-wallet-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stats-wallet-card,
+  .stats-wallet[data-phase="wallet"] .stats-wallet-card,
+  .stats-wallet[data-phase="shuffle"] .stats-wallet-card,
+  .stats-wallet[data-phase="spread"] .stats-wallet-card {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .stats-wallet-stage::after {
+    display: none;
+  }
+}
+
+/* Testimonials card top-cap (thin diagonal bar only — not a full-card fill) */
+.testimonials-card {
+  position: relative;
+  overflow: visible;
+  border-radius: 1.25rem;
+  border-color: color-mix(in oklab, #4be5ae 14%, white);
+  /* background: color-mix(in oklab, #4be5ae 10%, white); */
+  padding: 2.5rem 1.35rem 1.25rem;
+}
+
+.testimonials-card-cap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1.35rem;
+  overflow: hidden;
+  border-radius: 1.25rem 1.25rem 0 0;
+  pointer-events: none;
+}
+
+.testimonials-card-cap-grey,
+.testimonials-card-cap-teal {
+  position: absolute;
+  inset: 0;
+}
+
+.testimonials-card-cap-grey {
+  background: #595c62;
+  clip-path: polygon(0 0, 58% 0, 38% 100%, 0 100%);
+}
+
+.testimonials-card-cap-teal {
+  background: #4be5ae;
+  clip-path: polygon(59% 0, 100% 0, 100% 100%, 39% 100%);
+}
+
+.testimonials-card-avatar {
+  display: flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: color-mix(in oklab, #4be5ae 18%, white);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: color-mix(in oklab, #4be5ae 38%, #16382c);
+}
+
+.testimonials-card-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #595c62;
+}
+
+.testimonials-card-role {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: color-mix(in oklab, #595c62 62%, white);
+}
+
+.testimonials-card-stars {
+  display: flex;
+  gap: 0.125rem;
+  margin-top: 0.75rem;
+  color: #4be5ae;
+}
+
+.testimonials-card-quote {
+  margin-top: 0.75rem;
+  font-size: 13px;
+  line-height: 1.625;
+  color: #3d4044;
+}
 

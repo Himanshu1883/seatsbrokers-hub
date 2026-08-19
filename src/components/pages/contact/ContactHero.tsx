@@ -10,7 +10,7 @@ export function ContactHero() {
         <Reveal className="ct-hero-copy min-w-0">
           <div className="bh-copy">
             <p className="section-eyebrow text-primary">Contact</p>
-            <h1 className="bh-title ct-hero-title">Talk to Our Team</h1>
+            <h1 className="bh-title ct-hero-title">Talk to our team</h1>
             <p className="bh-body">
               Whether you are a ticket broker, marketplace, B2B partner or technology
               provider — our team is ready to help you connect your ticket operation to

@@ -50,7 +50,7 @@ export function WebhookDeliveryConsole() {
 
   return (
     <div ref={setRef} className="whk-console" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / api / webhooks" status="SYNC" icon={Webhook}>
+      <ConsoleShell path="seatsbrokers / api / webhooks" status="Sync" icon={Webhook}>
         <div className="whk-stats">
           {stats.map((stat) => (
             <div key={stat.label} className="lc-stat">

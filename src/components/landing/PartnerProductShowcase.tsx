@@ -188,7 +188,7 @@ export function PartnerProductShowcase() {
                   data-active={on ? "true" : "false"}
                   aria-hidden={on ? undefined : true}
                 >
-                  <div className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-mono text-[10px] font-bold tracking-[0.16em] text-primary uppercase">
+                  <div className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-mono text-[10px] font-bold tracking-[0.16em] text-primary ">
                     <PanelIcon className="size-3.5" aria-hidden />
                     {s.badge}
                   </div>
@@ -216,7 +216,7 @@ export function PartnerProductShowcase() {
                     <button
                       type="button"
                       onClick={() => setActive((prev) => (prev + 1) % slides.length)}
-                      className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.14em] text-primary uppercase"
+                      className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.14em] text-primary"
                       tabIndex={on ? undefined : -1}
                     >
                       Next screen
@@ -235,10 +235,10 @@ export function PartnerProductShowcase() {
                 <span className="size-2.5 rounded-full bg-[#febc2e]" />
                 <span className="size-2.5 rounded-full bg-[#28c840]" />
               </span>
-              <span className="truncate font-mono text-[10px] tracking-[0.12em] text-muted-foreground uppercase">
+              <span className="truncate font-mono text-[10px] tracking-[0.12em] text-muted-foreground ">
                 app.seatsbrokers.com / {slide.id}
               </span>
-              <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.14em] text-primary uppercase">
+              <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.14em] text-primary ">
                 <span className="partner-live-dot" aria-hidden />
                 live
               </span>

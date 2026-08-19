@@ -15,9 +15,9 @@ export const aboutHeroPoints = [
 ] as const;
 
 export const aboutPageCtas = [
-  { label: "Explore Our Technology", to: "/platform" },
-  { label: "Become a Partner", to: "/brokers" },
-  { label: "Talk to Our Team", to: "/contact" },
+  { label: "Explore our technology", to: "/platform" },
+  { label: "Become a partner", to: "/brokers" },
+  { label: "Talk to our team", to: "/contact" },
 ] as const;
 
 export const aboutHeroStage = {
@@ -50,7 +50,7 @@ export const aboutDataSignals = [
 ] as const;
 
 export const aboutKnowledgeCopy = {
-  eyebrow: "We Know Ticketing. We Build Technology.",
+  eyebrow: "We know ticketing. We build technology.",
   title: "30 Years of Industry Knowledge. Rebuilt for the AI Era.",
   intro:
     "The ticketing industry generates enormous amounts of data. But data alone doesn't create intelligence. SeatsBrokers is building technology that can understand this data, connect it and turn it into meaningful actions.",
@@ -61,7 +61,7 @@ export const aboutKnowledgeCopy = {
 } as const;
 
 export const aboutVisionCopy = {
-  eyebrow: "Our Vision",
+  eyebrow: "Our vision",
   title: "To Build the Intelligence Layer for the Global Ticketing Industry.",
   intro: "We believe the future of ticketing will not be powered by disconnected systems. It will be powered by intelligent technology.",
   lines: [
@@ -75,7 +75,7 @@ export const aboutVisionCopy = {
 } as const;
 
 export const aboutCapabilitiesCopy = {
-  eyebrow: "AI-Powered Ticketing Infrastructure",
+  eyebrow: "AI-powered ticketing infrastructure",
   title: "Intelligence Behind Every Transaction",
   intro: "Our technology is designed to bring intelligence into every stage of the ticketing lifecycle.",
   contractKicker: "The lifecycle",
@@ -129,7 +129,7 @@ export const aboutCapabilities = [
 ] as const;
 
 export const aboutOverviewCopy = {
-  eyebrow: "One Intelligent Technology Ecosystem",
+  eyebrow: "One intelligent technology ecosystem",
   title: "Everything Connected. Everything Smarter.",
   intro: "SeatsBrokers brings multiple technology capabilities together into one ecosystem.",
   dockKicker: "In the ecosystem",
@@ -235,7 +235,7 @@ export const aboutSurfaces = [
 ] as const;
 
 export const aboutPipelineCopy = {
-  eyebrow: "From Data to Intelligence",
+  eyebrow: "From data to intelligence",
   title: "Data Is the Foundation. AI Is the Future.",
   body: "Every ticket transaction creates data. Every event creates data. Every price change creates data. Every marketplace creates data. SeatsBrokers is building technology that transforms this enormous amount of information into intelligence.",
   detail:
@@ -320,7 +320,7 @@ export const aboutPipelineFeed = [
 ] as const;
 
 export const aboutAudiencesCopy = {
-  eyebrow: "Built for the Modern Ticketing Business",
+  eyebrow: "Built for the modern ticketing business",
   title: "Technology for the businesses that power the global event economy.",
   intro: "SeatsBrokers provides technology for the businesses that power the global event economy.",
 } as const;
@@ -409,7 +409,7 @@ export const aboutPrinciples = [
 ] as const;
 
 export const aboutStackCopy = {
-  eyebrow: "Our Technology Stack",
+  eyebrow: "Our technology stack",
   title: "The Building Blocks of Intelligent Ticketing",
   intro: "The layers SeatsBrokers builds on — from machine intelligence to real-time systems.",
   contractKicker: "The stack",
@@ -463,7 +463,7 @@ export const aboutStack = [
 ] as const;
 
 export const aboutJourneyCopy = {
-  eyebrow: "Our Journey",
+  eyebrow: "Our journey",
   title: "From Ticketing Expertise to AI Technology",
   intro:
     "We began with knowledge of how ticketing works. The industry moved to digital marketplaces and global distribution. We built technology around the real problems — and now we are taking the next step with AI.",
@@ -551,7 +551,7 @@ export const aboutChapters = [
 ] as const;
 
 export const aboutBuildingCopy = {
-  eyebrow: "What We Are Building",
+  eyebrow: "What we are building",
   title: "The Intelligent Operating System for Ticketing",
   intro:
     "We envision a future where a ticket business doesn't need to manually monitor hundreds of marketplaces, analyse thousands of prices or spend hours managing repetitive operations. Instead, intelligent technology can help.",
@@ -570,7 +570,7 @@ export const aboutBuildingVerbs = [
 ] as const;
 
 export const aboutMissionCopy = {
-  eyebrow: "Our Mission",
+  eyebrow: "Our mission",
   title: "Make the Global Ticketing Industry Intelligent.",
   intro:
     "Our mission is to combine AI, data and technology with deep industry knowledge to create the infrastructure that powers the next generation of ticket businesses.",
@@ -586,7 +586,7 @@ export const aboutTransforms = [
 ] as const;
 
 export const aboutFutureCopy = {
-  eyebrow: "The Future Is Intelligent",
+  eyebrow: "The future is intelligent",
   title: "Digital is not the final destination. Intelligence is.",
   intro: "The ticketing industry is becoming increasingly digital. But digital is not the final destination.",
   pairs: [

@@ -47,7 +47,7 @@ function MarketAnalyticsPage() {
         ]}
       />
       <SplitPanel
-        eyebrow="Sample Market Readout"
+        eyebrow="Sample market readout"
         title="Market Price · Demand · Inventory"
         body="Financial intelligence for ticket brokers — not an ERP export. Demo data shown below."
         items={[
@@ -58,7 +58,7 @@ function MarketAnalyticsPage() {
         ]}
       />
       <FeatureGrid
-        eyebrow="Broker & Partner Analytics"
+        eyebrow="Broker & partner analytics"
         title="Performance across your operation"
         items={[
           { title: "Broker analytics", body: "Sales, revenue, inventory, margins and marketplace performance." },

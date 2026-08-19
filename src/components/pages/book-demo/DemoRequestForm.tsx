@@ -110,7 +110,7 @@ export function DemoRequestForm() {
           </Reveal>
           <Reveal delay={80}>
             <div className="bdm-success rounded-2xl border border-border bg-card p-6 sm:p-8" role="status">
-              <p className="font-mono text-[11px] tracking-[0.18em] text-primary uppercase">
+              <p className="font-mono text-[11px] tracking-[0.18em] text-primary ">
                 Demo request
               </p>
               <dl className="bdm-success-dl">
@@ -181,11 +181,11 @@ export function DemoRequestForm() {
           </p>
           <dl className="mt-10 space-y-4 text-sm">
             <div>
-              <dt className="font-mono text-[11px] tracking-[0.18em] text-primary uppercase">Offices</dt>
+              <dt className="font-mono text-[11px] tracking-[0.18em] text-primary ">Offices</dt>
               <dd className="mt-2 text-foreground">{brand.offices}</dd>
             </div>
             <div>
-              <dt className="font-mono text-[11px] tracking-[0.18em] text-primary uppercase">Email</dt>
+              <dt className="font-mono text-[11px] tracking-[0.18em] text-primary ">Email</dt>
               <dd className="mt-2">
                 <a href={`mailto:${brand.email}`} className="text-foreground hover:text-primary">
                   {brand.email}

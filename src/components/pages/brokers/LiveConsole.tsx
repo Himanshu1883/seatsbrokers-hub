@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { ConsoleCopyPanel, type ConsoleCopyMeta } from "./ConsoleCopyPanel";
 import { AiPredictionsConsole } from "./AiPredictionsConsole";
+import { CryptoPayoutConsole } from "./CryptoPayoutConsole";
 import { MarketIntelligenceConsole } from "./MarketIntelligenceConsole";
 import { PosConsole } from "./PosConsole";
 import { modules } from "@/content/modules";
@@ -10,6 +11,7 @@ export type LiveConsoleVariant =
   | "pos"
   | "marketIntelligence"
   | "aiPredictions"
+  | "cryptoPayouts"
   | "payments"
   | "scheduling";
 
@@ -134,6 +136,45 @@ const variants: Record<LiveConsoleVariant, LiveConsoleMeta | null> = {
     tiltY: -6,
     tiltX: 2,
   },
+  cryptoPayouts: {
+    eyebrow: modules.funds.name,
+    title: "SeatsFunds™ — settle in USDT.",
+    body: "When a marketplace sale completes, SeatsFunds™ withholds the sale commission and sends the rest to your wallet on the USDT rail. No monthly fee. No listing fee. The standard bank rail stays available; the crypto rail adds an extra transfer fee and moves USDT on-chain. Commission steps down as lifetime volume grows — you do not re-negotiate the rate.",
+    detail:
+      "The desk follows one path: the sale posts, commission is taken from that sale only, then the armed rail settles. Arm USDT and the payout leaves as an on-chain transfer to the broker wallet, with a settlement confirmation on the desk. Arm Standard and the same sale settles on the bank rails already on the payments desk — no extra payout fee. Brokers open this console for the USDT rail; Standard is the quiet alternative.",
+    detailLabel: "How the USDT desk works",
+    highlights: [
+      { value: "USDT", label: "crypto rail" },
+      { value: "Wallet", label: "on-chain payout" },
+      { value: "Sale-only", label: "no monthly fee" },
+    ],
+    points: [
+      {
+        title: "USDT wallet rail",
+        body: "Arm the crypto rail and SeatsFunds™ routes the payout to the broker wallet as USDT — vault, on-chain transfer, then the wallet. That is the primary settlement story on this desk.",
+      },
+      {
+        title: "On-chain transfer",
+        body: "After commission is withheld, USDT leaves on the crypto rail. The desk shows queued, in flight, then confirmed — a live transfer, not a spreadsheet of units.",
+      },
+      {
+        title: "Sale commission only",
+        body: "The take is on each completed sale. There is no monthly retainer and no listing fee to keep inventory on the platform.",
+      },
+      {
+        title: "Standard still there",
+        body: "The bank rails from the payments desk remain available: same sale commission, no extra payout fee, sterling after the sale. Switch tracks when you want the quiet route.",
+      },
+      {
+        title: "Settlement confirmation",
+        body: "When the transfer clears, the desk pulses a confirmation — USDT landed in the wallet, or sterling settled on Standard. The feed writes the path, not a running total.",
+      },
+    ],
+    tone: "light",
+    console: <CryptoPayoutConsole />,
+    tiltY: -12,
+    tiltX: 4,
+  },
   payments: null,
   scheduling: null,
 };
@@ -171,10 +212,22 @@ function AiPricingIcon({ className }: { className?: string }) {
   );
 }
 
+function CryptoPayoutIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <rect x="3" y="9" width="18" height="11" rx="2" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M3 13h18" stroke="currentColor" strokeWidth="1.75" />
+      <circle cx="16.5" cy="7" r="3.25" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M16.5 5.5v3M15.35 7h2.3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 const badgeIcons: Partial<Record<LiveConsoleVariant, (props: { className?: string }) => ReactNode>> = {
   pos: PosConsoleIcon,
   marketIntelligence: MarketIntelIcon,
   aiPredictions: AiPricingIcon,
+  cryptoPayouts: CryptoPayoutIcon,
 };
 
 type LiveConsoleProps = {

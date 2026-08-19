@@ -141,7 +141,7 @@ export function NetworkConstellation() {
         <div className="nc-layout">
           <div className="nc-copy min-w-0">
             <Reveal>
-              <p className="flex items-center gap-2 font-mono text-sm tracking-[0.22em] text-primary uppercase">
+              <p className="flex items-center gap-2 font-mono text-sm tracking-[0.22em] text-primary ">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
@@ -281,7 +281,7 @@ export function NetworkConstellation() {
 
             <div className="nc-console mt-5">
               <div className="flex items-center gap-2.5">
-                <span className="font-mono text-xs tracking-[0.18em] text-primary uppercase">
+                <span className="font-mono text-xs tracking-[0.18em] text-primary ">
                   {active.label}
                 </span>
                 <span className="h-2 w-2 rounded-full bg-primary" />
@@ -303,7 +303,7 @@ export function NetworkConstellation() {
                 <strong className="text-2xl font-bold leading-none text-primary">
                   {active.metric}
                 </strong>
-                <span className="nc-metric-label mt-1.5 font-mono text-[10px] tracking-[0.14em] text-muted-foreground uppercase">
+                <span className="nc-metric-label mt-1.5 font-mono text-[10px] tracking-[0.14em] text-muted-foreground ">
                   <span className="nc-console-ghost" aria-hidden>
                     {longestMetricLabel}
                   </span>

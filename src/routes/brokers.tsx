@@ -61,6 +61,7 @@ function BrokersPage() {
     <PageShell>
       <BrokersHero />
       <PaymentInfrastructureSection />
+      <LiveConsole variant="cryptoPayouts" />
 
       <EventCatalogSection />
 

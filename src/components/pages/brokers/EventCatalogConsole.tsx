@@ -225,7 +225,7 @@ export function EventCatalogConsole() {
 
   return (
     <div ref={setRef} className="ec-catalog" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / event-catalog" status="SYNC" icon={CalendarDays}>
+      <ConsoleShell path="seatsbrokers / event-catalog" status="Sync" icon={CalendarDays}>
         <div className="ec-catalog-stats">
           {catalogStats.map((stat) => (
             <div key={stat.label} className="lc-stat">

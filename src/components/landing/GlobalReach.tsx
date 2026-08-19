@@ -46,7 +46,7 @@ export function GlobalReach() {
               ].map(([v, l]) => (
                 <div key={l} className="rounded-xl border border-border bg-card p-5">
                   <div className="font-mono text-xl font-bold break-words text-primary sm:text-2xl">{v}</div>
-                  <div className="mt-1.5 text-xs tracking-wide text-muted-foreground uppercase">
+                  <div className="mt-1.5 text-xs tracking-wide text-muted-foreground ">
                     {l}
                   </div>
                 </div>

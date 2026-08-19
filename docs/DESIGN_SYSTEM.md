@@ -35,9 +35,10 @@ Source of truth: `src/styles.css` (`@theme` + `:root` / `.dark`) and Google Font
 - `container-page` — max `94rem`, fluid horizontal padding
 - `container-nav` — full-width nav padding
 - `section-curve` — inset rounded section shell (almost every page section)
-- `section-eyebrow` — mono uppercase kicker
+- `section-eyebrow` — mono sentence-case kicker (user override: UI eyebrows are sentence case, not uppercase)
 - `reveal` — scroll fade/slide (`Reveal` in `src/hooks/use-scroll-motion.tsx`)
 - `lift` — hover lift + `--shadow-lift`
+- Custom scrollbar — global `--primary` thumb (`--primary-deep` hover) on `html` / `body` / overflow panes (`scrollbar-width: thin` + `scrollbar-color`; WebKit ~7px rounded). Light track is `--surface` / `--background`. Dark chrome (`.bh-hero`, `.bg-dark`, `.toolkit`) uses a `--dark` mix track so a white gutter does not sit on dark sections; thumb stays `--primary`. Do not add per-section scrollbar colors.
 
 ## Motion patterns (reuse these; do not invent new ones)
 
@@ -65,7 +66,7 @@ There is **no** independent random-walk on stat tiles and **no** loading-skeleto
 
 **Terminal chrome** (`ConsoleShell`) — used by search, orders, POS, catalog, market intel:
 
-- Bezel + screen, traffic-light dots, path (`seatsbrokers / …`), LIVE/SYNC badge with pulse
+- Bezel + screen, traffic-light dots, path (`seatsbrokers / …`), Live/Sync badge with pulse
 - **Not** an app-shell with a left sidebar. Do not add a sidebar unless the specific console already has one (Event Catalog has a category sidebar *inside* the screen)
 
 **Cockpit chrome** (no `ConsoleShell`) — AI Pricing (`AiPredictionsConsole`) and Quotation Builder (`QuotationBuilderConsole`): white card, model/header row, horizontal stepper.

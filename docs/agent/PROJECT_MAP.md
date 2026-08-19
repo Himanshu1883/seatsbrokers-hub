@@ -74,7 +74,7 @@ Route file
 Live consoles (do not cross-extend variants):
 
 ```
-LiveConsole          → pages/brokers    (mi, ai, pos stub)
+LiveConsole          → pages/brokers    (mi, ai, cryptoPayouts; pos stub)
 TravelLiveConsole    → pages/travel
 MarketplaceLiveConsole → pages/marketplace
 EventIntelLiveConsole → pages/event-intelligence

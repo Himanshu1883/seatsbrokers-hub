@@ -191,7 +191,7 @@ export function Marketplaces() {
           font-family: var(--font-mono);
           font-size: 10px;
           letter-spacing: 0.14em;
-          text-transform: uppercase;
+          text-transform: none;
           color: var(--primary);
           white-space: nowrap;
         }

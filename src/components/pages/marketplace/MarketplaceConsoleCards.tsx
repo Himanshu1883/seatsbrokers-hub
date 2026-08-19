@@ -46,7 +46,7 @@ function CardShell({
         <span className="bh-card-label">{label}</span>
         <span className="bh-card-live">
           <span className="bh-card-live-dot" aria-hidden />
-          LIVE
+          Live
         </span>
       </header>
       <div className="bh-card-body">{children}</div>
@@ -65,7 +65,7 @@ function ChannelStatusCard({ index }: { index: number }) {
             <span>{row.name}</span>
             <span className="bh-mp-meta">
               <span className="bh-mp-count">{row.latency}</span>
-              <span className="bh-mp-status">{row.status === "pushing" ? "PUSHING" : "SYNCED"}</span>
+              <span className="bh-mp-status">{row.status === "pushing" ? "Pushing" : "Synced"}</span>
             </span>
           </li>
         ))}
@@ -101,7 +101,7 @@ function PriceSyncCard() {
           <span className="bh-metric-label">Ask</span>
           <strong className="bh-metric-value bh-price-live">{heroPriceSync.to}</strong>
         </div>
-        <span className="bh-ai-badge">PUSH</span>
+        <span className="bh-ai-badge">Push</span>
       </div>
       <div className="bh-metrics bh-metrics-2">
         <div>

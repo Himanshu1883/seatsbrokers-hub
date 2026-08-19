@@ -156,7 +156,7 @@ function SearchFilterStage() {
               </span>
             ))}
           </div>
-          <span className="inv-dash-chip">SHOWING {overviewRows.length}</span>
+          <span className="inv-dash-chip">Showing {overviewRows.length}</span>
         </div>
 
         <div className="sf-back-body">

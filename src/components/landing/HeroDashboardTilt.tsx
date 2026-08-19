@@ -25,9 +25,9 @@ import { useInView } from "@/hooks/use-scroll-motion";
 const TICK_MS = 1600;
 
 const consoleMeta = [
-  { id: "platform", path: "platform · infrastructure", badge: "LIVE" },
-  { id: "broker", path: "broker · distribution", badge: "SYNC" },
-  { id: "travel", path: "b2b · quote desk", badge: "QUOTE" },
+  { id: "platform", path: "platform · infrastructure", badge: "Live" },
+  { id: "broker", path: "broker · distribution", badge: "Sync" },
+  { id: "travel", path: "b2b · quote desk", badge: "Quote" },
 ] as const;
 
 function HudBar({ path, badge, spin = false }: { path: string; badge: string; spin?: boolean }) {

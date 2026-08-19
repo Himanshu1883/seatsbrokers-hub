@@ -47,7 +47,7 @@ export function AuthFlowConsole() {
 
   return (
     <div ref={setRef} className="apk-console" data-live={inView ? "true" : "false"}>
-      <ConsoleShell path="seatsbrokers / api / auth" status="LIVE" icon={KeyRound}>
+      <ConsoleShell path="seatsbrokers / api / auth" status="Live" icon={KeyRound}>
         <div className="apk-stats">
           {stats.map((stat) => (
             <div key={stat.label} className="lc-stat">

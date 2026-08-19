@@ -13,7 +13,7 @@ const slides = [
   {
     image: heroStadium1,
     alt: "Ticketing technology infrastructure platform",
-    eyebrow: "Ticketing Technology & Intelligence Platform",
+    eyebrow: "Ticketing technology & intelligence platform",
     title: "The Technology Infrastructure Behind",
     typePhrases: ["Modern Ticket Resale.", "Global Ticketing.", "Market Intelligence.", "Marketplace Connectivity."],
     lead: "Connect your ticket inventory, marketplaces, partners, pricing and sales operations through one powerful technology platform.",
@@ -28,7 +28,7 @@ const slides = [
   {
     image: heroStadium2,
     alt: "Broker platform for ticket operations",
-    eyebrow: "Broker Platform · Ticket Brokers",
+    eyebrow: "Broker platform · Ticket brokers",
     title: "Run your ticket business from",
     typePhrases: [
       "One platform.",
@@ -48,7 +48,7 @@ const slides = [
   {
     image: heroStadium3,
     alt: "B2B partner ticket distribution platform",
-    eyebrow: "B2B Partner Platform",
+    eyebrow: "B2B partner platform",
     title: "Powering ticket distribution for",
     typePhrases: ["Formula 1.", "Football.", "Concerts.", "Championships.", "Every major event."],
     lead: "Turn ticket inventory into seamless customer experiences — access, margin, quote and sell through your B2B business.",
@@ -119,10 +119,10 @@ function HeroSlideCopy({
       <p
         className={item(
           0,
-          "hero-copy-eyebrow inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-background/20 bg-background/8 px-3 py-1.5 text-pretty section-eyebrow text-white backdrop-blur-sm",
+          "hero-copy-eyebrow inline-flex max-w-full flex-wrap items-center gap-1.5 rounded-full border border-background/20 bg-background/8 px-2 py-0.5 text-pretty font-mono text-white normal-case backdrop-blur-sm",
         )}
       >
-        <span className="size-1.5 shrink-0 rounded-full bg-primary" />
+        <span className="size-1 shrink-0 rounded-full bg-primary" />
         {slide.eyebrow}
       </p>
 
@@ -204,10 +204,10 @@ function HeroSlideCopy({
       <ul
         className={item(
           6,
-          "hero-copy-tags mt-8 flex flex-col gap-2 font-mono text-[10px] font-bold tracking-[0.12em] text-white uppercase sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:text-xs",
+          "hero-copy-tags mt-8 flex flex-col gap-2 font-mono text-[10px] font-bold tracking-[0.12em] text-white sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:text-xs",
         )}
       >
-        {["API Connectivity", "Inventory Synchronization", "Market Intelligence"].map((label) => (
+        {["API connectivity", "Inventory synchronization", "Market intelligence"].map((label) => (
           <li key={label} className="flex items-center gap-2">
             <span className="size-1 shrink-0 rounded-full bg-primary" />
             {label}
@@ -278,7 +278,7 @@ export function Hero() {
         <div className="hero-fit-offset pointer-events-none shrink-0" aria-hidden />
 
         <div className="hero-fit-main flex min-h-0 items-center overflow-visible">
-          <div className="container-page flex min-h-0 w-full flex-col py-4 sm:py-6">
+          <div className="container-page flex min-h-0 w-full flex-col py-6 sm:py-8">
             <div className="hero-fit-grid grid min-h-0 items-center gap-6 lg:isolate lg:grid-cols-[minmax(0,40rem)_minmax(0,44rem)] lg:items-start lg:justify-center lg:gap-8">
               <div className="hero-copy w-full min-w-0 max-w-3xl lg:relative lg:z-20 lg:max-w-[40rem] lg:pr-[clamp(1.75rem,5vw,3.5rem)]">
                 {slides.map((s, i) => {

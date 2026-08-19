@@ -3,7 +3,7 @@
 import { modules } from "./modules";
 
 export const platformHeroCopy = {
-  eyebrow: "Platform Overview",
+  eyebrow: "Platform overview",
   title: "One Centralized Ticketing Infrastructure",
   subhead: "Event data, inventory, marketplaces, pricing, partners and payments — one stack.",
   body: "SeatsBrokers is the technology layer connecting the global ticketing ecosystem. Brokers list and price inventory across channels; B2B partners search the same inventory, add margin and share branded quotes. Explore each surface, then go deep on the product pages.",
@@ -16,11 +16,11 @@ export const platformHeroPoints = [
 ] as const;
 
 export const platformStackLayers = [
-  { id: "events", index: "01", label: modules.intel.name, tag: "CATALOG", href: "/event-intelligence" },
-  { id: "brokers", index: "02", label: "Broker platform", tag: "INVENTORY", href: "/brokers" },
-  { id: "marketplace", index: "03", label: modules.market.name, tag: "SYNC", href: "/marketplace-connectivity" },
-  { id: "travel", index: "04", label: "B2B partners", tag: "QUOTES", href: "/travel-partners" },
-  { id: "api", index: "05", label: modules.link.name, tag: "CONNECT", href: "/api" },
+  { id: "events", index: "01", label: modules.intel.name, tag: "Catalog", href: "/event-intelligence" },
+  { id: "brokers", index: "02", label: "Broker platform", tag: "Inventory", href: "/brokers" },
+  { id: "marketplace", index: "03", label: modules.market.name, tag: "Sync", href: "/marketplace-connectivity" },
+  { id: "travel", index: "04", label: "B2B partners", tag: "Quotes", href: "/travel-partners" },
+  { id: "api", index: "05", label: modules.link.name, tag: "Connect", href: "/api" },
 ] as const;
 
 export const platformModules = [

@@ -51,7 +51,7 @@ function CardShell({
         {live ? (
           <span className="bh-card-live">
             <span className="bh-card-live-dot" aria-hidden />
-            LIVE
+            Live
           </span>
         ) : null}
       </header>
@@ -96,7 +96,7 @@ function MarketplaceSyncCard({ index }: { index: number }) {
             <span>{mp.name}</span>
             <span className="bh-mp-meta">
               <span className="bh-mp-count">{mp.count}</span>
-              <span className="bh-mp-status">{mp.status === "pushing" ? "PUSHING" : "SYNCED"}</span>
+              <span className="bh-mp-status">{mp.status === "pushing" ? "Pushing" : "Synced"}</span>
             </span>
           </li>
         ))}

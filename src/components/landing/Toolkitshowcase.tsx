@@ -91,7 +91,7 @@ function ChartMock() {
   return (
     <div className="flex h-full flex-col justify-between bg-background p-5 sm:p-6">
       <div className="flex items-center justify-between gap-3">
-        <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
+        <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground ">
           Live price feed
         </span>
         <span className="flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 font-mono text-[10px] font-semibold text-primary">
@@ -135,7 +135,7 @@ function QueueMock() {
   ];
   return (
     <div className="flex h-full flex-col bg-background p-5 sm:p-6">
-      <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
+      <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground ">
         Order queue
       </span>
       <div className="mt-4 flex flex-1 flex-col justify-center gap-2.5">
@@ -172,10 +172,10 @@ function TableMock() {
   ];
   return (
     <div className="flex h-full flex-col bg-background p-5 sm:p-6">
-      <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
+      <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground ">
         Broker-to-broker trades
       </span>
-      <div className="mt-4 grid grid-cols-3 gap-2 border-b border-border pb-2 font-mono text-[10px] font-semibold tracking-wide text-muted-foreground uppercase">
+      <div className="mt-4 grid grid-cols-3 gap-2 border-b border-border pb-2 font-mono text-[10px] font-semibold tracking-wide text-muted-foreground ">
         <span>Broker</span>
         <span className="text-right">Tickets</span>
         <span className="text-right">Margin</span>
@@ -424,7 +424,7 @@ export function ToolkitShowcase() {
 
               <div className="toolkit-main toolkit-layer">
                 <div className="toolkit-hud">
-                  <span className="toolkit-hud-path font-mono text-[10px] tracking-[0.16em] text-background/55 uppercase">
+                  <span className="toolkit-hud-path font-mono text-[10px] tracking-[0.16em] text-background/55 ">
                     {items.map((item, i) => (
                       <span
                         key={item.id}
@@ -435,7 +435,7 @@ export function ToolkitShowcase() {
                       </span>
                     ))}
                   </span>
-                  <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.16em] text-primary uppercase">
+                  <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.16em] text-primary ">
                     <span className="toolkit-live-dot" aria-hidden />
                     live
                   </span>
@@ -476,7 +476,7 @@ export function ToolkitShowcase() {
                     <p className="font-display text-2xl font-bold text-primary sm:text-3xl">
                       {item.metric.value}
                     </p>
-                    <p className="mt-1 font-mono text-[9px] tracking-[0.14em] text-background/70 uppercase">
+                    <p className="mt-1 font-mono text-[9px] tracking-[0.14em] text-background/70 ">
                       {item.metric.label}
                     </p>
                   </div>
@@ -485,7 +485,7 @@ export function ToolkitShowcase() {
             </div>
 
             <div className="toolkit-meta mt-5 flex flex-wrap items-center justify-between gap-3">
-              <p className="toolkit-meta-tag font-mono text-[10px] tracking-[0.14em] text-background/55 uppercase">
+              <p className="toolkit-meta-tag font-mono text-[10px] tracking-[0.14em] text-background/55 ">
                 {items.map((item, i) => (
                   <span
                     key={item.id}
@@ -499,7 +499,7 @@ export function ToolkitShowcase() {
               <button
                 type="button"
                 onClick={() => setActive((prev) => (prev + 1) % items.length)}
-                className="toolkit-next inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] text-primary uppercase"
+                className="toolkit-next inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] text-primary"
               >
                 <span className="toolkit-next-label">
                   {items.map((item, i) => (

@@ -154,7 +154,7 @@ export function SplitPanel({
           <Reveal delay={100} className={reverse ? "lg:[direction:ltr]" : ""}>
             {children ?? (
               <div className="rounded-2xl border border-border bg-surface p-8">
-                <div className="font-mono text-xs tracking-[0.18em] text-muted-foreground uppercase">
+                <div className="font-mono text-xs tracking-[0.18em] text-muted-foreground ">
                   Demo data
                 </div>
                 <div className="mt-6 grid gap-4">
@@ -303,7 +303,7 @@ export function ApiCards({ items, eyebrow, title, intro }: ApiCardsProps) {
           {items.map((item, i) => (
             <Reveal key={item.title} delay={i * 60}>
               <article className="lift h-full rounded-2xl border border-border bg-card p-6">
-                <div className="font-mono text-[11px] tracking-[0.18em] text-primary uppercase">
+                <div className="font-mono text-[11px] tracking-[0.18em] text-primary ">
                   API
                 </div>
                 <h3 className="mt-3 text-lg font-semibold text-foreground">{item.title}</h3>
@@ -359,11 +359,11 @@ export function ContactForm({
           </p>
           <dl className="mt-10 space-y-4 text-sm">
             <div>
-              <dt className="font-mono text-[11px] tracking-[0.18em] text-primary uppercase">Offices</dt>
+              <dt className="font-mono text-[11px] tracking-[0.18em] text-primary ">Offices</dt>
               <dd className="mt-2 text-foreground">{brand.offices}</dd>
             </div>
             <div>
-              <dt className="font-mono text-[11px] tracking-[0.18em] text-primary uppercase">Email</dt>
+              <dt className="font-mono text-[11px] tracking-[0.18em] text-primary ">Email</dt>
               <dd className="mt-2">
                 <a href={`mailto:${brand.email}`} className="text-foreground hover:text-primary">
                   {brand.email}

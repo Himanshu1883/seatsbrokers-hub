@@ -95,7 +95,7 @@ const checkpoints: Checkpoint[] = [
     cy: 30,
     label: "BEST tag",
     title: "Best-in-section signal",
-    metric: "BEST",
+    metric: "Best",
     metricLabel: "MarketIQ tag",
     body: "When your ask leads the section, MarketIQ surfaces the BEST badge buyers already trust.",
     lines: ["rank.section → 1", "tag.best → lit", "click.lift → +22%"],

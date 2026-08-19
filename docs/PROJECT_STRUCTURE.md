@@ -41,6 +41,7 @@ seatsbrokers-hub/
 │   │   ├── book-demo-data.ts
 │   │   ├── platform-page-data.ts
 │   │   ├── inventory-console-data.ts
+│   │   ├── crypto-payout-data.ts
 │   │   └── bento-illustrations.ts
 │   ├── hooks/
 │   │   ├── use-scroll-motion.tsx  # Reveal, useInView, useTypewriter

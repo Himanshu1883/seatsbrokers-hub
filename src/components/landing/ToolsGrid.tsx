@@ -256,7 +256,7 @@ function FlowBar({ children, tone }: { children: string; tone: "gateway" | "term
       className={`flow-bar ${tone === "terminal" ? "flow-bar-terminal" : ""} mx-auto flex w-full max-w-4xl items-center justify-center gap-3 rounded-xl px-4 py-4`}
     >
       <span className="flow-bar-dot" aria-hidden />
-      <span className="font-display text-sm font-bold tracking-[0.12em] text-primary-foreground uppercase sm:text-base">
+      <span className="font-display text-sm font-bold tracking-[0.12em] text-primary-foreground sm:text-base">
         {children}
       </span>
       <span className="flow-bar-dot" aria-hidden />
@@ -301,10 +301,10 @@ function FlowArchitecture({ blueprint }: { blueprint: FlowBlueprint }) {
           <span className="flow-corner flow-corner-br" aria-hidden />
 
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
-            <p className="font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase sm:text-[11px]">
+            <p className="font-mono text-[10px] tracking-[0.16em] text-muted-foreground sm:text-[11px]">
               {blueprint.systemName}
             </p>
-            <p className="flex items-center gap-2 font-mono text-[10px] tracking-[0.16em] text-primary uppercase sm:text-[11px]">
+            <p className="flex items-center gap-2 font-mono text-[10px] tracking-[0.16em] text-primary sm:text-[11px]">
               <span className="flow-status-dot" aria-hidden />
               pipeline live · streaming
             </p>
@@ -350,7 +350,7 @@ function FlowArchitecture({ blueprint }: { blueprint: FlowBlueprint }) {
                     <span className="font-display text-3xl font-bold text-primary">
                       {branch.cardMetric}
                     </span>
-                    <span className="max-w-[8.5rem] text-right font-mono text-[10px] leading-tight tracking-wide text-muted-foreground uppercase">
+                    <span className="max-w-[8.5rem] text-right font-mono text-[10px] leading-tight tracking-wide text-muted-foreground ">
                       {branch.metricLabel}
                     </span>
                   </div>
@@ -362,7 +362,7 @@ function FlowArchitecture({ blueprint }: { blueprint: FlowBlueprint }) {
                   </span>
                 </div>
 
-                <div className="flow-process rounded-lg px-3 py-2.5 text-center font-mono text-[10px] font-bold tracking-[0.12em] text-primary-foreground uppercase sm:text-[11px]">
+                <div className="flow-process rounded-lg px-3 py-2.5 text-center font-mono text-[10px] font-bold tracking-[0.12em] text-primary-foreground sm:text-[11px]">
                   {branch.processLabel}
                 </div>
               </div>
@@ -379,7 +379,7 @@ function FlowArchitecture({ blueprint }: { blueprint: FlowBlueprint }) {
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                     {mid.body}
                   </p>
-                  <p className="mt-4 flex items-center gap-2 font-mono text-[10px] tracking-[0.12em] text-primary uppercase">
+                  <p className="mt-4 flex items-center gap-2 font-mono text-[10px] tracking-[0.12em] text-primary ">
                     <span className="flow-status-dot" aria-hidden />
                     {mid.status}
                   </p>
@@ -617,12 +617,12 @@ export function TravelTools() {
   return (
     <section
       id={travelBlueprint.id}
-      className="section-curve relative isolate scroll-mt-24 overflow-x-clip bg-background py-16 sm:py-24"
+      className="tpa-section section-curve-sticky relative isolate scroll-mt-24 overflow-x-clip bg-background"
       aria-labelledby={`${travelBlueprint.id}-title`}
     >
       <SectionBackdrop image={travelBlueprint.backdrop} tone="light" strength={0.1} />
-      <div className="container-page relative z-10">
-        <Reveal>
+      <div className="container-page tpa-shell relative z-10">
+        <Reveal className="tpa-head">
           <p className="section-eyebrow text-primary">{travelBlueprint.eyebrow}</p>
           <h2
             id={`${travelBlueprint.id}-title`}
@@ -630,33 +630,12 @@ export function TravelTools() {
           >
             {travelBlueprint.title}
           </h2>
-          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+          <p className="tpa-lead mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
             {travelBlueprint.intro}
           </p>
         </Reveal>
 
-        <div
-          ref={ref}
-          data-live={inView}
-          className="tools-flow relative mt-12 overflow-x-clip rounded-2xl border border-border bg-surface/70 px-3 pb-6 pt-4 sm:px-6 sm:pb-8 lg:px-10 lg:pb-10"
-        >
-          <span className="flow-corner flow-corner-tl" aria-hidden />
-          <span className="flow-corner flow-corner-tr" aria-hidden />
-          <span className="flow-corner flow-corner-bl" aria-hidden />
-          <span className="flow-corner flow-corner-br" aria-hidden />
-
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
-            <p className="font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase sm:text-[11px]">
-              {travelBlueprint.systemName}
-            </p>
-            <p className="flex items-center gap-2 font-mono text-[10px] tracking-[0.16em] text-primary uppercase sm:text-[11px]">
-              <span className="flow-status-dot" aria-hidden />
-              pipeline live · streaming
-            </p>
-          </div>
-
-          <p className="flow-tier-label mt-6">Quote desk</p>
-
+        <div ref={ref} data-live={inView} className="tpa-stage">
           <div className="tpa-rail" data-manual={pipe.manual ? "true" : "false"}>
             <div className="tpa-rail-top">
               <p className="tpa-rail-title">
@@ -704,54 +683,46 @@ export function TravelTools() {
             </div>
           </div>
 
-          <div onPointerDownCapture={desk.takeControl} onKeyDownCapture={desk.takeControl}>
-            <SeatMapTicketsConsole desk={desk} />
-          </div>
+          <div className="tpa-boards">
+            <div
+              className="tpa-live"
+              onPointerDownCapture={desk.takeControl}
+              onKeyDownCapture={desk.takeControl}
+            >
+              <SeatMapTicketsConsole desk={desk} />
+            </div>
 
-          <div className="tpa-grid mt-6 grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-4">
-            {pipelineCards.map((card, index) => {
-              const state =
-                index < pipe.stageIndex ? "done" : index === pipe.stageIndex ? "live" : "queued";
-              return (
-                <div key={card.id} className="flow-col group flex flex-col" data-smt-active={state === "live" ? "true" : "false"}>
-                  <article className="tpa-card flow-card flex flex-1 flex-col" data-state={state}>
-                    <header className="tpa-card-head">
-                      <span className="tpa-card-step font-mono">{String(index + 1).padStart(2, "0")}</span>
-                      <card.icon className="size-4 shrink-0 text-primary" strokeWidth={2} />
-                      <h3>{card.title}</h3>
-                      <span className="tpa-card-chip font-mono">{state}</span>
-                    </header>
-                    <p className="tpa-card-note">{card.note}</p>
-                    <div className="tpa-card-body">{card.body}</div>
-                    <div className="tpa-card-metric">
-                      <span className="font-display">{card.metric}</span>
-                      <span className="font-mono">{card.metricLabel}</span>
-                    </div>
-                  </article>
-                  <div className="flow-link flow-link-short" aria-hidden>
-                    <span className="flow-line-v flow-link-segment">
-                      <span className="flow-pulse" />
-                    </span>
+            <div className="tpa-minis">
+              {pipelineCards.map((card, index) => {
+                const state =
+                  index < pipe.stageIndex ? "done" : index === pipe.stageIndex ? "live" : "queued";
+                return (
+                  <div
+                    key={card.id}
+                    className="tpa-mini"
+                    data-smt-active={state === "live" ? "true" : "false"}
+                  >
+                    <article className="tpa-card flex h-full min-h-0 flex-col" data-state={state}>
+                      <header className="tpa-card-head">
+                        <span className="tpa-card-step font-mono">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <card.icon className="size-4 shrink-0 text-primary" strokeWidth={2} />
+                        <h3>{card.title}</h3>
+                        <span className="tpa-card-chip font-mono">{state}</span>
+                      </header>
+                      <p className="tpa-card-note">{card.note}</p>
+                      <div className="tpa-card-body">{card.body}</div>
+                      <div className="tpa-card-metric">
+                        <span className="font-display">{card.metric}</span>
+                        <span className="font-mono">{card.metricLabel}</span>
+                      </div>
+                    </article>
                   </div>
-                  <div className="flow-process rounded-lg px-3 py-2.5 text-center font-mono text-[10px] font-bold tracking-[0.12em] text-primary-foreground uppercase sm:text-[11px]">
-                    {card.process}
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-
-          <FlowJunction cols={4} direction="in" />
-
-          <div className="mb-3 flex flex-wrap justify-center gap-x-6 gap-y-1">
-            {travelBlueprint.terminalLines.map((line) => (
-              <span key={line} className="font-mono text-[10px] tracking-[0.12em] text-muted-foreground">
-                {line}
-              </span>
-            ))}
-          </div>
-
-          <FlowBar tone="terminal">{travelBlueprint.terminal}</FlowBar>
         </div>
       </div>
     </section>

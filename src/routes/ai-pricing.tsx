@@ -28,7 +28,7 @@ function AiPricingPage() {
         secondaryCta={ctas.exploreBrokers}
       />
       <WorkflowSteps
-        eyebrow="Pricing Workflow"
+        eyebrow="Pricing workflow"
         title="AI recommends. You decide."
         steps={[
           "Market Data",
@@ -54,7 +54,7 @@ function AiPricingPage() {
         ]}
       />
       <SplitPanel
-        eyebrow="Sample Recommendation"
+        eyebrow="Sample recommendation"
         title="Recommended price with full context"
         body="Once approved, the new price can be synchronized through the connected marketplace infrastructure automatically."
         items={[

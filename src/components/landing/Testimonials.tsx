@@ -71,41 +71,33 @@ const quotes = [
 const rowA = quotes.filter((_, i) => i % 2 === 0);
 const rowB = quotes.filter((_, i) => i % 2 === 1);
 
-const toneClass: Record<(typeof quotes)[number]["tone"], string> = {
-  mint: "bg-primary/15 text-primary",
-  amber: "bg-amber-100 text-amber-800",
-  teal: "bg-teal-100 text-teal-800",
-  forest: "bg-emerald-100 text-emerald-800",
-  cyan: "bg-cyan-100 text-cyan-800",
-};
-
 function Card({
   quote,
   name,
   role,
   initials,
-  tone,
 }: (typeof quotes)[number]) {
   return (
     <figure className="testimonials-card">
+      <div className="testimonials-card-cap" aria-hidden>
+        <span className="testimonials-card-cap-grey" />
+        <span className="testimonials-card-cap-teal" />
+      </div>
       <div className="flex items-center gap-3">
-        <span
-          className={`flex size-11 shrink-0 items-center justify-center rounded-full font-display text-sm font-bold ${toneClass[tone]}`}
-          aria-hidden
-        >
+        <span className="testimonials-card-avatar" aria-hidden>
           {initials}
         </span>
         <div className="min-w-0">
-          <p className="truncate text-sm font-semibold text-foreground">{name}</p>
-          <p className="truncate text-xs text-muted-foreground">{role}</p>
+          <p className="testimonials-card-name">{name}</p>
+          <p className="testimonials-card-role">{role}</p>
         </div>
       </div>
-      <div className="mt-3 flex gap-0.5 text-amber-400" aria-label="5 star rating">
+      <div className="testimonials-card-stars" aria-label="5 star rating">
         {Array.from({ length: 5 }).map((_, s) => (
           <Star key={s} className="size-3.5 fill-current" />
         ))}
       </div>
-      <blockquote className="mt-3 text-[13px] leading-relaxed text-foreground/80">
+      <blockquote className="testimonials-card-quote">
         “{quote}”
       </blockquote>
     </figure>

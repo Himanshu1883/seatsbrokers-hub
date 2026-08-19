@@ -27,7 +27,7 @@ Routes listed are where the component is **mounted**, not every import.
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| LiveConsole | `LiveConsole.tsx` | Split copy + tilt stage; variants `marketIntelligence`, `aiPredictions` mounted; `pos` implemented but **not mounted**; `payments` / `scheduling` are `null` | `/brokers` |
+| LiveConsole | `LiveConsole.tsx` | Split copy + tilt stage; variants `marketIntelligence`, `aiPredictions`, `cryptoPayouts` mounted; `pos` implemented but **not mounted**; `payments` / `scheduling` are `null` | `/brokers` |
 | BrokersHero + Wall + Cards | `BrokersHero.tsx`, `BrokersConsoleWall.tsx`, `BrokersConsoleCards.tsx` | Dark hero + scrolling mini-consoles | `/brokers` |
 | EventCatalogSection + Console | `EventCatalogSection.tsx`, `EventCatalogConsole.tsx` | Global catalog browser | `/brokers` |
 | InventoryManagementSection + Console | `InventoryManagementSection.tsx`, `InventoryConsole.tsx` | Inventory desk | `/brokers` |
@@ -35,6 +35,7 @@ Routes listed are where the component is **mounted**, not every import.
 | AiPredictionsConsole | `AiPredictionsConsole.tsx` | Pricing cockpit (no ConsoleShell) | LiveConsole `aiPredictions` |
 | PosConsole | `PosConsole.tsx` | Broker POS queue + sale pipeline | **Built; LiveConsole `pos` exists; not used in `brokers.tsx`** |
 | PaymentInfrastructureSection + Console + Copy | `PaymentInfrastructureSection.tsx`, `PaymentConsole.tsx`, `PaymentCopyPanel.tsx` | Payments dashboard (own section, not LiveConsole) | `/brokers` |
+| CryptoPayoutConsole | `CryptoPayoutConsole.tsx` | SeatsFunds™ USDT desk: wallet path, on-chain transfer, qualitative Standard vs crypto switch | LiveConsole `cryptoPayouts` |
 
 ### Travel (`src/components/pages/travel/`)
 
@@ -164,9 +165,9 @@ Used on `/` unless noted.
 | MarketIntelligence | `MarketIntelligence.tsx` | Intel tiles | `/` |
 | JourneyNumbers | `JourneyNumbers.tsx` | Milestone numbers | `/` |
 | GlobalReach | `GlobalReach.tsx` | Geography | `/` |
-| GlobeScrollSection | `GlobeScrollSection.tsx` | Globe + slides | `/` |
+| GlobeScrollSection | `GlobeScrollSection.tsx` | Globe + 2 unique slides (NY, Dubai) | `/` |
 | GlobeCanvas | `landing/globe/GlobeCanvas.tsx` | Canvas globe (idle orbit; optional scrollOffset) | NetworkConstellation, GlobeScrollSection |
-| Stats + accent/glow/ledger | `Stats.tsx`, `stats/*` | Proof stats | `/` |
+| Stats + accent/glow/ledger | `Stats.tsx`, `stats/*` | Proof stats. Accent is a 4-card wallet shuffle (`.stats-wallet-*`); ledger/glow exist but are unmounted | `/` |
 | Testimonials | `Testimonials.tsx` | Quotes | `/` |
 | SectionBackdrop | `SectionBackdrop.tsx` | Shared photo/grid backdrops | several landing sections |
 | MarketPathScroll | `MarketPathScroll.tsx` | Scroll path viz | **Exists; not imported on any route** |
@@ -188,6 +189,7 @@ Used on `/` unless noted.
 | `src/content/book-demo-data.ts` | Book-a-demo hero, slots, agenda, session blocks, audiences, form options |
 | `src/content/platform-page-data.ts` | Platform hero, stack layers, module map tiles |
 | `src/content/inventory-console-data.ts` | Inventory console demo rows |
+| `src/content/crypto-payout-data.ts` | Brokers SeatsFunds™ USDT desk: rails, path, ledger, auto-run frames (no amounts) |
 | `src/content/seat-map-tickets-data.ts` | Homepage TravelTools Seat Map & Tickets demo listings / map blocks (£) |
 | `src/content/bento-illustrations.ts` | ProcessBento images |
 

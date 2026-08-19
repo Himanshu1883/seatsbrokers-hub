@@ -116,7 +116,7 @@ export function EventIntelConsoleWall() {
             <span className="eih-horizon">{eventIntelHeroLens.event.horizon}</span>
             <span className="eih-live">
               <span className="eih-live-dot" aria-hidden />
-              LIVE
+              Live
             </span>
           </div>
         </header>

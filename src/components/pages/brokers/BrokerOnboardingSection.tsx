@@ -150,11 +150,11 @@ function OnboardingDesk() {
       onPointerDown={takeControl}
       onKeyDown={takeControl}
     >
-      <ConsoleShell path="seatsbrokers / brokers / onboarding" status={status} icon={Handshake}>
+      <ConsoleShell path="seatsbrokers / brokers / company-setup" status={status} icon={Handshake}>
         <div className="bon-desk-inner" style={deskStyle}>
           <div className="bon-desk-top">
             <p className="bon-kicker">
-              Setup path
+              Company setup
               <span className="bon-kicker-count">
                 Step {current.index} of {String(stageCount).padStart(2, "0")}
               </span>
@@ -273,7 +273,7 @@ function OnboardingDesk() {
             </div>
           </div>
 
-          <ul className="bon-feed" aria-label="Onboarding ledger">
+          <ul className="bon-feed" aria-label="Company setup ledger">
             {ledgerWindow.map(({ stage, state }) => (
               <li key={stage.id} className="bon-feed-row" data-state={state}>
                 <span className="bon-feed-dot" aria-hidden />
@@ -328,9 +328,9 @@ export function BrokerOnboardingSection() {
         <Reveal delay={160}>
           <div className="bon-caps">
             <div className="bon-caps-head">
-              <p className="bon-caps-kicker">What we handle for the desk</p>
+              <p className="bon-caps-kicker">What we handle for the company</p>
               <p className="bon-caps-note">
-                Every group runs the same way for the broker partners you bring with you.
+                Every group runs the same way for the broker partners you set up as sub-accounts.
               </p>
             </div>
             <ul className="bon-caps-grid">

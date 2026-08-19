@@ -44,7 +44,7 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | Request | Primary | Related |
 |---|---|---|
 | `/brokers` composition | `src/routes/brokers.tsx` | `pages/brokers/`, `docs/brokers-page-plan.md` |
-| Broker onboarding / managed setup | `BrokerOnboardingSection.tsx` | `broker-onboarding-data.ts`, `.bon-*`. After hero: Apply → Verify → Connect → Cards and payments → Payouts → Live; capability grid. Not a LiveConsole variant. |
+| Broker onboarding / company setup | `BrokerOnboardingSection.tsx` | `broker-onboarding-data.ts`, `.bon-*`. After hero: company setup Apply → Verify → Connect → Cards and payments → Payouts → Live and managed; broker partners as sub-accounts on the same company rails; capability grid. Not a LiveConsole variant. Rail + ledger stay separate reserved regions (no bezel overlap). |
 | Brokers hero wall | `BrokersHero.tsx` + `BrokersConsoleWall.tsx` | `broker-hero-data.ts`, `.bh-*` |
 | Event catalog / inventory | `EventCatalogSection.tsx` / `InventoryManagementSection.tsx` | matching `*Console.tsx` |
 | Market intelligence overlap/layout | `MarketIntelligenceConsole.tsx` | `.mi-*` in `styles.css` |

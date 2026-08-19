@@ -3,7 +3,7 @@
 Current section order in `src/routes/brokers.tsx`:
 
 1. **BrokersHero** — dark hero + scrolling mini-console wall (`BrokersHero`, `BrokersConsoleWall`, `BrokersConsoleCards`, `src/content/broker-hero-data.ts`)
-2. **BrokerOnboardingSection** — copy + `ConsoleShell` onboarding desk (`broker-onboarding-data.ts`, `.bon-*`): Apply → Verify → Connect → Cards and payments → Payouts → Live and managed, plus a 9-tile capability grid. Auto-run pauses on interact; `prefers-reduced-motion` freezes on Live.
+2. **BrokerOnboardingSection** — copy + `ConsoleShell` company-setup desk (`broker-onboarding-data.ts`, `.bon-*`): SeatsBrokers sets up the broker’s company (and their broker-partner sub-accounts) Apply → Verify → Connect → Cards and payments → Payouts → Live and managed, plus a 9-tile capability grid. Auto-run pauses on interact; `prefers-reduced-motion` freezes on Live.
 3. **PaymentInfrastructureSection** — `PaymentCopyPanel` + `PaymentConsole` (own layout, not LiveConsole)
 4. **LiveConsole `cryptoPayouts`** — `CryptoPayoutConsole` (SeatsFunds™ USDT desk: wallet / on-chain path, qualitative Standard vs crypto switch, settlement confirmation; `crypto-payout-data.ts`, `.sfp-*`. No volume ladder or sale maths.)
 5. **EventCatalogSection** — catalog copy + `EventCatalogConsole`

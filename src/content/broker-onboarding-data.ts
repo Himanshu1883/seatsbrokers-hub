@@ -1,4 +1,4 @@
-/** Illustrative broker onboarding desk — qualitative stages only. No demo KPIs. */
+/** Illustrative company-setup desk — qualitative stages only. No demo KPIs. */
 
 export const ONBOARD_RESUME_MS = 14000;
 
@@ -27,7 +27,7 @@ export type OnboardStage = {
     name: string;
     chips: readonly [string, string, string];
   };
-  /** Broker partners ride the same rails at every stage. */
+  /** Broker partners ride the same company rails at every stage. */
   partner: string;
   ledger: string;
 };
@@ -37,147 +37,139 @@ export const onboardStages: readonly OnboardStage[] = [
     id: "apply",
     index: "01",
     label: "Apply",
-    blurb: "Desk profile opened",
-    status: "Account opened — a named contact is assigned to your desk",
-    we: "We open the broker account, assign a named contact, and map desk access.",
-    you: "You share company details and who should hold desk access.",
-    checks: ["Broker account created", "Named contact assigned", "Desk access roles mapped"],
+    blurb: "Company account opened",
+    status: "Company opened — broker account created, named contact assigned",
+    we: "We open the company and broker account, assign a named contact, and map access.",
+    you: "You share company details and who should hold access.",
+    checks: ["Company account created", "Named contact assigned", "Company access mapped"],
     artifact: {
-      name: "Desk profile",
-      chips: ["Company record", "Named contact", "Access roles"],
+      name: "Company record",
+      chips: ["Company file", "Named contact", "Access roles"],
     },
-    partner: "Sub-accounts for your own partners are planned at this step.",
-    ledger: "apply.opened → broker desk profile created",
+    partner: "Your own broker partners are planned as sub-accounts on this company.",
+    ledger: "apply.opened → company / broker account created",
   },
   {
     id: "verify",
     index: "02",
     label: "Verify",
-    blurb: "Compliance cleared",
-    status: "KYC-ready — verification cleared before the first listing",
-    we: "We run business verification and compliance review before you list.",
+    blurb: "Company KYC cleared",
+    status: "KYC-ready — the company is verified before the first listing",
+    we: "We run business verification and KYC for the company before you list.",
     you: "You upload company documents and confirm the people behind them.",
-    checks: [
-      "Company documents reviewed",
-      "Ownership and contacts confirmed",
-      "Compliance pack accepted",
-    ],
+    checks: ["Company documents reviewed", "Ownership confirmed", "Company KYC accepted"],
     artifact: {
-      name: "Verification pack",
-      chips: ["Company file", "Ownership", "Compliance"],
+      name: "Company verification",
+      chips: ["Company file", "Ownership", "KYC"],
     },
-    partner: "Each partner sub-account clears the same verification first.",
-    ledger: "verify.cleared → compliance pack accepted",
+    partner: "Each partner sub-account clears the same company KYC first.",
+    ledger: "verify.cleared → company KYC accepted",
   },
   {
     id: "connect",
     index: "03",
     label: "Connect",
-    blurb: "SeatsLink™ linked",
-    status: "SeatsLink™ connected — the book you already hold is migrated",
-    we: "We link your POS over SeatsLink™ and migrate what you already hold.",
-    you: "You point us at the system your desk runs today and check the mapping.",
-    checks: [
-      "SeatsLink™ credentials issued",
-      "POS or inventory system linked",
-      "Existing holdings migrated",
-    ],
+    blurb: "POS and book linked",
+    status: "SeatsLink™ connected — the company's existing book is migrated",
+    we: "We link the company POS over SeatsLink™ and migrate the book you already hold.",
+    you: "You point us at the system the company runs today and check the mapping.",
+    checks: ["SeatsLink™ credentials issued", "Company POS linked", "Existing book migrated"],
     artifact: {
       name: "SeatsLink™ connection",
       chips: ["Credentials", "Inventory map", "Sync schedule"],
     },
-    partner: "Partners ride your connection or link their own system.",
-    ledger: "connect.pos → inventory migrated over SeatsLink™",
+    partner: "Partners ride the company connection or link their own system.",
+    ledger: "connect.pos → company book migrated over SeatsLink™",
   },
   {
     id: "cards",
     index: "04",
     label: "Cards and payments",
-    blurb: "Payments armed",
-    status: "Cards and payment methods live on the payments desk",
-    we: "We set up card rails and payment methods on the payments desk.",
-    you: "You choose which payment methods your desk accepts.",
-    checks: ["Card rails set up", "Payment methods selected", "Checkout wired to listings"],
+    blurb: "Company payments armed",
+    status: "Company card rails and payment methods live",
+    we: "We set up the company's card rails and payment methods.",
+    you: "You choose which payment methods the company accepts.",
+    checks: ["Company card rails set up", "Payment methods selected", "Checkout wired to listings"],
     artifact: {
-      name: "Payments desk",
+      name: "Company payments",
       chips: ["Card rails", "Methods", "Checkout"],
     },
-    partner: "Partner sub-accounts sell through the same payments desk.",
-    ledger: "payments.armed → card rails on the payments desk",
+    partner: "Partner sub-accounts sell on the same company payment rails.",
+    ledger: "payments.armed → company card rails live",
   },
   {
     id: "payouts",
     index: "05",
     label: "Payouts",
-    blurb: "Bank and USDT rails",
-    status: "Payouts armed — sterling settlement and the SeatsFunds™ USDT wallet",
-    we: "We arm sterling bank settlement and the SeatsFunds™ USDT wallet.",
-    you: "You confirm bank details and the wallet payouts should reach.",
+    blurb: "Company settlement",
+    status: "Company settlement — sterling bank rail and the SeatsFunds™ USDT wallet",
+    we: "We arm the company's sterling bank rail and SeatsFunds™ USDT wallet.",
+    you: "You confirm the bank and wallet company payouts should reach.",
     checks: [
       "Sterling bank rail armed",
       "SeatsFunds™ USDT wallet linked",
-      "Payout approvals set",
+      "Company payout approvals set",
     ],
     artifact: {
-      name: "Payout rails",
+      name: "Company payouts",
       chips: ["Bank rail", "USDT wallet", "Approvals"],
     },
-    partner: "Partners settle on the same rails, held to their sub-account.",
-    ledger: "payouts.armed → bank rail + SeatsFunds™ USDT wallet",
+    partner: "Partners settle on the same company rails, held to their sub-account.",
+    ledger: "payouts.armed → company bank rail + SeatsFunds™ USDT wallet",
   },
   {
     id: "live",
     index: "06",
     label: "Live and managed",
-    blurb: "Manager stays on",
-    status: "Live — listings distributed, account manager on the desk",
-    we: "We distribute listings, train the desk, and stay on as your manager.",
+    blurb: "Company is live",
+    status: "Company live — listings out, named account manager assigned",
+    we: "We take the company live, push listings, and stay on as your manager.",
     you: "You run pricing and inventory, with one contact to call.",
-    checks: ["Channels enabled", "Listings distributed", "Account manager on the desk"],
+    checks: ["Channels enabled", "Listings distributed", "Account manager assigned"],
     artifact: {
-      name: "Managed desk",
+      name: "Managed company",
       chips: ["Channels", "Training", "Named manager"],
     },
-    partner: "Partners go live on the same desk with their own logins.",
-    ledger: "desk.live → listings distributed, manager assigned",
+    partner: "Partners go live as sub-accounts on this company, with their own logins.",
+    ledger: "company.live → listings out, manager assigned",
   },
 ] as const;
 
 export const onboardHighlights = [
   { value: "Guided", label: "Named contact from day one" },
-  { value: "KYC-ready", label: "Before the first listing" },
+  { value: "KYC-ready", label: "Company verified first" },
   { value: "Any region", label: "Wherever SeatsBrokers operates" },
 ] as const;
 
 export const onboardCopy = {
-  eyebrow: "Broker onboarding",
-  title: "From setup to a desk you can run.",
-  body: "SeatsBrokers walks brokers and their broker partners through the whole path — account creation, verification, POS connection, cards and payments, payouts, then day-to-day control. We stay on the desk after go-live.",
+  eyebrow: "Company setup",
+  title: "We set up the company. You and your partners run it.",
+  body: "SeatsBrokers helps brokers and their broker partners set up the company — account opened, verification cleared, POS connected, cards and payouts armed — then stays on after the company is live. Partners sit as sub-accounts on the same company rails.",
   detail:
-    "A named contact opens the desk with you. Verification is KYC-ready before the first listing. SeatsLink™ connects your POS or inventory system and migrates what you already hold. Cards and payment methods land on the payments desk. Payouts arm both sterling bank settlement and the SeatsFunds™ USDT wallet. Listings then distribute across connected marketplaces, with an account manager on the desk in any region we operate.",
-  detailLabel: "How we take you live",
+    "A named contact opens the company with you. Verification is KYC-ready before the first listing. SeatsLink™ connects the company POS or inventory system and migrates the book you already hold. Company card rails and payment methods go live. Payouts arm sterling bank settlement and the SeatsFunds™ USDT wallet. The company then lists across connected marketplaces, with an account manager in any region we operate. Broker partners you bring with you sit as sub-accounts on those same company rails.",
+  detailLabel: "How we set up the company",
 } as const;
 
 export const onboardPoints = [
   {
     title: "You are not left to figure it out",
-    body: "A named contact opens the desk, walks verification, and stays through go-live — then remains the account manager after listings are out.",
+    body: "A named contact opens the company, walks verification, and stays through go-live — then remains the account manager after the company is listing.",
   },
   {
-    title: "Your existing stack still counts",
-    body: "Connect the POS or inventory system you already run over SeatsLink™. Existing holdings migrate; you do not rebuild the book from scratch.",
+    title: "The stack the company already runs still counts",
+    body: "Connect the POS or inventory system the company already uses over SeatsLink™. Existing holdings migrate; you do not rebuild the book from scratch.",
   },
   {
-    title: "Money rails before the first sale",
-    body: "Cards and payment methods sit on the payments desk, then payouts arm sterling bank settlement and the SeatsFunds™ USDT wallet — before inventory goes live.",
+    title: "Company money rails before the first sale",
+    body: "Company card rails and payment methods go live first, then payouts arm sterling bank settlement and the SeatsFunds™ USDT wallet — before inventory lists.",
   },
   {
-    title: "Your broker partners sit on the same rails",
-    body: "Sub-accounts let a broker onboard their own partners on the same inventory, payments, and payout path — one desk, not a side channel.",
+    title: "Your broker partners sit on the same company",
+    body: "Sub-accounts let a broker set up their own partners on the same company inventory, payments, and payout rails — one company, not a side channel.",
   },
   {
     title: "Any region we operate in",
-    body: "Setup, cards, payouts, and ongoing management follow the same path wherever SeatsBrokers is live. Control stays on one desk.",
+    body: "Company setup, cards, payouts, and ongoing management follow the same path wherever SeatsBrokers is live. Control stays on one company.",
   },
 ] as const;
 
@@ -185,57 +177,57 @@ export const onboardCapabilityGroups = [
   {
     id: "setup" as const,
     title: "Setup and compliance",
-    body: "Opening the desk and clearing it to trade.",
+    body: "Opening the company and clearing it to trade.",
     items: [
       {
-        title: "Guided account setup",
-        body: "A named contact opens the desk with you and stays through go-live.",
+        title: "Guided company setup",
+        body: "A named contact opens the company with you and stays through go-live.",
       },
       {
         title: "Business verification",
-        body: "KYC-ready paperwork and compliance cleared before the first listing.",
+        body: "KYC-ready paperwork and compliance for the company, cleared before the first listing.",
       },
       {
         title: "Broker partner sub-accounts",
-        body: "Onboard your own partners on the same inventory, payments, and payout rails.",
+        body: "Set up your own partners on the same company inventory, payments, and payout rails.",
       },
     ],
   },
   {
     id: "connection" as const,
     title: "Connection and inventory",
-    body: "Bringing the book you already hold onto the platform.",
+    body: "Bringing the book the company already holds onto the platform.",
     items: [
       {
         title: "POS and API connection",
-        body: "Link your POS or inventory system over SeatsLink™ and keep it in sync.",
+        body: "Link the company POS or inventory system over SeatsLink™ and keep it in sync.",
       },
       {
         title: "Inventory migration",
-        body: "Existing holdings move across — you do not rebuild the book from scratch.",
+        body: "Existing company holdings move across — you do not rebuild the book from scratch.",
       },
       {
         title: "Marketplace distribution",
-        body: "Channels enabled and listings pushed from one inventory layer.",
+        body: "Channels enabled and listings pushed from the company's inventory layer.",
       },
     ],
   },
   {
     id: "money" as const,
     title: "Money and management",
-    body: "Rails armed first, then a desk we keep running with you.",
+    body: "Company rails armed first, then we stay on after go-live.",
     items: [
       {
         title: "Cards and payments",
-        body: "Payment methods and card rails set up on the payments desk.",
+        body: "Company payment methods and card rails set up before the first listing.",
       },
       {
         title: "Payout rails",
-        body: "Sterling bank settlement and the SeatsFunds™ USDT wallet armed before you list.",
+        body: "Company settlement: sterling bank rail and the SeatsFunds™ USDT wallet, armed before you list.",
       },
       {
         title: "Ongoing management",
-        body: "Training, account management, and support in any region we operate.",
+        body: "Training, account management, and support for the company in any region we operate.",
       },
     ],
   },

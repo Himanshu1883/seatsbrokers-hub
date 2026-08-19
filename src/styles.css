@@ -39514,3 +39514,963 @@ body,
   color: #3d4044;
 }
 
+/* == Broker onboarding 2026-08-19 == */
+/* Desk layout contract: the console screen height is owned here
+   (--bon-screen-h) and .bon-desk-inner splits it into three reserved
+   rows — header, panes, ledger. Only the panes row flexes, and both
+   panes clip/scroll internally, so nothing can paint through a
+   neighbour or spill past the bezel. Every text slot inside has a
+   fixed height, so an auto-run stage change never shifts layout. */
+
+.bon-section {
+  --bon-gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.bon-split {
+  display: grid;
+  gap: var(--bon-gap);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .bon-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(1.75rem, 2.4vw, 2.75rem);
+  }
+
+  .bon-stage {
+    position: sticky;
+    top: 6.5rem;
+  }
+}
+
+.bon-copy {
+  min-width: 0;
+}
+
+.bon-desk {
+  --bon-screen-h: 36rem;
+  min-width: 0;
+}
+
+/* Stacked rail strip (narrow) and the squeezed two-column band both need
+   more vertical room for the same reserved slots. */
+@media (max-width: 559px) {
+  .bon-desk {
+    --bon-screen-h: 40rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .bon-desk {
+    --bon-screen-h: 38rem;
+  }
+}
+
+.bon-desk .lc-screen {
+  height: var(--bon-screen-h);
+  min-height: var(--bon-screen-h);
+  max-height: var(--bon-screen-h);
+}
+
+.bon-desk .lc-body {
+  gap: 0;
+}
+
+.bon-desk-inner {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 0.55rem;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Row 1 — mode header with the journey progress bar --------------- */
+
+.bon-desk-top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 1.55rem;
+  padding-bottom: 0.5rem;
+}
+
+.bon-desk-top::before,
+.bon-desk-top::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+}
+
+.bon-desk-top::before {
+  right: 0;
+  background: color-mix(in oklab, var(--border) 85%, transparent);
+}
+
+.bon-desk-top::after {
+  width: calc(var(--bon-progress, 0) * 100%);
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--primary) 45%, transparent),
+    var(--primary)
+  );
+  transition: width 520ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bon-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  color: var(--muted-foreground);
+}
+
+.bon-kicker-count {
+  border-left: 1px solid var(--border);
+  padding-left: 0.5rem;
+  white-space: nowrap;
+  color: var(--primary);
+}
+
+.bon-mode,
+.bon-resume {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  min-height: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  color: var(--muted-foreground);
+}
+
+.bon-resume {
+  border: 1px solid color-mix(in oklab, var(--primary) 35%, var(--border));
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primary) 12%, var(--card));
+  padding: 0 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.bon-resume:hover {
+  background: color-mix(in oklab, var(--primary) 20%, var(--card));
+}
+
+/* Row 2 — stage rail + detail pane -------------------------------- */
+
+.bon-panes {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 0.5rem;
+  min-height: 0;
+}
+
+@media (min-width: 560px) {
+  .bon-panes {
+    grid-template-rows: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr);
+    gap: 0.55rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .bon-panes {
+    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  }
+}
+
+.bon-rail {
+  display: grid;
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+  gap: 0.3rem;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bon-rail-item {
+  position: relative;
+  min-height: 0;
+}
+
+/* Spine segments live on each item (above / below its own mark) so a
+   connector can never be clipped by, or paint over, a sibling card. */
+.bon-rail-item::before,
+.bon-rail-item::after {
+  content: "";
+  position: absolute;
+  left: 1.4rem;
+  width: 2px;
+  transform: translateX(-1px);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--border) 75%, transparent);
+}
+
+.bon-rail-item::before {
+  top: -0.3rem;
+  height: calc(50% - 0.6rem);
+}
+
+.bon-rail-item::after {
+  top: calc(50% + 0.9rem);
+  bottom: calc(0.6rem - 50%);
+}
+
+.bon-rail-item:first-child::before,
+.bon-rail-item:last-child::after {
+  display: none;
+}
+
+.bon-rail-item[data-state="done"]::before,
+.bon-rail-item[data-state="done"]::after,
+.bon-rail-item[data-state="current"]::before {
+  background: color-mix(in oklab, var(--primary) 70%, transparent);
+}
+
+.bon-rail-item[data-state="current"]::after {
+  background-color: transparent;
+  background-image: repeating-linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--primary) 70%, transparent) 0 3px,
+    transparent 3px 8px
+  );
+  background-size: 100% 8px;
+}
+
+.bon-desk[data-live="true"] .bon-rail-item[data-state="current"]::after {
+  animation: bon-rail-flow 0.85s linear infinite;
+}
+
+@keyframes bon-rail-flow {
+  to {
+    background-position: 0 8px;
+  }
+}
+
+.bon-step {
+  display: grid;
+  grid-template-columns: 1.8rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 0.7rem;
+  background: transparent;
+  padding: 0.3rem 0.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 240ms ease,
+    border-color 240ms ease;
+}
+
+.bon-step:hover {
+  background: color-mix(in oklab, var(--foreground) 4%, transparent);
+}
+
+.bon-step:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+.bon-step[data-state="current"] {
+  border-color: color-mix(in oklab, var(--primary) 42%, var(--border));
+  background: color-mix(in oklab, var(--primary) 8%, var(--card));
+}
+
+.bon-step[data-state="idle"] .bon-step-copy {
+  opacity: 0.6;
+}
+
+.bon-step-mark {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted-foreground);
+  transition:
+    color 240ms ease,
+    border-color 240ms ease,
+    background 240ms ease;
+}
+
+.bon-step[data-state="done"] .bon-step-mark {
+  border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+  background: color-mix(in oklab, var(--primary) 10%, var(--card));
+  color: var(--primary);
+}
+
+.bon-step[data-state="current"] .bon-step-mark {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 15%, var(--card));
+  color: var(--primary);
+}
+
+.bon-step-tick {
+  position: absolute;
+  right: -0.15rem;
+  bottom: -0.15rem;
+  display: grid;
+  place-items: center;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--card);
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.bon-step-ring {
+  position: absolute;
+  inset: -0.25rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--primary) 50%, transparent);
+  opacity: 0;
+}
+
+.bon-desk[data-live="true"] .bon-step-ring {
+  animation: bon-step-ring 1.9s ease-out infinite;
+}
+
+@keyframes bon-step-ring {
+  0% {
+    transform: scale(0.82);
+    opacity: 0.85;
+  }
+  70% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.bon-spin {
+  animation: bon-spin 1s linear infinite;
+}
+
+@keyframes bon-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bon-step-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.bon-step-label {
+  display: -webkit-box;
+  overflow: hidden;
+  height: 1.9rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 0.72rem;
+  font-weight: 650;
+  line-height: 0.95rem;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.bon-step-index {
+  margin-right: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+}
+
+.bon-step[data-state="current"] .bon-step-index,
+.bon-step[data-state="done"] .bon-step-index {
+  color: var(--primary);
+}
+
+.bon-step-blurb {
+  overflow: hidden;
+  height: 0.85rem;
+  font-size: 0.5625rem;
+  line-height: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--muted-foreground);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Detail pane — swaps per active stage, every slot height-locked --- */
+
+.bon-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  background: color-mix(in oklab, var(--surface) 55%, var(--card));
+  padding: 0.6rem 0.65rem 0.7rem;
+}
+
+.bon-detail-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  animation: bon-detail-in 320ms ease-out;
+}
+
+@keyframes bon-detail-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.bon-detail-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  overflow: hidden;
+  margin: 0;
+  height: 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  line-height: 1.25rem;
+  letter-spacing: -0.015em;
+  color: var(--foreground);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bon-detail-index {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+}
+
+.bon-detail-status {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  height: 2rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  color: var(--muted-foreground);
+}
+
+.bon-do-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.bon-do {
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  background: var(--card);
+  padding: 0.35rem 0.5rem 0.45rem;
+}
+
+.bon-do-label {
+  display: block;
+  height: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.13em;
+  line-height: 0.85rem;
+  color: var(--muted-foreground);
+}
+
+.bon-do[data-side="we"] {
+  border-color: color-mix(in oklab, var(--primary) 28%, var(--border));
+  background: color-mix(in oklab, var(--primary) 5%, var(--card));
+}
+
+.bon-do[data-side="we"] .bon-do-label {
+  color: var(--primary);
+}
+
+.bon-do p {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0.15rem 0 0;
+  height: 3.6rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  font-size: 0.65rem;
+  line-height: 0.9rem;
+  color: var(--foreground);
+}
+
+/* Narrowest desks, and the 1024–1279 band where the page splits into two
+   columns and squeezes the console again: stack the pair and drop to two
+   lines, which every sentence fits inside at that measure. */
+@media (max-width: 419px), (min-width: 1024px) and (max-width: 1279px) {
+  .bon-do-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bon-do p {
+    height: 1.8rem;
+    -webkit-line-clamp: 2;
+  }
+}
+
+.bon-checks {
+  display: grid;
+  grid-template-rows: repeat(3, 1.35rem);
+  gap: 0.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bon-check {
+  display: grid;
+  grid-template-columns: 0.95rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.45rem;
+  height: 1.35rem;
+}
+
+.bon-check-mark {
+  display: grid;
+  place-items: center;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--primary);
+  transition:
+    background 220ms ease,
+    border-color 220ms ease;
+}
+
+.bon-check[data-state="done"] .bon-check-mark {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 16%, var(--card));
+}
+
+.bon-check[data-state="active"] .bon-check-mark {
+  border-color: color-mix(in oklab, var(--primary) 55%, var(--border));
+}
+
+.bon-check-text {
+  overflow: hidden;
+  font-size: 0.65rem;
+  line-height: 1.35rem;
+  color: var(--muted-foreground);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bon-check[data-state="done"] .bon-check-text {
+  color: var(--foreground);
+}
+
+.bon-check[data-state="idle"] {
+  opacity: 0.55;
+}
+
+.bon-artifact {
+  border: 1px dashed color-mix(in oklab, var(--primary) 32%, var(--border));
+  border-radius: 0.6rem;
+  background: color-mix(in oklab, var(--primary) 4%, var(--card));
+  padding: 0.35rem 0.5rem 0.45rem;
+}
+
+.bon-artifact-top {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  overflow: hidden;
+  height: 1.1rem;
+}
+
+.bon-artifact-label {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.13em;
+  color: var(--muted-foreground);
+}
+
+.bon-artifact-top strong {
+  overflow: hidden;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bon-artifact-chips {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.3rem;
+  margin: 0.3rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bon-artifact-chips li {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  padding: 0 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.01em;
+  line-height: 1.15rem;
+  text-align: center;
+  color: var(--muted-foreground);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition:
+    background 240ms ease,
+    border-color 240ms ease,
+    color 240ms ease;
+}
+
+.bon-artifact-chips li[data-state="on"] {
+  border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+  background: color-mix(in oklab, var(--primary) 12%, var(--card));
+  color: var(--primary);
+}
+
+.bon-partner {
+  display: grid;
+  grid-template-columns: 1.15rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.45rem;
+  margin: auto 0 0;
+  border-top: 1px dashed var(--border);
+  padding-top: 0.45rem;
+}
+
+.bon-partner-icon {
+  display: grid;
+  place-items: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primary) 12%, var(--card));
+  color: var(--primary);
+}
+
+.bon-partner-text {
+  display: -webkit-box;
+  overflow: hidden;
+  height: 1.9rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 0.65rem;
+  line-height: 0.95rem;
+  color: var(--muted-foreground);
+}
+
+.bon-partner-label {
+  margin-right: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+}
+
+/* Row 3 — rolling desk ledger ------------------------------------- */
+
+.bon-feed {
+  display: grid;
+  grid-template-rows: repeat(3, 1.15rem);
+  gap: 0.12rem;
+  margin: 0;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  background: color-mix(in oklab, var(--surface) 70%, var(--card));
+  list-style: none;
+}
+
+.bon-feed-row {
+  display: grid;
+  grid-template-columns: 0.4rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.45rem;
+  height: 1.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  line-height: 1.15rem;
+  color: var(--muted-foreground);
+}
+
+.bon-feed-row[data-state="idle"] {
+  opacity: 0.4;
+}
+
+.bon-feed-row[data-state="done"] {
+  color: color-mix(in oklab, var(--foreground) 72%, var(--muted-foreground));
+}
+
+.bon-feed-row[data-state="current"] {
+  color: var(--primary);
+}
+
+.bon-feed-dot {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--muted-foreground) 40%, transparent);
+}
+
+.bon-feed-row[data-state="done"] .bon-feed-dot,
+.bon-feed-row[data-state="current"] .bon-feed-dot {
+  background: var(--primary);
+}
+
+.bon-desk[data-live="true"] .bon-feed-row[data-state="current"] .bon-feed-dot {
+  animation: two-track-live-pulse 1.8s ease-out infinite;
+}
+
+.bon-feed-msg {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Narrow desks: the rail becomes a scrollable chip strip above the
+   detail pane — still two separate regions, still height-locked. */
+
+@media (max-width: 559px) {
+  .bon-rail {
+    grid-auto-flow: column;
+    grid-auto-columns: 9.75rem;
+    grid-template-rows: 3.5rem;
+    gap: 0.4rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.3rem;
+  }
+
+  .bon-rail-item::before,
+  .bon-rail-item::after {
+    display: none;
+  }
+
+  .bon-step {
+    border-color: var(--border);
+    background: var(--card);
+  }
+
+  .bon-feed {
+    grid-template-rows: repeat(2, 1.15rem);
+  }
+
+  .bon-feed-row:first-child {
+    display: none;
+  }
+}
+
+/* Capability groups ------------------------------------------------ */
+
+.bon-caps {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.bon-caps-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.bon-caps-kicker {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+}
+
+.bon-caps-note {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+.bon-caps-grid {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .bon-caps-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .bon-caps-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.bon-cap-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--card);
+  padding: 1.05rem 1.1rem 1.15rem;
+  box-shadow: var(--shadow-card);
+}
+
+.bon-cap-head {
+  display: grid;
+  grid-template-columns: 2.1rem minmax(0, 1fr);
+  align-items: center;
+  column-gap: 0.7rem;
+  row-gap: 0.15rem;
+}
+
+.bon-cap-icon {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.7rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 25%, var(--border));
+  background: color-mix(in oklab, var(--primary) 8%, var(--card));
+  color: var(--primary);
+}
+
+.bon-cap-head strong {
+  font-size: 0.9375rem;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.bon-cap-head-body {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--muted-foreground);
+}
+
+.bon-cap-items {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  border-top: 1px solid var(--border);
+  padding: 0.8rem 0 0;
+  list-style: none;
+}
+
+.bon-cap-item {
+  display: grid;
+  grid-template-columns: 1.05rem minmax(0, 1fr);
+  gap: 0.55rem;
+}
+
+.bon-cap-item-mark {
+  display: grid;
+  place-items: center;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-top: 0.15rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primary) 14%, var(--card));
+  color: var(--primary);
+}
+
+.bon-cap-item-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.bon-cap-item-copy strong {
+  font-size: 0.8125rem;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.bon-cap-item-copy span {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+@media (max-width: 1023px) {
+  .bon-stage .lc-tilt-wrap {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bon-spin,
+  .bon-step-ring,
+  .bon-detail-head,
+  .bon-rail-item[data-state="current"]::after,
+  .bon-feed-row[data-state="current"] .bon-feed-dot {
+    animation: none;
+  }
+
+  .bon-step-ring {
+    display: none;
+  }
+
+  .bon-desk-top::after,
+  .bon-step,
+  .bon-step-mark,
+  .bon-check-mark,
+  .bon-artifact-chips li {
+    transition: none;
+  }
+}
+

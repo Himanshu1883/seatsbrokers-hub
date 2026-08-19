@@ -75,6 +75,7 @@ Live consoles (do not cross-extend variants):
 
 ```
 LiveConsole          → pages/brokers    (mi, ai, cryptoPayouts; pos stub)
+BrokerOnboarding     → pages/brokers    (own section after hero, not a LiveConsole variant)
 TravelLiveConsole    → pages/travel
 MarketplaceLiveConsole → pages/marketplace
 EventIntelLiveConsole → pages/event-intelligence

@@ -3,6 +3,7 @@ import { BrainCircuit, Radar, RefreshCw } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { pageMeta } from "@/content/site";
 import { modules } from "@/content/modules";
+import { BrokerOnboardingSection } from "@/components/pages/brokers/BrokerOnboardingSection";
 import { BrokersHero } from "@/components/pages/brokers/BrokersHero";
 import { EventCatalogSection } from "@/components/pages/brokers/EventCatalogSection";
 import { InventoryManagementSection } from "@/components/pages/brokers/InventoryManagementSection";
@@ -61,6 +62,7 @@ function BrokersPage() {
     <PageShell>
       <BrokersHero />
       <PaymentInfrastructureSection />
+      <BrokerOnboardingSection />
       <LiveConsole variant="cryptoPayouts" />
 
       <EventCatalogSection />

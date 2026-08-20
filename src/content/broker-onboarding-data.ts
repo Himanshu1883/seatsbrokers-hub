@@ -1,6 +1,8 @@
-/** Illustrative company-setup desk — qualitative stages only. No demo KPIs. */
+/** Company-setup desk — qualitative stages and regional facts only. No demo KPIs. */
 
 export const ONBOARD_RESUME_MS = 14000;
+
+export type OnboardRegionId = "dubai" | "london" | "india" | "newyork";
 
 export type OnboardStageId =
   | "apply"
@@ -10,26 +12,105 @@ export type OnboardStageId =
   | "payouts"
   | "live";
 
+export type OnboardRegion = {
+  id: OnboardRegionId;
+  /** Tab label in the region strip. */
+  tab: string;
+  /** Comparison-table column heading. */
+  column: string;
+  /** Named desk copy. */
+  desk: string;
+};
+
+/** Footer-confirmed offices only, in the order the section specifies. */
+export const onboardRegions: readonly OnboardRegion[] = [
+  { id: "dubai", tab: "Dubai", column: "Dubai (UAE)", desk: "Dubai desk" },
+  { id: "london", tab: "London", column: "London (UK)", desk: "London desk" },
+  { id: "india", tab: "India", column: "India", desk: "India desk" },
+  { id: "newyork", tab: "New York", column: "New York (US)", desk: "New York desk" },
+] as const;
+
+export const onboardDefaultRegion: OnboardRegionId = "dubai";
+
+export const onboardCopy = {
+  eyebrow: "Company setup",
+  title: "We help you build the company — in the region you're building it.",
+  body: "This is a real hands-on process with a named SeatsBrokers team, not a signup form. You pick the region; we walk the company file, verification, rails, and go-live with you.",
+} as const;
+
+export type OnboardCompareRow = {
+  id: string;
+  label: string;
+  cells: Record<OnboardRegionId, string>;
+};
+
+export const onboardCompareRows: readonly OnboardCompareRow[] = [
+  {
+    id: "entity",
+    label: "Entity type",
+    cells: {
+      dubai: "Free zone or mainland",
+      london: "UK Ltd company",
+      india: "Private limited + GST",
+      newyork: "LLC or C-corp",
+    },
+  },
+  {
+    id: "time",
+    label: "Typical setup time",
+    // [CONFIRM: typical setup time Dubai/London/India/NY]
+    cells: {
+      dubai: "Confirm with the desk",
+      london: "Confirm with the desk",
+      india: "Confirm with the desk",
+      newyork: "Confirm with the desk",
+    },
+  },
+  {
+    id: "rails",
+    label: "Payment rails",
+    cells: {
+      dubai: "AED + international cards",
+      london: "GBP, Faster Payments",
+      india: "INR, UPI/RTGS",
+      newyork: "USD, ACH/wire",
+    },
+  },
+  {
+    id: "compliance",
+    label: "Compliance",
+    cells: {
+      dubai: "UAE KYC + trade license",
+      london: "Companies House + KYC",
+      india: "MCA + GST verification",
+      newyork: "US KYC/AML + EIN",
+    },
+  },
+  {
+    id: "hours",
+    label: "Local desk hours",
+    // [CONFIRM: local desk hours Dubai/London/India/NY]
+    cells: {
+      dubai: "Named desk in this region",
+      london: "Named desk in this region",
+      india: "Named desk in this region",
+      newyork: "Named desk in this region",
+    },
+  },
+];
+
 export type OnboardStage = {
   id: OnboardStageId;
   index: string;
   label: string;
-  /** One-line caption under the rail label. */
   blurb: string;
-  /** Headline shown in the detail pane while the stage is active. */
-  status: string;
-  /** Managed-service split — what SeatsBrokers does, what the broker does. */
-  we: string;
-  you: string;
-  /** Exactly three, so the pane height never changes between stages. */
+  weHandle: readonly [string, string, string];
+  youProvide: readonly [string, string, string];
+  regionDetail: Record<OnboardRegionId, string>;
+  /** Compact-desk checklist — three ticks so the pane never resizes. */
   checks: readonly [string, string, string];
-  artifact: {
-    name: string;
-    chips: readonly [string, string, string];
-  };
-  /** Broker partners ride the same company rails at every stage. */
-  partner: string;
-  ledger: string;
+  /** Compact-desk ledger: key.event → outcome */
+  ledger: Record<OnboardRegionId, string>;
 };
 
 export const onboardStages: readonly OnboardStage[] = [
@@ -37,199 +118,259 @@ export const onboardStages: readonly OnboardStage[] = [
     id: "apply",
     index: "01",
     label: "Apply",
-    blurb: "Company account opened",
-    status: "Company opened — broker account created, named contact assigned",
-    we: "We open the company and broker account, assign a named contact, and map access.",
-    you: "You share company details and who should hold access.",
-    checks: ["Company account created", "Named contact assigned", "Company access mapped"],
-    artifact: {
-      name: "Company record",
-      chips: ["Company file", "Named contact", "Access roles"],
+    blurb: "Company file opened",
+    weHandle: [
+      "Open the company file and broker account",
+      "Assign a named contact on the regional desk",
+      "Map who holds access on the company",
+    ],
+    youProvide: [
+      "Proof of identity (director/owner)",
+      "Proof of address",
+      "Existing trade license if applicable",
+    ],
+    regionDetail: {
+      dubai: "Free zone or mainland entity path, with a named contact on the Dubai desk.",
+      london: "UK Ltd company path, with a named contact on the London desk.",
+      india: "Private limited + GST path, with a named contact on the India desk.",
+      newyork: "LLC or C-corp path, with a named contact on the New York desk.",
     },
-    partner: "Your own broker partners are planned as sub-accounts on this company.",
-    ledger: "apply.opened → company / broker account created",
+    checks: ["Company account created", "Named contact assigned", "Company access mapped"],
+    ledger: {
+      dubai: "apply.opened → company file opened · Dubai desk",
+      london: "apply.opened → company file opened · London desk",
+      india: "apply.opened → company file opened · India desk",
+      newyork: "apply.opened → company file opened · New York desk",
+    },
   },
   {
     id: "verify",
     index: "02",
     label: "Verify",
     blurb: "Company KYC cleared",
-    status: "KYC-ready — the company is verified before the first listing",
-    we: "We run business verification and KYC for the company before you list.",
-    you: "You upload company documents and confirm the people behind them.",
-    checks: ["Company documents reviewed", "Ownership confirmed", "Company KYC accepted"],
-    artifact: {
-      name: "Company verification",
-      chips: ["Company file", "Ownership", "KYC"],
+    weHandle: [
+      "Run business verification for the company",
+      "Review KYC before the first listing",
+      "Confirm ownership against the documents you send",
+    ],
+    youProvide: [
+      "Company documents for the chosen entity type",
+      "Ownership and director details",
+      "Any extra KYC the regional desk requests",
+    ],
+    regionDetail: {
+      dubai: "UAE KYC plus trade license, cleared with the Dubai desk.",
+      london: "Companies House plus KYC, cleared with the London desk.",
+      india: "MCA plus GST verification, cleared with the India desk.",
+      newyork: "US KYC/AML plus EIN, cleared with the New York desk.",
     },
-    partner: "Each partner sub-account clears the same company KYC first.",
-    ledger: "verify.cleared → company KYC accepted",
+    checks: ["Company documents reviewed", "Ownership confirmed", "Company KYC accepted"],
+    ledger: {
+      dubai: "verify.cleared → UAE KYC + trade license",
+      london: "verify.cleared → Companies House + KYC",
+      india: "verify.cleared → MCA + GST verification",
+      newyork: "verify.cleared → US KYC/AML + EIN",
+    },
   },
   {
     id: "connect",
     index: "03",
     label: "Connect",
     blurb: "POS and book linked",
-    status: "SeatsLink™ connected — the company's existing book is migrated",
-    we: "We link the company POS over SeatsLink™ and migrate the book you already hold.",
-    you: "You point us at the system the company runs today and check the mapping.",
-    checks: ["SeatsLink™ credentials issued", "Company POS linked", "Existing book migrated"],
-    artifact: {
-      name: "SeatsLink™ connection",
-      chips: ["Credentials", "Inventory map", "Sync schedule"],
+    weHandle: [
+      "Issue SeatsLink™ credentials",
+      "Link the POS or inventory system the company already runs",
+      "Migrate the book you already hold — you do not rebuild from scratch",
+    ],
+    youProvide: [
+      "Point us at the system you run today",
+      "Existing POS/inventory export, if migrating a book",
+      "Check the mapping before listings go out",
+    ],
+    regionDetail: {
+      dubai: "Named account manager on the Dubai desk stays with the SeatsLink™ map.",
+      london: "Named account manager on the London desk stays with the SeatsLink™ map.",
+      india: "Named account manager on the India desk stays with the SeatsLink™ map.",
+      newyork: "Named account manager on the New York desk stays with the SeatsLink™ map.",
     },
-    partner: "Partners ride the company connection or link their own system.",
-    ledger: "connect.pos → company book migrated over SeatsLink™",
+    checks: ["SeatsLink™ credentials issued", "Company POS linked", "Existing book migrated"],
+    ledger: {
+      dubai: "connect.pos → book migrated over SeatsLink™ · Dubai",
+      london: "connect.pos → book migrated over SeatsLink™ · London",
+      india: "connect.pos → book migrated over SeatsLink™ · India",
+      newyork: "connect.pos → book migrated over SeatsLink™ · New York",
+    },
   },
   {
     id: "cards",
     index: "04",
-    label: "Cards and payments",
+    label: "Cards & payments",
     blurb: "Company payments armed",
-    status: "Company card rails and payment methods live",
-    we: "We set up the company's card rails and payment methods.",
-    you: "You choose which payment methods the company accepts.",
-    checks: ["Company card rails set up", "Payment methods selected", "Checkout wired to listings"],
-    artifact: {
-      name: "Company payments",
-      chips: ["Card rails", "Methods", "Checkout"],
+    weHandle: [
+      "Set up the company's card rails",
+      "Wire checkout to listings",
+      "Arm the payment methods for this region",
+    ],
+    youProvide: [
+      "Choose which methods the company accepts",
+      "Confirm merchant and billing details the desk requests",
+      "Sign off the methods before the first listing",
+    ],
+    regionDetail: {
+      dubai: "AED plus international cards on the Dubai company rails.",
+      london: "GBP and Faster Payments on the London company rails.",
+      india: "INR with UPI/RTGS on the India company rails.",
+      newyork: "USD with ACH/wire on the New York company rails.",
     },
-    partner: "Partner sub-accounts sell on the same company payment rails.",
-    ledger: "payments.armed → company card rails live",
+    checks: ["Company card rails set up", "Payment methods selected", "Checkout wired to listings"],
+    ledger: {
+      dubai: "payments.armed → AED + international cards",
+      london: "payments.armed → GBP, Faster Payments",
+      india: "payments.armed → INR, UPI/RTGS",
+      newyork: "payments.armed → USD, ACH/wire",
+    },
   },
   {
     id: "payouts",
     index: "05",
     label: "Payouts",
     blurb: "Company settlement",
-    status: "Company settlement — sterling bank rail and the SeatsFunds™ USDT wallet",
-    we: "We arm the company's sterling bank rail and SeatsFunds™ USDT wallet.",
-    you: "You confirm the bank and wallet company payouts should reach.",
-    checks: [
-      "Sterling bank rail armed",
-      "SeatsFunds™ USDT wallet linked",
-      "Company payout approvals set",
+    weHandle: [
+      "Arm the regional bank rail for company settlement",
+      "Link the SeatsFunds™ USDT wallet — rail depth lives on that desk, not here",
+      "Set company payout approvals",
     ],
-    artifact: {
-      name: "Company payouts",
-      chips: ["Bank rail", "USDT wallet", "Approvals"],
+    youProvide: [
+      "Bank details payouts should reach",
+      "Wallet destination if you use the USDT rail",
+      "Who can approve payouts on the company",
+    ],
+    regionDetail: {
+      dubai: "AED bank rail, with SeatsFunds™ USDT available on the payouts desk below.",
+      london: "GBP bank rail, with SeatsFunds™ USDT available on the payouts desk below.",
+      india: "INR bank rail, with SeatsFunds™ USDT available on the payouts desk below.",
+      newyork: "USD ACH/wire, with SeatsFunds™ USDT available on the payouts desk below.",
     },
-    partner: "Partners settle on the same company rails, held to their sub-account.",
-    ledger: "payouts.armed → company bank rail + SeatsFunds™ USDT wallet",
+    checks: ["Regional bank rail armed", "SeatsFunds™ USDT wallet linked", "Company payout approvals set"],
+    ledger: {
+      dubai: "payouts.armed → AED rail + SeatsFunds™ USDT",
+      london: "payouts.armed → GBP rail + SeatsFunds™ USDT",
+      india: "payouts.armed → INR rail + SeatsFunds™ USDT",
+      newyork: "payouts.armed → USD rail + SeatsFunds™ USDT",
+    },
   },
   {
     id: "live",
     index: "06",
     label: "Live and managed",
     blurb: "Company is live",
-    status: "Company live — listings out, named account manager assigned",
-    we: "We take the company live, push listings, and stay on as your manager.",
-    you: "You run pricing and inventory, with one contact to call.",
-    checks: ["Channels enabled", "Listings distributed", "Account manager assigned"],
-    artifact: {
-      name: "Managed company",
-      chips: ["Channels", "Training", "Named manager"],
+    weHandle: [
+      "Enable channels and distribute listings",
+      "Assign a named account manager on this region's desk",
+      "Stay on after the company is live",
+    ],
+    youProvide: [
+      "Run pricing and inventory from the company desk",
+      "Confirm which channels to enable",
+      "Keep one contact to call on the named desk",
+    ],
+    regionDetail: {
+      dubai: "Listings go out with a named account manager on the Dubai desk.",
+      london: "Listings go out with a named account manager on the London desk.",
+      india: "Listings go out with a named account manager on the India desk.",
+      newyork: "Listings go out with a named account manager on the New York desk.",
     },
-    partner: "Partners go live as sub-accounts on this company, with their own logins.",
-    ledger: "company.live → listings out, manager assigned",
+    checks: ["Channels enabled", "Listings distributed", "Account manager assigned"],
+    ledger: {
+      dubai: "company.live → listings out · Dubai manager assigned",
+      london: "company.live → listings out · London manager assigned",
+      india: "company.live → listings out · India manager assigned",
+      newyork: "company.live → listings out · New York manager assigned",
+    },
   },
 ] as const;
 
-export const onboardHighlights = [
-  { value: "Guided", label: "Named contact from day one" },
-  { value: "KYC-ready", label: "Company verified first" },
-  { value: "Any region", label: "Wherever SeatsBrokers operates" },
-] as const;
-
-export const onboardCopy = {
-  eyebrow: "Company setup",
-  title: "We set up the company. You and your partners run it.",
-  body: "SeatsBrokers helps brokers and their broker partners set up the company — account opened, verification cleared, POS connected, cards and payouts armed — then stays on after the company is live. Partners sit as sub-accounts on the same company rails.",
-  detail:
-    "A named contact opens the company with you. Verification is KYC-ready before the first listing. SeatsLink™ connects the company POS or inventory system and migrates the book you already hold. Company card rails and payment methods go live. Payouts arm sterling bank settlement and the SeatsFunds™ USDT wallet. The company then lists across connected marketplaces, with an account manager in any region we operate. Broker partners you bring with you sit as sub-accounts on those same company rails.",
-  detailLabel: "How we set up the company",
+export const onboardPartners = {
+  eyebrow: "Broker partner sub-accounts",
+  title: "Your broker partners sit on the same company.",
+  body: "Partners are not a side channel. They ride the same company inventory, payments, and payout rails you just armed.",
+  gets: [
+    {
+      title: "Own login",
+      body: "Each partner signs in as a sub-account on the company, not a shared operator seat.",
+    },
+    {
+      title: "Scoped inventory and pricing",
+      body: "The partner sees the inventory and pricing view scoped to their sub-account.",
+    },
+    {
+      title: "Own activity log",
+      body: "Partner activity is held to that sub-account so the company can see who did what.",
+    },
+  ],
+  // [CONFIRM: partner sub-account cap]
+  cap: "We do not publish a cap here. Confirm how many partner sub-accounts you need with the desk.",
+  // [CONFIRM: partners in a different region than the primary company]
+  multiRegion:
+    "Ask the desk whether partners can sit in a different region than the primary company.",
+  regionNote: {
+    dubai: "Sub-accounts ride the Dubai company rails (free zone or mainland entity).",
+    london: "Sub-accounts ride the London company rails (UK Ltd company).",
+    india: "Sub-accounts ride the India company rails (private limited + GST).",
+    newyork: "Sub-accounts ride the New York company rails (LLC or C-corp).",
+  } satisfies Record<OnboardRegionId, string>,
 } as const;
 
-export const onboardPoints = [
-  {
-    title: "You are not left to figure it out",
-    body: "A named contact opens the company, walks verification, and stays through go-live — then remains the account manager after the company is listing.",
-  },
-  {
-    title: "The stack the company already runs still counts",
-    body: "Connect the POS or inventory system the company already uses over SeatsLink™. Existing holdings migrate; you do not rebuild the book from scratch.",
-  },
-  {
-    title: "Company money rails before the first sale",
-    body: "Company card rails and payment methods go live first, then payouts arm sterling bank settlement and the SeatsFunds™ USDT wallet — before inventory lists.",
-  },
-  {
-    title: "Your broker partners sit on the same company",
-    body: "Sub-accounts let a broker set up their own partners on the same company inventory, payments, and payout rails — one company, not a side channel.",
-  },
-  {
-    title: "Any region we operate in",
-    body: "Company setup, cards, payouts, and ongoing management follow the same path wherever SeatsBrokers is live. Control stays on one company.",
-  },
-] as const;
+export const onboardChecklist = {
+  eyebrow: "What you'll need",
+  title: "A checklist for the desk, not a form.",
+  shared: [
+    "Proof of identity (director/owner)",
+    "Proof of business address",
+    "Named contacts who should hold access",
+    "Existing POS/inventory export, if migrating a book",
+    "Bank details for the regional payout rail",
+  ],
+  region: {
+    dubai: "Trade license (free zone or mainland), if you already hold one",
+    london: "Companies House details for the Ltd, if already formed",
+    india: "GST registration and MCA company details, if already formed",
+    newyork: "EIN and LLC or C-corp papers, if already formed",
+  } satisfies Record<OnboardRegionId, string>,
+} as const;
 
-export const onboardCapabilityGroups = [
+export const onboardFaqs = [
   {
-    id: "setup" as const,
-    title: "Setup and compliance",
-    body: "Opening the company and clearing it to trade.",
-    items: [
-      {
-        title: "Guided company setup",
-        body: "A named contact opens the company with you and stays through go-live.",
-      },
-      {
-        title: "Business verification",
-        body: "KYC-ready paperwork and compliance for the company, cleared before the first listing.",
-      },
-      {
-        title: "Broker partner sub-accounts",
-        body: "Set up your own partners on the same company inventory, payments, and payout rails.",
-      },
-    ],
+    id: "existing-company",
+    question: "Do I need an existing company to start?",
+    // [CONFIRM: incorporate-from-zero vs connect-existing]
+    answer:
+      "We walk company setup in the region you're building in. If you already have an entity, we connect it. If you are forming one, the desk guides the paperwork. We do not claim to incorporate a Ltd for you from zero on this page.",
   },
   {
-    id: "connection" as const,
-    title: "Connection and inventory",
-    body: "Bringing the book the company already holds onto the platform.",
-    items: [
-      {
-        title: "POS and API connection",
-        body: "Link the company POS or inventory system over SeatsLink™ and keep it in sync.",
-      },
-      {
-        title: "Inventory migration",
-        body: "Existing company holdings move across — you do not rebuild the book from scratch.",
-      },
-      {
-        title: "Marketplace distribution",
-        body: "Channels enabled and listings pushed from the company's inventory layer.",
-      },
-    ],
+    id: "multi-region",
+    question: "Can my company operate in more than one region?",
+    answer:
+      "SeatsBrokers desks sit in Dubai, London, India, and New York. Whether one company can operate across more than one of those regions is a desk conversation — we do not publish a multi-region operating model here.",
   },
   {
-    id: "money" as const,
-    title: "Money and management",
-    body: "Company rails armed first, then we stay on after go-live.",
-    items: [
-      {
-        title: "Cards and payments",
-        body: "Company payment methods and card rails set up before the first listing.",
-      },
-      {
-        title: "Payout rails",
-        body: "Company settlement: sterling bank rail and the SeatsFunds™ USDT wallet, armed before you list.",
-      },
-      {
-        title: "Ongoing management",
-        body: "Training, account management, and support for the company in any region we operate.",
-      },
-    ],
+    id: "migration-listings",
+    question: "What happens to my existing marketplace listings during migration?",
+    answer:
+      "SeatsLink™ connects the POS or inventory system you already run and migrates the book you hold. Existing holdings move across; you do not rebuild the book from scratch. Channel mapping is checked with you before listings go out.",
+  },
+  {
+    id: "setup-cost",
+    question: "Is there a cost to company setup, or is it included?",
+    // [CONFIRM: setup cost]
+    answer:
+      "Talk to the desk — we do not list a setup fee here. Commercial terms are agreed per account.",
+  },
+  {
+    id: "how-long",
+    question: "How long until I'm live?",
+    answer:
+      "We do not publish a go-live SLA. Typical setup time is confirmed with the desk for your region — see the comparison row, not a number on this page.",
   },
 ] as const;
 
@@ -257,4 +398,3 @@ export const onboardFrames: OnboardFrame[] = onboardStages.flatMap((stage, stage
 
 export const onboardFrameLastIndex = onboardFrames.length - 1;
 export const onboardStageLastIndex = onboardStages.length - 1;
-export const onboardChecksPerStage = 3;

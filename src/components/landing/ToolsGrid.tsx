@@ -1,23 +1,40 @@
-import type { CSSProperties, ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
+  ArrowRight,
   BadgeCheck,
+  BarChart3,
+  Building2,
+  CalendarDays,
   Car,
+  ChevronDown,
   Check,
+  CreditCard,
   FileSpreadsheet,
   FileText,
+  GitCompareArrows,
   Globe2,
+  Handshake,
+  Layers,
   Link2,
   ListChecks,
+  LineChart,
+  Network,
   Package,
   Percent,
   Play,
   Radio,
+  RefreshCw,
   Settings2,
   Share2,
+  ShieldCheck,
+  Sparkles,
+  Ticket,
+  Wallet,
 } from "lucide-react";
 import { Reveal, useInView } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
+import { ConsoleShell } from "@/components/pages/brokers/ConsoleShell";
 import {
   SeatMapTicketsConsole,
   autoInvoiceRef,
@@ -29,6 +46,7 @@ import {
   useSeatMapTickets,
 } from "@/components/landing/SeatMapTicketsConsole";
 import type { EventBackdropKey } from "@/lib/event-backdrops";
+import { brand } from "@/content/site";
 import { modules } from "@/content/modules";
 
 type FlowSource = { icon: LucideIcon; label: string; packet: string };
@@ -63,72 +81,6 @@ type FlowBlueprint = {
   terminal: string;
   terminalLines: string[];
   backdrop: EventBackdropKey;
-};
-
-const sellerBlueprint: FlowBlueprint = {
-  id: "sellers",
-  backdrop: "concertCrowd",
-  eyebrow: "Broker platform",
-  title: "Connect your existing systems to marketplace distribution",
-  intro:
-    "Brokers should not need to change everything they already use. Connect POS systems, inventory systems, internal ERP and partner systems through the SeatsBrokers API.",
-  systemName: "seatsbrokers / broker-pipeline",
-  ingestLabel: "Connect layer",
-  sources: [
-    { icon: Settings2, label: "Broker POS", packet: "pos" },
-    { icon: FileSpreadsheet, label: "Inventory systems", packet: "inventory" },
-    { icon: Package, label: "Internal ERP", packet: "erp" },
-    { icon: Radio, label: "Partner systems", packet: "partners" },
-  ],
-  gateway: "SeatsBrokers API",
-  branches: [
-    {
-      lineLabel: "inventory sync",
-      cardTitle: "Inventory layer",
-      cardBody: "Tickets, sections, rows, quantity, prices and delivery information — synchronized from your existing systems.",
-      cardMetric: "Real-time",
-      metricLabel: "Inventory sync",
-      processLabel: "Centralized inventory management",
-    },
-    {
-      lineLabel: "marketplace push",
-      cardTitle: "Marketplace distribution",
-      cardBody: "List once. When inventory changes, SeatsBrokers synchronizes quantity, price and listing status across marketplaces.",
-      cardMetric: "32",
-      metricLabel: "Connected marketplaces",
-      processLabel: "Automated listing distribution",
-    },
-    {
-      lineLabel: "order events",
-      cardTitle: "Order synchronization",
-      cardBody: "When a ticket sells on any marketplace, inventory updates and other listings are removed automatically.",
-      cardMetric: "Auto",
-      metricLabel: "Delisting after sale",
-      processLabel: "Multi-marketplace sync",
-    },
-  ],
-  midRow: [
-    {
-      lineLabel: "pricing signals",
-      title: "AI pricing",
-      body: "Market data analyzed into pricing recommendations — AI recommends, broker approves, price synchronized.",
-      status: "Broker controlled",
-    },
-    {
-      lineLabel: "delivery updates",
-      title: "Ticket delivery",
-      body: "Delivery information updated across marketplaces and partner systems from one queue.",
-      status: "SLA tracked",
-    },
-    {
-      lineLabel: "payment flows",
-      title: "Payment infrastructure",
-      body: "Integrated purchasing and payment infrastructure for eligible ticket businesses.",
-      status: "165 countries",
-    },
-  ],
-  terminal: "Marketplace connectivity engine",
-  terminalLines: ["inventory, pricing, orders", "delivery, settlement, sync"],
 };
 
 const travelBlueprint: FlowBlueprint = {
@@ -197,226 +149,694 @@ const travelBlueprint: FlowBlueprint = {
   terminalLines: ["quotes, orders, invoices", "margins, delivery, settlement"],
 };
 
-/** Tree junction: one trunk fanning into (or out of) `cols` branches. */
-function FlowJunction({
-  cols,
-  direction,
-  spread = "lg",
-  height = "h-12",
+const sellerSystems: { icon: LucideIcon; label: string; hint: string }[] = [
+  { icon: Settings2, label: "Broker POS", hint: "Point of sale" },
+  { icon: FileSpreadsheet, label: "Inventory systems", hint: "Stock databases" },
+  { icon: BarChart3, label: "Internal ERP", hint: "Back-office" },
+  { icon: Handshake, label: "Partner systems", hint: "Wholesalers and suppliers" },
+  { icon: Link2, label: "SeatsBrokers API", hint: "Direct integration" },
+];
+
+const sellerConnect: { icon: LucideIcon; label: string }[] = [
+  { icon: Link2, label: "API management" },
+  { icon: Layers, label: "Data mapping" },
+  { icon: ShieldCheck, label: "Security" },
+  { icon: Network, label: "Scalable infrastructure" },
+];
+
+const sellerModules: {
+  n: string;
+  icon: LucideIcon;
+  title: string;
+  product?: string;
+  event: string;
+  features: readonly string[];
+}[] = [
+  {
+    n: "01",
+    icon: Ticket,
+    title: "Inventory layer",
+    product: modules.source.name,
+    event: "stock.push → live availability",
+    features: ["Live stock ingest", "Section and qty map", "Price held in £", "Availability sync"],
+  },
+  {
+    n: "02",
+    icon: Share2,
+    title: "Marketplace distribution",
+    event: "list.once → 32 channels",
+    features: ["List once", "32 connected channels", "Qty kept in sync", "Status mirrored"],
+  },
+  {
+    n: "03",
+    icon: RefreshCw,
+    title: "Order sync",
+    event: "order.sold → auto delist",
+    features: ["Sale captured", "Auto delist", "Oversell blocked", "Stock written back"],
+  },
+  {
+    n: "04",
+    icon: LineChart,
+    title: "AI pricing",
+    product: modules.pulse.name,
+    event: "price.signal → rec ready",
+    features: ["Live market signal", "Rec ready", "You approve", "Price syncs out"],
+  },
+  {
+    n: "05",
+    icon: Package,
+    title: "Delivery",
+    event: "fulfil.update → sla sync",
+    features: ["Central queue", "SLA tracking", "Status to channels", "Fulfilment updates"],
+  },
+  {
+    n: "06",
+    icon: Wallet,
+    title: "Payment flows",
+    product: modules.funds.name,
+    event: "payout.batch → settled in £",
+    features: ["Payment rails", "Settle in £", "Multi-currency", "Partner payouts"],
+  },
+];
+
+const sellerIngest: { src: string; event: string }[] = [
+  { src: "Broker POS", event: "pos.qty → engine" },
+  { src: "Inventory systems", event: "stock.push → mapping" },
+  { src: "Internal ERP", event: "erp.price → sync" },
+  { src: "Partner systems", event: "partner.feed → ingest" },
+  { src: "SeatsBrokers API", event: "api.hook → live" },
+];
+
+const sellerDataLayer = ["Inventory", "Pricing", "Orders", "Delivery", "Settlement"] as const;
+
+const sellerDataMap = [0, 0, 2, 1, 3, 4] as const;
+
+const sellerChannelRows = [
+  ["01", "02"],
+  ["03", "04"],
+  ["05", "06"],
+  ["07", "08"],
+] as const;
+
+const sellerChannelHealth: { pair: string; state: string }[] = [
+  { pair: "01–02", state: "Live" },
+  { pair: "03–04", state: "Sync" },
+  { pair: "05–06", state: "Live" },
+  { pair: "07–08", state: "Live" },
+];
+
+const sellerBuyers: { icon: LucideIcon; label: string }[] = [
+  { icon: BadgeCheck, label: "Sports" },
+  { icon: Radio, label: "Music" },
+  { icon: Building2, label: "Theatre" },
+  { icon: CalendarDays, label: "Events" },
+  { icon: Sparkles, label: "Experiences" },
+];
+
+const sellerSteps: { n: string; icon: LucideIcon; title: string; body: string }[] = [
+  {
+    n: "01",
+    icon: FileSpreadsheet,
+    title: "Inventory ingest",
+    body: "Connect the systems you already run. Inventory is imported into SeatsBrokers in real time — tickets, sections, quantity and price.",
+  },
+  {
+    n: "02",
+    icon: Share2,
+    title: "List & distribute",
+    body: "List once. Inventory is pushed across 32 connected marketplaces, with quantity, price and status kept in sync.",
+  },
+  {
+    n: "03",
+    icon: RefreshCw,
+    title: "Order captured",
+    body: "When a ticket sells on any channel, SeatsBrokers updates stock and removes the other listings so you cannot oversell.",
+  },
+  {
+    n: "04",
+    icon: LineChart,
+    title: "AI pricing",
+    body: `${modules.pulse.name} turns live market data into recommendations. You approve; the new price is synchronized everywhere.`,
+  },
+  {
+    n: "05",
+    icon: Package,
+    title: "Deliver",
+    body: "Delivery sits in one central queue with SLA tracking. Status is written back to every marketplace from the same desk.",
+  },
+  {
+    n: "06",
+    icon: CreditCard,
+    title: "Settle",
+    body: `${modules.funds.name} processes payments in £ and other currencies, then settles eligible partners through the same infrastructure.`,
+  },
+];
+
+const sellerHighlights: { icon: LucideIcon; label: string }[] = [
+  { icon: Globe2, label: "165 countries" },
+  { icon: Network, label: "32 connected marketplaces" },
+  { icon: RefreshCw, label: "Real-time sync" },
+  { icon: ShieldCheck, label: "Secure & scalable" },
+  { icon: BarChart3, label: "Maximize reach, minimize work" },
+];
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduced(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  return reduced;
+}
+
+function useSellerCycle(length: number, ms: number, enabled: boolean) {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (!enabled || length <= 1) return;
+    const id = window.setInterval(() => {
+      setActive((i) => (i + 1) % length);
+    }, ms);
+    return () => window.clearInterval(id);
+  }, [length, ms, enabled]);
+
+  return active;
+}
+
+function StoHop({ twoWay }: { twoWay?: boolean }) {
+  return (
+    <span className="sto-hop" data-two-way={twoWay ? "true" : "false"} aria-hidden>
+      <svg className="sto-hop-svg" viewBox="0 0 100 12" preserveAspectRatio="none">
+        <line
+          x1="8"
+          y1="6"
+          x2="92"
+          y2="6"
+          pathLength="100"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeDasharray="10 8"
+          strokeLinecap="butt"
+        />
+      </svg>
+      {twoWay ? <b className="sto-hop-cap is-start" /> : null}
+      <b className="sto-hop-cap is-end" />
+      <span className="sto-hop-packet" />
+      <span className="sto-hop-packet is-follow" />
+      {twoWay ? <span className="sto-hop-packet is-rev" /> : null}
+    </span>
+  );
+}
+
+function StoBuyHop() {
+  return (
+    <span className="sto-buy-hop" aria-hidden>
+      <svg className="sto-buy-svg" viewBox="0 0 12 40" preserveAspectRatio="none">
+        <line
+          x1="6"
+          y1="4"
+          x2="6"
+          y2="28"
+          pathLength="100"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeDasharray="10 8"
+          strokeLinecap="butt"
+        />
+      </svg>
+      <b className="sto-hop-cap is-end" />
+      <span className="sto-hop-packet" />
+      <span className="sto-hop-packet is-follow" />
+    </span>
+  );
+}
+
+type StoCardBox = {
+  l: number;
+  t: number;
+  r: number;
+  b: number;
+  cx: number;
+  cy: number;
+};
+
+function stoCardBox(el: Element, origin: DOMRect): StoCardBox {
+  const b = el.getBoundingClientRect();
+  return {
+    l: b.left - origin.left,
+    t: b.top - origin.top,
+    r: b.right - origin.left,
+    b: b.bottom - origin.top,
+    cx: b.left - origin.left + b.width / 2,
+    cy: b.top - origin.top + b.height / 2,
+  };
+}
+
+function stoFlowPath(cards: StoCardBox[]) {
+  const [c1, c2, c3, c4, c5, c6] = cards;
+  if (!c1 || !c2 || !c3 || !c4 || !c5 || !c6) return null;
+
+  const n = (v: number) => Math.round(v * 10) / 10;
+  const colGap = c2.l - c1.r;
+  const cap = Math.max(6, Math.min(10, colGap * 0.42));
+  const rowGap = Math.max(1, c4.t - c3.b);
+  const yMid = n(c3.b + rowGap / 2);
+  const yTop = n(c3.cy);
+  const yBot = n(c4.cy);
+  const stub = Math.max(16, Math.min(24, c4.l * 0.2));
+  const r = Math.max(
+    10,
+    Math.min(16, stub - cap, rowGap * 0.55, (yBot - yMid) * 0.38, (yMid - yTop) * 0.38),
+  );
+  const xRight = n(c3.r + stub);
+  const xLeft = n(c4.l - stub);
+
+  const row1 = `M ${n(c1.r)} ${n(c1.cy)} H ${n(c2.l - cap)} M ${n(c2.r)} ${n(c2.cy)} H ${n(c3.l - cap)}`;
+  const wrap = [
+    `M ${n(c3.r)} ${yTop}`,
+    `H ${n(xRight - r)}`,
+    `A ${r} ${r} 0 0 1 ${xRight} ${n(yTop + r)}`,
+    `V ${n(yMid - r)}`,
+    `A ${r} ${r} 0 0 1 ${n(xRight - r)} ${yMid}`,
+    `H ${n(xLeft + r)}`,
+    `A ${r} ${r} 0 0 0 ${xLeft} ${n(yMid + r)}`,
+    `V ${n(yBot - r)}`,
+    `A ${r} ${r} 0 0 0 ${n(xLeft + r)} ${yBot}`,
+    `H ${n(c4.l - cap)}`,
+  ].join(" ");
+  const row2 = `M ${n(c4.r)} ${n(c4.cy)} H ${n(c5.l - cap)} M ${n(c5.r)} ${n(c5.cy)} H ${n(c6.l - cap)}`;
+  const motion = `${row1} ${wrap} ${row2}`;
+
+  return { row1, wrap, row2, motion, restX: n((xLeft + xRight) / 2), restY: yMid };
+}
+
+function StoProcessFlow({
+  hostRef,
+  live,
 }: {
-  cols: number;
-  direction: "in" | "out";
-  /** Width at which the fan-out is visible — matches the grid it connects to. */
-  spread?: "sm" | "lg";
-  height?: string;
+  hostRef: RefObject<HTMLDivElement | null>;
+  live: boolean;
 }) {
-  const positions = Array.from({ length: cols }, (_, i) => `calc((100% / ${cols}) * ${i + 0.5})`);
+  const [flow, setFlow] = useState<{
+    w: number;
+    h: number;
+    row1: string;
+    wrap: string;
+    row2: string;
+    motion: string;
+    restX: number;
+    restY: number;
+  } | null>(null);
+
+  useEffect(() => {
+    const host = hostRef.current;
+    if (!host) return;
+
+    const measure = () => {
+      const cards = [...host.querySelectorAll(":scope .sto-step")];
+      if (cards.length !== 6) return;
+      const origin = host.getBoundingClientRect();
+      if (origin.width < 40 || origin.height < 40) return;
+      const boxes = cards.map((el) => stoCardBox(el, origin));
+      const next = stoFlowPath(boxes);
+      if (!next) return;
+      setFlow({ w: origin.width, h: origin.height, ...next });
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(host);
+    const steps = host.querySelector(":scope .sto-steps");
+    if (steps) ro.observe(steps);
+    host.querySelectorAll(":scope .sto-step").forEach((el) => ro.observe(el));
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [hostRef]);
+
+  if (!flow) return <div className="sto-flow" aria-hidden />;
 
   return (
-    <div
-      className={`flow-junction ${direction === "in" ? "flow-junction-in" : "flow-junction-out"} ${
-        spread === "sm" ? "flow-junction-sm" : ""
-      } ${height}`}
-      style={{ "--flow-cols": cols } as CSSProperties}
-      aria-hidden
-    >
-      <span className="flow-bus flow-line-h" />
-      <span className="flow-trunk flow-line-v">
-        <span className="flow-pulse" />
-      </span>
-      <span className="flow-node flow-node-trunk" />
-      {positions.map((left, i) => (
-        <span key={`branch-${left}`} className="flow-branch flow-line-v" style={{ left }}>
-          <span className="flow-pulse" style={{ animationDelay: `${i * 0.42}s` }} />
-        </span>
-      ))}
-      {positions.map((left) => (
-        <span key={`node-${left}`} className="flow-node" style={{ left }} />
-      ))}
+    <div className="sto-flow" aria-hidden>
+      <svg
+        className="sto-flow-svg"
+        viewBox={`0 0 ${flow.w} ${flow.h}`}
+        preserveAspectRatio="xMinYMin meet"
+      >
+        <defs>
+          <marker
+            id="sto-flow-arrow"
+            markerWidth="8"
+            markerHeight="8"
+            refX="7"
+            refY="4"
+            orient="auto"
+            markerUnits="userSpaceOnUse"
+          >
+            <path d="M0 1.1 L7.2 4 L0 6.9 Z" fill="currentColor" />
+          </marker>
+        </defs>
+        <path
+          d={flow.row1}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeDasharray="10 8"
+          strokeLinecap="butt"
+          strokeLinejoin="round"
+          vectorEffect="non-scaling-stroke"
+          markerEnd="url(#sto-flow-arrow)"
+        />
+        <path
+          d={flow.wrap}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeDasharray="10 8"
+          strokeLinecap="butt"
+          strokeLinejoin="round"
+          vectorEffect="non-scaling-stroke"
+          markerEnd="url(#sto-flow-arrow)"
+        />
+        <path
+          d={flow.row2}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeDasharray="10 8"
+          strokeLinecap="butt"
+          strokeLinejoin="round"
+          vectorEffect="non-scaling-stroke"
+          markerEnd="url(#sto-flow-arrow)"
+        />
+        <circle r="3.2" fill="currentColor" cx={live ? 0 : flow.restX} cy={live ? 0 : flow.restY}>
+          {live ? (
+            <animateMotion dur="9s" repeatCount="indefinite" path={flow.motion} />
+          ) : null}
+        </circle>
+        {live ? (
+          <circle r="3.2" fill="currentColor">
+            <animateMotion
+              dur="9s"
+              begin="-4.5s"
+              repeatCount="indefinite"
+              path={flow.motion}
+            />
+          </circle>
+        ) : null}
+      </svg>
     </div>
   );
 }
 
-/** Labelled vertical link between two stacked blocks in the same column. */
-function FlowLink({ label }: { label: string }) {
+function StoVLink({ label, reverse }: { label: string; reverse?: boolean }) {
   return (
-    <div className="flow-link" aria-hidden>
-      <span className="flow-line-v flow-link-segment">
-        <span className="flow-pulse" />
+    <div className="sto-vlink" aria-hidden>
+      <span className="sto-vlink-line" />
+      <span className="sto-vlink-packet" />
+      <span className="sto-vlink-packet is-follow" />
+      {reverse ? <span className="sto-vlink-packet is-rev" /> : null}
+      <span className="sto-join">
+        {reverse ? <GitCompareArrows strokeWidth={1.75} /> : <ArrowRight strokeWidth={1.75} />}
+        <span>{label}</span>
       </span>
-      <span className="flow-packet font-mono">{label}</span>
-      <span className="flow-line-v flow-link-segment" />
     </div>
   );
 }
 
-function FlowBar({ children, tone }: { children: string; tone: "gateway" | "terminal" }) {
-  return (
-    <div
-      className={`flow-bar ${tone === "terminal" ? "flow-bar-terminal" : ""} mx-auto flex w-full max-w-4xl items-center justify-center gap-3 rounded-xl px-4 py-4`}
-    >
-      <span className="flow-bar-dot" aria-hidden />
-      <span className="font-display text-sm font-bold tracking-[0.12em] text-primary-foreground sm:text-base">
-        {children}
-      </span>
-      <span className="flow-bar-dot" aria-hidden />
-    </div>
-  );
-}
-
-function FlowArchitecture({ blueprint }: { blueprint: FlowBlueprint }) {
-  const { ref, inView } = useInView<HTMLDivElement>(0.12);
+export function SellerTools() {
+  const { ref, inView } = useInView<HTMLDivElement>(0.14, { once: false });
+  const reduced = usePrefersReducedMotion();
+  const live = inView && !reduced;
+  const processRef = useRef<HTMLDivElement>(null);
+  const activeMod = useSellerCycle(sellerModules.length, 2600, live);
+  const ingestTick = useSellerCycle(sellerIngest.length, 1800, live);
+  const ingest = sellerIngest[ingestTick] ?? sellerIngest[0]!;
 
   return (
     <section
-      id={blueprint.id}
-      className="section-curve relative isolate scroll-mt-24 overflow-x-clip bg-background py-16 sm:py-24"
-      aria-labelledby={`${blueprint.id}-title`}
+      id="sellers"
+      className="sto-section section-curve relative isolate scroll-mt-24 bg-background py-16 sm:py-24"
+      aria-labelledby="sellers-title"
     >
-      <SectionBackdrop image={blueprint.backdrop} tone="light" strength={0.1} />
+      <SectionBackdrop image="concertCrowd" tone="light" strength={0.08} />
       <div className="container-page relative z-10">
         <Reveal>
-          <p className="section-eyebrow text-primary">
-            {blueprint.eyebrow}
-          </p>
-          <h2
-            id={`${blueprint.id}-title`}
-            className="mt-4 max-w-3xl text-3xl font-bold text-foreground sm:text-4xl"
-          >
-            {blueprint.title}
-          </h2>
-          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            {blueprint.intro}
-          </p>
+          <header className="sto-head">
+            <div className="sto-head-copy">
+              <p className="section-eyebrow text-primary">{brand.name}</p>
+              <h2 id="sellers-title">Marketplace connectivity and orchestration engine</h2>
+            </div>
+            <p className="sto-tagline">Connect. List. Sync. Sell. Everywhere.</p>
+          </header>
         </Reveal>
+
+        <p className="sto-lead">
+          Keep the POS, inventory and ERP you already run. {brand.name} sits in the middle:
+          one inventory layer, listed across connected marketplaces, with orders, pricing,
+          delivery and settlement kept in sync.
+        </p>
 
         <div
           ref={ref}
-          data-live={inView}
-          className="tools-flow relative mt-12 overflow-x-clip rounded-2xl border border-border bg-surface/70 px-3 pb-6 pt-4 sm:px-6 sm:pb-8 lg:px-10 lg:pb-10"
+          data-live={live ? "true" : "false"}
+          data-step={String(activeMod)}
+          className="sto-board"
         >
-          <span className="flow-corner flow-corner-tl" aria-hidden />
-          <span className="flow-corner flow-corner-tr" aria-hidden />
-          <span className="flow-corner flow-corner-bl" aria-hidden />
-          <span className="flow-corner flow-corner-br" aria-hidden />
+          <div className="sto-diagram">
+            <aside className="sto-rail-in">
+              <header className="sto-rail-head">
+                <p className="sto-kicker">Broker systems</p>
+                <h3 className="sto-rail-title">Your existing infrastructure</h3>
+                <p className="sto-ingest-line font-mono" aria-live="polite">
+                  {ingest.event}
+                </p>
+              </header>
+              <div className="sto-sys-wrap">
+                <ul className="sto-sys">
+                  {sellerSystems.map((item, index) => (
+                    <li
+                      key={item.label}
+                      className="sto-sys-item"
+                      data-active={ingestTick === index ? "true" : "false"}
+                    >
+                      <span className="sto-sys-icon" aria-hidden>
+                        <item.icon strokeWidth={1.75} />
+                      </span>
+                      <span>
+                        <strong>{item.label}</strong>
+                        <em>{item.hint}</em>
+                      </span>
+                      <StoHop twoWay />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <footer className="sto-rail-foot">
+                <p>
+                  <strong>5</strong>
+                  <span>Connected systems</span>
+                </p>
+                <p>
+                  <strong>Live</strong>
+                  <span>Two-way sync</span>
+                </p>
+                <ul className="sto-rail-feed">
+                  {sellerIngest.map((item, index) => (
+                    <li key={item.src} data-active={ingestTick === index ? "true" : "false"}>
+                      <strong>{item.src}</strong>
+                      <em className="font-mono">{item.event}</em>
+                    </li>
+                  ))}
+                </ul>
+              </footer>
+            </aside>
 
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
-            <p className="font-mono text-[10px] tracking-[0.16em] text-muted-foreground sm:text-[11px]">
-              {blueprint.systemName}
-            </p>
-            <p className="flex items-center gap-2 font-mono text-[10px] tracking-[0.16em] text-primary sm:text-[11px]">
-              <span className="flow-status-dot" aria-hidden />
-              pipeline live · streaming
-            </p>
-          </div>
+            <StoVLink label="Two-way sync" reverse />
 
-          {/* Tier 1 — ingest */}
-          <p className="flow-tier-label mt-6">{blueprint.ingestLabel}</p>
-          <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4 sm:gap-6">
-            {blueprint.sources.map((src, i) => (
-              <Reveal key={src.label} delay={i * 70}>
-                <div className="flow-source group/src flex flex-col items-center text-center">
-                  <span className="flow-source-ring inline-flex size-14 items-center justify-center rounded-full sm:size-16">
-                    <src.icon className="size-6 text-primary sm:size-7" strokeWidth={1.75} />
-                  </span>
-                  <p className="mt-3 text-[11px] font-semibold leading-snug text-foreground sm:text-xs">
-                    {src.label}
-                  </p>
-                  <span className="flow-packet-inline font-mono">{src.packet}</span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+            <div className="sto-core">
+              <ConsoleShell
+                path="seatsbrokers / sellers / orchestration"
+                status="Live"
+                icon={Network}
+              >
+                <div className="sto-desk">
+                  <div className="sto-connect" data-step={String(activeMod)}>
+                    <div className="sto-connect-head">
+                      <p className="sto-connect-label">
+                        {modules.link.name} · Connect layer
+                      </p>
+                      <span>Single integration layer</span>
+                    </div>
+                    <ul className="sto-connect-list">
+                      {sellerConnect.map((item, index) => (
+                        <li
+                          key={item.label}
+                          data-active={activeMod % sellerConnect.length === index ? "true" : "false"}
+                        >
+                          <item.icon strokeWidth={1.75} aria-hidden />
+                          {item.label}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-          <FlowJunction cols={blueprint.sources.length} direction="in" spread="sm" />
+                  <div className="sto-chevron" aria-hidden>
+                    <ChevronDown strokeWidth={2.25} />
+                  </div>
 
-          <FlowBar tone="gateway">{blueprint.gateway}</FlowBar>
+                  <p className="sto-mods-kicker">Core platform modules</p>
+                  <ol className="sto-mods">
+                    {sellerModules.map((mod, index) => (
+                      <li
+                        key={mod.n}
+                        className="sto-mod"
+                        data-n={mod.n}
+                        data-active={activeMod === index ? "true" : "false"}
+                      >
+                        <span className="sto-mod-n font-mono">{mod.n.replace(/^0/, "")}</span>
+                        <span className="sto-mod-icon" aria-hidden>
+                          <mod.icon strokeWidth={1.75} />
+                        </span>
+                        <h3>{mod.title}</h3>
+                        {mod.product ? <p className="sto-mod-product">{mod.product}</p> : null}
+                        <ul className="sto-mod-feat">
+                          {mod.features.map((line) => (
+                            <li key={line}>
+                              <Check strokeWidth={3} aria-hidden />
+                              {line}
+                            </li>
+                          ))}
+                        </ul>
+                        <p className="sto-mod-event font-mono">{mod.event}</p>
+                      </li>
+                    ))}
+                  </ol>
 
-          <FlowJunction cols={blueprint.branches.length} direction="out" />
-
-          {/* Tier 2 — process branches */}
-          <div className="grid gap-x-4 gap-y-2 lg:grid-cols-3">
-            {blueprint.branches.map((branch) => (
-              <div key={branch.cardTitle} className="flow-col group flex flex-col">
-                <FlowLink label={branch.lineLabel} />
-                <div className="flow-card flex flex-1 flex-col rounded-xl border border-border bg-card p-5">
-                  <h3 className="font-display text-lg font-bold text-foreground">
-                    {branch.cardTitle}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                    {branch.cardBody}
-                  </p>
-                  <div className="mt-5 flex items-end justify-between gap-3 border-t border-border pt-4">
-                    <span className="font-display text-3xl font-bold text-primary">
-                      {branch.cardMetric}
-                    </span>
-                    <span className="max-w-[8.5rem] text-right font-mono text-[10px] leading-tight tracking-wide text-muted-foreground ">
-                      {branch.metricLabel}
-                    </span>
+                  <div className="sto-data">
+                    <span className="sto-data-label">Unified data layer</span>
+                    <p>
+                      {sellerDataLayer.map((item, index) => (
+                        <span
+                          key={item}
+                          data-active={sellerDataMap[activeMod] === index ? "true" : "false"}
+                        >
+                          {index > 0 ? <i aria-hidden> · </i> : null}
+                          {item}
+                        </span>
+                      ))}
+                    </p>
                   </div>
                 </div>
+              </ConsoleShell>
+            </div>
 
-                <div className="flow-link flow-link-short" aria-hidden>
-                  <span className="flow-line-v flow-link-segment">
-                    <span className="flow-pulse" />
+            <StoVLink label="Distributed out" />
+
+            <div className="sto-right">
+              <aside className="sto-rail-out">
+                <header className="sto-rail-head">
+                  <p className="sto-kicker">Connected marketplaces</p>
+                  <h3 className="sto-rail-title">Where inventory goes</h3>
+                </header>
+                <ul className="sto-channels" aria-label="Numbered connected channels">
+                  {sellerChannelRows.map((pair) => (
+                    <li key={pair[0]} className="sto-chan-row">
+                      <StoHop />
+                      {pair.map((n) => (
+                        <span key={n} className="sto-channel">
+                          <span className="sto-channel-n font-mono">Channel {n}</span>
+                        </span>
+                      ))}
+                    </li>
+                  ))}
+                </ul>
+                <ul className="sto-chan-health" aria-label="Channel status">
+                  {sellerChannelHealth.map((item, index) => (
+                    <li key={item.pair} data-active={activeMod % 4 === index ? "true" : "false"}>
+                      <span className="font-mono">{item.pair}</span>
+                      <em>{item.state}</em>
+                    </li>
+                  ))}
+                </ul>
+                <p className="sto-channel-note font-mono">32 connected marketplaces</p>
+              </aside>
+
+              <StoBuyHop />
+
+              <aside className="sto-rail-buyers">
+                <header className="sto-rail-head">
+                  <p className="sto-kicker">Global buyers</p>
+                  <h3 className="sto-rail-title">End customers</h3>
+                </header>
+                <ul className="sto-buyers">
+                  {sellerBuyers.map((item) => (
+                    <li key={item.label}>
+                      <item.icon strokeWidth={1.75} aria-hidden />
+                      {item.label}
+                    </li>
+                  ))}
+                </ul>
+              </aside>
+            </div>
+          </div>
+
+          <div className="sto-process" ref={processRef}>
+            <ol className="sto-steps" aria-label="How the engine runs">
+              {sellerSteps.map((step, index) => (
+                <li
+                  key={step.n}
+                  className="sto-step"
+                  data-n={step.n}
+                  data-active={activeMod === index ? "true" : "false"}
+                >
+                  <span className="sto-step-n font-mono">{step.n}</span>
+                  <span className="sto-step-icon" aria-hidden>
+                    <step.icon strokeWidth={1.75} />
                   </span>
-                </div>
-
-                <div className="flow-process rounded-lg px-3 py-2.5 text-center font-mono text-[10px] font-bold tracking-[0.12em] text-primary-foreground sm:text-[11px]">
-                  {branch.processLabel}
-                </div>
-              </div>
-            ))}
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                  {index < sellerSteps.length - 1 ? (
+                    <i className="sto-step-arrow" aria-hidden>
+                      <span className="sto-step-packet" />
+                      <span className="sto-step-packet is-follow" />
+                    </i>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
+            <StoProcessFlow hostRef={processRef} live={live} />
           </div>
-
-          {/* Tier 3 — operations */}
-          <div className="mt-2 grid gap-x-4 gap-y-2 lg:grid-cols-3">
-            {blueprint.midRow.map((mid) => (
-              <div key={mid.title} className="flow-col group flex flex-col">
-                <FlowLink label={mid.lineLabel} />
-                <div className="flow-card flex flex-1 flex-col rounded-xl border border-border bg-card p-5">
-                  <h3 className="font-display text-base font-bold text-foreground">{mid.title}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                    {mid.body}
-                  </p>
-                  <p className="mt-4 flex items-center gap-2 font-mono text-[10px] tracking-[0.12em] text-primary ">
-                    <span className="flow-status-dot" aria-hidden />
-                    {mid.status}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <FlowJunction cols={blueprint.midRow.length} direction="in" />
-
-          <div className="mb-3 flex flex-wrap justify-center gap-x-6 gap-y-1">
-            {blueprint.terminalLines.map((line) => (
-              <span
-                key={line}
-                className="font-mono text-[10px] tracking-[0.12em] text-muted-foreground"
-              >
-                {line}
-              </span>
-            ))}
-          </div>
-
-          <FlowBar tone="terminal">{blueprint.terminal}</FlowBar>
         </div>
+
+        <ul className="sto-highlights">
+          {sellerHighlights.map((item) => (
+            <li key={item.label}>
+              <item.icon strokeWidth={1.75} aria-hidden />
+              {item.label}
+            </li>
+          ))}
+        </ul>
+        <p className="sto-close">
+          One connection. One inventory layer. Multiple marketplaces. Fully synchronized.
+        </p>
       </div>
     </section>
   );
 }
 
-export function SellerTools() {
-  return <FlowArchitecture blueprint={sellerBlueprint} />;
-}
-
 const travelSteps = [
-  { id: "select", label: "Select", icon: ListChecks },
-  { id: "quote", label: "Quote", icon: FileText },
-  { id: "margin", label: "Margin", icon: Percent },
-  { id: "share", label: "Share", icon: Share2 },
+  { id: "select", label: "Select", icon: ListChecks, hint: "Hold listings" },
+  { id: "quote", label: "Quote", icon: FileText, hint: "Write £ lines" },
+  { id: "margin", label: "Margin", icon: Percent, hint: "Apply partner %" },
+  { id: "share", label: "Share", icon: Share2, hint: "Send package" },
 ] as const;
 
 /** One fixed-height line inside a pipeline mini console. */
@@ -432,6 +852,26 @@ function PipeRow({ label, value, on }: { label: string; value: string; on: boole
   );
 }
 
+/** Same gauge slot on every mini so bodies share one height. */
+function PipeDial({
+  value,
+  fill,
+  locked,
+}: {
+  value: string;
+  fill: number;
+  locked?: boolean;
+}) {
+  return (
+    <div className="tpa-dial" data-locked={locked ? "true" : "false"}>
+      <span className="tpa-dial-value font-mono">{value}</span>
+      <span className="tpa-dial-track" aria-hidden>
+        <span style={{ transform: `scaleX(${Math.min(1, Math.max(0, fill))})` }} />
+      </span>
+    </div>
+  );
+}
+
 export function TravelTools() {
   const { ref, inView } = useInView<HTMLDivElement>(0.12);
   const desk = useSeatMapTickets({ active: inView });
@@ -440,7 +880,7 @@ export function TravelTools() {
   const inventoryBranch = travelBlueprint.branches[0]!;
   const marginBranch = travelBlueprint.branches[1]!;
   const quoteBranch = travelBlueprint.branches[2]!;
-  const shareMid = travelBlueprint.midRow[0]!;
+  const liveStep = travelSteps[pipe.stageIndex] ?? travelSteps[0];
 
   /* Fixed slot counts keep every mini console the same height all loop long. */
   const selectSlots = Array.from({ length: 4 }, (_, index) => desk.selected[index] ?? null);
@@ -462,10 +902,7 @@ export function TravelTools() {
       id: "select",
       title: inventoryBranch.cardTitle,
       icon: ListChecks,
-      note:
-        desk.selectedCount > 0
-          ? `${desk.selectedCount} listing${desk.selectedCount === 1 ? "" : "s"} held from live Etihad inventory — ${pipe.tickets} tickets.`
-          : inventoryBranch.cardBody,
+      note: "Access available ticket inventory with real-time visibility on every listing.",
       metric: String(desk.selectedCount),
       metricLabel: "Selected listings",
       process: inventoryBranch.processLabel,
@@ -475,6 +912,11 @@ export function TravelTools() {
             <span>etihad · live feed</span>
             <span>{desk.selectedCount} held</span>
           </p>
+          <PipeDial
+            value={`${desk.selectedCount}/4`}
+            fill={desk.selectedCount / 4}
+            locked={desk.selectedCount > 0}
+          />
           <ul className="tpa-rows">
             {selectSlots.map((row, index) => (
               <PipeRow
@@ -496,10 +938,7 @@ export function TravelTools() {
       id: "quote",
       title: quoteBranch.cardTitle,
       icon: FileText,
-      note:
-        pipe.lines > 0
-          ? `${pipe.lines} of 4 lines written into ${autoQuoteRef} — priced in £.`
-          : quoteBranch.cardBody,
+      note: "Write selected listings into the quote sheet, priced in £ for the customer.",
       metric: formatGbpCompact(pipe.customerTotal),
       metricLabel: "Quote value",
       process: quoteBranch.processLabel,
@@ -509,6 +948,11 @@ export function TravelTools() {
             <span>{autoQuoteRef}</span>
             <span>{pipe.lines}/4 lines</span>
           </p>
+          <PipeDial
+            value={`${pipe.lines}/4`}
+            fill={pipe.lines / 4}
+            locked={pipe.lines > 0}
+          />
           <ul className="tpa-rows">
             {quoteSlots.map((row, index) => (
               <PipeRow
@@ -530,11 +974,7 @@ export function TravelTools() {
       id: "margin",
       title: marginBranch.cardTitle,
       icon: Percent,
-      note: pipe.marginLocked
-        ? `${pipe.marginPct}% partner margin applied — ticket price and margin value recalculated.`
-        : pipe.marginPct > 0
-          ? `Staging ${pipe.marginPct}% against ${formatGbpCompact(pipe.baseTotal)} of ticket value.`
-          : marginBranch.cardBody,
+      note: "Add partner margin — ticket price plus margin equals the customer price.",
       metric: `${pipe.marginPct}%`,
       metricLabel: "Partner margin",
       process: marginBranch.processLabel,
@@ -544,18 +984,27 @@ export function TravelTools() {
             <span>margin engine</span>
             <span>{pipe.marginLocked ? "applied" : "staging"}</span>
           </p>
-          <div className="tpa-dial" data-locked={pipe.marginLocked ? "true" : "false"}>
-            <span className="tpa-dial-value font-mono">+{pipe.marginPct}%</span>
-            <span className="tpa-dial-track" aria-hidden>
-              <span style={{ transform: `scaleX(${Math.min(1, pipe.marginPct / 20)})` }} />
-            </span>
-          </div>
+          <PipeDial
+            value={`+${pipe.marginPct}%`}
+            fill={pipe.marginPct / 20}
+            locked={pipe.marginLocked}
+          />
           <ul className="tpa-rows">
             <PipeRow on={pipe.baseTotal > 0} label="Ticket price" value={formatGbp(pipe.baseTotal)} />
             <PipeRow
               on={pipe.marginLocked}
               label="Customer price"
               value={formatGbp(pipe.customerTotal)}
+            />
+            <PipeRow
+              on={pipe.marginPct > 0}
+              label="Margin rate"
+              value={`${pipe.marginPct}%`}
+            />
+            <PipeRow
+              on={pipe.marginLocked}
+              label="Apply lock"
+              value={pipe.marginLocked ? "applied" : "staging"}
             />
           </ul>
           <p className="tpa-foot">
@@ -569,11 +1018,7 @@ export function TravelTools() {
       id: "share",
       title: "Share & confirm",
       icon: Share2,
-      note: pipe.confirmed
-        ? `Order confirmed and invoice ${autoInvoiceRef} issued with margin reporting.`
-        : pipe.channels > 0
-          ? `${pipe.channels} of 3 outputs sent from one branded package.`
-          : shareMid.body,
+      note: "Share the branded package — quote thread, venue map, PDF — then confirm.",
       metric: pipe.confirmed ? "Sent" : `${pipe.channels}/3`,
       metricLabel: "Channels fired",
       process: "Order, invoice & delivery",
@@ -583,25 +1028,30 @@ export function TravelTools() {
             <span>output bus</span>
             <span>{pipe.confirmed ? "confirmed" : `${pipe.channels}/3 sent`}</span>
           </p>
+          <PipeDial
+            value={`${pipe.channels}/3`}
+            fill={pipe.channels / 3}
+            locked={pipe.confirmed}
+          />
           <ul className="tpa-rows">
             <PipeRow
               on={pipe.channels >= 1}
-              label="Quote copied to thread"
+              label="Quote thread"
               value={pipe.channels >= 1 ? "sent" : "queued"}
             />
             <PipeRow
               on={pipe.channels >= 2}
-              label="Venue map attached"
+              label="Venue map"
               value={pipe.channels >= 2 ? "sent" : "queued"}
             />
             <PipeRow
               on={pipe.channels >= 3}
-              label="Branded quote PDF"
+              label="Quote PDF"
               value={pipe.channels >= 3 ? "ready" : "queued"}
             />
             <PipeRow
               on={pipe.confirmed}
-              label="Order confirmed"
+              label="Order confirm"
               value={pipe.confirmed ? "ok" : "—"}
             />
           </ul>
@@ -617,11 +1067,12 @@ export function TravelTools() {
   return (
     <section
       id={travelBlueprint.id}
-      className="tpa-section section-curve-sticky relative isolate scroll-mt-24 overflow-x-clip bg-background"
+      className="tpa-section section-curve-sticky relative isolate scroll-mt-24 bg-background"
       aria-labelledby={`${travelBlueprint.id}-title`}
     >
       <SectionBackdrop image={travelBlueprint.backdrop} tone="light" strength={0.1} />
-      <div className="container-page tpa-shell relative z-10">
+      <div className="tpa-fit-zoom">
+        <div className="container-page tpa-shell relative z-10">
         <Reveal className="tpa-head">
           <p className="section-eyebrow text-primary">{travelBlueprint.eyebrow}</p>
           <h2
@@ -678,9 +1129,9 @@ export function TravelTools() {
                 );
               })}
             </ol>
-            <div className="tpa-scrub" aria-hidden>
+            {/* <div className="tpa-scrub" aria-hidden>
               <span style={{ transform: `scaleX(${pipe.progress})` }} />
-            </div>
+            </div> */}
           </div>
 
           <div className="tpa-boards">
@@ -692,37 +1143,101 @@ export function TravelTools() {
               <SeatMapTicketsConsole desk={desk} />
             </div>
 
-            <div className="tpa-minis">
-              {pipelineCards.map((card, index) => {
-                const state =
-                  index < pipe.stageIndex ? "done" : index === pipe.stageIndex ? "live" : "queued";
-                return (
-                  <div
-                    key={card.id}
-                    className="tpa-mini"
-                    data-smt-active={state === "live" ? "true" : "false"}
-                  >
-                    <article className="tpa-card flex h-full min-h-0 flex-col" data-state={state}>
-                      <header className="tpa-card-head">
-                        <span className="tpa-card-step font-mono">
+            <div className="tpa-side">
+              <div className="tpa-side-cap">
+                <div className="tpa-side-cap-top">
+                  <p className="tpa-side-kicker">
+                    <span className="tpa-rail-dot" aria-hidden />
+                    Pipeline 01–04
+                  </p>
+                  <p className="tpa-side-now font-mono">
+                    <span>{String(pipe.stageIndex + 1).padStart(2, "0")}</span>
+                    {liveStep.label}
+                    {" · "}
+                    Select → Quote → Margin → Share
+                  </p>
+                </div>
+                <p className="tpa-side-run">{pipe.label}</p>
+                <ol className="tpa-side-steps" aria-label="Quote pipeline steps">
+                  {travelSteps.map((step, index) => {
+                    const done = index < pipe.stageIndex;
+                    const current = index === pipe.stageIndex;
+                    return (
+                      <li
+                        key={step.id}
+                        data-current={current ? "true" : "false"}
+                        data-done={done ? "true" : "false"}
+                      >
+                        <span className="tpa-side-step-idx font-mono">
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <card.icon className="size-4 shrink-0 text-primary" strokeWidth={2} />
-                        <h3>{card.title}</h3>
-                        <span className="tpa-card-chip font-mono">{state}</span>
-                      </header>
-                      <p className="tpa-card-note">{card.note}</p>
-                      <div className="tpa-card-body">{card.body}</div>
-                      <div className="tpa-card-metric">
-                        <span className="font-display">{card.metric}</span>
-                        <span className="font-mono">{card.metricLabel}</span>
-                      </div>
-                    </article>
+                        <step.icon className="tpa-side-step-icon" strokeWidth={2} />
+                        <strong>{step.label}</strong>
+                        <em>{step.hint}</em>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </div>
+
+              <div className="tpa-minis">
+                {pipelineCards.map((card, index) => {
+                  const state =
+                    index < pipe.stageIndex ? "done" : index === pipe.stageIndex ? "live" : "queued";
+                  return (
+                    <div
+                      key={card.id}
+                      className="tpa-mini"
+                      data-smt-active={state === "live" ? "true" : "false"}
+                    >
+                      <article className="tpa-card flex min-h-0 flex-col" data-state={state}>
+                        <header className="tpa-card-head">
+                          <span className="tpa-card-step font-mono">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <card.icon className="size-4 shrink-0 text-primary" strokeWidth={2} />
+                          <h3>{card.title}</h3>
+                          <span className="tpa-card-chip font-mono">{state}</span>
+                        </header>
+                        <p className="tpa-card-note">{card.note}</p>
+                        <div className="tpa-card-body">{card.body}</div>
+                        <div className="tpa-card-metric">
+                          <span className="font-display">{card.metric}</span>
+                          <span className="font-mono">{card.metricLabel}</span>
+                        </div>
+                      </article>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="tpa-side-stat">
+                <dl className="tpa-side-stat-grid">
+                  <div>
+                    <dt>Tickets held</dt>
+                    <dd className="font-mono">{pipe.tickets}</dd>
                   </div>
-                );
-              })}
+                  <div>
+                    <dt>Quote value</dt>
+                    <dd className="font-mono">{formatGbpCompact(pipe.customerTotal)}</dd>
+                  </div>
+                  <div>
+                    <dt>Margin</dt>
+                    <dd className="font-mono">{pipe.marginPct}%</dd>
+                  </div>
+                  <div>
+                    <dt>Channels</dt>
+                    <dd className="font-mono">{pipe.channels}/3</dd>
+                  </div>
+                </dl>
+                <p className="tpa-side-legend">
+                  Hold inventory, write £ lines, apply partner margin, share and confirm — one
+                  SeatsDeal™ desk.
+                </p>
+              </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>

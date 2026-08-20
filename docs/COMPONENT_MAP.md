@@ -27,7 +27,7 @@ Routes listed are where the component is **mounted**, not every import.
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| BrokerOnboardingSection | `BrokerOnboardingSection.tsx` | Guided setup desk + capability grid (account → verify → POS → cards → payouts → live) | `/brokers` (after hero) |
+| BrokerOnboardingSection | `BrokerOnboardingSection.tsx` | Six-part company setup: region tabs, 4-col comparison (in-card scroll), one-open six-phase accordion + compact onboarding desk, partner sub-accounts, checklist, FAQ | `/brokers` (after Payment Infrastructure) |
 | LiveConsole | `LiveConsole.tsx` | Split copy + tilt stage; variants `marketIntelligence`, `aiPredictions`, `cryptoPayouts` mounted; `pos` implemented but **not mounted**; `payments` / `scheduling` are `null` | `/brokers` |
 | BrokersHero + Wall + Cards | `BrokersHero.tsx`, `BrokersConsoleWall.tsx`, `BrokersConsoleCards.tsx` | Dark hero + scrolling mini-consoles | `/brokers` |
 | EventCatalogSection + Console | `EventCatalogSection.tsx`, `EventCatalogConsole.tsx` | Global catalog browser | `/brokers` |
@@ -151,7 +151,7 @@ Used on `/` unless noted.
 | FinalCTA | `FinalCTA.tsx` | Global close CTA (“Become a seller” → `/brokers`) | PageShell (all pages) |
 | Hero | `Hero.tsx` | Homepage hero + typewriter | `/` |
 | HeroDashboardTilt | `HeroDashboardTilt.tsx` | Hero dashboard mock | Hero |
-| SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: flow blueprint. Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus three synced pipeline cards | `/` |
+| SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: 3-col `.sto-*` infographic (matched side cards, stacked buyers, bezel-docked hops, 2×3 process SVG flow). Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus synced pipeline minis | `/` |
 | SeatMapTicketsConsole | `SeatMapTicketsConsole.tsx` | Interactive inventory/quote mini-console (select, margin, copy, PDF) in `ConsoleShell` | TravelTools |
 | TwoTrack | `TwoTrack.tsx` | Broker vs travel tracks (in-view straighten) | `/` |
 | Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out) | `/` |
@@ -180,6 +180,7 @@ Used on `/` unless noted.
 | `src/content/site.ts` | Brand, nav, footer, CTAs, SEO meta |
 | `src/content/modules.ts` | Official product module names + taglines (SeatsFunds™, SeatsMarket™, SeatsLink™, SeatsSource™, SeatsPulse™, SeatsIntel™, SeatsDeal™, SeatsLaunch™) |
 | `src/content/broker-hero-data.ts` | Brokers hero copy + mini-card data |
+| `src/content/broker-onboarding-data.ts` | `/brokers` company setup: regions, comparison rows, six phases, partners, checklist, FAQ (`[CONFIRM: …]` unknowns) |
 | `src/content/travel-hero-data.ts` | Travel hero copy + partner-desk dashboard data (KPIs, earnings, charts, lists). Mini-card datasets remain for `TravelConsoleCards` |
 | `src/content/marketplace-hero-data.ts` | Marketplace connectivity hero copy + channel-mesh stage data (mini-card datasets remain for `MarketplaceConsoleCards`) |
 | `src/content/event-intel-hero-data.ts` | Event intelligence hero copy + forecast-lens stage data (mini-card datasets remain for `EventIntelConsoleCards`) |

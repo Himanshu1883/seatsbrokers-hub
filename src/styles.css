@@ -37804,8 +37804,9 @@ html.site-nav-locked body {
    ToolsGrid TravelTools only. Rail is its own row; Live console + 2×2
    minis share leftover height. svh, never dvh: dvh remeasures with
    browser chrome and shoves every section below this one. Section is
-   not the first homepage band, so 100svh is the section box itself.
-   Mobile grows (min-height) instead of clipping. */
+   not the first homepage band, so 100svh is a min-height, not a nested
+   scrollport. No overflow-y-auto on the Live pane (same as HowItWorks:
+   wheel anywhere scrolls the page). Mobile already grows. */
 
 .tpa-section {
   display: flex;
@@ -37905,40 +37906,43 @@ html.site-nav-locked body {
 }
 
 @media (min-width: 900px) {
-  /* svh, not dvh — same lock as Toolkit / NetworkConstellation. */
+  /* min-height 100svh (not dvh). Do not lock height + overflow:hidden —
+     that nested scrollport ate wheel over the Live console / map / table.
+     Section grows with the desk; wheel anywhere continues document scroll. */
   .tpa-section {
-    height: 100vh;
-    height: 100svh;
-    max-height: 100svh;
-    overflow: hidden;
+    height: auto;
+    max-height: none;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow: visible;
   }
 
   .tpa-shell {
-    height: 100%;
-    max-height: 100%;
+    height: auto;
+    max-height: none;
   }
 
   .tpa-stage {
-    grid-template-rows: auto minmax(0, 1fr);
-    height: 100%;
+    grid-template-rows: auto minmax(min-content, 1fr);
+    height: auto;
     min-height: 0;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .tpa-boards {
     grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
-    grid-template-rows: minmax(0, 1fr);
-    height: 100%;
+    grid-template-rows: minmax(min-content, 1fr);
+    height: auto;
   }
 
   .tpa-live,
   .tpa-minis {
-    height: 100%;
-    overflow: hidden;
+    height: auto;
+    overflow: visible;
   }
 
   .tpa-minis {
-    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(min-content, 1fr));
   }
 
   .tpa-mini {
@@ -37948,7 +37952,7 @@ html.site-nav-locked body {
   .tpa-minis .tpa-card {
     --tpa-body-h: 0px;
     height: 100%;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .tpa-minis .tpa-card-note {
@@ -37957,8 +37961,8 @@ html.site-nav-locked body {
   }
 
   .tpa-minis .tpa-card-body {
-    overflow: auto;
-    overscroll-behavior: contain;
+    overflow: visible;
+    overscroll-behavior: auto;
   }
 
   .tpa-minis .tpa-card-metric span:first-child {
@@ -37972,9 +37976,9 @@ html.site-nav-locked body {
   .tpa-section .smt-console .lc-screen {
     display: flex;
     flex: 1 1 auto;
-    min-height: 0;
-    height: 100%;
-    max-height: 100%;
+    min-height: min-content;
+    height: auto;
+    max-height: none;
     flex-direction: column;
   }
 
@@ -37984,10 +37988,9 @@ html.site-nav-locked body {
 
   .tpa-section .smt-console .lc-body {
     flex: 1 1 auto;
-    min-height: 0;
-    overflow: auto;
-    overscroll-behavior: contain;
-    scrollbar-gutter: stable;
+    min-height: min-content;
+    overflow: visible;
+    overscroll-behavior: auto;
   }
 
   .tpa-section .smt-console .two-track-chrome {
@@ -37996,7 +37999,7 @@ html.site-nav-locked body {
 
   .tpa-section .smt-desk {
     flex: 1 1 auto;
-    min-height: 0;
+    min-height: min-content;
     gap: 0.5rem;
     padding: 0.65rem 0.7rem 0.7rem;
   }
@@ -38005,7 +38008,7 @@ html.site-nav-locked body {
     display: grid;
     flex: 1 1 auto;
     grid-template-columns: minmax(10rem, 0.92fr) minmax(0, 1.18fr);
-    min-height: 0;
+    min-height: min-content;
   }
 
   .tpa-section .smt-split[data-map="false"] {
@@ -38015,21 +38018,23 @@ html.site-nav-locked body {
   .tpa-section .smt-map-card,
   .tpa-section .smt-list-card {
     display: flex;
-    min-height: 0;
+    min-height: min-content;
     flex-direction: column;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .tpa-section .smt-map-stage {
     flex: 1 1 auto;
     min-height: 7.5rem;
     height: auto;
+    overflow: clip;
   }
 
   .tpa-section .smt-table-wrap {
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow: auto;
+    flex: 0 0 auto;
+    min-height: min-content;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .tpa-section .smt-top,
@@ -38767,8 +38772,9 @@ html.site-nav-locked body {
    % Margin card was `position:absolute; right:0` on `.smt-margin-wrap` (the
    button). At 15.5rem it hung left of the listings column and was cropped by
    `.tpa-live` / `.smt-list-card` / `.lc-screen` overflow:hidden. Anchor to the
-   full listings header instead; keep overflow on the table/map scroll bodies.
-   Absolute overlay — does not grow the 100svh section. */
+   full listings header instead. Live/map/table are not nested Y-scrollers —
+   wheel over the desk scrolls the page. Absolute overlay does not grow the
+   section. */
 
 .smt-list-head {
   position: relative;
@@ -38828,7 +38834,7 @@ html.site-nav-locked body {
 
 @media (min-width: 900px) {
   .tpa-live {
-    overflow: hidden;
+    overflow: visible;
   }
 
   .tpa-section .smt-list-card {
@@ -38836,7 +38842,7 @@ html.site-nav-locked body {
   }
 
   .tpa-section .smt-map-card {
-    overflow: hidden;
+    overflow: visible;
   }
 
   .tpa-section .smt-list-head,
@@ -38851,6 +38857,8 @@ html.site-nav-locked body {
 
   .tpa-section .smt-console .lc-body {
     padding: 0;
+    overflow: visible;
+    overscroll-behavior: auto;
   }
 
   .tpa-section .smt-desk {
@@ -38863,7 +38871,8 @@ html.site-nav-locked body {
   }
 
   .tpa-section .smt-table-wrap {
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
     border-radius: 0 0 0.85rem 0.85rem;
   }
 }
@@ -39514,87 +39523,574 @@ body,
   color: #3d4044;
 }
 
-/* == Broker onboarding 2026-08-19 == */
-/* Desk layout contract: the console screen height is owned here
-   (--bon-screen-h) and .bon-desk-inner splits it into three reserved
-   rows — header, panes, ledger. Only the panes row flexes, and both
-   panes clip/scroll internally, so nothing can paint through a
-   neighbour or spill past the bezel. Every text slot inside has a
-   fixed height, so an auto-run stage change never shifts layout. */
+/* == Broker onboarding 2026-08-20 == */
+/* Company-setup desk. Compact ConsoleShell: header / dense rail (icon +
+   label) / 3-line ledger — sized to content, not stretched. Six-phase
+   journey is one-open accordion (inactive = single row). Region copy in
+   parts 3–5 uses stacked .bon-swap slots so a tab change cannot jump
+   layout. Comparison table scrolls inside the card on small screens. */
 
 .bon-section {
-  --bon-gap: clamp(1.5rem, 3vw, 2.5rem);
+  --bon-gap: clamp(1rem, 2vw, 1.5rem);
+  overflow-x: clip;
 }
 
-.bon-split {
+.bon-head {
+  max-width: 54rem;
+}
+
+.bon-title {
+  margin-top: 0.7rem;
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.6vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+}
+
+.bon-lead {
+  margin-top: 0.7rem;
+  max-width: 54ch;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+/* Part 1 — region pills (SeatsIntel™ / catalog pill pattern) -------- */
+
+.bon-region-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+}
+
+.bon-region-tab {
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--foreground) 10%, var(--border));
+  background: var(--card);
+  padding: 0.36rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.bon-region-tab:hover {
+  color: var(--foreground);
+  border-color: color-mix(in oklab, var(--foreground) 18%, var(--border));
+}
+
+.bon-region-tab[data-active="true"] {
+  border-color: color-mix(in oklab, var(--primary) 45%, var(--border));
+  background: color-mix(in oklab, var(--primary) 12%, var(--card));
+  color: var(--primary);
+}
+
+.bon-region-tab:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.bon-swap {
+  display: inline-grid;
+  vertical-align: top;
+}
+
+.bon-swap > * {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.bon-swap > *[data-active="true"] {
+  visibility: visible;
+}
+
+.bon-block-head {
+  margin-bottom: 0.7rem;
+}
+
+.bon-block-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+}
+
+.bon-block-title {
+  margin: 0.35rem 0 0;
+  max-width: 28ch;
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.bon-block-note {
+  margin: 0.3rem 0 0;
+  max-width: 62ch;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+/* Part 2 — regional comparison ------------------------------------- */
+
+.bon-compare {
+  margin-top: clamp(1.35rem, 2.6vw, 2rem);
+}
+
+.bon-compare-scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  max-width: 100%;
+  padding-bottom: 0.15rem;
+}
+
+.bon-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(11.25rem, 1fr));
+  gap: 0.55rem;
+  min-width: 46rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 900px) {
+  .bon-compare-grid {
+    min-width: 0;
+  }
+}
+
+.bon-compare-col {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.bon-compare-col[data-active="true"] {
+  border-color: color-mix(in oklab, var(--primary) 42%, var(--border));
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 22%, transparent);
+}
+
+.bon-compare-head {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.1rem;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface) 70%, var(--card));
+  padding: 0.65rem 0.8rem 0.55rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.bon-compare-col[data-active="true"] .bon-compare-head {
+  background: color-mix(in oklab, var(--primary) 8%, var(--card));
+}
+
+.bon-compare-head:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
+
+.bon-compare-city {
+  font-size: 0.9375rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--foreground);
+}
+
+.bon-compare-desk {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+}
+
+.bon-compare-col[data-active="true"] .bon-compare-desk {
+  color: var(--primary);
+}
+
+.bon-compare-rows {
+  display: grid;
+  margin: 0;
+  padding: 0.2rem 0;
+}
+
+.bon-compare-row {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.bon-compare-row + .bon-compare-row {
+  border-top: 1px dashed color-mix(in oklab, var(--border) 80%, transparent);
+}
+
+.bon-compare-row dt {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  color: var(--muted-foreground);
+}
+
+.bon-compare-row dd {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 550;
+  line-height: 1.4;
+  color: var(--foreground);
+}
+
+/* Part 3 — six-phase journey + compact desk ------------------------ */
+
+.bon-region-panel {
+  margin-top: clamp(1.35rem, 2.6vw, 2rem);
+}
+
+.bon-journey-split {
   display: grid;
   gap: var(--bon-gap);
   align-items: start;
 }
 
 @media (min-width: 1024px) {
-  .bon-split {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-    gap: clamp(1.75rem, 2.4vw, 2.75rem);
+  .bon-journey-split {
+    grid-template-columns: minmax(0, 1.18fr) minmax(17.25rem, 0.92fr);
+    gap: clamp(1.1rem, 1.8vw, 1.75rem);
+  }
+}
+
+.bon-stage {
+  position: relative;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) and (max-height: 1099px) {
+  .bon-desk .lc-screen {
+    max-height: calc(100svh - 8.5rem);
   }
 
+  .bon-desk-inner {
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 1024px) and (min-height: 1100px) {
   .bon-stage {
     position: sticky;
-    top: 6.5rem;
+    top: 5.25rem;
+    max-height: calc(100svh - 5.75rem);
+  }
+
+  .bon-desk .lc-screen {
+    max-height: calc(100svh - 7.25rem);
+  }
+
+  .bon-desk-inner {
+    overflow-y: auto;
   }
 }
 
-.bon-copy {
-  min-width: 0;
+.bon-stage-kicker {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  color: var(--muted-foreground);
 }
+
+@media (min-width: 1024px) {
+  .bon-stage-kicker {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}
+
+.bon-phases {
+  display: grid;
+  gap: 0.32rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bon-phase {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.bon-phase[data-current="true"] {
+  border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+}
+
+.bon-phase-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 0.42rem 0.65rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.bon-phase-head:hover {
+  background: color-mix(in oklab, var(--foreground) 3%, transparent);
+}
+
+.bon-phase-head:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
+
+.bon-phase-head::after {
+  content: "";
+  flex-shrink: 0;
+  width: 0.38rem;
+  height: 0.38rem;
+  margin-left: auto;
+  border-right: 1.5px solid var(--muted-foreground);
+  border-bottom: 1.5px solid var(--muted-foreground);
+  transform: rotate(45deg);
+  opacity: 0.5;
+  transition: transform 220ms ease, opacity 220ms ease, border-color 220ms ease;
+}
+
+.bon-phase[data-current="true"] .bon-phase-head::after {
+  transform: rotate(-135deg);
+  border-color: var(--primary);
+  opacity: 0.9;
+}
+
+.bon-phase-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 25%, var(--border));
+  background: color-mix(in oklab, var(--primary) 8%, var(--card));
+  color: var(--primary);
+}
+
+.bon-phase[data-current="true"] .bon-phase-icon {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 16%, var(--card));
+}
+
+.bon-phase-index {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+}
+
+.bon-phase-head strong {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 0.875rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--foreground);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bon-phase:not([data-current="true"]) .bon-phase-head strong {
+  color: color-mix(in oklab, var(--foreground) 78%, var(--muted-foreground));
+}
+
+.bon-phase-blurb {
+  display: none;
+  overflow: hidden;
+  min-width: 0;
+  max-width: 22ch;
+  font-size: 0.6875rem;
+  color: var(--muted-foreground);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bon-phase[data-current="true"] .bon-phase-blurb {
+  display: inline;
+}
+
+@media (max-width: 639px) {
+  .bon-phase-blurb {
+    display: none !important;
+  }
+}
+
+.bon-phase-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 280ms ease,
+    opacity 180ms ease;
+}
+
+.bon-phase[data-current="true"] .bon-phase-body {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.bon-phase-body-clip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.bon-phase-cols {
+  display: grid;
+  gap: 0.45rem;
+  border-top: 1px solid var(--border);
+  padding: 0.55rem 0.65rem 0.7rem;
+}
+
+@media (min-width: 720px) {
+  .bon-phase-cols {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.bon-phase-col {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: color-mix(in oklab, var(--surface) 55%, var(--card));
+  padding: 0.45rem 0.55rem 0.5rem;
+}
+
+.bon-phase-col[data-side="we"] {
+  border-color: color-mix(in oklab, var(--primary) 28%, var(--border));
+  background: color-mix(in oklab, var(--primary) 5%, var(--card));
+}
+
+.bon-phase-label {
+  margin: 0 0 0.28rem;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.12em;
+  color: var(--muted-foreground);
+}
+
+.bon-phase-col[data-side="we"] .bon-phase-label {
+  color: var(--primary);
+}
+
+.bon-phase-col ul {
+  display: grid;
+  gap: 0.22rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bon-phase-col li {
+  position: relative;
+  padding-left: 0.7rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--foreground);
+}
+
+.bon-phase-col li::before {
+  content: "";
+  position: absolute;
+  top: 0.45rem;
+  left: 0;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+.bon-phase-region {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--foreground);
+}
+
+/* Compact interactive demo — header / dense rail / ledger ----------- */
 
 .bon-desk {
-  --bon-screen-h: 36rem;
   min-width: 0;
 }
 
-/* Stacked rail strip (narrow) and the squeezed two-column band both need
-   more vertical room for the same reserved slots. */
-@media (max-width: 559px) {
-  .bon-desk {
-    --bon-screen-h: 40rem;
-  }
+.bon-desk .lc-frame,
+.bon-desk .lc-bezel,
+.bon-desk .lc-screen {
+  min-width: 0;
 }
 
-@media (min-width: 1024px) and (max-width: 1279px) {
-  .bon-desk {
-    --bon-screen-h: 38rem;
-  }
+.bon-desk .lc-bezel {
+  padding: 0.45rem;
 }
 
 .bon-desk .lc-screen {
-  height: var(--bon-screen-h);
-  min-height: var(--bon-screen-h);
-  max-height: var(--bon-screen-h);
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
 }
 
 .bon-desk .lc-body {
   gap: 0;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0.55rem 0.6rem 0.6rem;
 }
 
 .bon-desk-inner {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: 0.55rem;
+  grid-template-rows: auto auto auto;
+  gap: 0.35rem;
   flex: 1 1 auto;
   min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-
-/* Row 1 — mode header with the journey progress bar --------------- */
 
 .bon-desk-top {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
-  min-height: 1.55rem;
-  padding-bottom: 0.5rem;
+  gap: 0.6rem;
+  min-height: 1.35rem;
+  padding-bottom: 0.4rem;
 }
 
 .bon-desk-top::before,
@@ -39630,15 +40126,17 @@ body,
   min-width: 0;
   font-family: var(--font-mono);
   font-size: 0.625rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   color: var(--muted-foreground);
 }
 
 .bon-kicker-count {
+  overflow: hidden;
   border-left: 1px solid var(--border);
   padding-left: 0.5rem;
-  white-space: nowrap;
   color: var(--primary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .bon-mode,
@@ -39649,7 +40147,7 @@ body,
   min-height: 1.25rem;
   font-family: var(--font-mono);
   font-size: 0.625rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--muted-foreground);
 }
 
@@ -39667,33 +40165,11 @@ body,
   background: color-mix(in oklab, var(--primary) 20%, var(--card));
 }
 
-/* Row 2 — stage rail + detail pane -------------------------------- */
-
-.bon-panes {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  gap: 0.5rem;
-  min-height: 0;
-}
-
-@media (min-width: 560px) {
-  .bon-panes {
-    grid-template-rows: minmax(0, 1fr);
-    grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr);
-    gap: 0.55rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  .bon-panes {
-    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
-  }
-}
-
 .bon-rail {
-  display: grid;
-  grid-template-rows: repeat(6, minmax(0, 1fr));
-  gap: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.06rem;
+  flex: 0 0 auto;
   min-height: 0;
   margin: 0;
   padding: 0;
@@ -39702,16 +40178,14 @@ body,
 
 .bon-rail-item {
   position: relative;
-  min-height: 0;
+  flex: 0 0 auto;
 }
 
-/* Spine segments live on each item (above / below its own mark) so a
-   connector can never be clipped by, or paint over, a sibling card. */
 .bon-rail-item::before,
 .bon-rail-item::after {
   content: "";
   position: absolute;
-  left: 1.4rem;
+  left: 1.075rem;
   width: 2px;
   transform: translateX(-1px);
   border-radius: 999px;
@@ -39719,13 +40193,13 @@ body,
 }
 
 .bon-rail-item::before {
-  top: -0.3rem;
-  height: calc(50% - 0.6rem);
+  top: -0.06rem;
+  height: calc(50% - 0.48rem);
 }
 
 .bon-rail-item::after {
-  top: calc(50% + 0.9rem);
-  bottom: calc(0.6rem - 50%);
+  top: calc(50% + 0.72rem);
+  bottom: -0.06rem;
 }
 
 .bon-rail-item:first-child::before,
@@ -39761,17 +40235,15 @@ body,
 
 .bon-step {
   display: grid;
-  grid-template-columns: 1.8rem minmax(0, 1fr);
+  grid-template-columns: 1.45rem minmax(0, 1fr);
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.4rem;
   width: 100%;
-  height: 100%;
   min-height: 0;
-  overflow: hidden;
   border: 1px solid transparent;
-  border-radius: 0.7rem;
+  border-radius: 0.55rem;
   background: transparent;
-  padding: 0.3rem 0.5rem;
+  padding: 0.1rem 0.3rem;
   text-align: left;
   cursor: pointer;
   transition:
@@ -39802,8 +40274,8 @@ body,
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 1.45rem;
+  height: 1.45rem;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--card);
@@ -39866,38 +40338,27 @@ body,
   }
 }
 
-.bon-spin {
-  animation: bon-spin 1s linear infinite;
-}
-
-@keyframes bon-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .bon-step-copy {
   display: flex;
   min-width: 0;
-  flex-direction: column;
-  gap: 0.05rem;
+  align-items: center;
 }
 
 .bon-step-label {
   display: -webkit-box;
   overflow: hidden;
-  height: 1.9rem;
+  height: 1rem;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  font-size: 0.72rem;
+  -webkit-line-clamp: 1;
+  font-size: 0.6875rem;
   font-weight: 650;
-  line-height: 0.95rem;
+  line-height: 1rem;
   letter-spacing: -0.01em;
   color: var(--foreground);
 }
 
 .bon-step-index {
-  margin-right: 0.35rem;
+  margin-right: 0.3rem;
   font-family: var(--font-mono);
   font-size: 0.5625rem;
   font-weight: 500;
@@ -39910,318 +40371,15 @@ body,
   color: var(--primary);
 }
 
-.bon-step-blurb {
-  overflow: hidden;
-  height: 0.85rem;
-  font-size: 0.5625rem;
-  line-height: 0.85rem;
-  letter-spacing: 0.02em;
-  color: var(--muted-foreground);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Detail pane — swaps per active stage, every slot height-locked --- */
-
-.bon-detail {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  min-height: 0;
-  overflow-y: auto;
-  scrollbar-gutter: stable;
-  border: 1px solid var(--border);
-  border-radius: 0.85rem;
-  background: color-mix(in oklab, var(--surface) 55%, var(--card));
-  padding: 0.6rem 0.65rem 0.7rem;
-}
-
-.bon-detail-head {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  animation: bon-detail-in 320ms ease-out;
-}
-
-@keyframes bon-detail-in {
-  from {
-    opacity: 0;
-    transform: translateY(3px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.bon-detail-eyebrow {
-  display: flex;
-  align-items: baseline;
-  gap: 0.4rem;
-  overflow: hidden;
-  margin: 0;
-  height: 1.25rem;
-  font-size: 0.8125rem;
-  font-weight: 650;
-  line-height: 1.25rem;
-  letter-spacing: -0.015em;
-  color: var(--foreground);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.bon-detail-index {
-  flex-shrink: 0;
-  font-family: var(--font-mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.12em;
-  color: var(--primary);
-}
-
-.bon-detail-status {
-  display: -webkit-box;
-  overflow: hidden;
-  margin: 0;
-  height: 2rem;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  font-size: 0.6875rem;
-  line-height: 1rem;
-  color: var(--muted-foreground);
-}
-
-.bon-do-split {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.4rem;
-}
-
-.bon-do {
-  border: 1px solid var(--border);
-  border-radius: 0.6rem;
-  background: var(--card);
-  padding: 0.35rem 0.5rem 0.45rem;
-}
-
-.bon-do-label {
-  display: block;
-  height: 0.85rem;
-  font-family: var(--font-mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.13em;
-  line-height: 0.85rem;
-  color: var(--muted-foreground);
-}
-
-.bon-do[data-side="we"] {
-  border-color: color-mix(in oklab, var(--primary) 28%, var(--border));
-  background: color-mix(in oklab, var(--primary) 5%, var(--card));
-}
-
-.bon-do[data-side="we"] .bon-do-label {
-  color: var(--primary);
-}
-
-.bon-do p {
-  display: -webkit-box;
-  overflow: hidden;
-  margin: 0.15rem 0 0;
-  height: 3.6rem;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  font-size: 0.65rem;
-  line-height: 0.9rem;
-  color: var(--foreground);
-}
-
-/* Narrowest desks, and the 1024–1279 band where the page splits into two
-   columns and squeezes the console again: stack the pair and drop to two
-   lines, which every sentence fits inside at that measure. */
-@media (max-width: 419px), (min-width: 1024px) and (max-width: 1279px) {
-  .bon-do-split {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .bon-do p {
-    height: 1.8rem;
-    -webkit-line-clamp: 2;
-  }
-}
-
-.bon-checks {
-  display: grid;
-  grid-template-rows: repeat(3, 1.35rem);
-  gap: 0.2rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.bon-check {
-  display: grid;
-  grid-template-columns: 0.95rem minmax(0, 1fr);
-  align-items: center;
-  gap: 0.45rem;
-  height: 1.35rem;
-}
-
-.bon-check-mark {
-  display: grid;
-  place-items: center;
-  width: 0.95rem;
-  height: 0.95rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: var(--primary);
-  transition:
-    background 220ms ease,
-    border-color 220ms ease;
-}
-
-.bon-check[data-state="done"] .bon-check-mark {
-  border-color: var(--primary);
-  background: color-mix(in oklab, var(--primary) 16%, var(--card));
-}
-
-.bon-check[data-state="active"] .bon-check-mark {
-  border-color: color-mix(in oklab, var(--primary) 55%, var(--border));
-}
-
-.bon-check-text {
-  overflow: hidden;
-  font-size: 0.65rem;
-  line-height: 1.35rem;
-  color: var(--muted-foreground);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.bon-check[data-state="done"] .bon-check-text {
-  color: var(--foreground);
-}
-
-.bon-check[data-state="idle"] {
-  opacity: 0.55;
-}
-
-.bon-artifact {
-  border: 1px dashed color-mix(in oklab, var(--primary) 32%, var(--border));
-  border-radius: 0.6rem;
-  background: color-mix(in oklab, var(--primary) 4%, var(--card));
-  padding: 0.35rem 0.5rem 0.45rem;
-}
-
-.bon-artifact-top {
-  display: flex;
-  align-items: baseline;
-  gap: 0.45rem;
-  overflow: hidden;
-  height: 1.1rem;
-}
-
-.bon-artifact-label {
-  flex-shrink: 0;
-  font-family: var(--font-mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.13em;
-  color: var(--muted-foreground);
-}
-
-.bon-artifact-top strong {
-  overflow: hidden;
-  font-size: 0.75rem;
-  font-weight: 650;
-  letter-spacing: -0.01em;
-  color: var(--foreground);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.bon-artifact-chips {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.3rem;
-  margin: 0.3rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.bon-artifact-chips li {
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--card);
-  padding: 0 0.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.5rem;
-  letter-spacing: 0.01em;
-  line-height: 1.15rem;
-  text-align: center;
-  color: var(--muted-foreground);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition:
-    background 240ms ease,
-    border-color 240ms ease,
-    color 240ms ease;
-}
-
-.bon-artifact-chips li[data-state="on"] {
-  border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
-  background: color-mix(in oklab, var(--primary) 12%, var(--card));
-  color: var(--primary);
-}
-
-.bon-partner {
-  display: grid;
-  grid-template-columns: 1.15rem minmax(0, 1fr);
-  align-items: start;
-  gap: 0.45rem;
-  margin: auto 0 0;
-  border-top: 1px dashed var(--border);
-  padding-top: 0.45rem;
-}
-
-.bon-partner-icon {
-  display: grid;
-  place-items: center;
-  width: 1.15rem;
-  height: 1.15rem;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--primary) 12%, var(--card));
-  color: var(--primary);
-}
-
-.bon-partner-text {
-  display: -webkit-box;
-  overflow: hidden;
-  height: 1.9rem;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  font-size: 0.65rem;
-  line-height: 0.95rem;
-  color: var(--muted-foreground);
-}
-
-.bon-partner-label {
-  margin-right: 0.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.5rem;
-  letter-spacing: 0.12em;
-  color: var(--primary);
-}
-
-/* Row 3 — rolling desk ledger ------------------------------------- */
-
 .bon-feed {
   display: grid;
-  grid-template-rows: repeat(3, 1.15rem);
-  gap: 0.12rem;
+  grid-template-rows: repeat(3, 1.1rem);
+  gap: 0.1rem;
   margin: 0;
-  padding: 0.35rem 0.5rem;
+  overflow: hidden;
+  padding: 0.28rem 0.45rem;
   border: 1px solid var(--border);
-  border-radius: 0.7rem;
+  border-radius: 0.6rem;
   background: color-mix(in oklab, var(--surface) 70%, var(--card));
   list-style: none;
 }
@@ -40230,11 +40388,13 @@ body,
   display: grid;
   grid-template-columns: 0.4rem minmax(0, 1fr);
   align-items: center;
-  gap: 0.45rem;
-  height: 1.15rem;
+  gap: 0.4rem;
+  min-width: 0;
+  height: 1.1rem;
+  overflow: hidden;
   font-family: var(--font-mono);
   font-size: 0.5625rem;
-  line-height: 1.15rem;
+  line-height: 1.1rem;
   color: var(--muted-foreground);
 }
 
@@ -40272,190 +40432,225 @@ body,
   white-space: nowrap;
 }
 
-/* Narrow desks: the rail becomes a scrollable chip strip above the
-   detail pane — still two separate regions, still height-locked. */
+/* Part 4 — broker partner sub-accounts ----------------------------- */
 
-@media (max-width: 559px) {
-  .bon-rail {
-    grid-auto-flow: column;
-    grid-auto-columns: 9.75rem;
-    grid-template-rows: 3.5rem;
-    gap: 0.4rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 0.3rem;
-  }
-
-  .bon-rail-item::before,
-  .bon-rail-item::after {
-    display: none;
-  }
-
-  .bon-step {
-    border-color: var(--border);
-    background: var(--card);
-  }
-
-  .bon-feed {
-    grid-template-rows: repeat(2, 1.15rem);
-  }
-
-  .bon-feed-row:first-child {
-    display: none;
-  }
+.bon-partners {
+  margin-top: clamp(1.35rem, 2.6vw, 2rem);
 }
 
-/* Capability groups ------------------------------------------------ */
-
-.bon-caps {
-  margin-top: clamp(2rem, 4vw, 3rem);
-}
-
-.bon-caps-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.35rem 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.bon-caps-kicker {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  color: var(--primary);
-}
-
-.bon-caps-note {
-  margin: 0;
-  font-size: 0.8125rem;
-  color: var(--muted-foreground);
-}
-
-.bon-caps-grid {
+.bon-partner-gets {
   display: grid;
-  gap: 0.85rem;
+  gap: 0.55rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-@media (min-width: 640px) {
-  .bon-caps-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .bon-caps-grid {
+@media (min-width: 720px) {
+  .bon-partner-gets {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.bon-cap-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
+.bon-partner-get {
+  display: grid;
+  grid-template-columns: 1.15rem minmax(0, 1fr);
+  gap: 0.45rem;
   border: 1px solid var(--border);
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   background: var(--card);
-  padding: 1.05rem 1.1rem 1.15rem;
+  padding: 0.7rem 0.75rem 0.75rem;
   box-shadow: var(--shadow-card);
 }
 
-.bon-cap-head {
-  display: grid;
-  grid-template-columns: 2.1rem minmax(0, 1fr);
-  align-items: center;
-  column-gap: 0.7rem;
-  row-gap: 0.15rem;
-}
-
-.bon-cap-icon {
-  grid-row: span 2;
+.bon-partner-get-mark {
   display: grid;
   place-items: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: 0.7rem;
-  border: 1px solid color-mix(in oklab, var(--primary) 25%, var(--border));
-  background: color-mix(in oklab, var(--primary) 8%, var(--card));
-  color: var(--primary);
-}
-
-.bon-cap-head strong {
-  font-size: 0.9375rem;
-  font-weight: 650;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  color: var(--foreground);
-}
-
-.bon-cap-head-body {
-  font-size: 0.75rem;
-  line-height: 1.35;
-  color: var(--muted-foreground);
-}
-
-.bon-cap-items {
-  display: grid;
-  gap: 0.65rem;
-  margin: 0;
-  border-top: 1px solid var(--border);
-  padding: 0.8rem 0 0;
-  list-style: none;
-}
-
-.bon-cap-item {
-  display: grid;
-  grid-template-columns: 1.05rem minmax(0, 1fr);
-  gap: 0.55rem;
-}
-
-.bon-cap-item-mark {
-  display: grid;
-  place-items: center;
-  width: 1.05rem;
-  height: 1.05rem;
-  margin-top: 0.15rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.1rem;
   border-radius: 999px;
   background: color-mix(in oklab, var(--primary) 14%, var(--card));
   color: var(--primary);
 }
 
-.bon-cap-item-copy {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-
-.bon-cap-item-copy strong {
-  font-size: 0.8125rem;
+.bon-partner-get strong {
+  display: block;
+  font-size: 0.875rem;
   font-weight: 650;
-  line-height: 1.3;
   letter-spacing: -0.01em;
   color: var(--foreground);
 }
 
-.bon-cap-item-copy span {
+.bon-partner-get span span {
+  display: block;
+  margin-top: 0.2rem;
   font-size: 0.75rem;
   line-height: 1.5;
   color: var(--muted-foreground);
 }
 
-@media (max-width: 1023px) {
-  .bon-stage .lc-tilt-wrap {
-    transform: none;
+.bon-partner-notes {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.7rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 720px) {
+  .bon-partner-notes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
+.bon-partner-notes li {
+  border: 1px dashed color-mix(in oklab, var(--primary) 28%, var(--border));
+  border-radius: 0.75rem;
+  background: color-mix(in oklab, var(--primary) 4%, var(--card));
+  padding: 0.6rem 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}
+
+.bon-partner-notes strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  color: var(--foreground);
+}
+
+/* Part 5 — region-aware checklist ---------------------------------- */
+
+.bon-need {
+  margin-top: clamp(1.35rem, 2.6vw, 2rem);
+}
+
+.bon-need-list {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 720px) {
+  .bon-need-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.bon-need-list li {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--card);
+  padding: 0.5rem 0.65rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--foreground);
+}
+
+.bon-need-list li[data-region="true"] {
+  border-color: color-mix(in oklab, var(--primary) 35%, var(--border));
+  background: color-mix(in oklab, var(--primary) 6%, var(--card));
+}
+
+.bon-need-box {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.12rem;
+  border: 1.5px solid color-mix(in oklab, var(--primary) 45%, var(--border));
+  border-radius: 0.28rem;
+  background: color-mix(in oklab, var(--primary) 8%, var(--card));
+}
+
+/* Part 6 — FAQ accordion ------------------------------------------- */
+
+.bon-faq {
+  margin-top: clamp(1.35rem, 2.6vw, 2rem);
+}
+
+.bon-faq-list {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.bon-faq-item {
+  border-color: var(--border) !important;
+}
+
+.bon-faq-item:last-child {
+  border-bottom: 0 !important;
+}
+
+.bon-faq-trigger {
+  gap: 0.65rem !important;
+  align-items: flex-start !important;
+  min-height: 2.5rem;
+  padding: 0.75rem 0.9rem !important;
+  font-size: 0.9375rem !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  text-decoration: none !important;
+  color: var(--foreground) !important;
+}
+
+.bon-faq-trigger:hover,
+.bon-faq-trigger:focus-visible {
+  background: color-mix(in oklab, var(--primary) 6%, transparent);
+  text-decoration: none !important;
+  outline: none;
+}
+
+.bon-faq-trigger[data-state="open"] {
+  background: var(--primary-soft);
+}
+
+.bon-faq-index {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+}
+
+.bon-faq-q {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.bon-faq-trigger svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: var(--primary);
+}
+
+.bon-faq-a {
+  margin: 0;
+  padding: 0 0.9rem 0.9rem 2.75rem;
+  max-width: 62ch;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .bon-spin,
   .bon-step-ring,
-  .bon-detail-head,
   .bon-rail-item[data-state="current"]::after,
   .bon-feed-row[data-state="current"] .bon-feed-dot {
     animation: none;
@@ -40465,12 +40660,1974 @@ body,
     display: none;
   }
 
+  .bon-region-tab,
   .bon-desk-top::after,
   .bon-step,
   .bon-step-mark,
-  .bon-check-mark,
-  .bon-artifact-chips li {
+  .bon-phase-body,
+  .bon-phase-head::after {
     transition: none;
   }
 }
 
+/* == Homepage TravelTools laptop fit (tpa-section) 2026-08-20 ==
+   MacBook CSS px at 100% zoom (not browser 80%): 1280×832, 1440×900,
+   1470×956, 1512×982, 1680×1050, 1710×1112. Mini titles stay full
+   (wrap, no ellipsis). Laptop 1024–1919 uses the same inner-zoom
+   idea as .hero-fit-zoom (0.85), scoped to .tpa-fit-zoom only — never
+   html. Do not inflate width/height by 1/0.85: that used box is wider
+   than the viewport, and overflow:hidden on .tpa-section clips the
+   right mini column (missing card border, “Quotatio” / “Share & c”).
+   zoom: 0.85 with width: 100% (Hero pattern). Firefox without zoom
+   keeps the reflow (column ratio + wrapping).
+   375 / 768 / 900-stack / ≥1920 unchanged aside from title wrap. */
+
+.tpa-fit-zoom {
+  display: contents;
+}
+
+.tpa-minis .tpa-card-head {
+  align-items: flex-start;
+}
+
+.tpa-minis .tpa-card-head h3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: unset;
+  line-height: 1.2;
+  font-size: clamp(0.78rem, 0.62rem + 0.7vw, 0.9rem);
+}
+
+.tpa-minis .tpa-row-label {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: unset;
+  line-height: 1.25;
+}
+
+@media (min-width: 900px) and (max-width: 1279px) {
+  .tpa-boards {
+    grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1511px) {
+  .tpa-boards {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  }
+}
+
+@media (min-width: 1512px) and (max-width: 1919px) {
+  .tpa-boards {
+    grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1919px) {
+  .tpa-minis .tpa-card {
+    padding: 0.65rem 0.7rem 0.55rem;
+  }
+
+  .tpa-minis .tpa-card-note {
+    height: 2.4rem;
+    margin: 0.32rem 0 0.4rem;
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+
+  .tpa-minis .tpa-card-metric {
+    margin-top: 0.45rem;
+    padding-top: 0.4rem;
+  }
+
+  .tpa-minis .tpa-card-metric span:first-child {
+    font-size: clamp(1.05rem, 1.8vh, 1.35rem);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .tpa-section {
+    --tpa-fit-zoom: 0.85;
+    --tpa-pad-y: clamp(1rem, 2.2vh, 1.55rem);
+    padding-block: var(--tpa-pad-y);
+  }
+
+  .tpa-fit-zoom {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    align-self: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+    max-height: none;
+    min-height: 0;
+    zoom: var(--tpa-fit-zoom);
+    transform-origin: top left;
+  }
+
+  .tpa-fit-zoom > .tpa-shell {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    max-height: none;
+  }
+
+  .tpa-boards,
+  .tpa-live,
+  .tpa-minis,
+  .tpa-mini,
+  .tpa-minis .tpa-card {
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) and (max-height: 900px) {
+  .tpa-section .tpa-head h2 {
+    font-size: clamp(1.2rem, 0.95rem + 1.2vh, 1.65rem);
+  }
+
+  .tpa-lead {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+}
+
+@supports not (zoom: 0.85) {
+  @media (min-width: 1024px) and (max-width: 1919px) {
+    .tpa-section {
+      padding-block: clamp(0.75rem, 1.8vh, 1.25rem);
+    }
+
+    .tpa-fit-zoom {
+      display: contents;
+      width: auto;
+      max-width: none;
+      height: auto;
+      zoom: unset;
+    }
+  }
+}
+
+/* ── SellerTools orchestration engine (homepage #sellers) ── */
+
+.sto-section {
+  --sto-line: var(--primary);
+  --sto-gutter: 2.75rem;
+  --sto-rail-pad: 0.55rem;
+  --sto-rail: minmax(13.75rem, 16.5rem);
+  --sto-gap: 0.55rem;
+  min-width: 0;
+  overflow: visible;
+}
+
+.sto-section.section-curve {
+  overflow: visible;
+}
+
+.sto-section .container-page {
+  overflow: visible;
+}
+
+.sto-head {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sto-head-copy {
+  min-width: 0;
+  max-width: 40rem;
+}
+
+.sto-head-copy .section-eyebrow {
+  margin: 0;
+}
+
+.sto-head-copy h2 {
+  margin: 1rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+}
+
+.sto-tagline {
+  margin: 0;
+  max-width: 22rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--primary-deep);
+}
+
+.sto-lead {
+  margin: 1.25rem 0 1.35rem;
+  max-width: 46rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+.sto-board {
+  display: grid;
+  gap: 0.95rem;
+  min-width: 0;
+  overflow: visible;
+}
+
+.sto-diagram {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 0.55rem;
+  min-width: 0;
+  overflow: visible;
+}
+
+.sto-kicker {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--primary-deep);
+}
+
+.sto-rail-title {
+  margin: 0.12rem 0 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.sto-rail-in,
+.sto-rail-out,
+.sto-rail-buyers {
+  position: relative;
+  z-index: 1;
+  align-self: stretch;
+  min-width: 0;
+  padding: 0.55rem var(--sto-rail-pad);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+  overflow: visible;
+}
+
+.sto-rail-buyers {
+  overflow: hidden;
+}
+
+.sto-rail-in {
+  display: flex;
+  flex-direction: column;
+}
+
+.sto-right {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  align-self: stretch;
+}
+
+.sto-rail-head {
+  margin-bottom: 0.4rem;
+}
+
+.sto-ingest-line {
+  margin: 0.28rem 0 0;
+  font-size: 0.625rem;
+  line-height: 1.3;
+  color: var(--muted-foreground);
+}
+
+.sto-sys-wrap {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.sto-sys {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-rows: repeat(5, minmax(2.05rem, 1fr));
+  gap: 0.28rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sto-sys-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.45rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 0;
+  padding: 0.28rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 4px);
+  background: var(--card);
+  overflow: visible;
+}
+
+.sto-sys-item[data-active="true"] {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 10%, var(--card));
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 28%, transparent) inset;
+}
+
+.sto-sys-icon {
+  display: grid;
+  width: 1.45rem;
+  height: 1.45rem;
+  place-items: center;
+  border-radius: calc(var(--radius) - 6px);
+  background: var(--muted);
+  color: var(--primary-deep);
+}
+
+.sto-sys-icon svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.sto-sys-item strong {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sto-sys-item em {
+  display: block;
+  font-size: 0.625rem;
+  font-style: normal;
+  line-height: 1.25;
+  color: var(--muted-foreground);
+}
+
+.sto-rail-foot {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding-top: 0.45rem;
+}
+
+.sto-rail-foot > p {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin: 0;
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  color: var(--muted-foreground);
+}
+
+.sto-rail-foot > p strong {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.sto-rail-feed {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  padding: 0.3rem 0 0;
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+
+.sto-rail-feed li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.15rem 0.4rem;
+  font-size: 0.625rem;
+  line-height: 1.3;
+  color: var(--muted-foreground);
+}
+
+.sto-rail-feed li[data-active="true"] {
+  color: var(--primary-deep);
+}
+
+.sto-rail-feed strong {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.sto-rail-feed li[data-active="true"] strong {
+  color: var(--primary-deep);
+}
+
+.sto-hop {
+  display: none;
+}
+
+.sto-hop-svg,
+.sto-buy-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: var(--sto-line);
+}
+
+.sto-hop-cap {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+}
+
+.sto-vlink {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.2rem;
+  min-height: 2.6rem;
+  overflow: visible;
+}
+
+.sto-vlink-line {
+  width: 2px;
+  height: 1.55rem;
+  border: none;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--sto-line) 0 8px,
+    transparent 8px 14px
+  );
+}
+
+.sto-vlink-packet {
+  position: absolute;
+  left: 50%;
+  top: 0.15rem;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: var(--sto-line);
+  transform: translateX(-50%);
+  animation: sto-vpacket 1.8s linear infinite;
+}
+
+.sto-vlink-packet.is-follow {
+  animation-delay: 0.9s;
+}
+
+.sto-vlink-packet.is-rev {
+  animation-name: sto-vpacket-rev;
+  animation-delay: 0.45s;
+}
+
+.sto-join {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  padding: 0.18rem 0.45rem;
+  border: 1px solid color-mix(in oklch, var(--primary) 35%, var(--border));
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--primary-deep);
+  white-space: nowrap;
+}
+
+.sto-join svg {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+.sto-core {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  align-self: stretch;
+  overflow: visible;
+}
+
+.sto-core .lc-frame,
+.sto-core .lc-bezel,
+.sto-core .lc-screen {
+  height: auto;
+  min-height: 0;
+  max-height: none;
+}
+
+.sto-core .lc-bezel {
+  padding: 0.4rem;
+}
+
+.sto-core .lc-screen {
+  overflow: visible;
+}
+
+.sto-core .lc-body {
+  display: block;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  padding: 0.55rem 0.6rem 0.6rem;
+}
+
+.sto-core .two-track-chrome {
+  gap: 0.45rem;
+}
+
+.sto-desk {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.sto-connect {
+  padding: 0.4rem 0.45rem 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.sto-connect-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 0.7rem;
+  margin-bottom: 0.35rem;
+}
+
+.sto-connect-label {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.sto-connect-head span {
+  font-size: 0.625rem;
+  color: var(--muted-foreground);
+}
+
+.sto-connect-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.28rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sto-connect-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.32rem;
+  min-width: 0;
+  padding: 0.28rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--muted);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.sto-connect-list li[data-active="true"] {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 10%, var(--card));
+  color: var(--primary-deep);
+}
+
+.sto-connect-list svg {
+  flex-shrink: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  color: var(--primary-deep);
+}
+
+.sto-chevron {
+  display: grid;
+  place-items: center;
+  color: var(--primary);
+}
+
+.sto-chevron svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.sto-mods-kicker {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--primary-deep);
+}
+
+.sto-mods {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sto-mod {
+  position: relative;
+  display: grid;
+  gap: 0.22rem;
+  min-width: 0;
+  padding: 0.45rem 0.45rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.sto-mod[data-active="true"] {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 10%, var(--card));
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 32%, transparent) inset;
+}
+
+.sto-mod-n {
+  position: absolute;
+  top: 0.32rem;
+  right: 0.32rem;
+  display: grid;
+  width: 1.05rem;
+  height: 1.05rem;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.sto-mod-icon {
+  display: grid;
+  width: 1.45rem;
+  height: 1.45rem;
+  place-items: center;
+  border-radius: calc(var(--radius) - 6px);
+  background: var(--muted);
+  color: var(--primary-deep);
+}
+
+.sto-mod-icon svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.sto-mod h3 {
+  margin: 0;
+  padding-right: 1.15rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.sto-mod-product {
+  margin: 0;
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--primary-deep);
+}
+
+.sto-mod-feat {
+  display: grid;
+  gap: 0.12rem;
+  margin: 0.08rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sto-mod-feat li {
+  display: grid;
+  grid-template-columns: 0.65rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.22rem;
+  font-size: 0.625rem;
+  line-height: 1.3;
+  color: var(--muted-foreground);
+}
+
+.sto-mod-feat svg {
+  width: 0.65rem;
+  height: 0.65rem;
+  margin-top: 0.08rem;
+  color: var(--primary);
+}
+
+.sto-mod-event {
+  margin: 0.12rem 0 0;
+  font-size: 0.5625rem;
+  line-height: 1.3;
+  color: var(--muted-foreground);
+}
+
+.sto-data {
+  display: grid;
+  gap: 0.22rem;
+  padding: 0.38rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.sto-data-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--primary-deep);
+}
+
+.sto-data p {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.sto-data span[data-active="true"] {
+  color: var(--primary-deep);
+}
+
+.sto-rail-out {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.sto-channels {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-rows: repeat(4, minmax(1.85rem, 1fr));
+  gap: 0.28rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sto-chan-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.28rem;
+  overflow: visible;
+}
+
+.sto-channel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 1.85rem;
+  padding: 0.28rem 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 4px);
+  background: var(--card);
+  overflow: visible;
+}
+
+.sto-channel-n {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.sto-chan-health {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.22rem 0.35rem;
+  margin: 0.4rem 0 0;
+  padding: 0.35rem 0 0;
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+
+.sto-chan-health li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.3rem;
+  font-size: 0.625rem;
+  line-height: 1.3;
+  color: var(--muted-foreground);
+}
+
+.sto-chan-health li[data-active="true"] {
+  color: var(--primary-deep);
+}
+
+.sto-chan-health em {
+  font-style: normal;
+  font-weight: 600;
+}
+
+.sto-channel-note {
+  margin: 0.35rem 0 0;
+  font-size: 0.625rem;
+  line-height: 1.3;
+  color: var(--muted-foreground);
+}
+
+.sto-buy-hop {
+  position: relative;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  flex: 0 0 1.55rem;
+  height: 1.55rem;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--sto-line);
+}
+
+.sto-buy-svg {
+  width: 0.75rem;
+  height: 100%;
+}
+
+.sto-buy-hop .sto-hop-cap.is-end {
+  top: auto;
+  bottom: 0;
+  left: 50%;
+  right: auto;
+  border-left-color: transparent;
+  border-top-color: var(--sto-line);
+  transform: translateX(-50%);
+}
+
+.sto-buy-hop .sto-hop-packet {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: var(--sto-line);
+  transform: translateX(-50%);
+  animation: sto-vpacket 1.8s linear infinite;
+}
+
+.sto-buy-hop .sto-hop-packet.is-follow {
+  animation-delay: 0.9s;
+}
+
+.sto-buyers {
+  display: grid;
+  gap: 0.28rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sto-buyers li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 0;
+  padding: 0.28rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 4px);
+  background: var(--card);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  overflow: visible;
+}
+
+.sto-buyers svg {
+  width: 0.8rem;
+  height: 0.8rem;
+  color: var(--primary-deep);
+}
+
+.sto-process {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+}
+
+.sto-steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sto-flow {
+  display: none;
+}
+
+.sto-step {
+  position: relative;
+  display: grid;
+  gap: 0.22rem;
+  min-width: 0;
+  padding: 0.55rem 0.6rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+}
+
+.sto-step[data-active="true"] {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 10%, var(--card));
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--primary) 28%, transparent) inset,
+    var(--shadow-card);
+}
+
+.sto-step-n {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--primary-deep);
+}
+
+.sto-step-icon {
+  display: grid;
+  width: 1.45rem;
+  height: 1.45rem;
+  place-items: center;
+  border-radius: calc(var(--radius) - 6px);
+  background: var(--muted);
+  color: var(--primary-deep);
+}
+
+.sto-step-icon svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.sto-step h3 {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.sto-step p {
+  margin: 0;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+}
+
+.sto-step-arrow {
+  display: none;
+}
+
+.sto-highlights {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.4rem;
+  margin: 1rem 0 0.7rem;
+  padding: 0.45rem;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.sto-highlights li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  padding: 0.22rem 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.sto-highlights svg {
+  flex-shrink: 0;
+  width: 0.85rem;
+  height: 0.85rem;
+  color: var(--primary-deep);
+}
+
+.sto-close {
+  margin: 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}
+
+@keyframes sto-packet-fwd {
+  from {
+    left: 0;
+  }
+  to {
+    left: calc(100% - 0.38rem);
+  }
+}
+
+@keyframes sto-packet-rev {
+  from {
+    left: calc(100% - 0.38rem);
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes sto-vpacket {
+  from {
+    top: 0;
+  }
+  to {
+    top: calc(100% - 0.38rem);
+  }
+}
+
+@keyframes sto-vpacket-rev {
+  from {
+    top: calc(100% - 0.38rem);
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes sto-step-packet {
+  from {
+    left: 0;
+  }
+  to {
+    left: calc(100% - 0.38rem);
+  }
+}
+
+.sto-board[data-live="false"] .sto-hop-packet,
+.sto-board[data-live="false"] .sto-vlink-packet,
+.sto-board[data-live="false"] .sto-step-packet {
+  animation: none;
+  opacity: 1;
+}
+
+.sto-board[data-live="false"] .sto-hop-packet {
+  left: 42%;
+}
+
+.sto-board[data-live="false"] .sto-vlink-packet {
+  top: 0.7rem;
+}
+
+.sto-board[data-live="false"] .sto-step-packet {
+  left: 40%;
+}
+
+.sto-board[data-live="false"] .sto-hop-packet.is-follow,
+.sto-board[data-live="false"] .sto-vlink-packet.is-follow,
+.sto-board[data-live="false"] .sto-step-packet.is-follow {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sto-hop-packet,
+  .sto-vlink-packet,
+  .sto-step-packet {
+    animation: none !important;
+    opacity: 1;
+  }
+
+  .sto-hop-packet {
+    left: 42%;
+  }
+
+  .sto-vlink-packet {
+    top: 0.7rem;
+  }
+
+  .sto-step-packet {
+    left: 40%;
+  }
+
+  .sto-hop-packet.is-follow,
+  .sto-vlink-packet.is-follow,
+  .sto-step-packet.is-follow {
+    display: none;
+  }
+}
+
+@media (min-width: 480px) {
+  .sto-connect-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sto-mods {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sto-highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 640px) {
+  .sto-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.15rem;
+  }
+
+  .sto-step-arrow {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    right: auto;
+    width: 1.15rem;
+    height: 2px;
+    overflow: hidden;
+    border: none;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--sto-line) 0 10px,
+      transparent 10px 18px
+    );
+    transform: translateY(-50%);
+  }
+
+  .sto-step-arrow::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    border: 4px solid transparent;
+    border-left-color: var(--sto-line);
+    transform: translateY(-50%);
+  }
+
+  .sto-step-packet {
+    position: absolute;
+    top: 50%;
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 999px;
+    background: var(--sto-line);
+    transform: translateY(-50%);
+    animation: sto-step-packet 2s linear infinite;
+  }
+
+  .sto-step-packet.is-follow {
+    animation-delay: 1s;
+  }
+
+  .sto-step:nth-child(2n) .sto-step-arrow {
+    display: none;
+  }
+
+  .sto-highlights {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .sto-steps {
+    grid-template-columns: repeat(3, minmax(0, 18rem));
+    grid-auto-rows: 1fr;
+    justify-content: center;
+    justify-items: stretch;
+    column-gap: 1.15rem;
+    row-gap: 2.65rem;
+  }
+
+  .sto-step {
+    z-index: 1;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .sto-step-arrow {
+    display: none !important;
+  }
+
+  .sto-flow {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: visible;
+    pointer-events: none;
+    color: var(--sto-line);
+  }
+
+  .sto-flow-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .sto-highlights {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.2rem;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .sto-highlights li {
+    justify-content: center;
+    text-align: left;
+    font-size: 0.6875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sto-section {
+    --sto-gutter: 3.5rem;
+  }
+
+  .sto-head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .sto-tagline {
+    text-align: right;
+  }
+
+  .sto-diagram {
+    grid-template-columns: var(--sto-rail) minmax(0, 1fr) var(--sto-rail);
+    column-gap: var(--sto-gutter);
+    row-gap: 0;
+    align-items: stretch;
+  }
+
+  .sto-vlink {
+    display: none;
+  }
+
+  .sto-hop {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: calc(100% + var(--sto-rail-pad) + 1px);
+    z-index: 0;
+    width: var(--sto-gutter);
+    height: 0.85rem;
+    overflow: hidden;
+    pointer-events: none;
+    color: var(--sto-line);
+    transform: translateY(-50%);
+  }
+
+  .sto-hop-cap {
+    position: absolute;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+  }
+
+  .sto-hop-cap.is-end {
+    right: 0;
+    border-left-color: var(--sto-line);
+    transform: translateY(-50%);
+  }
+
+  .sto-hop-cap.is-start {
+    left: 0;
+    border-right-color: var(--sto-line);
+    transform: translateY(-50%);
+  }
+
+  .sto-hop .sto-hop-packet {
+    position: absolute;
+    top: 50%;
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 999px;
+    background: var(--sto-line);
+    transform: translateY(-50%);
+    animation: sto-packet-fwd 2.6s linear infinite;
+  }
+
+  .sto-hop .sto-hop-packet.is-follow {
+    animation-delay: 1.3s;
+  }
+
+  .sto-hop .sto-hop-packet.is-rev {
+    animation-name: sto-packet-rev;
+    animation-delay: 0.65s;
+  }
+
+  .sto-chan-row .sto-hop {
+    left: auto;
+    right: calc(100% + var(--sto-rail-pad) + 1px);
+  }
+
+  .sto-mods {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sto-connect-list li {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1280px) {
+  .sto-section {
+    --sto-gutter: 4.75rem;
+  }
+
+  .sto-mods {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .sto-mod h3 {
+    font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .sto-section {
+    --sto-gutter: 5.5rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .sto-section {
+    --sto-gutter: 6rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .sto-connect-list li {
+    font-size: 0.625rem;
+  }
+
+  .sto-channel-n,
+  .sto-sys-item strong {
+    overflow-wrap: anywhere;
+  }
+
+  .sto-channel-n {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 639px) {
+  .sto-step-arrow {
+    display: block;
+    position: static;
+    width: 1.5px;
+    height: 0.7rem;
+    margin: 0.35rem auto -0.15rem;
+    border: none;
+    background: repeating-linear-gradient(
+      180deg,
+      var(--sto-line) 0 2.5px,
+      transparent 2.5px 6px
+    );
+  }
+
+  .sto-step-arrow::after {
+    content: "";
+    position: static;
+    display: block;
+    width: 0;
+    height: 0;
+    margin: 0.45rem 0 0 -3px;
+    border: 4px solid transparent;
+    border-top-color: var(--sto-line);
+    border-left-color: transparent;
+  }
+
+  .sto-step:last-child .sto-step-arrow {
+    display: none;
+  }
+
+  .sto-step-packet {
+    display: none;
+  }
+}
+
+/* == TravelTools page scroll (tpa-section) 2026-08-20 ==
+   Wheel over Live Seat Map / listings / map was swallowed by nested
+   overflow:auto on .lc-body and .smt-table-wrap inside the 100svh
+   overflow:hidden lock. Same class as HowItWorks: no nested overflow-y-auto;
+   wheel anywhere in #travel continues document scroll. Table stays
+   overflow-x only. tpa-fit-zoom remains width 100% / 0.85. */
+
+.tpa-section .smt-console .lc-screen,
+.tpa-section .smt-console .lc-body {
+  overflow: visible;
+  overscroll-behavior: auto;
+}
+
+.tpa-section .smt-table-wrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+@media (min-width: 900px) {
+  .tpa-section {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .tpa-shell,
+  .tpa-fit-zoom,
+  .tpa-fit-zoom > .tpa-shell {
+    height: auto;
+    max-height: none;
+    min-height: min-content;
+  }
+
+  .tpa-stage,
+  .tpa-live,
+  .tpa-minis,
+  .tpa-minis .tpa-card,
+  .tpa-section .smt-map-card,
+  .tpa-section .smt-list-card {
+    overflow: visible;
+  }
+
+  .tpa-minis .tpa-card-body {
+    overflow: visible;
+    overscroll-behavior: auto;
+  }
+
+  .tpa-section .smt-map-stage {
+    overflow: clip;
+  }
+}
+
+/* == TravelTools mini cards size-to-content (tpa-minis) 2026-08-20 ==
+   2×2 sat in a 100svh column (grid 1fr rows + height:100% cards).
+   .tpa-card-body / .tpa-rows used flex:1 so queued Quote / Margin / Share
+   left a hollow well above the inner foot. Cards now size to content;
+   lists keep a 4-row slot so auto-run does not jump. Notes wrap 2 lines.
+   Metric value + label share one baseline. Page scroll / .tpa-fit-zoom
+   width 100% unchanged.
+
+   Desktop leftover column height (Live desk taller than the 2×2) is
+   split equally above and below the cluster: .tpa-minis stretches in
+   .tpa-boards, rows stay auto, align-content/place-content: center.
+   Do not stretch card bodies (flex:1 recreates the wells). */
+
+.tpa-minis {
+  --tpa-row-h: 1.6rem;
+  --tpa-row-gap: 0.28rem;
+  --tpa-rows-h: calc(4 * var(--tpa-row-h) + 3 * var(--tpa-row-gap));
+  align-items: start;
+  align-content: start;
+  grid-template-rows: repeat(2, auto);
+}
+
+.tpa-mini {
+  height: auto;
+  min-height: 0;
+  align-self: start;
+}
+
+.tpa-minis .tpa-card {
+  height: auto;
+  min-height: 0;
+}
+
+.tpa-minis .tpa-card-note {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: unset;
+  height: calc(1.35em * 2 + 0.2rem);
+  min-height: calc(1.35em * 2 + 0.2rem);
+  max-height: calc(1.35em * 2 + 0.2rem);
+  line-height: 1.35;
+}
+
+.tpa-minis .tpa-card-body {
+  flex: 0 0 auto;
+  min-height: 0;
+  height: auto;
+}
+
+.tpa-minis .tpa-meta,
+.tpa-minis .tpa-dial,
+.tpa-minis .tpa-foot {
+  flex: 0 0 auto;
+}
+
+.tpa-minis .tpa-rows {
+  flex: 0 0 auto;
+  min-height: var(--tpa-rows-h);
+}
+
+.tpa-minis .tpa-row {
+  flex: 0 0 auto;
+}
+
+.tpa-minis .tpa-card-metric {
+  flex: 0 0 auto;
+  align-items: baseline;
+  margin-top: 0.5rem;
+}
+
+.tpa-minis .tpa-card-metric span:first-child,
+.tpa-minis .tpa-card-metric span:last-child {
+  line-height: 1;
+}
+
+@media (min-width: 900px) {
+  .tpa-boards {
+    align-items: stretch;
+  }
+
+  .tpa-minis {
+    align-self: stretch;
+    height: 100%;
+    min-height: 0;
+    align-items: start;
+    align-content: center;
+    place-content: center;
+    grid-template-rows: repeat(2, auto);
+  }
+
+  .tpa-mini,
+  .tpa-minis .tpa-card {
+    height: auto;
+    min-height: 0;
+    align-self: start;
+  }
+
+  .tpa-minis .tpa-card {
+    --tpa-body-h: 0px;
+  }
+
+  .tpa-minis .tpa-card-body {
+    flex: 0 0 auto;
+    min-height: 0;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1919px) {
+  .tpa-minis .tpa-card-note {
+    height: calc(1.35em * 2 + 0.2rem);
+    min-height: calc(1.35em * 2 + 0.2rem);
+    max-height: calc(1.35em * 2 + 0.2rem);
+    line-height: 1.35;
+  }
+
+  .tpa-minis .tpa-card-metric span:first-child {
+    font-size: clamp(1.05rem, 1.8vh, 1.35rem);
+    line-height: 1;
+  }
+}
+
+/* == TravelTools mini column fill + equal cards (tpa-*) 2026-08-20 ==
+   Right column leftover (Live desk taller than the 2×2) is occupied by
+   pipeline chrome above and a status strip below — not place-content
+   centering. All four .tpa-mini share one height: reserved 2-line title
+   + 2-line note + board (meta, dial, 4 rows, foot) + metric. Extra
+   stretch goes into the four row cells, not a hollow well. Do not
+   inflate .tpa-fit-zoom by 1/0.85. SellerTools / .sto-* untouched. */
+
+.tpa-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+  min-height: 0;
+}
+
+.tpa-side-cap,
+.tpa-side-stat {
+  flex: 0 0 auto;
+  border-radius: 0.85rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 16%, var(--border));
+  background: color-mix(in oklab, var(--primary) 5%, white);
+  padding: 0.48rem 0.55rem 0.5rem;
+}
+
+.tpa-side-cap-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem 0.6rem;
+  min-height: 1.35rem;
+}
+
+.tpa-side-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.tpa-side-now {
+  margin: 0;
+  min-width: 0;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  color: var(--primary-deep);
+}
+
+.tpa-side-now span {
+  margin-right: 0.28rem;
+}
+
+.tpa-side-run {
+  margin: 0.28rem 0 0;
+  min-height: 1.05rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  line-height: 1.05rem;
+  color: var(--muted-foreground);
+}
+
+.tpa-side-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.28rem;
+  margin: 0.38rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tpa-side-steps li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 0.28rem;
+  row-gap: 0.02rem;
+  min-height: 2.35rem;
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--border) 88%, white);
+  background: var(--background);
+  padding: 0.28rem 0.32rem;
+}
+
+.tpa-side-steps li[data-done="true"] {
+  border-color: color-mix(in oklab, var(--primary) 22%, var(--border));
+}
+
+.tpa-side-steps li[data-current="true"] {
+  border-color: color-mix(in oklab, var(--primary) 38%, var(--border));
+  background: color-mix(in oklab, var(--primary) 8%, white);
+}
+
+.tpa-side-step-idx {
+  grid-column: 1;
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+}
+
+.tpa-side-step-icon {
+  grid-column: 2;
+  justify-self: end;
+  width: 0.7rem;
+  height: 0.7rem;
+  color: var(--primary);
+  opacity: 0.45;
+}
+
+.tpa-side-steps li[data-done="true"] .tpa-side-step-icon,
+.tpa-side-steps li[data-current="true"] .tpa-side-step-icon {
+  opacity: 1;
+}
+
+.tpa-side-steps strong {
+  grid-column: 1 / -1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--foreground);
+}
+
+.tpa-side-steps em {
+  grid-column: 1 / -1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.55rem;
+  font-style: normal;
+  line-height: 1.2;
+  color: var(--muted-foreground);
+}
+
+.tpa-side-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.28rem;
+  margin: 0;
+}
+
+.tpa-side-stat-grid > div {
+  min-width: 0;
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--border) 88%, white);
+  background: var(--background);
+  padding: 0.28rem 0.35rem 0.32rem;
+}
+
+.tpa-side-stat-grid dt {
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--muted-foreground);
+}
+
+.tpa-side-stat-grid dd {
+  margin: 0.1rem 0 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+}
+
+.tpa-side-legend {
+  margin: 0.38rem 0 0;
+  min-height: 1.7rem;
+  font-size: 0.68rem;
+  line-height: 1.25;
+  color: var(--muted-foreground);
+}
+
+.tpa-minis {
+  --tpa-row-h: 1.85rem;
+  --tpa-row-gap: 0.28rem;
+  --tpa-rows-h: calc(4 * var(--tpa-row-h) + 3 * var(--tpa-row-gap));
+  align-items: stretch;
+  align-content: stretch;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.tpa-mini {
+  display: flex;
+  min-height: 0;
+  height: 100%;
+  align-self: stretch;
+}
+
+.tpa-minis .tpa-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.tpa-minis .tpa-card-head {
+  flex: 0 0 auto;
+  min-height: calc(1.2em * 2 + 0.2rem);
+}
+
+.tpa-minis .tpa-card-head h3 {
+  min-height: calc(1.2em * 2);
+}
+
+.tpa-minis .tpa-card-note {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: unset;
+  height: calc(1.35em * 2);
+  min-height: calc(1.35em * 2);
+  max-height: calc(1.35em * 2);
+  line-height: 1.35;
+}
+
+.tpa-minis .tpa-card-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  height: auto;
+}
+
+.tpa-minis .tpa-meta,
+.tpa-minis .tpa-dial,
+.tpa-minis .tpa-foot {
+  flex: 0 0 auto;
+}
+
+.tpa-minis .tpa-rows {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: var(--tpa-rows-h);
+}
+
+.tpa-minis .tpa-row {
+  flex: 1 1 auto;
+  min-height: var(--tpa-row-h);
+}
+
+.tpa-minis .tpa-card-metric {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 479px) {
+  .tpa-minis {
+    grid-template-rows: none;
+  }
+
+  .tpa-mini {
+    height: auto;
+  }
+
+  .tpa-side-steps,
+  .tpa-side-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 480px) and (max-width: 899px) {
+  .tpa-minis {
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .tpa-mini,
+  .tpa-minis .tpa-card {
+    height: 100%;
+  }
+}
+
+@media (min-width: 900px) {
+  .tpa-live,
+  .tpa-side {
+    align-self: stretch;
+    height: 100%;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .tpa-side {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 0.45rem;
+  }
+
+  .tpa-minis {
+    align-self: stretch;
+    height: 100%;
+    min-height: 0;
+    align-items: stretch;
+    align-content: stretch;
+    place-content: stretch;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .tpa-mini,
+  .tpa-minis .tpa-card {
+    height: 100%;
+    min-height: 0;
+    align-self: stretch;
+  }
+
+  .tpa-minis .tpa-card-body {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1919px) {
+  .tpa-side-cap,
+  .tpa-side-stat {
+    padding: 0.42rem 0.5rem 0.45rem;
+  }
+
+  .tpa-side-steps li {
+    min-height: 2.15rem;
+    padding: 0.22rem 0.28rem;
+  }
+
+  .tpa-minis .tpa-card-note {
+    height: calc(1.35em * 2);
+    min-height: calc(1.35em * 2);
+    max-height: calc(1.35em * 2);
+    line-height: 1.35;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .tpa-side {
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tpa-side-kicker .tpa-rail-dot {
+    animation: none;
+  }
+}

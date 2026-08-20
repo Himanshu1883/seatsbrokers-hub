@@ -3,8 +3,8 @@
 Current section order in `src/routes/brokers.tsx`:
 
 1. **BrokersHero** — dark hero + scrolling mini-console wall (`BrokersHero`, `BrokersConsoleWall`, `BrokersConsoleCards`, `src/content/broker-hero-data.ts`)
-2. **BrokerOnboardingSection** — copy + `ConsoleShell` company-setup desk (`broker-onboarding-data.ts`, `.bon-*`): SeatsBrokers sets up the broker’s company (and their broker-partner sub-accounts) Apply → Verify → Connect → Cards and payments → Payouts → Live and managed, plus a 9-tile capability grid. Auto-run pauses on interact; `prefers-reduced-motion` freezes on Live.
-3. **PaymentInfrastructureSection** — `PaymentCopyPanel` + `PaymentConsole` (own layout, not LiveConsole)
+2. **PaymentInfrastructureSection** — `PaymentCopyPanel` + `PaymentConsole` (own layout, not LiveConsole)
+3. **BrokerOnboardingSection** — six-part company setup (`broker-onboarding-data.ts`, `.bon-*`): header + Dubai/London/India/New York region tabs; regional comparison table (4 columns, horizontal scroll inside the card below 900px); six-phase journey is a one-open accordion (inactive = single `01 Apply` row; active expands We handle / You provide / region) plus a compact `ConsoleShell` auto-run (`seatsbrokers / brokers / onboarding`, dense icon+label rail + 3-line ledger, auto-sized bezel; sticky only on tall desktops). Broker-partner sub-accounts, region-aware checklist, FAQ accordion — tighter padding, copy unchanged. Region tab drives journey, partners, and checklist. Click a phase to inspect; pause on interact (~14s resume); `prefers-reduced-motion` freezes on Live. Not a LiveConsole variant; does not duplicate the SeatsFunds™ USDT console.
 4. **LiveConsole `cryptoPayouts`** — `CryptoPayoutConsole` (SeatsFunds™ USDT desk: wallet / on-chain path, qualitative Standard vs crypto switch, settlement confirmation; `crypto-payout-data.ts`, `.sfp-*`. No volume ladder or sale maths.)
 5. **EventCatalogSection** — catalog copy + `EventCatalogConsole`
 6. **InventoryManagementSection** — copy + `InventoryConsole` (tickets/sections, pricing/delivery, packages)
@@ -25,4 +25,4 @@ Current section order in `src/routes/brokers.tsx`:
 ## Planned next (only if asked)
 
 - Mount POS live console (likely after WorkflowSteps or instead of it)
-- Do not duplicate Payment as a LiveConsole variant — section 3 already covers the ledger/cards dashboard
+- Do not duplicate Payment as a LiveConsole variant — Payment Infrastructure already covers the ledger/cards dashboard

@@ -510,7 +510,7 @@ export function ToolkitShowcase() {
   return (
     <section
       id="platform-toolkit"
-      className="toolkit section-curve-sticky relative isolate scroll-mt-24 overflow-hidden text-background min-h-0 flex flex-col py-10 sm:py-12 lg:py-14"
+      className="toolkit section-curve-sticky relative isolate scroll-mt-24 overflow-visible text-background min-h-0 flex flex-col py-10 sm:py-12 lg:py-14"
       aria-label="Platform toolkit"
     >
       <span className="toolkit-bg-grid" aria-hidden />

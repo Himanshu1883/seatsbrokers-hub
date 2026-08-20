@@ -4432,6 +4432,8 @@ main > .section-curve:first-child {
 /* â”€â”€ Platform toolkit showcase â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 .toolkit {
+  height: auto;
+  overflow: visible;
   background:
     radial-gradient(
       ellipse 70% 55% at 12% -5%,
@@ -4701,18 +4703,17 @@ main > .section-curve:first-child {
     position: absolute;
     inset: 0;
     z-index: 1;
-    overflow: hidden;
+    overflow: visible;
   }
 }
 
 @media (min-width: 1024px) {
-  /* svh, not dvh: dvh remeasures with browser chrome and the min-height
-     flex column then shoves every section below this one. */
+  /* Document flow like HowItWorks: no 100svh lock, no inner wheel trap.
+     Nav is ~4.5rem solid light — do not pin this section under it. */
   .toolkit {
-    height: 100vh;
-    height: 100svh;
-    max-height: 100svh;
-    overflow: hidden;
+    height: auto;
+    max-height: none;
+    overflow: visible;
   }
 
   .toolkit > .container-page {
@@ -4733,7 +4734,7 @@ main > .section-curve:first-child {
     display: flex;
     flex-direction: column;
     min-height: 0;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .toolkit-rail-ghost {
@@ -4743,15 +4744,14 @@ main > .section-curve:first-child {
   .toolkit-rail-lock > .toolkit-rail-list {
     flex: 1 1 auto;
     min-height: 0;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    scrollbar-gutter: stable;
+    overflow: visible;
+    overscroll-behavior: auto;
   }
 
   .toolkit-panel {
     display: flex;
     min-height: 0;
-    max-height: 100%;
+    max-height: none;
     flex-direction: column;
     align-self: stretch;
     overflow: hidden;
@@ -4772,10 +4772,10 @@ main > .section-curve:first-child {
   }
 
   .toolkit-screen {
-    flex: 1 1 auto;
-    min-height: 0;
+    flex: 0 0 auto;
+    min-height: clamp(12.5rem, 32svh, 22rem);
     height: auto;
-    max-height: 100%;
+    max-height: none;
   }
 }
 
@@ -43236,8 +43236,9 @@ body,
 /* ── Toolkit screen fill for static desks ───────────────────────────
    Prefix: .toolkit-* / .tks-* only. Do not use .sto-* or .tpa-*.
    Keep 4/3 aspect-ratio (do not set auto) so the pane cannot collapse
-   to height 0. Desktop min-height + flex-fill so desks are visible.
-   No left-rail overflow-y trap change. No 340vh pin. */
+   to height 0. Desktop min-height so desks stay visible after the
+   100svh lock was removed. Rail overflow is visible (page scroll).
+   No 340vh pin. */
 
 .toolkit-screen {
   grid-template-columns: minmax(0, 1fr);
@@ -43250,7 +43251,7 @@ body,
   }
 
   .toolkit-screen {
-    flex: 1 1 0%;
+    flex: 0 0 auto;
     min-width: 0;
     min-height: clamp(12.5rem, 32svh, 22rem);
   }

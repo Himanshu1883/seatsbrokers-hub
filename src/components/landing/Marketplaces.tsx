@@ -149,7 +149,7 @@ export function Marketplaces() {
 
       <style>{`
         .mps-hub-row {
-          --mps-hub-slot: 7rem;
+          --mps-hub-slot: 5.5rem;
           display: grid;
           grid-template-columns: minmax(0, 1fr);
           align-items: center;
@@ -163,7 +163,7 @@ export function Marketplaces() {
           position: relative;
           min-width: 0;
           width: 100%;
-          overflow: hidden;
+          overflow: visible;
         }
         .mps-hub-center {
           position: relative;
@@ -203,8 +203,8 @@ export function Marketplaces() {
           align-items: center;
           transform: translateY(-50%);
         }
-        .mps-hub-join--in { right: -0.25rem; }
-        .mps-hub-join--out { left: -0.25rem; }
+        .mps-hub-join--in { right: -0.35rem; }
+        .mps-hub-join--out { left: -0.35rem; }
         .mps-hub-clip {
           mask-image: linear-gradient(to right, transparent, black 14%, black 86%, transparent);
           -webkit-mask-image: linear-gradient(to right, transparent, black 14%, black 86%, transparent);
@@ -218,16 +218,18 @@ export function Marketplaces() {
           place-items: center;
           overflow: hidden;
           padding: 0;
+          width: var(--mps-hub-slot);
+          height: var(--mps-hub-slot);
         }
         /* PNG 300×92; opaque ink 22,27–278,64 (257×38). Optical mass at x=133.9. */
-        /* 84% crop window (was 68%) — fills the circle with ~5% tagline margin after the optical nudge. */
+        /* 82% crop (was 84%) — padding in the smaller disc; 5% nudge keeps the left-heavy lockup centered. */
         .mps-hub-logo-fit {
           position: relative;
           display: block;
-          width: 84%;
+          width: 82%;
           aspect-ratio: 257 / 38;
           overflow: hidden;
-          transform: translateX(4.2%);
+          transform: translateX(5%);
         }
         .mps-hub-logo-img {
           position: absolute;
@@ -259,7 +261,7 @@ export function Marketplaces() {
           to { transform: translateX(0); }
         }
         @media (min-width: 640px) {
-          .mps-hub-row { --mps-hub-slot: 8rem; }
+          .mps-hub-row { --mps-hub-slot: 6.25rem; }
         }
         @media (min-width: 1024px) {
           .mps-hub-row {

@@ -90,7 +90,7 @@ Copy + console must stay in this split. New “alive” sections should use `Tra
 |---|---|---|
 | SeatsFunds™ | Payments, credit, funding & settlement | Financial Infrastructure for Ticketing. |
 | SeatsMarket™ | Global B2B ticket inventory marketplace | The Global Marketplace for Live Events. |
-| SeatsLink™ | API, integrations & connectivity | Connect Your Business to Global Ticket Inventory. |
+| Seatpin™ | API, integrations & connectivity | Connect Your Business to Global Ticket Inventory. |
 | SeatsSource™ | Primary-market ticket sourcing | Intelligent Access to Primary Ticket Inventory. |
 | SeatsPulse™ | Resale-market intelligence & pricing analytics | Know the Market. Price with Confidence. |
 | SeatsIntel™ | Event & primary-market intelligence | Know What's Coming. Buy Smarter. |

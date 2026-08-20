@@ -182,25 +182,25 @@ const sellerModules: {
   },
   {
     n: "02",
+    icon: LineChart,
+    title: "AI pricing",
+    product: modules.pulse.name,
+    event: "price.signal → rec ready",
+    features: ["Live market signal", "Rec ready", "You approve", "Price syncs out"],
+  },
+  {
+    n: "03",
     icon: Share2,
     title: "Marketplace distribution",
     event: "list.once → 16 channels",
     features: ["List once", "16 connected channels", "Qty kept in sync", "Status mirrored"],
   },
   {
-    n: "03",
+    n: "04",
     icon: RefreshCw,
     title: "Order sync",
     event: "order.sold → auto delist",
     features: ["Sale captured", "Auto delist", "Oversell blocked", "Stock written back"],
-  },
-  {
-    n: "04",
-    icon: LineChart,
-    title: "AI pricing",
-    product: modules.pulse.name,
-    event: "price.signal → rec ready",
-    features: ["Live market signal", "Rec ready", "You approve", "Price syncs out"],
   },
   {
     n: "05",
@@ -236,7 +236,7 @@ const sellerChannels: readonly { id: string; icon: LucideIcon; label: string }[]
   { id: "hello-tickets", icon: Handshake, label: "Hello Tickets" },
   { id: "stubhub", icon: Globe2, label: "Stubhub" },
   { id: "1boxoffice", icon: Building2, label: "1BoxOffice" },
-  { id: "seatslink", icon: Link2, label: "SeatsLink" },
+  { id: "Seatpin", icon: Link2, label: "Seatpin" },
 ];
 
 const sellerBuyers: { icon: LucideIcon; label: string }[] = [
@@ -256,21 +256,21 @@ const sellerSteps: { n: string; icon: LucideIcon; title: string; body: string }[
   },
   {
     n: "02",
+    icon: LineChart,
+    title: "AI pricing",
+    body: `${modules.pulse.name} turns live market data into recommendations. You approve; the new price is synchronized everywhere.`,
+  },
+  {
+    n: "03",
     icon: Share2,
     title: "List & distribute",
     body: "List once. Inventory is pushed across 16 connected marketplaces, with quantity, price and status kept in sync.",
   },
   {
-    n: "03",
+    n: "04",
     icon: RefreshCw,
     title: "Order captured",
     body: "When a ticket sells on any channel, SeatsBrokers updates stock and removes the other listings so you cannot oversell.",
-  },
-  {
-    n: "04",
-    icon: LineChart,
-    title: "AI pricing",
-    body: `${modules.pulse.name} turns live market data into recommendations. You approve; the new price is synchronized everywhere.`,
   },
   {
     n: "05",

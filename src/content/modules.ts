@@ -18,7 +18,7 @@ export const modules = {
     tagline: "The Global Marketplace for Live Events.",
   },
   link: {
-    name: "SeatsLink™",
+    name: "Seatpin™",
     what: "API, integrations & connectivity",
     tagline: "Connect Your Business to Global Ticket Inventory.",
   },

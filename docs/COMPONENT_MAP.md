@@ -146,7 +146,7 @@ Used on `/` unless noted.
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| Nav | `Nav.tsx` | Site nav — visible: For Brokers, SeatsMarket™, SeatsIntel™, SeatsLink™, About; hidden: Platform, Travel Partners | PageShell |
+| Nav | `Nav.tsx` | Site nav — visible: For Brokers, SeatsMarket™, SeatsIntel™, Seatpin™, About; hidden: Platform, Travel Partners | PageShell |
 | Footer | `Footer.tsx` | Footer columns; Resources FAQs → `/faq`; legal links Privacy / Terms / Cookie Policy → `/legal#privacy` `#terms` `#cookies`; partners mailto line; socials commented out | PageShell |
 | FinalCTA | `FinalCTA.tsx` | Global close CTA (“Become a seller” → `/brokers`) | PageShell (all pages) |
 | Hero | `Hero.tsx` | Homepage hero + typewriter | `/` |
@@ -178,7 +178,7 @@ Used on `/` unless noted.
 | File | Purpose |
 |---|---|
 | `src/content/site.ts` | Brand, nav, footer, CTAs, SEO meta |
-| `src/content/modules.ts` | Official product module names + taglines (SeatsFunds™, SeatsMarket™, SeatsLink™, SeatsSource™, SeatsPulse™, SeatsIntel™, SeatsDeal™, SeatsLaunch™) |
+| `src/content/modules.ts` | Official product module names + taglines (SeatsFunds™, SeatsMarket™, Seatpin™, SeatsSource™, SeatsPulse™, SeatsIntel™, SeatsDeal™, SeatsLaunch™) |
 | `src/content/broker-hero-data.ts` | Brokers hero copy + mini-card data |
 | `src/content/broker-onboarding-data.ts` | `/brokers` company setup: regions, comparison rows, six phases, partners, checklist, FAQ (`[CONFIRM: …]` unknowns) |
 | `src/content/travel-hero-data.ts` | Travel hero copy + partner-desk dashboard data (KPIs, earnings, charts, lists). Mini-card datasets remain for `TravelConsoleCards` |

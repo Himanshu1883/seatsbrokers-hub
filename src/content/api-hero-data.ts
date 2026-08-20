@@ -1,4 +1,4 @@
-/** SeatsLink™ hero: left copy plus documentation-console stage data. */
+/** Seatpin™ hero: left copy plus documentation-console stage data. */
 
 import { modules } from "./modules";
 

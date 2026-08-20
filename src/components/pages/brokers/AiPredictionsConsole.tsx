@@ -183,7 +183,7 @@ export function AiPredictionsConsole() {
                 </li>
               ))}
             </ul>
-          </section>
+          </section> <div className="app "></div>
 
           <section className="ap-guards">
             <header className="ap-panel-head">

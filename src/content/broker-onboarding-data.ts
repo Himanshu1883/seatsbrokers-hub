@@ -178,7 +178,7 @@ export const onboardStages: readonly OnboardStage[] = [
     label: "Connect",
     blurb: "POS and book linked",
     weHandle: [
-      "Issue SeatsLink™ credentials",
+      "Issue Seatpin™ credentials",
       "Link the POS or inventory system the company already runs",
       "Migrate the book you already hold — you do not rebuild from scratch",
     ],
@@ -188,17 +188,17 @@ export const onboardStages: readonly OnboardStage[] = [
       "Check the mapping before listings go out",
     ],
     regionDetail: {
-      dubai: "Named account manager on the Dubai desk stays with the SeatsLink™ map.",
-      london: "Named account manager on the London desk stays with the SeatsLink™ map.",
-      india: "Named account manager on the India desk stays with the SeatsLink™ map.",
-      newyork: "Named account manager on the New York desk stays with the SeatsLink™ map.",
+      dubai: "Named account manager on the Dubai desk stays with the Seatpin™ map.",
+      london: "Named account manager on the London desk stays with the Seatpin™ map.",
+      india: "Named account manager on the India desk stays with the Seatpin™ map.",
+      newyork: "Named account manager on the New York desk stays with the Seatpin™ map.",
     },
-    checks: ["SeatsLink™ credentials issued", "Company POS linked", "Existing book migrated"],
+    checks: ["Seatpin™ credentials issued", "Company POS linked", "Existing book migrated"],
     ledger: {
-      dubai: "connect.pos → book migrated over SeatsLink™ · Dubai",
-      london: "connect.pos → book migrated over SeatsLink™ · London",
-      india: "connect.pos → book migrated over SeatsLink™ · India",
-      newyork: "connect.pos → book migrated over SeatsLink™ · New York",
+      dubai: "connect.pos → book migrated over Seatpin™ · Dubai",
+      london: "connect.pos → book migrated over Seatpin™ · London",
+      india: "connect.pos → book migrated over Seatpin™ · India",
+      newyork: "connect.pos → book migrated over Seatpin™ · New York",
     },
   },
   {
@@ -357,7 +357,7 @@ export const onboardFaqs = [
     id: "migration-listings",
     question: "What happens to my existing marketplace listings during migration?",
     answer:
-      "SeatsLink™ connects the POS or inventory system you already run and migrates the book you hold. Existing holdings move across; you do not rebuild the book from scratch. Channel mapping is checked with you before listings go out.",
+      "Seatpin™ connects the POS or inventory system you already run and migrates the book you hold. Existing holdings move across; you do not rebuild the book from scratch. Channel mapping is checked with you before listings go out.",
   },
   {
     id: "setup-cost",

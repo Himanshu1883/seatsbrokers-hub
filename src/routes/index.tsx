@@ -53,7 +53,7 @@ function Index() {
       <GlobalReach />
       <GlobeScrollSection />
       <Stats />
-      <Testimonials />
+      {/* <Testimonials /> */}
     </PageShell>
   );
 }

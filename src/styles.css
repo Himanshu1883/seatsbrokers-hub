@@ -37412,12 +37412,14 @@ html.site-nav-locked body {
 
 /* ------------------------------------------------------------------ */
 /* Marketplace hub — current Marketplaces.tsx (mps-hub-*)             */
-/* 3-col grid, 84% crop, 4.2% optical nudge, 112/128px circle.        */
+/* 3-col grid, 82% crop, 5% optical nudge, 88/100px circle.           */
+/* Circle was 112/128px (7rem / 8rem) — ~22% smaller. Disc still fills */
+/* the (now smaller) slot so joins dock on the rim across the gap.    */
 /* Restored 2026-08-18 after styles.css rewrite dropped these rules.  */
 /* ------------------------------------------------------------------ */
 
 .mps-hub-row {
-  --mps-hub-slot: 7rem;
+  --mps-hub-slot: 5.5rem;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
@@ -37432,7 +37434,7 @@ html.site-nav-locked body {
   position: relative;
   min-width: 0;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .mps-hub-center {
@@ -37477,11 +37479,11 @@ html.site-nav-locked body {
 }
 
 .mps-hub-join--in {
-  right: -0.25rem;
+  right: -0.35rem;
 }
 
 .mps-hub-join--out {
-  left: -0.25rem;
+  left: -0.35rem;
 }
 
 .mps-hub-clip {
@@ -37499,17 +37501,19 @@ html.site-nav-locked body {
   place-items: center;
   overflow: hidden;
   padding: 0;
+  width: var(--mps-hub-slot);
+  height: var(--mps-hub-slot);
 }
 
 /* PNG 300×92; opaque ink 22,27–278,64 (257×38). Optical mass at x=133.9. */
-/* 84% crop window (was 68%) — fills the circle with ~5% tagline margin after the optical nudge. */
+/* 82% crop (was 84%) — padding in the smaller disc; 5% nudge keeps the left-heavy lockup centered. */
 .mps-hub-logo-fit {
   position: relative;
   display: block;
-  width: 84%;
+  width: 82%;
   aspect-ratio: 257 / 38;
   overflow: hidden;
-  transform: translateX(4.2%);
+  transform: translateX(5%);
 }
 
 .mps-hub-logo-img {
@@ -37556,7 +37560,7 @@ html.site-nav-locked body {
 
 @media (min-width: 640px) {
   .mps-hub-row {
-    --mps-hub-slot: 8rem;
+    --mps-hub-slot: 6.25rem;
   }
 }
 

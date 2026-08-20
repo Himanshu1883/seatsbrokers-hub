@@ -154,10 +154,10 @@ export function AiPredictionsConsole() {
 
               <div className="ap-gauge" role="img" aria-label={`${confidence}% model confidence`}>
                 <svg viewBox="0 0 64 64" aria-hidden>
-                  <circle cx="32" cy="32" r="26" className="ap-gauge-track" />
+                  <circle cx="16" cy="16" r="26" className="ap-gauge-track" />
                   <circle
-                    cx="32"
-                    cy="32"
+                    cx="16"
+                    cy="16"
                     r="26"
                     className="ap-gauge-fill"
                     strokeDasharray={`${(ring * confidence) / 100} ${ring}`}

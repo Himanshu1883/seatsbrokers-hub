@@ -116,8 +116,8 @@ export function MarketplaceConsoleWall() {
                   ) : null}
                 </g>
               ))}
-              <circle cx="32" cy="108" r="7" className="mkh-fan-hub" />
-              <circle cx="32" cy="108" r="12" className="mkh-fan-ring" />
+              <circle cx="16" cy="108" r="7" className="mkh-fan-hub" />
+              <circle cx="16" cy="108" r="12" className="mkh-fan-ring" />
             </svg>
           </section>
 

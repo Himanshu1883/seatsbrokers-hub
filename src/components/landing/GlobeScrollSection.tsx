@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { GlobeCanvas } from "@/components/landing/globe/GlobeCanvas";
 import heroStadium from "@/assets/hero-stadium.jpg";
-import travelImg from "@/assets/card-travel.jpg";
+import travelImg from "@/assets/card-seller.jpg";
 
 const GLOBAL_STATS = [
   { value: "30+", label: "Years moving real seats" },
@@ -33,7 +33,7 @@ const slides = [
       "AI-powered pricing and partner sales infrastructure",
     ],
     stats: [
-      { value: "32", label: "Connected marketplaces" },
+      { value: "16", label: "Connected marketplaces" },
       { value: "12K+", label: "Events catalogued" },
     ],
     coord: "40.71°N 74.00°W",

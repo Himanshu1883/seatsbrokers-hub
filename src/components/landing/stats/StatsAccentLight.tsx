@@ -23,7 +23,7 @@ const stats = [
   },
   {
     icon: Network,
-    value: "32",
+    value: "16",
     label: "Connected marketplaces",
     desc: "Resale marketplaces synchronized through centralized API infrastructure.",
     hero: false,

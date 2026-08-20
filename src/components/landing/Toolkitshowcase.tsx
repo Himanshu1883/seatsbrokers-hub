@@ -1,15 +1,20 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { MouseEvent as ReactMouseEvent } from "react";
+import type { LucideIcon } from "lucide-react";
+import type { MouseEvent as ReactMouseEvent, ReactNode } from "react";
 import {
   ArrowRight,
+  ArrowRightLeft,
   BarChart3,
+  CheckCircle2,
   DollarSign,
+  Landmark,
   Layers,
   RefreshCw,
   Users,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
+import { ConsoleShell } from "@/components/pages/brokers/ConsoleShell";
 import { ctas } from "@/content/site";
 import { modules } from "@/content/modules";
 
@@ -40,10 +45,11 @@ const items = [
     headline: "Manage tickets, sections, rows and pricing",
     detail:
       "Quantity, prices, ticket types, delivery information, restrictions, notes and packages — managed from one centralized inventory layer.",
-    kind: "chart" as const,
+    kind: "desk" as const,
+    desk: "source" as const,
     metric: { value: "84K+", label: "active listings" },
     telemetry: ["sections & rows", "delivery info", "restrictions"],
-    hudPath: "app.seatsbrokers.com / inventory",
+    hudPath: "seatsbrokers / source / inventory",
   },
   {
     id: "distribution",
@@ -52,10 +58,11 @@ const items = [
     headline: "List once. Distribute everywhere.",
     detail:
       "When inventory changes, SeatsBrokers synchronizes quantity, price and listing status across connected marketplaces. When a ticket sells, other listings update automatically.",
-    kind: "queue" as const,
-    metric: { value: "32", label: "connected marketplaces" },
+    kind: "desk" as const,
+    desk: "market" as const,
+    metric: { value: "16", label: "connected marketplaces" },
     telemetry: ["auto delisting", "price sync", "order sync"],
-    hudPath: "app.seatsbrokers.com / distribution",
+    hudPath: "seatsbrokers / market / listings",
   },
   {
     id: "ai-pricing",
@@ -78,122 +85,346 @@ const items = [
     headline: "Integrated purchasing and payment infrastructure",
     detail:
       "Centralized balance, card management, ticket purchasing, funding workflows, transaction visibility and internal settlement — built into your ticketing workflow.",
-    kind: "table" as const,
+    kind: "desk" as const,
+    desk: "funds" as const,
     metric: { value: "165", label: "countries supported" },
     telemetry: ["card management", "settlement", "transaction visibility"],
-    hudPath: "app.seatsbrokers.com / payments",
+    hudPath: "seatsbrokers / funds / settle",
     cta: "Become a seller",
   },
 ] as const;
 
-function ChartMock() {
-  const bars = [55, 80, 40, 95, 65, 75, 50];
+type StatusTone = "ok" | "wait" | "hold";
+
+const sourceRows = [
+  { event: "Arsenal vs Chelsea", section: "Cat A · R12", qty: 4, price: "£186", status: "Synced" as const, tone: "ok" as const },
+  { event: "UCL Final · Wembley", section: "Club L · R8", qty: 2, price: "£248", status: "Synced" as const, tone: "ok" as const },
+  { event: "Oasis · Wembley", section: "Upper · 102", qty: 6, price: "£92", status: "Hold" as const, tone: "hold" as const },
+  { event: "F1 Silverstone", section: "Grandstand C", qty: 3, price: "£310", status: "Synced" as const, tone: "ok" as const },
+] as const;
+
+const sourceHolds = [
+  { label: "Oasis · Upper 102", qty: "× 6", note: "Delivery pending" },
+  { label: "Cat A · Lower", qty: "× 2", note: "Package hold" },
+  { label: "Club L · R8", qty: "× 2", note: "Mapped" },
+] as const;
+
+const marketRows = [
+  { channel: "SeatPick", qty: 2, ask: "£248", status: "Live" as const, tone: "ok" as const },
+  { channel: "Hello Tickets", qty: 2, ask: "£248", status: "Live" as const, tone: "ok" as const },
+  { channel: "Stubhub", qty: 2, ask: "£248", status: "Sync" as const, tone: "wait" as const },
+  { channel: "1BoxOffice", qty: 2, ask: "£248", status: "Live" as const, tone: "ok" as const },
+  { channel: "Direct API", qty: 2, ask: "£248", status: "Live" as const, tone: "ok" as const },
+  { channel: "Partner feed", qty: 2, ask: "£248", status: "Hold" as const, tone: "hold" as const },
+] as const;
+
+const fundsRows = [
+  { partner: "London desk", rail: "Bank", amount: "£12,480", status: "Settled" as const, tone: "ok" as const },
+  { partner: "Dubai desk", rail: "Card", amount: "£8,240", status: "Posted" as const, tone: "wait" as const },
+  { partner: "New York desk", rail: "Bank", amount: "£4,160", status: "Pending" as const, tone: "hold" as const },
+  { partner: "India desk", rail: "Standard", amount: "£6,920", status: "Settled" as const, tone: "ok" as const },
+] as const;
+
+const fundsRails = [
+  { label: "Standard", hint: "Bank · no extra payout fee", state: "Ready" },
+  { label: "USDT / crypto", hint: "On-chain · extra crypto fee", state: "Armed" },
+] as const;
+
+function TksStatus({ tone, children }: { tone: StatusTone; children: string }) {
   return (
-    <div className="flex h-full flex-col justify-between bg-background p-5 sm:p-6">
-      <div className="flex items-center justify-between gap-3">
-        <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground ">
-          Live price feed
-        </span>
-        <span className="flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 font-mono text-[10px] font-semibold text-primary">
-          <span className="toolkit-live-dot" aria-hidden />
-          Auto-adjusting
-        </span>
-      </div>
-      <div className="flex h-32 items-end gap-2 sm:h-40 sm:gap-2.5">
-        {bars.map((h, i) => (
-          <div
-            key={i}
-            className="toolkit-bar flex-1 rounded-t-md bg-gradient-to-t from-primary to-primary/35"
-            style={{ height: `${h}%`, animationDelay: `${i * 70}ms` }}
-          />
-        ))}
-      </div>
-      <div className="grid grid-cols-3 gap-3 border-t border-border pt-4 font-mono text-[11px]">
-        <div>
-          <span className="text-muted-foreground">Floor</span>
-          <div className="mt-0.5 font-semibold text-foreground">$180</div>
-        </div>
-        <div>
-          <span className="text-muted-foreground">Current</span>
-          <div className="mt-0.5 font-semibold text-primary">$247 ▲</div>
-        </div>
-        <div>
-          <span className="text-muted-foreground">Ceiling</span>
-          <div className="mt-0.5 font-semibold text-foreground">$310</div>
-        </div>
-      </div>
+    <span className="tks-status" data-tone={tone}>
+      {children}
+    </span>
+  );
+}
+
+function TksDesk({
+  path,
+  icon,
+  children,
+}: {
+  path: string;
+  icon: LucideIcon;
+  children: ReactNode;
+}) {
+  return (
+    <div className="tks-desk">
+      <ConsoleShell path={path} status="Ready" icon={icon}>
+        {children}
+      </ConsoleShell>
     </div>
   );
 }
 
-function QueueMock() {
-  const rows = [
-    { evt: "Cowboys vs Eagles · Sec 214", status: "Confirmed" },
-    { evt: "Coldplay World Tour · Floor B", status: "Transferred" },
-    { evt: "Lakers vs Celtics · Sec 108", status: "Confirmed" },
-    { evt: "F1 Grand Prix · Grandstand C", status: "Routing…" },
-  ];
+function SourceDesk() {
   return (
-    <div className="flex h-full flex-col bg-background p-5 sm:p-6">
-      <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground ">
-        Order queue
-      </span>
-      <div className="mt-4 flex flex-1 flex-col justify-center gap-2.5">
-        {rows.map((r, i) => (
-          <div
-            key={r.evt}
-            className="toolkit-row flex items-center justify-between gap-3 rounded-lg border border-border bg-muted/40 px-4 py-3"
-            style={{ animationDelay: `${i * 90}ms` }}
-          >
-            <span className="truncate font-mono text-[11px] font-medium text-foreground">
-              {r.evt}
-            </span>
-            <span
-              className={`shrink-0 rounded-full px-2.5 py-0.5 font-mono text-[10px] font-semibold ${
-                r.status === "Routing…"
-                  ? "bg-muted text-muted-foreground"
-                  : "bg-primary/12 text-primary"
-              }`}
-            >
-              {r.status}
-            </span>
+    <TksDesk path="seatsbrokers / source / inventory" icon={Layers}>
+      <div className="tks-body">
+        <div className="tks-stats">
+          <div className="lc-stat">
+            <span className="lc-stat-label">Ingest</span>
+            <strong className="lc-stat-value">4 events</strong>
           </div>
-        ))}
+          <div className="lc-stat">
+            <span className="lc-stat-label">Listed</span>
+            <strong className="lc-stat-value">15 seats</strong>
+          </div>
+          <div className="lc-stat">
+            <span className="lc-stat-label">Holds</span>
+            <strong className="lc-stat-value">2 open</strong>
+          </div>
+        </div>
+
+        <div className="tks-context">
+          <div className="tks-context-copy">
+            <p className="tks-kicker">Inventory ingest</p>
+            <p className="tks-title">Arsenal vs Chelsea · Emirates</p>
+          </div>
+          <span className="tks-chip">Cat A × 4</span>
+        </div>
+
+        <div className="tks-work">
+          <section className="lc-panel tks-panel">
+            <header className="lc-panel-head">
+              Listings
+              <span className="lc-panel-badge">Section · qty · £</span>
+            </header>
+            <table className="tks-table">
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th className="tks-col-section">Section</th>
+                  <th className="tks-num">Qty</th>
+                  <th className="tks-num">Price</th>
+                  <th>Sync</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sourceRows.map((row) => (
+                  <tr key={row.event}>
+                    <td className="tks-event">{row.event}</td>
+                    <td className="tks-col-section">{row.section}</td>
+                    <td className="tks-num">{row.qty}</td>
+                    <td className="tks-num tks-ask">{row.price}</td>
+                    <td>
+                      <span className="tks-sync">
+                        {row.tone === "ok" ? (
+                          <CheckCircle2 className="tks-tick" aria-hidden />
+                        ) : (
+                          <span className="tks-tick-hold" aria-hidden />
+                        )}
+                        <span className="tks-sync-label">{row.status}</span>
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+
+          <section className="lc-panel tks-panel tks-side">
+            <header className="lc-panel-head">
+              <span className="lc-panel-dot" />
+              Map & holds
+            </header>
+            <svg className="tks-map" viewBox="0 0 160 92" aria-hidden>
+              <rect x="48" y="28" width="64" height="38" rx="4" className="tks-map-pitch" />
+              <rect x="8" y="8" width="144" height="16" rx="3" className="tks-map-block tks-map-hot" />
+              <rect x="8" y="68" width="144" height="16" rx="3" className="tks-map-block" />
+              <rect x="8" y="28" width="36" height="38" rx="3" className="tks-map-block" />
+              <rect x="116" y="28" width="36" height="38" rx="3" className="tks-map-block tks-map-hold" />
+              <text x="80" y="19" textAnchor="middle">
+                Cat A
+              </text>
+              <text x="80" y="79" textAnchor="middle">
+                Upper
+              </text>
+              <text x="26" y="50" textAnchor="middle">
+                Club
+              </text>
+              <text x="134" y="50" textAnchor="middle">
+                Hold
+              </text>
+            </svg>
+            <ul className="tks-holds">
+              {sourceHolds.map((hold) => (
+                <li key={hold.label}>
+                  <strong>{hold.label}</strong>
+                  <span>{hold.qty}</span>
+                  <em>{hold.note}</em>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
-    </div>
+    </TksDesk>
   );
 }
 
-function TableMock() {
-  const rows = [
-    { broker: "Broker #4471", tickets: 240, margin: "18%" },
-    { broker: "Broker #2093", tickets: 118, margin: "22%" },
-    { broker: "Broker #5588", tickets: 76, margin: "15%" },
-  ];
+function MarketDesk() {
   return (
-    <div className="flex h-full flex-col bg-background p-5 sm:p-6">
-      <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground ">
-        Broker-to-broker trades
-      </span>
-      <div className="mt-4 grid grid-cols-3 gap-2 border-b border-border pb-2 font-mono text-[10px] font-semibold tracking-wide text-muted-foreground ">
-        <span>Broker</span>
-        <span className="text-right">Tickets</span>
-        <span className="text-right">Margin</span>
-      </div>
-      <div className="flex-1 divide-y divide-border">
-        {rows.map((r, i) => (
-          <div
-            key={r.broker}
-            className="toolkit-row grid grid-cols-3 gap-2 py-3 font-mono text-[11px]"
-            style={{ animationDelay: `${i * 90}ms` }}
-          >
-            <span className="font-medium text-foreground">{r.broker}</span>
-            <span className="text-right text-foreground">{r.tickets}</span>
-            <span className="text-right font-semibold text-primary">{r.margin}</span>
+    <TksDesk path="seatsbrokers / market / listings" icon={ArrowRightLeft}>
+      <div className="tks-body">
+        <div className="tks-stats">
+          <div className="lc-stat">
+            <span className="lc-stat-label">Channels</span>
+            <strong className="lc-stat-value">6 live</strong>
           </div>
-        ))}
+          <div className="lc-stat">
+            <span className="lc-stat-label">Ask</span>
+            <strong className="lc-stat-value">£248</strong>
+          </div>
+          <div className="lc-stat">
+            <span className="lc-stat-label">Delist</span>
+            <strong className="lc-stat-value">Auto</strong>
+          </div>
+        </div>
+
+        <div className="tks-context">
+          <div className="tks-context-copy">
+            <p className="tks-kicker">Listing INV-4402</p>
+            <p className="tks-title">Champions League Final · Club Level</p>
+          </div>
+          <span className="tks-chip">Qty 2</span>
+        </div>
+
+        <div className="tks-work">
+          <section className="lc-panel tks-panel">
+            <header className="lc-panel-head">
+              Channels
+              <span className="lc-panel-badge">Price · qty mirrored</span>
+            </header>
+            <table className="tks-table">
+              <thead>
+                <tr>
+                  <th>Channel</th>
+                  <th className="tks-num">Qty</th>
+                  <th className="tks-num">Ask</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {marketRows.map((row) => (
+                  <tr key={row.channel}>
+                    <td className="tks-event">{row.channel}</td>
+                    <td className="tks-num">{row.qty}</td>
+                    <td className="tks-num tks-ask">{row.ask}</td>
+                    <td>
+                      <TksStatus tone={row.tone}>{row.status}</TksStatus>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+
+          <section className="lc-panel tks-panel tks-side">
+            <header className="lc-panel-head">
+              <span className="lc-panel-dot" />
+              Mirror
+            </header>
+            <ul className="tks-mirror">
+              <li>
+                <span>Qty</span>
+                <strong>2</strong>
+                <em>Same on every channel</em>
+              </li>
+              <li>
+                <span>Ask</span>
+                <strong>£248</strong>
+                <em>Price sync ready</em>
+              </li>
+              <li>
+                <span>Sold</span>
+                <strong>Auto-delist</strong>
+                <em>Other listings update</em>
+              </li>
+            </ul>
+          </section>
+        </div>
       </div>
-    </div>
+    </TksDesk>
+  );
+}
+
+function FundsDesk() {
+  return (
+    <TksDesk path="seatsbrokers / funds / settle" icon={Landmark}>
+      <div className="tks-body">
+        <div className="tks-stats">
+          <div className="lc-stat">
+            <span className="lc-stat-label">Available</span>
+            <strong className="lc-stat-value">£125,430</strong>
+          </div>
+          <div className="lc-stat">
+            <span className="lc-stat-label">Pending</span>
+            <strong className="lc-stat-value">£18,245</strong>
+          </div>
+          <div className="lc-stat">
+            <span className="lc-stat-label">Rails</span>
+            <strong className="lc-stat-value">2 ready</strong>
+          </div>
+        </div>
+
+        <div className="tks-context">
+          <div className="tks-context-copy">
+            <p className="tks-kicker">Partner settle</p>
+            <p className="tks-title">SeatsFunds™ vault · sterling & on-chain</p>
+          </div>
+          <span className="tks-chip">Ready</span>
+        </div>
+
+        <div className="tks-work">
+          <section className="lc-panel tks-panel">
+            <header className="lc-panel-head">
+              Settlements
+              <span className="lc-panel-badge">£ posted</span>
+            </header>
+            <table className="tks-table">
+              <thead>
+                <tr>
+                  <th>Partner</th>
+                  <th>Rail</th>
+                  <th className="tks-num">Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fundsRows.map((row) => (
+                  <tr key={row.partner}>
+                    <td className="tks-event">{row.partner}</td>
+                    <td>{row.rail}</td>
+                    <td className="tks-num tks-ask">{row.amount}</td>
+                    <td>
+                      <TksStatus tone={row.tone}>{row.status}</TksStatus>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+
+          <section className="lc-panel tks-panel tks-side">
+            <header className="lc-panel-head">
+              <span className="lc-panel-dot" />
+              Payment rails
+            </header>
+            <ul className="tks-rails">
+              {fundsRails.map((rail) => (
+                <li key={rail.label}>
+                  <strong>{rail.label}</strong>
+                  <span className="tks-status" data-tone="ok">
+                    {rail.state}
+                  </span>
+                  <em>{rail.hint}</em>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </div>
+    </TksDesk>
   );
 }
 
@@ -240,9 +471,9 @@ function MockSurface({ item }: { item: (typeof items)[number] }) {
       />
     );
   }
-  if (item.kind === "chart") return <ChartMock />;
-  if (item.kind === "queue") return <QueueMock />;
-  return <TableMock />;
+  if (item.desk === "source") return <SourceDesk />;
+  if (item.desk === "market") return <MarketDesk />;
+  return <FundsDesk />;
 }
 
 export function ToolkitShowcase() {
@@ -306,7 +537,7 @@ export function ToolkitShowcase() {
         </Reveal>
 
         <div
-          className="toolkit-stage mt-8 grid min-h-0 flex-1 gap-10 lg:mt-10 lg:grid-cols-[0.92fr_1.15fr] lg:gap-10 xl:gap-14"
+          className="toolkit-stage mt-8 grid min-h-0 min-w-0 flex-1 gap-10 lg:mt-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.15fr)] lg:gap-10 xl:gap-14"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onFocusCapture={() => setPaused(true)}
@@ -391,7 +622,7 @@ export function ToolkitShowcase() {
                 );
               })}
               <li className="toolkit-reveal-slot relative pl-6" role="presentation">
-                <div className="toolkit-reveal-ghost-slot">
+                {/* <div className="toolkit-reveal-ghost-slot">
                   {items.map((item, i) => (
                     <div
                       key={item.id}
@@ -402,7 +633,7 @@ export function ToolkitShowcase() {
                       <ToolkitRevealBody item={item} interactive={i === active} />
                     </div>
                   ))}
-                </div>
+                </div> */}
               </li>
             </ul>
           </div>

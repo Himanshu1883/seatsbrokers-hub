@@ -70,7 +70,7 @@ const variants: Record<LiveConsoleVariant, LiveConsoleMeta | null> = {
       "Every connected marketplace is polled continuously and normalised into one view per event and category. You see where your desk sits in the ask ladder, how the curve moved over the last 6 hours to 7 days, and which signals moved it.",
     detailLabel: "What the terminal tracks",
     highlights: [
-      { value: "32", label: "channels polled" },
+      { value: "16", label: "channels polled" },
       { value: "6H–7D", label: "movement ranges" },
       { value: "Live", label: "signal feed" },
     ],

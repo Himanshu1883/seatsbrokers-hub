@@ -25,7 +25,7 @@ const variants: Record<MarketplaceLiveConsoleVariant, MarketplaceLiveConsoleMeta
       "SeatsBrokers polls every connected marketplace continuously. Connection status, API health and request logs sit in one terminal so a stalled channel is visible before it becomes an oversell.",
     detailLabel: "What the map tracks",
     highlights: [
-      { value: "32", label: "channels" },
+      { value: "16", label: "channels" },
       { value: "96ms", label: "sync latency" },
       { value: "0.1%", label: "error rate" },
     ],

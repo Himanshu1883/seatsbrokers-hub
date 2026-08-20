@@ -53,7 +53,7 @@ export function GlobalReach() {
               ))}
             </div>
             <p className="mt-6 text-xs text-muted-foreground">
-              London · New York · Dubai — three offices, one technology platform.
+              London · New York · Dubai · India — three offices, one technology platform.
             </p>
           </div>
         </Reveal>

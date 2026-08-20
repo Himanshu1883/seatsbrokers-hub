@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="36 47 129 80" role="img" aria-label="SeatsBrokers">
   <title>SeatsBrokers</title>
+  <!-- Mark only: the two chevrons from the official lockup. Wordmark omitted for 16 to 32px favicon use. -->
   <polygon fill="#696D76" points="50.8,51.4 134.9,51.4 87.4,98.5 40.9,98.5 69.2,70"/>
   <polygon fill="#64EAA5" points="160.7,75.6 113.8,75.6 67.5,122.8 151.1,122.8 132.3,103.9"/>
 </svg>

@@ -60,7 +60,7 @@ const stages: Stage[] = [
     label: "Platform Hub",
     title: "The infrastructure layer connecting the ecosystem.",
     body: "Event intelligence, marketplace connectivity, AI pricing, partner commerce and payment infrastructure — orchestrated through one technology platform.",
-    metric: "32",
+    metric: "16",
     metricLabel: "connected marketplaces",
     lines: ["hub.orchestrate → active", "api.connect → live", "sync.realtime → true"],
     icon: BarChart3,

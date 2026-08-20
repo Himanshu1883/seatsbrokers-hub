@@ -184,8 +184,8 @@ const sellerModules: {
     n: "02",
     icon: Share2,
     title: "Marketplace distribution",
-    event: "list.once → 32 channels",
-    features: ["List once", "32 connected channels", "Qty kept in sync", "Status mirrored"],
+    event: "list.once → 16 channels",
+    features: ["List once", "16 connected channels", "Qty kept in sync", "Status mirrored"],
   },
   {
     n: "03",
@@ -231,18 +231,12 @@ const sellerDataLayer = ["Inventory", "Pricing", "Orders", "Delivery", "Settleme
 
 const sellerDataMap = [0, 0, 2, 1, 3, 4] as const;
 
-const sellerChannelRows = [
-  ["01", "02"],
-  ["03", "04"],
-  ["05", "06"],
-  ["07", "08"],
-] as const;
-
-const sellerChannelHealth: { pair: string; state: string }[] = [
-  { pair: "01–02", state: "Live" },
-  { pair: "03–04", state: "Sync" },
-  { pair: "05–06", state: "Live" },
-  { pair: "07–08", state: "Live" },
+const sellerChannels: readonly { id: string; icon: LucideIcon; label: string }[] = [
+  { id: "seatpick", icon: Ticket, label: "SeatPick" },
+  { id: "hello-tickets", icon: Handshake, label: "Hello Tickets" },
+  { id: "stubhub", icon: Globe2, label: "Stubhub" },
+  { id: "1boxoffice", icon: Building2, label: "1BoxOffice" },
+  { id: "seatslink", icon: Link2, label: "SeatsLink" },
 ];
 
 const sellerBuyers: { icon: LucideIcon; label: string }[] = [
@@ -264,7 +258,7 @@ const sellerSteps: { n: string; icon: LucideIcon; title: string; body: string }[
     n: "02",
     icon: Share2,
     title: "List & distribute",
-    body: "List once. Inventory is pushed across 32 connected marketplaces, with quantity, price and status kept in sync.",
+    body: "List once. Inventory is pushed across 16 connected marketplaces, with quantity, price and status kept in sync.",
   },
   {
     n: "03",
@@ -294,7 +288,7 @@ const sellerSteps: { n: string; icon: LucideIcon; title: string; body: string }[
 
 const sellerHighlights: { icon: LucideIcon; label: string }[] = [
   { icon: Globe2, label: "165 countries" },
-  { icon: Network, label: "32 connected marketplaces" },
+  { icon: Network, label: "16 connected marketplaces" },
   { icon: RefreshCw, label: "Real-time sync" },
   { icon: ShieldCheck, label: "Secure & scalable" },
   { icon: BarChart3, label: "Maximize reach, minimize work" },
@@ -402,8 +396,25 @@ function stoFlowPath(cards: StoCardBox[]) {
   if (!c1 || !c2 || !c3 || !c4 || !c5 || !c6) return null;
 
   const n = (v: number) => Math.round(v * 10) / 10;
-  const colGap = c2.l - c1.r;
+  const colGap = Math.max(8, c2.l - c1.r);
   const cap = Math.max(6, Math.min(10, colGap * 0.42));
+  const hop = (a: StoCardBox, b: StoCardBox) =>
+    `M ${n(a.r)} ${n(a.cy)} H ${n(b.l - cap)}`;
+  const singleRow = Math.abs(c1.cy - c6.cy) < 16;
+
+  if (singleRow) {
+    const hops = [c1, c2, c3, c4, c5]
+      .map((card, index) => hop(card, cards[index + 1]!))
+      .join(" ");
+    return {
+      hops,
+      wrap: "",
+      motion: hops,
+      restX: n((c3.r + c4.l) / 2),
+      restY: n(c3.cy),
+    };
+  }
+
   const rowGap = Math.max(1, c4.t - c3.b);
   const yMid = n(c3.b + rowGap / 2);
   const yTop = n(c3.cy);
@@ -415,8 +426,7 @@ function stoFlowPath(cards: StoCardBox[]) {
   );
   const xRight = n(c3.r + stub);
   const xLeft = n(c4.l - stub);
-
-  const row1 = `M ${n(c1.r)} ${n(c1.cy)} H ${n(c2.l - cap)} M ${n(c2.r)} ${n(c2.cy)} H ${n(c3.l - cap)}`;
+  const hops = `${hop(c1, c2)} ${hop(c2, c3)} ${hop(c4, c5)} ${hop(c5, c6)}`;
   const wrap = [
     `M ${n(c3.r)} ${yTop}`,
     `H ${n(xRight - r)}`,
@@ -429,10 +439,14 @@ function stoFlowPath(cards: StoCardBox[]) {
     `A ${r} ${r} 0 0 0 ${n(xLeft + r)} ${yBot}`,
     `H ${n(c4.l - cap)}`,
   ].join(" ");
-  const row2 = `M ${n(c4.r)} ${n(c4.cy)} H ${n(c5.l - cap)} M ${n(c5.r)} ${n(c5.cy)} H ${n(c6.l - cap)}`;
-  const motion = `${row1} ${wrap} ${row2}`;
 
-  return { row1, wrap, row2, motion, restX: n((xLeft + xRight) / 2), restY: yMid };
+  return {
+    hops,
+    wrap,
+    motion: `${hops} ${wrap}`,
+    restX: n((xLeft + xRight) / 2),
+    restY: yMid,
+  };
 }
 
 function StoProcessFlow({
@@ -445,9 +459,8 @@ function StoProcessFlow({
   const [flow, setFlow] = useState<{
     w: number;
     h: number;
-    row1: string;
+    hops: string;
     wrap: string;
-    row2: string;
     motion: string;
     restX: number;
     restY: number;
@@ -504,7 +517,7 @@ function StoProcessFlow({
           </marker>
         </defs>
         <path
-          d={flow.row1}
+          d={flow.hops}
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -514,28 +527,19 @@ function StoProcessFlow({
           vectorEffect="non-scaling-stroke"
           markerEnd="url(#sto-flow-arrow)"
         />
-        <path
-          d={flow.wrap}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeDasharray="10 8"
-          strokeLinecap="butt"
-          strokeLinejoin="round"
-          vectorEffect="non-scaling-stroke"
-          markerEnd="url(#sto-flow-arrow)"
-        />
-        <path
-          d={flow.row2}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeDasharray="10 8"
-          strokeLinecap="butt"
-          strokeLinejoin="round"
-          vectorEffect="non-scaling-stroke"
-          markerEnd="url(#sto-flow-arrow)"
-        />
+        {flow.wrap ? (
+          <path
+            d={flow.wrap}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeDasharray="10 8"
+            strokeLinecap="butt"
+            strokeLinejoin="round"
+            vectorEffect="non-scaling-stroke"
+            markerEnd="url(#sto-flow-arrow)"
+          />
+        ) : null}
         <circle r="3.2" fill="currentColor" cx={live ? 0 : flow.restX} cy={live ? 0 : flow.restY}>
           {live ? (
             <animateMotion dur="9s" repeatCount="indefinite" path={flow.motion} />
@@ -746,27 +750,30 @@ export function SellerTools() {
                   <p className="sto-kicker">Connected marketplaces</p>
                   <h3 className="sto-rail-title">Where inventory goes</h3>
                 </header>
-                <ul className="sto-channels" aria-label="Numbered connected channels">
-                  {sellerChannelRows.map((pair) => (
-                    <li key={pair[0]} className="sto-chan-row">
-                      <StoHop />
-                      {pair.map((n) => (
-                        <span key={n} className="sto-channel">
-                          <span className="sto-channel-n font-mono">Channel {n}</span>
+                <div className="sto-chan-cluster">
+                  <ul className="sto-channels" aria-label="Connected marketplaces">
+                    {sellerChannels.map((item) => (
+                      <li key={item.id} className="sto-channel" data-named="true">
+                        <span className="sto-channel-icon" aria-hidden>
+                          <item.icon strokeWidth={1.75} />
                         </span>
-                      ))}
-                    </li>
-                  ))}
-                </ul>
-                <ul className="sto-chan-health" aria-label="Channel status">
-                  {sellerChannelHealth.map((item, index) => (
-                    <li key={item.pair} data-active={activeMod % 4 === index ? "true" : "false"}>
-                      <span className="font-mono">{item.pair}</span>
-                      <em>{item.state}</em>
-                    </li>
-                  ))}
-                </ul>
-                <p className="sto-channel-note font-mono">32 connected marketplaces</p>
+                        <span className="sto-channel-n">{item.label}</span>
+                        <span className="sto-channel-live">
+                          <i aria-hidden="true" />
+                          Live
+                        </span>
+                        <StoHop />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="sto-channel-copy">
+                  <p className="sto-channel-note font-mono">16 connected marketplaces</p>
+                  <p className="sto-channel-lede">
+                    Listings go out through {modules.link.name} to these named channels.
+                    Quantity, price and status stay in sync from one desk.
+                  </p>
+                </div>
               </aside>
 
               <StoBuyHop />

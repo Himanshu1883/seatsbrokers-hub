@@ -151,7 +151,7 @@ Used on `/` unless noted.
 | FinalCTA | `FinalCTA.tsx` | Global close CTA (“Become a seller” → `/brokers`) | PageShell (all pages) |
 | Hero | `Hero.tsx` | Homepage hero + typewriter | `/` |
 | HeroDashboardTilt | `HeroDashboardTilt.tsx` | Hero dashboard mock | Hero |
-| SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: 3-col `.sto-*` infographic (matched side cards, stacked buyers, bezel-docked hops, 2×3 process SVG flow). Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus synced pipeline minis | `/` |
+| SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: 3-col `.sto-*` infographic (named+numbered marketplace tiles, 16 channels, 1-row process hops). Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus synced pipeline minis | `/` |
 | SeatMapTicketsConsole | `SeatMapTicketsConsole.tsx` | Interactive inventory/quote mini-console (select, margin, copy, PDF) in `ConsoleShell` | TravelTools |
 | TwoTrack | `TwoTrack.tsx` | Broker vs travel tracks (in-view straighten) | `/` |
 | Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out) | `/` |
@@ -160,7 +160,7 @@ Used on `/` unless noted.
 | ProcessBento | `Processbento.tsx` | Problem / platform bento | `/` |
 | HowItWorks | `HowItWorks.tsx` | Event / market / AI pricing | `/` |
 | PartnerProductShowcase | `PartnerProductShowcase.tsx` | Tabbed product shots | `/` |
-| ToolkitShowcase | `Toolkitshowcase.tsx` | Module toolkit | `/` |
+| ToolkitShowcase | `Toolkitshowcase.tsx` | Module toolkit; SeatsSource™ / SeatsMarket™ / SeatsFunds™ are static `ConsoleShell` desks (`.tks-*`); SeatsIntel™ / SeatsPulse™ stay product screenshots | `/` |
 | StickyScrollShowcase | `StickyScrollShowcase.tsx` | Who we serve — sticky-scroll; right visual swaps with the active audience | `/` |
 | StickyScrollConsoles | `StickyScrollConsoles.tsx` | Four unique light `ConsoleShell` mini-consoles (broker distribution, travel quote desk, marketplace sync, partner API bridge); `sss-*` | StickyScrollShowcase |
 | MarketIntelligence | `MarketIntelligence.tsx` | Intel tiles | `/` |

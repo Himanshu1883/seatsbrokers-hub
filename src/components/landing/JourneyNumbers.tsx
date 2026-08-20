@@ -23,7 +23,7 @@ const milestones: Milestone[] = [
   },
   {
     id: "marketplaces",
-    value: "32",
+    value: "16",
     label: "Connected marketplaces",
     detail: "Resale marketplaces synchronized through centralized API connectivity.",
   },

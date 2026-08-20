@@ -41432,10 +41432,18 @@ body,
   flex-direction: column;
 }
 
+.sto-chan-cluster {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  overflow: visible;
+}
+
 .sto-channels {
   display: grid;
-  flex: 1 1 auto;
-  grid-template-rows: repeat(4, minmax(1.85rem, 1fr));
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(5, minmax(2.05rem, auto));
   gap: 0.28rem;
   margin: 0;
   padding: 0;
@@ -41453,20 +41461,120 @@ body,
 .sto-channel {
   position: relative;
   display: grid;
-  place-items: center;
-  min-height: 1.85rem;
-  padding: 0.28rem 0.35rem;
+  grid-template-columns: 1.45rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  min-height: 2.05rem;
+  padding: 0.28rem 0.4rem;
   border: 1px solid var(--border);
   border-radius: calc(var(--radius) - 4px);
-  background: var(--card);
+  background: color-mix(in oklab, var(--muted) 70%, var(--card));
   overflow: visible;
 }
 
+.sto-channel-icon {
+  display: grid;
+  width: 1.45rem;
+  height: 1.45rem;
+  place-items: center;
+  border-radius: calc(var(--radius) - 6px);
+  background: var(--muted);
+  color: var(--primary-deep);
+}
+
+.sto-channel-icon svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.sto-channel[data-named="true"] {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 10%, var(--card));
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 32%, transparent) inset;
+  color: var(--primary-deep);
+}
+
 .sto-channel-n {
-  font-size: 0.6875rem;
-  font-weight: 700;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
   line-height: 1.2;
+  text-align: left;
+  color: var(--muted-foreground);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.sto-channel[data-named="true"] .sto-channel-n {
+  font-weight: 800;
+  color: var(--primary-deep);
+}
+
+.sto-channel-hint {
+  font-size: 0.5rem;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.25;
+  color: var(--muted-foreground);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.sto-channel-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.22rem;
+  font-size: 0.5rem;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.25;
+  color: var(--primary-deep);
+  flex-shrink: 0;
+}
+
+.sto-channel-live i {
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+.sto-board[data-live="true"] .sto-channel[data-named="true"] {
+  animation: sto-named-glow 2.4s ease-in-out infinite;
+}
+
+.sto-board[data-live="true"] .sto-channel-live i {
+  animation: sto-named-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes sto-named-glow {
+  0%,
+  100% {
+    background: color-mix(in oklab, var(--primary) 8%, var(--card));
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 28%, transparent) inset;
+  }
+  50% {
+    background: color-mix(in oklab, var(--primary) 16%, var(--card));
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 48%, transparent) inset;
+  }
+}
+
+@keyframes sto-named-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.82);
+  }
 }
 
 .sto-chan-health {
@@ -41498,10 +41606,32 @@ body,
   font-weight: 600;
 }
 
+.sto-channel-copy {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 0;
+  margin: 0.5rem 0 0;
+  padding: 0.55rem 0.05rem 0.1rem;
+  border-top: 1px solid var(--border);
+}
+
 .sto-channel-note {
-  margin: 0.35rem 0 0;
-  font-size: 0.625rem;
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
   line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.sto-channel-lede {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.5;
   color: var(--muted-foreground);
 }
 
@@ -41768,10 +41898,17 @@ body,
   display: none;
 }
 
+.sto-board[data-live="false"] .sto-channel[data-named="true"],
+.sto-board[data-live="false"] .sto-channel-live i {
+  animation: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .sto-hop-packet,
   .sto-vlink-packet,
-  .sto-step-packet {
+  .sto-step-packet,
+  .sto-channel[data-named="true"],
+  .sto-channel-live i {
     animation: none !important;
     opacity: 1;
   }
@@ -41944,6 +42081,25 @@ body,
     display: none;
   }
 
+  .sto-steps {
+    grid-template-columns: repeat(6, minmax(0, 11rem));
+    column-gap: 0.7rem;
+    row-gap: 0;
+  }
+
+  .sto-step {
+    padding: 0.45rem 0.5rem 0.5rem;
+  }
+
+  .sto-step h3 {
+    font-size: 0.75rem;
+  }
+
+  .sto-step p {
+    font-size: 0.625rem;
+    line-height: 1.35;
+  }
+
   .sto-hop {
     display: block;
     position: absolute;
@@ -41998,7 +42154,9 @@ body,
     animation-delay: 0.65s;
   }
 
-  .sto-chan-row .sto-hop {
+  .sto-chan-row .sto-hop,
+  .sto-chan-cluster .sto-hop,
+  .sto-channel .sto-hop {
     left: auto;
     right: calc(100% + var(--sto-rail-pad) + 1px);
   }
@@ -42023,6 +42181,11 @@ body,
 
   .sto-mod h3 {
     font-size: 0.7rem;
+  }
+
+  .sto-steps {
+    grid-template-columns: repeat(6, minmax(0, 12rem));
+    column-gap: 0.85rem;
   }
 }
 
@@ -42629,5 +42792,466 @@ body,
 @media (prefers-reduced-motion: reduce) {
   .tpa-side-kicker .tpa-rail-dot {
     animation: none;
+  }
+}
+
+/* ── ToolkitShowcase static desks (SeatsSource / SeatsMarket / SeatsFunds) ──
+   Prefix: .tks-* only. Do not use .sto-* or .tpa-*.
+   Consoles fill .toolkit-screen; no auto-cycle, packets, or scan loops. */
+
+.tks-desk {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  container-type: size;
+  container-name: tks;
+}
+
+.tks-desk .lc-frame,
+.tks-desk .lc-bezel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.tks-desk .lc-bezel {
+  padding: 0.28rem;
+  border-radius: 0.55rem;
+}
+
+.tks-desk .lc-screen {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  border-radius: 0.45rem;
+}
+
+.tks-desk .lc-scan,
+.tks-desk .lc-scan * {
+  animation: none;
+  opacity: 0;
+}
+
+.tks-desk .lc-panel-dot,
+.tks-desk .two-track-chrome-pulse,
+.tks-desk .two-track-chrome-pulse::after {
+  animation: none;
+}
+
+.tks-desk .two-track-chrome {
+  gap: 0.4rem;
+  padding: 0.32rem 0.55rem;
+}
+
+.tks-desk .two-track-chrome-path {
+  font-size: 10px;
+}
+
+.tks-desk .lc-body {
+  gap: 0;
+  padding: 0.38rem 0.42rem 0.42rem;
+  overflow: hidden;
+}
+
+.tks-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 0.38rem;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tks-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.32rem;
+  min-width: 0;
+}
+
+.tks-desk .lc-stat {
+  min-width: 0;
+  padding: 0.28rem 0.4rem;
+}
+
+.tks-desk .lc-stat-value {
+  overflow: hidden;
+  font-size: clamp(0.72rem, 1.35vw, 0.92rem);
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tks-context {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tks-context-copy {
+  min-width: 0;
+}
+
+.tks-kicker {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted-foreground);
+}
+
+.tks-title {
+  margin: 0.08rem 0 0;
+  font-size: clamp(0.72rem, 1.45vw, 0.88rem);
+  font-weight: 650;
+  line-height: 1.25;
+  color: var(--foreground);
+}
+
+.tks-chip {
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--primary) 22%, var(--border));
+  background: color-mix(in oklab, var(--primary) 8%, transparent);
+  padding: 0.14rem 0.48rem;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+}
+
+.tks-work {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.38rem;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tks-panel {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  padding: 0.4rem 0.45rem;
+}
+
+.tks-side {
+  display: none;
+}
+
+.tks-desk .lc-panel-head {
+  flex-shrink: 0;
+  margin-bottom: 0.12rem;
+}
+
+.tks-desk .lc-panel-badge {
+  max-width: 55%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tks-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: clamp(0.62rem, 1.15vw, 0.72rem);
+}
+
+.tks-table th {
+  padding: 0.1rem 0.18rem 0.22rem;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: left;
+  color: var(--muted-foreground);
+}
+
+.tks-table td {
+  padding: 0.22rem 0.18rem;
+  border-top: 1px solid color-mix(in oklab, var(--foreground) 7%, transparent);
+  color: var(--foreground);
+  vertical-align: middle;
+}
+
+.tks-event {
+  overflow: hidden;
+  font-weight: 650;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tks-num {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.tks-ask {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.tks-sync {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+.tks-tick {
+  width: 0.72rem;
+  height: 0.72rem;
+  flex-shrink: 0;
+  color: var(--primary);
+}
+
+.tks-tick-hold {
+  display: block;
+  width: 0.55rem;
+  height: 0.55rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--foreground) 28%, transparent);
+}
+
+.tks-sync-label {
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tks-status {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  border-radius: 999px;
+  padding: 0.06rem 0.38rem;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 10%, transparent);
+}
+
+.tks-status[data-tone="wait"] {
+  color: var(--foreground);
+  background: color-mix(in oklab, var(--foreground) 8%, transparent);
+}
+
+.tks-status[data-tone="hold"] {
+  color: var(--muted-foreground);
+  background: color-mix(in oklab, var(--foreground) 6%, transparent);
+}
+
+.tks-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 5.2rem;
+}
+
+.tks-map-pitch {
+  fill: color-mix(in oklab, var(--primary) 10%, var(--background));
+  stroke: color-mix(in oklab, var(--primary) 28%, var(--border));
+}
+
+.tks-map-block {
+  fill: color-mix(in oklab, var(--muted) 80%, white);
+  stroke: var(--border);
+}
+
+.tks-map-hot {
+  fill: color-mix(in oklab, var(--primary) 18%, white);
+  stroke: color-mix(in oklab, var(--primary) 45%, var(--border));
+}
+
+.tks-map-hold {
+  fill: color-mix(in oklab, var(--muted) 92%, white);
+  stroke: color-mix(in oklab, var(--foreground) 16%, var(--border));
+}
+
+.tks-map text {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  fill: var(--foreground);
+}
+
+.tks-holds,
+.tks-mirror,
+.tks-rails {
+  display: grid;
+  gap: 0.28rem;
+  margin: 0.28rem 0 0;
+  padding: 0;
+  list-style: none;
+  min-height: 0;
+}
+
+.tks-holds li,
+.tks-mirror li,
+.tks-rails li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.08rem 0.4rem;
+  min-width: 0;
+  padding: 0.28rem 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+  background: color-mix(in oklab, var(--background) 80%, white);
+}
+
+.tks-holds li strong,
+.tks-mirror li strong,
+.tks-rails li strong {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tks-holds li span,
+.tks-mirror li span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.tks-holds li em,
+.tks-mirror li em,
+.tks-rails li em {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-style: normal;
+  color: var(--muted-foreground);
+}
+
+@container tks (min-width: 26rem) and (min-height: 18.5rem) {
+  .tks-work {
+    grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.82fr);
+  }
+
+  .tks-side {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@container tks (max-width: 21.5rem) {
+  .tks-sync-label,
+  .tks-col-section {
+    display: none;
+  }
+}
+
+@container tks (max-height: 17.25rem) {
+  .tks-stats {
+    display: none;
+  }
+
+  .tks-body {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+}
+
+@container tks (max-height: 14.5rem) {
+  .tks-context {
+    display: none;
+  }
+
+  .tks-body {
+    grid-template-rows: minmax(0, 1fr);
+  }
+}
+
+@container tks (max-height: 19rem) {
+  .tks-table tbody tr:nth-child(n + 5) {
+    display: none;
+  }
+}
+
+@container tks (max-height: 16.25rem) {
+  .tks-table tbody tr:nth-child(n + 4) {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .tks-desk .lc-bezel {
+    padding: 0.22rem;
+  }
+
+  .tks-desk .lc-body {
+    padding: 0.32rem 0.36rem 0.36rem;
+  }
+
+  .tks-body,
+  .tks-work {
+    gap: 0.3rem;
+  }
+
+  .tks-desk .lc-stat {
+    padding: 0.22rem 0.32rem;
+  }
+
+  .tks-table td {
+    padding: 0.16rem 0.14rem;
+  }
+}
+
+/* ── Toolkit screen fill for static desks ───────────────────────────
+   Prefix: .toolkit-* / .tks-* only. Do not use .sto-* or .tpa-*.
+   Keep 4/3 aspect-ratio (do not set auto) so the pane cannot collapse
+   to height 0. Desktop min-height + flex-fill so desks are visible.
+   No left-rail overflow-y trap change. No 340vh pin. */
+
+.toolkit-screen {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+@media (min-width: 1024px) {
+  .toolkit-panel {
+    min-width: 0;
+  }
+
+  .toolkit-screen {
+    flex: 1 1 0%;
+    min-width: 0;
+    min-height: clamp(12.5rem, 32svh, 22rem);
   }
 }

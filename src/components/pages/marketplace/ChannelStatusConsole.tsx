@@ -4,7 +4,7 @@ import { useInView } from "@/hooks/use-scroll-motion";
 import { ConsoleShell } from "@/components/pages/brokers/ConsoleShell";
 
 const stats = [
-  { label: "Channels", value: "32" },
+  { label: "Channels", value: "16" },
   { label: "Synced", value: "29" },
   { label: "Latency", value: "96ms" },
   { label: "Error rate", value: "0.1%" },

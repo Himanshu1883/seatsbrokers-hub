@@ -71,7 +71,7 @@ export const heroDelist = {
 } as const;
 
 export const heroApiHealth = {
-  channels: "32",
+  channels: "16",
   latency: "96ms",
   errors: "0.1%",
 } as const;
@@ -97,7 +97,7 @@ export const heroOrderSync = {
 export type MarketplaceHeroMeshStatus = "synced" | "lagging" | "conflict";
 
 export const marketplaceHeroOps = {
-  channelsLive: "32",
+  channelsLive: "16",
   listingsPushed: "1,842",
   lastSync: "4s",
   conflictsOpen: "1",

@@ -38,8 +38,8 @@ function Index() {
     <PageShell>
       <Hero />
       <SellerTools />
-      <TravelTools />
       <TwoTrack />
+      <TravelTools />
       <Marketplaces />
       <NetworkConstellation />
       <FeatureOrbit />

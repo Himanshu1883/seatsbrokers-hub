@@ -190,7 +190,7 @@ export function JourneyNumbers() {
     <section
       ref={sectionRef}
       id="journey-numbers"
-      className="journey-num section-curve-sticky relative scroll-mt-24 overflow-x-clip"
+      className="journey-num section-curve-sticky relative scroll-mt-24"
       aria-label="SeatsBrokers journey in numbers"
     >
       <div className="journey-num-viewport">

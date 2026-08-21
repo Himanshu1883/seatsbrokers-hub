@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   BarChart3,
   Layers,
@@ -6,7 +6,7 @@ import {
   ShieldCheck,
   TrendingUp,
 } from "lucide-react";
-import { Reveal } from "@/hooks/use-scroll-motion";
+import { Reveal, useInView } from "@/hooks/use-scroll-motion";
 import logo from "@/assets/seatsbrokers-logo.png";
 import { modules } from "@/content/modules";
 
@@ -110,14 +110,66 @@ const marketplaces = [
   { name: "Marketplace 06", status: "Synced" },
 ];
 
+const ORBIT_MS = 2100;
+const ORBIT_RESUME_MS = 450;
+
 export function FeatureOrbit() {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reduced, setReduced] = useState(false);
+  const { ref, inView } = useInView<HTMLElement>(0.16, { once: false });
+  const resumeTimer = useRef<number | null>(null);
   const cx = 50;
   const cy = 50;
   const ringR = 38;
 
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduced(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (reduced || paused || !inView) return;
+    const id = window.setInterval(
+      () => setActive((prev) => (prev + 1) % features.length),
+      ORBIT_MS,
+    );
+    return () => window.clearInterval(id);
+  }, [reduced, paused, inView, active]);
+
+  const hold = useCallback(() => {
+    if (resumeTimer.current != null) {
+      window.clearTimeout(resumeTimer.current);
+      resumeTimer.current = null;
+    }
+    setPaused(true);
+  }, []);
+
+  const release = useCallback(() => {
+    if (resumeTimer.current != null) window.clearTimeout(resumeTimer.current);
+    resumeTimer.current = window.setTimeout(() => {
+      setPaused(false);
+      resumeTimer.current = null;
+    }, ORBIT_RESUME_MS);
+  }, []);
+
+  useEffect(
+    () => () => {
+      if (resumeTimer.current != null) window.clearTimeout(resumeTimer.current);
+    },
+    [],
+  );
+
+  const onOrbitBlur = (e: { currentTarget: HTMLElement; relatedTarget: EventTarget | null }) => {
+    if (!e.currentTarget.contains(e.relatedTarget as Node)) release();
+  };
+
   return (
     <section
+      ref={ref}
       id="platform"
       className="feature-orbit-section relative rounded-[1.5rem] bg-[oklch(0.985_0.008_158)] py-16 sm:py-20"
       aria-label="SeatsBrokers platform orbit"
@@ -218,7 +270,14 @@ export function FeatureOrbit() {
             </div>
           </Reveal>
 
-          <div className="feature-orbit-canvas relative z-20 mx-auto aspect-square w-full max-w-[640px] overflow-visible xl:max-w-[720px]">
+          <div
+            className="feature-orbit-canvas relative z-20 mx-auto aspect-square w-full max-w-[640px] overflow-visible xl:max-w-[720px]"
+            onPointerEnter={hold}
+            onPointerLeave={release}
+            onPointerDown={hold}
+            onFocusCapture={hold}
+            onBlurCapture={onOrbitBlur}
+          >
             <svg
               viewBox="0 0 100 100"
               className="pointer-events-none absolute inset-0 z-0 h-full w-full"
@@ -399,7 +458,14 @@ export function FeatureOrbit() {
           </Reveal>
         </div>
 
-        <div className="feature-orbit-mobile mt-10 lg:hidden">
+        <div
+          className="feature-orbit-mobile mt-10 lg:hidden"
+          onPointerEnter={hold}
+          onPointerLeave={release}
+          onPointerDown={hold}
+          onFocusCapture={hold}
+          onBlurCapture={onOrbitBlur}
+        >
           <div className="feature-orbit-mobile-list">
             {features.map((f, i) => {
               const Icon = f.icon;

@@ -36789,18 +36789,20 @@ html.site-nav-locked body {
   }
 }
 
-/* == Site nav logo lockup (2026-08-18) ==
+/* == Site nav logo lockup (2026-08-18; size bump 2026-08-21) ==
    Light bar: original PNG, no invert / .brand-logo-on-dark.
    Canvas is 300×92 with opaque ink 22,27–278,64 (257×38). Crop to that
    box. Size by HEIGHT (definite rem) so the lockup sits inside the 4.5rem
    bar with padding — do not let width-driven scale or % img height
    stretch the header. Flex items-center keeps optical middle with links.
-   Compact lockup: desktop 2.125rem (not 3.125rem); mobile 1.8–1.9rem
-   with a definite rem width (not max-width: 100%) so the crop window
-   cannot collapse. */
+   ~12% larger than the compact lockup so more ink fills the bar; rem
+   heights land on integer CSS pixels at 16px root (2 / 2.125 / 2.25 /
+   2.375). Desktop 2.375rem = 38px matches the PNG ink height 1:1.
+   Definite rem width (not max-width: 100%) so the crop window cannot
+   collapse. */
 .site-nav-bar nav {
-  height: 4.5rem;
-  max-height: 4.5rem;
+  height: 4.9rem;
+  max-height: 4.9rem;
 }
 
 .site-nav .site-nav-brand {
@@ -36821,33 +36823,33 @@ html.site-nav-locked body {
      overflow:hidden makes flex min-width:auto compute to 0, and 100% of
      .site-nav-brand is circular (brand sizes to the fit box), so the crop
      window collapsed and translate clipped the ink off-screen. */
-  height: 1.8rem;
-  width: calc(1.8rem * 257 / 38);
-  min-height: 1.8rem;
-  min-width: calc(1.8rem * 257 / 38);
-  max-height: 1.8rem;
-  max-width: min(calc(1.8rem * 257 / 38), calc(100vw - 7.5rem));
+  height: 2rem;
+  width: calc(2rem * 257 / 38);
+  min-height: 2rem;
+  min-width: calc(2rem * 257 / 38);
+  max-height: 2rem;
+  max-width: min(calc(2rem * 257 / 38), calc(100vw - 7.5rem));
 }
 
 @media (min-width: 400px) {
   .site-nav-logo-fit {
-    height: 1.9rem;
-    width: calc(1.9rem * 257 / 38);
-    min-height: 1.9rem;
-    min-width: calc(1.9rem * 257 / 38);
-    max-height: 1.9rem;
-    max-width: min(calc(1.9rem * 257 / 38), calc(100vw - 7.5rem));
+    height: 2.125rem;
+    width: calc(2.125rem * 257 / 38);
+    min-height: 2.125rem;
+    min-width: calc(2.125rem * 257 / 38);
+    max-height: 2.125rem;
+    max-width: min(calc(2.125rem * 257 / 38), calc(100vw - 7.5rem));
   }
 }
 
 @media (min-width: 640px) {
   .site-nav-logo-fit {
-    height: 2rem;
-    width: calc(2rem * 257 / 38);
-    min-height: 2rem;
-    min-width: calc(2rem * 257 / 38);
-    max-height: 2rem;
-    max-width: min(calc(2rem * 257 / 38), calc(100vw - 7.5rem));
+    height: 2.25rem;
+    width: calc(2.25rem * 257 / 38);
+    min-height: 2.25rem;
+    min-width: calc(2.25rem * 257 / 38);
+    max-height: 2.25rem;
+    max-width: min(calc(2.25rem * 257 / 38), calc(100vw - 7.5rem));
   }
 }
 
@@ -36859,11 +36861,11 @@ html.site-nav-locked body {
 
   .site-nav-logo-fit {
     flex-shrink: 0;
-    height: 2.125rem;
-    width: calc(2.125rem * 257 / 38);
-    min-height: 2.125rem;
-    min-width: calc(2.125rem * 257 / 38);
-    max-height: 2.125rem;
+    height: 2.375rem;
+    width: calc(2.375rem * 257 / 38);
+    min-height: 2.375rem;
+    min-width: calc(2.375rem * 257 / 38);
+    max-height: 2.375rem;
     max-width: none;
   }
 }

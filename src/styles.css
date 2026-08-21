@@ -36789,20 +36789,16 @@ html.site-nav-locked body {
   }
 }
 
-/* == Site nav logo lockup (2026-08-18; size bump 2026-08-21) ==
-   Light bar: original PNG, no invert / .brand-logo-on-dark.
-   Canvas is 300×92 with opaque ink 22,27–278,64 (257×38). Crop to that
-   box. Size by HEIGHT (definite rem) so the lockup sits inside the 4.5rem
-   bar with padding — do not let width-driven scale or % img height
-   stretch the header. Flex items-center keeps optical middle with links.
-   ~12% larger than the compact lockup so more ink fills the bar; rem
-   heights land on integer CSS pixels at 16px root (2 / 2.125 / 2.25 /
-   2.375). Desktop 2.375rem = 38px matches the PNG ink height 1:1.
-   Definite rem width (not max-width: 100%) so the crop window cannot
-   collapse. */
+/* == Site nav logo lockup (vector; 2026-08-21) ==
+   SeatsBrokers-favicon.svg full lockup (chevrons + wordmark + tagline).
+   viewBox 38 49 491 76 trims empty canvas only (ink 40.9–526.3 × 51.4–122.8,
+   ~2u pad — nothing clipped). Same CSS size at 375 / 768 / 1024 / 1512:
+   height 2.5rem inside the 4.5rem bar; width from SVG aspect 491/76.
+   ≤359px / 320px bar: 2.25rem so padding + hamburger do not overflow.
+   Vector scales at any DPR — no JPEG/PNG, no translate crop, no pixelated. */
 .site-nav-bar nav {
-  height: 4.9rem;
-  max-height: 4.9rem;
+  height: 4.5rem;
+  max-height: 4.5rem;
 }
 
 .site-nav .site-nav-brand {
@@ -36810,81 +36806,41 @@ html.site-nav-locked body {
   min-width: auto;
   max-width: calc(100% - 4rem);
   align-self: center;
-  overflow: hidden;
-}
-
-.site-nav-logo-fit {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  flex-shrink: 0;
-  align-self: center;
-  /* Definite rem box — do not use width: 100% / min-width: 0 here.
-     overflow:hidden makes flex min-width:auto compute to 0, and 100% of
-     .site-nav-brand is circular (brand sizes to the fit box), so the crop
-     window collapsed and translate clipped the ink off-screen. */
-  height: 2rem;
-  width: calc(2rem * 257 / 38);
-  min-height: 2rem;
-  min-width: calc(2rem * 257 / 38);
-  max-height: 2rem;
-  max-width: min(calc(2rem * 257 / 38), calc(100vw - 7.5rem));
-}
-
-@media (min-width: 400px) {
-  .site-nav-logo-fit {
-    height: 2.125rem;
-    width: calc(2.125rem * 257 / 38);
-    min-height: 2.125rem;
-    min-width: calc(2.125rem * 257 / 38);
-    max-height: 2.125rem;
-    max-width: min(calc(2.125rem * 257 / 38), calc(100vw - 7.5rem));
-  }
-}
-
-@media (min-width: 640px) {
-  .site-nav-logo-fit {
-    height: 2.25rem;
-    width: calc(2.25rem * 257 / 38);
-    min-height: 2.25rem;
-    min-width: calc(2.25rem * 257 / 38);
-    max-height: 2.25rem;
-    max-width: min(calc(2.25rem * 257 / 38), calc(100vw - 7.5rem));
-  }
+  overflow: visible;
 }
 
 @media (min-width: 1024px) {
   .site-nav .site-nav-brand {
     max-width: none;
-    overflow: visible;
   }
+}
 
+.site-nav-logo-fit {
+  display: block;
+  overflow: visible;
+  flex-shrink: 0;
+  align-self: center;
+  height: 2.5rem;
+  width: calc(2.5rem * 491 / 76);
+}
+
+@media (max-width: 359px) {
   .site-nav-logo-fit {
-    flex-shrink: 0;
-    height: 2.375rem;
-    width: calc(2.375rem * 257 / 38);
-    min-height: 2.375rem;
-    min-width: calc(2.375rem * 257 / 38);
-    max-height: 2.375rem;
-    max-width: none;
+    height: 2.25rem;
+    width: calc(2.25rem * 491 / 76);
   }
 }
 
 .site-nav-logo-img {
-  position: absolute;
-  left: 0;
-  top: 0;
   display: block;
-  width: calc(300 / 257 * 100%);
-  height: calc(92 / 38 * 100%);
-  max-width: none;
-  max-height: none;
+  overflow: visible;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   object-fit: contain;
-  object-position: 0 0;
+  object-position: left center;
   filter: none;
-  transform: translate(-7.333%, -29.348%);
 }
 
 /* == Homepage quote desk auto-run pipeline (tpa-*) ==

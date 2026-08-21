@@ -9,11 +9,11 @@ Component inventory: `docs/COMPONENT_MAP.md`. Page depth: `docs/PROJECT_STATUS.m
 | Request | Primary | Related |
 |---|---|---|
 | Navbar links / hide Platform & Travel Partners | `src/content/site.ts` `navLinks` | `src/components/landing/Nav.tsx`, `.site-nav-*` in `styles.css` |
-| Nav logo PNG size / crop | `.site-nav-logo-fit` / `.site-nav-logo-img` in `styles.css` | `Nav.tsx` `logo-2.png`. Ink crop 257×38 (`translate(-7.333%, -29.348%)`). Fit box **2 / 2.125 / 2.25 / 2.375rem** (was 1.8 / 1.9 / 2 / 2.125). Bar 4.5rem. Footer `logo-sb.png` does not share this class |
+| Nav logo lockup | `Nav.tsx` `src/assets/SeatsBrokers-favicon.svg` + `.site-nav-logo-fit` / `.site-nav-logo-img` | Vector lockup (chevrons + wordmark + tagline). viewBox `38 49 491 76` trims empty canvas only (ink `40.9–526.3 × 51.4–122.8`, not clipped). Same CSS size at 375 / 768 / 1024 / 1512: **2.5rem** tall, width `calc(2.5rem * 491 / 76)`. ≤359px / 320px bar: **2.25rem**. No JPEG/PNG, no `translate` crop. Bar 4.5rem. Footer `logo-sb.png` does not share this class |
 | Nav solid light bar / no Become a seller in header | `Nav.tsx`, `.site-nav-bar` in `styles.css` | Opaque `var(--background)` + muted `--border`; Login is `bg-primary` / `text-primary-foreground`; CTA still in Hero / FinalCTA / Footer / product pages |
 | Active nav style | `Nav.tsx` | — |
-| Logo visibility on dark | Footer only (`.brand-logo-on-dark`); header uses original PNG on light bar | `.brand-logo-on-dark*` in `styles.css` |
-| Favicon / document icon | `src/routes/__root.tsx` `head.links` | `public/seatsbrokers-mark.svg` — chevron mark only (viewBox crop of the official lockup; well-formed XML, no C0 control chars — editor preview rejects illegal XML). Nav `src/assets/logo-2.png`; Footer `src/assets/logo-sb.png`. Full lockup stays at `public/SeatsBrokers-01 (1).svg` |
+| Logo visibility on dark | Footer only (`.brand-logo-on-dark`); header uses SVG lockup on light bar | `.brand-logo-on-dark*` in `styles.css` |
+| Favicon / document icon | `src/routes/__root.tsx` `head.links` | `public/seatsbrokers-mark.svg` — chevron mark only (viewBox crop of the official lockup; well-formed XML, no C0 control chars — editor preview rejects illegal XML). Nav `src/assets/SeatsBrokers-favicon.svg` (full lockup, viewBox `38 49 491 76`). Footer `src/assets/logo-sb.png`. Full lockup also at `public/SeatsBrokers-01 (1).svg` |
 | Footer columns | `site.ts` `footerColumns` | `Footer.tsx` |
 | Footer legal links | `site.ts` `footerLegal` | Privacy / Terms / Cookie Policy → `/legal#privacy` `#terms` `#cookies` (same page). API Terms still `/api` |
 | FAQ page | `src/routes/faq.tsx` | `pages/faq/`, `faq-data.ts`, `.faq-*` in `styles.css` (dark `bh-hero` + topics glass); footer Resources “FAQs” → `/faq` |

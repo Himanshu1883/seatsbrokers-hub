@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import logo from "@/assets/logo-2.png";
+import lockupSvg from "@/assets/SeatsBrokers-favicon.svg?url";
 import { brand, ctas, navLinks } from "@/content/site";
 import { SiteLink } from "@/components/layout/SiteLink";
 
@@ -133,10 +133,10 @@ export function Nav() {
           >
             <span className="site-nav-logo-fit">
               <img
-                src={logo}
+                src={lockupSvg}
                 alt={brand.name}
-                width={300}
-                height={92}
+                width={491}
+                height={76}
                 className="site-nav-logo-img"
               />
             </span>

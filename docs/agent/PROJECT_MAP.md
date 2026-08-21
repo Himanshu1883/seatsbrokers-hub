@@ -50,7 +50,7 @@ SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform
 | If I need to change... | Start here |
 |---|---|
 | Nav / hide a link / active state | `src/content/site.ts` → `src/components/landing/Nav.tsx` |
-| Logo on dark/light | Header: original PNG on light bar (`Nav.tsx`). Footer: `.brand-logo-on-dark*` in `styles.css` |
+| Logo on dark/light | Header: `SeatsBrokers-favicon.svg` on light bar (`Nav.tsx`). Footer: `logo-sb.png` + `.brand-logo-on-dark*` in `styles.css` |
 | Homepage section | `src/routes/index.tsx` → `src/components/landing/<Section>.tsx` |
 | Product page sections | `src/routes/<page>.tsx` then that folder under `pages/` |
 | Shared hero/grid/steps | `src/components/pages/shared/PageSections.tsx` |

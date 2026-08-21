@@ -221,15 +221,14 @@ export function Marketplaces() {
           width: var(--mps-hub-slot);
           height: var(--mps-hub-slot);
         }
-        /* PNG 300×92; opaque ink 22,27–278,64 (257×38). Optical mass at x=133.9. */
-        /* 82% crop (was 84%) — padding in the smaller disc; 5% nudge keeps the left-heavy lockup centered. */
+        /* PNG 300×92; opaque ink 22,27–278,64 (257×38). Bbox center = canvas center. */
+        /* 82% crop; no translateX — place-items:center puts chevrons+wordmark on the disc. */
         .mps-hub-logo-fit {
           position: relative;
           display: block;
           width: 82%;
           aspect-ratio: 257 / 38;
           overflow: hidden;
-          transform: translateX(5%);
         }
         .mps-hub-logo-img {
           position: absolute;

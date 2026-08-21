@@ -119,7 +119,7 @@ export function FeatureOrbit() {
   return (
     <section
       id="platform"
-      className="relative overflow-x-clip rounded-[1.5rem] bg-[oklch(0.985_0.008_158)] py-16 sm:py-24 lg:py-28"
+      className="feature-orbit-section relative rounded-[1.5rem] bg-[oklch(0.985_0.008_158)] py-16 sm:py-20"
       aria-label="SeatsBrokers platform orbit"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]" aria-hidden>
@@ -218,7 +218,7 @@ export function FeatureOrbit() {
             </div>
           </Reveal>
 
-          <div className="relative z-20 mx-auto aspect-square w-full max-w-[640px] overflow-visible xl:max-w-[720px]">
+          <div className="feature-orbit-canvas relative z-20 mx-auto aspect-square w-full max-w-[640px] overflow-visible xl:max-w-[720px]">
             <svg
               viewBox="0 0 100 100"
               className="pointer-events-none absolute inset-0 z-0 h-full w-full"
@@ -284,6 +284,7 @@ export function FeatureOrbit() {
               const y = cy + ringR * Math.sin(rad);
               const isActive = i === active;
               const Icon = f.icon;
+              const opensDown = Math.sin(rad) <= 0.15;
               return (
                 <div
                   key={f.id}
@@ -323,7 +324,9 @@ export function FeatureOrbit() {
 
                   {isActive ? (
                     <div
-                      className="absolute top-full left-1/2 z-[60] mt-3 w-[min(18rem,70vw)] -translate-x-1/2 rounded-xl border border-border bg-white p-4 shadow-[0_22px_48px_-24px_rgba(0,0,0,0.35)]"
+                      className={`absolute left-1/2 z-[60] w-[min(18rem,70vw)] -translate-x-1/2 rounded-xl border border-border bg-white p-4 shadow-[0_22px_48px_-24px_rgba(0,0,0,0.35)] ${
+                        opensDown ? "top-full mt-3" : "bottom-full mb-3"
+                      }`}
                       data-accent={f.accent}
                     >
                       <p
@@ -396,8 +399,6 @@ export function FeatureOrbit() {
           </Reveal>
         </div>
 
-        <div className="feature-orbit-detail-reserve hidden lg:block" aria-hidden />
-
         <div className="feature-orbit-mobile mt-10 lg:hidden">
           <div className="feature-orbit-mobile-list">
             {features.map((f, i) => {
@@ -464,7 +465,7 @@ export function FeatureOrbit() {
           </div>
         </div>
 
-        <div className="mt-8 hidden justify-center gap-2 lg:flex">
+        <div className="feature-orbit-dots mt-5 hidden justify-center gap-2 lg:flex">
           {features.map((f, i) => (
             <button
               key={f.id}

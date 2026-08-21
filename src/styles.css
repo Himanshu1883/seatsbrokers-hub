@@ -4433,7 +4433,7 @@ main > .section-curve:first-child {
 
 .toolkit {
   height: auto;
-  overflow: visible;
+  overflow: hidden;
   background:
     radial-gradient(
       ellipse 70% 55% at 12% -5%,
@@ -4713,7 +4713,7 @@ main > .section-curve:first-child {
   .toolkit {
     height: auto;
     max-height: none;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .toolkit > .container-page {
@@ -4773,7 +4773,7 @@ main > .section-curve:first-child {
 
   .toolkit-screen {
     flex: 0 0 auto;
-    min-height: clamp(12.5rem, 32svh, 22rem);
+    min-height: 0;
     height: auto;
     max-height: none;
   }
@@ -4886,7 +4886,11 @@ main > .section-curve:first-child {
   display: grid;
   aspect-ratio: 4 / 3;
   width: 100%;
+  height: auto;
+  min-height: 0;
   overflow: hidden;
+  container-type: size;
+  container-name: tks;
   background: color-mix(in oklab, var(--background) 96%, var(--primary));
 }
 
@@ -7291,7 +7295,7 @@ main > .section-curve:first-child {
 
 @media (max-width: 639px) {
   .nc-section {
-    overflow-x: clip;
+    overflow: hidden;
   }
 
   .nc-console {
@@ -10147,7 +10151,7 @@ main > .section-curve:first-child {
   }
 
   .two-track-cinema {
-    overflow-x: clip;
+    overflow: hidden;
   }
 
   .two-track-panel {
@@ -37412,7 +37416,7 @@ html.site-nav-locked body {
 
 /* ------------------------------------------------------------------ */
 /* Marketplace hub — current Marketplaces.tsx (mps-hub-*)             */
-/* 3-col grid, 82% crop, 5% optical nudge, 88/100px circle.           */
+/* 3-col grid, 82% ink crop, no X nudge, 88/100px circle.             */
 /* Circle was 112/128px (7rem / 8rem) — ~22% smaller. Disc still fills */
 /* the (now smaller) slot so joins dock on the rim across the gap.    */
 /* Restored 2026-08-18 after styles.css rewrite dropped these rules.  */
@@ -37505,15 +37509,14 @@ html.site-nav-locked body {
   height: var(--mps-hub-slot);
 }
 
-/* PNG 300×92; opaque ink 22,27–278,64 (257×38). Optical mass at x=133.9. */
-/* 82% crop (was 84%) — padding in the smaller disc; 5% nudge keeps the left-heavy lockup centered. */
+/* PNG 300×92; opaque ink 22,27–278,64 (257×38). Bbox center = canvas center. */
+/* 82% crop; no translateX — place-items:center puts chevrons+wordmark on the disc. */
 .mps-hub-logo-fit {
   position: relative;
   display: block;
   width: 82%;
   aspect-ratio: 257 / 38;
   overflow: hidden;
-  transform: translateX(5%);
 }
 
 .mps-hub-logo-img {
@@ -42810,8 +42813,6 @@ body,
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  container-type: size;
-  container-name: tks;
 }
 
 .tks-desk .lc-frame,
@@ -42836,9 +42837,9 @@ body,
   flex: 1 1 auto;
   flex-direction: column;
   width: 100%;
-  height: auto;
+  height: 100%;
   min-height: 0;
-  max-height: none;
+  max-height: 100%;
   border-radius: 0.45rem;
 }
 
@@ -43240,9 +43241,9 @@ body,
 /* ── Toolkit screen fill for static desks ───────────────────────────
    Prefix: .toolkit-* / .tks-* only. Do not use .sto-* or .tpa-*.
    Keep 4/3 aspect-ratio (do not set auto) so the pane cannot collapse
-   to height 0. Desktop min-height so desks stay visible after the
-   100svh lock was removed. Rail overflow is visible (page scroll).
-   No 340vh pin. */
+   to height 0. Do not pair min-height clamp with height:100% of an
+   auto parent — that + size containers STATUS_BREAKPOINT. Rail
+   overflow is visible (page scroll). No 340vh pin. */
 
 .toolkit-screen {
   grid-template-columns: minmax(0, 1fr);
@@ -43257,6 +43258,103 @@ body,
   .toolkit-screen {
     flex: 0 0 auto;
     min-width: 0;
-    min-height: clamp(12.5rem, 32svh, 22rem);
+    min-height: 0;
+  }
+}
+
+/* ── FeatureOrbit content-height (no mint well below dots) ─────────
+   Prefix: .feature-orbit-* only. Do not touch .sto-* .tpa-* .mps-* .toolkit-*.
+   Cause was a full-width 7.5rem .feature-orbit-detail-reserve plus
+   lg:py-28 under the pagination. Section is now height: auto.
+   Overflow visible: overflow-x clip would compute overflow-y auto
+   and trap wheel. No 100svh / 340vh pin.
+   Bottom pad is 2.25rem / 2.5rem (was equal 4rem / 5rem) so the
+   dots sit closer to the next section without clipping popovers. */
+
+.feature-orbit-section {
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  padding-block: 4rem 2.25rem;
+}
+
+@media (min-width: 640px) {
+  .feature-orbit-section {
+    padding-block: 5rem 2.5rem;
+  }
+}
+
+.feature-orbit-detail-reserve {
+  display: none;
+  height: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .feature-orbit-detail-reserve {
+    display: none;
+    height: 0;
+    min-height: 0;
+    flex-shrink: 0;
+  }
+}
+
+.feature-orbit-canvas {
+  flex: 0 0 auto;
+  height: auto;
+}
+
+.feature-orbit-dots {
+  flex: 0 0 auto;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+}
+
+/* ── ToolkitShowcase Chrome STATUS_BREAKPOINT ───────────────────────
+   Prefix: .toolkit-* / .tks-* only. Do not touch .sto-* .tpa-* .mps-*
+   .feature-orbit-* GlobeCanvas. No 340vh pin, no svh lock.
+   Crash: size container on .tks-desk (height:100%) + @container height
+   queries that hide/show stats, plus .toolkit-screen aspect-ratio 4/3
+   fighting min-height clamp(32svh) and height:auto of the unlocked
+   section. Chromium layout loop → Aw Snap / STATUS_BREAKPOINT.
+   Break: screen size is aspect-ratio only; observe that stable box;
+   never min-height clamp + % height of auto parent; overflow hidden
+   on both axes of .toolkit (never x-clip + y-visible). */
+
+.toolkit {
+  overflow: hidden;
+}
+
+.tks-desk {
+  container-type: normal;
+  container-name: none;
+}
+
+.toolkit-screen {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
+  container-type: size;
+  container-name: tks;
+}
+
+@media (max-width: 639px) {
+  .toolkit-screen {
+    aspect-ratio: 16 / 11;
+  }
+}
+
+@media (min-width: 1024px) {
+  .toolkit-screen {
+    flex: 0 0 auto;
+    min-height: 0;
+    height: auto;
   }
 }

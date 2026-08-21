@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import logo from "@/assets/SeatsBrokers-favicon.svg";
+import logo from "@/assets/logo-2.png";
 import { brand, ctas, navLinks } from "@/content/site";
 import { SiteLink } from "@/components/layout/SiteLink";
 

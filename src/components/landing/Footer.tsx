@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import logo from "@/assets/seatsbrokers-logo.png";
+import logo from "@/assets/logo-sb.png";
 import { brand, footerColumns, footerLegal } from "@/content/site";
 import { SiteLink } from "@/components/layout/SiteLink";
 

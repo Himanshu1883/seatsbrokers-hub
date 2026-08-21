@@ -27681,7 +27681,7 @@ main > .section-curve:first-child {
    while lifting the text for dark backgrounds. Light (scrolled nav,
    FeatureOrbit white disc) leaves the original file untouched. */
 .brand-logo-on-dark {
-  filter: invert(1) hue-rotate(180deg);
+  /* filter: invert(1) hue-rotate(180deg); */
   transition: filter 0.3s ease;
 }
 

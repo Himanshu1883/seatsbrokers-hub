@@ -110,7 +110,7 @@ const marketplaces = [
   { name: "Marketplace 06", status: "Synced" },
 ];
 
-const ORBIT_MS = 2100;
+const ORBIT_MS = 1200;
 const ORBIT_RESUME_MS = 450;
 
 export function FeatureOrbit() {

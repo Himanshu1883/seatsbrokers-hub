@@ -173,6 +173,9 @@ const events = [
   },
 ] as const;
 
+const BROWSER_ROWS = 5;
+const browserEvents = events.slice(0, BROWSER_ROWS);
+
 const indexStages = [
   { label: "Ingested", detail: "Provider feed received · metadata parsed" },
   { label: "Venue mapped", detail: "Seating chart linked · sections normalized" },
@@ -217,10 +220,10 @@ export function EventCatalogConsole() {
   };
 
   const activeCategory = useCycle(categories.length, 3200, inView);
-  const activeEvent = useCycle(events.length, 2800, inView);
+  const activeEvent = useCycle(browserEvents.length, 2800, inView);
   const stageProgress = useCycle(indexStages.length + 1, 2200, inView);
   const activeStage = Math.min(stageProgress, indexStages.length - 1);
-  const selected = events[activeEvent];
+  const selected = browserEvents[activeEvent];
   const feedRows = [...catalogFeed, ...catalogFeed];
 
   return (
@@ -275,10 +278,10 @@ export function EventCatalogConsole() {
               <header className="lc-panel-head">
                 <Ticket className="size-3.5" strokeWidth={1.75} />
                 <span>Event browser</span>
-                <span className="lc-panel-badge">{events.length} live</span>
+                <span className="lc-panel-badge">{browserEvents.length} live</span>
               </header>
               <ul className="lc-pos-queue ec-catalog-queue ec-catalog-scroll">
-                {events.map((event, i) => (
+                {browserEvents.map((event, i) => (
                   <li
                     key={event.id}
                     className="lc-pos-queue-row"

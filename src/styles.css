@@ -12565,7 +12565,9 @@ main > .section-curve:first-child {
 /* Event catalog — centered copy + flat console */
 
 .ec-section {
-  overflow: hidden;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
 }
 
 .ec-head {
@@ -12614,6 +12616,8 @@ main > .section-curve:first-child {
 .ec-console-wrap {
   margin-top: 2.75rem;
   width: 100%;
+  height: auto;
+  overflow: visible;
 }
 
 .ec-catalog {
@@ -12625,28 +12629,29 @@ main > .section-curve:first-child {
 }
 
 .ec-catalog .lc-screen {
-  height: clamp(38rem, 70vh, 52rem);
-  min-height: clamp(38rem, 70vh, 52rem);
-  max-height: clamp(38rem, 70vh, 52rem);
-  overflow: hidden;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
 }
 
 @media (min-width: 1024px) {
   .ec-catalog .lc-screen {
-    height: clamp(42rem, 74vh, 54rem);
-    min-height: clamp(42rem, 74vh, 54rem);
-    max-height: clamp(42rem, 74vh, 54rem);
+    height: auto;
+    min-height: 0;
+    max-height: none;
   }
 }
 
 .ec-catalog .lc-body {
   display: grid;
-  grid-template-rows: auto auto minmax(22rem, 1fr) auto;
+  grid-template-rows: auto auto auto auto;
   gap: 0.55rem;
   padding: clamp(0.7rem, 1.4vw, 0.95rem);
-  flex: 1 1 auto;
+  flex: 0 0 auto;
+  height: auto;
   min-height: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .ec-catalog-stats {
@@ -12733,8 +12738,9 @@ main > .section-curve:first-child {
   grid-template-columns: minmax(8.5rem, 10.5rem) minmax(0, 1fr);
   gap: 0.6rem;
   min-height: 0;
-  overflow: hidden;
-  align-items: stretch;
+  height: auto;
+  overflow: visible;
+  align-items: start;
 }
 
 .ec-catalog-sidebar {
@@ -12746,7 +12752,8 @@ main > .section-curve:first-child {
   background: color-mix(in oklab, var(--background) 68%, white);
   padding: 0.6rem 0.5rem;
   min-height: 0;
-  overflow: hidden;
+  height: auto;
+  overflow: visible;
 }
 
 .ec-catalog-sidebar-list {
@@ -12756,10 +12763,10 @@ main > .section-curve:first-child {
   margin: 0;
   padding: 0;
   list-style: none;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: visible;
+  overscroll-behavior: auto;
 }
 
 .ec-catalog-sidebar-item {
@@ -12810,25 +12817,25 @@ main > .section-curve:first-child {
   gap: 0.6rem;
   min-width: 0;
   min-height: 0;
-  height: 100%;
-  overflow: hidden;
-  align-items: stretch;
+  height: auto;
+  overflow: visible;
+  align-items: start;
 }
 
 .ec-catalog .lc-panel {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  height: 100%;
-  overflow: hidden;
+  height: auto;
+  overflow: visible;
 }
 
 .ec-catalog .lc-pos-queue,
 .ec-catalog-queue {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: visible;
+  overscroll-behavior: auto;
 }
 
 .ec-catalog .lc-pos-queue-row[data-active="true"] {
@@ -12866,12 +12873,12 @@ main > .section-curve:first-child {
 
 .ec-catalog-detail {
   display: flex;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   flex-direction: column;
   gap: 0.4rem;
   min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: visible;
+  overscroll-behavior: auto;
   padding-right: 0.15rem;
 }
 
@@ -13001,8 +13008,8 @@ main > .section-curve:first-child {
   padding: 0.12rem 0 0.65rem;
   max-height: none;
   overflow-x: auto;
-  overflow-y: visible;
-  overscroll-behavior: contain;
+  overflow-y: hidden;
+  overscroll-behavior: auto;
 }
 
 .ec-catalog-pipeline .lc-pos-pipeline-step {
@@ -13029,6 +13036,8 @@ main > .section-curve:first-child {
 }
 
 .ec-catalog-scroll {
+  overflow: visible;
+  overscroll-behavior: auto;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in oklab, var(--primary) 42%, transparent) transparent;
 }
@@ -13061,7 +13070,7 @@ main > .section-curve:first-child {
 
 .ec-catalog .lc-panel-feed {
   min-height: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .ec-catalog .lc-feed-viewport-sm {
@@ -13165,7 +13174,6 @@ main > .section-curve:first-child {
   .bh-stage,
   .lc-section-stage,
   .pay-infra-dashboard,
-  .ec-console-wrap,
   .inv-console-wrap {
     overflow-x: clip;
     max-width: 100%;
@@ -13263,14 +13271,17 @@ main > .section-curve:first-child {
   }
 
   .ec-catalog .lc-screen {
-    height: clamp(24rem, 72vh, 32rem);
-    min-height: clamp(24rem, 72vh, 32rem);
-    max-height: clamp(24rem, 72vh, 32rem);
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
   }
 
   .ec-catalog .lc-body {
-    grid-template-rows: auto auto minmax(11rem, 1fr) auto;
+    grid-template-rows: auto auto auto auto;
     padding: 0.55rem;
+    height: auto;
+    overflow: visible;
   }
 
   .ec-catalog-pipeline .lc-pos-pipeline-step {
@@ -17907,7 +17918,6 @@ main > .section-curve:first-child {
   .bh-stage,
   .lc-section-stage,
   .pay-infra-dashboard,
-  .ec-console-wrap,
   .inv-console-wrap {
     overflow-x: clip;
     max-width: 100%;
@@ -17957,14 +17967,17 @@ main > .section-curve:first-child {
   }
 
   .ec-catalog .lc-screen {
-    height: clamp(24rem, 72vh, 32rem);
-    min-height: clamp(24rem, 72vh, 32rem);
-    max-height: clamp(24rem, 72vh, 32rem);
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
   }
 
   .ec-catalog .lc-body {
-    grid-template-rows: auto auto minmax(11rem, 1fr) auto;
+    grid-template-rows: auto auto auto auto;
     padding: 0.55rem;
+    height: auto;
+    overflow: visible;
   }
 
   .ap-shell {
@@ -43319,5 +43332,195 @@ body,
     flex: 0 0 auto;
     min-height: 0;
     height: auto;
+  }
+}
+
+/* ── /brokers Live Console desk fill + Event Catalog page scroll ──
+   Prefix: .lc-desk-fill / .ec-* / .ap-hero. Do not touch .sto-* .tpa-*
+   .mps-* .toolkit-* FeatureOrbit Nav JourneyNumbers.
+   Right-side well: .lc-tilt-wrap capped at 46rem inside the 1.28fr
+   stage, plus an empty .ap-hero grid sibling (class "app") that ate
+   the second 1fr. Desk fills the shell; extra columns are real panels
+   (rec + guards + gauge), not a white 1fr hole or flex-grow void.
+   Catalog trap: locked .lc-screen clamp + overflow hidden, inner
+   overflow-y auto + overscroll-behavior contain, overflow-x: clip on
+   .ec-console-wrap (computes overflow-y auto). Same class as Toolkit
+   100svh lock. Wheel over catalog/console scrolls the document.
+   No 340vh pin. */
+
+.lc-desk-fill {
+  width: 100%;
+  min-width: 0;
+}
+
+.lc-desk-fill .lc-tilt-wrap,
+.lc-desk-fill .lc-tilt-card,
+.lc-desk-fill .lc-frame,
+.lc-desk-fill .ap-shell,
+.lc-desk-fill .mi-console,
+.lc-desk-fill .sfp-console,
+.lc-desk-fill .ap-console {
+  width: 100%;
+  max-width: 100%;
+}
+
+.lc-desk-fill .lc-body {
+  width: 100%;
+}
+
+@media (max-width: 1023px) {
+  .lc-desk-fill .lc-tilt-wrap {
+    max-width: 100%;
+    margin-inline: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lc-desk-fill .lc-tilt-wrap {
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.ap-hero {
+  width: 100%;
+}
+
+.ec-section,
+.ec-console-wrap,
+.ec-catalog,
+.ec-catalog .lc-frame,
+.ec-catalog .lc-bezel,
+.ec-catalog .lc-screen,
+.ec-catalog .lc-body,
+.ec-catalog-workspace,
+.ec-catalog-grid,
+.ec-catalog .lc-panel,
+.ec-catalog-sidebar,
+.ec-catalog-sidebar-list,
+.ec-catalog-detail,
+.ec-catalog .lc-pos-queue,
+.ec-catalog-queue,
+.ec-catalog-scroll {
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  overscroll-behavior: auto;
+}
+
+.ec-catalog-pipeline {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior: auto;
+}
+
+@media (max-width: 767px) {
+  .ec-catalog-pipeline {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 639px) {
+  .ec-section,
+  .ec-console-wrap,
+  .ec-catalog .lc-screen,
+  .ec-catalog .lc-body {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+/* Event catalog Event browser — 5 reserved rows (page scroll stays unlocked).
+   Slice is events.slice(0, 5) in EventCatalogConsole.tsx. Do not put
+   overflow-y: auto / overscroll-behavior: contain on the queue. */
+.ec-catalog .ec-catalog-queue {
+  --ec-queue-gap: 0.4rem;
+  --ec-queue-row: 4.15rem;
+  display: grid;
+  grid-template-rows: repeat(5, var(--ec-queue-row));
+  gap: var(--ec-queue-gap);
+  height: calc((var(--ec-queue-row) * 5) + (var(--ec-queue-gap) * 4));
+  min-height: calc((var(--ec-queue-row) * 5) + (var(--ec-queue-gap) * 4));
+  max-height: none;
+  overflow: visible;
+  overscroll-behavior: auto;
+}
+
+.ec-catalog .ec-catalog-queue > .lc-pos-queue-row {
+  box-sizing: border-box;
+  height: var(--ec-queue-row);
+  min-height: var(--ec-queue-row);
+  max-height: var(--ec-queue-row);
+  overflow: hidden;
+}
+
+.ec-catalog .ec-catalog-queue .lc-pos-queue-main {
+  gap: 0.12rem;
+}
+
+.ec-catalog .ec-catalog-queue .lc-mono,
+.ec-catalog .ec-catalog-queue .lc-pos-queue-event,
+.ec-catalog .ec-catalog-queue .ec-catalog-row-meta {
+  line-height: 1.2;
+}
+
+@media (max-width: 639px) {
+  .ec-catalog .ec-catalog-queue {
+    --ec-queue-row: 3.85rem;
+    --ec-queue-gap: 0.32rem;
+  }
+
+  .ec-catalog .ec-catalog-queue > .lc-pos-queue-row {
+    padding: 0.4rem 0.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ec-catalog .ec-catalog-queue {
+    --ec-queue-row: 4.25rem;
+  }
+}
+
+/* == Homepage TravelTools section width (tpa-*) 2026-08-21 ==
+   Quote desk sat inside extra left/right gap vs SellerTools / HowItWorks /
+   Toolkit / JourneyNumbers. Cause: laptop .tpa-fit-zoom (1024–1919) is a
+   real flex box with zoom: 0.85 and width: 100% — CSS zoom shrinks used
+   width to 85% of the section, so container-page no longer matches siblings.
+   Do not inflate by 1/0.85 (that overflow-clipped the right minis).
+   Keep width: 100%. Wrapper is display:contents so .container-page is the
+   same gutter as other landing sections: section-curve-sticky
+   margin-inline clamp(0.25rem, 0.65vw, 0.5rem) + container-page
+   max-width 94rem + padding-inline clamp(0.875rem, 1.5vw, 1.75rem).
+   No extra mx / padding-inline on .tpa-section / .tpa-fit-zoom / .tpa-shell.
+   Column-ratio + title wrap in this band unchanged. No wheel trap, no 340vh.
+   SellerTools / .sto-* untouched. */
+
+.tpa-section {
+  padding-inline: 0;
+}
+
+.tpa-fit-zoom {
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .tpa-fit-zoom {
+    display: contents;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+    padding-inline: 0;
+    zoom: unset;
+  }
+
+  .tpa-fit-zoom > .tpa-shell {
+    width: 100%;
+    max-width: min(100%, 94rem);
+    margin-inline: auto;
   }
 }

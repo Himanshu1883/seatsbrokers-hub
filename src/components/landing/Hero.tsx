@@ -179,17 +179,17 @@ function HeroSlideCopy({
         ))}
       </ul>
 
-      <div className={item(5, "hero-copy-actions mt-8 flex flex-wrap gap-3 sm:mt-9")}>
+      <div className={item(5, "hero-copy-actions mt-8 flex w-full min-w-0 flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap")}>
         <SiteLink
           to={ctas.becomeSeller.to}
-          className="lift inline-flex min-h-11 items-center justify-center rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
+          className="lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground sm:w-auto"
           tabIndex={isActive ? 0 : -1}
         >
           {ctas.becomeSeller.label}
         </SiteLink>
         <SiteLink
           to={ctas.bookDemo.to}
-          className="lift inline-flex min-h-11 items-center justify-center rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-white hover:bg-background/10"
+          className="lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-white hover:bg-background/10 sm:w-auto"
           tabIndex={isActive ? 0 : -1}
         >
           {ctas.bookDemo.label}

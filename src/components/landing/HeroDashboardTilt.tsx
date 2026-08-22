@@ -376,6 +376,7 @@ export function HeroDashboardTilt({
   }, [reduced, inView]);
 
   const onMove = useCallback((e: ReactMouseEvent<HTMLDivElement>) => {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const el = cardRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -388,6 +389,7 @@ export function HeroDashboardTilt({
   }, []);
 
   const onLeave = useCallback(() => {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const el = cardRef.current;
     if (!el) return;
     el.style.setProperty("--tilt-x", "10deg");

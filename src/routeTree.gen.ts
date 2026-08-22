@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AiPricingRouteImport } from './routes/ai-pricing'
 import { Route as ApiRouteImport } from './routes/api'
+import { Route as BecomeASellerRouteImport } from './routes/become-a-seller'
 import { Route as BookDemoRouteImport } from './routes/book-demo'
 import { Route as BrokersRouteImport } from './routes/brokers'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -24,6 +25,14 @@ import { Route as MarketAnalyticsRouteImport } from './routes/market-analytics'
 import { Route as MarketplaceConnectivityRouteImport } from './routes/marketplace-connectivity'
 import { Route as PlatformRouteImport } from './routes/platform'
 import { Route as TravelPartnersRouteImport } from './routes/travel-partners'
+import { Route as ProductsIndexRouteImport } from './routes/products/index'
+import { Route as ProductsSeatsdealRouteImport } from './routes/products/seatsdeal'
+import { Route as ProductsSeatsfundsRouteImport } from './routes/products/seatsfunds'
+import { Route as ProductsSeatsintelRouteImport } from './routes/products/seatsintel'
+import { Route as ProductsSeatslinkRouteImport } from './routes/products/seatslink'
+import { Route as ProductsSeatsmarketRouteImport } from './routes/products/seatsmarket'
+import { Route as ProductsSeatspulseRouteImport } from './routes/products/seatspulse'
+import { Route as ProductsSeatssourceRouteImport } from './routes/products/seatssource'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -43,6 +52,11 @@ const AiPricingRoute = AiPricingRouteImport.update({
 const ApiRoute = ApiRouteImport.update({
   id: '/api',
   path: '/api',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BecomeASellerRoute = BecomeASellerRouteImport.update({
+  id: '/become-a-seller',
+  path: '/become-a-seller',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookDemoRoute = BookDemoRouteImport.update({
@@ -100,12 +114,53 @@ const TravelPartnersRoute = TravelPartnersRouteImport.update({
   path: '/travel-partners',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsSeatsdealRoute = ProductsSeatsdealRouteImport.update({
+  id: '/products/seatsdeal',
+  path: '/products/seatsdeal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsSeatsfundsRoute = ProductsSeatsfundsRouteImport.update({
+  id: '/products/seatsfunds',
+  path: '/products/seatsfunds',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsSeatsintelRoute = ProductsSeatsintelRouteImport.update({
+  id: '/products/seatsintel',
+  path: '/products/seatsintel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsSeatslinkRoute = ProductsSeatslinkRouteImport.update({
+  id: '/products/seatslink',
+  path: '/products/seatslink',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsSeatsmarketRoute = ProductsSeatsmarketRouteImport.update({
+  id: '/products/seatsmarket',
+  path: '/products/seatsmarket',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsSeatspulseRoute = ProductsSeatspulseRouteImport.update({
+  id: '/products/seatspulse',
+  path: '/products/seatspulse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsSeatssourceRoute = ProductsSeatssourceRouteImport.update({
+  id: '/products/seatssource',
+  path: '/products/seatssource',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/ai-pricing': typeof AiPricingRoute
   '/api': typeof ApiRoute
+  '/become-a-seller': typeof BecomeASellerRoute
   '/book-demo': typeof BookDemoRoute
   '/brokers': typeof BrokersRoute
   '/contact': typeof ContactRoute
@@ -117,12 +172,21 @@ export interface FileRoutesByFullPath {
   '/marketplace-connectivity': typeof MarketplaceConnectivityRoute
   '/platform': typeof PlatformRoute
   '/travel-partners': typeof TravelPartnersRoute
+  '/products/seatsdeal': typeof ProductsSeatsdealRoute
+  '/products/seatsfunds': typeof ProductsSeatsfundsRoute
+  '/products/seatsintel': typeof ProductsSeatsintelRoute
+  '/products/seatslink': typeof ProductsSeatslinkRoute
+  '/products/seatsmarket': typeof ProductsSeatsmarketRoute
+  '/products/seatspulse': typeof ProductsSeatspulseRoute
+  '/products/seatssource': typeof ProductsSeatssourceRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/ai-pricing': typeof AiPricingRoute
   '/api': typeof ApiRoute
+  '/become-a-seller': typeof BecomeASellerRoute
   '/book-demo': typeof BookDemoRoute
   '/brokers': typeof BrokersRoute
   '/contact': typeof ContactRoute
@@ -134,6 +198,14 @@ export interface FileRoutesByTo {
   '/marketplace-connectivity': typeof MarketplaceConnectivityRoute
   '/platform': typeof PlatformRoute
   '/travel-partners': typeof TravelPartnersRoute
+  '/products/seatsdeal': typeof ProductsSeatsdealRoute
+  '/products/seatsfunds': typeof ProductsSeatsfundsRoute
+  '/products/seatsintel': typeof ProductsSeatsintelRoute
+  '/products/seatslink': typeof ProductsSeatslinkRoute
+  '/products/seatsmarket': typeof ProductsSeatsmarketRoute
+  '/products/seatspulse': typeof ProductsSeatspulseRoute
+  '/products/seatssource': typeof ProductsSeatssourceRoute
+  '/products': typeof ProductsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -141,6 +213,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/ai-pricing': typeof AiPricingRoute
   '/api': typeof ApiRoute
+  '/become-a-seller': typeof BecomeASellerRoute
   '/book-demo': typeof BookDemoRoute
   '/brokers': typeof BrokersRoute
   '/contact': typeof ContactRoute
@@ -152,6 +225,14 @@ export interface FileRoutesById {
   '/marketplace-connectivity': typeof MarketplaceConnectivityRoute
   '/platform': typeof PlatformRoute
   '/travel-partners': typeof TravelPartnersRoute
+  '/products/seatsdeal': typeof ProductsSeatsdealRoute
+  '/products/seatsfunds': typeof ProductsSeatsfundsRoute
+  '/products/seatsintel': typeof ProductsSeatsintelRoute
+  '/products/seatslink': typeof ProductsSeatslinkRoute
+  '/products/seatsmarket': typeof ProductsSeatsmarketRoute
+  '/products/seatspulse': typeof ProductsSeatspulseRoute
+  '/products/seatssource': typeof ProductsSeatssourceRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -160,6 +241,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/ai-pricing'
     | '/api'
+    | '/become-a-seller'
     | '/book-demo'
     | '/brokers'
     | '/contact'
@@ -171,12 +253,21 @@ export interface FileRouteTypes {
     | '/marketplace-connectivity'
     | '/platform'
     | '/travel-partners'
+    | '/products/seatsdeal'
+    | '/products/seatsfunds'
+    | '/products/seatsintel'
+    | '/products/seatslink'
+    | '/products/seatsmarket'
+    | '/products/seatspulse'
+    | '/products/seatssource'
+    | '/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/ai-pricing'
     | '/api'
+    | '/become-a-seller'
     | '/book-demo'
     | '/brokers'
     | '/contact'
@@ -188,12 +279,21 @@ export interface FileRouteTypes {
     | '/marketplace-connectivity'
     | '/platform'
     | '/travel-partners'
+    | '/products/seatsdeal'
+    | '/products/seatsfunds'
+    | '/products/seatsintel'
+    | '/products/seatslink'
+    | '/products/seatsmarket'
+    | '/products/seatspulse'
+    | '/products/seatssource'
+    | '/products'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/ai-pricing'
     | '/api'
+    | '/become-a-seller'
     | '/book-demo'
     | '/brokers'
     | '/contact'
@@ -205,6 +305,14 @@ export interface FileRouteTypes {
     | '/marketplace-connectivity'
     | '/platform'
     | '/travel-partners'
+    | '/products/seatsdeal'
+    | '/products/seatsfunds'
+    | '/products/seatsintel'
+    | '/products/seatslink'
+    | '/products/seatsmarket'
+    | '/products/seatspulse'
+    | '/products/seatssource'
+    | '/products/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -212,6 +320,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AiPricingRoute: typeof AiPricingRoute
   ApiRoute: typeof ApiRoute
+  BecomeASellerRoute: typeof BecomeASellerRoute
   BookDemoRoute: typeof BookDemoRoute
   BrokersRoute: typeof BrokersRoute
   ContactRoute: typeof ContactRoute
@@ -223,6 +332,14 @@ export interface RootRouteChildren {
   MarketplaceConnectivityRoute: typeof MarketplaceConnectivityRoute
   PlatformRoute: typeof PlatformRoute
   TravelPartnersRoute: typeof TravelPartnersRoute
+  ProductsSeatsdealRoute: typeof ProductsSeatsdealRoute
+  ProductsSeatsfundsRoute: typeof ProductsSeatsfundsRoute
+  ProductsSeatsintelRoute: typeof ProductsSeatsintelRoute
+  ProductsSeatslinkRoute: typeof ProductsSeatslinkRoute
+  ProductsSeatsmarketRoute: typeof ProductsSeatsmarketRoute
+  ProductsSeatspulseRoute: typeof ProductsSeatspulseRoute
+  ProductsSeatssourceRoute: typeof ProductsSeatssourceRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -253,6 +370,13 @@ declare module '@tanstack/react-router' {
       path: '/api'
       fullPath: '/api'
       preLoaderRoute: typeof ApiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/become-a-seller': {
+      id: '/become-a-seller'
+      path: '/become-a-seller'
+      fullPath: '/become-a-seller'
+      preLoaderRoute: typeof BecomeASellerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/book-demo': {
@@ -332,6 +456,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TravelPartnersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/seatsdeal': {
+      id: '/products/seatsdeal'
+      path: '/products/seatsdeal'
+      fullPath: '/products/seatsdeal'
+      preLoaderRoute: typeof ProductsSeatsdealRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/seatsfunds': {
+      id: '/products/seatsfunds'
+      path: '/products/seatsfunds'
+      fullPath: '/products/seatsfunds'
+      preLoaderRoute: typeof ProductsSeatsfundsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/seatsintel': {
+      id: '/products/seatsintel'
+      path: '/products/seatsintel'
+      fullPath: '/products/seatsintel'
+      preLoaderRoute: typeof ProductsSeatsintelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/seatslink': {
+      id: '/products/seatslink'
+      path: '/products/seatslink'
+      fullPath: '/products/seatslink'
+      preLoaderRoute: typeof ProductsSeatslinkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/seatsmarket': {
+      id: '/products/seatsmarket'
+      path: '/products/seatsmarket'
+      fullPath: '/products/seatsmarket'
+      preLoaderRoute: typeof ProductsSeatsmarketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/seatspulse': {
+      id: '/products/seatspulse'
+      path: '/products/seatspulse'
+      fullPath: '/products/seatspulse'
+      preLoaderRoute: typeof ProductsSeatspulseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/seatssource': {
+      id: '/products/seatssource'
+      path: '/products/seatssource'
+      fullPath: '/products/seatssource'
+      preLoaderRoute: typeof ProductsSeatssourceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -340,6 +520,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AiPricingRoute: AiPricingRoute,
   ApiRoute: ApiRoute,
+  BecomeASellerRoute: BecomeASellerRoute,
   BookDemoRoute: BookDemoRoute,
   BrokersRoute: BrokersRoute,
   ContactRoute: ContactRoute,
@@ -351,6 +532,14 @@ const rootRouteChildren: RootRouteChildren = {
   MarketplaceConnectivityRoute: MarketplaceConnectivityRoute,
   PlatformRoute: PlatformRoute,
   TravelPartnersRoute: TravelPartnersRoute,
+  ProductsSeatsdealRoute: ProductsSeatsdealRoute,
+  ProductsSeatsfundsRoute: ProductsSeatsfundsRoute,
+  ProductsSeatsintelRoute: ProductsSeatsintelRoute,
+  ProductsSeatslinkRoute: ProductsSeatslinkRoute,
+  ProductsSeatsmarketRoute: ProductsSeatsmarketRoute,
+  ProductsSeatspulseRoute: ProductsSeatspulseRoute,
+  ProductsSeatssourceRoute: ProductsSeatssourceRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

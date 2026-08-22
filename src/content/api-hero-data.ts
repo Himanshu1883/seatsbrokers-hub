@@ -1,13 +1,11 @@
-/** Seatpin™ hero: left copy plus documentation-console stage data. */
-
-import { modules } from "./modules";
+/** API developer page: left copy plus documentation-console stage data. */
 
 export const apiHeroCopy = {
-  eyebrow: modules.link.name,
-  title: modules.link.tagline,
+  eyebrow: "API",
+  title: "Build on the SeatsBrokers API",
   subhead:
-    "Secure authentication, role-based access, audit logs and real-time synchronization — enterprise-grade API infrastructure built specifically for ticketing operations.",
-  body: "API-first architecture for POS systems, inventory systems, internal ERP, websites, mobile applications and partner systems — connect at the depth you need.",
+    "Secure authentication, role-based access, audit logs and real-time synchronization — API infrastructure built specifically for ticketing operations.",
+  body: "Events, inventory, listings, orders, pricing, fulfilment and webhooks. Connect POS, ERP, websites and partner systems without a parallel stack.",
 } as const;
 
 export type ApiDocMethod = "GET" | "POST";
@@ -196,6 +194,59 @@ export const apiProducts = [
     body: "Allow B2B partners and external systems to interact with inventory, margins and quotations.",
   },
 ] as const;
+
+export const apiInfra = {
+  eyebrow: "Infrastructure",
+  title: "The engineering layer behind every connected product",
+  intro:
+    "Authentication, sync, webhooks and audit — technical detail that lives on the API, not the homepage.",
+  items: [
+    {
+      id: "api-first",
+      index: "01",
+      title: "API-first",
+      body: "REST endpoints with secure authentication and an audit log on every call.",
+      signal: "REST · Bearer · audit",
+    },
+    {
+      id: "real-time-sync",
+      index: "02",
+      title: "Real-time sync",
+      body: "Inventory, pricing, listings and orders stay aligned with the systems you already run.",
+      signal: "Inventory · listings · orders",
+    },
+    {
+      id: "role-based-access",
+      index: "03",
+      title: "Role-based access",
+      body: "Staff-grade permissions so the right roles see the right objects.",
+      signal: "Broker · partner · admin",
+    },
+    {
+      id: "webhooks",
+      index: "04",
+      title: "Webhooks",
+      body: "Signed delivery for inventory, listing, order and fulfilment events.",
+      signal: "HMAC-SHA256 · signed POST",
+    },
+    {
+      id: "retry-and-ack",
+      index: "05",
+      title: "Retry and ack",
+      body: "Delivery attempts are logged so your stack can reconcile missed events.",
+      signal: "503 retry · 200 ack",
+    },
+    {
+      id: "ticketing-native",
+      index: "06",
+      title: "Ticketing-native",
+      body: "Events, seats, listings and orders — not a generic ERP export.",
+      signal: "Events · seats · listings",
+    },
+  ],
+} as const;
+
+export type ApiInfraId = (typeof apiInfra.items)[number]["id"];
 
 export const apiAuthPipeline = [
   { id: "issue", label: "Issue key", detail: "sk_live minted" },

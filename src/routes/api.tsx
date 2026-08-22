@@ -1,24 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { KeyRound, Layers, Webhook } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
-import { pageMeta } from "@/content/site";
+import { pageMeta, seoHead } from "@/content/site";
 import { apiProducts } from "@/content/api-hero-data";
 import { ApiCards, WorkflowSteps } from "@/components/pages/shared/PageSections";
 import { SectionConnector } from "@/components/pages/brokers/SectionConnector";
 import { ApiHero } from "@/components/pages/api/ApiHero";
+import { ApiInfraBoard } from "@/components/pages/api/ApiInfraBoard";
 import { ApiLiveConsole } from "@/components/pages/api/ApiLiveConsole";
 
-const { title, description } = pageMeta.api;
-
 export const Route = createFileRoute("/api")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-    ],
-  }),
+  head: () => seoHead("/api", pageMeta.api),
   component: ApiPage,
 });
 
@@ -51,6 +43,8 @@ function ApiPage() {
         intro="Connect at the depth you need — from the global event catalog through inventory, listings, orders, pricing, delivery and partner quotations."
         items={[...apiProducts]}
       />
+
+      <ApiInfraBoard />
 
       <SectionConnector
         step="02"

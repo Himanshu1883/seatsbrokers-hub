@@ -150,6 +150,15 @@ export function FeatureOrbitGrid({ items }: FeatureOrbitGridProps) {
 
   return (
     <div className="fg-infinity" aria-label="Feature capability orbit systems">
+      <ul className="fg-stack">
+        {items.map((item) => (
+          <li key={item.title} className="fg-stack-card">
+            <p className="fg-stack-title">{item.title}</p>
+            <p className="fg-stack-body">{item.body}</p>
+          </li>
+        ))}
+      </ul>
+
       <div className="fg-infinity-viewport">
         <svg className="fg-infinity-track" viewBox="0 0 100 100" aria-hidden>
           <path d={INFINITY_PATH} className="fg-infinity-loop" />

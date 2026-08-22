@@ -1,7 +1,7 @@
 import { CalendarClock, Layers, Users } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
-import { pageMeta } from "@/content/site";
+import { pageMeta, seoHead } from "@/content/site";
 import { demoSteps } from "@/content/book-demo-data";
 import { WorkflowSteps } from "@/components/pages/shared/PageSections";
 import { SectionConnector } from "@/components/pages/brokers/SectionConnector";
@@ -10,17 +10,8 @@ import { DemoAudience } from "@/components/pages/book-demo/DemoAudience";
 import { DemoSessionBoard } from "@/components/pages/book-demo/DemoSessionBoard";
 import { DemoRequestForm } from "@/components/pages/book-demo/DemoRequestForm";
 
-const { title, description } = pageMeta.bookDemo;
-
 export const Route = createFileRoute("/book-demo")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-    ],
-  }),
+  head: () => seoHead("/book-demo", pageMeta.bookDemo),
   component: BookDemoPage,
 });
 
@@ -66,9 +57,9 @@ function BookDemoPage() {
         to={{
           icon: CalendarClock,
           label: "Book the slot",
-          detail: "Name, company and a preferred window. We reply within one business day.",
+          detail: "Name, company, country and a number we can reach. We reply within one business day.",
         }}
-        payload={["role", "timezone", "agenda"]}
+        payload={["name", "country", "system"]}
       />
 
       <DemoRequestForm />

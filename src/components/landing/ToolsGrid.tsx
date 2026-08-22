@@ -192,8 +192,8 @@ const sellerModules: {
     n: "03",
     icon: Share2,
     title: "Marketplace distribution",
-    event: "list.once → 16 channels",
-    features: ["List once", "16 connected channels", "Qty kept in sync", "Status mirrored"],
+    event: "list.once → channels out",
+    features: ["List once", "Connected channels", "Qty kept in sync", "Status mirrored"],
   },
   {
     n: "04",
@@ -232,11 +232,11 @@ const sellerDataLayer = ["Inventory", "Pricing", "Orders", "Delivery", "Settleme
 const sellerDataMap = [0, 0, 2, 1, 3, 4] as const;
 
 const sellerChannels: readonly { id: string; icon: LucideIcon; label: string }[] = [
-  { id: "seatpick", icon: Ticket, label: "SeatPick" },
-  { id: "hello-tickets", icon: Handshake, label: "Hello Tickets" },
-  { id: "stubhub", icon: Globe2, label: "Stubhub" },
-  { id: "1boxoffice", icon: Building2, label: "1BoxOffice" },
-  { id: "Seatpin", icon: Link2, label: "Seatpin" },
+  { id: "marketplaces", icon: Ticket, label: "Marketplaces" },
+  { id: "b2b-buyers", icon: Handshake, label: "B2B buyers" },
+  { id: "websites", icon: Globe2, label: "Websites" },
+  { id: "api-partners", icon: Link2, label: "API partners" },
+  { id: "other-channels", icon: Building2, label: "Other channels" },
 ];
 
 const sellerBuyers: { icon: LucideIcon; label: string }[] = [
@@ -264,7 +264,7 @@ const sellerSteps: { n: string; icon: LucideIcon; title: string; body: string }[
     n: "03",
     icon: Share2,
     title: "List & distribute",
-    body: "List once. Inventory is pushed across 16 connected marketplaces, with quantity, price and status kept in sync.",
+    body: "List once. Inventory is pushed across connected marketplaces and sales channels, with quantity, price and status kept in sync.",
   },
   {
     n: "04",
@@ -287,8 +287,8 @@ const sellerSteps: { n: string; icon: LucideIcon; title: string; body: string }[
 ];
 
 const sellerHighlights: { icon: LucideIcon; label: string }[] = [
-  { icon: Globe2, label: "165 countries" },
-  { icon: Network, label: "16 connected marketplaces" },
+  { icon: Globe2, label: "Global distribution" },
+  { icon: Network, label: "Multiple connected marketplaces" },
   { icon: RefreshCw, label: "Real-time sync" },
   { icon: ShieldCheck, label: "Secure & scalable" },
   { icon: BarChart3, label: "Maximize reach, minimize work" },
@@ -595,8 +595,8 @@ export function SellerTools() {
         <Reveal>
           <header className="sto-head">
             <div className="sto-head-copy">
-              <p className="section-eyebrow text-primary">{brand.name}</p>
-              <h2 id="sellers-title">Marketplace connectivity and orchestration engine</h2>
+              <p className="section-eyebrow text-primary">Global distribution</p>
+              <h2 id="sellers-title">One inventory layer. Every sales channel.</h2>
             </div>
             <p className="sto-tagline">Connect. List. Sync. Sell. Everywhere.</p>
           </header>
@@ -768,9 +768,9 @@ export function SellerTools() {
                   </ul>
                 </div>
                 <div className="sto-channel-copy">
-                  <p className="sto-channel-note font-mono">16 connected marketplaces</p>
+                  <p className="sto-channel-note font-mono">Multiple connected marketplaces</p>
                   <p className="sto-channel-lede">
-                    Listings go out through {modules.link.name} to these named channels.
+                    Connected to leading global marketplaces and distribution channels.
                     Quantity, price and status stay in sync from one desk.
                   </p>
                 </div>

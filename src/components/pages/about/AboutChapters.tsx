@@ -170,8 +170,7 @@ export function AboutMission() {
       />
       <div className="container-page relative z-10">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <p className="section-eyebrow text-primary">{aboutMissionCopy.eyebrow}</p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             {aboutMissionCopy.title}
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">{aboutMissionCopy.intro}</p>

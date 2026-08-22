@@ -2,10 +2,10 @@
 
 export const legalHeroCopy = {
   eyebrow: "Legal",
-  titleLead: "Privacy, terms",
-  titleAccent: "and cookies.",
+  titleLead: "Privacy, terms,",
+  titleAccent: "cookies and compliance.",
   intro:
-    "Privacy, terms and cookies for the SeatsBrokers marketing site. Open a tab below. Questions go to sales@seatsbrokers.com or partners@seatsbrokers.com.",
+    "Privacy, terms, cookies and compliance for the SeatsBrokers marketing site. Open a tab below. Questions go to sales@seatsbrokers.com or partners@seatsbrokers.com.",
 } as const;
 
 export const legalUpdated = "17 August 2026";
@@ -28,6 +28,12 @@ export const legalChapters = [
     index: "03",
     label: "Cookie Policy",
     kicker: "This browser",
+  },
+  {
+    id: "compliance",
+    index: "04",
+    label: "Compliance",
+    kicker: "How we operate",
   },
 ] as const;
 
@@ -131,7 +137,7 @@ export const legalTerms: {
       heading: "Using this site",
       paragraphs: [
         "By using seatsbrokers.com (this marketing site), you agree to these terms. If you do not agree, do not use the site.",
-        "SeatsBrokers provides B2B ticketing infrastructure. Become a seller via the broker platform. B2B partners search the same inventory, add margin and quote. Marketplace connectivity, event intelligence and the API are product surfaces of that platform — not a public ticket checkout.",
+        "SeatsBrokers is a B2B technology platform for professional ticket brokers. Become a Seller via the broker platform. Quotes, marketplace distribution, event intelligence and the API are product surfaces of that platform — not a public ticket checkout.",
       ],
     },
     {
@@ -225,3 +231,49 @@ export const legalCookies: {
     },
   ],
 };
+
+export const legalCompliance: {
+  title: string;
+  lead: string;
+  blocks: readonly LegalBlock[];
+} = {
+  title: "Compliance",
+  lead: "How SeatsBrokers operates as a B2B technology platform for professional ticket brokers — not as a consumer ticket shop.",
+  blocks: [
+    {
+      heading: "Who this platform is for",
+      paragraphs: [
+        "SeatsBrokers is a B2B technology platform for professional ticket brokers, ticket resellers, ticket suppliers and technology-driven ticket businesses.",
+        "This marketing website is not a consumer checkout. You cannot buy event tickets here. Listings, quotes, orders and payments belong on the platform once a business account is in place.",
+      ],
+    },
+    {
+      heading: "Onboarding",
+      paragraphs: [
+        "Access to the SeatsBrokers network is by application. Company details, trading history and current systems are collected so the desk can assess fit. Commercial terms are agreed per account, in £.",
+        "Identity, company and payment checks are handled as part of that onboarding conversation. We do not publish a public consumer fee table on this site.",
+      ],
+    },
+    {
+      heading: "Marketplace distribution",
+      paragraphs: [
+        "SeatsMarket™ connects inventory to ticket marketplaces and sales channels. Named marketplace logos appear on this site only where a relationship can be publicly confirmed.",
+        "We do not publish unverified counts of marketplaces, partners, tickets delivered, inventory value or platform uptime.",
+      ],
+    },
+    {
+      heading: "Data and privacy",
+      paragraphs: [
+        "How this marketing site handles information is described in the Privacy Policy tab. Operational platform data for contracted partners is handled under the commercial terms agreed with the account.",
+      ],
+    },
+    {
+      heading: "SeatsGroup",
+      paragraphs: [
+        "SeatsBrokers is part of SeatsGroup, a technology group developing distribution solutions for the ticketing, travel and hospitality industries.",
+        "Questions about compliance, onboarding or partner terms: sales@seatsbrokers.com or partners@seatsbrokers.com.",
+      ],
+    },
+  ],
+};
+

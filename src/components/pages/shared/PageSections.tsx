@@ -1,9 +1,8 @@
 import type { LucideIcon } from "lucide-react";
-import { CircleOff, RefreshCw, ShieldCheck, Upload } from "lucide-react";
+import { Activity, CircleOff, Layers3, Monitor, RefreshCw, ShieldCheck, Upload, Users } from "lucide-react";
 import type { ReactNode } from "react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
-import { FeatureOrbitGrid } from "@/components/pages/shared/FeatureOrbitGrid";
 import { WorkflowInfraCanvas } from "@/components/pages/shared/WorkflowInfraCanvas";
 import { brand, ctas } from "@/content/site";
 
@@ -34,7 +33,7 @@ export function PageHero({
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-background/75 sm:text-lg">
             {body}
           </p>
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="page-cta-row mt-9">
             <SiteLink
               to={primaryCta.to}
               hash={primaryCta.hash}
@@ -62,28 +61,63 @@ type FeatureGridProps = {
   eyebrow: string;
   title: string;
   intro?: string;
-  items: { title: string; body: string }[];
+  items: { id: string; title: string; body: string }[];
 };
 
+const sellerBenefitIcons: Record<string, LucideIcon> = {
+  inventory: Layers3,
+  technology: Monitor,
+  marketplaces: RefreshCw,
+  intelligence: Activity,
+  demand: Users,
+  services: ShieldCheck,
+};
+
+function padBenefitIndex(index: number) {
+  return String(index + 1).padStart(2, "0");
+}
+
 export function FeatureGrid({ eyebrow, title, intro, items }: FeatureGridProps) {
+  const titleId = "seller-benefits-title";
+
   return (
-    <section className="section-curve relative isolate bg-background py-20 sm:py-24">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-border to-transparent" aria-hidden />
+    <section
+      className="prd-cap-section section-curve relative isolate scroll-mt-24 bg-background py-20 sm:py-24"
+      aria-labelledby={titleId}
+    >
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-border to-transparent"
+        aria-hidden
+      />
       <div className="container-page relative z-10">
         <Reveal>
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="prd-cap-header">
             <p className="section-eyebrow text-primary">{eyebrow}</p>
-            <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">{title}</h2>
-            {intro ? (
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">{intro}</p>
-            ) : null}
+            <h2 id={titleId}>{title}</h2>
+            {intro ? <p>{intro}</p> : null}
           </div>
         </Reveal>
 
-        <Reveal delay={80} className="mt-12 lg:mt-14">
-          <div className="fg-orbit-panel">
-            <FeatureOrbitGrid items={items} />
-          </div>
+        <Reveal delay={80} className="prd-cap-grid-wrap">
+          <ul className="prd-cap-grid">
+            {items.map((item, index) => {
+              const Icon = sellerBenefitIcons[item.id] ?? Layers3;
+              return (
+                <li key={item.id}>
+                  <article className="prd-cap-card">
+                    <header className="prd-cap-card-head">
+                      <span className="prd-cap-icon" aria-hidden>
+                        <Icon className="size-5" strokeWidth={1.75} />
+                      </span>
+                      <span className="prd-cap-index">{padBenefitIndex(index)}</span>
+                    </header>
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </article>
+                </li>
+              );
+            })}
+          </ul>
         </Reveal>
       </div>
     </section>

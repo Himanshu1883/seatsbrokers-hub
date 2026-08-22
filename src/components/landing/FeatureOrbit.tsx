@@ -1,16 +1,23 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
+  ArrowRight,
   BarChart3,
+  FileText,
   Layers,
+  Link2,
   RefreshCw,
   ShieldCheck,
   TrendingUp,
+  Wallet,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Reveal, useInView } from "@/hooks/use-scroll-motion";
+import { SiteLink } from "@/components/layout/SiteLink";
 import logo from "@/assets/seatsbrokers-logo.png";
 import { modules } from "@/content/modules";
+import { productHrefs } from "@/content/site";
 
-type Accent = "mint" | "amber" | "teal" | "cyan" | "forest";
+type Accent = "mint" | "amber" | "teal" | "cyan" | "forest" | "gold" | "olive";
 
 const accentHex: Record<Accent, string> = {
   mint: "#198754",
@@ -18,18 +25,24 @@ const accentHex: Record<Accent, string> = {
   teal: "#0d9488",
   cyan: "#0891b2",
   forest: "#146c43",
+  gold: "#b8860b",
+  olive: "#3d6b4f",
 };
+
+const ORBIT_STEP = 360 / 7;
 
 const features: {
   id: string;
   angle: number;
   side: "left" | "right";
   accent: Accent;
-  icon: typeof RefreshCw;
+  icon: LucideIcon;
   title: string;
   italic: string;
   category: string;
   detail: string;
+  href: string;
+  cta: string;
 }[] = [
   {
     id: "intel",
@@ -38,58 +51,96 @@ const features: {
     accent: "mint",
     icon: BarChart3,
     title: modules.intel.name,
-    italic: "know what's coming",
-    category: "Event Data",
+    italic: modules.intel.tagline,
+    category: modules.intel.what,
     detail:
-      "Global event catalog, onsale dates, sales criteria, ballot information, demand indicators, venue maps and category pricing — before you sell.",
+      "Access global event data, onsale information, venue details, market pricing, demand signals and ticket intelligence to identify opportunities earlier.",
+    href: productHrefs.intel,
+    cta: `Explore ${modules.intel.name}`,
   },
   {
-    id: "connectivity",
-    angle: 278,
+    id: "source",
+    angle: 200 + ORBIT_STEP,
     side: "left",
     accent: "amber",
-    icon: RefreshCw,
-    title: modules.market.name,
-    italic: "list once, distribute",
-    category: "Distribution",
-    detail:
-      "API connectivity, inventory synchronization, automated listing distribution, price and quantity sync, and automatic delisting after sale.",
-  },
-  {
-    id: "automation",
-    angle: 338,
-    side: "right",
-    accent: "teal",
     icon: Layers,
     title: modules.source.name,
-    italic: "one place to manage",
-    category: "Inventory",
+    italic: modules.source.tagline,
+    category: modules.source.what,
     detail:
-      "Manage tickets, sections, rows, quantity, prices, delivery information and restrictions — with listings synchronized across every connected channel.",
+      "Centralise your own inventory and connected supplier stock, including ticket categories, sections, rows, quantities, pricing and delivery information.",
+    href: productHrefs.source,
+    cta: `Explore ${modules.source.name}`,
   },
   {
-    id: "pricing",
-    angle: 48,
+    id: "pulse",
+    angle: 200 + ORBIT_STEP * 2,
     side: "right",
-    accent: "cyan",
+    accent: "teal",
     icon: TrendingUp,
     title: modules.pulse.name,
-    italic: "you decide",
-    category: "Intelligence",
+    italic: modules.pulse.tagline,
+    category: modules.pulse.what,
     detail:
-      "Market data analyzed into pricing recommendations. AI recommends — broker approves — price synchronized through connected marketplace infrastructure.",
+      "Turn live market data into intelligent pricing recommendations based on market movement, inventory levels and demand. You remain in control of every pricing decision.",
+    href: productHrefs.pulse,
+    cta: `Explore ${modules.pulse.name}`,
   },
   {
-    id: "api",
-    angle: 118,
+    id: "link",
+    angle: 200 + ORBIT_STEP * 3,
+    side: "right",
+    accent: "cyan",
+    icon: Link2,
+    title: modules.link.name,
+    italic: modules.link.tagline,
+    category: modules.link.what,
+    detail:
+      "Connect your POS, websites, supplier feeds and inventory tools. Inventory, pricing, orders and fulfilment move between the systems you already run.",
+    href: productHrefs.link,
+    cta: `Explore ${modules.link.name}`,
+  },
+  {
+    id: "market",
+    angle: 200 + ORBIT_STEP * 4,
     side: "right",
     accent: "forest",
-    icon: ShieldCheck,
-    title: modules.link.name,
-    italic: "connect your systems",
-    category: "Integrations",
+    icon: RefreshCw,
+    title: modules.market.name,
+    italic: modules.market.tagline,
+    category: modules.market.what,
     detail:
-      "Connect POS systems, inventory systems, internal ERP, websites, mobile applications and partner systems through API-first architecture.",
+      "Connect inventory to multiple ticket marketplaces and sales channels while keeping prices, quantities and availability synchronised. When inventory sells, connected listings are automatically updated to reduce the risk of double selling.",
+    href: productHrefs.market,
+    cta: `Explore ${modules.market.name}`,
+  },
+  {
+    id: "deal",
+    angle: 200 + ORBIT_STEP * 5,
+    side: "left",
+    accent: "gold",
+    icon: FileText,
+    title: modules.deal.name,
+    italic: modules.deal.tagline,
+    category: modules.deal.what,
+    detail:
+      "Search inventory, select tickets, apply your margin and create professional customer quotations in seconds. Share by PDF, email, WhatsApp or branded customer link and manage the order through one workflow.",
+    href: productHrefs.deal,
+    cta: `Explore ${modules.deal.name}`,
+  },
+  {
+    id: "funds",
+    angle: 200 + ORBIT_STEP * 6,
+    side: "left",
+    accent: "olive",
+    icon: Wallet,
+    title: modules.funds.name,
+    italic: modules.funds.tagline,
+    category: modules.funds.what,
+    detail:
+      "Manage purchasing, balances, payment methods, transaction visibility and eligible partner settlements from within the SeatsBrokers ecosystem.",
+    href: productHrefs.funds,
+    cta: `Explore ${modules.funds.name}`,
   },
 ];
 
@@ -110,8 +161,17 @@ const marketplaces = [
   { name: "Marketplace 06", status: "Synced" },
 ];
 
-const ORBIT_MS = 1200;
+const ORBIT_MS = 2100;
 const ORBIT_RESUME_MS = 450;
+
+function ExploreCta({ href, label }: { href: string; label: string }) {
+  return (
+    <SiteLink to={href} className="feature-orbit-cta">
+      {label}
+      <ArrowRight className="size-3.5 shrink-0" aria-hidden />
+    </SiteLink>
+  );
+}
 
 export function FeatureOrbit() {
   const [active, setActive] = useState(0);
@@ -121,7 +181,7 @@ export function FeatureOrbit() {
   const resumeTimer = useRef<number | null>(null);
   const cx = 50;
   const cy = 50;
-  const ringR = 38;
+  const ringR = 41;
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -192,17 +252,18 @@ export function FeatureOrbit() {
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <p className="section-eyebrow text-primary">
-              Platform stack
+              The SeatsBrokers ecosystem
             </p>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.85rem]">
-              Technology built specifically for{" "}
+              Everything you need to run a{" "}
               <em className="font-medium text-primary-deep italic">
-                ticketing
+                ticket brokerage
               </em>
             </h2>
             <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-              Event intelligence, marketplace connectivity, inventory automation, AI pricing
-              and API infrastructure — orbiting one SeatsBrokers core.
+              Seven products around one core — from market opportunity to settlement.
+              Intelligence, inventory, pricing, connectivity, distribution, quotes and
+              payments orbit the same SeatsBrokers platform.
             </p>
           </div>
         </Reveal>
@@ -252,18 +313,18 @@ export function FeatureOrbit() {
               <div className="mt-6 grid grid-cols-2 gap-3 border-t border-border/70 pt-5">
                 <div>
                   <p className="font-mono text-[9px] tracking-[0.16em] text-muted-foreground ">
-                    Uptime
+                    Coverage
                   </p>
                   <p className="mt-0.5 font-mono text-base font-semibold text-primary">
-                    99.98%
+                    Global
                   </p>
                 </div>
                 <div>
                   <p className="font-mono text-[9px] tracking-[0.16em] text-muted-foreground ">
-                    Latency
+                    Sync
                   </p>
                   <p className="mt-0.5 font-mono text-base font-semibold text-foreground">
-                    42ms
+                    Live
                   </p>
                 </div>
               </div>
@@ -271,7 +332,7 @@ export function FeatureOrbit() {
           </Reveal>
 
           <div
-            className="feature-orbit-canvas relative z-20 mx-auto aspect-square w-full max-w-[640px] overflow-visible xl:max-w-[720px]"
+            className="feature-orbit-canvas relative z-20 mx-auto aspect-square w-full max-w-[680px] overflow-visible xl:max-w-[760px]"
             onPointerEnter={hold}
             onPointerLeave={release}
             onPointerDown={hold}
@@ -325,11 +386,11 @@ export function FeatureOrbit() {
               })}
             </svg>
 
-            <div className="absolute top-1/2 left-1/2 z-[1] flex h-32 w-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-primary/30 bg-white shadow-[0_0_70px_-12px_color-mix(in_oklab,var(--primary)_45%,transparent)] xl:h-36 xl:w-36">
+            <div className="absolute top-1/2 left-1/2 z-[1] flex h-[7.25rem] w-[7.25rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-primary/30 bg-white shadow-[0_0_70px_-12px_color-mix(in_oklab,var(--primary)_45%,transparent)] xl:h-32 xl:w-32">
               <img
                 src={logo}
                 alt=""
-                className="h-14 w-auto max-w-[70%] object-contain xl:h-16"
+                className="h-12 w-auto max-w-[70%] object-contain xl:h-14"
               />
               <span className="absolute -bottom-2.5 flex items-center gap-1 rounded-full border border-primary/25 bg-white px-2.5 py-1 font-mono text-[10px] font-bold tracking-[0.12em] text-primary ">
                 <ShieldCheck className="size-3" />
@@ -357,27 +418,27 @@ export function FeatureOrbit() {
                   <button
                     type="button"
                     onClick={() => setActive(i)}
-                    className={`relative flex w-[148px] flex-col items-center gap-2 rounded-2xl border px-3.5 py-3.5 text-center transition-all duration-300 xl:w-[160px] ${
+                    className={`feature-orbit-node-btn relative flex flex-col items-center gap-1.5 rounded-2xl border px-2.5 py-2.5 text-center transition-all duration-300 ${
                       isActive
                         ? "scale-[1.03] border-primary/35 bg-white shadow-[0_20px_44px_-26px_rgba(0,0,0,0.28)]"
                         : "border-border/80 bg-white/75 opacity-75 hover:opacity-100"
                     }`}
                   >
                     <span
-                      className="flex h-10 w-10 items-center justify-center rounded-xl"
+                      className="flex h-8 w-8 items-center justify-center rounded-xl"
                       style={{
                         color: accentHex[f.accent],
                         background: `${accentHex[f.accent]}14`,
                         border: `1px solid ${accentHex[f.accent]}33`,
                       }}
                     >
-                      <Icon className="size-5" strokeWidth={1.75} />
+                      <Icon className="size-4" strokeWidth={1.75} />
                     </span>
-                    <p className="text-[13px] leading-tight font-semibold text-foreground">
-                      {f.title}{" "}
-                      <em className="font-medium text-muted-foreground italic">
-                        {f.italic}
-                      </em>
+                    <p className="feature-orbit-node-title font-semibold text-foreground">
+                      {f.title}
+                    </p>
+                    <p className="feature-orbit-node-tagline font-medium text-muted-foreground italic">
+                      {f.italic}
                     </p>
                   </button>
 
@@ -397,6 +458,7 @@ export function FeatureOrbit() {
                       <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
                         {f.detail}
                       </p>
+                      <ExploreCta href={f.href} label={f.cta} />
                     </div>
                   ) : null}
                 </div>
@@ -471,63 +533,40 @@ export function FeatureOrbit() {
               const Icon = f.icon;
               const isActive = i === active;
               return (
-                <button
+                <article
                   key={f.id}
-                  type="button"
-                  aria-expanded={isActive}
-                  aria-controls="feature-orbit-mobile-detail"
-                  onClick={() => setActive(i)}
-                  className={`flex min-h-11 items-start gap-3 rounded-xl border px-4 py-4 text-left transition-colors ${
-                    isActive
-                      ? "border-primary/30 bg-white shadow-sm"
-                      : "border-border/80 bg-white/70"
-                  }`}
+                  data-accent={f.accent}
+                  data-active={isActive ? "true" : "false"}
+                  className="feature-orbit-mobile-card"
+                  onClick={(e) => {
+                    if ((e.target as HTMLElement).closest("a")) return;
+                    setActive(i);
+                  }}
                 >
-                  <span
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
-                    style={{
-                      color: accentHex[f.accent],
-                      background: `${accentHex[f.accent]}14`,
-                    }}
-                  >
-                    <Icon className="size-4.5" strokeWidth={1.75} />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-[14px] font-semibold text-foreground">
-                      {f.title}{" "}
-                      <em className="font-medium text-muted-foreground italic">
-                        {f.italic}
-                      </em>
+                  <div className="feature-orbit-mobile-head">
+                    <span
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+                      style={{
+                        color: accentHex[f.accent],
+                        background: `${accentHex[f.accent]}14`,
+                      }}
+                    >
+                      <Icon className="size-4.5" strokeWidth={1.75} />
                     </span>
-                  </span>
-                </button>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[14px] font-semibold text-foreground">
+                        {f.title}
+                      </p>
+                      <p className="mt-0.5 text-[13px] font-medium text-muted-foreground italic">
+                        {f.italic}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="feature-orbit-mobile-body">{f.detail}</p>
+                  <ExploreCta href={f.href} label={f.cta} />
+                </article>
               );
             })}
-          </div>
-          <div
-            id="feature-orbit-mobile-detail"
-            className="feature-orbit-mobile-detail-slot"
-            aria-live="polite"
-          >
-            {features.map((f, i) => (
-              <div
-                key={f.id}
-                className="feature-orbit-mobile-detail-panel"
-                data-accent={f.accent}
-                data-active={i === active ? "true" : "false"}
-                aria-hidden={i === active ? undefined : true}
-              >
-                <p
-                  className="font-mono text-[10px] font-bold tracking-[0.16em] "
-                  style={{ color: accentHex[f.accent] }}
-                >
-                  {f.category}
-                </p>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
-                  {f.detail}
-                </p>
-              </div>
-            ))}
           </div>
         </div>
 
@@ -536,7 +575,7 @@ export function FeatureOrbit() {
             <button
               key={f.id}
               type="button"
-              aria-label={`Show ${f.category}`}
+              aria-label={`Show ${f.title}`}
               onClick={() => setActive(i)}
               className="h-1.5 rounded-full transition-all duration-300"
               style={{

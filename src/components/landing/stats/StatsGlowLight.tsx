@@ -5,26 +5,26 @@ const stats = [
   {
     icon: "◎",
     value: "30+",
-    label: "Years in Ticketing",
-    desc: "Three decades of trusted secondary-market operations.",
+    label: "Years of experience",
+    desc: "Built on more than 30 years of ticketing experience.",
   },
   {
     icon: "⌂",
-    value: "10K+",
-    label: "Partner Network",
-    desc: "Brokers and B2B partners trading through SeatsBrokers.",
+    value: "B2B",
+    label: "Professional network",
+    desc: "Built for professional ticket brokers and resellers.",
   },
   {
     icon: "▤",
-    value: "2M+",
-    label: "Tickets Delivered",
-    desc: "Cumulative live-event tickets fulfilled since launch.",
+    value: "Global",
+    label: "Distribution",
+    desc: "Connect inventory with global demand through the platform.",
   },
   {
     icon: "★",
-    value: "4.7/5",
-    label: "Partner Rating",
-    desc: "Average score across independent seller reviews.",
+    value: "One",
+    label: "Inventory layer",
+    desc: "One inventory layer. Multiple sales channels.",
   },
 ] as const;
 

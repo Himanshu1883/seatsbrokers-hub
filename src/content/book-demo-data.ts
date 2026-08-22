@@ -1,12 +1,13 @@
 /** Book a Demo page — conversion copy. No competitor names. */
 
 import { modules } from "./modules";
+import { productHrefs } from "./site";
 
 export const demoHeroCopy = {
   eyebrow: "Book a demo",
-  title: "See the SeatsBrokers Platform in Action",
-  subhead: "A live walkthrough tailored to how you list, distribute or quote tickets.",
-  body: "Forty-five minutes with our team — event intelligence, marketplace connectivity, inventory, pricing and partner commerce, scoped to your operation. Broker desk, B2B partner or API integration: we show what is relevant.",
+  title: "See SeatsBrokers in Action",
+  subhead: "Discover how SeatsBrokers can connect your inventory, technology, pricing, distribution and ticket operations.",
+  body: "A live walkthrough of the platform — sourced to how you list, price, distribute or sell tickets. Keep it simple: tell us who you are and we show what is relevant.",
 } as const;
 
 export const demoHeroPoints = [
@@ -77,7 +78,7 @@ export const demoAudiences = [
     kicker: "Ticket brokers",
     title: "Run inventory, channels and pricing from one desk",
     body: "See how listings, marketplace sync, market intelligence and AI pricing sit in one operation — including POS and API options.",
-    href: "/brokers",
+    href: "/become-a-seller",
     cta: "Broker platform",
     points: ["Catalog & inventory", "Multi-marketplace sync", "AI pricing & POS"],
   },
@@ -86,15 +87,15 @@ export const demoAudiences = [
     kicker: "B2B partners",
     title: "Search, add margin and send a branded quote",
     body: "Walk through partner inventory access, customer-ready quotations in £, orders and delivery — built for agencies packaging events.",
-    href: "/travel-partners",
+    href: productHrefs.deal,
     cta: "B2B partner platform",
     points: ["Inventory access", "Margin & PDF quotes", "Orders & delivery"],
   },
 ] as const;
 
 export const demoAlsoFor = [
-  { label: modules.market.name, href: "/marketplace-connectivity" },
-  { label: modules.intel.name, href: "/event-intelligence" },
+  { label: modules.market.name, href: productHrefs.market },
+  { label: modules.intel.name, href: productHrefs.intel },
   { label: modules.link.name, href: "/api" },
 ] as const;
 
@@ -112,21 +113,15 @@ export const demoRoles = [
   "Other",
 ] as const;
 
-export const demoCallTimes = [
-  "Morning · UK (09:00–12:00 GMT)",
-  "Afternoon · UK (13:00–17:00 GMT)",
-  "Morning · US East",
-  "Afternoon · US East",
-  "I'll suggest a time in the message",
-] as const;
-
 export const demoFormCopy = {
   eyebrow: "Request a demo",
   title: "Book your platform walkthrough",
   intro:
     "Share a few details and we will schedule a live session. Broker desk, B2B partner or API — we prepare the walkthrough around your operation.",
-  submitLabel: "Request demo",
+  submitLabel: "Request a Demo",
   successTitle: "Request ready to send",
-  successBody:
+  successBodyMailto:
     "Your email client should open with a message to the SeatsBrokers team. If it does not, write to us directly — we typically reply within one business day.",
+  successBodyWebhook:
+    "Your demo request has been sent to the SeatsBrokers team. We typically reply within one business day.",
 } as const;

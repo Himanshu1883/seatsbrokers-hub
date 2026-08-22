@@ -4,10 +4,10 @@ import heroStadium from "@/assets/hero-stadium.jpg";
 import travelImg from "@/assets/card-seller.jpg";
 
 const GLOBAL_STATS = [
-  { value: "30+", label: "Years moving real seats" },
-  { value: "10K+", label: "B2B partners" },
-  { value: "165", label: "Countries served" },
-  { value: "2M+", label: "Tickets delivered" },
+  { value: "30+", label: "Years of experience" },
+  { value: "B2B", label: "Professional network" },
+  { value: "Global", label: "Distribution" },
+  { value: "One", label: "Inventory layer" },
 ] as const;
 
 const MARKETPLACES = [
@@ -26,15 +26,15 @@ const slides = [
     title: "One platform.",
     lines: ["Brokers.", "Marketplaces.", "B2B partners."],
     headline: null,
-    body: "SeatsBrokers is the technology infrastructure connecting the global ticketing ecosystem — event data, inventory, marketplace connectivity, AI pricing and partner commerce.",
+    body: "SeatsBrokers is a B2B technology platform for professional ticket brokers — inventory, market intelligence, marketplace connectivity, pricing and sales on one platform.",
     bullets: [
-      "Global event data and structured event intelligence",
-      "Ticket inventory and resale marketplace connectivity",
-      "AI-powered pricing and partner sales infrastructure",
+      "Global event data and structured market intelligence",
+      "Ticket inventory and marketplace distribution",
+      "AI-assisted pricing — you remain in control",
     ],
     stats: [
-      { value: "16", label: "Connected marketplaces" },
-      { value: "12K+", label: "Events catalogued" },
+      { value: "Multi", label: "Connected marketplaces" },
+      { value: "Global", label: "Event coverage" },
     ],
     coord: "40.71°N 74.00°W",
     hub: "Americas gateway",

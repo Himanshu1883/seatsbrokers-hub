@@ -12,10 +12,10 @@ import { useInView } from "@/hooks/use-scroll-motion";
 import { ConsoleShell } from "@/components/pages/brokers/ConsoleShell";
 
 const radarStats = [
-  { label: "Events tracked", value: "48,214" },
-  { label: "Onsales · 7d", value: "142" },
-  { label: "Watchlist", value: "36" },
-  { label: "Scan cycle", value: "60s" },
+  { label: "Events tracked", value: "Global" },
+  { label: "Onsales · 7d", value: "Tracked" },
+  { label: "Watchlist", value: "Desk" },
+  { label: "Scan cycle", value: "Live" },
 ] as const;
 
 const calendarDays = [
@@ -172,7 +172,7 @@ const radarFeed = [
   { time: "09:41:14", msg: "catalog.ingest → 312 fixtures added · Football", ok: true },
   { time: "09:41:09", msg: "watchlist.add → 36 events tracked by your desk", ok: true },
   { time: "09:41:05", msg: "venue.map → Monaco grandstand layout refreshed", ok: true },
-  { time: "09:41:01", msg: "scan.cycle → 48,214 events re-scored", ok: true },
+  { time: "09:41:01", msg: "scan.cycle → catalog re-scored", ok: true },
 ] as const;
 
 const bandLabel: Record<Band, string> = {

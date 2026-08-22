@@ -14,10 +14,10 @@ import { useInView } from "@/hooks/use-scroll-motion";
 import { ConsoleShell } from "./ConsoleShell";
 
 const catalogStats = [
-  { label: "Events indexed", value: "48,214" },
-  { label: "Categories", value: "24" },
-  { label: "Onsales this week", value: "142" },
-  { label: "API latency", value: "84ms" },
+  { label: "Events indexed", value: "Global" },
+  { label: "Categories", value: "Multi" },
+  { label: "Onsales this week", value: "Tracked" },
+  { label: "API status", value: "Live" },
 ] as const;
 
 const categories = [
@@ -32,14 +32,14 @@ const categories = [
 ] as const;
 
 const sidebarCategories = [
-  { name: "All events", count: "48,214" },
-  { name: "Football", count: "12,403" },
-  { name: "Cricket & Tennis", count: "6,812" },
-  { name: "Formula 1", count: "1,204" },
-  { name: "Music", count: "9,886" },
-  { name: "Theatre", count: "4,210" },
-  { name: "Boxing & MMA", count: "2,104" },
-  { name: "Arts & Festivals", count: "3,892" },
+  { name: "All events", count: "Catalog" },
+  { name: "Football", count: "Lead" },
+  { name: "Cricket & Tennis", count: "Active" },
+  { name: "Formula 1", count: "Active" },
+  { name: "Music", count: "Active" },
+  { name: "Theatre", count: "Listed" },
+  { name: "Boxing & MMA", count: "Listed" },
+  { name: "Arts & Festivals", count: "Listed" },
 ] as const;
 
 const events = [
@@ -187,14 +187,14 @@ const indexStages = [
 const sectionBars = [88, 72, 64, 54, 42] as const;
 
 const catalogFeed = [
-  { time: "09:41:22", msg: "catalog.sync → 48,214 events refreshed", ok: true },
+  { time: "09:41:22", msg: "catalog.sync → event catalog refreshed", ok: true },
   { time: "09:41:19", msg: "onsale.alert → UCL Final presale opens Fri 09:00", ok: true },
   { time: "09:41:16", msg: "demand.signal → Oasis Wembley demand +24%", ok: true },
   { time: "09:41:13", msg: "venue.map → Monaco GP grandstand layout updated", ok: true },
   { time: "09:41:10", msg: "category.index → Football +312 new fixtures", ok: true },
-  { time: "09:41:07", msg: "api.query → Events API · 84ms avg response", ok: true },
+  { time: "09:41:07", msg: "api.query → Events API · ready", ok: true },
   { time: "09:41:04", msg: "index.complete → EV-28402 live in catalog", ok: true },
-  { time: "09:41:01", msg: "provider.ingest → 32 global feeds polling", ok: true },
+  { time: "09:41:01", msg: "provider.ingest → global feeds polling", ok: true },
 ] as const;
 
 function useCycle(length: number, ms: number, enabled: boolean) {

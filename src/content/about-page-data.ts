@@ -1,37 +1,40 @@
-/** About page: company chapters. Product names on this page are SeatsAI, SeatsTrade, SeatsPay, SeatsAPI, SeatsData, SeatsAutomation — do not silently rewrite to official module marks. */
+/** About page: company chapters. Product names are the seven official modules from modules.ts. */
+
+import { modules } from "./modules";
+import { productHrefs } from "./site";
 
 export const aboutHeroCopy = {
   eyebrow: "About SeatsBrokers",
-  title: "Intelligent Technology for the Future of Ticketing",
+  title: "Built by Ticketing People",
   subhead:
-    "SeatsBrokers is an AI-powered technology company transforming the global ticketing industry.",
-  body: "We combine decades of real-world ticketing expertise with modern technology, artificial intelligence, automation, APIs and data intelligence to build smarter infrastructure for the global event economy.",
+    "SeatsBrokers is built on more than 30 years of experience across ticketing, events, distribution and B2B sales.",
+  body: "The platform was created around the realities of professional ticket trading and the need to connect fragmented inventory, data, marketplaces, payments and operational workflows.",
 } as const;
 
 export const aboutHeroPoints = [
-  "For more than 30 years, we have understood how the ticketing industry works.",
-  "Today, we are turning that knowledge into technology.",
-  "Our mission is simple: make ticketing smarter, faster, more connected and increasingly intelligent.",
+  "We understand professional ticket trading because the platform is designed around the actual broker workflow.",
+  "From finding the opportunity to sourcing inventory, distributing tickets, managing sales and completing fulfilment.",
+  "Technology should make ticket trading simpler, not more complicated.",
 ] as const;
 
 export const aboutPageCtas = [
-  { label: "Explore our technology", to: "/platform" },
-  { label: "Become a partner", to: "/brokers" },
+  { label: "Become a Seller", to: "/become-a-seller" },
+  { label: "Book a Demo", to: "/book-demo" },
   { label: "Talk to our team", to: "/contact" },
 ] as const;
 
 export const aboutHeroStage = {
-  kicker: "SeatsBrokers / Intelligence",
-  title: "Tech stage",
-  stamp: "AI layer",
-  core: "AI",
-  coreLabel: "Intelligence core",
+  kicker: "SeatsBrokers / Platform",
+  title: "Product stage",
+  stamp: "B2B",
+  core: "SB",
+  coreLabel: "One platform",
 } as const;
 
 export const aboutHeroProof = [
-  { label: "Industry knowledge", value: "30 years" },
-  { label: "Stance", value: "AI-first" },
-  { label: "Architecture", value: "API-first" },
+  { label: "Industry experience", value: "30+ years" },
+  { label: "Focus", value: "B2B ticketing" },
+  { label: "Reach", value: "Global distribution" },
 ] as const;
 
 export const aboutFormulaParts = ["Experience", "Data", "AI", "Automation"] as const;
@@ -51,11 +54,11 @@ export const aboutDataSignals = [
 
 export const aboutKnowledgeCopy = {
   eyebrow: "We know ticketing. We build technology.",
-  title: "30 Years of Industry Knowledge. Rebuilt for the AI Era.",
+  title: "Built on More Than 30 Years of Ticketing Experience",
   intro:
-    "The ticketing industry generates enormous amounts of data. But data alone doesn't create intelligence. SeatsBrokers is building technology that can understand this data, connect it and turn it into meaningful actions.",
+    "The platform has been designed around the actual broker workflow — from finding the opportunity to sourcing inventory, distributing tickets, managing sales and completing fulfilment.",
   experience:
-    "Our 30 years of industry experience gives us the knowledge of what matters. AI and technology give us the ability to scale that knowledge.",
+    "More than 30 years of ticketing experience gives us the knowledge of what matters. The platform turns that knowledge into one connected workflow for professional ticket brokers.",
   formulaKicker: "The equation",
   signalsKicker: "The data the industry generates",
 } as const;
@@ -129,107 +132,123 @@ export const aboutCapabilities = [
 ] as const;
 
 export const aboutOverviewCopy = {
-  eyebrow: "One intelligent technology ecosystem",
-  title: "Everything Connected. Everything Smarter.",
-  intro: "SeatsBrokers brings multiple technology capabilities together into one ecosystem.",
+  eyebrow: "The SeatsBrokers ecosystem",
+  title: "Everything You Need to Run a Ticket Brokerage",
+  intro: "Seven products. One platform. Each module is built for a stage of the professional ticket broker workflow.",
   dockKicker: "In the ecosystem",
 } as const;
 
 export const aboutSurfaces = [
   {
     index: "01",
-    title: "SeatsAI",
-    body: "Our intelligence layer designed to use AI, data and automation to help ticket businesses understand markets, inventory, pricing and opportunities.",
-    href: "/platform",
-    cta: "Explore Our Technology",
-    layer: "Intelligence layer",
+    title: modules.intel.name,
+    body: "Know the market. Access global event data, onsale information, venue details, market pricing, demand signals and ticket intelligence to identify opportunities earlier.",
+    href: productHrefs.intel,
+    cta: `Explore ${modules.intel.name}`,
+    layer: "Discover",
     analysis:
-      "SeatsAI is the intelligence layer — AI, data and automation working together so ticket businesses can understand markets, inventory, pricing and opportunities.",
-    systems: ["AI", "Data", "Automation"],
+      "SeatsIntel™ is market intelligence — events, onsales, venues, pricing and demand — so brokers can see the opportunity before they source.",
+    systems: ["Events", "Onsales", "Demand"],
     readout: [
       { label: "Role", value: "Intelligence" },
-      { label: "Input", value: "Markets · inventory" },
+      { label: "Input", value: "Events · markets" },
       { label: "Output", value: "Opportunity" },
     ],
   },
   {
     index: "02",
-    title: "SeatsTrade",
-    body: "A technology-powered B2B marketplace where businesses can discover, trade and access ticket inventory.",
-    href: "/marketplace-connectivity",
-    cta: "Explore marketplace",
-    layer: "B2B marketplace",
+    title: modules.source.name,
+    body: "Manage your inventory. Centralise your own inventory and connected supplier stock, including ticket categories, sections, rows, quantities, pricing and delivery information.",
+    href: productHrefs.source,
+    cta: `Explore ${modules.source.name}`,
+    layer: "Source",
     analysis:
-      "SeatsTrade is a technology-powered B2B marketplace where businesses discover, trade and access ticket inventory — not a disconnected listing silo.",
-    systems: ["Discover", "Trade", "Access"],
+      "SeatsSource™ is the inventory layer — your stock and connected supply in one place, ready to price and distribute.",
+    systems: ["Stock", "Supply", "Delivery"],
     readout: [
-      { label: "Model", value: "B2B" },
-      { label: "Object", value: "Inventory" },
-      { label: "Motion", value: "Trade" },
+      { label: "Role", value: "Inventory" },
+      { label: "Object", value: "Ticket stock" },
+      { label: "Motion", value: "Centralise" },
     ],
   },
   {
     index: "03",
-    title: "SeatsPay",
-    body: "A digital payment infrastructure designed for professional ticket businesses and their financial workflows.",
-    href: "/brokers",
-    cta: "Explore broker platform",
-    layer: "Digital payments",
+    title: modules.pulse.name,
+    body: "AI recommends. You decide. Turn live market data into intelligent pricing recommendations based on market movement, inventory levels and demand.",
+    href: productHrefs.pulse,
+    cta: `Explore ${modules.pulse.name}`,
+    layer: "Price",
     analysis:
-      "SeatsPay is digital payment infrastructure built for professional ticket businesses and the financial workflows those desks actually run.",
-    systems: ["Payments", "Settlement", "Workflows"],
+      "SeatsPulse™ turns market intelligence into pricing recommendations. The broker remains in control of every pricing decision.",
+    systems: ["Market data", "Recommendations", "Control"],
     readout: [
-      { label: "Surface", value: "Payments" },
-      { label: "Designed for", value: "Ticket businesses" },
-      { label: "Scope", value: "Financial workflows" },
+      { label: "Role", value: "Pricing" },
+      { label: "AI", value: "Recommends" },
+      { label: "Broker", value: "Decides" },
     ],
   },
   {
     index: "04",
-    title: "SeatsAPI",
-    body: "An API-first infrastructure allowing partners to connect ticketing capabilities directly into their own platforms, POS systems, websites and applications.",
-    href: "/api",
-    cta: "Explore APIs",
-    layer: "API-first",
+    title: modules.link.name,
+    body: "Connect your ticketing operation. Connect POS, websites, supplier feeds, inventory platforms and ERP systems through the SeatsBrokers API.",
+    href: productHrefs.link,
+    cta: `Explore ${modules.link.name}`,
+    layer: "Connect",
     analysis:
-      "SeatsAPI is API-first infrastructure so partners can connect ticketing capabilities directly into their own platforms, POS systems, websites and applications.",
-    systems: ["API-first", "POS", "Applications"],
+      "SeatsLink™ is API and connectivity — inventory, pricing, orders and fulfilment moving between the systems you already run.",
+    systems: ["POS", "APIs", "ERP"],
     readout: [
+      { label: "Role", value: "Connectivity" },
       { label: "Contract", value: "API-first" },
-      { label: "Connects", value: "Partner systems" },
-      { label: "Shape", value: "Capabilities in" },
+      { label: "Connects", value: "Existing stack" },
     ],
   },
   {
     index: "05",
-    title: "SeatsData",
-    body: "A data intelligence layer that structures and connects information across events, inventory, markets and transactions.",
-    href: "/event-intelligence",
-    cta: "Explore event intelligence",
-    layer: "Data intelligence",
+    title: modules.market.name,
+    body: "List once. Distribute everywhere. Connect inventory to multiple ticket marketplaces and sales channels while keeping prices, quantities and availability synchronised.",
+    href: productHrefs.market,
+    cta: `Explore ${modules.market.name}`,
+    layer: "Distribute",
     analysis:
-      "SeatsData structures and connects information across events, inventory, markets and transactions — the data intelligence layer the rest of the ecosystem reads from.",
-    systems: ["Events", "Inventory", "Markets", "Transactions"],
+      "SeatsMarket™ publishes inventory across connected marketplaces and sales channels, then updates listings when inventory sells.",
+    systems: ["Marketplaces", "Sync", "Channels"],
     readout: [
-      { label: "Role", value: "Data intelligence" },
-      { label: "Connects", value: "Fragmented sources" },
-      { label: "Output", value: "Structured layer" },
+      { label: "Role", value: "Distribution" },
+      { label: "Motion", value: "List once" },
+      { label: "Result", value: "Reach more buyers" },
     ],
   },
   {
     index: "06",
-    title: "SeatsAutomation",
-    body: "Technology that automates repetitive ticketing operations and helps businesses work more efficiently.",
-    href: "/platform",
-    cta: "Explore Our Technology",
-    layer: "Automation",
+    title: modules.deal.name,
+    body: "From enquiry to sale. Search inventory, select tickets, apply your margin and create professional customer quotations in seconds.",
+    href: productHrefs.deal,
+    cta: `Explore ${modules.deal.name}`,
+    layer: "Sell & fulfil",
     analysis:
-      "SeatsAutomation automates repetitive ticketing operations so businesses can work more efficiently — workflows that used to be manual, running as infrastructure.",
-    systems: ["Workflows", "Operations", "Efficiency"],
+      "SeatsDeal™ moves a customer request to a confirmed order — quote, share, confirm and fulfil from one workflow.",
+    systems: ["Quotes", "Orders", "Fulfilment"],
     readout: [
-      { label: "Role", value: "Automation" },
-      { label: "Removes", value: "Repetitive ops" },
-      { label: "Result", value: "Efficiency" },
+      { label: "Role", value: "Sales" },
+      { label: "Object", value: "Quotations" },
+      { label: "Motion", value: "Enquiry → sale" },
+    ],
+  },
+  {
+    index: "07",
+    title: modules.funds.name,
+    body: "Payments built into your ticketing workflow. Manage purchasing, balances, payment methods, transaction visibility and eligible partner settlements.",
+    href: productHrefs.funds,
+    cta: `Explore ${modules.funds.name}`,
+    layer: "Settle",
+    analysis:
+      "SeatsFunds™ is payments and settlement inside the same workflow — purchasing, balances and eligible partner payouts.",
+    systems: ["Payments", "Purchasing", "Settlement"],
+    readout: [
+      { label: "Role", value: "Payments" },
+      { label: "Scope", value: "Ticketing workflow" },
+      { label: "Output", value: "Settlement" },
     ],
   },
 ] as const;
@@ -320,35 +339,30 @@ export const aboutPipelineFeed = [
 ] as const;
 
 export const aboutAudiencesCopy = {
-  eyebrow: "Built for the modern ticketing business",
-  title: "Technology for the businesses that power the global event economy.",
-  intro: "SeatsBrokers provides technology for the businesses that power the global event economy.",
+  eyebrow: "Built for professional ticket businesses",
+  title: "Technology for the desks that run ticket resale.",
+  intro: "SeatsBrokers remains focused on the professional ticket trade.",
 } as const;
 
 export const aboutAudiences = [
   {
-    title: "Brokers",
-    body: "Operate inventory, pricing, sales and marketplace distribution through intelligent technology.",
-    href: "/brokers",
+    title: "Ticket brokers",
+    body: "Manage sourcing, inventory, pricing, distribution and fulfilment from one platform.",
+    href: "/become-a-seller",
   },
   {
-    title: "Sellers",
-    body: "Connect inventory with professional buyers and distribution channels.",
-    href: "/brokers",
+    title: "Ticket resellers",
+    body: "Access inventory, technology and distribution tools designed to help grow your operation.",
+    href: "/become-a-seller",
   },
   {
-    title: "Marketplaces",
-    body: "Access scalable inventory and transaction infrastructure through APIs.",
-    href: "/marketplace-connectivity",
+    title: "Ticket suppliers",
+    body: "Connect inventory with professional ticket distribution channels.",
+    href: productHrefs.market,
   },
   {
-    title: "B2B Companies",
-    body: "Discover inventory and build ticketing experiences directly into B2B operations.",
-    href: "/travel-partners",
-  },
-  {
-    title: "Technology Companies",
-    body: "Integrate ticketing capabilities into their own products using modern APIs.",
+    title: "Technology-driven ticket businesses",
+    body: "Use SeatsBrokers APIs and the platform to automate ticket operations.",
     href: "/api",
   },
 ] as const;
@@ -366,7 +380,7 @@ export const aboutPrinciplesCopy = {
 export const aboutPrinciples = [
   {
     index: "01",
-    title: "30+ Years of Experience",
+    title: "Built on ticketing experience",
     body: "Decades of understanding the ticketing ecosystem provide the foundation for everything we build.",
     systems: ["Industry knowledge", "Ecosystem", "Foundation"],
     contract: "We know what matters because we have lived the market.",
@@ -571,10 +585,10 @@ export const aboutBuildingVerbs = [
 
 export const aboutMissionCopy = {
   eyebrow: "Our mission",
-  title: "Make the Global Ticketing Industry Intelligent.",
+  title: "Our Mission",
   intro:
-    "Our mission is to combine AI, data and technology with deep industry knowledge to create the infrastructure that powers the next generation of ticket businesses.",
-  lead: "We want to help businesses move from:",
+    "To give professional ticket businesses the technology, intelligence and connectivity needed to operate efficiently in an increasingly global and data-driven ticket market.",
+  lead: "SeatsBrokers is part of SeatsGroup, a technology group developing infrastructure and distribution solutions for the ticketing, travel and hospitality industries. We want to help businesses move from:",
 } as const;
 
 export const aboutTransforms = [
@@ -598,16 +612,16 @@ export const aboutFutureCopy = {
 } as const;
 
 export const aboutCloseCopy = {
-  eyebrow: "SeatsBrokers",
-  title: "AI + Technology + Ticketing",
+  eyebrow: "SeatsBrokers™",
+  title: "Built by Ticketing People, for Ticketing People",
   pillars: [
-    "30 years of industry knowledge.",
-    "Modern technology.",
-    "Artificial intelligence.",
-    "Global infrastructure.",
-    "One vision.",
+    "More than 30 years of ticketing experience.",
+    "One platform. One inventory layer.",
+    "Global distribution.",
+    "A SeatsGroup company.",
+    "One workflow from opportunity to settlement.",
   ],
-  close: "Building the Intelligent Future of Ticketing.",
+  close: "Powering the Business of Ticket Resale.",
 } as const;
 
 export const aboutCloseCtas = aboutPageCtas;

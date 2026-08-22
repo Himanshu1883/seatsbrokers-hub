@@ -12,52 +12,47 @@ const SLIDE_MS = 2100;
 const slides = [
   {
     image: heroStadium1,
-    alt: "Ticketing technology infrastructure platform",
-    eyebrow: "Ticketing technology & intelligence platform",
-    title: "The Technology Infrastructure Behind",
-    typePhrases: ["Modern Ticket Resale.", "Global Ticketing.", "Market Intelligence.", "Marketplace Connectivity."],
-    lead: "Connect your ticket inventory, marketplaces, partners, pricing and sales operations through one powerful technology platform.",
-    body: "Manage your entire ticketing operation from event discovery to listing, distribution, pricing, sales and fulfillment — the infrastructure layer connecting the global ticketing ecosystem.",
-    shortBody: "From discovery to listing, pricing and fulfillment — one infrastructure layer for the global ticketing ecosystem.",
+    alt: "SeatsBrokers platform for professional ticket brokers",
+    eyebrow: "SeatsBrokers™",
+    title: "Powering the Business of",
+    typePhrases: ["Ticket Resale.", "One inventory layer.", "Global distribution."],
+    lead: "One platform to source, manage, price, distribute and sell ticket inventory globally.",
+    body: "SeatsBrokers gives professional ticket brokers the technology, inventory access, market intelligence and distribution they need to operate more efficiently and scale their business.",
+    shortBody: "One platform to source, manage, price, distribute and sell ticket inventory globally.",
     details: [
-      "Global event data, inventory and resale marketplace connectivity",
-      "Market pricing data, sales intelligence and AI-powered pricing",
-      "Payment infrastructure, partner commerce and quotation tools",
+      "One platform for the entire ticket operation",
+      "One inventory layer connected to multiple sales channels",
+      "Global distribution for professional ticket brokers",
     ],
   },
   {
     image: heroStadium2,
-    alt: "Broker platform for ticket operations",
-    eyebrow: "Broker platform · Ticket brokers",
-    title: "Run your ticket business from",
-    typePhrases: [
-      "One platform.",
-      "One catalog.",
-      "Every marketplace.",
-      "One export close.",
-    ],
-    lead: "List once. Distribute everywhere. When inventory changes, SeatsBrokers synchronizes quantity, price and listing status across connected marketplaces.",
-    body: "Global event catalog, inventory management, marketplace distribution, AI pricing recommendations, POS/API integration and payment infrastructure — built for high-volume ticket operations.",
-    shortBody: "Catalog, inventory, marketplace distribution and AI pricing — built for high-volume ticket operations.",
+    alt: "One platform for the professional ticket operation",
+    eyebrow: "One platform. Your entire ticket operation.",
+    title: "Source, manage, price and",
+    typePhrases: ["Distribute globally.", "Sell from one desk.", "Settle in one workflow."],
+    lead: "Ticket resale is fragmented. SeatsBrokers brings the workflow together.",
+    body: "Source inventory. Manage stock. Understand the market. Price smarter. Distribute globally. Fulfil orders. Manage payments. All from one connected platform.",
+    shortBody: "Source, manage, price, distribute, sell and settle — all from one connected platform.",
     details: [
-      "Multi-marketplace synchronization with automatic delisting after sale",
-      "Market pricing, sales intelligence and event onsale information",
-      "Ticket delivery management, partner inventory and quotation tools",
+      "Discover → Source → Price → Connect → Distribute → Sell → Settle",
+      "One workflow. One inventory layer. Multiple sales channels.",
+      "Built for professional ticket brokers — not a consumer ticket site",
     ],
   },
   {
     image: heroStadium3,
-    alt: "B2B partner ticket distribution platform",
-    eyebrow: "B2B partner platform",
-    title: "Powering ticket distribution for",
-    typePhrases: ["Formula 1.", "Football.", "Concerts.", "Championships.", "Every major event."],
-    lead: "Turn ticket inventory into seamless customer experiences — access, margin, quote and sell through your B2B business.",
-    body: "Real-time inventory visibility, partner purchasing, custom margins, customer-ready quotes, invoice generation and WhatsApp sharing for B2B agencies selling sports and event packages.",
-    shortBody: "Search inventory, add margin, and generate branded quotes for sports and event packages.",
+    alt: "SeatsBrokers product workflow from opportunity to settlement",
+    eyebrow: "From opportunity to settlement",
+    title: "Seven products. One",
+    typePhrases: ["Connected workflow.", "Inventory layer.", "Sales motion."],
+    lead: "SeatsIntel™ → SeatsSource™ → SeatsPulse™ → SeatsLink™ → SeatsMarket™ → SeatsDeal™ → SeatsFunds™",
+    body: "Find the opportunity, source inventory, price with intelligence, connect your systems, distribute globally, sell and fulfil, then settle — without leaving the platform.",
+    shortBody: "Discover, source, price, connect, distribute, sell and settle on one platform.",
     details: [
-      "Search by event, date, venue, category, location and ticket type",
-      "Add margin and generate branded PDF quotes in seconds",
-      "Order management with partner pricing and customer-ready delivery",
+      "Market intelligence and AI-assisted pricing — you remain in control",
+      "List once and keep connected channels in sync",
+      "Quotes, orders, fulfilment and payments in the same workflow",
     ],
   },
 ] as const;
@@ -187,17 +182,17 @@ function HeroSlideCopy({
       <div className={item(5, "hero-copy-actions mt-8 flex flex-wrap gap-3 sm:mt-9")}>
         <SiteLink
           to={ctas.becomeSeller.to}
-          className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
+          className="lift inline-flex min-h-11 items-center justify-center rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
           tabIndex={isActive ? 0 : -1}
         >
           {ctas.becomeSeller.label}
         </SiteLink>
         <SiteLink
-          to={ctas.explorePlatform.to}
-          className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-white hover:bg-background/10"
+          to={ctas.bookDemo.to}
+          className="lift inline-flex min-h-11 items-center justify-center rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-white hover:bg-background/10"
           tabIndex={isActive ? 0 : -1}
         >
-          {ctas.explorePlatform.label}
+          {ctas.bookDemo.label}
         </SiteLink>
       </div>
 
@@ -207,7 +202,7 @@ function HeroSlideCopy({
           "hero-copy-tags mt-8 flex flex-col gap-2 font-mono text-[10px] font-bold tracking-[0.12em] text-white sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:text-xs",
         )}
       >
-        {["API connectivity", "Inventory synchronization", "Market intelligence"].map((label) => (
+        {["One platform", "One inventory layer", "Global distribution"].map((label) => (
           <li key={label} className="flex items-center gap-2">
             <span className="size-1 shrink-0 rounded-full bg-primary" />
             {label}

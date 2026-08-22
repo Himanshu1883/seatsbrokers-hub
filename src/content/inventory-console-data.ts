@@ -1,8 +1,8 @@
 export const inventoryStats = [
-  { label: "Active listings", value: "1,842" },
-  { label: "Channels live", value: "12" },
-  { label: "Sections mapped", value: "284" },
-  { label: "Sync latency", value: "96ms" },
+  { label: "Active listings", value: "Live" },
+  { label: "Channels live", value: "Multi" },
+  { label: "Sections mapped", value: "Mapped" },
+  { label: "Sync status", value: "Live" },
 ] as const;
 
 export const inventoryNav = [
@@ -63,7 +63,7 @@ export const inventoryEvents = [
 
 export const inventoryFeed = [
   { time: "09:42:18", msg: "inventory.sync → 1,842 listings refreshed", ok: true },
-  { time: "09:42:15", msg: "listing.push → StubHub · Cat A x2 live", ok: true },
+  { time: "09:42:15", msg: "listing.push → Global resale · Cat A x2 live", ok: true },
   { time: "09:42:12", msg: "price.update → Club Level £248 → £252", ok: true },
   { time: "09:42:09", msg: "order.delist → Seat 3 marked sold · 3 channels", ok: true },
   { time: "09:42:06", msg: "package.rule → VIP bundle · 2 seats grouped", ok: true },

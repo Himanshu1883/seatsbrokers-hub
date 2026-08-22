@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { pageMeta } from "@/content/site";
 
 function NotFoundComponent() {
   return (
@@ -77,15 +78,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SeatsBrokers — Ticketing Technology & Market Intelligence" },
-      {
-        name: "description",
-        content:
-          "The technology infrastructure behind modern ticket resale. Connect events, inventory, marketplaces, pricing, partners and payments through one intelligent ticketing platform.",
-      },
+      { title: pageMeta.home.title },
+      { name: "description", content: pageMeta.home.description },
       { name: "author", content: "SeatsBrokers" },
+      { name: "theme-color", content: "#198754" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:card", content: "summary" },
     ],
     links: [
       {

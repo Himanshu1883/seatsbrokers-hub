@@ -35,7 +35,7 @@ const slides = [
     tag: "Dashboard",
     title: "Platform overview at a glance.",
     body: "Events, listings, connected marketplaces and inventory value — the command center for your ticketing operation.",
-    points: ["12,482 events · demo", "84,250 listings · demo", "32 connected marketplaces"],
+    points: ["One platform", "One inventory layer", "Multiple sales channels"],
     badge: "Dashboard",
     image: marketIntelDark,
     alt: "SeatsBrokers platform dashboard with key metrics",

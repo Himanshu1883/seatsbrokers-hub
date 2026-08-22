@@ -31,9 +31,9 @@ const tracks = [
     title: "Run your ticket business from one technology platform",
     body: "Global event catalog, inventory management, marketplace distribution, multi-marketplace synchronization, market pricing, sales intelligence, AI pricing recommendations and POS/API integration.",
     stats: [
-      { value: "32+", label: "Marketplaces synced" },
-      { value: "<250ms", label: "Sync latency" },
-      { value: "24/7", label: "Auto distribution" },
+      { value: "Multi", label: "Connected marketplaces" },
+      { value: "Live", label: "Listing sync" },
+      { value: "24/7", label: "Distribution" },
     ],
     modules: ["Event catalog", "Inventory", "Distribution", "AI pricing"],
     channels: [
@@ -70,9 +70,9 @@ const tracks = [
     title: "Turn ticket inventory into a seamless customer experience",
     body: "Access available ticket inventory, real-time visibility, partner purchasing, ticket quotations, custom margins, customer-ready quotes, invoice generation and WhatsApp sharing.",
     stats: [
-      { value: "98%", label: "Quote accuracy" },
-      { value: "15min", label: "Quote turnaround" },
-      { value: "10K+", label: "Seats sourced monthly" },
+      { value: "PDF", label: "Quote share" },
+      { value: "Live", label: "Inventory search" },
+      { value: "One", label: "Sales workflow" },
     ],
     modules: ["Inventory access", "Margins", "Quotations", "Orders"],
     searchQuery: "Champions League Final · May 31",

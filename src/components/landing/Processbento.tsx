@@ -1,11 +1,12 @@
-import type { ReactNode } from "react";
-import { Reveal } from "@/hooks/use-scroll-motion";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { Reveal, useInView } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 import {
   bentoBackdrops,
   type BentoBackdropConfig,
   type BentoSceneVariant,
 } from "@/content/bento-illustrations";
+import { workflowStages } from "@/content/modules";
 
 type BentoIllustrationProps = {
   backdrop: BentoBackdropConfig;
@@ -107,11 +108,11 @@ function OnboardIllustration({ backdrop }: BentoIllustrationProps) {
 
 function AuditIllustration({ backdrop }: BentoIllustrationProps) {
   const rows = [
-    { label: "Marketplace 01 · listings", value: "2,418 synced", hot: false },
-    { label: "Marketplace 02 · margin gap", value: "−4.2% vs floor", hot: true },
-    { label: "Market Insight API", value: "182 ms", hot: false },
-    { label: "Hold conflicts", value: "0 open", hot: false },
-    { label: "Channel coverage", value: "8 marketplaces", hot: true },
+    { label: "Marketplace 01 · listings", value: "In sync", hot: false },
+    { label: "Marketplace 02 · ask vs floor", value: "Aligned", hot: true },
+    { label: "Market insight", value: "Live feed", hot: false },
+    { label: "Hold conflicts", value: "Clear", hot: false },
+    { label: "Channel coverage", value: "Multiple channels", hot: true },
   ];
   const track = [...rows, ...rows];
 
@@ -295,63 +296,209 @@ function LaunchIllustration({ backdrop }: BentoIllustrationProps) {
   );
 }
 
+const processCopy = {
+  eyebrow: "The problem",
+  titleLead: "One Platform.",
+  titleAccent: "Your Entire Ticket Operation.",
+  lead: "Ticket resale is fragmented. Inventory sits across different systems, prices move constantly, marketplaces require separate management and orders need to be fulfilled quickly.",
+  join: "SeatsBrokers brings the workflow together.",
+  verbs:
+    "Source inventory. Manage stock. Understand the market. Price smarter. Distribute globally. Fulfil orders. Manage payments.",
+  close: "All from one connected platform.",
+  support: "One platform. One inventory layer. Multiple sales channels.",
+} as const;
+
 const cards = [
   {
     title: "Managing inventory across marketplaces",
-    body: "Updating prices manually, removing sold tickets from multiple channels, and keeping listing data synchronized — every broker knows the pain.",
+    body: "Inventory sits across different systems. Updating prices by hand, removing sold tickets from every channel, and keeping listing data in sync — every broker knows the pain.",
     backdrop: bentoBackdrops.marketplace,
     Illustration: OnboardIllustration,
   },
   {
     title: "Finding events and understanding pricing",
-    body: "Discovering new events and onsale dates, understanding market pricing, and connecting POS systems — without the right technology, it never stops.",
+    body: "Prices move constantly. Discovering new events and onsale dates, reading the market, and connecting POS systems — without the right technology, it never stops.",
     backdrop: bentoBackdrops.audit,
     Illustration: AuditIllustration,
   },
   {
     title: "Managing partners, payments and delivery",
-    body: "B2B partner purchases, creating quotations, managing payments, delivering tickets and keeping data synchronized across every channel.",
+    body: "Marketplaces require separate management, and orders need to be fulfilled quickly. Quotations, payments, delivery and settlement still sit outside the same workflow.",
     backdrop: bentoBackdrops.travel,
     Illustration: DemandIllustration,
   },
   {
-    title: "Ticket resale is complex",
-    body: "Your technology shouldn't be. The platform understands the actual ticketing workflow — from event discovery to listing, distribution, pricing, sales and fulfillment.",
+    title: "SeatsBrokers brings the workflow together",
+    body: "Source inventory. Manage stock. Understand the market. Price smarter. Distribute globally. Fulfil orders. Manage payments.",
     backdrop: bentoBackdrops.workflow,
     Illustration: ReportIllustration,
     wide: true,
   },
   {
-    title: "We built the technology layer that connects all of it",
-    body: "Less manual work. More control. Event intelligence, marketplace connectivity, inventory automation, AI pricing and API infrastructure — in one platform.",
+    title: "All from one connected platform",
+    body: "Less manual work. More control. Event intelligence, marketplace connectivity, inventory, pricing and payments — one workflow instead of separate systems.",
     backdrop: bentoBackdrops.platform,
     Illustration: LaunchIllustration,
     wide: true,
   },
 ] as const;
 
+const RAIL_MS = 2100;
+const RAIL_RESUME_MS = 450;
+const RAIL_LAST = workflowStages.length - 1;
+
+function ProcessRail({ inView }: { inView: boolean }) {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reduced, setReduced] = useState(false);
+  const resumeTimer = useRef<number | null>(null);
+  const railRef = useRef<HTMLOListElement | null>(null);
+  const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduced(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (reduced || paused || !inView) return;
+    if (active < RAIL_LAST) return;
+    const id = window.setTimeout(() => setActive(0), RAIL_MS);
+    return () => window.clearTimeout(id);
+  }, [reduced, paused, inView, active]);
+
+  const hold = useCallback(() => {
+    if (resumeTimer.current != null) {
+      window.clearTimeout(resumeTimer.current);
+      resumeTimer.current = null;
+    }
+    setPaused(true);
+  }, []);
+
+  const release = useCallback(() => {
+    if (resumeTimer.current != null) window.clearTimeout(resumeTimer.current);
+    resumeTimer.current = window.setTimeout(() => {
+      setPaused(false);
+      resumeTimer.current = null;
+    }, RAIL_RESUME_MS);
+  }, []);
+
+  useEffect(
+    () => () => {
+      if (resumeTimer.current != null) window.clearTimeout(resumeTimer.current);
+    },
+    [],
+  );
+
+  useEffect(() => {
+    if (paused || reduced || !inView) return;
+    const rail = railRef.current;
+    const item = itemRefs.current[active];
+    if (!rail || !item) return;
+    if (rail.scrollWidth <= rail.clientWidth + 1) return;
+    const target = item.offsetLeft - (rail.clientWidth - item.offsetWidth) / 2;
+    rail.scrollTo({ left: Math.max(0, target), behavior: "smooth" });
+  }, [active, paused, reduced, inView]);
+
+  const onRailBlur = (e: { currentTarget: HTMLElement; relatedTarget: EventTarget | null }) => {
+    if (!e.currentTarget.contains(e.relatedTarget as Node)) release();
+  };
+
+  const hop = useCallback(() => {
+    setActive((prev) => (prev + 1) % workflowStages.length);
+  }, []);
+
+  const last = RAIL_LAST;
+
+  return (
+    <ol
+      ref={railRef}
+      className="process-bento-rail"
+      data-live={inView && !reduced ? "true" : "false"}
+      data-paused={paused ? "true" : "false"}
+      aria-label="Discover to Settle workflow"
+      onPointerEnter={hold}
+      onPointerLeave={release}
+      onPointerDown={hold}
+      onFocusCapture={hold}
+      onBlurCapture={onRailBlur}
+    >
+      {workflowStages.map((stage, i) => {
+        const state = i === active ? "active" : i < active ? "done" : "waiting";
+        return (
+          <li
+            key={stage}
+            ref={(el) => {
+              itemRefs.current[i] = el;
+            }}
+            className="process-bento-rail-item"
+            data-state={state}
+          >
+            <button
+              type="button"
+              className="process-bento-rail-chip bento-scene-chip"
+              data-state={state}
+              aria-current={i === active ? "step" : undefined}
+              onPointerEnter={() => setActive(i)}
+              onClick={() => setActive(i)}
+            >
+              {stage}
+            </button>
+            {i < last ? (
+              <span
+                className="process-bento-rail-join"
+                data-hot={i === active ? "true" : "false"}
+                data-done={i < active ? "true" : "false"}
+                aria-hidden
+              >
+                <span
+                  key={active}
+                  className="process-bento-rail-packet"
+                  onAnimationEnd={(event) => {
+                    if (!event.animationName.includes("process-bento-rail-packet")) return;
+                    hop();
+                  }}
+                />
+                →
+              </span>
+            ) : null}
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
 export function ProcessBento() {
+  const { ref, inView } = useInView<HTMLElement>(0.16, { once: false });
   const top = cards.slice(0, 3);
   const bottom = cards.slice(3);
 
   return (
     <section
+      ref={ref}
       id="partner-process"
       className="section-curve relative isolate scroll-mt-24 overflow-x-clip bg-background py-16 sm:py-24"
     >
       <SectionBackdrop image="footballPitch" tone="light" strength={0.12} />
       <div className="container-page relative z-10">
         <Reveal>
-          <p className="section-eyebrow text-primary">The problem</p>
+          <p className="section-eyebrow text-primary">{processCopy.eyebrow}</p>
           <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-4xl lg:text-[2.65rem]">
-            Ticket Resale Is Complex.{" "}
-            <span className="text-primary">Your Technology Shouldn't Be.</span>
+            {processCopy.titleLead}{" "}
+            <span className="text-primary">{processCopy.titleAccent}</span>
           </h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Managing inventory across multiple marketplaces, updating prices manually, finding new events,
-            connecting POS systems, managing B2B partner purchases and delivering tickets — we built
-            the technology layer that connects all of it.
-          </p>
+          <div className="mt-5 max-w-2xl space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p>{processCopy.lead}</p>
+            <p className="font-medium text-foreground">{processCopy.join}</p>
+            <p>{processCopy.verbs}</p>
+            <p>{processCopy.close}</p>
+          </div>
+          <ProcessRail inView={inView} />
+          <p className="process-bento-support">{processCopy.support}</p>
         </Reveal>
 
         <div className="process-bento-grid mt-10 grid gap-6 sm:mt-12 lg:mt-14 lg:grid-cols-3 lg:gap-5">

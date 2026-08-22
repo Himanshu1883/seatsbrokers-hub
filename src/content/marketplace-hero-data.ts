@@ -6,7 +6,7 @@ export const marketplaceHeroCopy = {
   eyebrow: modules.market.name,
   title: modules.market.tagline,
   subhead: "List once. Distribute everywhere — listing creation, updates, synchronization and automatic delisting from one hub.",
-  body: "Connect your ticket operation to multiple resale marketplaces through centralized API infrastructure. SeatsBrokers keeps quantity, price and listing status aligned across every connected channel.",
+  body: "Connect your ticket operation to multiple connected marketplaces and sales channels. SeatsBrokers keeps quantity, price and listing status aligned across every connected channel.",
 } as const;
 
 export type MarketplaceHeroCardType =
@@ -44,36 +44,36 @@ export const marketplaceHeroColumnB: MarketplaceHeroCard[] = [
 ];
 
 export const heroChannels = [
-  { name: "Global resale", status: "synced" as const, latency: "42ms" },
-  { name: "Sports exchange", status: "synced" as const, latency: "58ms" },
-  { name: "Regional OTA", status: "pushing" as const, latency: "96ms" },
-  { name: "Broker desk", status: "synced" as const, latency: "18ms" },
+  { name: "Global resale", status: "synced" as const, latency: "Live" },
+  { name: "Sports exchange", status: "synced" as const, latency: "Live" },
+  { name: "Regional OTA", status: "pushing" as const, latency: "Push" },
+  { name: "Broker desk", status: "synced" as const, latency: "Live" },
 ] as const;
 
 export const heroListingPush = {
   event: "UCL Final · Cat A",
   qty: "2",
-  channels: "8",
+  channels: "Multi",
   stage: "Pushing",
 } as const;
 
 export const heroPriceSync = {
   from: "£248",
   to: "£252",
-  acked: "7 / 8",
+  acked: "Live",
   event: "Club Level · Row 8",
 } as const;
 
 export const heroDelist = {
   trigger: "Ticket sold",
-  removed: "3 channels",
+  removed: "Channels updated",
   hold: "Armed",
 } as const;
 
 export const heroApiHealth = {
-  channels: "16",
-  latency: "96ms",
-  errors: "0.1%",
+  channels: "Multi",
+  latency: "Live",
+  errors: "Tracked",
 } as const;
 
 export const heroConflictGuard = {
@@ -83,9 +83,9 @@ export const heroConflictGuard = {
 } as const;
 
 export const heroQtySync = {
-  listed: "1,842",
-  live: "12 channels",
-  delta: "−2 sold",
+  listed: "Live",
+  live: "Multi-channel",
+  delta: "In sync",
 } as const;
 
 export const heroOrderSync = {
@@ -97,11 +97,11 @@ export const heroOrderSync = {
 export type MarketplaceHeroMeshStatus = "synced" | "lagging" | "conflict";
 
 export const marketplaceHeroOps = {
-  channelsLive: "16",
-  listingsPushed: "1,842",
-  lastSync: "4s",
-  conflictsOpen: "1",
-  alignment: "7 / 8",
+  channelsLive: "Multi",
+  listingsPushed: "Live",
+  lastSync: "Live",
+  conflictsOpen: "Armed",
+  alignment: "Live",
 } as const;
 
 export const marketplaceHeroOrigin = {
@@ -110,34 +110,34 @@ export const marketplaceHeroOrigin = {
   section: "Club Level · Row 8",
   qty: "2",
   ask: "£252",
-  destinations: "8",
+  destinations: "Multi",
 } as const;
 
 export const marketplaceHeroMesh = [
-  { code: "CH-01", name: "Global resale", status: "synced" as const, listings: 412, pips: 10, latency: "42ms" },
-  { code: "CH-02", name: "Sports exchange", status: "synced" as const, listings: 318, pips: 8, latency: "58ms" },
-  { code: "CH-03", name: "Regional OTA", status: "lagging" as const, listings: 186, pips: 5, latency: "96ms" },
-  { code: "CH-04", name: "Broker desk", status: "synced" as const, listings: 540, pips: 12, latency: "18ms" },
-  { code: "CH-05", name: "B2B partners", status: "synced" as const, listings: 274, pips: 7, latency: "71ms" },
-  { code: "CH-06", name: "White-label", status: "conflict" as const, listings: 91, pips: 3, latency: "—" },
+  { code: "CH-01", name: "Global resale", status: "synced" as const, listings: 412, pips: 10, latency: "Live" },
+  { code: "CH-02", name: "Sports exchange", status: "synced" as const, listings: 318, pips: 8, latency: "Live" },
+  { code: "CH-03", name: "Regional OTA", status: "lagging" as const, listings: 186, pips: 5, latency: "Lag" },
+  { code: "CH-04", name: "Broker desk", status: "synced" as const, listings: 540, pips: 12, latency: "Live" },
+  { code: "CH-05", name: "B2B partners", status: "synced" as const, listings: 274, pips: 7, latency: "Live" },
+  { code: "CH-06", name: "White-label", status: "conflict" as const, listings: 91, pips: 3, latency: "Hold" },
 ] as const;
 
 export const marketplaceHeroSyncLog = [
-  { time: "09:42:18", event: "poll", detail: "32 channels ok" },
-  { time: "09:42:14", event: "push", detail: "LST-4817 · 8 dest" },
-  { time: "09:42:11", event: "lag", detail: "CH-03 · 96ms" },
-  { time: "09:42:08", event: "ack", detail: "price · 7 / 8" },
+  { time: "09:42:18", event: "poll", detail: "channels ok" },
+  { time: "09:42:14", event: "push", detail: "LST-4817 · dest" },
+  { time: "09:42:11", event: "lag", detail: "CH-03 · in flight" },
+  { time: "09:42:08", event: "ack", detail: "price · live" },
   { time: "09:42:04", event: "hold", detail: "CH-06 floor" },
-  { time: "09:41:58", event: "qty", detail: "−2 sold" },
+  { time: "09:41:58", event: "qty", detail: "sold · synced" },
   { time: "09:41:51", event: "sync", detail: "CH-01 live" },
-  { time: "09:41:44", event: "delist", detail: "3 channels" },
+  { time: "09:41:44", event: "delist", detail: "channels updated" },
 ] as const;
 
 export const marketplaceHeroPriceAlign = {
   ask: "£252",
   floor: "£248",
   spread: "+£4",
-  acked: "7 / 8",
+  acked: "Live",
 } as const;
 
 export const marketplaceHeroConflicts = [

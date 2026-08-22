@@ -1,43 +1,42 @@
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 
-type Milestone = {
+type Audience = {
   id: string;
   value: string;
   label: string;
   detail: string;
 };
 
-const milestones: Milestone[] = [
+/** Homepage §9 — role grid. StickyScrollShowcase (#who-its-for) keeps the deep sticky consoles. */
+const audiences: Audience[] = [
   {
-    id: "events",
-    value: "12,482",
-    label: "Events catalogued",
-    detail: "Global event catalog across sport, music, theatre and entertainment — demo data.",
+    id: "brokers",
+    value: "01",
+    label: "Professional Ticket Brokers",
+    detail:
+      "Manage sourcing, inventory, pricing, distribution and fulfilment from one platform.",
   },
   {
-    id: "listings",
-    value: "84,250",
-    label: "Active listings",
-    detail: "Inventory managed and distributed through connected marketplace infrastructure — demo data.",
+    id: "resellers",
+    value: "02",
+    label: "Ticket Resellers",
+    detail:
+      "Access inventory, technology and distribution tools designed to help grow your operation.",
   },
   {
-    id: "marketplaces",
-    value: "16",
-    label: "Connected marketplaces",
-    detail: "Resale marketplaces synchronized through centralized API connectivity.",
+    id: "suppliers",
+    value: "03",
+    label: "Ticket Suppliers",
+    detail:
+      "Connect inventory with professional ticket distribution channels.",
   },
   {
-    id: "value",
-    value: "£12.4M",
-    label: "Inventory value",
-    detail: "Ticket inventory tracked and priced through the platform — demo data.",
-  },
-  {
-    id: "years",
-    value: "30+",
-    label: "Years in ticketing",
-    detail: "Three decades building technology for the global ticketing ecosystem.",
+    id: "tech",
+    value: "04",
+    label: "Technology-Driven Ticket Businesses",
+    detail:
+      "Use SeatsBrokers APIs and infrastructure to automate ticket operations.",
   },
 ];
 
@@ -52,7 +51,7 @@ function easeInCubic(t: number) {
 }
 
 const SLIDE_MS = 1000;
-const AUTOPLAY_MS = milestones.length * SLIDE_MS;
+const AUTOPLAY_MS = audiences.length * SLIDE_MS;
 
 /** Auto-advance progress whenever the section enters the viewport. Loops while in view. */
 function useAutoPlayProgress(
@@ -182,8 +181,8 @@ export function JourneyNumbers() {
 
   const progress = useAutoPlayProgress(sectionRef, AUTOPLAY_MS, reduced);
   const activeIndex = Math.min(
-    Math.floor(progress * milestones.length),
-    milestones.length - 1,
+    Math.floor(progress * audiences.length),
+    audiences.length - 1,
   );
 
   return (
@@ -191,7 +190,7 @@ export function JourneyNumbers() {
       ref={sectionRef}
       id="journey-numbers"
       className="journey-num section-curve-sticky relative scroll-mt-24"
-      aria-label="SeatsBrokers journey in numbers"
+      aria-label="Built for Professional Ticket Businesses"
     >
       <div className="journey-num-viewport">
         <span className="journey-num-glow" aria-hidden />
@@ -201,41 +200,45 @@ export function JourneyNumbers() {
           <header className="journey-num-header">
             <p className="journey-num-eyebrow">
               <span className="journey-num-live" aria-hidden />
-              Platform at scale
+              Professional audiences
             </p>
             <div className="journey-num-counter" aria-hidden>
               <span>{String(activeIndex + 1).padStart(2, "0")}</span>
               <span className="journey-num-counter-sep">/</span>
-              <span>{String(milestones.length).padStart(2, "0")}</span>
+              <span>{String(audiences.length).padStart(2, "0")}</span>
             </div>
           </header>
 
+          <h2 className="journey-num-title">
+            Built for Professional Ticket Businesses
+          </h2>
+
           <div className="journey-num-stage">
-            {milestones.map((m, i) => {
+            {audiences.map((a, i) => {
               if (reduced && i !== activeIndex) return null;
-              const local = slideLocal(progress, i, milestones.length);
+              const local = slideLocal(progress, i, audiences.length);
               const style = slideStyle(local, reduced);
 
               return (
                 <div
-                  key={m.id}
+                  key={a.id}
                   className="journey-num-slide"
                   style={style}
                   data-active={i === activeIndex ? "true" : "false"}
                   aria-hidden={i !== activeIndex}
                 >
-                  <p className="journey-num-value">{m.value}</p>
-                  <p className="journey-num-label">{m.label}</p>
-                  <p className="journey-num-detail">{m.detail}</p>
+                  <p className="journey-num-value">{a.value}</p>
+                  <p className="journey-num-label">{a.label}</p>
+                  <p className="journey-num-detail">{a.detail}</p>
                 </div>
               );
             })}
           </div>
 
           <div className="journey-num-rail" aria-hidden>
-            {milestones.map((m, i) => (
+            {audiences.map((a, i) => (
               <span
-                key={m.id}
+                key={a.id}
                 className="journey-num-tick"
                 data-on={i <= activeIndex ? "true" : "false"}
                 data-active={i === activeIndex ? "true" : "false"}
@@ -249,21 +252,21 @@ export function JourneyNumbers() {
         <Reveal>
           <p className="journey-num-eyebrow">
             <span className="journey-num-live" aria-hidden />
-            Platform at scale
+            Professional audiences
           </p>
           <h2 className="journey-num-stack-title">
-            The technology behind modern ticket resale.
+            Built for Professional Ticket Businesses
           </h2>
         </Reveal>
 
         <ul className="journey-num-stack-list">
-          {milestones.map((m, i) => (
-            <Reveal key={m.id} as="li" delay={i * 80}>
+          {audiences.map((a, i) => (
+            <Reveal key={a.id} as="li" delay={i * 80}>
               <article className="journey-num-stack-card">
-                <p className="journey-num-stack-value">{m.value}</p>
+                <p className="journey-num-stack-value">{a.value}</p>
                 <div>
-                  <p className="journey-num-stack-label">{m.label}</p>
-                  <p className="journey-num-stack-detail">{m.detail}</p>
+                  <p className="journey-num-stack-label">{a.label}</p>
+                  <p className="journey-num-stack-detail">{a.detail}</p>
                 </div>
               </article>
             </Reveal>

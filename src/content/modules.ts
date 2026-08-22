@@ -1,4 +1,6 @@
-/** Official SeatsBrokers product modules. Import names from here — do not retype them. */
+/** Official SeatsBrokers product modules. Import names from here — do not retype them.
+ *  Public ecosystem is seven modules (brief 2026-08). SeatsLaunch™ stays defined but
+ *  is parked: do not add it to moduleList or any public surface. */
 
 export type ProductModule = {
   name: string;
@@ -7,55 +9,66 @@ export type ProductModule = {
 };
 
 export const modules = {
-  funds: {
-    name: "SeatsFunds™",
-    what: "Payments, credit, funding & settlement",
-    tagline: "Financial Infrastructure for Ticketing.",
-  },
-  market: {
-    name: "SeatsMarket™",
-    what: "Global B2B ticket inventory marketplace",
-    tagline: "The Global Marketplace for Live Events.",
-  },
-  link: {
-    name: "Seatpin™",
-    what: "API, integrations & connectivity",
-    tagline: "Connect Your Business to Global Ticket Inventory.",
+  intel: {
+    name: "SeatsIntel™",
+    what: "Market intelligence",
+    tagline: "Know the market.",
   },
   source: {
     name: "SeatsSource™",
-    what: "Primary-market ticket sourcing",
-    tagline: "Intelligent Access to Primary Ticket Inventory.",
+    what: "Inventory & supply",
+    tagline: "Manage your inventory.",
   },
   pulse: {
     name: "SeatsPulse™",
-    what: "Resale-market intelligence & pricing analytics",
-    tagline: "Know the Market. Price with Confidence.",
+    what: "Pricing intelligence",
+    tagline: "AI recommends. You decide.",
   },
-  intel: {
-    name: "SeatsIntel™",
-    what: "Event & primary-market intelligence",
-    tagline: "Know What's Coming. Buy Smarter.",
+  link: {
+    name: "SeatsLink™",
+    what: "API & connectivity",
+    tagline: "Connect your ticketing operation.",
+  },
+  market: {
+    name: "SeatsMarket™",
+    what: "Distribution",
+    tagline: "List once. Distribute everywhere.",
   },
   deal: {
     name: "SeatsDeal™",
-    what: "Quotations, customer payments & sales",
-    tagline: "From Quote to Completed Sale.",
+    what: "Quotes, orders & fulfilment",
+    tagline: "From enquiry to sale.",
   },
+  funds: {
+    name: "SeatsFunds™",
+    what: "Payments & settlement",
+    tagline: "Payments built into your ticketing workflow.",
+  },
+  /** Parked — not in the public seven-module ecosystem. Do not surface on the website. */
   launch: {
     name: "SeatsLaunch™",
     what: "White-label ticketing websites",
-    tagline: "Launch Your Ticketing Business.",
+    tagline: "Launch your ticketing business.",
   },
 } as const satisfies Record<string, ProductModule>;
 
+/** Public ecosystem order: Discover → Source → Price → Connect → Distribute → Sell → Settle */
+export const workflowStages = [
+  "Discover",
+  "Source",
+  "Price",
+  "Connect",
+  "Distribute",
+  "Sell",
+  "Settle",
+] as const;
+
 export const moduleList = [
-  modules.funds,
-  modules.market,
-  modules.link,
+  modules.intel,
   modules.source,
   modules.pulse,
-  modules.intel,
+  modules.link,
+  modules.market,
   modules.deal,
-  modules.launch,
+  modules.funds,
 ] as const;

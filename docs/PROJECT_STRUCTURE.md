@@ -21,7 +21,7 @@ seatsbrokers-hub/
 │   │   ├── DECISIONS.md
 │   │   └── KNOWN_ISSUES.md
 │   ├── DESIGN_SYSTEM.md, COMPONENT_MAP.md, PROJECT_STATUS.md, *-page-plan.md
-├── public/                   # favicon.svg, static
+├── public/                   # favicon, sitemap.xml, robots.txt
 ├── src/
 │   ├── styles.css            # Entire design system + all custom CSS
 │   ├── router.tsx
@@ -62,10 +62,10 @@ seatsbrokers-hub/
 │   │       ├── travel/       # /travel-partners live consoles + hero
 │   │       ├── marketplace/  # /marketplace-connectivity live consoles + hero + capability board
 │   │       ├── event-intelligence/  # /event-intelligence consoles + venue map
-│   │       ├── api/          # /api docs-console hero + auth/webhook consoles
+│   │       ├── api/          # /api docs-console hero + auth/webhook consoles + ApiInfraBoard
 │   │       ├── about/        # /about journey atlas + ops console + overview board
 │   │       ├── book-demo/    # /book-demo briefing desk, session itinerary, demo form
-│   │       ├── platform/     # /platform stack map + module board
+│   │       ├── platform/     # /platform operating ecosystem (ConsoleShell spine + sticky workflow)
 │   │       ├── faq/          # /faq dark bh-hero + accordion + help strip
 │   │       ├── contact/      # /contact dark bh-hero + right-stage photo
 │   │       └── legal/        # /legal short bh-hero + full-width Privacy/Terms/Cookies tabs
@@ -78,20 +78,29 @@ seatsbrokers-hub/
 | File | Path | Role |
 |---|---|---|
 | `__root.tsx` | shell | Fonts, CSS, QueryClient, 404/error |
-| `index.tsx` | `/` | Homepage landing (Hero → SellerTools → TravelTools → TwoTrack → Marketplaces → NetworkConstellation → FeatureOrbit → ProcessBento → HowItWorks → PartnerProductShowcase → ToolkitShowcase → StickyScrollShowcase → MarketIntelligence → JourneyNumbers → GlobalReach → GlobeScrollSection → Stats → Testimonials) |
-| `brokers.tsx` | `/brokers` | Broker product page (live consoles) |
-| `travel-partners.tsx` | `/travel-partners` | Travel product page (live consoles) |
-| `platform.tsx` | `/platform` | Stack overview (hub-spine hero + linked module map) |
-| `marketplace-connectivity.tsx` | `/marketplace-connectivity` | Marketplace connectivity (live consoles) |
-| `event-intelligence.tsx` | `/event-intelligence` | Event intelligence product page (live consoles) |
-| `api.tsx` | `/api` | API platform (docs-console hero + live consoles) |
-| `market-analytics.tsx` | `/market-analytics` | Analytics grids |
-| `ai-pricing.tsx` | `/ai-pricing` | Pricing workflow (static, not the live console) |
-| `integrations.tsx` | `/integrations` | Integration FeatureGrid |
+| `index.tsx` | `/` | Homepage journey: Hero → ProcessBento → FeatureOrbit → HowItWorks → ToolkitShowcase → SellerTools → Marketplaces → MarketIntelligence → TravelTools → StickyScrollShowcase → JourneyNumbers → Stats (FinalCTA is PageShell). TwoTrack, NetworkConstellation, GlobalReach, GlobeScrollSection, PartnerProductShowcase and Testimonials stay in `landing/` but are not mounted. |
+| `brokers.tsx` | `/brokers` | Redirect → `/become-a-seller` |
+| `travel-partners.tsx` | `/travel-partners` | Redirect → `/products/seatsdeal` |
+| `platform.tsx` | `/platform` | Operating ecosystem (dark ConsoleShell spine + sticky stage desks) |
+| `marketplace-connectivity.tsx` | `/marketplace-connectivity` | Redirect → `/products/seatsmarket` |
+| `event-intelligence.tsx` | `/event-intelligence` | Redirect → `/products/seatsintel` |
+| `api.tsx` | `/api` | Developer API (docs-console hero + live consoles + ApiInfraBoard) |
+| `market-analytics.tsx` | `/market-analytics` | Redirect → `/products/seatspulse` |
+| `ai-pricing.tsx` | `/ai-pricing` | Redirect → `/products/seatspulse` |
+| `integrations.tsx` | `/integrations` | Connect map (POS/ERP/sites). SeatsLink™ product is `/products/seatslink`; API contract is `/api` |
+| `products/index.tsx` | `/products` | Seven-module ecosystem overview |
+| `products/seatsintel.tsx` | `/products/seatsintel` | SeatsIntel™ — unique intel hero/consoles + product story template |
+| `products/seatssource.tsx` | `/products/seatssource` | SeatsSource™ — catalog + inventory consoles + product story template |
+| `products/seatspulse.tsx` | `/products/seatspulse` | SeatsPulse™ — MI + AI pricing consoles + product story template |
+| `products/seatslink.tsx` | `/products/seatslink` | SeatsLink™ — connect-your-stack story (PageHero / FeatureGrid / WorkflowSteps) |
+| `products/seatsmarket.tsx` | `/products/seatsmarket` | SeatsMarket™ — marketplace consoles + product story template |
+| `products/seatsdeal.tsx` | `/products/seatsdeal` | SeatsDeal™ — quote / order consoles + product story template |
+| `products/seatsfunds.tsx` | `/products/seatsfunds` | SeatsFunds™ — payments + USDT desk + product story template |
+| `become-a-seller.tsx` | `/become-a-seller` | Benefits + onboarding + application form (`#apply`) |
 | `about.tsx` | `/about` | Company atlas + journey ledger + ops console |
 | `contact.tsx` | `/contact` | Dark `bh-hero` + right-stage HUD photo + ContactForm |
 | `faq.tsx` | `/faq` | Light FAQ hero + accordion + still-need-help strip |
-| `legal.tsx` | `/legal` | Privacy, Terms and Cookie Policy as 3-col tabs (hashes `#privacy` `#terms` `#cookies`) |
+| `legal.tsx` | `/legal` | Privacy, Terms, Cookies and Compliance tabs (`#privacy` `#terms` `#cookies` `#compliance`) |
 | `book-demo.tsx` | `/book-demo` | Demo briefing hero + session itinerary + request form |
 
 ## Styling

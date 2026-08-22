@@ -32,18 +32,18 @@ export function PlatformHero() {
                 <li key={point}>{point}</li>
               ))}
             </ul>
-            <div className="bh-ctas">
+            <div className="page-cta-row mt-9">
               <SiteLink
                 to={ctas.becomeSeller.to}
-                className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
+                className="lift inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
               >
                 {ctas.becomeSeller.label}
               </SiteLink>
               <SiteLink
-                to={ctas.exploreBrokers.to}
-                className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
+                to={ctas.bookDemo.to}
+                className="lift inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
               >
-                {ctas.exploreBrokers.label}
+                {ctas.bookDemo.label}
               </SiteLink>
             </div>
           </Reveal>

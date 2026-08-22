@@ -25,9 +25,9 @@ const variants: Record<EventIntelLiveConsoleVariant, EventIntelLiveConsoleMeta> 
       "SeatsBrokers ingests provider feeds continuously and normalizes them into a single event record. The radar ranks what opens next, how much demand is building behind it and which events your desk is already watching — the same catalog that powers listings, quotes and the Events API.",
     detailLabel: "What the radar tracks",
     highlights: [
-      { value: "48,214", label: "events indexed" },
-      { value: "142", label: "onsales this week" },
-      { value: "24", label: "categories" },
+      { value: "Global", label: "event catalog" },
+      { value: "Live", label: "onsale calendar" },
+      { value: "Multi", label: "categories" },
     ],
     points: [
       {
@@ -61,9 +61,9 @@ const variants: Record<EventIntelLiveConsoleVariant, EventIntelLiveConsoleMeta> 
       "Every tracked event carries a demand curve, a median ask curve and a matched comparable set. Category bands show where the pressure actually sits — Cat A tightening while the upper tier softens is a pricing decision, not a headline number.",
     detailLabel: "How the signals are built",
     highlights: [
-      { value: "12", label: "comps matched" },
-      { value: "£262", label: "median ask" },
-      { value: "+18%", label: "demand · 7d" },
+      { value: "Live", label: "demand curve" },
+      { value: "Market", label: "ask movement" },
+      { value: "Matched", label: "comparable events" },
     ],
     points: [
       {
@@ -96,8 +96,8 @@ const variants: Record<EventIntelLiveConsoleVariant, EventIntelLiveConsoleMeta> 
       "Catalog, onsale calendar, demand index, comparable events and live marketplace asks feed one event forecast. It projects an ask band to event day, scores sellout risk per category band and models what changes if you hold, reprice or release held inventory. The forecast stays advisory — pricing and inventory decisions remain with the desk.",
     detailLabel: "What the model produces",
     highlights: [
-      { value: "87%", label: "model confidence" },
-      { value: "T-6", label: "projected sellout" },
+      { value: "Advisory", label: "model output" },
+      { value: "Hold", label: "reprice or release" },
       { value: "3", label: "scenarios" },
     ],
     points: [

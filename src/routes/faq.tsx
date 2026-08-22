@@ -1,23 +1,14 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
-import { pageMeta } from "@/content/site";
+import { pageMeta, seoHead } from "@/content/site";
 import { faqItems } from "@/content/faq-data";
 import { FaqHero } from "@/components/pages/faq/FaqHero";
 import { FaqAccordion } from "@/components/pages/faq/FaqAccordion";
 import { FaqHelpStrip } from "@/components/pages/faq/FaqHelpStrip";
 
-const { title, description } = pageMeta.faq;
-
 export const Route = createFileRoute("/faq")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-    ],
-  }),
+  head: () => seoHead("/faq", pageMeta.faq),
   component: FaqPage,
 });
 

@@ -23,48 +23,48 @@ const panels = [
   },
   {
     kind: "travel" as const satisfies StickyScrollConsoleKind,
-    kicker: "B2B companies",
-    title: "Source tickets and create customer quotes",
-    headline: "SeatsBrokers Inventory →",
-    accent: "Margin → Quote → Customer",
-    body: "Access available ticket inventory, add margins, generate professional quotes and share with customers via PDF, WhatsApp or email.",
+    kicker: "Resellers",
+    title: "Source inventory and sell through your channels",
+    headline: "SeatsBrokers inventory →",
+    accent: "Margin → Quote → Sale",
+    body: "Professional resellers work from one inventory layer — find stock, set margins and move tickets through their own sales workflow.",
     points: [
-      "Real-time inventory visibility and partner purchasing",
+      "Real-time inventory visibility across connected supply",
       "Custom margins and customer-ready quotes",
-      "Invoice generation and order management",
+      "Order management without a separate quoting stack",
     ],
-    consoleLabel: "Live B2B quote desk: margin, client price and share channels",
-    caption: "Customer-ready experiences.",
+    consoleLabel: "Live reseller quote desk: margin, client price and share channels",
+    caption: "One inventory layer. Your channels.",
   },
   {
     kind: "marketplaces" as const satisfies StickyScrollConsoleKind,
-    kicker: "Ticket marketplaces",
-    title: "Connect inventory through APIs",
-    headline: "Broker API → Inventory →",
-    accent: "Marketplace → Order",
-    body: "Connect inventory and order infrastructure through APIs — listing creation, price synchronization, order synchronization and delivery updates.",
+    kicker: "Inventory suppliers",
+    title: "Feed supply into one inventory layer",
+    headline: "Supplier stock →",
+    accent: "SeatsBrokers → Brokers",
+    body: "Suppliers connect inventory into SeatsBrokers so professional brokers can source, price and distribute from a single layer.",
     points: [
-      "API connectivity and inventory synchronization",
-      "Automated listing distribution and price sync",
-      "Order synchronization and error monitoring",
+      "Inventory feeds into one shared layer",
+      "Price and availability stay in sync",
+      "Orders route back without a parallel stack",
     ],
-    consoleLabel: "Live marketplace sync console: listing fan-out, ask vs floor and channel lag",
-    caption: "One inventory. Multiple marketplaces.",
+    consoleLabel: "Live supplier sync console: listing fan-out, ask vs floor and channel lag",
+    caption: "Supply in. Distribution out.",
   },
   {
     kind: "partners" as const satisfies StickyScrollConsoleKind,
-    kicker: "Technology partners",
-    title: "Integrate ticket data into your applications",
-    headline: "Internal POS → SeatsBrokers API →",
+    kicker: "Technology-driven operators",
+    title: "Connect your stack to the platform",
+    headline: "Your systems → SeatsLink™ →",
     accent: "Inventory → Distribution",
-    body: "Connect POS systems, inventory systems, internal ERP, websites and partner systems through API-first architecture built for ticketing.",
+    body: "POS, inventory, ERP, websites and partner systems connect through API-first architecture built for ticketing.",
     points: [
-      "Events, Inventory, Listing, Order and Pricing APIs",
-      "Partner API for B2B partners and external systems",
+      "Events, inventory, listing, order and pricing APIs",
+      "Partner API for external systems",
       "Secure authentication and role-based access",
     ],
-    consoleLabel: "Live partner API bridge: signed endpoints, roles and POS-to-distribution flow",
-    caption: "Build on our technology.",
+    consoleLabel: "Live operator API bridge: signed endpoints, roles and POS-to-distribution flow",
+    caption: "Build on the platform.",
   },
 ] as const;
 
@@ -132,11 +132,13 @@ export function StickyScrollShowcase() {
   return (
     <section
       ref={sectionRef}
-      id="platform"
-      className="section-curve-sticky relative isolate scroll-mt-24 overflow-x-clip bg-surface"
-      aria-label="Platform capabilities"
+      id="who-its-for"
+      className="sss-section section-curve-sticky relative isolate scroll-mt-24"
+      aria-label="Who SeatsBrokers is for"
     >
-      <SectionBackdrop image="arenaNight" tone="surface" strength={0.1} />
+      <div className="sss-shell" aria-hidden>
+        <SectionBackdrop image="arenaNight" tone="surface" strength={0.1} />
+      </div>
       <div className="container-page relative z-10">
         <div className="grid lg:grid-cols-2 lg:gap-10 xl:gap-16">
           <div className="relative hidden lg:block">

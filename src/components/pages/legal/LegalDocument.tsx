@@ -6,6 +6,7 @@ import { brand } from "@/content/site";
 import {
   legalChapterFromHash,
   legalChapters,
+  legalCompliance,
   legalCookies,
   legalPrivacy,
   legalTerms,
@@ -17,6 +18,7 @@ const chapters = [
   { meta: legalChapters[0], doc: legalPrivacy },
   { meta: legalChapters[1], doc: legalTerms },
   { meta: legalChapters[2], doc: legalCookies },
+  { meta: legalChapters[3], doc: legalCompliance },
 ] as const;
 
 function Blocks({ blocks }: { blocks: readonly LegalBlock[] }) {

@@ -14,7 +14,7 @@ Detail lives in existing docs — do not duplicate them:
 
 ## Purpose
 
-SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform. Brokers list/price inventory across channels; travel partners search, add margin, quote. **No product backend, database, or real auth** — pages are static React with illustrative console UIs.
+SeatsBrokers (plural) marketing site for a B2B technology platform for professional ticket brokers. Brokers source, manage, price, distribute and sell inventory; quotes and B2B partner desks exist as product surfaces. **No product backend, database, or real auth** — pages are static React with illustrative console UIs.
 
 ## Stack
 
@@ -25,6 +25,8 @@ SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform
 - Data: copy + demo tables in `src/content/*.ts`
 - Infra: Lovable-connected git (`AGENTS.md` — no history rewrite). Vite via `@lovable.dev/vite-tanstack-config`
 
+Nav (Phase 2): Platform, Products (`/products`), Integrations, API, About. Right: Login, Book a Demo, Become a Seller (`/become-a-seller`). Product hrefs in `site.ts` `productHrefs`. Homepage journey is Phase 3 (`src/routes/index.tsx`). `/platform` is the operating ecosystem (Discover → Pay & settle). `/integrations` maps what connects; SeatsLink™ is `/products/seatslink`; `/api` is the developer contract.
+
 ## Repository Structure
 
 | Area | Location | Responsibility |
@@ -32,7 +34,7 @@ SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform
 | Routes | `src/routes/` | One file = one URL. `__root.tsx` = fonts/CSS/QueryClient/404 |
 | Layout | `src/components/layout/` | `PageShell` (Nav + main + FinalCTA + Footer), `SiteLink` |
 | Landing | `src/components/landing/` | Homepage sections |
-| Product UI | `src/components/pages/{shared,brokers,travel,marketplace,event-intelligence,api,about,book-demo,platform,faq,contact,legal}/` | Heroes, consoles, boards, FAQ, contact, legal |
+| Product UI | `src/components/pages/{shared,brokers,travel,marketplace,event-intelligence,api,about,book-demo,platform,products,integrations,faq,contact,legal}/` | Heroes, consoles, boards, FAQ, contact, legal |
 | Copy | `src/content/site.ts` + `*-hero-data.ts` | Nav, CTAs, pageMeta, console demo data |
 | CSS | `src/styles.css` | Tokens + all custom blocks (append, don’t rewrite) |
 | Generated | `src/routeTree.gen.ts` | Do not edit |
@@ -40,9 +42,9 @@ SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform
 ## Important Entry Points
 
 - `src/routes/__root.tsx` — app shell, fonts, `styles.css`
-- `src/routes/index.tsx` — homepage section order: Hero → SellerTools → TravelTools → TwoTrack → Marketplaces → NetworkConstellation → FeatureOrbit → ProcessBento → HowItWorks → PartnerProductShowcase → ToolkitShowcase → StickyScrollShowcase → MarketIntelligence → JourneyNumbers → GlobalReach → GlobeScrollSection → Stats → Testimonials (FinalCTA is PageShell, not duplicated)
+- `src/routes/index.tsx` — homepage journey: Hero → ProcessBento → FeatureOrbit → HowItWorks → ToolkitShowcase → SellerTools → Marketplaces → MarketIntelligence → TravelTools → StickyScrollShowcase → JourneyNumbers → Stats (FinalCTA is PageShell, not duplicated)
 - `src/components/layout/PageShell.tsx` — every marketing page chrome
-- `src/content/site.ts` — nav (`hidden` flag), CTAs, SEO `pageMeta`
+- `src/content/site.ts` — nav (`hidden` flag), CTAs, SEO `pageMeta` + `seoHead()`
 - `src/styles.css` — design tokens + page CSS prefixes
 
 ## Change Routing
@@ -55,11 +57,14 @@ SeatsBrokers (plural) marketing site for a B2B ticketing infrastructure platform
 | Product page sections | `src/routes/<page>.tsx` then that folder under `pages/` |
 | Shared hero/grid/steps | `src/components/pages/shared/PageSections.tsx` |
 | Live console | page-specific `*LiveConsole.tsx` + inner console + CSS prefix |
-| Copy / CTAs / SEO titles | `src/content/site.ts` or `*-hero-data.ts`; official product modules in `src/content/modules.ts`; homepage quote-desk demo in `seat-map-tickets-data.ts` |
+| Copy / CTAs / SEO titles | `src/content/site.ts` `pageMeta` / `seoHead()` or `*-hero-data.ts`; official product modules in `src/content/modules.ts`; homepage quote-desk demo in `seat-map-tickets-data.ts`. Sitemap: `public/sitemap.xml` |
 | Color / type / section chrome | `docs/DESIGN_SYSTEM.md` then `src/styles.css` `:root` |
-| Contact / demo form | `ContactHero` in `pages/contact/` + `ContactForm` in `PageSections.tsx`, or `DemoRequestForm` |
+| Contact / demo form | `ContactHero` in `pages/contact/` + `ContactForm` in `PageSections.tsx`, or `DemoRequestForm`. Seller apply: `SellerApplicationForm` + `src/lib/lead-handoff.ts` |
 | FAQ copy / accordion | `src/content/faq-data.ts` → `pages/faq/` + `src/routes/faq.tsx` |
-| Legal / privacy / terms / cookies | `src/content/legal-data.ts` → `pages/legal/` + `src/routes/legal.tsx`; full-width 3-col tabs; footer `footerLegal` hashes |
+| Legal / privacy / terms / cookies / compliance | `src/content/legal-data.ts` → `pages/legal/` + `src/routes/legal.tsx`; full-width 4-col tabs; footer `footerLegal` hashes |
+| Product pages / Become a Seller | `src/content/site.ts` `productHrefs` → `src/routes/products/` and `src/routes/become-a-seller.tsx`; overview `/products` uses `pages/products/` (`prd-*`); each `/products/seats*` route mounts `ProductStoryPage` (brief skeleton). Heroes: Intel `EventIntelHero`, Market `MarketplaceHero`, Deal `TravelPartnersHero`, Source/Pulse/Link/Funds `*Hero` + `*ConsoleWall` (`srh-*`/`plh-*`/`lkh-*`/`fnh-*`). `/become-a-seller` `SellerHero` + `SellerApplyWall` (`.slr-*`) + compact `SellerApplicationForm` (`.saf-*`). Copy in `products-page-data.ts` `productStories` + `*-hero-data.ts` (`seller-hero-data.ts`). Capabilities: `ProductCapabilityBoard` (`.prd-cap-*`). |
+| Platform operating ecosystem | `src/content/platform-page-data.ts` → `PlatformHero` + `PlatformStackWall` (dark ConsoleShell spine) + `PlatformModuleMap` (sticky workflow + `PlatformDesks`); `.plt-os-*` / `.plt-flow-*` / `.plt-mini-*` append in `styles.css` |
+| Integrations vs SeatsLink vs API | `src/routes/integrations.tsx` + `pages/integrations/` + `integrationsPage` in `products-page-data.ts`. SeatsLink™ `/products/seatslink`; API `/api` `apiInfra` → `ApiInfraBoard` (`.api-infra-*`). Integrations does not use FeatureOrbitGrid. |
 
 ## Critical Relationships
 
@@ -80,7 +85,8 @@ TravelLiveConsole    → pages/travel
 MarketplaceLiveConsole → pages/marketplace
 EventIntelLiveConsole → pages/event-intelligence
 ApiLiveConsole       → pages/api
-AboutLiveConsole     → pages/about     (data→intelligence pipeline — not a product console)
+AboutLiveConsole     → pages/about     (data→intelligence pipeline — built, unmounted; files kept)
+IntegrationsLiveConsole → pages/integrations (connect map — not SeatsLink™ / API docs)
 ```
 
 Shared chrome: `ConsoleCopyPanel` + `ConsoleShell` (brokers folder) used by all terminal consoles.

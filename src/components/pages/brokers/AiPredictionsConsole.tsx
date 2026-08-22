@@ -39,7 +39,7 @@ const drivers = [
 ] as const;
 
 const decisionLog = [
-  { time: "09:41:18", msg: "ai.recommend → £248 ask · 87% confidence" },
+  { time: "09:41:18", msg: "ai.recommend → £248 ask · advisory" },
   { time: "09:41:14", msg: "model.score → demand +18% · floor armed" },
   { time: "09:41:11", msg: "market.ingest → 32 channels refreshed" },
   { time: "09:41:08", msg: "guard.floor → £185 minimum enforced" },

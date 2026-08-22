@@ -88,13 +88,16 @@ Copy + console must stay in this split. New “alive” sections should use `Tra
 
 | Module | What it is | Tagline |
 |---|---|---|
-| SeatsFunds™ | Payments, credit, funding & settlement | Financial Infrastructure for Ticketing. |
-| SeatsMarket™ | Global B2B ticket inventory marketplace | The Global Marketplace for Live Events. |
-| Seatpin™ | API, integrations & connectivity | Connect Your Business to Global Ticket Inventory. |
-| SeatsSource™ | Primary-market ticket sourcing | Intelligent Access to Primary Ticket Inventory. |
-| SeatsPulse™ | Resale-market intelligence & pricing analytics | Know the Market. Price with Confidence. |
-| SeatsIntel™ | Event & primary-market intelligence | Know What's Coming. Buy Smarter. |
-| SeatsDeal™ | Quotations, customer payments & sales | From Quote to Completed Sale. |
-| SeatsLaunch™ | White-label ticketing websites | Launch Your Ticketing Business. |
+| SeatsIntel™ | Market intelligence | Know the market. |
+| SeatsSource™ | Inventory & supply | Manage your inventory. |
+| SeatsPulse™ | Pricing intelligence | AI recommends. You decide. |
+| SeatsLink™ | API & connectivity | Connect your ticketing operation. |
+| SeatsMarket™ | Distribution | List once. Distribute everywhere. |
+| SeatsDeal™ | Quotes, orders & fulfilment | From enquiry to sale. |
+| SeatsFunds™ | Payments & settlement | Payments built into your ticketing workflow. |
+
+SeatsLaunch™ remains in `modules.ts` but is **parked** — not in `moduleList` and not shown on any public surface.
+
+Primary description: **SeatsBrokers is a B2B technology platform for professional ticket brokers.** Brand line: **Powering the Business of Ticket Resale.** Do not claim SeatsBrokers itself has operated for 30+ years — use “built on more than 30 years of ticketing experience.” Do not publish unverified marketplace/partner/ticket counts.
 
 - Never reuse competitor product names/taglines verbatim (e.g. never “Uptick”, “DataIQ”)

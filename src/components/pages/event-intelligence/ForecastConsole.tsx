@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useInView } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
+import { productHrefs } from "@/content/site";
 
 const eventContext = {
   id: "EV-28402",
@@ -58,10 +59,10 @@ const scenarios: Scenario[] = [
       { label: "Projected sell-through", value: "82%" },
       { label: "Projected yield / seat", value: "£296" },
       { label: "Projected sellout", value: "T-6" },
-      { label: "Model confidence", value: "87%" },
+      { label: "Model confidence", value: "Advisory" },
     ],
     peak: "£312",
-    confidence: "87%",
+    confidence: "Advisory",
     selloutDay: "T-6",
   },
   {
@@ -399,7 +400,7 @@ export function ForecastConsole() {
 
         <div className="fc-foot">
           <p>Forecasts feed AI pricing, inventory decisions and partner quoting.</p>
-          <SiteLink to="/ai-pricing" className="fc-foot-link">
+          <SiteLink to={productHrefs.pulse} className="fc-foot-link">
             See how AI Pricing uses it
             <ArrowRight className="size-3.5" strokeWidth={2} />
           </SiteLink>

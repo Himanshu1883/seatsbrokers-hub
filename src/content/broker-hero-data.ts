@@ -43,24 +43,24 @@ export const brokerHeroColumnB: BrokerHeroCard[] = [
 ];
 
 export const heroInventory = {
-  listings: "2,418",
-  seats: "6,842",
-  channels: "8",
+  listings: "Live",
+  seats: "Held",
+  channels: "Multi",
   event: "UCL Final · Cat A",
-  movement: "+126 today",
+  movement: "In sync",
 } as const;
 
 export const heroMarketplaces = [
-  { name: "StubHub", count: "842", status: "synced" as const },
-  { name: "Viagogo", count: "418", status: "synced" as const },
-  { name: "LiveFootball", count: "612", status: "pushing" as const },
-  { name: "Broker desk", count: "248", status: "synced" as const },
+  { name: "Global resale", count: "Live", status: "synced" as const },
+  { name: "Sports exchange", count: "Live", status: "synced" as const },
+  { name: "Regional OTA", count: "Push", status: "pushing" as const },
+  { name: "Broker desk", count: "Live", status: "synced" as const },
 ] as const;
 
 export const heroAiPricing = {
   ask: "£248",
   floor: "£185",
-  confidence: "87%",
+  confidence: "Advisory",
   badge: "Best",
   event: "UCL Final · Cat A",
 } as const;
@@ -71,22 +71,22 @@ export const heroEvents = [
     venue: "Wembley · London",
     date: "31 May 2026",
     category: "Football",
-    availability: "842 listings",
+    availability: "Listings live",
   },
   {
     name: "Arsenal vs Chelsea",
     venue: "Emirates · London",
     date: "14 Apr 2026",
     category: "Premier League",
-    availability: "416 listings",
+    availability: "Listings live",
   },
 ] as const;
 
 export const heroSyncLog = [
-  { time: "09:41:02", msg: "push.listings → 8 channels", ok: true },
+  { time: "09:41:02", msg: "push.listings → connected channels", ok: true },
   { time: "09:41:03", msg: "double_sale.guard → armed", ok: true },
   { time: "09:41:04", msg: "ai.reprice → £248 ask", ok: true },
-  { time: "09:41:05", msg: "sync.delist → 3 marketplaces", ok: true },
+  { time: "09:41:05", msg: "sync.delist → connected marketplaces", ok: true },
   { time: "09:41:06", msg: "order.complete → SB-4817", ok: true },
 ] as const;
 
@@ -100,14 +100,14 @@ export const heroDistributionNodes = [
 export const heroMarketIntel = {
   event: "Champions League Final",
   avg: "£248",
-  demand: "+18%",
-  volume: "842",
+  demand: "Rising",
+  volume: "Live",
   bars: [38, 52, 71, 58, 84, 62, 78] as const,
 } as const;
 
 export const heroSalesDesk = {
-  orders: "47",
-  revenue: "£12,840",
-  conversion: "98.2%",
-  listings: "2,418 active",
+  orders: "Live",
+  revenue: "Demo",
+  conversion: "Tracked",
+  listings: "Active",
 } as const;

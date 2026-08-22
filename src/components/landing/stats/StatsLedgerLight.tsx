@@ -5,26 +5,26 @@ const stats = [
   {
     icon: "◎",
     value: "30+",
-    label: "Years In Market",
-    desc: "Operating since the early days of secondary ticketing.",
+    label: "Years of experience",
+    desc: "Built on more than 30 years of ticketing experience.",
   },
   {
     icon: "⌂",
-    value: "10,000+",
-    label: "Partner Network",
-    desc: "Verified sellers and B2B partners, active today.",
+    value: "B2B",
+    label: "Professional network",
+    desc: "Built for professional ticket brokers, resellers and suppliers.",
   },
   {
     icon: "▤",
-    value: "2,000,000+",
-    label: "Tickets Delivered",
-    desc: "Fulfilled orders tracked since platform launch.",
+    value: "Multi",
+    label: "Connected marketplaces",
+    desc: "List once and distribute across connected marketplaces and sales channels.",
   },
   {
     icon: "★",
-    value: "4.7 / 5",
-    label: "Partner Rating",
-    desc: "Weighted average across all seller reviews.",
+    value: "Global",
+    label: "Distribution",
+    desc: "Reach buyers through global distribution.",
   },
 ] as const;
 

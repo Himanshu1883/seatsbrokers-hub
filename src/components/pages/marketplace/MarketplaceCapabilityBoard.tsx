@@ -44,14 +44,14 @@ const capabilities = [
 ] as const;
 
 const channels = [
-  { code: "CH-01", dest: "SG", name: "Global resale", latency: "42ms", state: "synced" as const },
-  { code: "CH-02", dest: "LF", name: "Sports exchange", latency: "58ms", state: "synced" as const },
-  { code: "CH-03", dest: "TM", name: "Regional OTA", latency: "96ms", state: "pushing" as const },
-  { code: "CH-04", dest: "POS", name: "Broker desk", latency: "18ms", state: "synced" as const },
-  { code: "CH-05", dest: "OTA", name: "B2B partners", latency: "71ms", state: "synced" as const },
-  { code: "CH-06", dest: "WL", name: "White-label", latency: "—", state: "queued" as const },
-  { code: "CH-07", dest: "SH", name: "Marketplace 05", latency: "64ms", state: "synced" as const },
-  { code: "CH-08", dest: "VGG", name: "Marketplace 06", latency: "81ms", state: "synced" as const },
+  { code: "CH-01", dest: "SG", name: "Global resale", latency: "Live", state: "synced" as const },
+  { code: "CH-02", dest: "LF", name: "Sports exchange", latency: "Live", state: "synced" as const },
+  { code: "CH-03", dest: "TM", name: "Regional OTA", latency: "Push", state: "pushing" as const },
+  { code: "CH-04", dest: "POS", name: "Broker desk", latency: "Live", state: "synced" as const },
+  { code: "CH-05", dest: "OTA", name: "B2B partners", latency: "Live", state: "synced" as const },
+  { code: "CH-06", dest: "WL", name: "White-label", latency: "Queued", state: "queued" as const },
+  { code: "CH-07", dest: "SH", name: "Marketplace 05", latency: "Live", state: "synced" as const },
+  { code: "CH-08", dest: "VGG", name: "Marketplace 06", latency: "Live", state: "synced" as const },
 ] as const;
 
 type ChannelState = (typeof channels)[number]["state"];

@@ -4,382 +4,349 @@ import {
   useRef,
   useState,
   type MouseEvent as ReactMouseEvent,
+  type ReactNode,
 } from "react";
 import {
-  CalendarDays,
-  Database,
-  FileText,
-  Globe2,
+  Boxes,
   Layers3,
-  LineChart,
-  MapPin,
-  RefreshCw,
-  Search,
-  Send,
+  LayoutGrid,
   ShieldCheck,
-  Ticket,
-  Wallet,
+  Sparkles,
 } from "lucide-react";
+import { ConsoleShell } from "@/components/pages/brokers/ConsoleShell";
 import { useInView } from "@/hooks/use-scroll-motion";
+import { modules } from "@/content/modules";
+import {
+  productsWorkflowFeed,
+  productsWorkflowLayers,
+} from "@/content/products-page-data";
 
 const TICK_MS = 1600;
 
 const consoleMeta = [
-  { id: "platform", path: "platform · infrastructure", badge: "Live" },
-  { id: "broker", path: "broker · distribution", badge: "Sync" },
-  { id: "travel", path: "b2b · quote desk", badge: "Quote" },
+  { id: "platform", path: "seatsbrokers / platform / operations", badge: "Ready" },
+  { id: "workflow", path: "seatsbrokers / platform / workflow", badge: "Live" },
+  { id: "products", path: "seatsbrokers / products / command", badge: "Ready" },
 ] as const;
 
-function HudBar({ path, badge, spin = false }: { path: string; badge: string; spin?: boolean }) {
+function StatusPill({
+  tone,
+  children,
+}: {
+  tone: "ok" | "sync" | "hold" | "review";
+  children: ReactNode;
+}) {
   return (
-    <header className="hero-hud-bar">
-      <span className="hero-hud-dots" aria-hidden>
-        <i />
-        <i />
-        <i />
-      </span>
-      <span className="hero-hud-path">
-        {spin ? (
-          <RefreshCw className="size-3 hero-spin shrink-0" />
-        ) : (
-          <Globe2 className="size-3 shrink-0" />
-        )}
-        seatsbrokers / {path}
-      </span>
-      <span className="hero-hud-badge">
-        <span className="hero-hud-pip" />
-        {badge}
-      </span>
-    </header>
+    <span className="hero-desk-pill" data-tone={tone}>
+      {children}
+    </span>
   );
 }
 
-/* 1 — Infrastructure control room: platform layers + system feed */
-
-const platformLayers = [
-  { icon: CalendarDays, label: "Event data", meta: "12K+ events" },
-  { icon: Database, label: "Inventory", meta: "84K+ listings" },
-  { icon: Globe2, label: "Distribution", meta: "32+ channels" },
-  { icon: LineChart, label: "Pricing", meta: "AI signals" },
-  { icon: Wallet, label: "Payments", meta: "£ settled" },
-];
-
-const platformFeed = [
-  { tag: "event", line: "Onsale detected · Monaco GP" },
-  { tag: "sync", line: "Listing pushed · 6 channels" },
-  { tag: "price", line: "Ask updated £182 → £188" },
-  { tag: "partner", line: "Quote sent · B2B partner" },
-  { tag: "pay", line: "Settlement queued · £14,820" },
-  { tag: "event", line: "Venue map refreshed · Wembley" },
-  { tag: "sync", line: "Quantity synced · 4 remaining" },
-  { tag: "price", line: "Comp set refreshed · 165 markets" },
-];
-
-const platformThroughput = [38, 54, 46, 68, 58, 82, 71, 94, 78, 88];
-
-function PlatformConsole({ tick }: { tick: number }) {
-  const activeLayer = tick % platformLayers.length;
-
+function DeskFeed({ rows }: { rows: readonly { time: string; msg: string }[] }) {
+  const loop = [...rows, ...rows];
   return (
-    <div className="hero-hud">
-      <HudBar path={consoleMeta[0]!.path} badge={consoleMeta[0]!.badge} />
-
-      <div className="hero-hud-body">
-        <div className="hero-hud-head">
-          <div className="min-w-0">
-            <p className="hero-hud-kicker">
-              <Layers3 className="size-3" /> Platform layers
-            </p>
-            <p className="hero-hud-title">One infrastructure layer, end to end</p>
-          </div>
-          <span className="hero-hud-chip">165+ markets</span>
-        </div>
-
-        <div className="hero-hud-split">
-          <div className="hero-hud-stack">
-            <span className="hero-hud-stack-rail" aria-hidden>
-              <i className="hero-hud-packet" />
-            </span>
-            {platformLayers.map((layer, i) => (
-              <div
-                key={layer.label}
-                className="hero-hud-layer"
-                data-active={i === activeLayer ? "true" : "false"}
-                style={{ animationDelay: `${i * 55}ms` }}
-              >
-                <span className="hero-hud-layer-icon">
-                  <layer.icon className="size-3.5" />
-                </span>
-                <span className="hero-hud-layer-label">{layer.label}</span>
-                <span className="hero-hud-layer-meta">{layer.meta}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="hero-hud-side">
-            <div className="hero-hud-panel hero-hud-chart">
-              <p className="hero-hud-mini">Throughput</p>
-              <div className="hero-tilt-bars hero-hud-bars">
-                {platformThroughput.map((height, i) => (
-                  <span
-                    key={i}
-                    className="hero-tilt-bar"
-                    style={{ height: `${height}%`, animationDelay: `${i * 45}ms` }}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="hero-hud-tiles">
-              <div>
-                <strong>4s</strong>
-                <span>last sync</span>
-              </div>
-              <div>
-                <strong>38ms</strong>
-                <span>latency</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="hero-hud-feed">
-          <div className="hero-hud-feed-mask">
-            <div className="hero-hud-feed-track">
-              {[...platformFeed, ...platformFeed].map((entry, i) => (
-                <span key={i} className="hero-hud-feed-row">
-                  <i />
-                  <em>{entry.tag}</em>
-                  <b>{entry.line}</b>
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <footer className="hero-hud-foot">
-        <span>5 layers · 1 platform</span>
-        <span className="hero-hud-foot-accent">all systems live</span>
-      </footer>
+    <div className="hero-desk-feed">
+      <ul className="hero-desk-feed-track" aria-hidden>
+        {loop.map((row, index) => (
+          <li key={`${row.time}-${index}`}>
+            <span>{row.time}</span>
+            {row.msg}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-/* 2 — Distribution matrix: one catalog pushed to every channel */
+const hubListings = [
+  { event: "Arsenal vs Chelsea", section: "Club L · R8", qty: "4", ask: "£248", status: "Listed" as const },
+  { event: "UCL Final · Wembley", section: "Cat A · R12", qty: "2", ask: "£186", status: "Syncing" as const },
+  { event: "Wimbledon · Centre Court", section: "Longside · R4", qty: "6", ask: "£410", status: "Listed" as const },
+  { event: "Monaco GP · Main GS", section: "Upper · R22", qty: "3", ask: "£182", status: "Hold" as const },
+] as const;
 
-const brokerChannels = ["MKT", "EXC", "TRV", "OTA", "WL", "API"];
+const hubChannels = [
+  { label: "Marketplaces", status: "Connected" as const },
+  { label: "B2B buyers", status: "Connected" as const },
+  { label: "API partners", status: "Connected" as const },
+  { label: "Websites", status: "Synced" as const },
+  { label: "Resellers", status: "Synced" as const },
+] as const;
 
-const brokerRows = [
-  { event: "Monaco GP · Main Grandstand", qty: "6", ask: "£182" },
-  { event: "El Clásico · Category 1", qty: "4", ask: "£264" },
-  { event: "Wimbledon · Centre Court", qty: "2", ask: "£410" },
-  { event: "NFL London · Lower Tier", qty: "8", ask: "£148" },
-];
+const hubFeed = [
+  { time: "14:22:08", msg: "inventory.sync · one layer aligned" },
+  { time: "14:22:04", msg: "listing.push · channels in sync" },
+  { time: "14:21:58", msg: "ask.update · Club L £248" },
+  { time: "14:21:51", msg: "qty.align · Cat A remaining 2" },
+  { time: "14:21:44", msg: "auto-delist · sold qty written back" },
+] as const;
 
-function cellState(row: number, col: number, tick: number) {
-  const n = (row * 7 + col * 3 + tick) % 11;
-  if (n === 0) return "queue";
-  if (n === 3 || n === 6) return "push";
-  return "ok";
+function listingTone(status: (typeof hubListings)[number]["status"]) {
+  if (status === "Listed") return "ok" as const;
+  if (status === "Syncing") return "sync" as const;
+  return "hold" as const;
 }
 
-function BrokerConsole({ tick }: { tick: number }) {
-  const activeRow = tick % brokerRows.length;
-  const liveListings = (1248 + (tick % 7) * 3).toLocaleString("en-GB");
+function channelTone(status: (typeof hubChannels)[number]["status"]) {
+  return status === "Connected" ? ("ok" as const) : ("sync" as const);
+}
+
+function PlatformHubDesk({ tick, live }: { tick: number; live: boolean }) {
+  const row = tick % hubListings.length;
+  const channel = tick % hubChannels.length;
 
   return (
-    <div className="hero-hud">
-      <HudBar path={consoleMeta[1]!.path} badge={consoleMeta[1]!.badge} spin />
-
-      <div className="hero-hud-body">
-        <div className="hero-hud-listing">
-          <div className="min-w-0">
-            <p className="hero-hud-kicker">
-              <Ticket className="size-3" /> Listed once
-            </p>
-            <p className="hero-hud-title">Synchronized across every channel</p>
+    <ConsoleShell path={consoleMeta[0].path} status={consoleMeta[0].badge} icon={Layers3}>
+      <div className="hero-desk" data-kind="hub" data-live={live ? "true" : "false"}>
+        <div className="hero-desk-stats">
+          <div className="lc-stat">
+            <span className="lc-stat-label">Platform</span>
+            <strong className="lc-stat-value">Ready</strong>
           </div>
-          <div className="hero-hud-listing-num">
-            <span>Live listings</span>
-            <strong key={liveListings} className="hero-hud-flash">
-              {liveListings}
-            </strong>
+          <div className="lc-stat">
+            <span className="lc-stat-label">Inventory</span>
+            <strong className="lc-stat-value">One layer</strong>
+          </div>
+          <div className="lc-stat">
+            <span className="lc-stat-label">Reach</span>
+            <strong className="lc-stat-value">Multi-channel</strong>
           </div>
         </div>
 
-        <div className="hero-hud-matrix">
-          <div className="hero-hud-matrix-head">
-            <span>Listing</span>
-            <span>Qty</span>
-            <span>Ask</span>
-            <span className="hero-hud-matrix-chan">
-              {brokerChannels.map((channel) => (
-                <em key={channel}>{channel}</em>
-              ))}
-            </span>
+        <div className="hero-desk-context">
+          <div className="min-w-0">
+            <p className="hero-desk-kicker">Operations desk</p>
+            <p className="hero-desk-title">One inventory layer. Multiple sales channels.</p>
           </div>
+          <span className="hero-desk-chip">Demo</span>
+        </div>
 
-          {brokerRows.map((row, i) => (
-            <div
-              key={row.event}
-              className="hero-hud-matrix-row"
-              data-active={i === activeRow ? "true" : "false"}
-              style={{ animationDelay: `${i * 55}ms` }}
-            >
-              <span className="hero-hud-matrix-name">{row.event}</span>
-              <span className="hero-hud-matrix-qty">{row.qty}</span>
-              <span className="hero-hud-matrix-ask">{row.ask}</span>
-              <span className="hero-hud-matrix-chan">
-                {brokerChannels.map((channel, j) => (
-                  <i key={channel} data-state={cellState(i, j, tick)} />
+        <div className="hero-desk-work">
+          <section className="lc-panel hero-desk-panel">
+            <header className="lc-panel-head">
+              <span className="lc-panel-dot" />
+              Inventory
+              <span className="lc-panel-badge">Live stock</span>
+            </header>
+            <table className="hero-desk-table">
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Section</th>
+                  <th>Qty</th>
+                  <th>Ask</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {hubListings.map((listing, index) => (
+                  <tr key={listing.event} data-active={index === row ? "true" : "false"}>
+                    <td>{listing.event}</td>
+                    <td>{listing.section}</td>
+                    <td>{listing.qty}</td>
+                    <td>{listing.ask}</td>
+                    <td>
+                      <StatusPill tone={listingTone(listing.status)}>{listing.status}</StatusPill>
+                    </td>
+                  </tr>
                 ))}
-              </span>
-            </div>
+              </tbody>
+            </table>
+          </section>
+
+          <section className="lc-panel hero-desk-panel hero-desk-side">
+            <header className="lc-panel-head">
+              Channels
+              <span className="lc-panel-badge lc-panel-badge-live">In sync</span>
+            </header>
+            <ul className="hero-desk-channels">
+              {hubChannels.map((item, index) => (
+                <li key={item.label} data-active={index === channel ? "true" : "false"}>
+                  <span>{item.label}</span>
+                  <StatusPill tone={channelTone(item.status)}>{item.status}</StatusPill>
+                </li>
+              ))}
+            </ul>
+            <p className="hero-desk-note">
+              <ShieldCheck className="size-3" strokeWidth={1.75} aria-hidden />
+              Auto-delist after sale
+            </p>
+          </section>
+        </div>
+
+        <DeskFeed rows={hubFeed} />
+      </div>
+    </ConsoleShell>
+  );
+}
+
+function WorkflowDesk({ tick, live }: { tick: number; live: boolean }) {
+  const active = tick % productsWorkflowLayers.length;
+  const layer = productsWorkflowLayers[active] ?? productsWorkflowLayers[0];
+
+  return (
+    <ConsoleShell path={consoleMeta[1].path} status={consoleMeta[1].badge} icon={Boxes}>
+      <div className="hero-desk" data-kind="workflow" data-live={live ? "true" : "false"}>
+        <div className="hero-desk-stats">
+          <div className="lc-stat">
+            <span className="lc-stat-label">Path</span>
+            <strong className="lc-stat-value">Discover → Settle</strong>
+          </div>
+          <div className="lc-stat">
+            <span className="lc-stat-label">Stage</span>
+            <strong className="lc-stat-value">{layer.stage}</strong>
+          </div>
+          <div className="lc-stat">
+            <span className="lc-stat-label">Products</span>
+            <strong className="lc-stat-value">7 live</strong>
+          </div>
+        </div>
+
+        <div className="hero-desk-context">
+          <div className="min-w-0">
+            <p className="hero-desk-kicker">Workflow desk</p>
+            <p className="hero-desk-title">Source, price, distribute and settle from one desk</p>
+          </div>
+          <span className="hero-desk-chip">Live</span>
+        </div>
+
+        <ol className="hero-desk-pipe" aria-hidden>
+          {productsWorkflowLayers.map((item, index) => (
+            <li key={item.id} data-active={index === active ? "true" : "false"}>
+              <span className="hero-desk-pipe-index">{item.index}</span>
+              <strong>{item.stage}</strong>
+              <em>{item.short}</em>
+            </li>
           ))}
-        </div>
+        </ol>
 
-        <div className="hero-hud-export">
-          <span className="hero-hud-mini">Export close</span>
-          <div className="hero-hud-export-bar" aria-hidden>
-            <i />
-          </div>
-          <span className="hero-hud-export-meta">12,480 rows</span>
-        </div>
+        <section className="lc-panel hero-desk-active">
+          <header className="lc-panel-head">
+            <span className="lc-panel-dot" />
+            Now lighting
+            <span className="lc-panel-badge">
+              {layer.index} · {layer.stage}
+            </span>
+          </header>
+          <p className="hero-desk-active-name">{layer.name}</p>
+          <p className="hero-desk-active-tag">{layer.tagline}</p>
+          <p className="hero-desk-active-line">{layer.line}</p>
+        </section>
+
+        <DeskFeed rows={productsWorkflowFeed} />
       </div>
-
-      <footer className="hero-hud-foot">
-        <span className="hero-hud-foot-icon">
-          <ShieldCheck className="size-3" /> Auto-delist after sale
-        </span>
-        <span className="hero-hud-foot-accent">0 conflicts · push 4s</span>
-      </footer>
-    </div>
+    </ConsoleShell>
   );
 }
 
-/* 3 — Partner quote desk: search, margin, branded quote */
+const productRows = [
+  { index: "01", stage: "Discover", product: modules.intel.name, signal: "Peak demand", state: "Ready", tone: "ok" as const },
+  { index: "02", stage: "Source", product: modules.source.name, signal: "Cat A × 4", state: "Live", tone: "ok" as const },
+  { index: "03", stage: "Price", product: modules.pulse.name, signal: "Rec £248", state: "Review", tone: "review" as const },
+  { index: "04", stage: "Connect", product: modules.link.name, signal: "POS · feed", state: "Open", tone: "sync" as const },
+  { index: "05", stage: "Distribute", product: modules.market.name, signal: "Channels in sync", state: "Sync", tone: "sync" as const },
+  { index: "06", stage: "Sell", product: modules.deal.name, signal: "Quote £992", state: "Ready", tone: "ok" as const },
+  { index: "07", stage: "Settle", product: modules.funds.name, signal: "Standard rail", state: "Queued", tone: "hold" as const },
+] as const;
 
-const travelScenarios = [
-  { margin: 12, cost: 242, price: 271 },
-  { margin: 18, cost: 242, price: 286 },
-  { margin: 24, cost: 242, price: 300 },
-];
+const productFeed = [
+  { time: "09:42:18", msg: "intel → demand peak on Cat A" },
+  { time: "09:42:14", msg: "pulse → recommended ask £248" },
+  { time: "09:42:10", msg: "market → listing mirrored" },
+  { time: "09:42:06", msg: "deal → quote shared in £" },
+  { time: "09:42:02", msg: "funds → payout on Standard" },
+] as const;
 
-const travelSteps = ["Search inventory", "Add margin", "Send quote"];
-
-const travelAvailability = [
-  { label: "Category 1", seats: 8, fill: 82 },
-  { label: "Category 2", seats: 6, fill: 58 },
-  { label: "Grandstand K", seats: 4, fill: 36 },
-];
-
-function TravelConsole({ tick }: { tick: number }) {
-  const step = tick % travelSteps.length;
-  const scenario = travelScenarios[step]!;
-  const total = scenario.price * 4;
+function ProductsCommandDesk({ tick, live }: { tick: number; live: boolean }) {
+  const active = tick % productRows.length;
+  const row = productRows[active] ?? productRows[0];
+  const rec = productsWorkflowLayers[2];
 
   return (
-    <div className="hero-hud">
-      <HudBar path={consoleMeta[2]!.path} badge={consoleMeta[2]!.badge} />
-
-      <div className="hero-hud-body">
-        <div className="hero-hud-chips">
-          <span>
-            <Search className="size-3" /> Monaco GP
-          </span>
-          <span>
-            <CalendarDays className="size-3" /> 24 May
-          </span>
-          <span>
-            <MapPin className="size-3" /> Circuit de Monaco
-          </span>
-          <span>Category 1</span>
+    <ConsoleShell path={consoleMeta[2].path} status={consoleMeta[2].badge} icon={LayoutGrid}>
+      <div className="hero-desk" data-kind="products" data-live={live ? "true" : "false"}>
+        <div className="hero-desk-stats">
+          <div className="lc-stat">
+            <span className="lc-stat-label">Products</span>
+            <strong className="lc-stat-value">Seven live</strong>
+          </div>
+          <div className="lc-stat">
+            <span className="lc-stat-label">Control</span>
+            <strong className="lc-stat-value">You decide</strong>
+          </div>
+          <div className="lc-stat">
+            <span className="lc-stat-label">Motion</span>
+            <strong className="lc-stat-value">Connected</strong>
+          </div>
         </div>
 
-        <div className="hero-hud-quote">
-          <div className="hero-hud-steps">
-            {travelSteps.map((label, i) => (
-              <div
-                key={label}
-                className="hero-hud-step"
-                data-state={i < step ? "done" : i === step ? "active" : "idle"}
-                style={{ animationDelay: `${i * 55}ms` }}
-              >
-                <span className="hero-hud-step-dot">{i + 1}</span>
-                <span className="hero-hud-step-label">{label}</span>
-              </div>
-            ))}
-
-            <div className="hero-hud-panel hero-hud-avail">
-              <p className="hero-hud-mini">Availability</p>
-              {travelAvailability.map((row) => (
-                <div key={row.label} className="hero-hud-avail-row">
-                  <span>{row.label}</span>
-                  <i>
-                    <b style={{ width: `${row.fill}%` }} />
-                  </i>
-                  <em>{row.seats}</em>
-                </div>
-              ))}
-            </div>
+        <div className="hero-desk-context">
+          <div className="min-w-0">
+            <p className="hero-desk-kicker">Product command</p>
+            <p className="hero-desk-title">Seven products. One connected workflow.</p>
           </div>
+          <span className="hero-desk-chip">
+            <Sparkles className="size-3" strokeWidth={1.75} aria-hidden />
+            Demo
+          </span>
+        </div>
 
-          <div className="hero-hud-money">
-            <p className="hero-hud-mini">Client price · per ticket</p>
-            <p key={scenario.price} className="hero-hud-money-value">
-              <span>£</span>
-              {scenario.price}
-              <em>+£{scenario.price - scenario.cost}</em>
+        <div className="hero-desk-work">
+          <section className="lc-panel hero-desk-panel">
+            <header className="lc-panel-head">
+              <span className="lc-panel-dot" />
+              Modules
+              <span className="lc-panel-badge">{row.index} · {row.stage}</span>
+            </header>
+            <table className="hero-desk-table hero-desk-table-modules">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Stage</th>
+                  <th>Product</th>
+                  <th>Signal</th>
+                  <th>State</th>
+                </tr>
+              </thead>
+              <tbody>
+                {productRows.map((item, index) => (
+                  <tr key={item.index} data-active={index === active ? "true" : "false"}>
+                    <td>{item.index}</td>
+                    <td>{item.stage}</td>
+                    <td>{item.product}</td>
+                    <td>{item.signal}</td>
+                    <td>
+                      <StatusPill tone={item.tone}>{item.state}</StatusPill>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+
+          <section className="lc-panel hero-desk-panel hero-desk-side">
+            <header className="lc-panel-head">
+              {modules.pulse.name}
+              <span className="lc-panel-badge lc-panel-badge-live">You decide</span>
+            </header>
+            <p className="hero-desk-rec-kicker">{rec.tagline}</p>
+            <p className="hero-desk-rec-ask">
+              <span>Recommended</span>
+              <strong>£248</strong>
             </p>
-
-            <div className="hero-hud-lines">
-              <div>
-                <span>4 × Category 1</span>
-                <strong>£{scenario.price}</strong>
-              </div>
-              <div data-total="true">
-                <span>Quote total</span>
-                <strong>£{total.toLocaleString("en-GB")}</strong>
-              </div>
+            <p className="hero-desk-rec-line">{rec.line}</p>
+            <div className="hero-desk-gates" aria-hidden>
+              <span data-tone="ok">Accept</span>
+              <span data-tone="hold">Hold</span>
+              <span data-tone="review">Dismiss</span>
             </div>
-
-            <div className="hero-hud-math">
-              <div>
-                <span>Partner cost</span>
-                <strong>£{scenario.cost}</strong>
-              </div>
-              <div>
-                <span>Margin</span>
-                <strong>{scenario.margin}%</strong>
-              </div>
-              <div>
-                <span>Tickets</span>
-                <strong>4</strong>
-              </div>
-            </div>
-
-            <div className="hero-hud-margin" aria-hidden>
-              <i style={{ width: `${(scenario.margin / 30) * 100}%` }} />
-            </div>
-          </div>
+          </section>
         </div>
 
-        <div className="hero-hud-quote-foot">
-          <span className="hero-hud-stamp">
-            <FileText className="size-3" /> Branded PDF quote ready
-          </span>
-          <span className="hero-hud-send">
-            <Send className="size-3" /> Send
-          </span>
-        </div>
+        <DeskFeed rows={productFeed} />
       </div>
-
-      <footer className="hero-hud-foot">
-        <span>Quote SB-4821 · 4 tickets</span>
-        <span className="hero-hud-foot-accent">valid 48h</span>
-      </footer>
-    </div>
+    </ConsoleShell>
   );
 }
 
@@ -395,7 +362,8 @@ export function HeroDashboardTilt({
   const [tick, setTick] = useState(0);
   const [reduced, setReduced] = useState(false);
   const index = ((slide % consoleMeta.length) + consoleMeta.length) % consoleMeta.length;
-  const current = consoleMeta[index]!;
+  const current = consoleMeta[index];
+  const live = inView && !reduced;
 
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -443,9 +411,11 @@ export function HeroDashboardTilt({
         <span className="hero-tilt-scan" />
 
         <div key={`${current.id}-${swapKey}`} className="hero-hud-swap">
-          {index === 0 ? <PlatformConsole tick={tick} /> : null}
-          {index === 1 ? <BrokerConsole tick={tick} /> : null}
-          {index === 2 ? <TravelConsole tick={tick} /> : null}
+          <div className="hero-desk-shell">
+            {index === 0 ? <PlatformHubDesk tick={tick} live={live} /> : null}
+            {index === 1 ? <WorkflowDesk tick={tick} live={live} /> : null}
+            {index === 2 ? <ProductsCommandDesk tick={tick} live={live} /> : null}
+          </div>
         </div>
       </div>
     </div>

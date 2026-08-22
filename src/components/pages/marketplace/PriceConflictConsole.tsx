@@ -11,9 +11,9 @@ const listing = {
 } as const;
 
 const stats = [
-  { label: "Price acked", value: "7 / 8" },
-  { label: "Holds", value: "4 locked" },
-  { label: "Conflicts", value: "0 open" },
+  { label: "Price acked", value: "Live" },
+  { label: "Holds", value: "Locked" },
+  { label: "Conflicts", value: "Clear" },
   { label: "Delist", value: "Armed" },
 ] as const;
 
@@ -43,7 +43,7 @@ const delistQueue = [
 
 const feed = [
   { time: "09:42:15", msg: "price.update → Club Level £248 → £252", ok: true },
-  { time: "09:42:12", msg: "price.push → 7 / 8 channels acked", ok: true },
+  { time: "09:42:12", msg: "price.push → connected channels acked", ok: true },
   { time: "09:42:09", msg: "order.delist → Seat 3 marked sold · 3 channels", ok: true },
   { time: "09:42:06", msg: "hold.confirmed → 0 double-sale conflicts", ok: true },
   { time: "09:42:03", msg: "double_sale.guard → armed", ok: true },

@@ -38,7 +38,7 @@ const todayStats = [
   { label: "Orders today", value: "47" },
   { label: "Revenue", value: "£12,840" },
   { label: "Avg ticket", value: "£273" },
-  { label: "Fulfillment", value: "98.2%" },
+  { label: "Fulfillment", value: "Tracked" },
 ] as const;
 
 const activityFeed = [
@@ -47,7 +47,7 @@ const activityFeed = [
   { time: "09:41:05", msg: "payment.auth → £248.00 approved", ok: true },
   { time: "09:41:04", msg: "verify.hold → Cat A x2 locked", ok: true },
   { time: "09:41:03", msg: "order.received → SB-4817", ok: true },
-  { time: "09:40:58", msg: "sync.delist → 3 marketplaces", ok: true },
+  { time: "09:40:58", msg: "sync.delist → connected marketplaces", ok: true },
   { time: "09:40:52", msg: "order.complete → SB-4816", ok: true },
   { time: "09:40:47", msg: "double_sale.guard → 0 open", ok: true },
 ] as const;

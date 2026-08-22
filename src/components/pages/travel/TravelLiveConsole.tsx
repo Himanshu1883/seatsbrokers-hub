@@ -26,8 +26,8 @@ const variants: Record<TravelLiveConsoleVariant, TravelLiveConsoleMeta> = {
       "This is the same catalog brokers publish on their desk. When a listing syncs, it lands in the access feed with seats, delivery method and your margin math — no spreadsheet chase between broker and B2B partner.",
     detailLabel: "How partner access works",
     highlights: [
-      { value: "4.8k+", label: "events live" },
-      { value: "10%", label: "margin preview" },
+      { value: "Global", label: "event catalog" },
+      { value: "Your", label: "margin preview" },
       { value: "Same", label: "broker catalog" },
     ],
     points: [
@@ -63,8 +63,8 @@ const variants: Record<TravelLiveConsoleVariant, TravelLiveConsoleMeta> = {
     detailLabel: "How a quote is built",
     highlights: [
       { value: "5-stage", label: "quote pipeline" },
-      { value: "10%", label: "default margin" },
-      { value: "3", label: "share channels" },
+      { value: "Your", label: "margin" },
+      { value: "Share", label: "channels" },
     ],
     points: [
       {

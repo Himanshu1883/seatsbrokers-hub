@@ -22,14 +22,17 @@ export function FinalCTA() {
       <div className="container-page text-center">
         <Reveal>
           <h2 className="mx-auto max-w-3xl text-3xl font-bold text-background sm:text-5xl">
-            Build Your Ticket Business on Better Technology
+            One platform. More opportunity.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-sm text-background/75 sm:text-base">
-            Whether you are a ticket broker, marketplace, B2B partner or technology provider,
-            connect your ticket operation to a modern technology infrastructure built for the global
-            event economy.
+            Whether you are an established ticket broker, growing reseller or technology-driven
+            ticket business, SeatsBrokers gives you the platform to operate more efficiently and
+            reach more buyers.
           </p>
-          <div className="mt-9 flex flex-wrap justify-center gap-3">
+          <p className="mx-auto mt-3 max-w-xl text-sm font-semibold text-background sm:text-base">
+            Source smarter. Price better. Distribute further. Sell more.
+          </p>
+          <div className="page-cta-row mt-9 justify-center">
             <SiteLink
               to={ctas.becomeSeller.to}
               className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
@@ -37,13 +40,18 @@ export function FinalCTA() {
               {ctas.becomeSeller.label}
             </SiteLink>
             <SiteLink
-              to={ctas.talkToTeam.to}
-              hash={ctas.talkToTeam.hash}
+              to={ctas.bookDemo.to}
               className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
             >
-              {ctas.talkToTeam.label}
+              {ctas.bookDemo.label}
             </SiteLink>
           </div>
+          <p className="mx-auto mt-5 text-sm text-background/70">
+            Already a partner?{" "}
+            <SiteLink to={ctas.login.to} className="font-semibold text-background underline-offset-4 hover:underline">
+              {ctas.login.label}
+            </SiteLink>
+          </p>
         </Reveal>
       </div>
     </section>

@@ -36,14 +36,16 @@ src/content/*.ts   (static copy + demo datasets)
 | `layout/` | Site chrome |
 | `landing/` | `/` narrative only |
 | `pages/shared/` | PageHero, FeatureGrid, WorkflowSteps, SplitPanel, SyncDiagram, ApiCards, ContactForm |
-| `pages/brokers/` | `/brokers` consoles + `ConsoleShell` / `ConsoleCopyPanel` / `SectionConnector` (shared by other product pages) |
+| `pages/brokers/` | `/brokers` consoles + `ConsoleShell` / `ConsoleCopyPanel` / `SectionConnector` + `SellerApplicationForm` (`/become-a-seller`) |
 | `pages/travel/` | `/travel-partners` |
 | `pages/marketplace/` | `/marketplace-connectivity` |
 | `pages/event-intelligence/` | `/event-intelligence` |
 | `pages/api/` | `/api` |
-| `pages/about/` | `/about` manifesto chapters + intelligence-core hero + one pipeline console |
+| `pages/about/` | `/about` short commercial About: intelligence-core hero + mission + close (detailed chapters unmounted) |
 | `pages/book-demo/` | `/book-demo` briefing hero + demo request form |
-| `pages/platform/` | `/platform` stack-map hero + linked module board |
+| `pages/platform/` | `/platform` operating-ecosystem hero + sticky workflow desks |
+| `pages/products/` | `/products` overview hero + seven-product ecosystem cards |
+| `pages/integrations/` | `/integrations` connect-map hero + category board + live consoles |
 | `pages/contact/` | `/contact` dark hero; HUD photo clipped to `.bh-stage` |
 | `components/ui/` | shadcn primitives — prefer not to restyle globally |
 
@@ -57,16 +59,16 @@ Required shape: `docs/DESIGN_SYSTEM.md` (copy column + 3D tilt stage).
   → .lc-tilt-wrap → inner console (ConsoleShell or cockpit)
 ```
 
-Each product page has its **own** wrapper and variant union. Do not add travel/marketplace/event-intel/api/about variants onto broker `LiveConsole`. `/about` uses `AboutLiveConsole` for the data→intelligence pipeline only — not a stack of product consoles.
+Each product page has its **own** wrapper and variant union. Do not add travel/marketplace/event-intel/api/about variants onto broker `LiveConsole`. `AboutLiveConsole` (data→intelligence pipeline) is built but unmounted — own wrapper, not a broker `LiveConsoleVariant`.
 
-Hero right stages are **not** Live Consoles. They reuse `bh-hero` / `bh-stage` chrome with page-specific inner composition and a **fixed height** `clamp(22rem, 52vh, 34rem)` (see `.bh-wall-mask`, `.mkh-room`, `.eih-room`, `.apidoc-room`, `.abt-room`, `.ct-hero-stage`).
+Hero right stages are **not** Live Consoles. They reuse `bh-hero` / `bh-stage` chrome with page-specific inner composition and a **fixed height** `clamp(22rem, 52vh, 34rem)` (see `.bh-wall-mask`, `.mkh-room`, `.eih-room`, `.apidoc-room`, `.abt-room`, `.ct-hero-stage`, `.prd-room`, `.int-room`).
 
 ## Styling architecture
 
 Single file: `src/styles.css`.
 
 - Tokens: `@theme` / `:root` (oklch). Dark *bands* = `bg-dark` (`--dark`). Class `.dark` is unused shadcn purple — do not enable.
-- Page CSS is **appended** with a prefix (`bh-`, `lc-`, `mi-`, `tpd-`, `mkh-`, `eih-`, `ecb-`, `mcb-`, `apidoc-`, `abt-`, `wic-glass-`, `brand-logo-`, …).
+- Page CSS is **appended** with a prefix (`bh-`, `lc-`, `mi-`, `tpd-`, `mkh-`, `eih-`, `ecb-`, `mcb-`, `apidoc-`, `abt-`, `wic-glass-`, `brand-logo-`, `plt-`, `int-`, `prd-`, …).
 - Tailwind v4: no `tailwind.config.js`.
 
 ## Deployment

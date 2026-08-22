@@ -2,57 +2,75 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { brand } from "@/content/site";
 import {
-  demoCallTimes,
   demoFormCopy,
   demoRoles,
 } from "@/content/book-demo-data";
+import { leadCountries } from "@/content/seller-application-data";
+import { submitLead, type LeadResult } from "@/lib/lead-handoff";
 
 type FormState = {
   firstName: string;
   lastName: string;
-  email: string;
   company: string;
+  email: string;
+  telephone: string;
+  country: string;
   role: string;
-  callTime: string;
+  ticketingSystem: string;
   message: string;
 };
 
 const empty: FormState = {
   firstName: "",
   lastName: "",
-  email: "",
   company: "",
+  email: "",
+  telephone: "",
+  country: "",
   role: "",
-  callTime: "",
+  ticketingSystem: "",
   message: "",
 };
+
+const fieldClass =
+  "mt-2 w-full min-h-11 rounded-md border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none";
 
 function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 }
 
-function buildMailto(data: FormState) {
-  const name = `${data.firstName.trim()} ${data.lastName.trim()}`.trim();
-  const subject = `Demo request — ${data.company.trim() || name}`;
-  const body = [
-    "Demo request from the SeatsBrokers site",
-    "",
-    `Name: ${name}`,
-    `Company: ${data.company.trim()}`,
-    `Email: ${data.email.trim()}`,
-    `Role: ${data.role}`,
-    `Preferred time: ${data.callTime || "Not specified"}`,
-    "",
-    data.message.trim() ? `Message:\n${data.message.trim()}` : "Message: (none)",
-  ].join("\n");
+function contactName(data: FormState) {
+  return `${data.firstName.trim()} ${data.lastName.trim()}`.trim();
+}
 
-  return `mailto:${brand.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+function leadFields(data: FormState) {
+  return [
+    { label: "Name", value: contactName(data) },
+    { label: "Company", value: data.company.trim() },
+    { label: "Business email", value: data.email.trim() },
+    { label: "Telephone", value: data.telephone.trim() },
+    { label: "Country", value: data.country },
+    { label: "Business type", value: data.role },
+    { label: "Current ticketing system", value: data.ticketingSystem.trim() },
+    { label: "Message", value: data.message.trim() },
+  ];
+}
+
+function leadPayload(data: FormState) {
+  return {
+    kind: "demo-request" as const,
+    to: brand.email,
+    subject: `Demo request — ${data.company.trim() || contactName(data)}`,
+    fields: leadFields(data),
+  };
 }
 
 export function DemoRequestForm() {
   const [values, setValues] = useState<FormState>(empty);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [submitted, setSubmitted] = useState<FormState | null>(null);
+  const [result, setResult] = useState<LeadResult | null>(null);
+  const [sending, setSending] = useState(false);
 
   const field = (key: keyof FormState) => ({
     value: values[key],
@@ -68,18 +86,16 @@ export function DemoRequestForm() {
     const next: Partial<Record<keyof FormState, string>> = {};
     if (!data.firstName.trim()) next.firstName = "Enter your first name.";
     if (!data.lastName.trim()) next.lastName = "Enter your last name.";
-    if (!data.email.trim()) next.email = "Enter your work email.";
-    else if (!isValidEmail(data.email)) next.email = "Enter a valid email address.";
     if (!data.company.trim()) next.company = "Enter your company.";
-    if (!data.role) next.role = "Select the type of business.";
-    if (!data.callTime && !data.message.trim()) {
-      next.callTime = "Choose a call window or add a message.";
-      next.message = "Choose a call window or add a short note.";
-    }
+    if (!data.email.trim()) next.email = "Enter your business email.";
+    else if (!isValidEmail(data.email)) next.email = "Enter a valid email address.";
+    if (!data.telephone.trim()) next.telephone = "Enter a telephone number.";
+    if (!data.country) next.country = "Select your country.";
+    if (!data.role) next.role = "Select your business type.";
     return next;
   }
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const nextErrors = validate(values);
     if (Object.keys(nextErrors).length > 0) {
@@ -87,15 +103,14 @@ export function DemoRequestForm() {
       return;
     }
 
-    const mailto = buildMailto(values);
-    const link = document.createElement("a");
-    link.href = mailto;
-    link.click();
+    setSending(true);
+    const handoff = await submitLead(leadPayload(values));
+    setResult(handoff);
     setSubmitted(values);
+    setSending(false);
   }
 
-  if (submitted) {
-    const mailto = buildMailto(submitted);
+  if (submitted && result) {
     return (
       <section id="request" className="section-curve relative isolate scroll-mt-28 bg-background py-20 sm:py-24">
         <div className="container-page relative z-10 grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
@@ -105,12 +120,14 @@ export function DemoRequestForm() {
               {demoFormCopy.successTitle}
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-              {demoFormCopy.successBody}
+              {result.method === "webhook"
+                ? demoFormCopy.successBodyWebhook
+                : demoFormCopy.successBodyMailto}
             </p>
           </Reveal>
           <Reveal delay={80}>
             <div className="bdm-success rounded-2xl border border-border bg-card p-6 sm:p-8" role="status">
-              <p className="font-mono text-[11px] tracking-[0.18em] text-primary ">
+              <p className="font-mono text-[11px] tracking-[0.18em] text-primary">
                 Demo request
               </p>
               <dl className="bdm-success-dl">
@@ -129,22 +146,22 @@ export function DemoRequestForm() {
                   <dd>{submitted.email}</dd>
                 </div>
                 <div>
-                  <dt>Role</dt>
+                  <dt>Country</dt>
+                  <dd>{submitted.country}</dd>
+                </div>
+                <div>
+                  <dt>Business type</dt>
                   <dd>{submitted.role}</dd>
                 </div>
-                {submitted.callTime ? (
-                  <div>
-                    <dt>Window</dt>
-                    <dd>{submitted.callTime}</dd>
-                  </div>
-                ) : null}
               </dl>
-              <a
-                href={mailto}
-                className="lift mt-6 inline-flex rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
-              >
-                Send via email client
-              </a>
+              {result.method === "mailto" ? (
+                <a
+                  href={result.mailto}
+                  className="lift mt-6 inline-flex min-h-11 items-center rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
+                >
+                  Send via email client
+                </a>
+              ) : null}
               <p className="mt-4 text-sm text-muted-foreground">
                 Or write to{" "}
                 <a href={`mailto:${brand.email}`} className="text-foreground hover:text-primary">
@@ -154,9 +171,10 @@ export function DemoRequestForm() {
               </p>
               <button
                 type="button"
-                className="mt-5 text-sm font-semibold text-primary hover:underline"
+                className="mt-5 min-h-11 text-sm font-semibold text-primary hover:underline"
                 onClick={() => {
                   setSubmitted(null);
+                  setResult(null);
                   setValues(empty);
                   setErrors({});
                 }}
@@ -181,11 +199,11 @@ export function DemoRequestForm() {
           </p>
           <dl className="mt-10 space-y-4 text-sm">
             <div>
-              <dt className="font-mono text-[11px] tracking-[0.18em] text-primary ">Offices</dt>
+              <dt className="font-mono text-[11px] tracking-[0.18em] text-primary">Offices</dt>
               <dd className="mt-2 text-foreground">{brand.offices}</dd>
             </div>
             <div>
-              <dt className="font-mono text-[11px] tracking-[0.18em] text-primary ">Email</dt>
+              <dt className="font-mono text-[11px] tracking-[0.18em] text-primary">Email</dt>
               <dd className="mt-2">
                 <a href={`mailto:${brand.email}`} className="text-foreground hover:text-primary">
                   {brand.email}
@@ -195,7 +213,7 @@ export function DemoRequestForm() {
           </dl>
         </Reveal>
         <Reveal delay={100}>
-          <form className="rounded-2xl border border-border bg-card p-6 sm:p-8" onSubmit={onSubmit} noValidate>
+          <form className="lead-form rounded-2xl border border-border bg-card p-6 sm:p-8" onSubmit={onSubmit} noValidate>
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block sm:col-span-1">
                 <span className="text-sm font-medium text-foreground">First name</span>
@@ -204,7 +222,7 @@ export function DemoRequestForm() {
                   name="firstName"
                   autoComplete="given-name"
                   type="text"
-                  className="mt-2 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
+                  className={fieldClass}
                   aria-invalid={errors.firstName ? true : undefined}
                   {...field("firstName")}
                 />
@@ -217,24 +235,11 @@ export function DemoRequestForm() {
                   name="lastName"
                   autoComplete="family-name"
                   type="text"
-                  className="mt-2 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
+                  className={fieldClass}
                   aria-invalid={errors.lastName ? true : undefined}
                   {...field("lastName")}
                 />
                 {errors.lastName ? <span className="bdm-field-error">{errors.lastName}</span> : null}
-              </label>
-              <label className="block sm:col-span-2">
-                <span className="text-sm font-medium text-foreground">Work email</span>
-                <input
-                  required
-                  name="email"
-                  autoComplete="email"
-                  type="email"
-                  className="mt-2 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
-                  aria-invalid={errors.email ? true : undefined}
-                  {...field("email")}
-                />
-                {errors.email ? <span className="bdm-field-error">{errors.email}</span> : null}
               </label>
               <label className="block sm:col-span-2">
                 <span className="text-sm font-medium text-foreground">Company</span>
@@ -243,18 +248,64 @@ export function DemoRequestForm() {
                   name="company"
                   autoComplete="organization"
                   type="text"
-                  className="mt-2 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
+                  className={fieldClass}
                   aria-invalid={errors.company ? true : undefined}
                   {...field("company")}
                 />
                 {errors.company ? <span className="bdm-field-error">{errors.company}</span> : null}
               </label>
               <label className="block sm:col-span-1">
-                <span className="text-sm font-medium text-foreground">Role / type</span>
+                <span className="text-sm font-medium text-foreground">Business email</span>
+                <input
+                  required
+                  name="email"
+                  autoComplete="email"
+                  type="email"
+                  className={fieldClass}
+                  aria-invalid={errors.email ? true : undefined}
+                  {...field("email")}
+                />
+                {errors.email ? <span className="bdm-field-error">{errors.email}</span> : null}
+              </label>
+              <label className="block sm:col-span-1">
+                <span className="text-sm font-medium text-foreground">Telephone</span>
+                <input
+                  required
+                  name="telephone"
+                  autoComplete="tel"
+                  type="tel"
+                  inputMode="tel"
+                  className={fieldClass}
+                  aria-invalid={errors.telephone ? true : undefined}
+                  {...field("telephone")}
+                />
+                {errors.telephone ? <span className="bdm-field-error">{errors.telephone}</span> : null}
+              </label>
+              <label className="block sm:col-span-1">
+                <span className="text-sm font-medium text-foreground">Country</span>
+                <select
+                  required
+                  name="country"
+                  autoComplete="country-name"
+                  className={fieldClass}
+                  aria-invalid={errors.country ? true : undefined}
+                  {...field("country")}
+                >
+                  <option value="">Select…</option>
+                  {leadCountries.map((country) => (
+                    <option key={country} value={country}>
+                      {country}
+                    </option>
+                  ))}
+                </select>
+                {errors.country ? <span className="bdm-field-error">{errors.country}</span> : null}
+              </label>
+              <label className="block sm:col-span-1">
+                <span className="text-sm font-medium text-foreground">Business type</span>
                 <select
                   required
                   name="role"
-                  className="mt-2 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
+                  className={fieldClass}
                   aria-invalid={errors.role ? true : undefined}
                   {...field("role")}
                 >
@@ -267,41 +318,33 @@ export function DemoRequestForm() {
                 </select>
                 {errors.role ? <span className="bdm-field-error">{errors.role}</span> : null}
               </label>
-              <label className="block sm:col-span-1">
-                <span className="text-sm font-medium text-foreground">Preferred call time</span>
-                <select
-                  name="callTime"
-                  className="mt-2 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
-                  aria-invalid={errors.callTime ? true : undefined}
-                  {...field("callTime")}
-                >
-                  <option value="">Select…</option>
-                  {demoCallTimes.map((time) => (
-                    <option key={time} value={time}>
-                      {time}
-                    </option>
-                  ))}
-                </select>
-                {errors.callTime ? <span className="bdm-field-error">{errors.callTime}</span> : null}
+              <label className="block sm:col-span-2">
+                <span className="text-sm font-medium text-foreground">Current ticketing system</span>
+                <input
+                  name="ticketingSystem"
+                  type="text"
+                  className={fieldClass}
+                  placeholder="The inventory, POS or listing system you run today"
+                  {...field("ticketingSystem")}
+                />
               </label>
               <label className="block sm:col-span-2">
-                <span className="text-sm font-medium text-foreground">Message or call notes</span>
+                <span className="text-sm font-medium text-foreground">Message</span>
                 <textarea
                   name="message"
                   rows={4}
-                  className="mt-2 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm focus:border-primary focus:outline-none"
-                  placeholder="Inventory volume, channels, or a time that works for you."
-                  aria-invalid={errors.message ? true : undefined}
+                  className={`${fieldClass} min-h-24`}
+                  placeholder="Inventory, channels, or what you want to see."
                   {...field("message")}
                 />
-                {errors.message ? <span className="bdm-field-error">{errors.message}</span> : null}
               </label>
             </div>
             <button
               type="submit"
-              className="lift mt-6 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
+              disabled={sending}
+              className="lift mt-6 inline-flex min-h-11 items-center rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground disabled:opacity-70"
             >
-              {demoFormCopy.submitLabel}
+              {sending ? "Sending…" : demoFormCopy.submitLabel}
             </button>
           </form>
         </Reveal>

@@ -28,12 +28,12 @@ const variants: Record<LiveConsoleVariant, LiveConsoleMeta | null> = {
     title: "Process every sale in real time",
     body: "The operational command centre for ticket brokers during peak onsales — every marketplace order, hold, payment and delivery in one live terminal.",
     detail:
-      "Connect your existing POS or run directly in SeatsBrokers. Orders from StubHub, Viagogo and every connected channel flow in automatically. Inventory holds lock instantly, double-sale protection stays armed, and competing listings delist the moment a ticket sells.",
+      "Connect your existing POS or run directly in SeatsBrokers. Orders from connected marketplaces and sales channels flow in automatically. Inventory holds lock instantly, double-sale protection stays armed, and competing listings delist the moment a ticket sells.",
     detailLabel: "How the broker desk works",
     highlights: [
-      { value: "<250ms", label: "order sync" },
+      { value: "Live", label: "order sync" },
       { value: "5-stage", label: "sale pipeline" },
-      { value: "98.2%", label: "fulfillment rate" },
+      { value: "Tracked", label: "desk stats" },
     ],
     points: [
       {
@@ -70,7 +70,7 @@ const variants: Record<LiveConsoleVariant, LiveConsoleMeta | null> = {
       "Every connected marketplace is polled continuously and normalised into one view per event and category. You see where your desk sits in the ask ladder, how the curve moved over the last 6 hours to 7 days, and which signals moved it.",
     detailLabel: "What the terminal tracks",
     highlights: [
-      { value: "16", label: "channels polled" },
+      { value: "Multi", label: "channels polled" },
       { value: "6H–7D", label: "movement ranges" },
       { value: "Live", label: "signal feed" },
     ],
@@ -105,7 +105,7 @@ const variants: Record<LiveConsoleVariant, LiveConsoleMeta | null> = {
       "The engine consumes the same market data you just saw, scores each listing and returns a single recommended ask with the drivers that produced it. Nothing publishes until a broker approves or overrides it.",
     detailLabel: "How a recommendation is made",
     highlights: [
-      { value: "87%", label: "avg confidence" },
+      { value: "Advisory", label: "recommendation" },
       { value: "5-stage", label: "pricing pipeline" },
       { value: "Manual", label: "broker override" },
     ],

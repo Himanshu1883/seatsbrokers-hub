@@ -81,7 +81,7 @@ const venueFeed = [
   { time: "09:43:58", msg: "band.sync → Cat A price band 398 – 486", ok: true },
   { time: "09:43:51", msg: "availability → E138 sold out · listing removed", ok: true },
   { time: "09:43:44", msg: "section.index → corner blocks normalized to club level", ok: true },
-  { time: "09:43:36", msg: "api.query → Events API venue map · 84ms", ok: true },
+  { time: "09:43:36", msg: "api.query → Events API venue map · ready", ok: true },
 ] as const;
 
 const assurances = [

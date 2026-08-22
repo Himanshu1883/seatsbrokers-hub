@@ -16,10 +16,10 @@ import { useInView } from "@/hooks/use-scroll-motion";
 import { ConsoleShell } from "@/components/pages/brokers/ConsoleShell";
 
 const accessStats = [
-  { label: "Events live", value: "4,812" },
-  { label: "Seats available", value: "18,406" },
-  { label: "Categories", value: "12" },
-  { label: "Sync latency", value: "62ms" },
+  { label: "Events live", value: "Global" },
+  { label: "Seats available", value: "Live" },
+  { label: "Categories", value: "Multi" },
+  { label: "Sync status", value: "Live" },
 ] as const;
 
 const quickFilters = ["All", "Football", "F1", "Music", "Under £250"] as const;

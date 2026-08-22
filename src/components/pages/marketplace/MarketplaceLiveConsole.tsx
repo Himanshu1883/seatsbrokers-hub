@@ -20,19 +20,19 @@ const variants: Record<MarketplaceLiveConsoleVariant, MarketplaceLiveConsoleMeta
   channelStatus: {
     eyebrow: "Marketplace status",
     title: "Monitor connection status, error rates and API health per marketplace",
-    body: "See which channels are synced, pushing or queued — latency and error rate on the same map that listings fan out from.",
+    body: "See which channels are synced, pushing or queued — health and error monitoring on the same map that listings fan out from.",
     detail:
       "SeatsBrokers polls every connected marketplace continuously. Connection status, API health and request logs sit in one terminal so a stalled channel is visible before it becomes an oversell.",
     detailLabel: "What the map tracks",
     highlights: [
-      { value: "16", label: "channels" },
-      { value: "96ms", label: "sync latency" },
-      { value: "0.1%", label: "error rate" },
+      { value: "Multi", label: "connected channels" },
+      { value: "Live", label: "channel sync" },
+      { value: "Tracked", label: "error monitoring" },
     ],
     points: [
       {
         title: "Connectivity map",
-        body: "A live hub of connected marketplaces around the SeatsBrokers core — each node is a channel with destination code, latency and sync state.",
+        body: "A live hub of connected marketplaces around the SeatsBrokers core — each node is a channel with destination code and sync state.",
       },
       {
         title: "Channel health",
@@ -58,7 +58,7 @@ const variants: Record<MarketplaceLiveConsoleVariant, MarketplaceLiveConsoleMeta
     detailLabel: "How a listing fans out",
     highlights: [
       { value: "4-stage", label: "sync pipeline" },
-      { value: "8", label: "destinations" },
+      { value: "Multi", label: "destinations" },
       { value: "Live", label: "qty sync" },
     ],
     points: [
@@ -92,8 +92,8 @@ const variants: Record<MarketplaceLiveConsoleVariant, MarketplaceLiveConsoleMeta
       "Price synchronization and automatic delisting run on the same conflict guard. Quantity holds lock instantly, competing listings delist the moment a ticket sells, and the order flows back into the central platform.",
     detailLabel: "How the guard works",
     highlights: [
-      { value: "7 / 8", label: "price acked" },
-      { value: "0", label: "conflicts" },
+      { value: "Live", label: "price push" },
+      { value: "Armed", label: "conflict guard" },
       { value: "Auto", label: "delist" },
     ],
     points: [

@@ -146,7 +146,7 @@ function ApiHealthCard() {
           <strong className="bh-metric-value">{heroApiHealth.channels}</strong>
         </div>
         <div>
-          <span className="bh-metric-label">Latency</span>
+          <span className="bh-metric-label">Sync</span>
           <strong className="bh-metric-value">{heroApiHealth.latency}</strong>
         </div>
         <div>

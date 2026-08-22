@@ -87,14 +87,14 @@ export const heroVenueMap = {
 } as const;
 
 export const heroCatalog = {
-  events: "48,214",
-  categories: "24",
-  onsales: "142",
+  events: "Global",
+  categories: "Multi",
+  onsales: "Live",
 } as const;
 
 export const heroForecast = {
-  sellout: "T-6",
-  confidence: "87%",
+  sellout: "Advisory",
+  confidence: "Model",
   badge: "Model",
   event: "Champions League Final",
 } as const;

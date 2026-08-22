@@ -82,7 +82,7 @@ function HubPod({ items, direction }: { items: HubItem[]; direction: "in" | "out
 
 export function Marketplaces() {
   return (
-    <section className="section-curve relative isolate bg-background py-18 lg:py-18">
+    <section id="connectivity" className="section-curve relative isolate bg-background py-18 lg:py-18">
       <SectionBackdrop image="sportsCrowd" tone="light" strength={0.1} />
 
       {/* ambient glow behind the hub */}

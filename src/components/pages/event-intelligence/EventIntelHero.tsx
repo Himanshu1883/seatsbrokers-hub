@@ -30,18 +30,18 @@ export function EventIntelHero() {
               <li>Demand indicators, price movement and comparable events per event</li>
               <li>Forecasts and sellout risk that feed pricing, inventory and partner quotes</li>
             </ul>
-            <div className="bh-ctas">
+            <div className="page-cta-row bh-ctas mt-9">
               <SiteLink
-                to={ctas.becomeSeller.to}
-                className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
+                to={ctas.bookDemo.to}
+                className="lift inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
               >
-                {ctas.becomeSeller.label}
+                {ctas.bookDemo.label}
               </SiteLink>
               <SiteLink
-                to={ctas.explorePlatform.to}
-                className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
+                to={ctas.becomeSeller.to}
+                className="lift inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
               >
-                {ctas.explorePlatform.label}
+                {ctas.becomeSeller.label}
               </SiteLink>
             </div>
           </Reveal>

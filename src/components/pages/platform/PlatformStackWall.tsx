@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { Layers } from "lucide-react";
 import { useInView } from "@/hooks/use-scroll-motion";
-import { platformStackLayers } from "@/content/platform-page-data";
+import { ConsoleShell } from "@/components/pages/brokers/ConsoleShell";
+import { platformHandoffFeed, platformStackLayers } from "@/content/platform-page-data";
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -31,64 +33,80 @@ function useCycle(length: number, ms: number, enabled: boolean) {
 }
 
 export function PlatformStackWall() {
-  const { ref, inView } = useInView<HTMLDivElement>(0.28);
+  const { ref, inView } = useInView<HTMLDivElement>(0.28, { once: false });
   const reduced = usePrefersReducedMotion();
-  const live = inView && !reduced;
-  const active = useCycle(platformStackLayers.length, 2600, live);
+  const [held, setHeld] = useState(false);
+  const live = inView && !reduced && !held;
+  const active = useCycle(platformStackLayers.length, 2400, live);
   const layer = platformStackLayers[active] ?? platformStackLayers[0];
+  const next = platformStackLayers[(active + 1) % platformStackLayers.length] ?? platformStackLayers[0];
+  const feedRows = [...platformHandoffFeed, ...platformHandoffFeed];
 
   return (
-    <div ref={ref} className="bh-wall plt-stage" data-live={live ? "true" : "false"}>
+    <div
+      ref={ref}
+      className="bh-wall plt-os-stage"
+      data-live={live ? "true" : "false"}
+      onMouseEnter={() => setHeld(true)}
+      onMouseLeave={() => setHeld(false)}
+    >
       <span className="bh-wall-glow" aria-hidden />
 
-      <div className="plt-room">
-        <header className="plt-head">
-          <div className="plt-head-copy">
-            <p className="plt-kicker">
-              <span className="plt-live-dot" aria-hidden />
-              SeatsBrokers / Stack
-            </p>
-            <p className="plt-head-title">Platform map</p>
-          </div>
-          <span className="plt-head-stamp">5 surfaces · 1 layer</span>
-        </header>
+      <div className="plt-os-room">
+        <ConsoleShell path="seatsbrokers / platform / os" status="Live" icon={Layers}>
+          <div className="plt-os-desk">
+            <header className="plt-os-hub">
+              <span className="plt-os-hub-mark">SB</span>
+              <div className="plt-os-hub-copy">
+                <p className="plt-os-kicker">Operating ecosystem</p>
+                <p className="plt-os-title">Discover → Pay &amp; settle</p>
+              </div>
+              <span className="plt-os-chip">Demo</span>
+            </header>
 
-        <div className="plt-body">
-          <div className="plt-hub">
-            <span className="plt-hub-mark">SB</span>
-            <span>
-              <strong>SeatsBrokers</strong>
-              <em>Infrastructure hub</em>
-            </span>
-          </div>
+            <ol className="plt-os-spine" aria-label="Platform operating spine">
+              {platformStackLayers.map((item, index) => (
+                <li key={item.id} data-active={index === active ? "true" : "false"}>
+                  <span className="plt-os-dot" aria-hidden />
+                  <span className="plt-os-index">{item.index}</span>
+                  <span className="plt-os-stage-name">{item.stage}</span>
+                  <strong>{item.product}</strong>
+                  <em>{item.role}</em>
+                </li>
+              ))}
+            </ol>
 
-          <ol className="plt-spine" aria-label="Platform surfaces">
-            {platformStackLayers.map((item, index) => (
-              <li key={item.id} data-active={index === active ? "true" : "false"}>
-                <span className="plt-spine-rail" aria-hidden>
-                  <i />
+            <section className="plt-os-handoff">
+              <header>
+                <span>Now running</span>
+                <span className="lc-mono">
+                  {layer.index} · {layer.stage}
                 </span>
-                <span className="plt-spine-index">{item.index}</span>
-                <span className="plt-spine-copy">
-                  <strong>{item.label}</strong>
-                  <em>{item.tag}</em>
-                </span>
-              </li>
-            ))}
-          </ol>
-        </div>
+              </header>
+              <p className="plt-os-handoff-name">{layer.product}</p>
+              <p className="plt-os-handoff-role">{layer.role}</p>
+              <p className="plt-os-handoff-next">
+                Next <strong>{next.stage}</strong>
+                <span>{next.product}</span>
+              </p>
+            </section>
 
-        <footer className="plt-foot">
-          <span className="lc-mono">{layer.tag}</span>
-          <span>{layer.label}</span>
-          <span>List once · sync · quote in £</span>
-        </footer>
+            <ul className="plt-os-feed" aria-hidden={!live}>
+              {feedRows.map((row, index) => (
+                <li key={`${row.time}-${index}`}>
+                  <span>{row.time}</span>
+                  {row.msg}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </ConsoleShell>
       </div>
 
       <p className="sr-only">
-        SeatsBrokers platform map. Five surfaces on one infrastructure layer: event intelligence,
-        broker platform, marketplace connectivity, B2B partners and API. Active surface:{" "}
-        {layer.label}.
+        SeatsBrokers operating ecosystem. Seven stages Discover, Source, Price, Connect,
+        Distribute, Sell &amp; fulfil and Pay &amp; settle light SeatsIntel™ through SeatsFunds™.
+        Active surface: {layer.product}. Figures are illustrative.
       </p>
     </div>
   );

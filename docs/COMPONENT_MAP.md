@@ -8,17 +8,17 @@ Routes listed are where the component is **mounted**, not every import.
 |---|---|---|---|
 | PageShell | `src/components/layout/PageShell.tsx` | Nav + `<main>` + FinalCTA + Footer | Every marketing route |
 | SiteLink | `src/components/layout/SiteLink.tsx` | TanStack `Link` with optional hash | Nav, Footer, CTAs, pages |
-| PageHero | `src/components/pages/shared/PageSections.tsx` | Dark product-page hero | market-analytics, ai-pricing, integrations |
-| FeatureGrid | same | Centered title + `FeatureOrbitGrid` cards | travel-partners (Order & Delivery), market-analytics, integrations |
-| FeatureOrbitGrid | `src/components/pages/shared/FeatureOrbitGrid.tsx` | Orbit layout for FeatureGrid items | FeatureGrid |
-| WorkflowSteps | PageSections | Numbered infra canvas | brokers, marketplace-connectivity, event-intelligence, platform, ai-pricing, integrations, api, book-demo |
+| PageHero | `src/components/pages/shared/PageSections.tsx` | Dark copy-only product-page hero | **Unmounted** — file kept; `/become-a-seller` uses `SellerHero` |
+| FeatureGrid | same | Key benefits 3×2 hairline cards (`prd-cap-*`, same language as ProductCapabilityBoard) | `/become-a-seller` only — **not** `/api` (uses `ApiInfraBoard`), **not** `/integrations`, and **not** `/products/seats*` (uses `ProductCapabilityBoard`) |
+| FeatureOrbitGrid | `src/components/pages/shared/FeatureOrbitGrid.tsx` | Desktop infinity orbit; ≤767px stacked title+body cards (`.fg-stack`) | **Unmounted** — file kept; become-a-seller Key benefits no longer uses it |
+| WorkflowSteps | PageSections | Numbered infra canvas | brokers, marketplace-connectivity, event-intelligence, platform, products, ai-pricing, integrations, api, book-demo |
 | WorkflowInfraCanvas | `src/components/pages/shared/WorkflowInfraCanvas.tsx` | Visual for WorkflowSteps | WorkflowSteps |
-| SplitPanel | PageSections | Copy + labelled value rows | market-analytics, ai-pricing |
+| SplitPanel | PageSections | Copy + labelled value rows | market-analytics, ai-pricing, integrations (SeatsLink problem) |
 | SyncDiagram | PageSections | Four-card hub diagram | brokers, marketplace-connectivity |
 | ApiCards | PageSections | API product grid | brokers, api |
 | ContactForm | PageSections | Lead form | contact |
 | SectionConnector | `src/components/pages/brokers/SectionConnector.tsx` | Source → payload rail → destination | brokers, travel-partners, marketplace-connectivity, event-intelligence, api, book-demo, platform |
-| ConsoleCopyPanel | `src/components/pages/brokers/ConsoleCopyPanel.tsx` | Live-console left copy (accordion) | LiveConsole, TravelLiveConsole, MarketplaceLiveConsole, EventIntelLiveConsole, ApiLiveConsole, AboutLiveConsole |
+| ConsoleCopyPanel | `src/components/pages/brokers/ConsoleCopyPanel.tsx` | Live-console left copy (accordion) | LiveConsole, TravelLiveConsole, MarketplaceLiveConsole, EventIntelLiveConsole, ApiLiveConsole, AboutLiveConsole, IntegrationsLiveConsole |
 | ConsoleShell | `src/components/pages/brokers/ConsoleShell.tsx` | Terminal bezel/chrome | Broker + travel + marketplace + event-intelligence + API + About pipeline terminal consoles |
 
 ## Live consoles — built
@@ -27,7 +27,9 @@ Routes listed are where the component is **mounted**, not every import.
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| BrokerOnboardingSection | `BrokerOnboardingSection.tsx` | Six-part company setup: region tabs, 4-col comparison (in-card scroll), one-open six-phase accordion + compact onboarding desk, partner sub-accounts, checklist, FAQ | `/brokers` (after Payment Infrastructure) |
+| BrokerOnboardingSection | `BrokerOnboardingSection.tsx` | Six-part company setup: region tabs, 4-col comparison (in-card scroll), one-open six-phase accordion + compact onboarding desk, partner sub-accounts, checklist, FAQ | `/become-a-seller` |
+| SellerHero + ApplyWall | `SellerHero.tsx`, `SellerApplyWall.tsx` | Dark split `bh-hero` like Book a Demo: copy + Apply → Review → Access 5-row queue + 3 review chips fill (`.slr-*`). Not a live login | `/become-a-seller` |
+| SellerApplicationForm | `SellerApplicationForm.tsx` | Brief §12 apply form; compact desktop ~100svh (`.saf-*`); webhook or mailto via `lead-handoff.ts`; `#apply` | `/become-a-seller` |
 | LiveConsole | `LiveConsole.tsx` | Split copy + tilt stage; variants `marketIntelligence`, `aiPredictions`, `cryptoPayouts` mounted; `pos` implemented but **not mounted**; `payments` / `scheduling` are `null` | `/brokers` |
 | BrokersHero + Wall + Cards | `BrokersHero.tsx`, `BrokersConsoleWall.tsx`, `BrokersConsoleCards.tsx` | Dark hero + scrolling mini-consoles | `/brokers` |
 | EventCatalogSection + Console | `EventCatalogSection.tsx`, `EventCatalogConsole.tsx` | Global catalog browser | `/brokers` |
@@ -80,6 +82,7 @@ Routes listed are where the component is **mounted**, not every import.
 |---|---|---|---|
 | ApiLiveConsole | `ApiLiveConsole.tsx` | Same split as LiveConsole; variants `auth`, `webhooks` | `/api` |
 | ApiHero + DocsWall | `ApiHero.tsx`, `ApiDocsWall.tsx` | Brokers-parity left copy; right stage is an API documentation console (`apidoc-*`) — endpoint nav, GET/POST badge, params, JSON response, 200, Bearer chip | `/api` |
+| ApiInfraBoard | `ApiInfraBoard.tsx` | FeatureGrid replacement on `/api` only — light `section-curve` shell, 3×2 hairline cards (icon + title + sentence), static Ready `ConsoleShell`. Prefix `.api-infra-*`. Icons mapped to labels. Not FeatureOrbitGrid | `/api` |
 | AuthFlowConsole | `AuthFlowConsole.tsx` | Key issue → scopes → signed request → audit (`apk-*`) | `auth` |
 | WebhookDeliveryConsole | `WebhookDeliveryConsole.tsx` | Signed POST pipeline, event payload explorer, delivery attempts (`whk-*`) | `webhooks` |
 
@@ -87,13 +90,13 @@ Routes listed are where the component is **mounted**, not every import.
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| AboutHero + JourneyWall | `AboutHero.tsx`, `AboutJourneyWall.tsx` | Dark unique `bh-hero` (not a brokers clone). Left manifesto copy + 3 CTAs. Right stage is an intelligence core (`abt-*`) — SeatsAI/Trade/Pay/API/Data/Automation rail, data-signal nodes, Experience+Data+AI+Automation strip | `/about` |
-| AboutChapters | `AboutChapters.tsx` | Knowledge (data list + formula), Vision, Audiences, Building, Mission, Future — light manifesto bands | `/about` |
-| AboutOverview | `AboutOverview.tsx` | Six-product ecosystem board (SeatsAI, SeatsTrade, SeatsPay, SeatsAPI, SeatsData, SeatsAutomation) + analysis dock | `/about` |
-| AboutLiveConsole + OpsConsole | `AboutLiveConsole.tsx`, `AboutOpsConsole.tsx` | Live Console split: Collect→Connect→Understand→Predict→Act pipeline (not company ops). Own wrapper — does not extend broker `LiveConsoleVariant` | `/about` |
-| AboutPrinciples | `AboutPrinciples.tsx` | Shared numbered board used as Capabilities, Why SeatsBrokers, and Technology Stack | `/about` |
-| AboutJourney | `AboutJourney.tsx` | Five-chapter timeline ledger (pin/live) from industry knowledge to the AI era | `/about` |
-| AboutClose | `AboutClose.tsx` | Light close: AI + Technology + Ticketing pillars + three CTAs (not a second FinalCTA) | `/about` |
+| AboutHero + JourneyWall | `AboutHero.tsx`, `AboutJourneyWall.tsx` | Dark unique `bh-hero`. Left brief copy + 3 CTAs (Become a Seller, Book a Demo, Talk to our team). Right stage (`abt-*`) — seven-module rail, data-signal nodes, Experience+Data+AI+Automation strip | `/about` |
+| AboutChapters | `AboutChapters.tsx` | **Mission mounted.** Knowledge, Vision, Audiences, Building, Future built, unmounted (files kept) | `/about` (Mission only) |
+| AboutOverview | `AboutOverview.tsx` | Seven-product ecosystem board (official modules from `modules.ts`) + analysis dock | built, unmounted |
+| AboutLiveConsole + OpsConsole | `AboutLiveConsole.tsx`, `AboutOpsConsole.tsx` | Live Console split: Collect→Connect→Understand→Predict→Act pipeline (not company ops). Own wrapper — does not extend broker `LiveConsoleVariant` | built, unmounted |
+| AboutPrinciples | `AboutPrinciples.tsx` | Shared numbered board used as Capabilities, Why SeatsBrokers, and Technology Stack | built, unmounted |
+| AboutJourney | `AboutJourney.tsx` | Five-chapter timeline ledger (pin/live) from industry knowledge to the AI era | built, unmounted (hero `AboutJourneyWall` stays) |
+| AboutClose | `AboutClose.tsx` | Light close: pillars + three CTAs (not a second FinalCTA) | `/about` |
 
 ### Book a demo (`src/components/pages/book-demo/`)
 
@@ -102,14 +105,40 @@ Routes listed are where the component is **mounted**, not every import.
 | DemoHero + BriefingWall | `DemoHero.tsx`, `DemoBriefingWall.tsx` | Brokers-parity left copy; right stage is a session briefing desk (`bdm-*`) — cycling LON/NYC/DXB slots, 45-min agenda, attendee chips | `/book-demo` |
 | DemoSessionBoard | `DemoSessionBoard.tsx` | FeatureGrid replacement — 45-min walkthrough itinerary (`bds-*`): proportional minute ruler, four numbered duration cards with outcomes, cycling “now in session” dock. Not a live console and not the marketplace/event-intel boards | `/book-demo` |
 | DemoAudience | `DemoAudience.tsx` | Two-track who-it-is-for cards (brokers vs travel) + marketplace/intel/API links | `/book-demo` |
-| DemoRequestForm | `DemoRequestForm.tsx` | Lead form: name, company, email, role, call window, message; validation + mailto success | `/book-demo` |
+| DemoRequestForm | `DemoRequestForm.tsx` | Lead form: name, company, email, telephone, country, business type, ticketing system, message; validation + webhook/mailto success | `/book-demo` |
 
 ### Platform (`src/components/pages/platform/`)
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| PlatformHero + StackWall | `PlatformHero.tsx`, `PlatformStackWall.tsx` | Brokers-parity left copy; right stage is a hub + spine of five surfaces (`plt-*`) | `/platform` |
-| PlatformModuleMap | `PlatformModuleMap.tsx` | Dark 3+2 board with deep links to brokers, travel, marketplace, event-intel, API | `/platform` |
+| PlatformHero + StackWall | `PlatformHero.tsx`, `PlatformStackWall.tsx` | `bh-hero` left copy (Your Ticket Brokerage. Connected. + supporting statement); right is a dark alive `ConsoleShell` Discover→Pay & settle spine lighting all seven stages (`.plt-os-*`) | `/platform` |
+| PlatformModuleMap | `PlatformModuleMap.tsx` | Sticky HowItWorks-vocabulary workflow (`#operating-stack`, `.plt-flow-*`): stage + product + one-line role + Explore CTA; right pane swaps compact desks. Not a 4+3 product-card dump | `/platform` only — **not** on `/products` |
+| PlatformDesks | `PlatformDesks.tsx` | Compact Ready `ConsoleShell` stage desks with In/Out handoff (Intel demand, Source £ inventory, Pulse you-decide rec, Link ticks, Market generic channels, Deal quote £, Funds settlement £). Prefix `.plt-mini-*` | PlatformModuleMap |
+
+### Products (`src/components/pages/products/`)
+
+| Name | Path | Purpose | Used on |
+|---|---|---|---|
+| ProductsHero + WorkflowWall | `ProductsHero.tsx`, `ProductsWorkflowWall.tsx` | `bh-hero` left copy (existing `productsHeroCopy`); right is a **dark** `ConsoleShell` Discover→Settle hub (traffic lights, Ready stamp, stats, seven-stage rail, workflow table, Now/status rail — `.prd-*`). Sans dashboard, not a timestamp log. Not a clone of Platform spine or Integrations connect wall | `/products` |
+| ProductsEcosystem | `ProductsEcosystem.tsx` | Seven equal-height light product cards (name, tagline, 2–3 sentence body, stage, Explore CTA) + packed related mini consoles. Replaces `PlatformModuleMap` on this page | `/products` |
+| ProductsMiniConsoles | `ProductsMiniConsoles.tsx` | Compact static `ConsoleShell` desks for overview cards. No marketplace brand names | ProductsEcosystem |
+| ProductStoryPage | `ProductStoryPage.tsx` | Brief-order shell with **slots**: `hero`, `how` (earlier live consoles), `extraCapabilities`. Shared: Problem, How steps, CapabilityBoard, integration chain, Book a Demo / Become a Seller. `showFinalCta={false}` | all seven `/products/seats*` routes |
+| SourceHero + Wall | `SourceHero.tsx`, `SourceConsoleWall.tsx` | Dark `bh-hero` like EventIntelHero; right stage is catalog + inventory ingest (`srh-*`) | `/products/seatssource` |
+| PulseHero + Wall | `PulseHero.tsx`, `PulseConsoleWall.tsx` | Dark `bh-hero`; right stage is MI + you-decide rec (`plh-*`). No fake accuracy % | `/products/seatspulse` |
+| LinkHero + Wall | `LinkHero.tsx`, `LinkConsoleWall.tsx` | Dark `bh-hero`; right stage is POS queue + ops pipeline (`lkh-*`) | `/products/seatslink` |
+| FundsHero + Wall | `FundsHero.tsx`, `FundsConsoleWall.tsx` | Dark `bh-hero`; right stage is settlement desk Standard/USDT (`fnh-*`). Qualitative rails | `/products/seatsfunds` |
+| ProductPageHero | `ProductPageHero.tsx` | Shared mini-console hero — **not mounted** on individual product pages (unique heroes restored). Kept for possible reuse | unused |
+| ProductIntegrationChain | `ProductIntegrationChain.tsx` | Platform integration: product → product pills (current highlighted). Prefix `.prd-chain-*` | ProductStoryPage |
+| ProductCapabilityBoard | `ProductCapabilityBoard.tsx` | Light 3×2 hairline cards (44px icon well + index + title + sentence). Prefix `.prd-cap-*`. Copy from `productStories.*.capabilities`. Not FeatureOrbitGrid and not `ApiInfraBoard` | ProductStoryPage |
+
+### Integrations (`src/components/pages/integrations/`)
+
+| Name | Path | Purpose | Used on |
+|---|---|---|---|
+| IntegrationsHero + ConnectWall | `IntegrationsHero.tsx`, `IntegrationsConnectWall.tsx` | `bh-hero` left copy; right is a **dark** detailed `ConsoleShell` connect desk (`int-room`): POS, feeds, APIs, websites, ERP, payments — categories only, no partner names. Stats + rail + table + Now/status. Not a timestamp log. Not SeatsLink™ / API docs. CTAs `.page-cta-row` 44px nowrap | `/integrations` |
+| IntegrationsCapabilityBoard | `IntegrationsCapabilityBoard.tsx` | Eight readable category cards + live dock. Replaces FeatureOrbitGrid on this page | `/integrations` |
+| IntegrationsLiveConsole | `IntegrationsLiveConsole.tsx` | Own wrapper (does not extend broker `LiveConsoleVariant`). Variants `marketplaces`, `stackIngest`, `feedPayments` | `/integrations` |
+| Marketplace / Stack / Feed consoles | `MarketplaceConnectConsole.tsx`, `StackIngestConsole.tsx`, `FeedPaymentsConsole.tsx` | Generic channel desk; POS/inventory/ERP ingest; supplier/site/custom + qualitative Standard/USDT rails | IntegrationsLiveConsole |
 
 ### FAQ (`src/components/pages/faq/`)
 
@@ -124,7 +153,7 @@ Routes listed are where the component is **mounted**, not every import.
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
 | LegalHero | `LegalHero.tsx` | Short dark `bh-hero` copy banner (no chapter rail, not a product dashboard) | `/legal` |
-| LegalDocument | `LegalDocument.tsx` | Full-width 3-col tabs (Privacy Policy / Terms / Cookie Policy) + active panel; hashes `#privacy` `#terms` `#cookies` | `/legal` |
+| LegalDocument | `LegalDocument.tsx` | Full-width 4-col tabs (Privacy Policy / Terms / Cookie Policy / Compliance) + active panel; hashes `#privacy` `#terms` `#cookies` `#compliance` | `/legal` |
 
 ### Contact (`src/components/pages/contact/`)
 
@@ -146,30 +175,30 @@ Used on `/` unless noted.
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| Nav | `Nav.tsx` | Site nav — visible: For Brokers, SeatsMarket™, SeatsIntel™, Seatpin™, About; hidden: Platform, Travel Partners | PageShell |
-| Footer | `Footer.tsx` | Footer columns; Resources FAQs → `/faq`; legal links Privacy / Terms / Cookie Policy → `/legal#privacy` `#terms` `#cookies`; partners mailto line; socials commented out | PageShell |
-| FinalCTA | `FinalCTA.tsx` | Global close CTA (“Become a seller” → `/brokers`) | PageShell (all pages) |
-| Hero | `Hero.tsx` | Homepage hero + typewriter | `/` |
-| HeroDashboardTilt | `HeroDashboardTilt.tsx` | Hero dashboard mock | Hero |
+| Nav | `Nav.tsx` | Site nav — visible: Platform, Products, Integrations, API, About; hidden: For Brokers, B2B Partners, Marketplace Connectivity, Event Intelligence. Right: Login, Book a Demo, Become a Seller (`/become-a-seller`) | PageShell |
+| Footer | `Footer.tsx` | Footer columns Platform / Products / Company / Support; Support Help Centre → `/faq`; legal links Privacy / Terms / Cookie Policy → `/legal#privacy` `#terms` `#cookies`; brand line SeatsBrokers™ — A SeatsGroup Company; partners mailto line; socials commented out | PageShell |
+| FinalCTA | `FinalCTA.tsx` | Global close CTA (Become a Seller → `/become-a-seller`; Book a Demo; Login) | PageShell (all pages) |
+| Hero | `Hero.tsx` | Homepage hero + typewriter; dark stadium cinema; 44px CTAs | `/` |
+| HeroDashboardTilt | `HeroDashboardTilt.tsx` | Three light `ConsoleShell` desks in the tilt stage (hub / Discover→Settle / product command), 1:1 with hero slides | Hero |
 | SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: 3-col `.sto-*` infographic (named+numbered marketplace tiles, 16 channels, 1-row process hops). Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus synced pipeline minis | `/` |
 | SeatMapTicketsConsole | `SeatMapTicketsConsole.tsx` | Interactive inventory/quote mini-console (select, margin, copy, PDF) in `ConsoleShell` | TravelTools |
-| TwoTrack | `TwoTrack.tsx` | Broker vs travel tracks (in-view straighten) | `/` |
-| Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out) | `/` |
-| NetworkConstellation | `NetworkConstellation.tsx` | 100dvh click-driven globe stages (no scroll pin) | `/` |
+| TwoTrack | `TwoTrack.tsx` | Broker vs travel tracks (in-view straighten) | **Exists; not mounted on `/` (Phase 3)** |
+| Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out). `#connectivity` | `/` |
+| NetworkConstellation | `NetworkConstellation.tsx` | 100dvh click-driven globe stages (no scroll pin) | **Exists; not mounted on `/` (Phase 3)** |
 | FeatureOrbit | `FeatureOrbit.tsx` | Capability orbit | `/` |
-| ProcessBento | `Processbento.tsx` | Problem / platform bento | `/` |
-| HowItWorks | `HowItWorks.tsx` | Event / market / AI pricing | `/` |
-| PartnerProductShowcase | `PartnerProductShowcase.tsx` | Tabbed product shots | `/` |
-| ToolkitShowcase | `Toolkitshowcase.tsx` | Module toolkit; SeatsSource™ / SeatsMarket™ / SeatsFunds™ are static `ConsoleShell` desks (`.tks-*`); SeatsIntel™ / SeatsPulse™ stay product screenshots | `/` |
-| StickyScrollShowcase | `StickyScrollShowcase.tsx` | Who we serve — sticky-scroll; right visual swaps with the active audience | `/` |
+| ProcessBento | `Processbento.tsx` | Problem / platform bento (`#partner-process`); 7-stage Discover→Settle rail + five cards | `/` |
+| HowItWorks | `HowItWorks.tsx` | Seven-stage workflow sticky (`#how-it-works`, `.how-it-*`): numbered 01–07 Discover→Settle cards with owning product + Explore CTA; right column swaps six product screenshots + one static `.how-it-desk-*` settlement desk | `/` |
+| PartnerProductShowcase | `PartnerProductShowcase.tsx` | Tabbed product shots | **Exists; not mounted on `/`** |
+| ToolkitShowcase | `Toolkitshowcase.tsx` | Global Distribution (`#platform-toolkit`) **light**: copy + fan-out tree (hub = Nav lockup, not word) + one static Ready hub `ConsoleShell`; columns stretch at `lg`; **no** partner logo strip; do not restore dark `.toolkit` shell | `/` |
+| StickyScrollShowcase | `StickyScrollShowcase.tsx` | Who it's for deep sticky (`#who-its-for`) — workflow titles + consoles for brokers/resellers/suppliers/operators. Brief §9 role grid is JourneyNumbers | `/` |
 | StickyScrollConsoles | `StickyScrollConsoles.tsx` | Four unique light `ConsoleShell` mini-consoles (broker distribution, travel quote desk, marketplace sync, partner API bridge); `sss-*` | StickyScrollShowcase |
-| MarketIntelligence | `MarketIntelligence.tsx` | Intel tiles | `/` |
-| JourneyNumbers | `JourneyNumbers.tsx` | Milestone numbers | `/` |
-| GlobalReach | `GlobalReach.tsx` | Geography | `/` |
-| GlobeScrollSection | `GlobeScrollSection.tsx` | Globe + 2 unique slides (NY, Dubai) | `/` |
-| GlobeCanvas | `landing/globe/GlobeCanvas.tsx` | Canvas globe (idle orbit; optional scrollOffset) | NetworkConstellation, GlobeScrollSection |
-| Stats + accent/glow/ledger | `Stats.tsx`, `stats/*` | Proof stats. Accent is a 4-card wallet shuffle (`.stats-wallet-*`); ledger/glow exist but are unmounted | `/` |
-| Testimonials | `Testimonials.tsx` | Quotes | `/` |
+| MarketIntelligence | `MarketIntelligence.tsx` | Homepage §7 pricing/intel Demo desk (`#market-intelligence`, `.mihp-*`): Intel signals + Pulse Accept/Hold/Dismiss | `/` |
+| JourneyNumbers | `JourneyNumbers.tsx` | Homepage §9 audience grid (`#journey-numbers`) — four professional ticket roles; desktop autoplay / mobile stack | `/` |
+| GlobalReach | `GlobalReach.tsx` | Geography | **Exists; not mounted on `/` (Phase 3)** |
+| GlobeScrollSection | `GlobeScrollSection.tsx` | Globe + 2 unique slides (NY, Dubai) | **Exists; not mounted on `/` (Phase 3)** |
+| GlobeCanvas | `landing/globe/GlobeCanvas.tsx` | Canvas globe (idle orbit; optional scrollOffset) | NetworkConstellation, GlobeScrollSection (unmounted) |
+| Stats + accent/glow/ledger | `Stats.tsx`, `stats/*` | Homepage §10 Experience. Accent: title/body + 4 qualitative proof cards, wallet shuffle (`.stats-wallet-*`); ledger/glow unmounted | `/` |
+| Testimonials | `Testimonials.tsx` | Quotes | **Exists; not mounted on `/`** |
 | SectionBackdrop | `SectionBackdrop.tsx` | Shared photo/grid backdrops | several landing sections |
 | MarketPathScroll | `MarketPathScroll.tsx` | Scroll path viz | **Exists; not imported on any route** |
 
@@ -178,18 +207,26 @@ Used on `/` unless noted.
 | File | Purpose |
 |---|---|
 | `src/content/site.ts` | Brand, nav, footer, CTAs, SEO meta |
-| `src/content/modules.ts` | Official product module names + taglines (SeatsFunds™, SeatsMarket™, Seatpin™, SeatsSource™, SeatsPulse™, SeatsIntel™, SeatsDeal™, SeatsLaunch™) |
+| `src/content/modules.ts` | Official product module names + taglines (SeatsIntel™, SeatsSource™, SeatsPulse™, SeatsLink™, SeatsMarket™, SeatsDeal™, SeatsFunds™). SeatsLaunch™ defined but parked — not in `moduleList` |
 | `src/content/broker-hero-data.ts` | Brokers hero copy + mini-card data |
 | `src/content/broker-onboarding-data.ts` | `/brokers` company setup: regions, comparison rows, six phases, partners, checklist, FAQ (`[CONFIRM: …]` unknowns) |
 | `src/content/travel-hero-data.ts` | Travel hero copy + partner-desk dashboard data (KPIs, earnings, charts, lists). Mini-card datasets remain for `TravelConsoleCards` |
 | `src/content/marketplace-hero-data.ts` | Marketplace connectivity hero copy + channel-mesh stage data (mini-card datasets remain for `MarketplaceConsoleCards`) |
 | `src/content/event-intel-hero-data.ts` | Event intelligence hero copy + forecast-lens stage data (mini-card datasets remain for `EventIntelConsoleCards`) |
-| `src/content/api-hero-data.ts` | API hero copy + docs-console endpoints, auth scopes/roles, webhook payloads |
-| `src/content/about-page-data.ts` | About chapters, SeatsAI/Trade/Pay/API/Data/Automation names, page CTAs |
+| `src/content/api-hero-data.ts` | API hero copy + docs-console endpoints, auth scopes/roles, webhook payloads, `apiInfra` (ApiInfraBoard) |
+| `src/content/about-page-data.ts` | About chapters, seven official module surfaces, page CTAs |
 | `src/content/faq-data.ts` | FAQ hero copy, six questions, still-need-help strip |
 | `src/content/legal-data.ts` | Legal hero + Privacy / Terms / Cookie chapters |
 | `src/content/book-demo-data.ts` | Book-a-demo hero, slots, agenda, session blocks, audiences, form options |
-| `src/content/platform-page-data.ts` | Platform hero, stack layers, module map tiles |
+| `src/content/seller-application-data.ts` | Become a Seller form copy, countries, years/volume bands |
+| `src/content/seller-hero-data.ts` | Become a Seller hero copy, Apply → Review → Access stages, sample desk queue. `sellerHeroCopy` re-exported from `products-page-data.ts` |
+| `src/lib/lead-handoff.ts` | Webhook-or-mailto CRM hand-off |
+| `src/content/platform-page-data.ts` | Platform hero, supporting statement, stack layers, sticky workflow copy, module/handoff tiles |
+| `src/content/products-page-data.ts` | `/products` overview (`productsHeroCopy`, workflow layers, `productCards`) + Become a Seller benefits (`sellerHeroCopy` re-exported from `seller-hero-data.ts`) + Phase 4 `productStories` + Integrations hero/board/eight categories + flow |
+| `src/content/source-hero-data.ts` | SeatsSource™ hero copy + catalog/inventory ingest stage |
+| `src/content/pulse-hero-data.ts` | SeatsPulse™ hero copy + published sample rec (£247 / £285 / £265) + Accept/Hold/Dismiss |
+| `src/content/link-hero-data.ts` | SeatsLink™ hero copy + POS queue / ops pipeline / connect ticks |
+| `src/content/funds-hero-data.ts` | SeatsFunds™ hero copy + qualitative settlement stages / Standard·USDT rails |
 | `src/content/inventory-console-data.ts` | Inventory console demo rows |
 | `src/content/crypto-payout-data.ts` | Brokers SeatsFunds™ USDT desk: rails, path, ledger, auto-run frames (no amounts) |
 | `src/content/seat-map-tickets-data.ts` | Homepage TravelTools Seat Map & Tickets demo listings / map blocks (£) |

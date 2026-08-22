@@ -73,7 +73,7 @@ export function AboutJourneyWall() {
         </header>
 
         <div className="abt-body">
-          <ol className="abt-rail" aria-label="SeatsBrokers technology ecosystem">
+          <ol className="abt-rail" aria-label="SeatsBrokers product ecosystem">
             {aboutSurfaces.map((item, index) => (
               <li key={item.index} data-active={index === active ? "true" : "false"}>
                 <button
@@ -97,9 +97,9 @@ export function AboutJourneyWall() {
               className="abt-atlas"
               viewBox="0 0 400 220"
               role="img"
-              aria-label="Intelligence core connecting ticketing data signals"
+              aria-label="SeatsBrokers platform connecting ticketing data"
             >
-              <title>SeatsBrokers intelligence core — data into AI</title>
+              <title>SeatsBrokers — one platform for professional ticket brokers</title>
               {Array.from({ length: 5 }, (_, i) => (
                 <circle
                   key={`ring-${i}`}

@@ -36,8 +36,8 @@ const stages: Stage[] = [
     label: modules.intel.name,
     title: "Structured event data across every category.",
     body: "Football, rugby, cricket, tennis, Formula 1, boxing, music, theatre, arts and festivals — catalogued with onsale dates, venues and demand signals.",
-    metric: "12K+",
-    metricLabel: "events catalogued",
+    metric: "Global",
+    metricLabel: "event catalog",
     lines: ["events.catalog → synced", "onsale.dates → tracked", "venues.mapped → live"],
     icon: Layers,
   },
@@ -48,8 +48,8 @@ const stages: Stage[] = [
     label: modules.source.name,
     title: "Manage tickets, sections, rows and pricing.",
     body: "Sections, rows, quantity, prices, ticket types, delivery information, restrictions and packages — managed from one centralized inventory layer.",
-    metric: "84K+",
-    metricLabel: "active listings",
+    metric: "One",
+    metricLabel: "inventory layer",
     lines: ["inventory.sync → unified", "quantity.guard → armed", "holds.enforced → true"],
     icon: RefreshCw,
   },
@@ -60,7 +60,7 @@ const stages: Stage[] = [
     label: "Platform Hub",
     title: "The infrastructure layer connecting the ecosystem.",
     body: "Event intelligence, marketplace connectivity, AI pricing, partner commerce and payment infrastructure — orchestrated through one technology platform.",
-    metric: "16",
+    metric: "Multi",
     metricLabel: "connected marketplaces",
     lines: ["hub.orchestrate → active", "api.connect → live", "sync.realtime → true"],
     icon: BarChart3,
@@ -72,8 +72,8 @@ const stages: Stage[] = [
     label: modules.market.name,
     title: "List once. Distribute everywhere.",
     body: "Automated listing distribution, price synchronization, quantity sync and automatic delisting after sale — across every connected resale marketplace.",
-    metric: "8+",
-    metricLabel: "marketplace channels",
+    metric: "Multi",
+    metricLabel: "sales channels",
     lines: ["push.marketplace → ok", "price.sync → live", "delist.auto → armed"],
     icon: Send,
   },
@@ -84,8 +84,8 @@ const stages: Stage[] = [
     label: modules.funds.name,
     title: "Brokers, B2B partners and customers connected.",
     body: "Order synchronization, delivery updates, partner quotations, payment infrastructure and clean settlement — closing the loop on every ticket sale.",
-    metric: "165",
-    metricLabel: "countries supported",
+    metric: "Global",
+    metricLabel: "distribution",
     lines: ["order.sync → complete", "delivery.update → sent", "payout.statement → ready"],
     icon: Wallet,
   },
@@ -218,13 +218,13 @@ export function NetworkConstellation() {
 
             <div className="nc-ctas mt-7 hidden flex-wrap gap-3.5 lg:flex">
               <SiteLink
-                to="/brokers"
+                to={ctas.exploreBrokers.to}
                 className="inline-flex items-center rounded-full border border-border px-6 py-3 text-base font-semibold text-foreground transition-colors hover:border-primary/50"
               >
                 {ctas.exploreBrokers.label}
               </SiteLink>
               <SiteLink
-                to="/travel-partners"
+                to={ctas.exploreTravel.to}
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-white transition-transform hover:-translate-y-0.5"
               >
                 {ctas.exploreTravel.label}
@@ -347,13 +347,13 @@ export function NetworkConstellation() {
 
         <div className="mt-8 flex flex-wrap gap-4 lg:hidden">
           <SiteLink
-            to="/brokers"
+            to={ctas.exploreBrokers.to}
             className="inline-flex items-center rounded-full border border-border px-7 py-3.5 text-base font-semibold text-foreground"
           >
             {ctas.exploreBrokers.label}
           </SiteLink>
           <SiteLink
-            to="/travel-partners"
+            to={ctas.exploreTravel.to}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white"
           >
             {ctas.exploreTravel.label}

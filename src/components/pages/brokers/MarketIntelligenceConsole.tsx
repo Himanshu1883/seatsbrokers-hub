@@ -48,20 +48,20 @@ const ranges = [
 ] as const;
 
 const askLadder = [
-  { name: "StubHub", ask: 255, listings: 214, delta: "+2.4%", direction: "up" as const },
-  { name: "Viagogo", ask: 242, listings: 186, delta: "-0.8%", direction: "down" as const },
-  { name: "LiveFootball", ask: 238, listings: 124, delta: "+1.1%", direction: "up" as const },
-  { name: "SeatGeek EU", ask: 231, listings: 98, delta: "0.0%", direction: "flat" as const },
-  { name: "Ticombo", ask: 228, listings: 71, delta: "-2.2%", direction: "down" as const },
+  { name: "Global resale", ask: 255, listings: 214, delta: "+2.4%", direction: "up" as const },
+  { name: "Sports exchange", ask: 242, listings: 186, delta: "-0.8%", direction: "down" as const },
+  { name: "Regional OTA", ask: 238, listings: 124, delta: "+1.1%", direction: "up" as const },
+  { name: "Direct API", ask: 231, listings: 98, delta: "0.0%", direction: "flat" as const },
+  { name: "Partner feed", ask: 228, listings: 71, delta: "-2.2%", direction: "down" as const },
   { name: "Your desk", ask: 248, listings: 149, delta: "+3.6%", direction: "up" as const },
 ] as const;
 
 const signals = [
-  { level: "high", time: "09:41:12", msg: "demand.surge → +18% vs 7-day average" },
-  { level: "info", time: "09:41:09", msg: "market.sync → 32 channels refreshed" },
-  { level: "warn", time: "09:41:06", msg: "comp.stubhub → undercut risk at £255" },
-  { level: "info", time: "09:41:02", msg: "price.floor → £185 armed for Cat A" },
-  { level: "high", time: "09:40:58", msg: "volume.shift → 842 active listings" },
+  { level: "high", time: "09:41:12", msg: "demand.surge → category pressure rising" },
+  { level: "info", time: "09:41:09", msg: "market.sync → channels refreshed" },
+  { level: "warn", time: "09:41:06", msg: "comp.channel → undercut risk flagged" },
+  { level: "info", time: "09:41:02", msg: "price.floor → Cat A floor armed" },
+  { level: "high", time: "09:40:58", msg: "volume.shift → listings active" },
   { level: "info", time: "09:40:54", msg: "movement.track → curve recalculated" },
 ] as const;
 

@@ -4,10 +4,10 @@ import { useInView } from "@/hooks/use-scroll-motion";
 import { ConsoleShell } from "@/components/pages/brokers/ConsoleShell";
 
 const stats = [
-  { label: "Channels", value: "16" },
-  { label: "Synced", value: "29" },
-  { label: "Latency", value: "96ms" },
-  { label: "Error rate", value: "0.1%" },
+  { label: "Channels", value: "Multi" },
+  { label: "Synced", value: "Live" },
+  { label: "Sync", value: "Live" },
+  { label: "Errors", value: "Tracked" },
 ] as const;
 
 const channels = [
@@ -23,7 +23,7 @@ const channels = [
 
 const healthFeed = [
   { time: "09:42:18", msg: "channel.poll → 32 channels · API health ok", ok: true },
-  { time: "09:42:11", msg: "CH-03 · pushing · Regional OTA latency 96ms", ok: true },
+  { time: "09:42:11", msg: "CH-03 · pushing · Regional OTA sync in flight", ok: true },
   { time: "09:42:04", msg: "CH-06 · queued · white-label reconnect", ok: true },
   { time: "09:41:56", msg: "api.log → listing.update · 7 channels acked", ok: true },
   { time: "09:41:48", msg: "error.monitor → 0.1% rolling error rate", ok: true },

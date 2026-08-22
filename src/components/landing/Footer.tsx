@@ -8,10 +8,9 @@ export function Footer() {
     <footer className="site-footer section-curve bg-dark text-background">
       <div className="border-b border-background/10 bg-background/[0.03] py-8 sm:py-10">
         <div className="container-page flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-          <p className="section-eyebrow text-primary">Built for the global ticketing ecosystem</p>
+          <p className="section-eyebrow text-primary">{brand.mark}</p>
           <p className="max-w-xl text-sm leading-relaxed text-background/65 sm:text-right">
-            {brand.tagline} — connecting event data, inventory, marketplaces, pricing and partners
-            through one technology platform.
+            {brand.tagline}. {brand.proposition}
           </p>
         </div>
       </div>
@@ -27,8 +26,8 @@ export function Footer() {
             className="brand-logo-on-dark h-16 w-auto max-w-[300px] object-contain sm:h-[4.5rem]"
           />
           <p className="mt-6 max-w-sm text-base leading-relaxed text-background/60">
-            Powering the technology behind modern ticket resale. From event discovery and inventory
-            management to marketplace distribution, market intelligence and partner sales.
+            A B2B technology platform for professional ticket brokers. One workflow. One inventory
+            layer. Multiple sales channels.
           </p>
           {/* Social icons commented out — restore if needed
           <div className="mt-8 flex gap-3">
@@ -46,7 +45,7 @@ export function Footer() {
           */}
         </div>
 
-        <div className="grid gap-10 sm:grid-cols-3 sm:gap-8">
+        <div className="grid gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
           {footerColumns.map((c) => (
             <div key={c.title}>
               <h3 className="font-mono text-[11px] tracking-[0.2em] text-primary">
@@ -117,7 +116,9 @@ export function Footer() {
       </div>
 
       <div className="container-page flex flex-col gap-4 border-t border-background/10 py-10 text-xs text-background/50 sm:flex-row sm:items-center sm:justify-between sm:py-12">
-        <p className="text-sm">© {new Date().getFullYear()} {brand.name}. All rights reserved.</p>
+        <p className="text-sm">
+          © {new Date().getFullYear()} {brand.name}. {brand.groupLine}.
+        </p>
         <div className="flex flex-wrap gap-5 text-sm">
           {footerLegal.map((l) => (
             <SiteLink key={l.label} to={l.to} hash={l.hash} className="hover:text-background">

@@ -30,9 +30,9 @@ const categories: Category[] = [
     title: "Football",
     body: "Domestic leagues, European competitions and international fixtures.",
     icon: Trophy,
-    events: "18,420",
-    onsales: "54",
-    venues: "2,140",
+    events: "Catalogued",
+    onsales: "Tracked",
+    venues: "Mapped",
     heat: 94,
     band: "peak",
     density: [42, 58, 51, 76, 64, 88, 94, 71, 82, 90, 67, 79],
@@ -41,9 +41,9 @@ const categories: Category[] = [
     title: "Tennis & Cricket",
     body: "Grand Slams, Test series, IPL and international tournaments.",
     icon: CircleDot,
-    events: "6,812",
-    onsales: "22",
-    venues: "486",
+    events: "Catalogued",
+    onsales: "Tracked",
+    venues: "Mapped",
     heat: 78,
     band: "high",
     density: [28, 36, 44, 62, 58, 74, 70, 81, 66, 72, 54, 60],
@@ -52,9 +52,9 @@ const categories: Category[] = [
     title: "Rugby & Formula 1",
     body: "Six Nations, World Cup, Grand Prix weekends and hospitality.",
     icon: Flag,
-    events: "4,106",
-    onsales: "18",
-    venues: "214",
+    events: "Catalogued",
+    onsales: "Tracked",
+    venues: "Mapped",
     heat: 86,
     band: "peak",
     density: [34, 40, 48, 55, 72, 84, 90, 68, 76, 82, 61, 70],
@@ -63,9 +63,9 @@ const categories: Category[] = [
     title: "Boxing & Concerts",
     body: "Championship fights, arena tours and festival circuits.",
     icon: Mic2,
-    events: "9,240",
-    onsales: "31",
-    venues: "890",
+    events: "Catalogued",
+    onsales: "Tracked",
+    venues: "Mapped",
     heat: 81,
     band: "high",
     density: [38, 46, 52, 60, 71, 78, 85, 74, 69, 80, 63, 72],
@@ -74,9 +74,9 @@ const categories: Category[] = [
     title: "Theatre & Arts",
     body: "West End, Broadway, exhibitions and cultural events.",
     icon: Theater,
-    events: "5,890",
-    onsales: "12",
-    venues: "640",
+    events: "Catalogued",
+    onsales: "Tracked",
+    venues: "Mapped",
     heat: 64,
     band: "steady",
     density: [22, 28, 31, 36, 40, 48, 52, 46, 42, 50, 38, 44],
@@ -85,9 +85,9 @@ const categories: Category[] = [
     title: "Festivals & Other",
     body: "Multi-day festivals and other global live events.",
     icon: Tent,
-    events: "3,746",
-    onsales: "5",
-    venues: "312",
+    events: "Catalogued",
+    onsales: "Tracked",
+    venues: "Mapped",
     heat: 71,
     band: "high",
     density: [18, 24, 30, 42, 58, 76, 68, 54, 48, 62, 40, 36],
@@ -188,7 +188,7 @@ export function EventCategoryBoard() {
           <div className="ecb-index">
             <p className="ecb-index-copy">
               <span className="ecb-index-kicker">Shared event record</span>
-              <span className="ecb-index-count lc-mono">6 categories · 48,214 events</span>
+              <span className="ecb-index-count lc-mono">6 categories · Global catalog</span>
             </p>
             <ul className="ecb-chips">
               {structureChips.map((chip) => (
@@ -221,15 +221,15 @@ export function EventCategoryBoard() {
 
               <dl className="ecb-stats">
                 <div>
-                  <dt>Events indexed</dt>
+                  <dt>Coverage</dt>
                   <dd className="lc-mono">{featured.events}</dd>
                 </div>
                 <div>
-                  <dt>Onsales · 7d</dt>
+                  <dt>Onsales</dt>
                   <dd className="lc-mono">{featured.onsales}</dd>
                 </div>
                 <div>
-                  <dt>Venues mapped</dt>
+                  <dt>Venues</dt>
                   <dd className="lc-mono">{featured.venues}</dd>
                 </div>
               </dl>
@@ -251,14 +251,14 @@ export function EventCategoryBoard() {
                       <Icon className="size-4" strokeWidth={1.75} />
                     </span>
                     <h3>{category.title}</h3>
-                    <span className="ecb-card-score lc-mono">{category.heat}</span>
+                    <span className="ecb-card-score">{bandLabel[category.band]}</span>
                   </header>
                   <p className="ecb-card-body">{category.body}</p>
                   <HeatBar heat={category.heat} band={category.band} />
                   <p className="ecb-card-foot">
-                    <span className="lc-mono">{category.events}</span> events
+                    <span>{bandLabel[category.band]} demand</span>
                     <span aria-hidden>·</span>
-                    <span className="lc-mono">{category.onsales}</span> onsales
+                    <span>Tracked onsales</span>
                   </p>
                 </article>
               );

@@ -127,7 +127,7 @@ export function MarketplaceCapabilityBoard() {
                 <i />
                 Inbound
               </span>
-              <span className="mcb-toolbar-meta">32 channels · last inbound 4s</span>
+              <span className="mcb-toolbar-meta">Connected channels · last inbound live</span>
             </div>
 
             <ul className="mcb-caps">

@@ -12,7 +12,7 @@ const listing = {
 } as const;
 
 const stats = [
-  { label: "Destinations", value: "8" },
+  { label: "Destinations", value: "Multi" },
   { label: "Live", value: "6" },
   { label: "Pushing", value: "1" },
   { label: "Queued", value: "1" },
@@ -38,8 +38,8 @@ const destinations = [
 
 const feed = [
   { time: "09:42:18", msg: "listing.create → INV-4402 · Club Level x2", ok: true },
-  { time: "09:42:15", msg: "listing.push → 8 channels · Cat A live", ok: true },
-  { time: "09:42:12", msg: "qty.sync → 2 seats aligned · CH-01–CH-08", ok: true },
+  { time: "09:42:15", msg: "listing.push → connected channels · Cat A live", ok: true },
+  { time: "09:42:12", msg: "qty.sync → 2 seats aligned across channels", ok: true },
   { time: "09:42:09", msg: "CH-03 · pushing · Regional OTA ack pending", ok: true },
   { time: "09:42:06", msg: "listing.status → 6 live · 1 pushing · 1 queued", ok: true },
   { time: "09:42:00", msg: "api.ingest → POS inventory batch received", ok: true },

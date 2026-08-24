@@ -302,15 +302,17 @@ export function MarketIntelligence() {
         <div className="mihp-layout">
           <div className="mihp-copy">
             <Reveal>
-              <p className="section-eyebrow text-primary">Market intelligence</p>
-              <h2 className="mihp-title">Make better decisions with better data</h2>
+              <p className="section-eyebrow text-primary">{modules.intel.name}</p>
+              <h2 className="mihp-title">Make Better Decisions With Better Data</h2>
               <div className="mihp-body-copy">
-                <p>Monitor pricing, availability and market movement across events and inventory.</p>
                 <p>
-                  {modules.intel.name} provides the market intelligence while {modules.pulse.name}{" "}
-                  turns that information into intelligent pricing recommendations.
+                  Monitor pricing, availability and market movement across events and inventory.
                 </p>
-                <p>The broker remains in control.</p>
+                <p>
+                  {modules.intel.name} provides the market intelligence. {modules.pulse.name} turns
+                  that picture into intelligent pricing recommendations.
+                </p>
+                <p>The broker remains in control. AI recommends. You decide.</p>
               </div>
               <p className="mihp-lock">{modules.pulse.tagline}</p>
             </Reveal>

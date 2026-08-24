@@ -122,7 +122,7 @@ const signalFeed = [
   { level: "high", time: "09:42:14", msg: "demand.surge → Cat A index 92 · +18% vs 7-day" },
   { level: "info", time: "09:42:09", msg: "comp.match → 12 comparable events re-ranked" },
   { level: "warn", time: "09:42:04", msg: "band.divergence → upper tier -2.8% while Cat A rises" },
-  { level: "info", time: "09:41:58", msg: "ask.median → £262 across 32 tracked channels" },
+  { level: "info", time: "09:41:58", msg: "ask.median → £262 across tracked channels" },
   { level: "high", time: "09:41:52", msg: "sell_through → 68% of tracked pool absorbed" },
   { level: "info", time: "09:41:47", msg: "curve.recalc → demand vs ask series rebuilt" },
 ] as const;

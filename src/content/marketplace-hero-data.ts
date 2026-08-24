@@ -5,8 +5,8 @@ import { modules } from "./modules";
 export const marketplaceHeroCopy = {
   eyebrow: modules.market.name,
   title: modules.market.tagline,
-  subhead: "List once. Distribute everywhere — listing creation, updates, synchronization and automatic delisting from one hub.",
-  body: "Connect your ticket operation to multiple connected marketplaces and sales channels. SeatsBrokers keeps quantity, price and listing status aligned across every connected channel.",
+  subhead: "Search. Source. Trade — B2B ticket inventory from one hub, with listing updates, synchronisation and automatic delisting.",
+  body: "Connect your ticket operation to professional B2B inventory and sales channels. SeatsBrokers keeps quantity, price and listing status aligned across every connected channel.",
 } as const;
 
 export type MarketplaceHeroCardType =

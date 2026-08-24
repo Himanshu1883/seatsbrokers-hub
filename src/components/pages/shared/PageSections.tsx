@@ -333,7 +333,7 @@ export function ApiCards({ items, eyebrow, title, intro }: ApiCardsProps) {
             </div>
           </Reveal>
         ) : null}
-        <div className={`grid gap-5 sm:grid-cols-2 lg:grid-cols-3${title ? " mt-12 lg:mt-14" : ""}`}>
+        <div className={`grid gap-5 sm:grid-cols-2 lg:grid-cols-4${title ? " mt-12 lg:mt-14" : ""}`}>
           {items.map((item, i) => (
             <Reveal key={item.title} delay={i * 60}>
               <article className="lift h-full rounded-2xl border border-border bg-card p-6">

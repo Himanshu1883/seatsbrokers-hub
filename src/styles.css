@@ -54356,3 +54356,329 @@ button.process-bento-rail-chip {
     scroll-behavior: auto;
   }
 }
+
+/* ==========================================================================
+   Homepage hero — typewriter stays in the copy column (2026-08-24)
+   Prefix: .hero-fit / .hero-copy-typeline* only.
+   Global .hero-copy-typeline is nowrap + live text width:max-content, so
+   “distribute and sell globally.” paints over the console at laptop/desktop.
+   Phone wrap (≤1023) already existed; this extends wrap + clip to all widths.
+   Do not restore nowrap on .hero-copy-typeline-text. 100svh phone lock and
+   ≥1024 two-column cinema stay.
+   ========================================================================== */
+
+.hero-fit .hero-copy,
+.hero-fit .hero-copy-layer,
+.hero-fit .hero-copy-head,
+.hero-fit-grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.hero-fit .hero-copy-head {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.hero-fit .hero-copy-typeline,
+.hero-fit .hero-copy-typeline-ghosts,
+.hero-fit .hero-copy-typeline-ghost,
+.hero-fit .hero-copy-typeline-text {
+  box-sizing: border-box;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.hero-fit .hero-copy-typeline-ghosts {
+  width: 100%;
+}
+
+.hero-fit .hero-copy-typeline-text {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .hero-fit-grid {
+    width: 100%;
+    max-width: 100%;
+    column-gap: clamp(1.75rem, 3.2vw, 3.25rem);
+  }
+
+  .hero-fit .hero-copy {
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  .hero-fit-console {
+    min-width: 0;
+  }
+}
+
+/* Tight two-column band (MacBook / 13–14" CSS px): match title + type line
+   so the green phrase wraps inside the copy track instead of hitting the desk. */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .hero-fit .hero-copy .hero-copy-head {
+    font-size: clamp(1.55rem, 2.15vw + 0.55rem, 2.2rem);
+  }
+
+  .hero-fit .hero-copy-typewriter {
+    font-size: clamp(1.55rem, 2.15vw + 0.55rem, 2.2rem);
+  }
+}
+
+/* ==========================================================================
+   Homepage hero — typewriter one line, no console overlap (2026-08-24)
+   Prefix: .hero-fit / .hero-copy-typeline* / .hero-copy-typewriter only.
+   Prior append wrapped .hero-copy-typeline* so “distribute and sell globally.”
+   could not paint over the desk. User wants every green phrase on ONE line
+   (Ticket Resale / distribute and sell globally. / Scale your ticket business.)
+   without restoring that overlap.
+   Approach: keep copy min-width:0 + overflow-x clip + fluid 1fr/1.08fr grid.
+   Restore nowrap, then shrink type to the copy track (container cqi) so the
+   longest phrase fits. Do not wrap; do not let max-content paint the desk.
+   Phone stacked 100svh layout unchanged (only type + clip).
+   ========================================================================== */
+
+.hero-fit .hero-copy {
+  container-type: inline-size;
+  container-name: hero-copy;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.hero-fit .hero-copy-typeline,
+.hero-fit .hero-copy-typeline-ghosts,
+.hero-fit .hero-copy-typeline-ghost,
+.hero-fit .hero-copy-typeline-text {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  text-wrap: nowrap;
+}
+
+.hero-fit .hero-copy-typeline,
+.hero-fit .hero-copy-typeline-ghosts {
+  width: 100%;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.hero-fit .hero-copy-typeline-text {
+  display: inline;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+/* Desktop two-column: shrink type to the copy track so nowrap phrases fit.
+   Phone/tablet stacked type sizes stay in the earlier hero-fit media queries. */
+@media (min-width: 1024px) {
+  .hero-fit-grid {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  }
+
+  .hero-fit .hero-copy {
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  .hero-fit-console {
+    min-width: 0;
+  }
+
+  /* Fallback without cqi: ~42% column × 6.8% ≈ 2.85vw */
+  .hero-fit .hero-copy .hero-copy-head,
+  .hero-fit .hero-copy-typewriter {
+    font-size: clamp(1.2rem, 2.85vw, 3.25rem);
+  }
+}
+
+@supports (font-size: 1cqi) {
+  @media (min-width: 1024px) {
+    /* 6.8cqi ≈ 100 / 14.7em — Space Grotesk Bold longest phrase
+       (“distribute and sell globally.”) + caret, inside the copy track. */
+    .hero-fit .hero-copy .hero-copy-head,
+    .hero-fit .hero-copy-typewriter {
+      font-size: min(clamp(1.75rem, 4.6vw, 3.25rem), 6.8cqi);
+    }
+  }
+}
+
+/* Tight two-column band: previous 1.55–2.2rem wrap size was still too wide
+   for “Scale your ticket business.” — shrink to the track, never wrap. */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .hero-fit .hero-copy .hero-copy-head,
+  .hero-fit .hero-copy-typewriter {
+    font-size: clamp(1.15rem, 2.05vw + 0.35rem, 1.85rem);
+  }
+}
+
+@supports (font-size: 1cqi) {
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    .hero-fit .hero-copy .hero-copy-head,
+    .hero-fit .hero-copy-typewriter {
+      font-size: min(clamp(1.15rem, 2.15vw + 0.55rem, 2.2rem), 6.8cqi);
+    }
+  }
+}
+
+/* ============================================================
+   Homepage empty-right section headers (2026-08-24)
+   Prefix: .process-bento-header* / .process-bento-title /
+   .process-bento-join / .process-bento-verbs / .process-bento-close
+   / .stats-wallet-header*
+   Two-column copy at ≥1024px (HowItWorks / SellerTools header
+   vocabulary). Stacked below 1024. Do not touch .how-it-* .sto-*
+   .tpa-* .toolkit-* .feature-orbit-* .mihp-* .journey-num*
+   .process-bento-rail* .process-bento-support .bento-*
+   ============================================================ */
+
+.process-bento-header {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.process-bento-header-title {
+  min-width: 0;
+}
+
+.process-bento-title {
+  max-width: none;
+}
+
+.process-bento-title .text-primary {
+  display: block;
+}
+
+.process-bento-header-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+}
+
+.process-bento-header-copy p {
+  margin: 0;
+}
+
+.process-bento-join {
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.process-bento-close {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.process-bento-verbs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.45rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.process-bento-verbs li {
+  position: relative;
+  margin: 0;
+  padding-left: 0.95rem;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--foreground);
+}
+
+.process-bento-verbs li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+@media (min-width: 480px) {
+  .process-bento-verbs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 640px) {
+  .process-bento-header-copy {
+    font-size: 1.125rem;
+  }
+
+  .process-bento-verbs li {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .process-bento-header {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: start;
+    column-gap: clamp(2rem, 4.5vw, 4.5rem);
+    row-gap: 0;
+  }
+
+  .process-bento-header-copy {
+    padding-top: 0.2rem;
+  }
+}
+
+.stats-wallet-header {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.stats-wallet-header-title {
+  min-width: 0;
+}
+
+.stats-wallet-header .stats-wallet-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+  max-width: none;
+  margin-top: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+}
+
+@media (min-width: 640px) {
+  .stats-wallet-header .stats-wallet-copy {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stats-wallet-header {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: start;
+    column-gap: clamp(2rem, 4.5vw, 4.5rem);
+    row-gap: 0;
+  }
+
+  .stats-wallet-header .stats-wallet-copy {
+    padding-top: 0.2rem;
+  }
+}

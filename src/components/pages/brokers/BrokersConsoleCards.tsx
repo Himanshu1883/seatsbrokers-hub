@@ -190,7 +190,7 @@ function DistributionCard() {
           </span>
         ))}
       </div>
-      <p className="bh-card-foot">Real-time inventory routing · 8 channels</p>
+      <p className="bh-card-foot">Real-time inventory routing · connected channels</p>
     </CardShell>
   );
 }

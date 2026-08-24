@@ -22,14 +22,14 @@ const tracks = [
     id: "brokers",
     code: "Broker",
     icon: Briefcase,
-    eyebrow: "Ticket brokers",
+    eyebrow: "I'm a ticket broker",
     consolePath: "seatsbrokers / broker-platform",
     consoleStatus: "Sync",
     lineA: "Run your",
     lineAccent: "ticket business",
     lineFade: "from one platform",
-    title: "Run your ticket business from one technology platform",
-    body: "Global event catalog, inventory management, marketplace distribution, multi-marketplace synchronization, market pricing, sales intelligence, AI pricing recommendations and POS/API integration.",
+    title: "Manage inventory, distribute globally, automate pricing, orders and delivery.",
+    body: "One broker desk for event catalog, inventory, channel distribution, pricing intelligence, orders and fulfilment. This is the core SeatsBrokers platform.",
     stats: [
       { value: "Multi", label: "Connected marketplaces" },
       { value: "Live", label: "Listing sync" },
@@ -45,13 +45,13 @@ const tracks = [
       { id: "reg", label: "Resale EU", listings: 184, status: "Live" },
     ],
     syncLog: [
-      { time: "09:41:02", msg: "push.listings → 8 channels", ok: true },
+      { time: "09:41:02", msg: "push.listings → connected channels", ok: true },
       { time: "09:41:03", msg: "double_sale.guard → armed", ok: true },
-      { time: "09:41:04", msg: "ai.reprice → £248 ask", ok: true },
+      { time: "09:41:04", msg: "ai.reprice → ask confirmed", ok: true },
       { time: "09:41:05", msg: "hold.conflict → 0 open", ok: true },
     ],
     pricing: { ask: "£248", floor: "£185", tag: "Best", bars: [38, 52, 71, 58, 84, 62, 78, 66] },
-    inventory: { total: "2,418", channels: "8", event: "UCL Final · Cat A" },
+    inventory: { total: "Live", channels: "Multi", event: "UCL Final · Cat A" },
     cta: ctas.exploreBrokers.label,
     ctaTo: ctas.exploreBrokers.to,
     tiltY: -16,
@@ -61,14 +61,14 @@ const tracks = [
     id: "travel",
     code: "B2B",
     icon: Plane,
-    eyebrow: "B2B partners",
+    eyebrow: "I'm a B2B partner",
     consolePath: "seatsbrokers / b2b-partners",
     consoleStatus: "Live",
     lineA: "Turn inventory",
-    lineAccent: "into experience",
-    lineFade: "for every customer",
-    title: "Turn ticket inventory into a seamless customer experience",
-    body: "Access available ticket inventory, real-time visibility, partner purchasing, ticket quotations, custom margins, customer-ready quotes, invoice generation and WhatsApp sharing.",
+    lineAccent: "into quotes",
+    lineFade: "for your customers",
+    title: "Access inventory, add margin, quote customers and manage orders.",
+    body: "A partner desk on SeatsBrokers — search inventory, apply margin and share professional quotes. Travel, concierge and official-supplier distribution sit on SeatsConnect, not here.",
     stats: [
       { value: "PDF", label: "Quote share" },
       { value: "Live", label: "Inventory search" },
@@ -440,13 +440,13 @@ export function TwoTrack() {
       <div className="two-track-panel">
         <div className="container-page relative z-10">
           <Reveal>
-            <p className="section-eyebrow text-primary">One platform · Multiple parts</p>
+            <p className="section-eyebrow text-primary">Two journeys</p>
             <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-4xl lg:text-[2.65rem]">
-              Built for the global ticketing ecosystem
+              Ticket brokers first. B2B partners second.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Ticket brokers and B2B partners — connected through one intelligent infrastructure layer for catalog,
-              distribution, pricing and partner commerce.
+              Two clear paths. The broker engine is the core of SeatsBrokers. Partner quoting is
+              a separate desk — not a second marketplace story.
             </p>
           </Reveal>
 

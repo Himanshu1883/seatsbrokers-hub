@@ -15,9 +15,9 @@ export { modules, moduleList } from "./modules";
 export const brand = {
   name: "SeatsBrokers",
   mark: "SeatsBrokers™",
-  tagline: "Powering the Business of Ticket Resale",
+  tagline: "Technology powering professional ticket businesses.",
   proposition:
-    "One platform to source, manage, price, distribute and sell ticket inventory globally.",
+    "Connect inventory, marketplaces, pricing, orders, delivery and payments through one intelligent infrastructure layer.",
   group: "SeatsGroup",
   groupLine: "SeatsBrokers™ — A SeatsGroup Company",
   email: "partners@seatsbrokers.com",
@@ -96,9 +96,8 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
     links: [
       { label: "About", to: "/about" },
       { label: "Contact", to: "/contact" },
+      { label: "Book a Demo", to: "/book-demo" },
       { label: "Become a Seller", to: "/become-a-seller" },
-      // Book a Demo hidden from chrome — route `/book-demo` kept
-      // { label: "Book a Demo", to: "/book-demo" },
     ],
   },
   {
@@ -149,9 +148,9 @@ export function seoHead(path: string, entry: PageMetaEntry) {
 
 export const pageMeta = {
   home: {
-    title: "SeatsBrokers — Powering the Business of Ticket Resale",
+    title: "SeatsBrokers — Technology Powering Professional Ticket Businesses",
     description:
-      "One platform to source, manage, price, distribute and sell ticket inventory globally. SeatsBrokers is a B2B technology platform for professional ticket brokers.",
+      "Connect inventory, marketplaces, pricing, orders, delivery and payments through one intelligent infrastructure layer. SeatsBrokers is the technology platform for professional ticket businesses.",
   },
   products: {
     title: "Ticket Broker Software — SeatsBrokers",
@@ -179,9 +178,9 @@ export const pageMeta = {
       "B2B ticket distribution from enquiry to sale. Search inventory, apply your margin and share professional customer quotations.",
   },
   marketplaceConnectivity: {
-    title: `Ticket Marketplace Distribution — ${modules.market.name} | SeatsBrokers`,
+    title: `B2B Ticket Inventory — ${modules.market.name} | SeatsBrokers`,
     description:
-      "Ticket marketplace distribution: list once and distribute everywhere. Keep prices, quantities and availability synchronised across connected sales channels.",
+      "B2B ticket inventory: search, source and trade from one hub. Keep prices, quantities and availability synchronised across connected sales channels.",
   },
   eventIntelligence: {
     title: `Ticket Market Intelligence — ${modules.intel.name} | SeatsBrokers`,

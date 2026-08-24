@@ -31,8 +31,8 @@ export const modules = {
   },
   market: {
     name: "SeatsMarket™",
-    what: "Distribution",
-    tagline: "List once. Distribute everywhere.",
+    what: "B2B inventory",
+    tagline: "Search. Source. Trade.",
   },
   deal: {
     name: "SeatsDeal™",

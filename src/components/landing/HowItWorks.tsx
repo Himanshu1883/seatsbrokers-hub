@@ -421,7 +421,7 @@ export function HowItWorks() {
             <div className="max-w-2xl">
               <p className="section-eyebrow text-primary">How it works</p>
               <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">
-                Seven stages, one workflow — run on{" "}
+                From Opportunity to Settlement —{" "}
                 <span className="how-it-typeline text-primary">
                   <span className="how-it-typeline-ghosts" aria-hidden>
                     {typePhrases.map((phrase) => (
@@ -607,17 +607,17 @@ export function HowItWorks() {
             </div>
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <SiteLink
-                to={ctas.becomeSeller.to}
+                to={ctas.bookDemo.to}
                 className="lift inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-bold text-primary-foreground sm:w-auto"
               >
-                {ctas.becomeSeller.label}
+                {ctas.bookDemo.label}
                 <ArrowRight className="size-4 shrink-0" aria-hidden />
               </SiteLink>
               <SiteLink
-                to={ctas.explorePlatform.to}
+                to={ctas.becomeSeller.to}
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-border bg-background px-5 text-sm font-semibold text-foreground sm:w-auto"
               >
-                {ctas.explorePlatform.label}
+                {ctas.becomeSeller.label}
               </SiteLink>
             </div>
           </div>

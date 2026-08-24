@@ -9,6 +9,7 @@ import { TravelPartnersHero } from "@/components/pages/travel/TravelPartnersHero
 import { TravelLiveConsole } from "@/components/pages/travel/TravelLiveConsole";
 import { InventoryAccessShowcase } from "@/components/pages/travel/InventoryAccessShowcase";
 import { SearchFilterShowcase } from "@/components/pages/travel/SearchFilterShowcase";
+import { TravelTools } from "@/components/landing/ToolsGrid";
 
 export const Route = createFileRoute("/products/seatsdeal")({
   head: () => seoHead("/products/seatsdeal", pageMeta.travelPartners),
@@ -23,6 +24,8 @@ function SeatsDealPage() {
         hero={<TravelPartnersHero />}
         how={
           <>
+            {/* Unified SeatsDeal™ desk: select → margin → quote → share */}
+            <TravelTools />
             <TravelLiveConsole variant="inventorySearch" />
             <InventoryAccessShowcase />
             <SearchFilterShowcase />

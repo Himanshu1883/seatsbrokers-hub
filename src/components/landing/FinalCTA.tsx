@@ -22,28 +22,28 @@ export function FinalCTA() {
       <div className="container-page text-center">
         <Reveal>
           <h2 className="mx-auto max-w-3xl text-3xl font-bold text-background sm:text-5xl">
-            One platform. More opportunity.
+            One Platform. More Opportunity.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-sm text-background/75 sm:text-base">
-            Whether you are an established ticket broker, growing reseller or technology-driven
-            ticket business, SeatsBrokers gives you the platform to operate more efficiently and
-            reach more buyers.
+            Whether you are an established ticket broker, a growing reseller or a
+            technology-driven ticket business, SeatsBrokers gives you the infrastructure to
+            operate more efficiently and reach more buyers.
           </p>
           <p className="mx-auto mt-3 max-w-xl text-sm font-semibold text-background sm:text-base">
             Source smarter. Price better. Distribute further. Sell more.
           </p>
           <div className="page-cta-row mt-9 justify-center">
             <SiteLink
-              to={ctas.becomeSeller.to}
+              to={ctas.bookDemo.to}
               className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
             >
-              {ctas.becomeSeller.label}
+              {ctas.bookDemo.label}
             </SiteLink>
             <SiteLink
-              to={ctas.bookDemo.to}
+              to={ctas.becomeSeller.to}
               className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"
             >
-              {ctas.bookDemo.label}
+              {ctas.becomeSeller.label}
             </SiteLink>
           </div>
           <p className="mx-auto mt-5 text-sm text-background/70">

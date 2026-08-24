@@ -46,7 +46,8 @@ import {
   useSeatMapTickets,
 } from "@/components/landing/SeatMapTicketsConsole";
 import type { EventBackdropKey } from "@/lib/event-backdrops";
-import { brand } from "@/content/site";
+import { SiteLink } from "@/components/layout/SiteLink";
+import { ctas } from "@/content/site";
 import { modules } from "@/content/modules";
 
 type FlowSource = { icon: LucideIcon; label: string; packet: string };
@@ -87,9 +88,9 @@ const travelBlueprint: FlowBlueprint = {
   id: "travel",
   backdrop: "footballPitch",
   eyebrow: modules.deal.name,
-  title: modules.deal.tagline,
+  title: "Turn Enquiries Into Sales",
   intro:
-    "Select event, select tickets, add margin, generate quote and share with customer — PDF, invoice, WhatsApp, email or branded customer link.",
+    "Use SeatsDeal™ to move from a customer request to a confirmed order in one workflow: search inventory, select tickets, add margin, create the quote, share it and fulfil.",
   systemName: "seatsbrokers / b2b-pipeline",
   ingestLabel: "Search layer",
   sources: [
@@ -595,18 +596,25 @@ export function SellerTools() {
         <Reveal>
           <header className="sto-head">
             <div className="sto-head-copy">
-              <p className="section-eyebrow text-primary">Global distribution</p>
-              <h2 id="sellers-title">One inventory layer. Every sales channel.</h2>
+              <p className="section-eyebrow text-primary">Technology &amp; connectivity</p>
+              <h2 id="sellers-title">Built to work with your existing technology</h2>
             </div>
-            <p className="sto-tagline">Connect. List. Sync. Sell. Everywhere.</p>
+            <p className="sto-tagline">POS. Inventory. Feeds. Websites. ERP. Then SeatsLink™.</p>
           </header>
         </Reveal>
 
         <p className="sto-lead">
-          Keep the POS, inventory and ERP you already run. {brand.name} sits in the middle:
-          one inventory layer, listed across connected marketplaces, with orders, pricing,
-          delivery and settlement kept in sync.
+          SeatsBrokers is API-first. Keep the POS, inventory platforms, supplier feeds, websites
+          and ERP you already run. {modules.link.name} moves inventory, pricing, orders and
+          fulfilment into the SeatsBrokers layer — then out to marketplaces, B2B buyers,
+          websites and partners.
         </p>
+        <SiteLink
+          to={ctas.viewApiDocs.to}
+          className="lift  mb-2 inline-flex min-h-11 items-center rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground"
+        >
+          Explore Our API
+        </SiteLink>
 
         <div
           ref={ref}

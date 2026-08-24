@@ -432,7 +432,7 @@ export const productStories = {
     },
   },
   market: {
-    what: "SeatsMarket™ lets professional sellers list once and distribute everywhere. Connected channels stay aligned on price, quantity and listing status. When inventory sells, connected listings update so the same seat is not offered twice.",
+    what: "SeatsMarket™ is global B2B ticket inventory — search, source and trade from one hub. Connected channels stay aligned on price, quantity and listing status. When inventory sells, connected listings update so the same seat is not offered twice.",
     problem: {
       eyebrow: "The problem",
       title: "Listing once is easy. Staying in sync is not.",
@@ -455,7 +455,7 @@ export const productStories = {
     },
     capabilities: {
       eyebrow: "Capabilities",
-      title: "List once. Distribute everywhere.",
+      title: "Search. Source. Trade.",
       intro:
         "One inventory write reaches connected sales channels. Price, quantity and listing status stay aligned — a sale on any channel can update the others.",
       items: [

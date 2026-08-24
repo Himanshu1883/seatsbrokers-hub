@@ -11,21 +11,21 @@ const stats = [
 ] as const;
 
 const channels = [
-  { code: "CH-01", label: "Global resale", dest: "SG", status: "synced" as const, latency: "42ms", errors: "0.0%" },
-  { code: "CH-02", label: "Sports exchange", dest: "LF", status: "synced" as const, latency: "58ms", errors: "0.1%" },
-  { code: "CH-03", label: "Regional OTA", dest: "TM", status: "pushing" as const, latency: "96ms", errors: "0.4%" },
-  { code: "CH-04", label: "Broker desk", dest: "POS", status: "synced" as const, latency: "18ms", errors: "0.0%" },
-  { code: "CH-05", label: "B2B partners", dest: "OTA", status: "synced" as const, latency: "71ms", errors: "0.0%" },
+  { code: "CH-01", label: "Global resale", dest: "SG", status: "synced" as const, latency: "Live", errors: "0.0%" },
+  { code: "CH-02", label: "Sports exchange", dest: "LF", status: "synced" as const, latency: "Live", errors: "0.1%" },
+  { code: "CH-03", label: "Regional OTA", dest: "TM", status: "pushing" as const, latency: "Live", errors: "0.4%" },
+  { code: "CH-04", label: "Broker desk", dest: "POS", status: "synced" as const, latency: "Live", errors: "0.0%" },
+  { code: "CH-05", label: "B2B partners", dest: "OTA", status: "synced" as const, latency: "Live", errors: "0.0%" },
   { code: "CH-06", label: "White-label", dest: "WL", status: "queued" as const, latency: "—", errors: "—" },
-  { code: "CH-07", label: "Marketplace 05", dest: "SH", status: "synced" as const, latency: "64ms", errors: "0.2%" },
-  { code: "CH-08", label: "Marketplace 06", dest: "VGG", status: "synced" as const, latency: "81ms", errors: "0.0%" },
+  { code: "CH-07", label: "Marketplace 05", dest: "SH", status: "synced" as const, latency: "Live", errors: "0.2%" },
+  { code: "CH-08", label: "Marketplace 06", dest: "VGG", status: "synced" as const, latency: "Live", errors: "0.0%" },
 ] as const;
 
 const healthFeed = [
-  { time: "09:42:18", msg: "channel.poll → 32 channels · API health ok", ok: true },
+  { time: "09:42:18", msg: "channel.poll → connected channels · API health ok", ok: true },
   { time: "09:42:11", msg: "CH-03 · pushing · Regional OTA sync in flight", ok: true },
   { time: "09:42:04", msg: "CH-06 · queued · white-label reconnect", ok: true },
-  { time: "09:41:56", msg: "api.log → listing.update · 7 channels acked", ok: true },
+  { time: "09:41:56", msg: "api.log → listing.update · channels acked", ok: true },
   { time: "09:41:48", msg: "error.monitor → 0.1% rolling error rate", ok: true },
   { time: "09:41:40", msg: "channel.sync → CH-01 Global resale live", ok: true },
 ] as const;

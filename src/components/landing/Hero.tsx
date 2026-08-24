@@ -14,45 +14,45 @@ const slides = [
     image: heroStadium1,
     alt: "SeatsBrokers platform for professional ticket brokers",
     eyebrow: "SeatsBrokers™",
-    title: "Powering the Business of",
-    typePhrases: ["Ticket Resale.", "One inventory layer.", "Global distribution."],
-    lead: "One platform to source, manage, price, distribute and sell ticket inventory globally.",
-    body: "SeatsBrokers gives professional ticket brokers the technology, inventory access, market intelligence and distribution they need to operate more efficiently and scale their business.",
-    shortBody: "One platform to source, manage, price, distribute and sell ticket inventory globally.",
+    title: "Technology powering",
+    typePhrases: ["professional ticket businesses."],
+    lead: "Connect inventory, marketplaces, pricing, orders, delivery and payments through one intelligent infrastructure layer.",
+    body: "SeatsBrokers is the technology platform for professional ticket businesses. Connect your inventory once and manage distribution, pricing, orders, delivery and payments from one system.",
+    shortBody: "Connect your inventory once. Manage distribution, pricing, orders, delivery and payments from one system.",
     details: [
-      "One platform for the entire ticket operation",
-      "One inventory layer connected to multiple sales channels",
-      "Global distribution for professional ticket brokers",
+      "Keep the POS, inventory and ERP you already run",
+      "One inventory layer across connected sales channels",
+      "Built for professional ticket brokers — not a consumer marketplace",
     ],
   },
   {
     image: heroStadium2,
     alt: "One platform for the professional ticket operation",
-    eyebrow: "One platform. Your entire ticket operation.",
-    title: "Source, manage, price and",
-    typePhrases: ["Distribute globally.", "Sell from one desk.", "Settle in one workflow."],
-    lead: "Ticket resale is fragmented. SeatsBrokers brings the workflow together.",
-    body: "Source inventory. Manage stock. Understand the market. Price smarter. Distribute globally. Fulfil orders. Manage payments. All from one connected platform.",
-    shortBody: "Source, manage, price, distribute, sell and settle — all from one connected platform.",
+    eyebrow: "One platform",
+    title: "Connect once.",
+    typePhrases: ["Manage the whole desk."],
+    lead: "Connect inventory, marketplaces, pricing, orders, delivery and payments through one intelligent infrastructure layer.",
+    body: "SeatsBrokers sits in the middle of your stack — inventory, pricing, distribution, orders and settlement stay in one workflow.",
+    shortBody: "Inventory, pricing, distribution, orders and settlement — one connected platform.",
     details: [
-      "Discover → Source → Price → Connect → Distribute → Sell → Settle",
-      "One workflow. One inventory layer. Multiple sales channels.",
-      "Built for professional ticket brokers — not a consumer ticket site",
+      "Keep the POS, inventory and ERP you already run",
+      "One inventory layer across connected sales channels",
+      "Orders, delivery and settlement stay in the same workflow",
     ],
   },
   {
     image: heroStadium3,
     alt: "SeatsBrokers product workflow from opportunity to settlement",
-    eyebrow: "From opportunity to settlement",
-    title: "Seven products. One",
-    typePhrases: ["Connected workflow.", "Inventory layer.", "Sales motion."],
-    lead: "SeatsIntel™ → SeatsSource™ → SeatsPulse™ → SeatsLink™ → SeatsMarket™ → SeatsDeal™ → SeatsFunds™",
-    body: "Find the opportunity, source inventory, price with intelligence, connect your systems, distribute globally, sell and fulfil, then settle — without leaving the platform.",
-    shortBody: "Discover, source, price, connect, distribute, sell and settle on one platform.",
+    eyebrow: "Professional ticket trade",
+    title: "Operate more efficiently.",
+    typePhrases: ["Scale your ticket business."],
+    lead: "Connect inventory, marketplaces, pricing, orders, delivery and payments through one intelligent infrastructure layer.",
+    body: "Market intelligence informs the desk — you stay in control. Travel, concierge and hospitality sit on SeatsConnect, not here.",
+    shortBody: "Technology, inventory access, market intelligence and distribution — in one platform.",
     details: [
-      "Market intelligence and AI-assisted pricing — you remain in control",
-      "List once and keep connected channels in sync",
-      "Quotes, orders, fulfilment and payments in the same workflow",
+      "Dashboard visual, not a wall of statistics",
+      "Market intelligence informs the desk — you stay in control",
+      "Travel, concierge and hospitality sit on SeatsConnect, not here",
     ],
   },
 ] as const;
@@ -68,7 +68,7 @@ function longestPhrase(phrases: readonly string[]) {
 function HeroTypeLine({ phrases, children }: { phrases: readonly string[]; children: ReactNode }) {
   return (
     <span
-      className="hero-copy-typewriter hero-copy-typeline mt-2 block text-[clamp(2rem,5.5vw,4rem)] leading-[1.2] font-bold text-primary"
+      className="hero-copy-typewriter hero-copy-typeline mt-2 block min-w-0 max-w-full overflow-x-clip whitespace-nowrap text-[clamp(1.05rem,min(4.6vw,6.8cqi),3.25rem)] leading-[1.2] font-bold text-primary"
       aria-live="polite"
     >
       <span className="hero-copy-typeline-ghosts" aria-hidden>
@@ -124,7 +124,7 @@ function HeroSlideCopy({
       <h1
         className={item(
           1,
-          "hero-copy-head mt-5 text-[clamp(2rem,5vw,3.25rem)] leading-[1.2] font-bold text-balance text-white sm:mt-6",
+          "hero-copy-head mt-5 min-w-0 max-w-full text-[clamp(1.85rem,4.4vw,3.25rem)] leading-[1.2] font-bold text-pretty text-white sm:mt-6",
         )}
       >
         {slide.title}
@@ -181,18 +181,18 @@ function HeroSlideCopy({
 
       <div className={item(5, "hero-copy-actions mt-8 flex w-full min-w-0 flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap")}>
         <SiteLink
-          to={ctas.becomeSeller.to}
+          to={ctas.bookDemo.to}
           className="lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground sm:w-auto"
           tabIndex={isActive ? 0 : -1}
         >
-          {ctas.becomeSeller.label}
+          {ctas.bookDemo.label}
         </SiteLink>
         <SiteLink
-          to={ctas.bookDemo.to}
+          to={ctas.becomeSeller.to}
           className="lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-white hover:bg-background/10 sm:w-auto"
           tabIndex={isActive ? 0 : -1}
         >
-          {ctas.bookDemo.label}
+          {ctas.becomeSeller.label}
         </SiteLink>
       </div>
 
@@ -274,8 +274,8 @@ export function Hero() {
 
         <div className="hero-fit-main flex min-h-0 items-center overflow-visible">
           <div className="container-page flex min-h-0 w-full flex-col py-6 sm:py-8">
-            <div className="hero-fit-grid grid min-h-0 items-center gap-6 lg:isolate lg:grid-cols-[minmax(0,40rem)_minmax(0,44rem)] lg:items-start lg:justify-center lg:gap-8">
-              <div className="hero-copy w-full min-w-0 max-w-3xl lg:relative lg:z-20 lg:max-w-[40rem] lg:pr-[clamp(1.75rem,5vw,3.5rem)]">
+            <div className="hero-fit-grid grid min-h-0 min-w-0 items-center gap-6 lg:isolate lg:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] lg:items-start lg:justify-center lg:gap-x-10 xl:gap-x-12">
+              <div className="hero-copy @container w-full min-w-0 max-w-3xl overflow-x-clip lg:relative lg:z-20 lg:max-w-none lg:pr-[clamp(1rem,2.8vw,2.25rem)]">
                 {slides.map((s, i) => {
                   const isActive = i === active;
                   return (
@@ -290,7 +290,7 @@ export function Hero() {
                 })}
               </div>
 
-              <div className="hero-fit-console hero-copy-item hero-copy-delay-3 relative z-0 mx-auto w-full min-h-0 max-w-xl lg:mx-0 lg:max-w-[44rem] lg:pl-[clamp(2rem,5.5vw,4rem)] lg:[clip-path:inset(-3rem_0_-3rem_0)] lg:[&_.hero-tilt-card]:origin-[right_center]">
+              <div className="hero-fit-console hero-copy-item hero-copy-delay-3 relative z-0 mx-auto w-full min-h-0 min-w-0 max-w-xl lg:mx-0 lg:max-w-none lg:pl-0 lg:[clip-path:inset(-3rem_0_-3rem_0)] lg:[&_.hero-tilt-card]:origin-[right_center]">
                 <HeroDashboardTilt slide={active} swapKey={motionKey} />
               </div>
             </div>

@@ -110,7 +110,7 @@ const features: {
     italic: modules.market.tagline,
     category: modules.market.what,
     detail:
-      "Connect inventory to multiple ticket marketplaces and sales channels while keeping prices, quantities and availability synchronised. When inventory sells, connected listings are automatically updated to reduce the risk of double selling.",
+      "Global B2B ticket inventory — search, source and trade from one hub. Connected channels stay aligned on price, quantity and listing status. When inventory sells, connected listings update so the same seat is not offered twice.",
     href: productHrefs.market,
     cta: `Explore ${modules.market.name}`,
   },
@@ -252,7 +252,7 @@ export function FeatureOrbit() {
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <p className="section-eyebrow text-primary">
-              The SeatsBrokers ecosystem
+              Start with {modules.intel.name}
             </p>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.85rem]">
               Everything you need to run a{" "}
@@ -261,9 +261,9 @@ export function FeatureOrbit() {
               </em>
             </h2>
             <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-              Seven products around one core — from market opportunity to settlement.
-              Intelligence, inventory, pricing, connectivity, distribution, quotes and
-              payments orbit the same SeatsBrokers platform.
+              {modules.intel.name} leads the stack — know what to buy, where to sell and how
+              to price. Inventory, pricing, connectivity, B2B inventory, quotes and payments
+              orbit the same SeatsBrokers engine.
             </p>
           </div>
         </Reveal>

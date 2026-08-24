@@ -88,28 +88,32 @@ export function StatsAccentLight() {
 
       <div className="container-page relative z-10">
         <Reveal>
-          <p className="section-eyebrow text-primary">Experience</p>
-          <h2
-            id="stats-accent-heading"
-            className="mt-4 max-w-2xl font-display text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl"
-          >
-            Built by Ticketing People, for Ticketing People
-          </h2>
-          <div className="stats-wallet-copy mt-5 max-w-2xl space-y-3 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            <p>
-              SeatsBrokers is built on more than 30 years of experience across
-              ticketing, events, distribution and B2B sales.
-            </p>
-            <p>
-              We understand the realities of professional ticket trading because
-              the platform has been designed around the actual broker workflow —
-              from finding the opportunity to sourcing inventory, distributing
-              tickets, managing sales and completing fulfilment.
-            </p>
-            <p>
-              Technology should make ticket trading simpler, not more
-              complicated.
-            </p>
+          <div className="stats-wallet-header">
+            <div className="stats-wallet-header-title">
+              <p className="section-eyebrow text-primary">Experience</p>
+              <h2
+                id="stats-accent-heading"
+                className="mt-4 font-display text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl"
+              >
+                Built by Ticketing People, for Ticketing People
+              </h2>
+            </div>
+            <div className="stats-wallet-copy">
+              <p>
+                SeatsBrokers is built on more than 30 years of experience across
+                ticketing, events, distribution and B2B sales.
+              </p>
+              <p>
+                We understand the realities of professional ticket trading because
+                the platform has been designed around the actual broker workflow —
+                from finding the opportunity to sourcing inventory, distributing
+                tickets, managing sales and completing fulfilment.
+              </p>
+              <p>
+                Technology should make ticket trading simpler, not more
+                complicated.
+              </p>
+            </div>
           </div>
         </Reveal>
 

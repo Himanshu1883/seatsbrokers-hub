@@ -2,36 +2,35 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { pageMeta, seoHead } from "@/content/site";
 import { Hero } from "@/components/landing/Hero";
-import { SellerTools, TravelTools } from "@/components/landing/ToolsGrid";
-import { Marketplaces } from "@/components/landing/Marketplaces";
-import { FeatureOrbit } from "@/components/landing/FeatureOrbit";
-import { ProcessBento } from "@/components/landing/Processbento";
 import { HowItWorks } from "@/components/landing/HowItWorks";
-import { ToolkitShowcase } from "@/components/landing/Toolkitshowcase";
-import { StickyScrollShowcase } from "@/components/landing/StickyScrollShowcase";
+import { SellerTools, TravelTools } from "@/components/landing/ToolsGrid";
+import { FeatureOrbit } from "@/components/landing/FeatureOrbit";
 import { MarketIntelligence } from "@/components/landing/MarketIntelligence";
-import { JourneyNumbers } from "@/components/landing/JourneyNumbers";
+import { TwoTrack } from "@/components/landing/TwoTrack";
 import { Stats } from "@/components/landing/Stats";
 
 export const Route = createFileRoute("/")({
   head: () => seoHead("/", pageMeta.home),
-  component: Index,
+  component: HomePage,
 });
 
-function Index() {
+/**
+ * Phase 2 refinement — shorter story, engine centrepiece.
+ * TravelTools sits after TwoTrack so broker vs B2B is named first,
+ * then the SeatsDeal™ select → margin → quote → share desk.
+ * Unmounted (files kept): ProcessBento, ToolkitShowcase, JourneyNumbers,
+ * Marketplaces, StickyScrollShowcase.
+ */
+function HomePage() {
   return (
     <PageShell>
       <Hero />
-      <ProcessBento />
-      <FeatureOrbit />
       <HowItWorks />
-      <ToolkitShowcase />
       <SellerTools />
-      <Marketplaces />
+      <FeatureOrbit />
       <MarketIntelligence />
-      <TravelTools />
-      <StickyScrollShowcase />
-      <JourneyNumbers />
+      <TwoTrack />
+      {/* <TravelTools /> */}
       <Stats />
     </PageShell>
   );

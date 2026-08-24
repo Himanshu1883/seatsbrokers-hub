@@ -43,7 +43,7 @@ export const apiDocEndpoints: ApiDocEndpoint[] = [
       { name: "event_id", value: "EVT-4817" },
       { name: "include", value: "venue,demand" },
     ],
-    latency: "42ms",
+    latency: "Live",
     fields: [
       { key: "id", value: "EVT-4817", kind: "string" },
       { key: "name", value: "UCL Final", kind: "string" },
@@ -62,7 +62,7 @@ export const apiDocEndpoints: ApiDocEndpoint[] = [
       { name: "event_id", value: "EVT-4817" },
       { name: "qty", value: "2" },
     ],
-    latency: "38ms",
+    latency: "Live",
     fields: [
       { key: "event_id", value: "EVT-4817", kind: "string" },
       { key: "section", value: "Club Level", kind: "string" },
@@ -79,13 +79,13 @@ export const apiDocEndpoints: ApiDocEndpoint[] = [
     path: "/v1/listings",
     params: [
       { name: "event_id", value: "EVT-4817" },
-      { name: "channels", value: "8" },
+      { name: "channels", value: "connected" },
     ],
-    latency: "61ms",
+    latency: "Live",
     fields: [
       { key: "listing_id", value: "LST-4817", kind: "string" },
       { key: "status", value: "live", kind: "ident" },
-      { key: "channels", value: "8", kind: "number" },
+      { key: "channels", value: "connected", kind: "string" },
       { key: "qty", value: "2", kind: "number" },
       { key: "ask", value: "£252", kind: "string" },
     ],
@@ -99,7 +99,7 @@ export const apiDocEndpoints: ApiDocEndpoint[] = [
       { name: "order_id", value: "SB-4817" },
       { name: "include", value: "delivery" },
     ],
-    latency: "29ms",
+    latency: "Live",
     fields: [
       { key: "order_id", value: "SB-4817", kind: "string" },
       { key: "status", value: "confirmed", kind: "ident" },
@@ -117,7 +117,7 @@ export const apiDocEndpoints: ApiDocEndpoint[] = [
       { name: "event_id", value: "EVT-4817" },
       { name: "band", value: "club" },
     ],
-    latency: "54ms",
+    latency: "Live",
     fields: [
       { key: "event_id", value: "EVT-4817", kind: "string" },
       { key: "median", value: "£262", kind: "string" },
@@ -135,7 +135,7 @@ export const apiDocEndpoints: ApiDocEndpoint[] = [
       { name: "order_id", value: "SB-4817" },
       { name: "method", value: "mobile" },
     ],
-    latency: "33ms",
+    latency: "Live",
     fields: [
       { key: "order_id", value: "SB-4817", kind: "string" },
       { key: "method", value: "mobile", kind: "string" },
@@ -153,7 +153,7 @@ export const apiDocEndpoints: ApiDocEndpoint[] = [
       { name: "event_id", value: "EVT-4817" },
       { name: "margin", value: "10%" },
     ],
-    latency: "47ms",
+    latency: "Live",
     fields: [
       { key: "quote_id", value: "QT-2041", kind: "string" },
       { key: "cost", value: "£500", kind: "string" },
@@ -333,7 +333,7 @@ export const apiHookEvents: ApiHookEvent[] = [
     created: "2026-08-13T09:42:04Z",
     fields: [
       { key: "listing_id", value: "LST-4817", kind: "string" },
-      { key: "channels", value: "8", kind: "number" },
+      { key: "channels", value: "connected", kind: "string" },
       { key: "status", value: "live", kind: "ident" },
       { key: "ask", value: "£252", kind: "string" },
     ],
@@ -378,8 +378,8 @@ export const apiHookEvents: ApiHookEvent[] = [
 ];
 
 export const apiHookFeed = [
-  { time: "09:42:18", msg: "webhook.post → inventory.updated · 200 in 41ms", ok: true },
-  { time: "09:42:04", msg: "webhook.post → listing.live · 8 channels acked", ok: true },
+  { time: "09:42:18", msg: "webhook.post → inventory.updated · 200", ok: true },
+  { time: "09:42:04", msg: "webhook.post → listing.live · channels acked", ok: true },
   { time: "09:41:58", msg: "webhook.retry → 503 · backoff 8s", ok: true },
   { time: "09:41:36", msg: "webhook.post → order.confirmed · SB-4817", ok: true },
   { time: "09:41:09", msg: "webhook.retry → 429 · rate window", ok: true },

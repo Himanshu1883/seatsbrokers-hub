@@ -177,23 +177,23 @@ Used on `/` unless noted.
 |---|---|---|---|
 | Nav | `Nav.tsx` | Site nav — visible: Platform, Products, Integrations, API, About; hidden: For Brokers, B2B Partners, Marketplace Connectivity, Event Intelligence. Right: Login, Book a Demo, Become a Seller (`/become-a-seller`) | PageShell |
 | Footer | `Footer.tsx` | Footer columns Platform / Products / Company / Support; Support Help Centre → `/faq`; legal links Privacy / Terms / Cookie Policy → `/legal#privacy` `#terms` `#cookies`; brand line SeatsBrokers™ — A SeatsGroup Company; partners mailto line; socials commented out | PageShell |
-| FinalCTA | `FinalCTA.tsx` | Global close CTA (Become a Seller → `/become-a-seller`; Book a Demo; Login) | PageShell (all pages) |
+| FinalCTA | `FinalCTA.tsx` | Global close CTA (Book a Demo primary; Become a Seller outline → `/become-a-seller`; Login) | PageShell (all pages) |
 | Hero | `Hero.tsx` | Homepage hero + typewriter; dark stadium cinema; 44px CTAs | `/` |
 | HeroDashboardTilt | `HeroDashboardTilt.tsx` | Three light `ConsoleShell` desks in the tilt stage (hub / Discover→Settle / product command), 1:1 with hero slides | Hero |
-| SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: 3-col `.sto-*` infographic (named+numbered marketplace tiles, 16 channels, 1-row process hops). Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus synced pipeline minis | `/` |
+| SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: 3-col `.sto-*` infographic (systems → SeatsLink™ → SeatsBrokers → channels; qualitative marketplace copy; Explore Our API). Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus synced pipeline minis | `/` (`#sellers`, `#travel`) |
 | SeatMapTicketsConsole | `SeatMapTicketsConsole.tsx` | Interactive inventory/quote mini-console (select, margin, copy, PDF) in `ConsoleShell`; **8** Available Ticket Listings rows (`SEAT_MAP_LISTING_ROWS`) | TravelTools |
-| TwoTrack | `TwoTrack.tsx` | Broker vs travel tracks (in-view straighten) | **Exists; not mounted on `/` (Phase 3)** |
-| Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out). `#connectivity` | `/` |
+| TwoTrack | `TwoTrack.tsx` | Broker vs B2B partner journeys (in-view straighten). Travel/concierge/official-supplier copy points to SeatsConnect, not this site. | **Unmounted from `/` (file kept)** |
+| Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out). `#connectivity` | **Unmounted from `/` (file kept)** |
 | NetworkConstellation | `NetworkConstellation.tsx` | 100dvh click-driven globe stages (no scroll pin) | **Exists; not mounted on `/` (Phase 3)** |
 | FeatureOrbit | `FeatureOrbit.tsx` | Capability orbit | `/` |
 | ProcessBento | `Processbento.tsx` | Problem / platform bento (`#partner-process`); 7-stage Discover→Settle rail + five cards | `/` |
 | HowItWorks | `HowItWorks.tsx` | Seven-stage workflow sticky (`#how-it-works`, `.how-it-*`): numbered 01–07 Discover→Settle cards with owning product + Explore CTA; right column swaps six product screenshots + one static `.how-it-desk-*` settlement desk | `/` |
 | PartnerProductShowcase | `PartnerProductShowcase.tsx` | Tabbed product shots | **Exists; not mounted on `/`** |
 | ToolkitShowcase | `Toolkitshowcase.tsx` | Global Distribution (`#platform-toolkit`) **light**: copy + fan-out tree (hub = Nav lockup, not word) + one static Ready hub `ConsoleShell`; columns stretch at `lg`; **no** partner logo strip; do not restore dark `.toolkit` shell | `/` |
-| StickyScrollShowcase | `StickyScrollShowcase.tsx` | Who it's for deep sticky (`#who-its-for`) — workflow titles + consoles for brokers/resellers/suppliers/operators. Brief §9 role grid is JourneyNumbers | `/` |
+| StickyScrollShowcase | `StickyScrollShowcase.tsx` | Who it's for deep sticky (`#who-its-for`) — workflow titles + consoles for brokers/resellers/suppliers/operators. Brief §9 role grid is JourneyNumbers | **Unmounted from `/` (file kept)** |
 | StickyScrollConsoles | `StickyScrollConsoles.tsx` | Four unique light `ConsoleShell` mini-consoles (broker distribution, travel quote desk, marketplace sync, partner API bridge); `sss-*` | StickyScrollShowcase |
 | MarketIntelligence | `MarketIntelligence.tsx` | Homepage §7 pricing/intel Demo desk (`#market-intelligence`, `.mihp-*`): Intel signals + Pulse Accept/Hold/Dismiss | `/` |
-| JourneyNumbers | `JourneyNumbers.tsx` | Homepage §9 audience grid (`#journey-numbers`) — four professional ticket roles; desktop autoplay / mobile stack | `/` |
+| JourneyNumbers | `JourneyNumbers.tsx` | Audience grid (`#journey-numbers`) — four professional ticket roles; desktop autoplay / mobile stack | `/` |
 | GlobalReach | `GlobalReach.tsx` | Geography | **Exists; not mounted on `/` (Phase 3)** |
 | GlobeScrollSection | `GlobeScrollSection.tsx` | Globe + 2 unique slides (NY, Dubai) | **Exists; not mounted on `/` (Phase 3)** |
 | GlobeCanvas | `landing/globe/GlobeCanvas.tsx` | Canvas globe (idle orbit; optional scrollOffset) | NetworkConstellation, GlobeScrollSection (unmounted) |

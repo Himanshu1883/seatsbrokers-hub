@@ -255,7 +255,7 @@ function LaunchIllustration({ backdrop }: BentoIllustrationProps) {
         <div className="bento-scene-panel relative z-10 w-full max-w-[11rem] rounded-lg bg-card/92 p-3.5 ring-1 ring-border backdrop-blur-sm sm:w-[9.5rem] sm:max-w-none bento-launch-panel">
           <p className="font-mono text-[10px] font-bold text-foreground">Marketplace Hub</p>
           <p className="mt-1.5 flex items-center gap-1.5 text-[10px] text-muted-foreground">
-            <span className="text-primary">✓</span> 8 channels live
+            <span className="text-primary">✓</span> Channels live
           </p>
           <p className="mt-1 flex items-center gap-1.5 text-[10px] text-muted-foreground">
             <span className="text-primary">✓</span> Holds enforced
@@ -302,8 +302,15 @@ const processCopy = {
   titleAccent: "Your Entire Ticket Operation.",
   lead: "Ticket resale is fragmented. Inventory sits across different systems, prices move constantly, marketplaces require separate management and orders need to be fulfilled quickly.",
   join: "SeatsBrokers brings the workflow together.",
-  verbs:
-    "Source inventory. Manage stock. Understand the market. Price smarter. Distribute globally. Fulfil orders. Manage payments.",
+  verbs: [
+    "Source inventory",
+    "Manage stock",
+    "Understand the market",
+    "Price smarter",
+    "Distribute globally",
+    "Fulfil orders",
+    "Manage payments",
+  ],
   close: "All from one connected platform.",
   support: "One platform. One inventory layer. Multiple sales channels.",
 } as const;
@@ -486,22 +493,30 @@ export function ProcessBento() {
       <SectionBackdrop image="footballPitch" tone="light" strength={0.12} />
       <div className="container-page relative z-10">
         <Reveal>
-          <p className="section-eyebrow text-primary">{processCopy.eyebrow}</p>
-          <h2 className="mt-4 max-w-3xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-4xl lg:text-[2.65rem]">
-            {processCopy.titleLead}{" "}
-            <span className="text-primary">{processCopy.titleAccent}</span>
-          </h2>
-          <div className="mt-5 max-w-2xl space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            <p>{processCopy.lead}</p>
-            <p className="font-medium text-foreground">{processCopy.join}</p>
-            <p>{processCopy.verbs}</p>
-            <p>{processCopy.close}</p>
+          <div className="process-bento-header">
+            <div className="process-bento-header-title">
+              <p className="section-eyebrow text-primary">{processCopy.eyebrow}</p>
+              <h2 className="process-bento-title mt-4 font-display text-3xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-4xl lg:text-[2.65rem]">
+                {processCopy.titleLead}
+                <span className="text-primary">{processCopy.titleAccent}</span>
+              </h2>
+            </div>
+            <div className="process-bento-header-copy">
+              <p>{processCopy.lead}</p>
+              <p className="process-bento-join">{processCopy.join}</p>
+              <ul className="process-bento-verbs">
+                {processCopy.verbs.map((verb) => (
+                  <li key={verb}>{verb}</li>
+                ))}
+              </ul>
+              <p className="process-bento-close">{processCopy.close}</p>
+            </div>
           </div>
           <ProcessRail inView={inView} />
-          <p className="process-bento-support">{processCopy.support}</p>
+          {/* <p className="process-bento-support">{processCopy.support}</p> */}
         </Reveal>
 
-        <div className="process-bento-grid mt-10 grid gap-6 sm:mt-12 lg:mt-14 lg:grid-cols-3 lg:gap-5">
+        {/* <div className="process-bento-grid mt-10 grid gap-6 sm:mt-12 lg:mt-14 lg:grid-cols-3 lg:gap-5">
           {top.map((c, i) => (
             <Reveal key={c.title} delay={i * 70}>
               <article className="process-bento-card group flex h-full flex-col rounded-2xl border border-border bg-card/50 p-5 sm:p-6">
@@ -515,9 +530,9 @@ export function ProcessBento() {
               </article>
             </Reveal>
           ))}
-        </div>
+        </div> */}
 
-        <div className="process-bento-grid mt-6 grid gap-6 lg:mt-5 lg:grid-cols-2 lg:gap-5">
+        {/* <div className="process-bento-grid mt-6 grid gap-6 lg:mt-5 lg:grid-cols-2 lg:gap-5">
           {bottom.map((c, i) => (
             <Reveal key={c.title} delay={i * 70}>
               <article className="process-bento-card group flex h-full flex-col rounded-2xl border border-border bg-card/50 p-5 sm:p-6">
@@ -531,7 +546,7 @@ export function ProcessBento() {
               </article>
             </Reveal>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

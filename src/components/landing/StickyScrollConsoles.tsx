@@ -302,10 +302,10 @@ const marketStages = [
   { label: "Order", detail: "Return path" },
 ] as const;
 const marketLags = [
-  { channel: "CH-01", lag: "38ms", state: "live" },
-  { channel: "CH-02", lag: "41ms", state: "live" },
-  { channel: "CH-03", lag: "112ms", state: "retry" },
-  { channel: "OTA", lag: "54ms", state: "live" },
+  { channel: "CH-01", lag: "Live", state: "live" },
+  { channel: "CH-02", lag: "Live", state: "live" },
+  { channel: "CH-03", lag: "Retry", state: "retry" },
+  { channel: "OTA", lag: "Live", state: "live" },
 ] as const;
 const marketAsks = [
   { ask: 248, floor: 232 },
@@ -313,7 +313,7 @@ const marketAsks = [
   { ask: 244, floor: 232 },
 ] as const;
 const marketFeed = [
-  { time: "09:42:18", msg: "listing.ack · CH-02 41ms" },
+  { time: "09:42:18", msg: "listing.ack · CH-02 live" },
   { time: "09:42:12", msg: "price.guard · floor £232 hold" },
   { time: "09:42:06", msg: "order.sync · INV-4402" },
   { time: "09:41:58", msg: "qty.align · 2 remaining" },

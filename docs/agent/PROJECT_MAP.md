@@ -25,7 +25,7 @@ SeatsBrokers (plural) marketing site for a B2B technology platform for professio
 - Data: copy + demo tables in `src/content/*.ts`
 - Infra: Lovable-connected git (`AGENTS.md` — no history rewrite). Vite via `@lovable.dev/vite-tanstack-config`
 
-Nav (Phase 2): Platform, Products (`/products`), Integrations, API, About. Right: Login, Book a Demo, Become a Seller (`/become-a-seller`). Product hrefs in `site.ts` `productHrefs`. Homepage journey is Phase 3 (`src/routes/index.tsx`). `/platform` is the operating ecosystem (Discover → Pay & settle). `/integrations` maps what connects; SeatsLink™ is `/products/seatslink`; `/api` is the developer contract.
+Nav (Phase 2): Platform, Products (`/products`), Integrations, API, About. Right: Login, Book a Demo (primary), Become a Seller (`/become-a-seller`). Product hrefs in `site.ts` `productHrefs`. Homepage journey is the master 11-section brief (`src/routes/index.tsx`). `/platform` is the operating ecosystem (Discover → Pay & settle). `/integrations` maps what connects; SeatsLink™ is `/products/seatslink`; `/api` is the developer contract.
 
 ## Repository Structure
 
@@ -42,7 +42,7 @@ Nav (Phase 2): Platform, Products (`/products`), Integrations, API, About. Right
 ## Important Entry Points
 
 - `src/routes/__root.tsx` — app shell, fonts, `styles.css`
-- `src/routes/index.tsx` — homepage journey: Hero → ProcessBento → FeatureOrbit → HowItWorks → ToolkitShowcase → SellerTools → Marketplaces → MarketIntelligence → TravelTools → StickyScrollShowcase → JourneyNumbers → Stats (FinalCTA is PageShell, not duplicated)
+- `src/routes/index.tsx` — homepage Phase 2: Hero → HowItWorks → SellerTools → FeatureOrbit → MarketIntelligence → TwoTrack → TravelTools → Stats (FinalCTA is PageShell). Unmounted (files kept): ProcessBento, ToolkitShowcase, JourneyNumbers, Marketplaces, StickyScrollShowcase.
 - `src/components/layout/PageShell.tsx` — every marketing page chrome
 - `src/content/site.ts` — nav (`hidden` flag), CTAs, SEO `pageMeta` + `seoHead()`
 - `src/styles.css` — design tokens + page CSS prefixes

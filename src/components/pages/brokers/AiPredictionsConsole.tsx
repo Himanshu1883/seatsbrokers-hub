@@ -24,11 +24,11 @@ const CEILING = 320;
 const MARKET_AVG = 244;
 
 const pipelineStages = [
-  { label: "Ingest", detail: "32 channels" },
+  { label: "Ingest", detail: "Connected channels" },
   { label: "Score", detail: "Model v4.2" },
   { label: "Recommend", detail: "£248 ask" },
   { label: "Approve", detail: "Broker gate" },
-  { label: "Publish", detail: "5 channels" },
+  { label: "Publish", detail: "Channels" },
 ] as const;
 
 const drivers = [
@@ -41,7 +41,7 @@ const drivers = [
 const decisionLog = [
   { time: "09:41:18", msg: "ai.recommend → £248 ask · advisory" },
   { time: "09:41:14", msg: "model.score → demand +18% · floor armed" },
-  { time: "09:41:11", msg: "market.ingest → 32 channels refreshed" },
+  { time: "09:41:11", msg: "market.ingest → connected channels refreshed" },
   { time: "09:41:08", msg: "guard.floor → £185 minimum enforced" },
   { time: "09:41:05", msg: "approval.queue → 4 listings awaiting broker" },
 ] as const;

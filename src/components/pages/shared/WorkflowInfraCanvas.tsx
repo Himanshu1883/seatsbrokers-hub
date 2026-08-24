@@ -83,7 +83,7 @@ export function WorkflowInfraCanvas({ steps }: WorkflowInfraCanvasProps) {
         ))}
       </ol>
 
-      <div className="ws-flow-grid">
+      <div className="ws-flow-grid ws-flow-grid--center">
         {steps.map((step, index) => (
           <WorkflowGlowCard
             key={`${index}-${step}`}

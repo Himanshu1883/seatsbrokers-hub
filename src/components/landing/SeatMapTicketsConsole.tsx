@@ -25,6 +25,7 @@ import {
   seatMapCategories,
   seatMapEvent,
   seatMapListings,
+  SEAT_MAP_LISTING_ROWS,
   seatMapQtyFilters,
   seatMapTicketTypes,
   type SeatListing,
@@ -159,31 +160,29 @@ const autoFrames: AutoFrame[] = [
   { stage: "select", hold: 780, label: "Desk armed · scanning live Etihad inventory", picks: 0 },
   { stage: "select", hold: 660, label: "Shortside Upper Tier · 4 tickets held", picks: 1 },
   { stage: "select", hold: 660, label: "Shortside Lower Tier · 8 tickets held", picks: 2 },
-  { stage: "select", hold: 660, label: "VIP & Hospitality · 2 tickets held", picks: 3 },
   {
     stage: "select",
     hold: 860,
-    label: "4 listings · 17 tickets selected",
-    picks: 4,
-    toast: "4 listings selected",
+    label: "3 listings · 14 tickets selected",
+    picks: 3,
+    toast: "3 listings selected",
   },
-  { stage: "quote", hold: 580, label: `Opening quote ${autoQuoteRef}`, picks: 4, lines: 1 },
-  { stage: "quote", hold: 520, label: "Writing line 2 of 4", picks: 4, lines: 2 },
-  { stage: "quote", hold: 520, label: "Writing line 3 of 4", picks: 4, lines: 3 },
+  { stage: "quote", hold: 580, label: `Opening quote ${autoQuoteRef}`, picks: 3, lines: 1 },
+  { stage: "quote", hold: 520, label: "Writing line 2 of 3", picks: 3, lines: 2 },
   {
     stage: "quote",
     hold: 880,
-    label: "Quote assembled · 4 lines priced in £",
-    picks: 4,
-    lines: 4,
-    toast: "Quote ready for 4 listings",
+    label: "Quote assembled · 3 lines priced in £",
+    picks: 3,
+    lines: 3,
+    toast: "Quote ready for 3 listings",
   },
   {
     stage: "margin",
     hold: 500,
     label: "Margin rules open · partner default",
-    picks: 4,
-    lines: 4,
+    picks: 3,
+    lines: 3,
     marginPct: 5,
     marginOpen: true,
   },
@@ -191,8 +190,8 @@ const autoFrames: AutoFrame[] = [
     stage: "margin",
     hold: 400,
     label: "Stepping partner margin",
-    picks: 4,
-    lines: 4,
+    picks: 3,
+    lines: 3,
     marginPct: 9,
     marginOpen: true,
   },
@@ -200,8 +199,8 @@ const autoFrames: AutoFrame[] = [
     stage: "margin",
     hold: 400,
     label: "Stepping partner margin",
-    picks: 4,
-    lines: 4,
+    picks: 3,
+    lines: 3,
     marginPct: 12,
     marginOpen: true,
   },
@@ -209,8 +208,8 @@ const autoFrames: AutoFrame[] = [
     stage: "margin",
     hold: 520,
     label: "15% staged · ready to apply",
-    picks: 4,
-    lines: 4,
+    picks: 3,
+    lines: 3,
     marginPct: 15,
     marginOpen: true,
   },
@@ -218,18 +217,18 @@ const autoFrames: AutoFrame[] = [
     stage: "margin",
     hold: 960,
     label: "15% applied · ticket price and margin recalculated",
-    picks: 4,
-    lines: 4,
+    picks: 3,
+    lines: 3,
     marginPct: 15,
     marginLocked: true,
-    toast: "15% margin applied to 4 listings",
+    toast: "15% margin applied to 3 listings",
   },
   {
     stage: "share",
     hold: 640,
     label: "Quote copied to the customer thread",
-    picks: 4,
-    lines: 4,
+    picks: 3,
+    lines: 3,
     marginPct: 15,
     marginLocked: true,
     channels: 1,
@@ -239,8 +238,8 @@ const autoFrames: AutoFrame[] = [
     stage: "share",
     hold: 640,
     label: "Venue map attached to the package",
-    picks: 4,
-    lines: 4,
+    picks: 3,
+    lines: 3,
     marginPct: 15,
     marginLocked: true,
     channels: 2,
@@ -250,8 +249,8 @@ const autoFrames: AutoFrame[] = [
     stage: "share",
     hold: 740,
     label: "Branded quote PDF generated",
-    picks: 4,
-    lines: 4,
+    picks: 3,
+    lines: 3,
     marginPct: 15,
     marginLocked: true,
     channels: 3,
@@ -261,8 +260,8 @@ const autoFrames: AutoFrame[] = [
     stage: "share",
     hold: 1280,
     label: `Order confirmed · invoice ${autoInvoiceRef} issued`,
-    picks: 4,
-    lines: 4,
+    picks: 3,
+    lines: 3,
     marginPct: 15,
     marginLocked: true,
     channels: 3,
@@ -293,7 +292,7 @@ export function useSeatMapTickets({
   const [quantity, setQuantity] = useState<(typeof seatMapQtyFilters)[number]>("Any");
   const [ticketType, setTicketType] = useState<(typeof seatMapTicketTypes)[number]>("Any");
   const [showMap, setShowMap] = useState(true);
-  const [showFilters, setShowFilters] = useState(true);
+  const [showFilters, setShowFilters] = useState(false);
   const [zoom, setZoom] = useState(1);
   const [marginDraft, setMarginDraft] = useState(10);
   const [marginOpen, setMarginOpen] = useState(false);
@@ -325,7 +324,7 @@ export function useSeatMapTickets({
       if (row.qty < minQty) return false;
       if (ticketType !== "Any" && row.ticketType !== ticketType) return false;
       return true;
-    });
+    }).slice(0, SEAT_MAP_LISTING_ROWS);
   }, [category, quantity, ticketType]);
 
   const selected = useMemo(
@@ -901,16 +900,20 @@ function VenueMapPanel({ desk }: { desk: SeatMapDesk }) {
       </div>
 
       <p className="smt-map-hint">{hint}</p>
-
-      <ul className="smt-legend">
-        {seatMapCategories.map((item) => (
-          <li key={item.id}>
-            <i style={{ background: item.color }} aria-hidden />
-            {item.label}
-          </li>
-        ))}
-      </ul>
     </section>
+  );
+}
+
+function VenueLegend() {
+  return (
+    <ul className="smt-legend">
+      {seatMapCategories.map((item) => (
+        <li key={item.id}>
+          <i style={{ background: item.color }} aria-hidden />
+          {item.label}
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -1207,42 +1210,47 @@ export function SeatMapTicketsConsole({ desk }: { desk: SeatMapDesk }) {
             </section>
           </div>
 
-          {/* Always mounted so the desk height never changes as the pipeline loops. */}
-          <div
-            className="smt-share"
-            role="group"
-            aria-label="Quote share actions"
-            data-idle={idle ? "true" : "false"}
-          >
-            <strong>{desk.selectedCount} Selected</strong>
-            <button
-              type="button"
-              className="smt-btn smt-btn-ghost"
-              data-copied={desk.copied === "copy" ? "true" : "false"}
-              disabled={idle}
-              onClick={desk.copyListings}
+          {/* Always mounted so the desk height never changes as the pipeline loops.
+              Legend sits on its own row under the actions — never in the same
+              band as Copy / Download PDF. */}
+          <div className="smt-desk-chrome">
+            <div
+              className="smt-share"
+              role="group"
+              aria-label="Quote share actions"
+              data-idle={idle ? "true" : "false"}
             >
-              <Copy className="size-3.5" strokeWidth={2} />
-              {desk.copied === "copy" ? "Copied" : "Copy"}
-            </button>
-            <button
-              type="button"
-              className="smt-btn smt-btn-ghost"
-              data-copied={desk.copied === "map" ? "true" : "false"}
-              disabled={idle}
-              onClick={desk.copyMap}
-            >
-              <Map className="size-3.5" strokeWidth={2} />
-              {desk.copied === "map" ? "Map Copied" : "Copy Map"}
-            </button>
-            <button type="button" className="smt-btn smt-btn-ghost" disabled={idle} onClick={desk.clearSelection}>
-              <Trash2 className="size-3.5" strokeWidth={2} />
-              Clear Selection
-            </button>
-            <button type="button" className="smt-btn smt-btn-solid" disabled={idle} onClick={desk.downloadPdf}>
-              <Download className="size-3.5" strokeWidth={2} />
-              Download PDF
-            </button>
+              <strong>{desk.selectedCount} Selected</strong>
+              <button
+                type="button"
+                className="smt-btn smt-btn-ghost"
+                data-copied={desk.copied === "copy" ? "true" : "false"}
+                disabled={idle}
+                onClick={desk.copyListings}
+              >
+                <Copy className="size-3.5" strokeWidth={2} />
+                {desk.copied === "copy" ? "Copied" : "Copy"}
+              </button>
+              <button
+                type="button"
+                className="smt-btn smt-btn-ghost"
+                data-copied={desk.copied === "map" ? "true" : "false"}
+                disabled={idle}
+                onClick={desk.copyMap}
+              >
+                <Map className="size-3.5" strokeWidth={2} />
+                {desk.copied === "map" ? "Map Copied" : "Copy Map"}
+              </button>
+              <button type="button" className="smt-btn smt-btn-ghost" disabled={idle} onClick={desk.clearSelection}>
+                <Trash2 className="size-3.5" strokeWidth={2} />
+                Clear Selection
+              </button>
+              <button type="button" className="smt-btn smt-btn-solid" disabled={idle} onClick={desk.downloadPdf}>
+                <Download className="size-3.5" strokeWidth={2} />
+                Download PDF
+              </button>
+            </div>
+            {desk.showMap ? <VenueLegend /> : null}
           </div>
 
           {desk.toast ? (

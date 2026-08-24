@@ -637,7 +637,7 @@ export function SellerTools() {
                       <span>
                         <strong>{item.label}</strong>
                         <em>{item.hint}</em>
-                      </span>
+                </span>
                       <StoHop twoWay />
                     </li>
                   ))}
@@ -889,9 +889,9 @@ export function TravelTools() {
   const quoteBranch = travelBlueprint.branches[2]!;
   const liveStep = travelSteps[pipe.stageIndex] ?? travelSteps[0];
 
-  /* Fixed slot counts keep every mini console the same height all loop long. */
-  const selectSlots = Array.from({ length: 4 }, (_, index) => desk.selected[index] ?? null);
-  const quoteSlots = Array.from({ length: 4 }, (_, index) =>
+  /* Three reserved rows keep every mini the same height without overflowing 100svh. */
+  const selectSlots = Array.from({ length: 3 }, (_, index) => desk.selected[index] ?? null);
+  const quoteSlots = Array.from({ length: 3 }, (_, index) =>
     index < pipe.lines ? desk.selected[index] ?? null : null,
   );
 
@@ -920,8 +920,8 @@ export function TravelTools() {
             <span>{desk.selectedCount} held</span>
           </p>
           <PipeDial
-            value={`${desk.selectedCount}/4`}
-            fill={desk.selectedCount / 4}
+            value={`${Math.min(desk.selectedCount, 3)}/3`}
+            fill={Math.min(desk.selectedCount, 3) / 3}
             locked={desk.selectedCount > 0}
           />
           <ul className="tpa-rows">
@@ -953,11 +953,11 @@ export function TravelTools() {
         <>
           <p className="tpa-meta">
             <span>{autoQuoteRef}</span>
-            <span>{pipe.lines}/4 lines</span>
+            <span>{Math.min(pipe.lines, 3)}/3 lines</span>
           </p>
           <PipeDial
-            value={`${pipe.lines}/4`}
-            fill={pipe.lines / 4}
+            value={`${Math.min(pipe.lines, 3)}/3`}
+            fill={Math.min(pipe.lines, 3) / 3}
             locked={pipe.lines > 0}
           />
           <ul className="tpa-rows">
@@ -1008,11 +1008,6 @@ export function TravelTools() {
               label="Margin rate"
               value={`${pipe.marginPct}%`}
             />
-            <PipeRow
-              on={pipe.marginLocked}
-              label="Apply lock"
-              value={pipe.marginLocked ? "applied" : "staging"}
-            />
           </ul>
           <p className="tpa-foot">
             <span>Margin value</span>
@@ -1055,11 +1050,6 @@ export function TravelTools() {
               on={pipe.channels >= 3}
               label="Quote PDF"
               value={pipe.channels >= 3 ? "ready" : "queued"}
-            />
-            <PipeRow
-              on={pipe.confirmed}
-              label="Order confirm"
-              value={pipe.confirmed ? "ok" : "—"}
             />
           </ul>
           <p className="tpa-foot">

@@ -182,12 +182,12 @@ Used on `/` unless noted.
 | HeroDashboardTilt | `HeroDashboardTilt.tsx` | Three light `ConsoleShell` desks in the tilt stage (hub / Discover→Settle / product command), 1:1 with hero slides | Hero |
 | SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: 3-col `.sto-*` infographic (systems → SeatsLink™ → SeatsBrokers → channels; qualitative marketplace copy; Explore Our API). Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus synced pipeline minis | `/` (`#sellers`, `#travel`) |
 | SeatMapTicketsConsole | `SeatMapTicketsConsole.tsx` | Interactive inventory/quote mini-console (select, margin, copy, PDF) in `ConsoleShell`; **8** Available Ticket Listings rows (`SEAT_MAP_LISTING_ROWS`) | TravelTools |
-| TwoTrack | `TwoTrack.tsx` | Broker vs B2B partner journeys (in-view straighten). Travel/concierge/official-supplier copy points to SeatsConnect, not this site. | **Unmounted from `/` (file kept)** |
-| Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out). `#connectivity` | **Unmounted from `/` (file kept)** |
+| TwoTrack | `TwoTrack.tsx` | Broker vs B2B partner journeys (in-view straighten). Travel/concierge/official-supplier copy points to SeatsConnect, not this site. | `/` |
+| Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out). `#connectivity` | `/` |
 | NetworkConstellation | `NetworkConstellation.tsx` | 100dvh click-driven globe stages (no scroll pin) | **Exists; not mounted on `/` (Phase 3)** |
 | FeatureOrbit | `FeatureOrbit.tsx` | Capability orbit | `/` |
 | ProcessBento | `Processbento.tsx` | Problem / platform bento (`#partner-process`); 7-stage Discover→Settle rail + five cards | `/` |
-| HowItWorks | `HowItWorks.tsx` | Seven-stage workflow sticky (`#how-it-works`, `.how-it-*`): numbered 01–07 Discover→Settle cards with owning product + Explore CTA; right column swaps six product screenshots + one static `.how-it-desk-*` settlement desk | `/` |
+| HowItWorks | `HowItWorks.tsx` | Seven-stage workflow sticky (`#how-it-works`, `.how-it-*`): numbered 01–07 Discover→Settle cards with owning product + Explore CTA; right column swaps six product screenshots + one static `.how-it-desk-*` settlement desk | **Unmounted from `/` (file kept)** — FeatureOrbit owns the seven-product “How it works” slot |
 | PartnerProductShowcase | `PartnerProductShowcase.tsx` | Tabbed product shots | **Exists; not mounted on `/`** |
 | ToolkitShowcase | `Toolkitshowcase.tsx` | Global Distribution (`#platform-toolkit`) **light**: copy + fan-out tree (hub = Nav lockup, not word) + one static Ready hub `ConsoleShell`; columns stretch at `lg`; **no** partner logo strip; do not restore dark `.toolkit` shell | `/` |
 | StickyScrollShowcase | `StickyScrollShowcase.tsx` | Who it's for deep sticky (`#who-its-for`) — workflow titles + consoles for brokers/resellers/suppliers/operators. Brief §9 role grid is JourneyNumbers | **Unmounted from `/` (file kept)** |
@@ -197,7 +197,7 @@ Used on `/` unless noted.
 | GlobalReach | `GlobalReach.tsx` | Geography | **Exists; not mounted on `/` (Phase 3)** |
 | GlobeScrollSection | `GlobeScrollSection.tsx` | Globe + 2 unique slides (NY, Dubai) | **Exists; not mounted on `/` (Phase 3)** |
 | GlobeCanvas | `landing/globe/GlobeCanvas.tsx` | Canvas globe (idle orbit; optional scrollOffset) | NetworkConstellation, GlobeScrollSection (unmounted) |
-| Stats + accent/glow/ledger | `Stats.tsx`, `stats/*` | Homepage §10 Experience. Accent: title/body + 4 qualitative proof cards, wallet shuffle (`.stats-wallet-*`); ledger/glow unmounted | `/` |
+| Stats + accent/glow/ledger | `Stats.tsx`, `stats/*` | Experience / proof wallet (`.stats-wallet-*`); ledger/glow unmounted | **Unmounted from `/` (file kept)** |
 | Testimonials | `Testimonials.tsx` | Quotes | **Exists; not mounted on `/`** |
 | SectionBackdrop | `SectionBackdrop.tsx` | Shared photo/grid backdrops | several landing sections |
 | MarketPathScroll | `MarketPathScroll.tsx` | Scroll path viz | **Exists; not imported on any route** |

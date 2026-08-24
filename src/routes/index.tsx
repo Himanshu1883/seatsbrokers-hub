@@ -10,6 +10,7 @@ import { Marketplaces } from "@/components/landing/Marketplaces";
 import { MarketIntelligence } from "@/components/landing/MarketIntelligence";
 import { TwoTrack } from "@/components/landing/TwoTrack";
 import { Stats } from "@/components/landing/Stats";
+import { HowItWorks } from "@/components/landing/HowItWorks";
 
 export const Route = createFileRoute("/")({
   head: () => seoHead("/", pageMeta.home),
@@ -29,6 +30,7 @@ function HomePage() {
     <PageShell>
       <Hero />
       <ProcessBento />
+      <HowItWorks />
       <SellerTools />
       <FeatureOrbit />
       <ToolkitShowcase />

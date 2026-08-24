@@ -181,7 +181,7 @@ Used on `/` unless noted.
 | Hero | `Hero.tsx` | Homepage hero + typewriter; dark stadium cinema; 44px CTAs | `/` |
 | HeroDashboardTilt | `HeroDashboardTilt.tsx` | Three light `ConsoleShell` desks in the tilt stage (hub / Discover→Settle / product command), 1:1 with hero slides | Hero |
 | SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: 3-col `.sto-*` infographic (named+numbered marketplace tiles, 16 channels, 1-row process hops). Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus synced pipeline minis | `/` |
-| SeatMapTicketsConsole | `SeatMapTicketsConsole.tsx` | Interactive inventory/quote mini-console (select, margin, copy, PDF) in `ConsoleShell`; **6** Available Ticket Listings rows (`SEAT_MAP_LISTING_ROWS`) | TravelTools |
+| SeatMapTicketsConsole | `SeatMapTicketsConsole.tsx` | Interactive inventory/quote mini-console (select, margin, copy, PDF) in `ConsoleShell`; **8** Available Ticket Listings rows (`SEAT_MAP_LISTING_ROWS`) | TravelTools |
 | TwoTrack | `TwoTrack.tsx` | Broker vs travel tracks (in-view straighten) | **Exists; not mounted on `/` (Phase 3)** |
 | Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out). `#connectivity` | `/` |
 | NetworkConstellation | `NetworkConstellation.tsx` | 100dvh click-driven globe stages (no scroll pin) | **Exists; not mounted on `/` (Phase 3)** |
@@ -229,7 +229,7 @@ Used on `/` unless noted.
 | `src/content/funds-hero-data.ts` | SeatsFunds™ hero copy + qualitative settlement stages / Standard·USDT rails |
 | `src/content/inventory-console-data.ts` | Inventory console demo rows |
 | `src/content/crypto-payout-data.ts` | Brokers SeatsFunds™ USDT desk: rails, path, ledger, auto-run frames (no amounts) |
-| `src/content/seat-map-tickets-data.ts` | Homepage TravelTools Seat Map & Tickets demo listings / map blocks (£); listings array capped at **6** rows so `#travel` fits ~100svh |
+| `src/content/seat-map-tickets-data.ts` | Homepage TravelTools Seat Map & Tickets demo listings / map blocks (£); listings array is **8** rows so `#travel` fills the table well |
 | `src/content/bento-illustrations.ts` | ProcessBento images |
 
 ## UI kit

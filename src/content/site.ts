@@ -97,7 +97,8 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
       { label: "About", to: "/about" },
       { label: "Contact", to: "/contact" },
       { label: "Become a Seller", to: "/become-a-seller" },
-      { label: "Book a Demo", to: "/book-demo" },
+      // Book a Demo hidden from chrome — route `/book-demo` kept
+      // { label: "Book a Demo", to: "/book-demo" },
     ],
   },
   {

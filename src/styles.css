@@ -54240,3 +54240,57 @@ button.process-bento-rail-chip {
   }
 }
 
+/* ==========================================================================
+   /products — Seven products grid last-row center (2026-08-24)
+   ProductsEcosystem (.prd-eco .prd-eco-grid) only. Seven cards = 3+3+1 at
+   ≥1024 and 2+2+2+1 at 640–1023; incomplete last rows center via flex-wrap
+   + justify-content: center (same pattern as .ws-flow-grid--center).
+   Mobile single column unchanged. Do not touch .prd-cap-* or other grids.
+   ========================================================================== */
+
+@media (min-width: 640px) {
+  .prd-eco .prd-eco-grid {
+    --prd-eco-gap: 1rem;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: var(--prd-eco-gap);
+    grid-template-columns: none !important;
+    grid-auto-rows: auto;
+  }
+
+  .prd-eco .prd-eco-grid > .prd-card {
+    box-sizing: border-box;
+    flex: 0 0 calc((100% - var(--prd-eco-gap)) / 2);
+    width: calc((100% - var(--prd-eco-gap)) / 2);
+    max-width: calc((100% - var(--prd-eco-gap)) / 2);
+    min-width: 0;
+    height: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .prd-eco .prd-eco-grid > .prd-card {
+    flex: 0 0 calc((100% - 2 * var(--prd-eco-gap)) / 3);
+    width: calc((100% - 2 * var(--prd-eco-gap)) / 3);
+    max-width: calc((100% - 2 * var(--prd-eco-gap)) / 3);
+  }
+}
+
+/* ==========================================================================
+   /products — Seven products grid 4+3 desktop (2026-08-24)
+   ProductsEcosystem (.prd-eco .prd-eco-grid) only. Seven cards = 4+3 at
+   ≥1024 (01–04 row 1, 05–07 centered row 2); 2+2+2+1 at 640–1023; 1-col
+   <640. Overrides the prior last-row-center append that locked 3-col desktop.
+   Flex-wrap + justify-content: center unchanged. .prd-cap-* untouched.
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  .prd-eco .prd-eco-grid > .prd-card {
+    flex: 0 0 calc((100% - 3 * var(--prd-eco-gap)) / 4);
+    width: calc((100% - 3 * var(--prd-eco-gap)) / 4);
+    max-width: calc((100% - 3 * var(--prd-eco-gap)) / 4);
+  }
+}
+

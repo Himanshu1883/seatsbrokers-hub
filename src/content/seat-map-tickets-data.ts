@@ -80,15 +80,19 @@ export type SeatListing = {
   mapId: string;
 };
 
-/** Cap so TravelTools `#travel` listings table stays 4 rows (100svh + no overlap). */
-export const SEAT_MAP_LISTING_ROWS = 4 as const;
+/** Cap so TravelTools `#travel` listings table can fill the table well (was 4). */
+export const SEAT_MAP_LISTING_ROWS = 8 as const;
 
-/** Four rows — auto-run picks L-1001 / L-1004 / L-1006 / L-1007. */
+/** Eight rows fill the listings well — auto-run still picks L-1001 / L-1004 / L-1006 / L-1007. */
 export const seatMapListings: SeatListing[] = [
   { id: "L-1001", qty: 4, category: "ssu", section: "Block N32", row: "—", basePrice: 219.11, ticketType: "E-ticket", mobile: true, transfer: true, document: false, mapId: "n-u-2" },
+  { id: "L-1002", qty: 6, category: "lsu", section: "Block W42", row: "8", basePrice: 194.5, ticketType: "E-ticket", mobile: true, transfer: true, document: false, mapId: "w-u-2" },
+  { id: "L-1003", qty: 4, category: "lsl", section: "Block 204", row: "14", basePrice: 245.0, ticketType: "E-ticket", mobile: true, transfer: false, document: true, mapId: "w-l-2" },
   { id: "L-1004", qty: 8, category: "ssl", section: "Block 116", row: "12", basePrice: 268.4, ticketType: "E-ticket", mobile: true, transfer: false, document: true, mapId: "n-l-2" },
+  { id: "L-1005", qty: 5, category: "ssu", section: "Block S32", row: "—", basePrice: 189.75, ticketType: "Paper", mobile: false, transfer: false, document: true, mapId: "s-u-2" },
   { id: "L-1006", qty: 2, category: "vip", section: "Hospitality", row: "1", basePrice: 890.0, ticketType: "Mobile transfer", mobile: true, transfer: true, document: true, mapId: "nw-vip" },
   { id: "L-1007", qty: 3, category: "club", section: "Club W", row: "4", basePrice: 486.5, ticketType: "E-ticket", mobile: true, transfer: true, document: false, mapId: "w-club" },
+  { id: "L-1008", qty: 2, category: "vip", section: "Lounge", row: "2", basePrice: 760.0, ticketType: "Mobile transfer", mobile: true, transfer: true, document: true, mapId: "se-vip" },
 ];
 
 export const seatMapTicketTypes = ["Any", "E-ticket", "Mobile transfer", "Paper"] as const;

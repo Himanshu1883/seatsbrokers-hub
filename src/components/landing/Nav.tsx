@@ -170,12 +170,13 @@ export function Nav() {
             >
               {ctas.login.label}
             </SiteLink>
-            <SiteLink
+            {/* Book a Demo hidden from nav — route `/book-demo` kept */}
+            {/* <SiteLink
               to={ctas.bookDemo.to}
               className="lift rounded-md border border-border px-3 py-2 text-sm font-semibold text-foreground hover:border-primary hover:text-primary"
             >
               {ctas.bookDemo.label}
-            </SiteLink>
+            </SiteLink> */}
             <SiteLink
               to={ctas.becomeSeller.to}
               className="lift rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
@@ -255,13 +256,14 @@ export function Nav() {
             >
               {ctas.becomeSeller.label}
             </SiteLink>
-            <SiteLink
+            {/* Book a Demo hidden from mobile nav — route `/book-demo` kept */}
+            {/* <SiteLink
               to={ctas.bookDemo.to}
               onClick={() => setOpen(false)}
               className="site-nav-cta border border-border font-semibold text-foreground hover:border-primary hover:text-primary"
             >
               {ctas.bookDemo.label}
-            </SiteLink>
+            </SiteLink> */}
             <SiteLink
               to={ctas.login.to}
               onClick={() => setOpen(false)}

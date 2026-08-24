@@ -16,12 +16,10 @@ const slides = [
     eyebrow: "SeatsBrokers™",
     title: "Technology powering",
     typePhrases: ["professional ticket businesses."],
-    lead: "Connect inventory, marketplaces, pricing, orders, delivery and payments through one intelligent infrastructure layer.",
-    body: "SeatsBrokers is the technology platform for professional ticket businesses. Connect your inventory once and manage distribution, pricing, orders, delivery and payments from one system.",
-    shortBody: "Connect your inventory once. Manage distribution, pricing, orders, delivery and payments from one system.",
+    body: "Connect your inventory once and manage distribution, pricing, orders, delivery and payments from one system.",
+    shortBody: "Connect your inventory once and manage distribution, pricing, orders, delivery and payments from one system.",
     details: [
       "Keep the POS, inventory and ERP you already run",
-      "One inventory layer across connected sales channels",
       "Built for professional ticket brokers — not a consumer marketplace",
     ],
   },
@@ -31,12 +29,10 @@ const slides = [
     eyebrow: "One platform",
     title: "Connect once.",
     typePhrases: ["Manage the whole desk."],
-    lead: "Connect inventory, marketplaces, pricing, orders, delivery and payments through one intelligent infrastructure layer.",
-    body: "SeatsBrokers sits in the middle of your stack — inventory, pricing, distribution, orders and settlement stay in one workflow.",
-    shortBody: "Inventory, pricing, distribution, orders and settlement — one connected platform.",
+    body: "Inventory, pricing, distribution, orders and settlement stay in one workflow — without replacing the stack you already run.",
+    shortBody: "Inventory, pricing, distribution, orders and settlement — one connected workflow.",
     details: [
       "Keep the POS, inventory and ERP you already run",
-      "One inventory layer across connected sales channels",
       "Orders, delivery and settlement stay in the same workflow",
     ],
   },
@@ -46,12 +42,10 @@ const slides = [
     eyebrow: "Professional ticket trade",
     title: "Operate more efficiently.",
     typePhrases: ["Scale your ticket business."],
-    lead: "Connect inventory, marketplaces, pricing, orders, delivery and payments through one intelligent infrastructure layer.",
-    body: "Market intelligence informs the desk — you stay in control. Travel, concierge and hospitality sit on SeatsConnect, not here.",
-    shortBody: "Technology, inventory access, market intelligence and distribution — in one platform.",
+    body: "Market intelligence informs the desk — you stay in control.",
+    shortBody: "Market intelligence informs the desk — you stay in control.",
     details: [
-      "Dashboard visual, not a wall of statistics",
-      "Market intelligence informs the desk — you stay in control",
+      "Built for professional ticket brokers — not a consumer marketplace",
       "Travel, concierge and hospitality sit on SeatsConnect, not here",
     ],
   },
@@ -135,19 +129,11 @@ function HeroSlideCopy({
         )}
       </h1>
 
+      {/* One support line on desktop; shortBody is the phone-lock substitute. */}
       <p
         className={item(
           2,
-          "hero-copy-lead mt-5 max-w-2xl font-display text-lg leading-snug font-bold tracking-tight text-white sm:mt-6 sm:text-xl",
-        )}
-      >
-        {slide.lead}
-      </p>
-
-      <p
-        className={item(
-          3,
-          "hero-copy-dense mt-4 max-w-2xl text-base leading-relaxed font-semibold text-pretty text-white sm:text-[1.0625rem]",
+          "hero-copy-dense mt-5 max-w-2xl text-base leading-relaxed font-semibold text-pretty text-white sm:mt-6 sm:text-[1.0625rem]",
         )}
       >
         {slide.body}
@@ -155,7 +141,7 @@ function HeroSlideCopy({
 
       <p
         className={item(
-          3,
+          2,
           "hero-copy-brief mt-3 max-w-2xl text-sm leading-snug font-semibold text-pretty text-white lg:hidden",
         )}
       >
@@ -164,7 +150,7 @@ function HeroSlideCopy({
 
       <ul
         className={item(
-          4,
+          3,
           "hero-copy-dense mt-6 space-y-2.5 border-l-2 border-primary/45 pl-4 sm:mt-7 sm:pl-5",
         )}
       >
@@ -179,7 +165,7 @@ function HeroSlideCopy({
         ))}
       </ul>
 
-      <div className={item(5, "hero-copy-actions mt-8 flex w-full min-w-0 flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap")}>
+      <div className={item(4, "hero-copy-actions mt-8 flex w-full min-w-0 flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap")}>
         <SiteLink
           to={ctas.bookDemo.to}
           className="lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground sm:w-auto"
@@ -195,20 +181,6 @@ function HeroSlideCopy({
           {ctas.becomeSeller.label}
         </SiteLink>
       </div>
-
-      <ul
-        className={item(
-          6,
-          "hero-copy-tags mt-8 flex flex-col gap-2 font-mono text-[10px] font-bold tracking-[0.12em] text-white sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:text-xs",
-        )}
-      >
-        {["One platform", "One inventory layer", "Global distribution"].map((label) => (
-          <li key={label} className="flex items-center gap-2">
-            <span className="size-1 shrink-0 rounded-full bg-primary" />
-            {label}
-          </li>
-        ))}
-      </ul>
     </>
   );
 }

@@ -44,6 +44,7 @@ Source of truth: `src/styles.css` (`@theme` + `:root` / `.dark`) and Google Font
 
 | Pattern | Where | What it is |
 |---|---|---|
+| **Button / CTA** | Global `.sb-btn-*` contract in `styles.css` + `ui/button.tsx` | Solid: `--primary` fill, `--primary-foreground` text, `var(--radius)`, min-height `2.75rem`, hover `translateY(-4px)` + `--shadow-lift` + slightly darker primary. Outline: border + transparent, same radius/height/motion. Never a second brand color (no slate/purple CTA fills) and never pill `999px` on marketing CTAs. |
 | Typewriter | `useTypewriter` in `src/hooks/use-scroll-motion.tsx` | Cycles phrases; used in `Hero.tsx`, `HowItWorks.tsx` |
 | Scroll reveal | `Reveal` + `.reveal` | Opacity + `translateY(28px)` until `data-visible` |
 | Live pulse | `@keyframes two-track-live-pulse` | Scale/opacity ping on LIVE dots (TwoTrack, consoles, connectors) |

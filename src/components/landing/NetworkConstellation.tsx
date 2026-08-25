@@ -219,13 +219,13 @@ export function NetworkConstellation() {
             <div className="nc-ctas mt-7 hidden flex-wrap gap-3.5 lg:flex">
               <SiteLink
                 to={ctas.exploreBrokers.to}
-                className="inline-flex items-center rounded-full border border-border px-6 py-3 text-base font-semibold text-foreground transition-colors hover:border-primary/50"
+                className="lift inline-flex min-h-11 items-center justify-center rounded-md border border-border px-6 py-3 text-sm font-semibold text-foreground"
               >
                 {ctas.exploreBrokers.label}
               </SiteLink>
               <SiteLink
                 to={ctas.exploreTravel.to}
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-white transition-transform hover:-translate-y-0.5"
+                className="lift inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
               >
                 {ctas.exploreTravel.label}
                 <ArrowRight className="size-4" />
@@ -348,13 +348,13 @@ export function NetworkConstellation() {
         <div className="mt-8 flex flex-wrap gap-4 lg:hidden">
           <SiteLink
             to={ctas.exploreBrokers.to}
-            className="inline-flex items-center rounded-full border border-border px-7 py-3.5 text-base font-semibold text-foreground"
+            className="lift inline-flex min-h-11 items-center justify-center rounded-md border border-border px-6 py-3 text-sm font-semibold text-foreground"
           >
             {ctas.exploreBrokers.label}
           </SiteLink>
           <SiteLink
             to={ctas.exploreTravel.to}
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white"
+            className="lift inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
           >
             {ctas.exploreTravel.label}
             <ArrowRight className="size-4" />

@@ -61693,3 +61693,277 @@ button.process-bento-rail-chip {
     margin-top: 0.35rem;
   }
 }
+
+/* ── Global marketing button contract (2026-08-25) ──
+   One look for every solid / outline CTA: --primary fill (never slate/
+   primary-deep as a second brand), var(--radius), 44px min-height,
+   shared lift hover (translateY -4px + --shadow-lift), same timing.
+   Does not restyle chips, dots, toggles, or console micro-controls
+   except known solid CTA classes listed below. */
+
+:root {
+  --sb-btn-radius: var(--radius);
+  --sb-btn-min-h: 2.75rem;
+  --sb-btn-pad-x: 1.5rem;
+  --sb-btn-pad-y: 0.65rem;
+  --sb-btn-fs: 0.875rem;
+  --sb-btn-fw: 600;
+  --sb-btn-transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    background-color 0.2s ease,
+    border-color 0.3s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
+  --sb-btn-hover-bg: color-mix(in oklab, var(--primary) 90%, black);
+}
+
+/* Shared primary solid recipe */
+.sb-btn-primary,
+.demo-modal-root .demo-modal-submit,
+.demo-modal-root[data-layout="stack"] .demo-modal-submit,
+.demo-modal-root[data-layout="ref"] .demo-modal-submit,
+.demo-modal-root[data-theme="light"] .demo-modal-submit,
+.two-track-id-cta,
+.two-track-3d-card > .two-track-id-card .two-track-id-cta,
+.two-track-id-card[data-tone="partner"] .two-track-id-cta,
+.two-track-3d-card[data-tone="partner"] > .two-track-id-card .two-track-id-cta,
+.site-nav-cta.bg-primary,
+.site-nav-cta-demo,
+button.bg-primary,
+a.bg-primary,
+.lift.bg-primary,
+.smt-btn-primary,
+.smt-btn-solid,
+.smt-buy,
+.smt-apply {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  box-sizing: border-box;
+  min-height: var(--sb-btn-min-h);
+  padding: var(--sb-btn-pad-y) var(--sb-btn-pad-x);
+  border: 0;
+  border-radius: var(--sb-btn-radius) !important;
+  background: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  font-size: var(--sb-btn-fs);
+  font-weight: var(--sb-btn-fw);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--sb-btn-transition) !important;
+  transform: none;
+  box-shadow: none;
+}
+
+.sb-btn-primary:hover,
+.demo-modal-root .demo-modal-submit:hover:not(:disabled),
+.demo-modal-root[data-layout="stack"] .demo-modal-submit:hover:not(:disabled),
+.demo-modal-root[data-layout="ref"] .demo-modal-submit:hover:not(:disabled),
+.demo-modal-root[data-theme="light"] .demo-modal-submit:hover:not(:disabled),
+.two-track-id-cta:hover,
+.two-track-3d-card > .two-track-id-card .two-track-id-cta:hover,
+.two-track-id-card[data-tone="partner"] .two-track-id-cta:hover,
+.two-track-3d-card[data-tone="partner"] > .two-track-id-card .two-track-id-cta:hover,
+.site-nav-cta.bg-primary:hover,
+.site-nav-cta-demo:hover,
+button.bg-primary:hover,
+a.bg-primary:hover,
+.lift.bg-primary:hover,
+.smt-btn-primary:hover,
+.smt-btn-solid:hover:not(:disabled),
+.smt-buy:hover:not(:disabled),
+.smt-apply:hover:not(:disabled) {
+  background: var(--sb-btn-hover-bg) !important;
+  color: var(--primary-foreground) !important;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+  border-color: color-mix(in oklab, var(--primary) 35%, transparent);
+}
+
+.sb-btn-primary:active,
+.demo-modal-root .demo-modal-submit:active:not(:disabled),
+.two-track-id-cta:active,
+.two-track-3d-card > .two-track-id-card .two-track-id-cta:active,
+.site-nav-cta.bg-primary:active,
+button.bg-primary:active,
+a.bg-primary:active,
+.lift.bg-primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.sb-btn-primary:focus-visible,
+.demo-modal-root .demo-modal-submit:focus-visible,
+.two-track-id-cta:focus-visible,
+.site-nav-cta.bg-primary:focus-visible,
+button.bg-primary:focus-visible,
+a.bg-primary:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.sb-btn-primary:disabled,
+.demo-modal-root .demo-modal-submit:disabled,
+button.bg-primary:disabled,
+.smt-btn-solid:disabled,
+.smt-apply:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Full-width primary (modal submit, stacked mobile) keeps shared hover, no side shrink */
+.demo-modal-root .demo-modal-submit {
+  width: 100%;
+}
+
+/* Outline / secondary CTAs — same radius, height, motion; transparent fill */
+.sb-btn-outline,
+.site-nav-cta-login,
+a.lift.border,
+button.lift.border,
+.lift.border.border-border {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  box-sizing: border-box;
+  min-height: var(--sb-btn-min-h);
+  padding: var(--sb-btn-pad-y) var(--sb-btn-pad-x);
+  border-radius: var(--sb-btn-radius) !important;
+  border-width: 1px;
+  border-style: solid;
+  font-size: var(--sb-btn-fs);
+  font-weight: var(--sb-btn-fw);
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--sb-btn-transition) !important;
+  transform: none;
+  box-shadow: none;
+}
+
+.site-nav-cta-login,
+.lift.border.border-border {
+  border-color: var(--border);
+  background: transparent;
+  color: var(--foreground);
+}
+
+.site-nav-cta-login:hover,
+.lift.border.border-border:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 6%, transparent);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Soft primary outline (Explore product links on light cards) */
+.feature-orbit-cta,
+.how-it-step a.lift {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: var(--sb-btn-min-h);
+  padding: 0.5rem 1rem;
+  border-radius: var(--sb-btn-radius) !important;
+  border: 1px solid color-mix(in oklab, var(--primary) 25%, var(--border));
+  background: color-mix(in oklab, var(--primary) 6%, transparent);
+  color: var(--primary) !important;
+  font-size: var(--sb-btn-fs);
+  font-weight: var(--sb-btn-fw);
+  text-decoration: none;
+  transition: var(--sb-btn-transition) !important;
+}
+
+.feature-orbit-cta:hover,
+.how-it-step a.lift:hover {
+  background: var(--primary) !important;
+  border-color: var(--primary);
+  color: var(--primary-foreground) !important;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ProcessBento footer text-CTA → same solid primary button */
+.process-bento-cta-link {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--sb-btn-min-h);
+  padding: var(--sb-btn-pad-y) var(--sb-btn-pad-x);
+  border-radius: var(--sb-btn-radius) !important;
+  background: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  font-size: var(--sb-btn-fs) !important;
+  font-weight: var(--sb-btn-fw) !important;
+  text-decoration: none !important;
+  transition: var(--sb-btn-transition) !important;
+}
+
+.process-bento-cta-link:hover {
+  background: var(--sb-btn-hover-bg) !important;
+  color: var(--primary-foreground) !important;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Kill one-off pill radius / slate partner fills / scale-only hovers on CTAs */
+.two-track-id-cta,
+.nc-copy a.rounded-full,
+.nc-stage a.rounded-full {
+  border-radius: var(--sb-btn-radius) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-btn-primary,
+  .demo-modal-root .demo-modal-submit,
+  .two-track-id-cta,
+  .site-nav-cta.bg-primary,
+  button.bg-primary,
+  a.bg-primary,
+  .lift.bg-primary,
+  .process-bento-cta-link,
+  .feature-orbit-cta,
+  .smt-btn-primary,
+  .smt-btn-solid {
+    transition: background-color 0.15s ease, color 0.15s ease, opacity 0.15s ease !important;
+  }
+
+  .sb-btn-primary:hover,
+  .demo-modal-root .demo-modal-submit:hover:not(:disabled),
+  .two-track-id-cta:hover,
+  .site-nav-cta.bg-primary:hover,
+  button.bg-primary:hover,
+  a.bg-primary:hover,
+  .lift.bg-primary:hover,
+  .process-bento-cta-link:hover,
+  .feature-orbit-cta:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Console micro-buttons: same color/motion, keep compact size */
+.smt-btn-primary,
+.smt-btn-solid,
+.smt-buy,
+.smt-apply {
+  min-height: 2rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.smt-btn-primary:hover,
+.smt-btn-solid:hover:not(:disabled),
+.smt-buy:hover:not(:disabled),
+.smt-apply:hover:not(:disabled) {
+  transform: translateY(-2px);
+}

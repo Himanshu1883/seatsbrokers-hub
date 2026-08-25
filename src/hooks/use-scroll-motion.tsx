@@ -55,7 +55,12 @@ export function Reveal({
   );
 }
 
-export function useTypewriter(phrases: string[], speed = 70, pause = 1600) {
+export function useTypewriter(
+  phrases: string[],
+  speed = 70,
+  pause = 1600,
+  enabled = true,
+) {
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
@@ -68,6 +73,7 @@ export function useTypewriter(phrases: string[], speed = 70, pause = 1600) {
   }, [phraseKey]);
 
   useEffect(() => {
+    if (!enabled) return;
     const current = phrases[index % phrases.length] ?? "";
     if (!deleting && text === current) {
       const t = setTimeout(() => setDeleting(true), pause);
@@ -86,7 +92,7 @@ export function useTypewriter(phrases: string[], speed = 70, pause = 1600) {
       deleting ? speed / 2 : speed,
     );
     return () => clearTimeout(t);
-  }, [text, deleting, index, phrases, speed, pause]);
+  }, [text, deleting, index, phrases, speed, pause, enabled]);
 
   return text;
 }

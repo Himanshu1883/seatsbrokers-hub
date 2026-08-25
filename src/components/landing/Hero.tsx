@@ -99,7 +99,7 @@ function longestPhrase(phrases: readonly string[]) {
 function HeroTypeLine({ phrases, children }: { phrases: readonly string[]; children: ReactNode }) {
   return (
     <span
-      className="hero-copy-typewriter hero-copy-typeline mt-2 block min-w-0 max-w-full overflow-x-clip whitespace-nowrap text-[clamp(1.05rem,min(4.6vw,6.8cqi),3.25rem)] leading-[1.2] font-bold text-primary"
+      className="hero-copy-typewriter hero-copy-typeline mt-2 block min-w-0 max-w-full text-[clamp(1.05rem,min(4.6vw,6.8cqi),3.25rem)] leading-[1.2] font-bold text-primary"
       aria-live="polite"
     >
       <span className="hero-copy-typeline-ghosts" aria-hidden>
@@ -115,14 +115,25 @@ function HeroTypeLine({ phrases, children }: { phrases: readonly string[]; child
 }
 
 function HeroTypewriter({ phrases }: { phrases: readonly string[] }) {
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const typed = useTypewriter([...phrases], 62, 2200);
+  const [lite, setLite] = useState(() =>
+    typeof window !== "undefined" &&
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce), (max-width: 1023px), (pointer: coarse)",
+    ).matches,
+  );
+  const typed = useTypewriter([...phrases], 62, 2200, !lite);
 
   useEffect(() => {
-    setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const mq = window.matchMedia(
+      "(prefers-reduced-motion: reduce), (max-width: 1023px), (pointer: coarse)",
+    );
+    const sync = () => setLite(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
   }, []);
 
-  const display = reducedMotion ? (phrases[0] ?? "") : typed;
+  const display = lite ? (phrases[0] ?? "") : typed;
 
   return <HeroTypeLine phrases={phrases}>{display}</HeroTypeLine>;
 }
@@ -234,14 +245,14 @@ function HeroSlideCopy({
         <button
           type="button"
           onClick={openDemoModal}
-          className="lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground sm:w-auto"
+          className="hero-copy-cta-primary lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-white sm:w-auto"
           tabIndex={isActive ? 0 : -1}
         >
           {ctas.bookDemo.label}
         </button>
         <SiteLink
           to={ctas.becomeSeller.to}
-          className="lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md border border-background/55 px-6 py-3.5 text-sm font-semibold text-white hover:bg-background/10 sm:w-auto"
+          className="hero-copy-cta-outline lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md border border-background/55 px-6 py-3.5 text-sm font-semibold text-white hover:bg-background/10 sm:w-auto"
           tabIndex={isActive ? 0 : -1}
         >
           {ctas.becomeSeller.label}
@@ -255,6 +266,12 @@ export function Hero() {
   const [active, setActive] = useState(0);
   const [motionKey, setMotionKey] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [lite, setLite] = useState(() =>
+    typeof window !== "undefined" &&
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce), (max-width: 1023px), (pointer: coarse)",
+    ).matches,
+  );
 
   const goTo = useCallback((index: number) => {
     setActive((index + slides.length) % slides.length);
@@ -262,43 +279,75 @@ export function Hero() {
   }, []);
 
   useEffect(() => {
-    if (paused) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
+    const mq = window.matchMedia(
+      "(prefers-reduced-motion: reduce), (max-width: 1023px), (pointer: coarse)",
+    );
+    const sync = () => setLite(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (lite || paused) return;
 
     const id = window.setInterval(() => {
       setActive((i) => (i + 1) % slides.length);
       setMotionKey((k) => k + 1);
     }, SLIDE_MS);
     return () => window.clearInterval(id);
-  }, [paused]);
+  }, [paused, lite]);
 
   return (
     <section
       id="top"
       className="section-curve-hero hero-fit relative isolate overflow-hidden max-lg:grid max-lg:grid-rows-[auto_minmax(0,1fr)_auto]"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
+      data-lite={lite ? "true" : undefined}
+      onMouseEnter={() => {
+        if (!lite) setPaused(true);
+      }}
+      onMouseLeave={() => {
+        if (!lite) setPaused(false);
+      }}
+      onFocusCapture={() => {
+        if (!lite) setPaused(true);
+      }}
+      onBlurCapture={() => {
+        if (!lite) setPaused(false);
+      }}
     >
       <div className="absolute inset-0 -z-20" aria-hidden>
-        {slides.map((s, i) => (
-          <div
-            key={s.alt}
-            className={`absolute inset-0 transition-opacity duration-[1400ms] ease-out ${
-              i === active ? "opacity-100" : "opacity-0"
-            }`}
-          >
+        {lite ? (
+          <div className="absolute inset-0">
             <img
-              src={s.image}
+              src={(slides[active] ?? slides[0]).image}
               alt=""
               width={1920}
               height={1080}
-              className={`size-full object-cover ${i === active ? "hero-ken-burns" : "scale-100"}`}
+              decoding="async"
+              fetchPriority="high"
+              className="size-full object-cover"
             />
           </div>
-        ))}
+        ) : (
+          slides.map((s, i) => (
+            <div
+              key={s.alt}
+              className={`absolute inset-0 transition-opacity duration-[1400ms] ease-out ${
+                i === active ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <img
+                src={s.image}
+                alt=""
+                width={1920}
+                height={1080}
+                decoding="async"
+                className={`size-full object-cover ${i === active ? "hero-ken-burns" : "scale-100"}`}
+              />
+            </div>
+          ))
+        )}
       </div>
 
       {/* Lighter stadium vignette — copy stays readable without crushing the photo. */}
@@ -315,7 +364,7 @@ export function Hero() {
         <div className="hero-fit-main flex min-h-0 items-center overflow-visible">
           <div className="container-page flex min-h-0 w-full flex-col py-6 sm:py-8">
             <div className="hero-fit-grid grid min-h-0 min-w-0 items-center gap-6 lg:isolate lg:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] lg:items-start lg:justify-center lg:gap-x-10 xl:gap-x-12">
-              <div className="hero-copy @container w-full min-w-0 max-w-3xl overflow-x-clip lg:relative lg:z-20 lg:max-w-none lg:pr-[clamp(1rem,2.8vw,2.25rem)]">
+              <div className="hero-copy @container w-full min-w-0 max-w-3xl max-lg:overflow-x-visible overflow-x-clip lg:relative lg:z-20 lg:max-w-none lg:pr-[clamp(1rem,2.8vw,2.25rem)]">
                 {slides.map((s, i) => {
                   const isActive = i === active;
                   return (
@@ -324,7 +373,12 @@ export function Hero() {
                       className={`hero-copy-layer ${isActive ? "hero-copy-layer-active" : "hero-copy-layer-measure"}`}
                       aria-hidden={!isActive}
                     >
-                      <HeroSlideCopy slide={s} isActive={isActive} animate={isActive} key={isActive ? motionKey : s.alt} />
+                      <HeroSlideCopy
+                        slide={s}
+                        isActive={isActive}
+                        animate={isActive && !lite}
+                        key={isActive && !lite ? motionKey : s.alt}
+                      />
                     </div>
                   );
                 })}
@@ -332,7 +386,7 @@ export function Hero() {
               </div>
 
               <div className="hero-fit-console hero-copy-item hero-copy-delay-3 relative z-0 mx-auto w-full min-h-0 min-w-0 max-w-xl lg:mx-0 lg:max-w-none lg:pl-0 lg:[clip-path:inset(-3rem_0_-3rem_0)] lg:[&_.hero-tilt-card]:origin-[right_center]">
-                <HeroDashboardTilt slide={active} swapKey={motionKey} />
+                <HeroDashboardTilt slide={active} swapKey={lite ? 0 : motionKey} />
               </div>
             </div>
           </div>
@@ -352,13 +406,16 @@ export function Hero() {
                   i === active ? "w-10 bg-background/25" : "w-2 bg-background/35 hover:bg-background/50"
                 }`}
               >
-                {i === active && (
+                {i === active && !lite && (
                   <span
                     key={motionKey}
                     className="hero-slide-progress absolute inset-y-0 left-0 rounded-full bg-primary"
                     style={{ animationDuration: `${SLIDE_MS}ms` }}
                   />
                 )}
+                {i === active && lite ? (
+                  <span className="absolute inset-y-0 left-0 w-full rounded-full bg-primary" />
+                ) : null}
               </button>
             ))}
           </div>

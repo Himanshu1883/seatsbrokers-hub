@@ -358,13 +358,24 @@ export function HeroDashboardTilt({
   const cardRef = useRef<HTMLDivElement>(null);
   const { ref: sceneRef, inView } = useInView<HTMLDivElement>(0.15);
   const [tick, setTick] = useState(0);
-  const [reduced, setReduced] = useState(false);
+  const [reduced, setReduced] = useState(() =>
+    typeof window !== "undefined" &&
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce), (max-width: 1023px), (pointer: coarse)",
+    ).matches,
+  );
   const index = ((slide % consoleMeta.length) + consoleMeta.length) % consoleMeta.length;
   const current = consoleMeta[index];
   const live = inView && !reduced;
 
   useEffect(() => {
-    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const mq = window.matchMedia(
+      "(prefers-reduced-motion: reduce), (max-width: 1023px), (pointer: coarse)",
+    );
+    const sync = () => setReduced(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
   }, []);
 
   useEffect(() => {
@@ -405,10 +416,15 @@ export function HeroDashboardTilt({
       aria-hidden
     >
       <div className="hero-tilt-ambient" />
-      <div ref={cardRef} className="hero-tilt-card hero-tilt-alive" data-mode={current.id}>
+      <div
+        ref={cardRef}
+        className={`hero-tilt-card${reduced ? "" : " hero-tilt-alive"}`}
+        data-mode={current.id}
+        data-lite={reduced ? "true" : undefined}
+      >
         <div className="hero-tilt-grid-bg" aria-hidden />
-        <div className="hero-tilt-glare" />
-        <span className="hero-tilt-scan" />
+        {reduced ? null : <div className="hero-tilt-glare" />}
+        {reduced ? null : <span className="hero-tilt-scan" />}
 
         <div key={`${current.id}-${swapKey}`} className="hero-hud-swap">
           <div className="hero-desk-shell">

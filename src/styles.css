@@ -63859,148 +63859,237 @@ button.process-bento-cta-link {
   }
 }
 
-/* ── Laptop / MacBook Air hero composition (2026-08-25) ──
-   Air / laptop CSS px (1024–1919, esp. 1280–1512 × ≤1100): short-laptop
-   fit cut --hero-card-h while the console column still took ~1fr of a
-   94rem container — desk looked short+wide with a dead gutter between
-   copy and card. Cap the band, pack columns, size console width from
-   card height, tighten side padding. ≥1920 unchanged. */
+/* ── Laptop / MacBook Air hero — content-fit console (2026-08-25) ──
+   Dumping leftover 100dvh into --hero-card-h stretched the white desk
+   with empty panel under the modules (gap the user called out). Size the
+   console to the desk (~22–24rem), keep normal side inset, unlock the
+   short-laptop crop so the 7-rail is not clipped. ≥1920 stays 35rem. */
 
 @media (min-width: 1024px) and (max-width: 1919px) {
+  /* Do not force 100dvh — leftover viewport became a black band under the rail */
+  .hero-fit {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
   .hero-fit-main > .container-page,
   .hero-fit-zoom > .container-page,
   .hero-fit-dots.container-page,
   .hero-fit-workflow.container-page {
-    max-width: min(100%, 76rem);
-    padding-inline: clamp(1.5rem, 3.8vw, 3rem);
+    max-width: min(100%, 94rem);
+    padding-inline: clamp(1rem, 2vw, 1.75rem);
   }
 
   .hero-fit .hero-fit-grid {
     width: 100%;
-    max-width: 70rem;
-    margin-inline: auto;
-    grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 32.5rem);
-    column-gap: clamp(1.15rem, 2vw, 1.85rem);
+    max-width: none;
+    margin-inline: 0;
+    grid-template-columns: minmax(0, 1.15fr) minmax(24rem, 34rem);
+    column-gap: clamp(1.25rem, 2vw, 2rem);
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
   }
 
   .hero-fit .hero-copy {
-    max-width: 32.5rem;
+    max-width: none;
     padding-right: 0;
   }
 
   .hero-fit-console {
-    --hero-console-max: 32.5rem;
+    --hero-console-max: 34rem;
     width: 100%;
     max-width: var(--hero-console-max);
-    margin-inline: 0 0;
+    margin-inline: 0;
     justify-self: end;
     padding-left: 0;
+  }
+
+  /* Beat the desktop 35rem — laptop desk is content-sized, not viewport-fill */
+  .hero-fit-console .hero-tilt-card {
+    --hero-card-h: 24rem;
   }
 
   .hero-fit-console .hero-tilt-scene {
     width: 100%;
     max-width: 100%;
     margin-inline: 0;
-    padding: 0.55rem 0 0.85rem;
+    padding: 0.35rem 0 0.45rem;
     perspective-origin: 58% 42%;
-  }
-
-  .hero-fit-console .hero-tilt-card {
-    width: 100%;
-    max-width: 100%;
   }
 
   .hero-fit-console .hero-tilt-card,
   .hero-fit-console .hero-tilt-alive {
     transform-origin: center center;
   }
+
+  .hero-fit-dots {
+    padding-top: 0.25rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .hero-fit-workflow {
+    padding-bottom: 0.4rem;
+  }
+
+  .hero-fit .hero-workflow {
+    margin: 0.1rem 0 0.35rem;
+  }
+
+  .hero-fit .hero-workflow-caption {
+    margin-bottom: 0;
+  }
 }
 
-/* Short laptop / Air: reclaim vertical room + keep console aspect ~1.35 */
+/* Short Air / laptop: unlock crop, keep console content-fit (no leftover dump) */
 @media (min-width: 1024px) and (max-width: 1919px) and (max-height: 1100px) {
+  /* Beat earlier 100dvh lock + desktop min-height — that left a black band
+     under the 7-rail caption when content was shorter than the viewport. */
+  .hero-fit {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .hero-fit-zoom {
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    zoom: 1;
+    transform: none;
+  }
+
+  .hero-fit-offset {
+    flex-shrink: 0;
+    height: calc(4.5rem + 0.35rem);
+  }
+
+  .hero-fit-main {
+    display: flex;
+    flex: 0 1 auto;
+    min-height: 0;
+    align-items: stretch;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+
   .hero-fit-main > .container-page {
-    padding-block: 0.35rem 0.25rem;
+    flex: 0 1 auto;
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-block: 0.35rem 0.25rem !important;
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.25rem !important;
   }
 
   .hero-fit .hero-fit-grid {
-    max-width: 68rem;
-    grid-template-columns: minmax(0, 1fr) minmax(20rem, min(31.5rem, 42vw));
-    column-gap: clamp(1rem, 1.8vw, 1.65rem);
+    flex: 0 1 auto;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    max-height: none;
+    align-items: center;
+    grid-template-columns: minmax(0, 1.15fr) minmax(22rem, 32.5rem);
   }
 
   .hero-fit-console {
-    --hero-card-h: clamp(18.5rem, calc(100dvh - 20.5rem), 28rem);
-    --hero-console-max: min(31.5rem, calc(var(--hero-card-h) * 1.38));
+    --hero-console-max: 32.5rem;
     max-width: var(--hero-console-max);
   }
 
-  /* Must beat earlier `.hero-fit-console .hero-tilt-card { --hero-card-h }` */
   .hero-fit-console .hero-tilt-card {
-    --hero-card-h: clamp(18.5rem, calc(100dvh - 20.5rem), 28rem);
+    --hero-card-h: 22.5rem;
   }
 
-  .hero-workflow {
-    margin: 0 0 0.55rem;
+  .hero-fit-console .hero-tilt-scene {
+    padding: 0.2rem 0 0.3rem;
   }
 
-  .hero-workflow-rail {
-    padding: 0.5rem 0.75rem;
+  .hero-fit-dots {
+    flex-shrink: 0;
+    padding-top: 0.2rem;
+    padding-bottom: 0.35rem;
+  }
+
+  .hero-fit-workflow {
+    flex-shrink: 0;
+    padding-bottom: 0.35rem;
+  }
+
+  .hero-fit .hero-workflow {
+    margin: 0 0 0.35rem;
+  }
+
+  .hero-fit .hero-workflow-caption {
+    margin-top: 0.25rem;
+    margin-bottom: 0;
   }
 }
 
 @media (min-width: 1024px) and (max-width: 1919px) and (max-height: 900px) {
+  .hero-fit-offset {
+    height: calc(4.5rem + 0.2rem);
+  }
+
   .hero-fit .hero-fit-grid {
-    max-width: 64rem;
-    grid-template-columns: minmax(0, 1fr) minmax(18.5rem, min(29rem, 40vw));
+    grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 30rem);
   }
 
   .hero-fit-console {
-    --hero-card-h: clamp(17rem, calc(100dvh - 18.75rem), 24rem);
-    --hero-console-max: min(29rem, calc(var(--hero-card-h) * 1.36));
+    --hero-console-max: 30rem;
     max-width: var(--hero-console-max);
   }
 
   .hero-fit-console .hero-tilt-card {
-    --hero-card-h: clamp(17rem, calc(100dvh - 18.75rem), 24rem);
+    --hero-card-h: 20.5rem;
   }
 }
 
 @media (min-width: 1024px) and (max-width: 1919px) and (max-height: 800px) {
   .hero-fit .hero-fit-grid {
-    max-width: 60rem;
-    grid-template-columns: minmax(0, 1fr) minmax(17rem, min(26.5rem, 38vw));
+    grid-template-columns: minmax(0, 1.05fr) minmax(18.5rem, 28rem);
   }
 
   .hero-fit-console {
-    --hero-card-h: clamp(15.5rem, calc(100dvh - 17.25rem), 20.5rem);
-    --hero-console-max: min(26.5rem, calc(var(--hero-card-h) * 1.34));
+    --hero-console-max: 28rem;
     max-width: var(--hero-console-max);
   }
 
   .hero-fit-console .hero-tilt-card {
-    --hero-card-h: clamp(15.5rem, calc(100dvh - 17.25rem), 20.5rem);
+    --hero-card-h: 18.5rem;
+  }
+
+  .hero-fit .hero-copy .hero-copy-feature-copy span {
+    display: none;
   }
 }
 
-/* Mid Air widths (1280–1440): keep copy+console as one packed unit */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .hero-fit-main > .container-page,
   .hero-fit-zoom > .container-page,
   .hero-fit-dots.container-page,
   .hero-fit-workflow.container-page {
-    padding-inline: clamp(1.35rem, 3.5vw, 2.25rem);
+    padding-inline: clamp(0.875rem, 1.8vw, 1.35rem);
   }
 
   .hero-fit .hero-fit-grid {
-    max-width: 62rem;
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, min(29.5rem, 46%));
-    column-gap: 1.1rem;
+    grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 30rem);
+    column-gap: 1rem;
   }
 
-  .hero-fit .hero-copy {
-    max-width: 28rem;
+  .hero-fit-console {
+    --hero-console-max: 30rem;
+    max-width: var(--hero-console-max);
   }
 
   .hero-fit .hero-copy .hero-copy-head {
@@ -64012,7 +64101,6 @@ button.process-bento-cta-link {
   }
 }
 
-/* Restore full cinema band on large desktops (beats laptop caps above) */
 @media (min-width: 1920px) {
   .hero-fit-main > .container-page,
   .hero-fit-zoom > .container-page,
@@ -64028,6 +64116,7 @@ button.process-bento-cta-link {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
     column-gap: clamp(1.5rem, 2.4vw, 2.75rem);
     align-items: start;
+    justify-content: center;
   }
 
   .hero-fit .hero-copy {
@@ -64051,115 +64140,1442 @@ button.process-bento-cta-link {
   }
 }
 
-/* ── Laptop: fill the 100dvh frame (2026-08-25) ──
-   Prior flex-end “lift” cleared the gap under the console but dumped the
-   same void above the copy. Instead: shrink the nav offset, start content
-   under the bar, and turn leftover height into a taller console so the
-   7-rail stays tight without a top stadium band. */
+/* ── Hero restore (2026-08-25) ──
+   Reverted TSX to pre–4-up / pre–7-rail cinema. Neutralize later laptop
+   composition overrides (70rem band, content-fit 22rem card, min-height:0)
+   so ≥1024 matches the earlier hero again. */
 
-@media (min-width: 1024px) and (max-width: 1919px) and (max-height: 1100px) {
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .hero-fit {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 100dvh;
+    max-height: none;
+    overflow: hidden;
+  }
+
+  .hero-fit-zoom {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 100%;
+    min-height: min-content;
+    height: auto;
+    max-height: none;
+    zoom: 0.85;
+    transform: none;
+  }
+
   .hero-fit-offset {
-    height: calc(4.5rem + 0.2rem);
+    height: clamp(8.65rem, 7.25rem + 5.5vh, 11rem);
   }
 
   .hero-fit-main {
-    display: flex;
     flex: 1 1 auto;
-    min-height: 0;
-    align-items: stretch;
-    justify-content: flex-start;
+    min-height: auto;
+    overflow: visible;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-fit-main > .container-page,
+  .hero-fit-dots.container-page {
+    max-width: min(100%, 94rem);
+    padding-inline: clamp(0.875rem, 1.5vw, 1.75rem);
   }
 
   .hero-fit-main > .container-page {
-    flex: 1 1 auto;
-    min-height: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    height: auto;
     justify-content: center;
-    padding-block: 0 !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+    padding-block: clamp(1.25rem, 2.2vh, 2rem) clamp(1.5rem, 2.8vh, 2.5rem) !important;
   }
 
   .hero-fit .hero-fit-grid {
-    flex: 1 1 auto;
+    flex: none;
     width: 100%;
-    min-height: 0;
-    max-height: 100%;
-    align-items: center;
+    max-width: none;
+    margin-inline: 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+    column-gap: clamp(1.5rem, 2.4vw, 2.75rem);
+    align-items: start;
+    justify-content: center;
+  }
+
+  .hero-fit .hero-copy {
+    max-width: none;
+    padding-right: clamp(1rem, 2.8vw, 2.25rem);
   }
 
   .hero-fit-console {
-    --hero-card-h: clamp(20rem, calc(100dvh - 15.25rem), 30rem);
-    --hero-console-max: min(30.5rem, calc(var(--hero-card-h) * 1.28));
-    display: flex;
-    align-items: center;
+    --hero-console-max: none;
+    --hero-console-scale: 1;
     width: 100%;
-    max-width: var(--hero-console-max);
-    height: auto;
-    max-height: 100%;
+    max-width: none;
+    margin-inline: 0;
+    justify-self: stretch;
+    padding-left: 0.35rem;
   }
 
   .hero-fit-console .hero-tilt-scene {
     width: 100%;
-    max-width: 100%;
-    padding: 0.2rem 0 0.25rem;
+    max-width: 44rem;
+    margin-inline: 0;
+    padding: 1.5rem 0.25rem 2rem;
+    transform: scale(var(--hero-console-scale));
+    transform-origin: top left;
   }
 
   .hero-fit-console .hero-tilt-card {
-    --hero-card-h: clamp(20rem, calc(100dvh - 15.25rem), 30rem);
+    --hero-card-h: 35rem;
+    width: 100%;
+    max-width: none;
   }
 
   .hero-fit-dots {
     flex-shrink: 0;
-    padding-top: 0;
-    padding-bottom: 0.05rem;
+    padding-top: 0.5rem;
+    padding-bottom: clamp(1.75rem, 3vh, 2.75rem);
+  }
+
+  /* 4-up + 7-rail removed from TSX — keep any leftover CSS inert */
+  .hero-fit .hero-copy-features,
+  .hero-fit .hero-workflow {
+    display: none !important;
+  }
+}
+
+@supports not (zoom: 0.85) {
+  @media (min-width: 1024px) and (max-width: 1919px) {
+    .hero-fit-zoom {
+      transform: scale(0.85);
+      transform-origin: top center;
+    }
+  }
+}
+
+/* Short laptop still uses cinema desk — do not re-apply content-fit clamps */
+@media (min-width: 1024px) and (max-width: 1919px) and (max-height: 1100px) {
+  .hero-fit {
+    height: auto;
+    min-height: 100dvh;
+    max-height: none;
+    overflow: hidden;
+  }
+
+  .hero-fit-zoom {
+    flex: 1 1 auto;
+    zoom: 0.85;
+  }
+
+  .hero-fit-offset {
+    height: clamp(8.65rem, 7.25rem + 5.5vh, 11rem);
+  }
+
+  .hero-fit-main {
+    flex: 1 1 auto;
+  }
+
+  .hero-fit-console .hero-tilt-card {
+    --hero-card-h: 35rem;
+  }
+
+  .hero-fit-console {
+    max-width: none;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) and (max-height: 900px),
+  (min-width: 1024px) and (max-width: 1919px) and (max-height: 800px) {
+  .hero-fit-console .hero-tilt-card {
+    --hero-card-h: 35rem;
+  }
+
+  .hero-fit-console {
+    max-width: none;
+  }
+}
+
+/* ── Hero 4-up + 7-rail redesign (2026-08-25) ──
+   Re-added under cinema layout. 4 highlights = open horizontal strip
+   (ref: icon + title + detail). 7-rail = glass Discover→Settle bar +
+   caption. Responsive: 2×2 / scroll on small; full rows on desktop.
+   Re-enables bars hidden by the restore block above. */
+
+.hero-fit .hero-copy-features,
+.hero-fit .hero-workflow {
+  display: grid !important;
+}
+
+.hero-fit .hero-workflow {
+  display: block !important;
+}
+
+/* 4-up — open strip (no glass card), matches reference */
+.hero-fit .hero-copy-features {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+  width: 100%;
+  max-width: none;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  text-shadow: none;
+}
+
+.hero-fit .hero-copy-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 0;
+}
+
+.hero-fit .hero-copy-feature-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--primary);
+  box-shadow: none;
+}
+
+.hero-fit .hero-copy-feature-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.hero-fit .hero-copy-feature-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+
+.hero-fit .hero-copy-feature-copy strong {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-transform: none;
+  white-space: normal;
+}
+
+.hero-fit .hero-copy-feature-copy span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgb(255 255 255 / 0.72);
+  white-space: normal;
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero-fit .hero-copy-features {
+    gap: 0.85rem 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  .hero-fit .hero-copy-feature-copy strong {
+    font-size: 0.875rem;
+  }
+
+  .hero-fit .hero-copy-feature-copy span {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-fit .hero-copy-features {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem 1.5rem;
+    margin-top: 1.35rem;
+    align-items: start;
+  }
+
+  .hero-fit .hero-copy-feature-icon {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
+
+  .hero-fit .hero-copy-feature-copy strong {
+    font-size: 0.875rem;
+  }
+
+  .hero-fit .hero-copy-feature-copy span {
+    font-size: 0.8125rem;
+  }
+}
+
+/* 7-rail — glass bar + caption */
+.hero-fit-workflow {
+  flex-shrink: 0;
+  width: 100%;
+  padding-bottom: 0.85rem;
+}
+
+.hero-fit .hero-workflow {
+  width: 100%;
+  margin: 0;
+}
+
+.hero-fit .hero-workflow-rail {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  list-style: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  border-radius: 0.95rem;
+  border: 1px solid color-mix(in oklab, white 12%, transparent);
+  background: color-mix(in oklab, var(--dark) 82%, transparent);
+  box-shadow: 0 18px 40px -28px rgb(0 0 0 / 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.hero-fit .hero-workflow-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-fit .hero-workflow-item {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  min-width: 9.25rem;
+  gap: 0.5rem;
+  padding-right: 1.35rem;
+}
+
+.hero-fit .hero-workflow-item:last-child {
+  padding-right: 0;
+}
+
+.hero-fit .hero-workflow-join {
+  position: absolute;
+  top: 50%;
+  right: 0.15rem;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: rgb(255 255 255 / 0.45);
+  transform: translateY(-50%);
+}
+
+.hero-fit .hero-workflow-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--primary);
+}
+
+.hero-fit .hero-workflow-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.08rem;
+}
+
+.hero-fit .hero-workflow-copy strong {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-transform: none;
+}
+
+.hero-fit .hero-workflow-copy span {
+  font-size: 0.625rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: rgb(255 255 255 / 0.68);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.hero-fit .hero-workflow-caption {
+  margin: 0.45rem 0 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: rgb(255 255 255 / 0.72);
+}
+
+@media (min-width: 1024px) {
+  .hero-fit .hero-workflow-rail {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    column-gap: 0.85rem;
+    overflow: visible;
+    padding: 0.85rem 1.1rem;
+  }
+
+  .hero-fit .hero-workflow-item {
+    min-width: 0;
+    padding-right: 0.85rem;
+  }
+
+  .hero-fit .hero-workflow-join {
+    right: -0.15rem;
+  }
+
+  .hero-fit .hero-workflow-copy strong {
+    font-size: 0.75rem;
+  }
+
+  .hero-fit .hero-workflow-copy span {
+    font-size: 0.6875rem;
+  }
+
+  .hero-fit-dots {
+    padding-bottom: 0.45rem;
   }
 
   .hero-fit-workflow {
-    flex-shrink: 0;
-    padding-bottom: 0.4rem;
+    padding-bottom: 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-fit .hero-workflow-rail {
+    column-gap: 1.1rem;
   }
 
-  .hero-fit .hero-workflow {
-    margin: 0;
+  .hero-fit .hero-workflow-copy strong {
+    font-size: 0.8125rem;
+  }
+
+  .hero-fit .hero-workflow-copy span {
+    font-size: 0.75rem;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
+/* Phone / short: keep both bars readable without crop */
+@media (max-width: 1023px) {
+  .hero-fit .hero-copy-features {
+    margin-top: 0.85rem;
+  }
+
+  .hero-fit-workflow {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .hero-fit-dots {
+    padding-bottom: 0.35rem;
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 700px) {
+  .hero-fit .hero-copy-feature-copy span {
+    display: none;
   }
 
   .hero-fit .hero-workflow-caption {
-    margin-top: 0.28rem;
-    margin-bottom: 0;
+    display: none;
+  }
+}
+
+@media (max-width: 639px) and (max-height: 640px) {
+  .hero-fit .hero-copy-features {
+    gap: 0.45rem 0.65rem;
+    margin-top: 0.55rem;
+  }
+
+  .hero-fit .hero-copy-feature-copy strong {
+    font-size: 0.7rem;
+  }
+}
+
+/* Laptop with both bars: pack frame so rail is not clipped */
+@media (min-width: 1024px) and (max-width: 1919px) and (max-height: 1100px) {
+  .hero-fit {
+    height: auto;
+    min-height: 100dvh;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .hero-fit-zoom {
+    zoom: 0.85;
+  }
+
+  .hero-fit-console .hero-tilt-card {
+    --hero-card-h: clamp(22rem, 38dvh, 30rem);
+  }
+
+  .hero-fit .hero-copy-features {
+    margin-top: 0.85rem;
+    gap: 0.65rem 1rem;
+  }
+
+  .hero-fit-dots {
+    padding-top: 0.2rem;
+    padding-bottom: 0.3rem;
+  }
+
+  .hero-fit-workflow {
+    padding-bottom: 0.65rem;
+  }
+
+  .hero-fit .hero-workflow-rail {
+    padding: 0.55rem 0.75rem;
+  }
+
+  .hero-fit .hero-workflow-caption {
+    margin-top: 0.3rem;
+    font-size: 0.75rem;
   }
 }
 
 @media (min-width: 1024px) and (max-width: 1919px) and (max-height: 900px) {
-  .hero-fit-offset {
-    height: calc(4.5rem + 0.1rem);
-  }
-
-  .hero-fit-console {
-    --hero-card-h: clamp(17.5rem, calc(100dvh - 13.75rem), 25rem);
-    --hero-console-max: min(28.5rem, calc(var(--hero-card-h) * 1.28));
-    max-width: var(--hero-console-max);
-  }
-
   .hero-fit-console .hero-tilt-card {
-    --hero-card-h: clamp(17.5rem, calc(100dvh - 13.75rem), 25rem);
+    --hero-card-h: clamp(18.5rem, 34dvh, 24rem);
   }
 
-  .hero-fit-workflow {
-    padding-bottom: 0.28rem;
+  .hero-fit .hero-copy-feature-copy span {
+    display: none;
+  }
+
+  .hero-fit .hero-workflow-copy span {
+    display: none;
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1919px) and (max-height: 800px) {
-  .hero-fit-console {
-    --hero-card-h: clamp(15.5rem, calc(100dvh - 12.5rem), 21rem);
-    --hero-console-max: min(26rem, calc(var(--hero-card-h) * 1.28));
-    max-width: var(--hero-console-max);
+/* ── Hero 4-up + 7-rail undone (2026-08-25) ── */
+.hero-fit .hero-copy-features,
+.hero-fit .hero-workflow,
+.hero-fit-workflow {
+  display: none !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Homepage hero — rebuilt 2026-08-25 (hh-* / hwc-*)
+   One cinematic slide + typewriter · left copy column with the 4-up under it ·
+   right workflow console · full-width 7-step rail below both columns.
+   Own namespace on purpose: no legacy .hero-fit rule reaches this markup.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.hh-hero {
+  --hh-nav: 4.5rem;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--dark);
+  color: #fff;
+}
+
+/* ── Cinematic banner ───────────────────────────────────────────────────── */
+.hh-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.hh-bg-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease-out;
+}
+
+.hh-bg-slide[data-active="true"] {
+  opacity: 1;
+}
+
+.hh-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+}
+
+.hh-bg-slide[data-active="true"] .hh-bg-img {
+  animation: hh-ken 30s ease-in-out infinite alternate;
+}
+
+@keyframes hh-ken {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.1) translate3d(-1.2%, -1.6%, 0);
+  }
+}
+
+.hh-veil {
+  position: absolute;
+  inset: 0;
+}
+
+.hh-veil-radial {
+  background: radial-gradient(
+    ellipse 70% 58% at 52% 44%,
+    rgb(0 0 0 / 0.52) 0%,
+    rgb(0 0 0 / 0.6) 38%,
+    rgb(0 0 0 / 0.74) 72%,
+    rgb(0 0 0 / 0.92) 100%
+  );
+}
+
+.hh-veil-vertical {
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0.74) 0%, rgb(0 0 0 / 0) 42%, rgb(0 0 0 / 0.58) 100%);
+}
+
+.hh-veil-horizontal {
+  background: linear-gradient(to right, rgb(0 0 0 / 0.62) 0%, rgb(0 0 0 / 0) 52%, rgb(0 0 0 / 0) 100%);
+}
+
+/* ── Shell ──────────────────────────────────────────────────────────────── */
+.hh-inner {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1.75rem, 3.4vw, 2.75rem);
+  padding-block: calc(var(--hh-nav) + clamp(1.5rem, 4vw, 2.5rem)) clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.hh-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+  min-width: 0;
+}
+
+.hh-copy {
+  min-width: 0;
+  max-width: 42rem;
+  overflow-x: clip;
+}
+
+/* ── Copy column ────────────────────────────────────────────────────────── */
+.hh-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+  backdrop-filter: blur(6px);
+  padding: 0.25rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #fff;
+}
+
+.hh-pill-dot {
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+.hh-title {
+  margin-top: clamp(1rem, 2.2vw, 1.5rem);
+  font-size: clamp(1.75rem, 1rem + 3.3vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: #fff;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.45);
+}
+
+.hh-title-line {
+  display: block;
+  max-width: 100%;
+}
+
+.hh-type {
+  display: inline-grid;
+  justify-items: start;
+  max-width: 100%;
+  vertical-align: baseline;
+}
+
+.hh-type > * {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+}
+
+.hh-type-ghost {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.hh-type-text {
+  color: var(--primary);
+}
+
+.hh-lead {
+  margin-top: clamp(0.9rem, 2vw, 1.35rem);
+  max-width: 36rem;
+  font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgb(255 255 255 / 0.86);
+  text-wrap: pretty;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.45);
+}
+
+.hh-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.25rem, 2.4vw, 1.75rem);
+}
+
+.hh-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.hh-cta-solid {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.hh-cta-solid:hover {
+  background: var(--primary-deep);
+}
+
+.hh-cta-ghost {
+  border: 1px solid rgb(255 255 255 / 0.4);
+  color: #fff;
+}
+
+.hh-cta-ghost:hover {
+  background: rgb(255 255 255 / 0.1);
+}
+
+/* 4-up highlights — lives inside the copy column, never the full row. */
+.hh-features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1rem;
+  margin-top: clamp(1.35rem, 2.6vw, 1.9rem);
+  padding-top: clamp(1rem, 2vw, 1.35rem);
+  border-top: 1px solid rgb(255 255 255 / 0.14);
+}
+
+.hh-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.hh-feature-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 1.85rem;
+  height: 1.85rem;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  border-radius: 0.55rem;
+  background: rgb(255 255 255 / 0.08);
+  color: var(--primary);
+}
+
+.hh-feature-icon svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.hh-feature-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.hh-feature-copy strong {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #fff;
+}
+
+.hh-feature-copy span {
+  font-size: 0.75rem;
+  line-height: 1.3;
+  color: rgb(255 255 255 / 0.62);
+}
+
+/* ── Console column ─────────────────────────────────────────────────────── */
+.hh-console {
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
+  min-width: 0;
+}
+
+/* ── Bottom 7-step rail ─────────────────────────────────────────────────── */
+.hh-rail {
+  min-width: 0;
+}
+
+.hh-rail-track {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: clamp(0.75rem, 1.4vw, 1rem);
+  background: rgb(0 0 0 / 0.42);
+  backdrop-filter: blur(8px);
+  padding: clamp(0.85rem, 1.6vw, 1.15rem) clamp(0.9rem, 1.8vw, 1.4rem);
+}
+
+.hh-rail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.hh-rail-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.5rem;
+  background: rgb(255 255 255 / 0.08);
+  color: var(--primary);
+}
+
+.hh-rail-icon svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.hh-rail-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.hh-rail-copy strong {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.hh-rail-copy span {
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  color: rgb(255 255 255 / 0.6);
+  text-wrap: pretty;
+}
+
+.hh-rail-arrow {
+  display: none;
+  margin-inline-start: auto;
+  font-size: 0.85rem;
+  color: rgb(255 255 255 / 0.35);
+}
+
+.hh-rail-caption {
+  margin-top: 0.85rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgb(255 255 255 / 0.62);
+}
+
+/* ── Entrance ───────────────────────────────────────────────────────────── */
+.hh-in {
+  opacity: 0;
+  animation: hh-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hh-in-1 {
+  animation-delay: 0.05s;
+}
+.hh-in-2 {
+  animation-delay: 0.14s;
+}
+.hh-in-3 {
+  animation-delay: 0.23s;
+}
+.hh-in-4 {
+  animation-delay: 0.32s;
+}
+.hh-in-5 {
+  animation-delay: 0.41s;
+}
+.hh-in-6 {
+  animation-delay: 0.5s;
+}
+
+@keyframes hh-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ── Workflow console (hwc-*) ───────────────────────────────────────────── */
+.hwc {
+  perspective: 1600px;
+  min-width: 0;
+}
+
+.hwc-card {
+  --hwc-line: color-mix(in oklab, var(--border) 88%, transparent);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--hwc-line);
+  border-radius: clamp(0.75rem, 1.2vw, 1rem);
+  background: #fff;
+  color: var(--foreground);
+  font-size: clamp(0.6875rem, 0.56rem + 0.5vw, 0.8125rem);
+  box-shadow:
+    0 1.5rem 3.5rem rgb(0 0 0 / 0.42),
+    0 0.35rem 1rem rgb(0 0 0 / 0.25);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hwc-chrome {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55em 0.85em;
+  border-bottom: 1px solid var(--hwc-line);
+  background: color-mix(in oklab, var(--surface) 82%, #fff);
+}
+
+.hwc-dots {
+  display: inline-flex;
+  gap: 0.28rem;
+}
+
+.hwc-dots i {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: #ff5f57;
+}
+
+.hwc-dots i:nth-child(2) {
+  background: #febc2e;
+}
+
+.hwc-dots i:nth-child(3) {
+  background: #28c840;
+}
+
+.hwc-path {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: var(--muted-foreground);
+}
+
+.hwc-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  font-weight: 600;
+  color: var(--primary-deep);
+}
+
+.hwc-live-dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+.hwc[data-live="true"] .hwc-live-dot {
+  animation: hh-live-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes hh-live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.72);
+  }
+}
+
+.hwc-body {
+  display: grid;
+  gap: 0.75em;
+  padding: 0.9em;
+}
+
+.hwc-stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.85fr) minmax(0, 0.95fr);
+  gap: 0.5em;
+}
+
+.hwc-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+  min-width: 0;
+  border: 1px solid var(--hwc-line);
+  border-radius: 0.5rem;
+  padding: 0.5em 0.6em;
+}
+
+.hwc-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.75em;
+  color: var(--muted-foreground);
+}
+
+.hwc-stat-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  font-weight: 700;
+  color: var(--foreground);
+  white-space: nowrap;
+}
+
+.hwc-stat-arrow {
+  width: 0.85em;
+  height: 0.85em;
+  color: var(--primary);
+}
+
+.hwc-stat-tag {
+  font-size: 0.72em;
+  color: var(--primary-deep);
+}
+
+.hwc-lede {
+  font-size: 0.85em;
+  color: var(--muted-foreground);
+}
+
+.hwc-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4em;
+}
+
+.hwc-step {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05em;
+  min-width: 0;
+  border: 1px solid var(--hwc-line);
+  border-radius: 0.4rem;
+  padding: 0.45em 0.5em;
+  background: #fff;
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.hwc-step-index {
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  color: var(--muted-foreground);
+}
+
+.hwc-step-name {
+  font-size: 0.88em;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--foreground);
+}
+
+.hwc-step-kind {
+  font-size: 0.75em;
+  line-height: 1.2;
+  color: var(--muted-foreground);
+}
+
+.hwc-step[data-active="true"] {
+  border-color: color-mix(in oklab, var(--primary) 55%, transparent);
+  background: var(--primary-soft);
+}
+
+.hwc-step[data-active="true"] .hwc-step-name,
+.hwc-step[data-active="true"] .hwc-step-index {
+  color: var(--primary-deep);
+}
+
+.hwc-stage {
+  display: grid;
+  gap: 0.18em;
+  border-top: 1px solid var(--hwc-line);
+  padding-top: 0.7em;
+}
+
+.hwc-stage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  margin-bottom: 0.15em;
+}
+
+.hwc-stage-kicker,
+.hwc-stage-count {
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+
+.hwc-stage-module {
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.hwc-stage-headline {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: var(--primary-deep);
+}
+
+.hwc-stage-copy {
+  font-size: 0.86em;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  text-wrap: pretty;
+}
+
+.hwc-activity {
+  border-top: 1px solid var(--hwc-line);
+  padding-top: 0.6em;
+}
+
+.hwc-activity-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  margin-bottom: 0.4em;
+}
+
+.hwc-activity-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  color: var(--muted-foreground);
+}
+
+.hwc-activity-link {
+  font-size: 0.75em;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.hwc-activity-list {
+  display: grid;
+  gap: 0.28em;
+}
+
+.hwc-activity-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45em;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75em;
+  animation: hh-rise 0.45s ease-out backwards;
+}
+
+.hwc-activity-list li:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.hwc-activity-list li:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.hwc-activity-time {
+  flex: 0 0 auto;
+  color: var(--muted-foreground);
+}
+
+.hwc-activity-tag {
+  flex: 0 0 auto;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.hwc-activity-tag::after {
+  content: " ·";
+  color: var(--muted-foreground);
+}
+
+.hwc-activity-msg {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted-foreground);
+}
+
+/* ── Narrow phones: let the typed phrase wrap instead of overflowing ────── */
+@media (max-width: 560px) {
+  .hh-type {
+    display: inline;
   }
 
-  .hero-fit-console .hero-tilt-card {
-    --hero-card-h: clamp(15.5rem, calc(100dvh - 12.5rem), 21rem);
+  .hh-type > * {
+    white-space: normal;
+  }
+
+  .hh-type-ghost {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .hwc-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hwc-stat-wide {
+    grid-column: span 2;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.5em;
+  }
+}
+
+/* ── ≥ 480px: 4-up and console steps open out ───────────────────────────── */
+@media (min-width: 480px) {
+  .hwc-steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 640px) {
+  .hh-features {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ── ≥ 900px: rail becomes the single-row 7-step flow ───────────────────── */
+@media (min-width: 900px) {
+  .hh-rail-track {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.4rem, 0.9vw, 0.9rem);
+  }
+
+  .hh-rail-item {
+    flex: 1 1 0;
+  }
+
+  .hh-rail-arrow {
+    display: inline-block;
+  }
+}
+
+/* ── ≥ 1024px: two columns, console on the right ────────────────────────── */
+@media (min-width: 1024px) {
+  .hh-hero {
+    min-height: 100svh;
+  }
+
+  .hh-grid {
+    grid-template-columns: minmax(0, 1.18fr) minmax(20rem, 32rem);
+    column-gap: clamp(1.5rem, 2.6vw, 3rem);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hh-copy {
+    max-width: none;
+  }
+
+  .hh-console {
+    max-width: 32rem;
+    margin-inline: 0;
+    justify-self: end;
+  }
+
+  /* The copy track is ~half the row here, so the 4-up reads better as 2×2. */
+  .hh-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 30rem;
+  }
+
+  .hwc-steps {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+
+  .hwc-step {
+    padding: 0.45em 0.4em;
+  }
+
+  .hwc-step-name {
+    font-size: 0.82em;
+  }
+}
+
+/* ── ≥ 1280px: full reference proportions + the slight console tilt ─────── */
+@media (min-width: 1280px) {
+  .hh-grid {
+    grid-template-columns: minmax(0, 1.22fr) minmax(22rem, 34rem);
+  }
+
+  .hh-console {
+    max-width: 34rem;
+  }
+
+  .hh-lead {
+    max-width: 32rem;
+  }
+
+  .hh-features {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: none;
+  }
+
+  .hwc-card {
+    transform: rotateY(-2.4deg) rotateX(1.4deg);
+    transform-origin: right center;
+  }
+
+  .hwc:hover .hwc-card,
+  .hwc:focus-within .hwc-card {
+    transform: none;
+  }
+}
+
+/* ── Short laptops: keep the whole composition inside the viewport ──────── */
+@media (min-width: 1024px) and (max-height: 860px) {
+  .hh-inner {
+    gap: clamp(1.1rem, 2.2vh, 1.75rem);
+    padding-block: calc(var(--hh-nav) + clamp(0.9rem, 2.2vh, 1.75rem)) clamp(1rem, 2.2vh, 1.75rem);
+  }
+
+  .hh-title {
+    font-size: clamp(1.85rem, 0.9rem + 2.6vw, 2.85rem);
+  }
+
+  .hh-features {
+    margin-top: 1.1rem;
+    padding-top: 0.9rem;
+  }
+
+  .hwc-body {
+    gap: 0.6em;
+    padding: 0.8em;
+  }
+}
+
+/* ── Phones: drop the paint cost that made hero scrolling stutter ───────── */
+@media (max-width: 1023px) {
+  .hh-bg-img,
+  .hh-bg-slide[data-active="true"] .hh-bg-img {
+    animation: none;
+    transform: scale(1.04);
+  }
+
+  .hh-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hh-cta {
+    width: 100%;
+  }
+
+  .hh-rail-track,
+  .hwc-card {
+    backdrop-filter: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .hh-rail-track {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hh-bg-img,
+  .hh-bg-slide[data-active="true"] .hh-bg-img,
+  .hh-bg-slide,
+  .hwc[data-live="true"] .hwc-live-dot,
+  .hwc-activity-list li {
+    animation: none;
+    transition: none;
+  }
+
+  .hh-in {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .hwc-card {
+    transform: none;
+    transition: none;
   }
 }

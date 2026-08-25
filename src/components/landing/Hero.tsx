@@ -12,7 +12,7 @@ import {
   ShoppingCart,
   TrendingUp,
 } from "lucide-react";
-import { useTypewriter } from "@/hooks/use-scroll-motion";
+import { useTypewriter, HERO_LITE_MQ, matchesHeroLite } from "@/hooks/use-scroll-motion";
 import { HeroDashboardTilt } from "@/components/landing/HeroDashboardTilt";
 import { useDemoModal } from "@/components/landing/DemoModal";
 import { SiteLink } from "@/components/layout/SiteLink";
@@ -115,18 +115,11 @@ function HeroTypeLine({ phrases, children }: { phrases: readonly string[]; child
 }
 
 function HeroTypewriter({ phrases }: { phrases: readonly string[] }) {
-  const [lite, setLite] = useState(() =>
-    typeof window !== "undefined" &&
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce), (max-width: 1023px), (pointer: coarse)",
-    ).matches,
-  );
+  const [lite, setLite] = useState(matchesHeroLite);
   const typed = useTypewriter([...phrases], 62, 2200, !lite);
 
   useEffect(() => {
-    const mq = window.matchMedia(
-      "(prefers-reduced-motion: reduce), (max-width: 1023px), (pointer: coarse)",
-    );
+    const mq = window.matchMedia(HERO_LITE_MQ);
     const sync = () => setLite(mq.matches);
     sync();
     mq.addEventListener("change", sync);
@@ -266,12 +259,7 @@ export function Hero() {
   const [active, setActive] = useState(0);
   const [motionKey, setMotionKey] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [lite, setLite] = useState(() =>
-    typeof window !== "undefined" &&
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce), (max-width: 1023px), (pointer: coarse)",
-    ).matches,
-  );
+  const [lite, setLite] = useState(matchesHeroLite);
 
   const goTo = useCallback((index: number) => {
     setActive((index + slides.length) % slides.length);
@@ -279,9 +267,7 @@ export function Hero() {
   }, []);
 
   useEffect(() => {
-    const mq = window.matchMedia(
-      "(prefers-reduced-motion: reduce), (max-width: 1023px), (pointer: coarse)",
-    );
+    const mq = window.matchMedia(HERO_LITE_MQ);
     const sync = () => setLite(mq.matches);
     sync();
     mq.addEventListener("change", sync);

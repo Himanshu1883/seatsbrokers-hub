@@ -63774,10 +63774,11 @@ button.process-bento-cta-link {
 /* ── Mobile hero scroll perf (2026-08-25) ──
    Ken Burns + tilt float/scan/glare + backdrop-filter + will-change were
    compositing every frame while the user scrolled. Lite mode (Hero.tsx
-   data-lite / ≤1023 / coarse pointer) freezes autoplay; CSS kills the
-   remaining GPU work. Desktop ≥1024 unchanged. */
+   data-lite / ≤1023 only — not bare pointer:coarse, which freezes
+   touchscreen laptops at ≥1024) freezes autoplay; CSS kills remaining
+   GPU work. Desktop/laptop ≥1024 unchanged. */
 
-@media (max-width: 1023px), (pointer: coarse) {
+@media (max-width: 1023px) {
   .hero-fit .hero-ken-burns,
   .hero-fit img.hero-ken-burns {
     animation: none !important;

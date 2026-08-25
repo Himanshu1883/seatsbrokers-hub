@@ -14,7 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { ConsoleShell } from "@/components/pages/brokers/ConsoleShell";
-import { useInView } from "@/hooks/use-scroll-motion";
+import { useInView, HERO_LITE_MQ, matchesHeroLite } from "@/hooks/use-scroll-motion";
 import { modules } from "@/content/modules";
 import {
   productsWorkflowFeed,
@@ -358,20 +358,13 @@ export function HeroDashboardTilt({
   const cardRef = useRef<HTMLDivElement>(null);
   const { ref: sceneRef, inView } = useInView<HTMLDivElement>(0.15);
   const [tick, setTick] = useState(0);
-  const [reduced, setReduced] = useState(() =>
-    typeof window !== "undefined" &&
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce), (max-width: 1023px), (pointer: coarse)",
-    ).matches,
-  );
+  const [reduced, setReduced] = useState(matchesHeroLite);
   const index = ((slide % consoleMeta.length) + consoleMeta.length) % consoleMeta.length;
   const current = consoleMeta[index];
   const live = inView && !reduced;
 
   useEffect(() => {
-    const mq = window.matchMedia(
-      "(prefers-reduced-motion: reduce), (max-width: 1023px), (pointer: coarse)",
-    );
+    const mq = window.matchMedia(HERO_LITE_MQ);
     const sync = () => setReduced(mq.matches);
     sync();
     mq.addEventListener("change", sync);

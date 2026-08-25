@@ -1,5 +1,14 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
+/** Hero lite mode: phones/tablets + reduced-motion only.
+ *  Do NOT add bare `(pointer: coarse)` — touchscreen laptops ≥1024 match it and freeze cinema. */
+export const HERO_LITE_MQ =
+  "(prefers-reduced-motion: reduce), (max-width: 1023px)";
+
+export function matchesHeroLite() {
+  return typeof window !== "undefined" && window.matchMedia(HERO_LITE_MQ).matches;
+}
+
 type InViewOptions = {
   once?: boolean;
   rootMargin?: string;

@@ -928,7 +928,7 @@ export function ProcessBento() {
           </div>
         </Reveal>
 
-        <Reveal delay={80}>
+        {/* <Reveal delay={80}>
           <ProcessFlow />
         </Reveal>
 
@@ -946,9 +946,9 @@ export function ProcessBento() {
               </li>
             ))}
           </ul>
-        </Reveal>
+        </Reveal> */}
 
-        <Reveal delay={140}>
+        {/* <Reveal delay={140}>
           <div className="process-bento-cta">
             <div className="process-bento-cta-lead">
               <span className="process-bento-cta-icon" aria-hidden>
@@ -961,7 +961,7 @@ export function ProcessBento() {
               {ctas.bookDemo.label}
             </button>
           </div>
-        </Reveal>
+        </Reveal> */}
 
         {/* Previous header + live ProcessRail (unmounted 2026-08-25)
         <Reveal>

@@ -63223,3 +63223,179 @@ button.process-bento-cta-link {
     transform: translateY(-50%);
   }
 }
+
+/* ── Laptop / MacBook Air hero fit (2026-08-25) ──
+   Large screens keep the 35rem console. Short laptop viewports (Air 13/15,
+   1470×956, 1512×982, Chrome/Safari chrome) cropped the 7-step rail because
+   --hero-card-h 35rem + 11rem offset + workflow bar exceeded 100dvh, and
+   Safari ignores zoom:0.85 (transform:scale does not shrink layout).
+   Lock one screen, drop zoom, size the desk from leftover dvh. */
+
+@media (min-width: 1024px) and (max-width: 1919px) and (max-height: 1100px) {
+  .hero-fit {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    max-height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+
+  .hero-fit-zoom {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 100%;
+    min-height: 0;
+    height: 100%;
+    max-height: 100%;
+    zoom: 1;
+    transform: none;
+  }
+
+  .hero-fit-offset {
+    flex-shrink: 0;
+    height: calc(4.5rem + 0.7rem);
+  }
+
+  .hero-fit-main {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    align-items: center;
+  }
+
+  .hero-fit-main > .container-page {
+    padding-block: 0.45rem 0.35rem;
+  }
+
+  .hero-fit-console .hero-tilt-card {
+    --hero-card-h: clamp(16.5rem, calc(100dvh - 23.5rem), 26rem);
+  }
+
+  .hero-fit-console .hero-tilt-card,
+  .hero-fit-console .hero-tilt-scene:hover .hero-tilt-card {
+    transform: rotateX(5deg) rotateY(-11deg) rotateZ(-1deg);
+  }
+
+  .hero-fit .hero-copy .hero-copy-head {
+    margin-top: 0.85rem;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+  }
+
+  .hero-fit .hero-copy-typewriter {
+    font-size: clamp(1.35rem, 2.3vw, 2.05rem);
+  }
+
+  .hero-fit .hero-copy .hero-copy-dense {
+    margin-top: 0.7rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+
+  .hero-fit .hero-copy .hero-copy-actions {
+    margin-top: 0.85rem;
+  }
+
+  .hero-fit .hero-copy .hero-copy-features {
+    margin-top: 0.75rem;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .hero-fit-dots {
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .hero-workflow {
+    flex-shrink: 0;
+    margin: 0 0 0.65rem;
+  }
+
+  .hero-workflow-rail {
+    padding: 0.55rem 0.85rem;
+    column-gap: 1.1rem;
+  }
+
+  .hero-workflow-copy strong {
+    font-size: 0.6875rem;
+  }
+
+  .hero-workflow-copy span {
+    font-size: 0.625rem;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .hero-workflow-caption {
+    margin-top: 0.4rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) and (max-height: 900px) {
+  .hero-fit-offset {
+    height: calc(4.5rem + 0.45rem);
+  }
+
+  .hero-fit-console .hero-tilt-card {
+    --hero-card-h: clamp(15.5rem, calc(100dvh - 21.5rem), 22.5rem);
+  }
+
+  .hero-fit .hero-copy .hero-copy-head {
+    margin-top: 0.55rem;
+    font-size: clamp(1.4rem, 2.3vw, 2rem);
+  }
+
+  .hero-fit .hero-copy-typewriter {
+    font-size: clamp(1.2rem, 2vw, 1.7rem);
+  }
+
+  .hero-fit .hero-copy .hero-copy-dense {
+    margin-top: 0.45rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .hero-fit .hero-copy .hero-copy-actions {
+    margin-top: 0.6rem;
+  }
+
+  .hero-fit .hero-copy .hero-copy-features {
+    margin-top: 0.5rem;
+    gap: 0.35rem 0.65rem;
+  }
+
+  .hero-workflow-rail {
+    padding: 0.45rem 0.7rem;
+  }
+
+  .hero-workflow-caption {
+    margin-top: 0.3rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) and (max-height: 800px) {
+  .hero-fit-console .hero-tilt-card {
+    --hero-card-h: clamp(14.5rem, calc(100dvh - 19.75rem), 19.5rem);
+  }
+
+  .hero-workflow-caption {
+    display: none;
+  }
+
+  .hero-fit .hero-copy .hero-copy-feature-copy span {
+    display: none;
+  }
+}
+}

@@ -588,7 +588,7 @@ export function SellerTools() {
   return (
     <section
       id="sellers"
-      className="sto-section section-curve relative isolate scroll-mt-24 bg-background py-16 sm:py-24"
+      className="sto-section section-curve relative isolate scroll-mt-24 bg-background py-8 sm:py-8"
       aria-labelledby="sellers-title"
     >
       <SectionBackdrop image="concertCrowd" tone="light" strength={0.08} />

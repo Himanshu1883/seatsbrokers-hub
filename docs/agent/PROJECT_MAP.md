@@ -25,7 +25,7 @@ SeatsBrokers (plural) marketing site for a B2B technology platform for professio
 - Data: copy + demo tables in `src/content/*.ts`
 - Infra: Lovable-connected git (`AGENTS.md` — no history rewrite). Vite via `@lovable.dev/vite-tanstack-config`
 
-Nav (Phase 2): Platform, Products (`/products`), Integrations, API, About. Right: Login, Book a Demo (primary), Become a Seller (`/become-a-seller`). Product hrefs in `site.ts` `productHrefs`. Homepage journey is the master 11-section brief (`src/routes/index.tsx`). `/platform` is the operating ecosystem (Discover → Pay & settle). `/integrations` maps what connects; SeatsLink™ is `/products/seatslink`; `/api` is the developer contract.
+Nav (Phase 2): Platform, Products (`/products`), Integrations, API, About. Right: Login, Become a Seller (`/become-a-seller`). Book a Demo hidden from nav (Hero / FinalCTA / `/book-demo` keep it). Product hrefs in `site.ts` `productHrefs`. Homepage journey is the master 11-section brief (`src/routes/index.tsx`). `/platform` is the operating ecosystem (Discover → Pay & settle). `/integrations` maps what connects; SeatsLink™ is `/products/seatslink`; `/api` is the developer contract.
 
 ## Repository Structure
 

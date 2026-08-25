@@ -209,7 +209,7 @@ main > .section-curve:first-child {
   border-bottom-right-radius: clamp(1rem, 2vw, 1.5rem);
 }
 
-/* Shared section kicker â readable at a glance for section orientation */
+/* Shared section kicker Ã¢ÂÂ readable at a glance for section orientation */
 @utility section-eyebrow {
   font-family: var(--font-mono);
   font-size: clamp(0.875rem, 0.8rem + 0.35vw, 1.0625rem);
@@ -334,9 +334,9 @@ main > .section-curve:first-child {
   color: color-mix(in oklab, var(--foreground) 62%, transparent);
 }
 
-/* Globe scroll â reserved heading band (flex-shrink: 0, below the 4.5rem
+/* Globe scroll Ã¢ÂÂ reserved heading band (flex-shrink: 0, below the 4.5rem
    nav). Cards use matching padding so they never enter this slot.
-   Short viewports shrink type + inset; â¥1080px keeps the first-slide gap. */
+   Short viewports shrink type + inset; Ã¢ÂÂ¥1080px keeps the first-slide gap. */
 .globe-scroll-section {
   --globe-nav-clear: 4.5rem;
   --globe-heading-band: 8.5rem;
@@ -759,7 +759,7 @@ main > .section-curve:first-child {
   animation: hero-slide-progress linear forwards;
 }
 
-/* Hero copy â stable height from tallest slide (no clipping) */
+/* Hero copy Ã¢ÂÂ stable height from tallest slide (no clipping) */
 
 .hero-copy {
   display: grid;
@@ -1040,7 +1040,7 @@ main > .section-curve:first-child {
 }
 
 .hero-eco-ticker-track span::before {
-  content: "â";
+  content: "Ã¢ÂÂ";
   margin-right: 0.45rem;
   color: var(--primary);
   font-size: 6px;
@@ -1979,7 +1979,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Ã¢ââ¬Ã¢ââ¬ Hero 3D tilt dashboard Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
+/* ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ Hero 3D tilt dashboard ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ */
 
 .hero-tilt-scene {
   perspective: 1600px;
@@ -2405,7 +2405,7 @@ main > .section-curve:first-child {
   animation: partner-blink 1.6s ease-in-out infinite;
 }
 
-/* Intel â terminal rail + matrix */
+/* Intel Ã¢ÂÂ terminal rail + matrix */
 .hero-intel-rail {
   display: flex;
   width: 2.75rem;
@@ -2572,7 +2572,7 @@ main > .section-curve:first-child {
   border-top-style: dashed;
 }
 
-/* Pricing Ã¢â¬â ticker tape + trader board */
+/* Pricing ÃÂ¢Ã¢ÂÂ¬Ã¢ÂÂ ticker tape + trader board */
 .hero-price-brand {
   display: inline-flex;
   align-items: center;
@@ -2777,7 +2777,7 @@ main > .section-curve:first-child {
   color: var(--ht-text);
 }
 
-/* Sync Ã¢â¬â ops orbit console */
+/* Sync ÃÂ¢Ã¢ÂÂ¬Ã¢ÂÂ ops orbit console */
 .hero-sync-status-bar {
   display: inline-flex;
   align-items: center;
@@ -3205,14 +3205,14 @@ main > .section-curve:first-child {
 }
 
 /* Nav-height spacer. 4.5rem bar + extra gap so the pill clears the light overlay.
-   Desktop (â¥1024px) uses a larger clamp below â do not shrink it.
-   Laptop 1024â1919 zooms .hero-fit-zoom to 0.85, so that band bumps the
+   Desktop (Ã¢ÂÂ¥1024px) uses a larger clamp below Ã¢ÂÂ do not shrink it.
+   Laptop 1024Ã¢ÂÂ1919 zooms .hero-fit-zoom to 0.85, so that band bumps the
    offset further so the extra pad still reads after zoom. */
 .hero-fit-offset {
   height: calc(4.5rem + 1.75rem);
 }
 
-/* Homepage hero pill only â smaller than .section-eyebrow, not uppercase. */
+/* Homepage hero pill only Ã¢ÂÂ smaller than .section-eyebrow, not uppercase. */
 .hero-fit .hero-copy .hero-copy-eyebrow {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
@@ -3223,16 +3223,16 @@ main > .section-curve:first-child {
   padding: 0.18rem 0.5rem;
 }
 
-/* Homepage hero â mobile (<1024px): one locked frame, console-led.
+/* Homepage hero Ã¢ÂÂ mobile (<1024px): one locked frame, console-led.
    Height is 100svh, never dvh: dvh re-measures when the mobile browser
    toolbar collapses, which resized the console slot mid-scroll.
    Every rule below targets a stable hook (.hero-copy-head/-lead/-actions,
    .hero-copy-dense/-brief/-tags) and NOT .hero-copy-delay-*, because the
-   delay classes only exist on the active slide layer â sizing only the
+   delay classes only exist on the active slide layer Ã¢ÂÂ sizing only the
    active layer let the hidden measure layers (default desktop type) set
    the grid height, so the reserved copy box changed on every slide swap.
    Copy on phones = pill + headline + typewriter + short body + two CTAs.
-   Do not display:none the pill or short body â shrink type if the frame is tight.
+   Do not display:none the pill or short body Ã¢ÂÂ shrink type if the frame is tight.
    Long lead, dense body/bullets and tags stay desktop-only. */
 @media (max-width: 1023px) {
   .hero-fit {
@@ -3347,8 +3347,8 @@ main > .section-curve:first-child {
 
   /* Console still owns the leftover row and bleeds the gutters, but is
      scaled ~12% off the previous full-slot 1.0 so it stays dominant
-     without covering CTAs or cropping at 320â430px. Do not return to
-     0.84/0.78 â those made the HUD a postage stamp. --hero-bleed only
+     without covering CTAs or cropping at 320Ã¢ÂÂ430px. Do not return to
+     0.84/0.78 Ã¢ÂÂ those made the HUD a postage stamp. --hero-bleed only
      eats the gutter, so the stage can never be wider than the viewport.
      Scale is visual only; the reserved flex slot does not reflow. */
   .hero-fit-console {
@@ -3399,7 +3399,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Short screens (â¤700px tall, incl. Safari chrome on many iPhones): keep
+/* Short screens (Ã¢ÂÂ¤700px tall, incl. Safari chrome on many iPhones): keep
    pill + short body, shrink type instead of display:none. iPhone 375/390
    innerHeight often lands under 700px with the URL bar expanded. */
 @media (max-width: 1023px) and (max-height: 700px) {
@@ -3443,7 +3443,7 @@ main > .section-curve:first-child {
 
 /* Tablets still use the mobile lock, but they have far more height to give the
    console, so lift the phone caps instead of leaving dead space around the card.
-   Type boost is gated on min-height so iPhone landscape (â¥640px wide, short)
+   Type boost is gated on min-height so iPhone landscape (Ã¢ÂÂ¥640px wide, short)
    keeps the short-screen sizes above. */
 @media (min-width: 640px) and (max-width: 1023px) and (min-height: 701px) {
   .hero-fit .hero-copy .hero-copy-eyebrow {
@@ -3483,7 +3483,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Landscape phones â side by side instead of stacked, so the console keeps a
+/* Landscape phones Ã¢ÂÂ side by side instead of stacked, so the console keeps a
    usable height and the CTAs stay above the fold. */
 @media (max-width: 1023px) and (orientation: landscape) and (max-height: 560px) {
   .hero-fit-grid {
@@ -3516,9 +3516,9 @@ main > .section-curve:first-child {
   display: contents;
 }
 
-/* Homepage hero â desktop / MacBook: copy + console as one centered unit.
+/* Homepage hero Ã¢ÂÂ desktop / MacBook: copy + console as one centered unit.
    min-height 100dvh (not a locked height) so short laptops grow instead of cropping.
-   Do not use minmax(0,1fr) here â that shrinks the middle row and clips CTAs/dots. */
+   Do not use minmax(0,1fr) here Ã¢ÂÂ that shrinks the middle row and clips CTAs/dots. */
 @media (min-width: 1024px) {
   .hero-fit {
     display: flex;
@@ -3586,9 +3586,9 @@ main > .section-curve:first-child {
   }
 }
 
-/* Laptop / MacBook CSS px (1024â1919): 85% zoom on the whole inner hero
-   (offset + copy + console + CTAs + dots). 1512Ã982, 1440Ã900, 1680Ã1050.
-   â¥1920px stays 100% so this does not stack on any large-screen html zoom. */
+/* Laptop / MacBook CSS px (1024Ã¢ÂÂ1919): 85% zoom on the whole inner hero
+   (offset + copy + console + CTAs + dots). 1512ÃÂ982, 1440ÃÂ900, 1680ÃÂ1050.
+   Ã¢ÂÂ¥1920px stays 100% so this does not stack on any large-screen html zoom. */
 @media (min-width: 1024px) and (max-width: 1919px) {
   .hero-fit-zoom {
     flex: 0 0 auto;
@@ -3619,7 +3619,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Wide but short windows (â¥1920 CSS px) â console-only scale, no extra hero zoom. */
+/* Wide but short windows (Ã¢ÂÂ¥1920 CSS px) Ã¢ÂÂ console-only scale, no extra hero zoom. */
 @media (min-width: 1920px) and (max-height: 980px) {
   .hero-fit-console {
     --hero-console-scale: 0.88;
@@ -3673,7 +3673,7 @@ main > .section-curve:first-child {
 }
 
 /* Mobile console keeps its 3D tilt (set in the hero-fit block above) but never
-   floats â the drift is what made the locked frame feel unstable. */
+   floats Ã¢ÂÂ the drift is what made the locked frame feel unstable. */
 @media (max-width: 1023px) {
   .hero-fit-console .hero-tilt-alive {
     animation: none;
@@ -3749,7 +3749,7 @@ main > .section-curve:first-child {
     transform: translate3d(0, 0, 0);
   }
   to {
-    /* Exactly one group width Ã¢â¬â seamless infinite loop */
+    /* Exactly one group width ÃÂ¢Ã¢ÂÂ¬Ã¢ÂÂ seamless infinite loop */
     transform: translate3d(-50%, 0, 0);
   }
 }
@@ -4002,7 +4002,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ How it works Â· seven-stage 01â07 rebuild (append only) ââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ How it works ÃÂ· seven-stage 01Ã¢ÂÂ07 rebuild (append only) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 .how-it-sticky-pane {
   height: calc(100svh - 6rem);
@@ -4018,7 +4018,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* SeatsFundsâ¢ stage has no product screenshot â it fills the frame with a
+/* SeatsFundsÃ¢ÂÂ¢ stage has no product screenshot Ã¢ÂÂ it fills the frame with a
    static light desk instead of stretching a shorter card. */
 .how-it-desktop-shot[data-kind="desk"] {
   align-self: stretch;
@@ -4189,7 +4189,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Ã¢ââ¬Ã¢ââ¬ Pipeline architecture diagram Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
+/* ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ Pipeline architecture diagram ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ */
 
 .tools-flow {
   --flow-ink: color-mix(in oklab, var(--primary) 50%, transparent);
@@ -4616,7 +4616,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Ã¢ââ¬Ã¢ââ¬ Platform toolkit showcase Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
+/* ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ Platform toolkit showcase ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ */
 
 .toolkit {
   height: auto;
@@ -4896,7 +4896,7 @@ main > .section-curve:first-child {
 
 @media (min-width: 1024px) {
   /* Document flow like HowItWorks: no 100svh lock, no inner wheel trap.
-     Nav is ~4.5rem solid light â do not pin this section under it. */
+     Nav is ~4.5rem solid light Ã¢ÂÂ do not pin this section under it. */
   .toolkit {
     height: auto;
     max-height: none;
@@ -5245,7 +5245,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Ã¢ââ¬Ã¢ââ¬ Stats (light variants) Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
+/* ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ Stats (light variants) ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ */
 
 .stats-ledger {
   background: color-mix(in oklab, var(--surface) 88%, var(--primary) 4%);
@@ -5276,7 +5276,7 @@ main > .section-curve:first-child {
     0 30px 60px -25px color-mix(in oklab, var(--primary) 45%, transparent);
 }
 
-/* Ã¢ââ¬Ã¢ââ¬ Section event backdrops (light Unsplash atmosphere) Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
+/* ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ Section event backdrops (light Unsplash atmosphere) ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ */
 
 .section-backdrop {
   position: absolute;
@@ -5364,7 +5364,7 @@ main > .section-curve:first-child {
     linear-gradient(90deg, color-mix(in oklab, var(--background) 6%, transparent) 1px, transparent 1px);
 }
 
-/* Ã¢ââ¬Ã¢ââ¬ Process bento Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
+/* ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ Process bento ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ */
 
 /* The scene's intrinsic ratio (and its aspect-ratio/min-height on mobile) was
    transferred up as a minimum inline size, so the 1fr track grew past the
@@ -5633,7 +5633,7 @@ main > .section-curve:first-child {
   animation: bento-price-float 2.2s ease-in-out infinite;
 }
 
-/* Chart marker (HTML, not svg â see ReportIllustration) */
+/* Chart marker (HTML, not svg Ã¢ÂÂ see ReportIllustration) */
 .bento-chart-marker {
   position: absolute;
   z-index: 2;
@@ -5699,7 +5699,7 @@ main > .section-curve:first-child {
   animation-delay: 1.2s;
 }
 
-/* Bento layered scene â background image + live visualization */
+/* Bento layered scene Ã¢ÂÂ background image + live visualization */
 
 .bento-scene {
   position: relative;
@@ -5914,9 +5914,9 @@ main > .section-curve:first-child {
   }
 }
 
-/* Process bento â mobile / tablet (<1024px). Cards are one per row here, so the
+/* Process bento Ã¢ÂÂ mobile / tablet (<1024px). Cards are one per row here, so the
    scene gets a bigger stage. Height comes from an aspect ratio instead of a fixed
-   rem value: `.bento-illus-svg` keeps its 300Ã160 viewBox while the HTML chips are
+   rem value: `.bento-illus-svg` keeps its 300ÃÂ160 viewBox while the HTML chips are
    positioned as a % of the frame, so any other ratio letterboxed the svg and pulled
    the chips off the paths. The audit + wide scenes have no viewBox to honour
    (list / preserveAspectRatio="none" chart), so they can run taller. */
@@ -5952,7 +5952,7 @@ main > .section-curve:first-child {
 
   /* The chips already carry `translate: -50% -50%` from utilities, so the
      keyframe's own translate() centred them twice and pushed the first chip
-     off the left edge. Float only â the utilities do the centring. */
+     off the left edge. Float only Ã¢ÂÂ the utilities do the centring. */
   .bento-node-float {
     animation-name: bento-node-float-centered;
   }
@@ -5985,7 +5985,7 @@ main > .section-curve:first-child {
     display: none;
   }
 
-  /* Scale the overlay glyphs up with the stage â at phone widths the old
+  /* Scale the overlay glyphs up with the stage Ã¢ÂÂ at phone widths the old
      sizes were the reason the scenes read as unclear. */
   .bento-node-float,
   .bento-orbit-node {
@@ -6027,7 +6027,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Smallest phones â trade card padding for illustration width. */
+/* Smallest phones Ã¢ÂÂ trade card padding for illustration width. */
 @media (max-width: 359px) {
   .process-bento-card {
     padding: 1rem;
@@ -6067,7 +6067,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Ã¢ââ¬Ã¢ââ¬ Partner product showcase (light) Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬Ã¢ââ¬ */
+/* ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ Partner product showcase (light) ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ÃÂ¢Ã¢ÂÂÃ¢ÂÂ¬ */
 
 .partner-showcase {
   background:
@@ -6341,7 +6341,7 @@ main > .section-curve:first-child {
   box-shadow: 0 0 10px color-mix(in oklab, var(--primary) 40%, transparent);
 }
 
-/* Lightbox Ã¢â¬â hide default dialog close; we render our own */
+/* Lightbox ÃÂ¢Ã¢ÂÂ¬Ã¢ÂÂ hide default dialog close; we render our own */
 .partner-lightbox > button.absolute {
   display: none;
 }
@@ -6387,7 +6387,7 @@ main > .section-curve:first-child {
 }
 
 
-/* Journey in numbers (in-view autoplay Â· light) */
+/* Journey in numbers (in-view autoplay ÃÂ· light) */
 
 .journey-num {
   height: auto;
@@ -6702,7 +6702,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ÎÃ¶ÃÎÃ¶Ã Network constellation (light â¬â left/right) ÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶ÃÎÃ¶Ã */
+/* ÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂ Network constellation (light Ã¢ÂÂ¬Ã¢ÂÂ left/right) ÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂÃÂÃÂ¶ÃÂ */
 
 .constellation {
   background:
@@ -7061,7 +7061,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ Network constellation click stages (nc-*) â not scroll-pinned ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Network constellation click stages (nc-*) Ã¢ÂÂ not scroll-pinned Ã¢ÂÂÃ¢ÂÂ */
 
 .nc-section {
   --nc-stage-ms: 1800ms;
@@ -7193,7 +7193,7 @@ main > .section-curve:first-child {
   padding: 1.25rem;
   box-shadow: 0 1px 2px color-mix(in oklab, var(--foreground) 6%, transparent);
   /* Stage copy is reserved (ghost longest title/body) so 1.8s auto-advance
-     never grows or shrinks this card â or the sections around it. */
+     never grows or shrinks this card Ã¢ÂÂ or the sections around it. */
   flex-shrink: 0;
   min-height: 16.75rem;
 }
@@ -7511,7 +7511,7 @@ main > .section-curve:first-child {
 
 /* Network graph (scroll-driven build) */
 
-/* ââ Network graph (scroll-driven build) âââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Network graph (scroll-driven build) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 .netgraph {
   background:
@@ -8170,7 +8170,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Market path scroll (GSAP POV curve Â· light) */
+/* Market path scroll (GSAP POV curve ÃÂ· light) */
 
 .market-path {
   background:
@@ -9104,7 +9104,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Live sync feed + connected marketplaces â vertical ticker windows */
+/* Live sync feed + connected marketplaces Ã¢ÂÂ vertical ticker windows */
 .fo-feed-window {
   position: relative;
   overflow: hidden;
@@ -9200,7 +9200,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ TwoTrack â 3D section reveal (in-view settle, not scroll-scrub) ââ */
+/* Ã¢ÂÂÃ¢ÂÂ TwoTrack Ã¢ÂÂ 3D section reveal (in-view settle, not scroll-scrub) Ã¢ÂÂÃ¢ÂÂ */
 
 .two-track-cinema {
   position: relative;
@@ -11613,7 +11613,7 @@ main > .section-curve:first-child {
   max-width: 38rem;
 }
 
-/* Copy panel â simple */
+/* Copy panel Ã¢ÂÂ simple */
 
 .lc-copy-title {
   margin-top: 1rem;
@@ -11929,7 +11929,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Brokers hero â live console wall.
+/* Brokers hero Ã¢ÂÂ live console wall.
    Shared padding-top clears the 4.5rem fixed light nav + 1.25rem gap
    (`clamp(5.75rem, 8vh, 7.5rem)`). Product/company heroes inherit this
    (abt/bdm/plt/faq/legal/ct + PageHero). Contact desktop zeros section
@@ -12749,7 +12749,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Event catalog â centered copy + flat console */
+/* Event catalog Ã¢ÂÂ centered copy + flat console */
 
 .ec-section {
   height: auto;
@@ -13332,7 +13332,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ /brokers phone + small-tablet (desktop â¥1024px unchanged) ââ */
+/* Ã¢ÂÂÃ¢ÂÂ /brokers phone + small-tablet (desktop Ã¢ÂÂ¥1024px unchanged) Ã¢ÂÂÃ¢ÂÂ */
 @media (max-width: 639px) {
   .bh-hero {
     padding-bottom: clamp(3.25rem, 12vw, 4.35rem);
@@ -13568,7 +13568,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Inventory management â centered copy + layered console */
+/* Inventory management Ã¢ÂÂ centered copy + layered console */
 
 .inv-section {
   overflow: hidden;
@@ -14432,7 +14432,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* FeatureGrid â infinity dual-lobe orbit (light theme) */
+/* FeatureGrid Ã¢ÂÂ infinity dual-lobe orbit (light theme) */
 
 .fg-orbit-panel {
   position: relative;
@@ -15981,7 +15981,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* WorkflowSteps â glow cards */
+/* WorkflowSteps Ã¢ÂÂ glow cards */
 
 .ws-flow-panel {
   position: relative;
@@ -16201,7 +16201,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ Section connector âââââââââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Section connector Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 .sx-connector {
   position: relative;
@@ -16830,7 +16830,7 @@ main > .section-curve:first-child {
   animation: lc-feed-scroll 18s linear infinite;
 }
 
-/* ââ Market intelligence terminal ââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Market intelligence terminal Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 .mi-console {
   width: 100%;
@@ -17352,7 +17352,7 @@ main > .section-curve:first-child {
   color: color-mix(in oklab, var(--foreground) 85%, transparent);
 }
 
-/* ââ AI pricing cockpit ââââââââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ AI pricing cockpit Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 .ap-console {
   width: 100%;
@@ -18095,8 +18095,8 @@ main > .section-curve:first-child {
   color: color-mix(in oklab, var(--foreground) 82%, transparent);
 }
 
-/* ââ /brokers mobile cascade (after unscoped bh/lc/mi/ap/pay/sx) ââ
-   Desktop â¥1024px is unchanged. Placed here so phone rules win. */
+/* Ã¢ÂÂÃ¢ÂÂ /brokers mobile cascade (after unscoped bh/lc/mi/ap/pay/sx) Ã¢ÂÂÃ¢ÂÂ
+   Desktop Ã¢ÂÂ¥1024px is unchanged. Placed here so phone rules win. */
 @media (max-width: 639px) {
   .bh-hero {
     padding-bottom: clamp(3.25rem, 12vw, 4.35rem);
@@ -18252,7 +18252,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ Travel quotation builder ââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Travel quotation builder Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 .qb-console {
   width: 100%;
@@ -18839,7 +18839,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ Travel inventory access âââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Travel inventory access Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 .ia-console {
   width: 100%;
@@ -19260,7 +19260,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ Travel inventory access showcase (stacked cards) ââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Travel inventory access showcase (stacked cards) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 .ia-showcase {
   width: 100%;
@@ -19419,7 +19419,7 @@ main > .section-curve:first-child {
   color: var(--foreground);
 }
 
-/* ââ Travel search filter zoom (diagonal glass cards) âââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Travel search filter zoom (diagonal glass cards) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 .sf-wrap {
   margin-top: 2rem;
@@ -19838,7 +19838,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ Travel partner orders â fulfillment desk âââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Travel partner orders Ã¢ÂÂ fulfillment desk Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 .po-console {
   width: 100%;
@@ -20442,7 +20442,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ Marketplace connectivity consoles âââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Marketplace connectivity consoles Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 .ch-console,
 .ld-console,
@@ -21100,7 +21100,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ Travel partners: Partner Terms & Settlement âââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Travel partners: Partner Terms & Settlement Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 .pt-layout {
   display: grid;
@@ -23577,7 +23577,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Travel hero â partner desk dashboard (TravelPartnersHero right stage) */
+/* Travel hero Ã¢ÂÂ partner desk dashboard (TravelPartnersHero right stage) */
 
 .tpd-stage {
   position: relative;
@@ -24278,7 +24278,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Marketplace hero â channel operations mosaic (MarketplaceHero right stage) */
+/* Marketplace hero Ã¢ÂÂ channel operations mosaic (MarketplaceHero right stage) */
 
 .mkh-stage {
   position: relative;
@@ -25188,9 +25188,9 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ WorkflowInfraCanvas glass + hover two-shade overlay (wic-glass-*) ââ
-   Idle: glass surface only (no orbs). Hover: two static corner blobs â
-   gray top-left, pale teal bottom-right â clipped, copy stays clear. */
+/* Ã¢ÂÂÃ¢ÂÂ WorkflowInfraCanvas glass + hover two-shade overlay (wic-glass-*) Ã¢ÂÂÃ¢ÂÂ
+   Idle: glass surface only (no orbs). Hover: two static corner blobs Ã¢ÂÂ
+   gray top-left, pale teal bottom-right Ã¢ÂÂ clipped, copy stays clear. */
 
 .ws-flow-card-outer.wic-glass-host {
   overflow: hidden;
@@ -25280,7 +25280,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Event intelligence hero â AI forecast lens (EventIntelHero right stage)
+/* Event intelligence hero Ã¢ÂÂ AI forecast lens (EventIntelHero right stage)
    Prefix: eih-*  Distinct from tpd-* (partner desk), mkh-* (channel mosaic),
    wic-glass-* (workflow canvas), and fc-* (below-the-fold forecast console). */
 
@@ -26149,7 +26149,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ API page âââââââââââââââââââââââââââââââââââââââââââââââââââââ
+/* Ã¢ÂÂÃ¢ÂÂ API page Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    Hero docs console: apidoc-*
    Auth flow console: apk-*
    Webhook delivery console: whk-*
@@ -26964,7 +26964,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* == Event intelligence â category board (ecb-*) == */
+/* == Event intelligence Ã¢ÂÂ category board (ecb-*) == */
 
 .ecb-eyebrow {
   display: inline-flex;
@@ -27390,7 +27390,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* == Marketplace connectivity â return-path capability board (mcb-*) == */
+/* == Marketplace connectivity Ã¢ÂÂ return-path capability board (mcb-*) == */
 
 .mcb-title {
   margin-top: 1rem;
@@ -27890,7 +27890,7 @@ main > .section-curve:first-child {
   transition: filter 0.3s ease;
 }
 
-/* ââ Footer â equal inline padding, wrap partners, no clipped form ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Footer Ã¢ÂÂ equal inline padding, wrap partners, no clipped form Ã¢ÂÂÃ¢ÂÂ */
 .site-footer {
   --footer-inline: clamp(1rem, 4.8vw, 1.75rem);
 }
@@ -27946,7 +27946,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ /travel-partners phone + small-tablet (desktop â¥1024px unchanged) ââ */
+/* Ã¢ÂÂÃ¢ÂÂ /travel-partners phone + small-tablet (desktop Ã¢ÂÂ¥1024px unchanged) Ã¢ÂÂÃ¢ÂÂ */
 
 @media (max-width: 1023px) {
   .ia-console,
@@ -28102,7 +28102,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ /marketplace-connectivity phone + small-tablet (desktop â¥1024px unchanged) ââ */
+/* Ã¢ÂÂÃ¢ÂÂ /marketplace-connectivity phone + small-tablet (desktop Ã¢ÂÂ¥1024px unchanged) Ã¢ÂÂÃ¢ÂÂ */
 
 @media (max-width: 1023px) {
   .ch-console,
@@ -28218,7 +28218,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ /event-intelligence phone + small-tablet (desktop â¥1024px unchanged) ââ
+/* Ã¢ÂÂÃ¢ÂÂ /event-intelligence phone + small-tablet (desktop Ã¢ÂÂ¥1024px unchanged) Ã¢ÂÂÃ¢ÂÂ
    Prefixes: eih-* er-* ds-* fc-* vi-* vm-* ecb-*
    Do not restyle mkh/tpd/apidoc/mi/landing hero from this block. */
 
@@ -28658,7 +28658,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ /api phone + small-tablet (desktop â¥1024px unchanged) ââ
+/* Ã¢ÂÂÃ¢ÂÂ /api phone + small-tablet (desktop Ã¢ÂÂ¥1024px unchanged) Ã¢ÂÂÃ¢ÂÂ
    Prefixes: apidoc-* apk-* whk-*
    Do not restyle eih/mkh/tpd/mi/landing hero from this block.
    Hero .apidoc-room keeps existing clamps; internals reflow. */
@@ -28900,20 +28900,20 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ Homepage hero console â light HUD âââââââââââââââââââââââââââââââââââ
+/* Ã¢ÂÂÃ¢ÂÂ Homepage hero console Ã¢ÂÂ light HUD Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    Light-glass retheme of the tilt stage (.hero-tilt-*) plus `hero-hud-*`
    internals. White/off-white panels, light gray chrome, dark text, primary
    green accents. The console index follows the hero slide:
-     [data-mode="platform"] â platform layers + system feed
-     [data-mode="broker"]   â one catalog distributed across channels
-     [data-mode="travel"]   â partner margin / quote desk
+     [data-mode="platform"] Ã¢ÂÂ platform layers + system feed
+     [data-mode="broker"]   Ã¢ÂÂ one catalog distributed across channels
+     [data-mode="travel"]   Ã¢ÂÂ partner margin / quote desk
    All three share the same fixed --hero-card-h box, so switching slides
    never resizes the hero. Mobile scale/centering rules live in the
    `hero-fit` block above and still apply (class names unchanged).
    Legacy .hero-shell-* / .hero-intel-* / .hero-price-* / .hero-sync-* /
    .hero-mode-* rules are no longer referenced by any component. */
 
-/* Headline reserve â ghost holds the longest phrase so the typewriter line
+/* Headline reserve Ã¢ÂÂ ghost holds the longest phrase so the typewriter line
    box never grows or shrinks while typing or switching slides. */
 .hero-copy-typeline {
   position: relative;
@@ -29021,7 +29021,7 @@ main > .section-curve:first-child {
   );
 }
 
-/* Slide swap â quick jump-up / slide-in (no crossfade blur) */
+/* Slide swap Ã¢ÂÂ quick jump-up / slide-in (no crossfade blur) */
 .hero-hud-swap {
   position: relative;
   z-index: 2;
@@ -29245,7 +29245,7 @@ main > .section-curve:first-child {
   margin-bottom: 0;
 }
 
-/* 1 â Platform layers + system feed */
+/* 1 Ã¢ÂÂ Platform layers + system feed */
 .hero-hud-split {
   display: grid;
   flex: 1 1 auto;
@@ -29479,7 +29479,7 @@ main > .section-curve:first-child {
   color: var(--primary);
 }
 
-/* 2 â Distribution matrix */
+/* 2 Ã¢ÂÂ Distribution matrix */
 .hero-hud-listing {
   display: flex;
   flex-shrink: 0;
@@ -29692,7 +29692,7 @@ main > .section-curve:first-child {
   color: var(--ht-muted);
 }
 
-/* 3 â Partner quote desk */
+/* 3 Ã¢ÂÂ Partner quote desk */
 .hero-hud-chips {
   display: flex;
   flex-shrink: 0;
@@ -30042,7 +30042,7 @@ main > .section-curve:first-child {
 }
 
 /* Phone console box (<480px): the breadcrumb is a bare text node inside an
-   inline-flex, so text-overflow can't ellipsise it â it hard-cut against the LIVE
+   inline-flex, so text-overflow can't ellipsise it Ã¢ÂÂ it hard-cut against the LIVE
    badge. Tighten the tracking so the full path fits, and fade the tail as a guard. */
 @media (max-width: 479px) {
   .hero-hud-path {
@@ -30055,7 +30055,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Narrow console box (small phones, ~300â375px card width) */
+/* Narrow console box (small phones, ~300Ã¢ÂÂ375px card width) */
 @media (max-width: 400px) {
   .hero-hud-chips span:last-child {
     display: none;
@@ -30076,7 +30076,7 @@ main > .section-curve:first-child {
     display: none;
   }
 
-  /* Give the whole left column to the layer name â with the meta column in
+  /* Give the whole left column to the layer name Ã¢ÂÂ with the meta column in
      place the labels ellipsised down to a single letter. */
   .hero-hud-layer-meta {
     display: none;
@@ -30113,7 +30113,7 @@ main > .section-curve:first-child {
 }
 
 /* ------------------------------------------------------------------ */
-/* Marketplace hub â homepage Marketplaces.tsx (mps-hub-*)            */
+/* Marketplace hub Ã¢ÂÂ homepage Marketplaces.tsx (mps-hub-*)            */
 /* Full-width center logo + glass pods; dual inward marquees.         */
 /* ------------------------------------------------------------------ */
 
@@ -30442,12 +30442,12 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ /about â company atlas + journey + ops (abt-*) âââââââââââââââ
+/* Ã¢ÂÂÃ¢ÂÂ /about Ã¢ÂÂ company atlas + journey + ops (abt-*) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    Unique atlas hero (not a clone of bh-wall / mkh / eih / apidoc).
    Room frame matches other product heroes:
-   clamp(22rem, 52vh, 34rem) / tablet 18â26 / phone 16â22.
+   clamp(22rem, 52vh, 34rem) / tablet 18Ã¢ÂÂ26 / phone 16Ã¢ÂÂ22.
    Extra hero padding clears the overlay nav (including MacBook heights).
-   Ops console is company coverage â not a channel/price ticker.
+   Ops console is company coverage Ã¢ÂÂ not a channel/price ticker.
    Distinct from tpd-* mkh-* eih-* apidoc-* wic-glass-* mps-hub-*. */
 
 .bh-hero.abt-hero {
@@ -31677,7 +31677,7 @@ main > .section-curve:first-child {
   color: var(--muted-foreground);
 }
 
-/* Presence â dark offices band */
+/* Presence Ã¢ÂÂ dark offices band */
 
 .abt-presence {
   display: grid;
@@ -31884,7 +31884,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* 1280â1512: keep 3+2 tiles and journey columns from overflowing */
+/* 1280Ã¢ÂÂ1512: keep 3+2 tiles and journey columns from overflowing */
 @media (min-width: 1024px) and (max-width: 1512px) {
   .abt-facts {
     gap: 0.7rem;
@@ -32082,7 +32082,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* Company ops console â unique to /about (not a channel/price ticker) */
+/* Company ops console Ã¢ÂÂ unique to /about (not a channel/price ticker) */
 
 .abt-ops {
   width: 100%;
@@ -32353,11 +32353,11 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ /book-demo â session briefing hero (bdm-*) ââââââââââââââââââââ
+/* Ã¢ÂÂÃ¢ÂÂ /book-demo Ã¢ÂÂ session briefing hero (bdm-*) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    Unique briefing desk (calendar slots + agenda). Not a clone of
    bh-wall / tpd / mkh / eih / apidoc / abt atlas. Room frame matches
-   other product heroes: clamp(22rem, 52vh, 34rem) / tablet 18â26 /
-   phone 16â22. Extra hero padding clears the overlay nav. */
+   other product heroes: clamp(22rem, 52vh, 34rem) / tablet 18Ã¢ÂÂ26 /
+   phone 16Ã¢ÂÂ22. Extra hero padding clears the overlay nav. */
 
 .bh-hero.bdm-hero,
 .bh-hero.plt-hero {
@@ -33024,7 +33024,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ /platform â stack map hero (plt-*) âââââââââââââââââââââââââââ
+/* Ã¢ÂÂÃ¢ÂÂ /platform Ã¢ÂÂ stack map hero (plt-*) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    Unique hub + spine (not a dashboard, mosaic, docs console, atlas
    or briefing desk). Same room clamps as other product heroes. */
 
@@ -33529,7 +33529,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* ââ /book-demo â 45-min session itinerary (bds-*) âââââââââââââââââ
+/* Ã¢ÂÂÃ¢ÂÂ /book-demo Ã¢ÂÂ 45-min session itinerary (bds-*) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    Replaces FeatureGrid on the conversion page. Numbered duration cards
    + proportional minute ruler. Not a live console, not mcb/ecb/orbit. */
 
@@ -35344,7 +35344,7 @@ html.site-nav-locked body {
 /* == Contact page (ct-*) ==
    Compact dark split banner. Copy + HUD photo share ONE height
    (product-hero stage clamp). The PNG is cropped into the right half
-   and cannot size the section. Left vignette is black â transparent
+   and cannot size the section. Left vignette is black Ã¢ÂÂ transparent
    so copy reads; no primary-deep green wash. */
 
 .ct-hero {
@@ -35835,7 +35835,7 @@ html.site-nav-locked body {
   }
 }
 
-/* ââ /about rebuild â intelligence hero + chapter bands (abt-*) ââ
+/* Ã¢ÂÂÃ¢ÂÂ /about rebuild Ã¢ÂÂ intelligence hero + chapter bands (abt-*) Ã¢ÂÂÃ¢ÂÂ
    Unique tech-stage (not office atlas, not brokers wall).
    Top padding inherits .bh-hero (4.5rem nav + gap). */
 
@@ -36345,7 +36345,7 @@ html.site-nav-locked body {
   }
 }
 
-/* ââ Homepage ToolsGrid seat map & tickets desk (smt-*) ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Homepage ToolsGrid seat map & tickets desk (smt-*) Ã¢ÂÂÃ¢ÂÂ */
 
 .smt-pipe {
   display: grid;
@@ -36996,11 +36996,11 @@ html.site-nav-locked body {
 
 /* == Site nav logo lockup (vector; 2026-08-21) ==
    SeatsBrokers-favicon.svg full lockup (chevrons + wordmark + tagline).
-   viewBox 38 49 491 76 trims empty canvas only (ink 40.9â526.3 Ã 51.4â122.8,
-   ~2u pad â nothing clipped). Same CSS size at 375 / 768 / 1024 / 1512:
+   viewBox 38 49 491 76 trims empty canvas only (ink 40.9Ã¢ÂÂ526.3 ÃÂ 51.4Ã¢ÂÂ122.8,
+   ~2u pad Ã¢ÂÂ nothing clipped). Same CSS size at 375 / 768 / 1024 / 1512:
    height 2.5rem inside the 4.5rem bar; width from SVG aspect 491/76.
-   â¤359px / 320px bar: 2.25rem so padding + hamburger do not overflow.
-   Vector scales at any DPR â no JPEG/PNG, no translate crop, no pixelated. */
+   Ã¢ÂÂ¤359px / 320px bar: 2.25rem so padding + hamburger do not overflow.
+   Vector scales at any DPR Ã¢ÂÂ no JPEG/PNG, no translate crop, no pixelated. */
 .site-nav-bar nav {
   height: 4.5rem;
   max-height: 4.5rem;
@@ -37049,7 +37049,7 @@ html.site-nav-locked body {
 }
 
 /* == Homepage quote desk auto-run pipeline (tpa-*) ==
-   Self-running Select â Quote â Margin â Share loop in ToolsGrid TravelTools.
+   Self-running Select Ã¢ÂÂ Quote Ã¢ÂÂ Margin Ã¢ÂÂ Share loop in ToolsGrid TravelTools.
    Every live region has a reserved height so the loop never shifts the page. */
 
 .tpa-rail {
@@ -37192,7 +37192,7 @@ html.site-nav-locked body {
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ââ Mini consoles ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Mini consoles Ã¢ÂÂÃ¢ÂÂ */
 
 .tpa-card {
   --tpa-body-h: 10.5rem;
@@ -37497,7 +37497,7 @@ html.site-nav-locked body {
   color: var(--muted-foreground);
 }
 
-/* ââ Desk cues driven by the same stage state ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Desk cues driven by the same stage state Ã¢ÂÂÃ¢ÂÂ */
 
 .smt-share[data-idle="true"] {
   opacity: 0.62;
@@ -37578,9 +37578,9 @@ html.site-nav-locked body {
 }
 
 /* ------------------------------------------------------------------ */
-/* Marketplace hub â current Marketplaces.tsx (mps-hub-*)             */
+/* Marketplace hub Ã¢ÂÂ current Marketplaces.tsx (mps-hub-*)             */
 /* 3-col grid, 82% ink crop, no X nudge, 88/100px circle.             */
-/* Circle was 112/128px (7rem / 8rem) â ~22% smaller. Disc still fills */
+/* Circle was 112/128px (7rem / 8rem) Ã¢ÂÂ ~22% smaller. Disc still fills */
 /* the (now smaller) slot so joins dock on the rim across the gap.    */
 /* Restored 2026-08-18 after styles.css rewrite dropped these rules.  */
 /* ------------------------------------------------------------------ */
@@ -37672,8 +37672,8 @@ html.site-nav-locked body {
   height: var(--mps-hub-slot);
 }
 
-/* PNG 300Ã92; opaque ink 22,27â278,64 (257Ã38). Bbox center = canvas center. */
-/* 82% crop; no translateX â place-items:center puts chevrons+wordmark on the disc. */
+/* PNG 300ÃÂ92; opaque ink 22,27Ã¢ÂÂ278,64 (257ÃÂ38). Bbox center = canvas center. */
+/* 82% crop; no translateX Ã¢ÂÂ place-items:center puts chevrons+wordmark on the disc. */
 .mps-hub-logo-fit {
   position: relative;
   display: block;
@@ -37971,7 +37971,7 @@ html.site-nav-locked body {
 }
 
 /* == Homepage TravelTools quote-desk viewport (tpa-section) ==
-   ToolsGrid TravelTools only. Rail is its own row; Live console + 2Ã2
+   ToolsGrid TravelTools only. Rail is its own row; Live console + 2ÃÂ2
    minis share leftover height. svh, never dvh: dvh remeasures with
    browser chrome and shoves every section below this one. Section is
    not the first homepage band, so 100svh is a min-height, not a nested
@@ -38076,7 +38076,7 @@ html.site-nav-locked body {
 }
 
 @media (min-width: 900px) {
-  /* min-height 100svh (not dvh). Do not lock height + overflow:hidden â
+  /* min-height 100svh (not dvh). Do not lock height + overflow:hidden Ã¢ÂÂ
      that nested scrollport ate wheel over the Live console / map / table.
      Section grows with the desk; wheel anywhere continues document scroll. */
   .tpa-section {
@@ -38139,7 +38139,7 @@ html.site-nav-locked body {
     font-size: clamp(1.15rem, 2.2vh, 1.5rem);
   }
 
-  /* Fill the Live column without gutted chrome â wrap the existing desk. */
+  /* Fill the Live column without gutted chrome Ã¢ÂÂ wrap the existing desk. */
   .tpa-section .smt-console,
   .tpa-section .smt-console .lc-frame,
   .tpa-section .smt-console .lc-bezel,
@@ -38224,11 +38224,11 @@ html.site-nav-locked body {
   }
 }
 
-/* == Brokers SeatsFundsâ¢ payout desk (sfp-*) 2026-08-19 ==
+/* == Brokers SeatsFundsÃ¢ÂÂ¢ payout desk (sfp-*) 2026-08-19 ==
    Live Console on /brokers after PaymentInfrastructureSection.
    USDT / wallet rail is the hero. Qualitative Standard vs crypto switch.
    No volume ladder, sale maths, or KPI amounts. Reserved path / ledger /
-   chips / feed slots so auto-run (sale â withhold â USDT transfer â
+   chips / feed slots so auto-run (sale Ã¢ÂÂ withhold Ã¢ÂÂ USDT transfer Ã¢ÂÂ
    settled, plus a Standard contrast) never shifts layout. */
 
 .sfp-console .lc-screen {
@@ -38942,7 +38942,7 @@ html.site-nav-locked body {
    % Margin card was `position:absolute; right:0` on `.smt-margin-wrap` (the
    button). At 15.5rem it hung left of the listings column and was cropped by
    `.tpa-live` / `.smt-list-card` / `.lc-screen` overflow:hidden. Anchor to the
-   full listings header instead. Live/map/table are not nested Y-scrollers â
+   full listings header instead. Live/map/table are not nested Y-scrollers Ã¢ÂÂ
    wheel over the desk scrolls the page. Absolute overlay does not grow the
    section. */
 
@@ -39146,9 +39146,9 @@ body,
   border-radius: 999px;
 }
 
-/* ââ Stats wallet shuffle (homepage #network-stats) ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Stats wallet shuffle (homepage #network-stats) Ã¢ÂÂÃ¢ÂÂ */
 /* Idle: four cards fanned as a deck. On view: peel, riffle, settle into grid.
-   Grid cells always occupy the settled height â transforms only. */
+   Grid cells always occupy the settled height Ã¢ÂÂ transforms only. */
 
 .stats-wallet {
   overflow: hidden;
@@ -39333,7 +39333,7 @@ body,
   color: var(--muted-foreground);
 }
 
-/* Wallet fan â 2Ã2 (375 / tablet). % is the card itself, so 50% + half-gap
+/* Wallet fan Ã¢ÂÂ 2ÃÂ2 (375 / tablet). % is the card itself, so 50% + half-gap
    moves each cell toward the stage centre. */
 .stats-wallet-card:nth-child(1) {
   --sw-x: calc(50% + var(--sw-gap) / 2 - 6px);
@@ -39609,7 +39609,7 @@ body,
   }
 }
 
-/* Testimonials card top-cap (thin diagonal bar only â not a full-card fill) */
+/* Testimonials card top-cap (thin diagonal bar only Ã¢ÂÂ not a full-card fill) */
 .testimonials-card {
   position: relative;
   overflow: visible;
@@ -39695,9 +39695,9 @@ body,
 
 /* == Broker onboarding 2026-08-20 == */
 /* Company-setup desk. Compact ConsoleShell: header / dense rail (icon +
-   label) / 3-line ledger â sized to content, not stretched. Six-phase
+   label) / 3-line ledger Ã¢ÂÂ sized to content, not stretched. Six-phase
    journey is one-open accordion (inactive = single row). Region copy in
-   parts 3â5 uses stacked .bon-swap slots so a tab change cannot jump
+   parts 3Ã¢ÂÂ5 uses stacked .bon-swap slots so a tab change cannot jump
    layout. Comparison table scrolls inside the card on small screens. */
 
 .bon-section {
@@ -39728,7 +39728,7 @@ body,
   color: var(--muted-foreground);
 }
 
-/* Part 1 â region pills (SeatsIntelâ¢ / catalog pill pattern) -------- */
+/* Part 1 Ã¢ÂÂ region pills (SeatsIntelÃ¢ÂÂ¢ / catalog pill pattern) -------- */
 
 .bon-region-tabs {
   display: flex;
@@ -39818,7 +39818,7 @@ body,
   color: var(--muted-foreground);
 }
 
-/* Part 2 â regional comparison ------------------------------------- */
+/* Part 2 Ã¢ÂÂ regional comparison ------------------------------------- */
 
 .bon-compare {
   margin-top: clamp(1.35rem, 2.6vw, 2rem);
@@ -39932,7 +39932,7 @@ body,
   color: var(--foreground);
 }
 
-/* Part 3 â six-phase journey + compact desk ------------------------ */
+/* Part 3 Ã¢ÂÂ six-phase journey + compact desk ------------------------ */
 
 .bon-region-panel {
   margin-top: clamp(1.35rem, 2.6vw, 2rem);
@@ -40213,7 +40213,7 @@ body,
   color: var(--foreground);
 }
 
-/* Compact interactive demo â header / dense rail / ledger ----------- */
+/* Compact interactive demo Ã¢ÂÂ header / dense rail / ledger ----------- */
 
 .bon-desk {
   min-width: 0;
@@ -40602,7 +40602,7 @@ body,
   white-space: nowrap;
 }
 
-/* Part 4 â broker partner sub-accounts ----------------------------- */
+/* Part 4 Ã¢ÂÂ broker partner sub-accounts ----------------------------- */
 
 .bon-partners {
   margin-top: clamp(1.35rem, 2.6vw, 2rem);
@@ -40693,7 +40693,7 @@ body,
   color: var(--foreground);
 }
 
-/* Part 5 â region-aware checklist ---------------------------------- */
+/* Part 5 Ã¢ÂÂ region-aware checklist ---------------------------------- */
 
 .bon-need {
   margin-top: clamp(1.35rem, 2.6vw, 2rem);
@@ -40741,7 +40741,7 @@ body,
   background: color-mix(in oklab, var(--primary) 8%, var(--card));
 }
 
-/* Part 6 â FAQ accordion ------------------------------------------- */
+/* Part 6 Ã¢ÂÂ FAQ accordion ------------------------------------------- */
 
 .bon-faq {
   margin-top: clamp(1.35rem, 2.6vw, 2rem);
@@ -40841,16 +40841,16 @@ body,
 }
 
 /* == Homepage TravelTools laptop fit (tpa-section) 2026-08-20 ==
-   MacBook CSS px at 100% zoom (not browser 80%): 1280Ã832, 1440Ã900,
-   1470Ã956, 1512Ã982, 1680Ã1050, 1710Ã1112. Mini titles stay full
-   (wrap, no ellipsis). Laptop 1024â1919 uses the same inner-zoom
-   idea as .hero-fit-zoom (0.85), scoped to .tpa-fit-zoom only â never
+   MacBook CSS px at 100% zoom (not browser 80%): 1280ÃÂ832, 1440ÃÂ900,
+   1470ÃÂ956, 1512ÃÂ982, 1680ÃÂ1050, 1710ÃÂ1112. Mini titles stay full
+   (wrap, no ellipsis). Laptop 1024Ã¢ÂÂ1919 uses the same inner-zoom
+   idea as .hero-fit-zoom (0.85), scoped to .tpa-fit-zoom only Ã¢ÂÂ never
    html. Do not inflate width/height by 1/0.85: that used box is wider
    than the viewport, and overflow:hidden on .tpa-section clips the
-   right mini column (missing card border, âQuotatioâ / âShare & câ).
+   right mini column (missing card border, Ã¢ÂÂQuotatioÃ¢ÂÂ / Ã¢ÂÂShare & cÃ¢ÂÂ).
    zoom: 0.85 with width: 100% (Hero pattern). Firefox without zoom
    keeps the reflow (column ratio + wrapping).
-   375 / 768 / 900-stack / â¥1920 unchanged aside from title wrap. */
+   375 / 768 / 900-stack / Ã¢ÂÂ¥1920 unchanged aside from title wrap. */
 
 .tpa-fit-zoom {
   display: contents;
@@ -40994,7 +40994,7 @@ body,
   }
 }
 
-/* ââ SellerTools orchestration engine (homepage #sellers) ââ */
+/* Ã¢ÂÂÃ¢ÂÂ SellerTools orchestration engine (homepage #sellers) Ã¢ÂÂÃ¢ÂÂ */
 
 .sto-section {
   --sto-line: var(--primary);
@@ -42475,14 +42475,14 @@ body,
 }
 
 /* == TravelTools mini cards size-to-content (tpa-minis) 2026-08-20 ==
-   2Ã2 sat in a 100svh column (grid 1fr rows + height:100% cards).
+   2ÃÂ2 sat in a 100svh column (grid 1fr rows + height:100% cards).
    .tpa-card-body / .tpa-rows used flex:1 so queued Quote / Margin / Share
    left a hollow well above the inner foot. Cards now size to content;
    lists keep a 4-row slot so auto-run does not jump. Notes wrap 2 lines.
    Metric value + label share one baseline. Page scroll / .tpa-fit-zoom
    width 100% unchanged.
 
-   Desktop leftover column height (Live desk taller than the 2Ã2) is
+   Desktop leftover column height (Live desk taller than the 2ÃÂ2) is
    split equally above and below the cluster: .tpa-minis stretches in
    .tpa-boards, rows stay auto, align-content/place-content: center.
    Do not stretch card bodies (flex:1 recreates the wells). */
@@ -42600,8 +42600,8 @@ body,
 }
 
 /* == TravelTools mini column fill + equal cards (tpa-*) 2026-08-20 ==
-   Right column leftover (Live desk taller than the 2Ã2) is occupied by
-   pipeline chrome above and a status strip below â not place-content
+   Right column leftover (Live desk taller than the 2ÃÂ2) is occupied by
+   pipeline chrome above and a status strip below Ã¢ÂÂ not place-content
    centering. All four .tpa-mini share one height: reserved 2-line title
    + 2-line note + board (meta, dial, 4 rows, foot) + metric. Extra
    stretch goes into the four row cells, not a hollow well. Do not
@@ -42965,7 +42965,7 @@ body,
   }
 }
 
-/* ââ ToolkitShowcase static desks (SeatsSource / SeatsMarket / SeatsFunds) ââ
+/* Ã¢ÂÂÃ¢ÂÂ ToolkitShowcase static desks (SeatsSource / SeatsMarket / SeatsFunds) Ã¢ÂÂÃ¢ÂÂ
    Prefix: .tks-* only. Do not use .sto-* or .tpa-*.
    Consoles fill .toolkit-screen; no auto-cycle, packets, or scan loops. */
 
@@ -43401,11 +43401,11 @@ body,
   }
 }
 
-/* ââ Toolkit screen fill for static desks âââââââââââââââââââââââââââ
+/* Ã¢ÂÂÃ¢ÂÂ Toolkit screen fill for static desks Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    Prefix: .toolkit-* / .tks-* only. Do not use .sto-* or .tpa-*.
    Keep 4/3 aspect-ratio (do not set auto) so the pane cannot collapse
    to height 0. Do not pair min-height clamp with height:100% of an
-   auto parent â that + size containers STATUS_BREAKPOINT. Rail
+   auto parent Ã¢ÂÂ that + size containers STATUS_BREAKPOINT. Rail
    overflow is visible (page scroll). No 340vh pin. */
 
 .toolkit-screen {
@@ -43425,7 +43425,7 @@ body,
   }
 }
 
-/* ââ FeatureOrbit content-height (no mint well below dots) âââââââââ
+/* Ã¢ÂÂÃ¢ÂÂ FeatureOrbit content-height (no mint well below dots) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    Prefix: .feature-orbit-* only. Do not touch .sto-* .tpa-* .mps-* .toolkit-*.
    Cause was a full-width 7.5rem .feature-orbit-detail-reserve plus
    lg:py-28 under the pagination. Section is now height: auto.
@@ -43477,13 +43477,13 @@ body,
   margin-bottom: 0;
 }
 
-/* ââ ToolkitShowcase Chrome STATUS_BREAKPOINT âââââââââââââââââââââââ
+/* Ã¢ÂÂÃ¢ÂÂ ToolkitShowcase Chrome STATUS_BREAKPOINT Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    Prefix: .toolkit-* / .tks-* only. Do not touch .sto-* .tpa-* .mps-*
    .feature-orbit-* GlobeCanvas. No 340vh pin, no svh lock.
    Crash: size container on .tks-desk (height:100%) + @container height
    queries that hide/show stats, plus .toolkit-screen aspect-ratio 4/3
    fighting min-height clamp(32svh) and height:auto of the unlocked
-   section. Chromium layout loop â Aw Snap / STATUS_BREAKPOINT.
+   section. Chromium layout loop Ã¢ÂÂ Aw Snap / STATUS_BREAKPOINT.
    Break: screen size is aspect-ratio only; observe that stable box;
    never min-height clamp + % height of auto parent; overflow hidden
    on both axes of .toolkit (never x-clip + y-visible). */
@@ -43522,7 +43522,7 @@ body,
   }
 }
 
-/* ââ /brokers Live Console desk fill + Event Catalog page scroll ââ
+/* Ã¢ÂÂÃ¢ÂÂ /brokers Live Console desk fill + Event Catalog page scroll Ã¢ÂÂÃ¢ÂÂ
    Prefix: .lc-desk-fill / .ec-* / .ap-hero. Do not touch .sto-* .tpa-*
    .mps-* .toolkit-* FeatureOrbit Nav JourneyNumbers.
    Right-side well: .lc-tilt-wrap capped at 46rem inside the 1.28fr
@@ -43621,7 +43621,7 @@ body,
   }
 }
 
-/* Event catalog Event browser â 5 reserved rows (page scroll stays unlocked).
+/* Event catalog Event browser Ã¢ÂÂ 5 reserved rows (page scroll stays unlocked).
    Slice is events.slice(0, 5) in EventCatalogConsole.tsx. Do not put
    overflow-y: auto / overscroll-behavior: contain on the queue. */
 .ec-catalog .ec-catalog-queue {
@@ -43674,8 +43674,8 @@ body,
 
 /* == Homepage TravelTools section width (tpa-*) 2026-08-21 ==
    Quote desk sat inside extra left/right gap vs SellerTools / HowItWorks /
-   Toolkit / JourneyNumbers. Cause: laptop .tpa-fit-zoom (1024â1919) is a
-   real flex box with zoom: 0.85 and width: 100% â CSS zoom shrinks used
+   Toolkit / JourneyNumbers. Cause: laptop .tpa-fit-zoom (1024Ã¢ÂÂ1919) is a
+   real flex box with zoom: 0.85 and width: 100% Ã¢ÂÂ CSS zoom shrinks used
    width to 85% of the section, so container-page no longer matches siblings.
    Do not inflate by 1/0.85 (that overflow-clipped the right minis).
    Keep width: 100%. Wrapper is display:contents so .container-page is the
@@ -43712,7 +43712,7 @@ body,
   }
 }
 
-/* ââ Homepage Market Intelligence (#market-intelligence) âââââââââ
+/* Ã¢ÂÂÃ¢ÂÂ Homepage Market Intelligence (#market-intelligence) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    Prefix: .mihp-* only. Light ConsoleShell desk on dark section.
    Do not rewrite product-page .mi-* / .ap-* blocks. */
 
@@ -44372,7 +44372,7 @@ body,
    Prefix: .toolkit-light* / .toolkit-screen-* / .tks-* only.
    Do not touch .sto-* .tpa-* .mps-* .feature-orbit-* .how-it-*
    .prd-* .int-* .journey-num* .stats-wallet-* .mihp-*.
-   Dark .toolkit shell is neutralized here ï¿½ do not restore dark
+   Dark .toolkit shell is neutralized here Ã¯Â¿Â½ do not restore dark
    bg for this section. Document scroll; no 100svh / 340vh pin;
    overflow hidden both axes (never x-clip + y-visible).
    Size container stays on stable .toolkit-screen-* only.
@@ -45360,7 +45360,7 @@ body,
   }
 }
 
-/* ââ Homepage MI + StickyScroll corner shells âââââââââââââââââââ
+/* Ã¢ÂÂÃ¢ÂÂ Homepage MI + StickyScroll corner shells Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    FeatureOrbit / JourneyNumbers pattern: paint lives on an inner
    overflow-hidden layer with border-radius: inherit. Section stays
    transparent so PageShell --background shows in the corners (no
@@ -45368,7 +45368,7 @@ body,
    .mihp-section previously set overflow-x: clip + overflow-y: visible,
    which undid section-curve clipping and is a Chromium STATUS_BREAKPOINT
    pair. StickyScroll cannot overflow:hidden on the section (sticky
-   consoles) â shell clips paint only. No 100svh / nested overflow-y. */
+   consoles) Ã¢ÂÂ shell clips paint only. No 100svh / nested overflow-y. */
 
 .mihp-section {
   overflow: hidden;
@@ -45504,7 +45504,7 @@ body,
 }
 
 /* ==========================================================================
-   ProcessBento â 7-stage Discover â Settle rail (#partner-process)
+   ProcessBento Ã¢ÂÂ 7-stage Discover Ã¢ÂÂ Settle rail (#partner-process)
    Restored after a styles.css collision deleted this block.
    Same spine as /platform (`workflowStages`). Desktop nowrap horizontal
    chips + dashed joins (bento-launch-flow language, static). Below 1024px:
@@ -45637,7 +45637,7 @@ body,
   }
 }
 
-/* ââ FeatureOrbit 7-product ecosystem (homepage #platform) âââââââââ
+/* Ã¢ÂÂÃ¢ÂÂ FeatureOrbit 7-product ecosystem (homepage #platform) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    Restored after a styles.css collision deleted this block.
    Prefix: .feature-orbit-* only. Do not touch .sto-* .tpa-* .mps-*
    .toolkit-* .int-* FeatureOrbitGrid. Seven nodes on the existing
@@ -46273,9 +46273,9 @@ body,
 
 
 /* ==========================================================================
-   Page CTA row â Phase 7 phantom class, now defined.
+   Page CTA row Ã¢ÂÂ Phase 7 phantom class, now defined.
    Used by PageHero, FinalCTA, /integrations hero, /products hero.
-   44px targets; stack full-width â¤639px. Does not restyle button colors.
+   44px targets; stack full-width Ã¢ÂÂ¤639px. Does not restyle button colors.
    ========================================================================== */
 
 .page-cta-row {
@@ -46330,11 +46330,11 @@ body,
 }
 
 /* ==========================================================================
-   Integrations page â connect map (.int-*)
+   Integrations page Ã¢ÂÂ connect map (.int-*)
    Recovered 2026-08-22 from the prior agent append (never committed;
-   wiped by a later styles.css collision â same class as ProcessBento /
+   wiped by a later styles.css collision Ã¢ÂÂ same class as ProcessBento /
    FeatureOrbit). Unique hero desk + 8-category board + live consoles.
-   Not FeatureOrbitGrid. Not SeatsLinkâ¢ product hero. Not API docs console.
+   Not FeatureOrbitGrid. Not SeatsLinkÃ¢ÂÂ¢ product hero. Not API docs console.
    Stage clamps match sibling product heroes. Append-only.
    Do not touch .process-bento-rail* .feature-orbit-cta .how-it-* .tks-*
    .mihp-* .sss-* .hero-* .prd-*.
@@ -46930,7 +46930,7 @@ body,
 }
 
 /* ==========================================================================
-   /products overview â unique workflow desk + seven-product cards
+   /products overview Ã¢ÂÂ unique workflow desk + seven-product cards
    Prefix: .prd-* only. Recovered 2026-08-22 from the prior agent append
    (never committed; wiped by a later styles.css collision). Reuses bh-hero /
    ConsoleShell / .page-cta-row. Light ecosystem cards. Not a clone of .plt-*
@@ -47565,9 +47565,9 @@ body,
 }
 
 /* ==========================================================================
-   /api Infrastructure â ApiInfraBoard
+   /api Infrastructure Ã¢ÂÂ ApiInfraBoard
    Prefix: .api-infra-* only. Do not reuse on other pages.
-   Light FeatureGrid shell + 3Ã2 hairline cards + static ConsoleShell.
+   Light FeatureGrid shell + 3ÃÂ2 hairline cards + static ConsoleShell.
    ========================================================================== */
 
 .api-infra-section {
@@ -47865,7 +47865,7 @@ body,
 
 /* ==========================================================================
    /integrations + /products wrap patches (2026-08-22)
-   CTA pills stay nowrap at every breakpoint â mobile white-space:normal
+   CTA pills stay nowrap at every breakpoint Ã¢ÂÂ mobile white-space:normal
    on .page-cta-row re-broke "documentation" onto a second line outside
    the green fill. Board status and all seven .prd-mini demand/state
    columns keep a gap. Append-only.
@@ -47904,11 +47904,11 @@ body,
 }
 
 /* ==========================================================================
-   /products overview â packed mini consoles + dark hero desk (2026-08-22)
+   /products overview Ã¢ÂÂ packed mini consoles + dark hero desk (2026-08-22)
    Prefix: .prd-* only (scoped ConsoleShell internals under .prd-room /
    .prd-mini). Global .lc-screen clamp(28rem, 46vh, 34rem) was painting a
    tall dotted well under one sparse mini row. Hero ConsoleShell is now a
-   dark bezel/screen hub ledger (DiscoverâSettle), not a light stub.
+   dark bezel/screen hub ledger (DiscoverÃ¢ÂÂSettle), not a light stub.
    Ecosystem cards stay light. Equal card height via grid stretch + inner
    flex; leftover height goes into desk rows, not empty min-height.
    Do not touch .int-* .hero-* .tks-* .how-it-* .process-bento-*
@@ -48152,7 +48152,7 @@ body,
   }
 }
 
-/* Dark products hero ConsoleShell â bezel/screen like brokers/marketplace
+/* Dark products hero ConsoleShell Ã¢ÂÂ bezel/screen like brokers/marketplace
    live consoles. Left copy + .page-cta-row unchanged. */
 
 .prd-room {
@@ -48428,9 +48428,9 @@ body,
 }
 
 /* ==========================================================================
-   /platform â operating ecosystem rebuild (2026-08-22)
-   Prefix: .plt-os-* (hero ConsoleShell spine) Â· .plt-flow-* (sticky
-   HowItWorks-vocabulary workflow) Â· .plt-mini-* (compact stage desks).
+   /platform Ã¢ÂÂ operating ecosystem rebuild (2026-08-22)
+   Prefix: .plt-os-* (hero ConsoleShell spine) ÃÂ· .plt-flow-* (sticky
+   HowItWorks-vocabulary workflow) ÃÂ· .plt-mini-* (compact stage desks).
    Dark hero ConsoleShell matches sibling bh-hero desks. Light sticky
    minis are OS previews, not a third FeatureOrbit / not /products cards.
    Append only. Do not touch .prd-* .int-* .hero-* .tks-* .how-it-*
@@ -49433,7 +49433,7 @@ body,
 }
 
 /* ==========================================================================
-   /products hero â Live Console dashboard, not a terminal (2026-08-22)
+   /products hero Ã¢ÂÂ Live Console dashboard, not a terminal (2026-08-22)
    Prefix: .prd-* only. Drops the near-black hub ledger + green timestamp
    log. Hero ConsoleShell matches integrations: traffic lights, breadcrumb,
    Ready stamp, sans stats / seven-stage columns / lc-panel. Light screen
@@ -49646,10 +49646,10 @@ body,
 }
 
 /* ==========================================================================
-   /products + /integrations hero â dark detailed ConsoleShell (2026-08-22)
+   /products + /integrations hero Ã¢ÂÂ dark detailed ConsoleShell (2026-08-22)
    Prefix: .prd-* (hero room only) and .int-room / .int-stage (hero only).
    Dark bezel + screen, light type, --primary accents. Dashboard chrome,
-   stats, tables, Now/status rails â not a timestamp terminal log.
+   stats, tables, Now/status rails Ã¢ÂÂ not a timestamp terminal log.
    Generic categories only (no marketplace brand names).
    Do not touch .prd-mini* ecosystem cards, .int-console body desks,
    .plt-* .hero-* .tks-* .how-it-* .process-bento-* .feature-orbit-*
@@ -50439,11 +50439,11 @@ body,
 }
 
 /* ==========================================================================
-   Product Capabilities â ProductCapabilityBoard on /products/seats*
+   Product Capabilities Ã¢ÂÂ ProductCapabilityBoard on /products/seats*
    Prefix: .prd-cap-* only. Do not restyle .api-infra-* / .plt-* / .int-* /
    .hero-* / .tks-* / .how-it-* / .prd-hero / .prd-mini / .page-cta-row.
-   Light FeatureGrid shell + 3Ã2 hairline cards (ApiInfraBoard language).
-   Cards-first â no FeatureOrbitGrid, no extra ConsoleShell.
+   Light FeatureGrid shell + 3ÃÂ2 hairline cards (ApiInfraBoard language).
+   Cards-first Ã¢ÂÂ no FeatureOrbitGrid, no extra ConsoleShell.
    ========================================================================== */
 
 .prd-cap-section {
@@ -50572,7 +50572,7 @@ body,
   }
 }
 
-/* Individual product pages â brief skeleton (hero + chain + close).
+/* Individual product pages Ã¢ÂÂ brief skeleton (hero + chain + close).
    Prefix: .prd-story-* / .prd-chain-* / .prd-close-* only. */
 .prd-story-tagline {
   margin-top: 0.85rem;
@@ -50687,7 +50687,7 @@ a.prd-chain-node:hover {
 }
 
 /* ==========================================================================
-   Product page heroes â Source / Pulse / Link / Funds
+   Product page heroes Ã¢ÂÂ Source / Pulse / Link / Funds
    Prefixes: srh-*  plh-*  lkh-*  fnh-*
    Clone of EventIntelHero / MarketplaceHero / TravelPartnersHero grammar:
    bh-hero + bh-layout + dark room clamp (same as .eih-room).
@@ -50883,7 +50883,7 @@ a.prd-chain-node:hover {
   opacity: 0.7;
 }
 
-/* ââ Source: catalog rail + inventory table ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Source: catalog rail + inventory table Ã¢ÂÂÃ¢ÂÂ */
 
 .srh-catalog,
 .plh-signals,
@@ -51167,7 +51167,7 @@ a.prd-chain-node:hover {
   opacity: 0.9;
 }
 
-/* ââ Pulse: market rec + broker gate ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Pulse: market rec + broker gate Ã¢ÂÂÃ¢ÂÂ */
 
 .plh-math {
   display: grid;
@@ -51239,7 +51239,7 @@ a.prd-chain-node:hover {
   color: var(--primary);
 }
 
-/* ââ Link: POS queue + sale pipeline ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Link: POS queue + sale pipeline Ã¢ÂÂÃ¢ÂÂ */
 
 .lkh-pipe {
   margin: 0;
@@ -51290,7 +51290,7 @@ a.prd-chain-node:hover {
   white-space: nowrap;
 }
 
-/* ââ Funds: rails + payout path ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Funds: rails + payout path Ã¢ÂÂÃ¢ÂÂ */
 
 .fnh-rails {
   display: grid;
@@ -51505,8 +51505,8 @@ a.prd-chain-node:hover {
 /* ==========================================================================
    Product-hero desk fill (2026-08-22)
    Source / Pulse / Link / Funds rooms already clamp like .eih-room
-   (22â34 / tablet 18â26 / phone 16â22). Inner panels were sparse:
-   space-between on 3â4 chips, 3-row tables, huge rec number with
+   (22Ã¢ÂÂ34 / tablet 18Ã¢ÂÂ26 / phone 16Ã¢ÂÂ22). Inner panels were sparse:
+   space-between on 3Ã¢ÂÂ4 chips, 3-row tables, huge rec number with
    margin-top: auto. Stretch header + body + footer; unique desks kept.
    ========================================================================== */
 
@@ -51558,7 +51558,7 @@ a.prd-chain-node:hover {
   padding: 0.32rem 0.38rem;
 }
 
-/* ââ Source: layers + 5-row sheet filling the stock pane ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Source: layers + 5-row sheet filling the stock pane Ã¢ÂÂÃ¢ÂÂ */
 
 .srh-stock {
   display: grid;
@@ -51668,7 +51668,7 @@ a.prd-chain-node:hover {
   padding: 0.26rem 0.32rem;
 }
 
-/* ââ Pulse: 3-col math + notes fill; rec is a cell, not a void ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Pulse: 3-col math + notes fill; rec is a cell, not a void Ã¢ÂÂÃ¢ÂÂ */
 
 .plh-field {
   display: grid;
@@ -51748,7 +51748,7 @@ a.prd-chain-node:hover {
   padding-top: 0.04rem;
 }
 
-/* ââ Link: five pipeline rows eat the pipe pane ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Link: five pipeline rows eat the pipe pane Ã¢ÂÂÃ¢ÂÂ */
 
 .lkh-pipe {
   display: grid;
@@ -51766,7 +51766,7 @@ a.prd-chain-node:hover {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
-/* ââ Funds: rails + path + 5-row queue fill the field ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Funds: rails + path + 5-row queue fill the field Ã¢ÂÂÃ¢ÂÂ */
 
 .fnh-field {
   display: grid;
@@ -51932,10 +51932,10 @@ a.prd-chain-node:hover {
 }
 
 /* ==========================================================================
-   ProcessBento rail â live spine (#partner-process)
+   ProcessBento rail Ã¢ÂÂ live spine (#partner-process)
    Append-only. Base .process-bento-rail* / .process-bento-support stay above.
-   Active node travels Discover â Settle (FeatureOrbit dwell). Hot join is
-   the NâN+1 hop (brighter dashes + packet). Pause on hover, resume 450ms.
+   Active node travels Discover Ã¢ÂÂ Settle (FeatureOrbit dwell). Hot join is
+   the NÃ¢ÂÂN+1 hop (brighter dashes + packet). Pause on hover, resume 450ms.
    ========================================================================== */
 
 button.process-bento-rail-chip {
@@ -52085,8 +52085,8 @@ button.process-bento-rail-chip {
 /* ==========================================================================
    /platform operating-stack sticky pane (2026-08-22)
    Prefix: .plt-flow-* only. The 2026-08-22 alignment patch set
-   .plt-flow-grid { align-items: start } at â¥1024px, so the right column
-   sized to the console and position:sticky had no travel â the desk
+   .plt-flow-grid { align-items: start } at Ã¢ÂÂ¥1024px, so the right column
+   sized to the console and position:sticky had no travel Ã¢ÂÂ the desk
    scrolled off with card 01. Stretch the sticky column like HowItWorks.
    Append only. Do not touch .how-it-* .prd-* .int-* .tks-* .sss-*.
    ========================================================================== */
@@ -52126,7 +52126,7 @@ button.process-bento-rail-chip {
 }
 
 /* ==========================================================================
-   /become-a-seller â dark apply desk + compact application (2026-08-22)
+   /become-a-seller Ã¢ÂÂ dark apply desk + compact application (2026-08-22)
    Prefix: .slr-* (seller hero) and .saf-* (seller application form).
    Hero room matches .bdm-room: clamp(22rem, 52vh, 34rem). Not a live login.
    Form: desktop ~100svh with overflow-y auto safety. Append only.
@@ -52764,7 +52764,7 @@ button.process-bento-rail-chip {
 /* ==========================================================================
    /become-a-seller hero desk fill (2026-08-22)
    Room still clamps like .bdm-room. Inner pipe/queue were short flex
-   chips in a 1fr well â content pinned top, black void above footer.
+   chips in a 1fr well Ã¢ÂÂ content pinned top, black void above footer.
    Stretch like Source/Pulse/Link/Funds: 3 equal stage rows, 5-desk
    queue, 3 review chips. Unique desk kept. Form .saf-* unchanged.
    ========================================================================== */
@@ -52904,11 +52904,11 @@ button.process-bento-rail-chip {
   background: color-mix(in oklab, var(--primary-soft) 82%, var(--background));
 }
 
-/* Homepage hero â small screens (â¤1023): CTAs + tilted console were
+/* Homepage hero Ã¢ÂÂ small screens (Ã¢ÂÂ¤1023): CTAs + tilted console were
    overflowing the viewport. 1fr 1fr + nowrap cannot shrink below label
    width; --hero-bleed + rotateY(-11deg) painted past the right edge;
    scale-from-center clipped the desk at the bottom of the 100svh lock.
-   Desktop â¥1024 unchanged. */
+   Desktop Ã¢ÂÂ¥1024 unchanged. */
 @media (max-width: 1023px) {
   .hero-fit {
     overflow-x: hidden;
@@ -52989,10 +52989,10 @@ button.process-bento-rail-chip {
   }
 }
 
-/* Homepage hero â phones â¤639px (iPhone 12 Pro 390, XR 414, Pro Max 428â440).
-   Previous â¤1023 2-col grid + nowrap table min-content cropped CTAs and the
+/* Homepage hero Ã¢ÂÂ phones Ã¢ÂÂ¤639px (iPhone 12 Pro 390, XR 414, Pro Max 428Ã¢ÂÂ440).
+   Previous Ã¢ÂÂ¤1023 2-col grid + nowrap table min-content cropped CTAs and the
    desk. Stack CTAs; flatten the console; min-width 0 so the card is 100%
-   of the viewport, not clipped. Desktop â¥1024 unchanged. */
+   of the viewport, not clipped. Desktop Ã¢ÂÂ¥1024 unchanged. */
 @media (max-width: 639px) {
   .hero-fit-main > .container-page {
     padding-inline: clamp(1.15rem, 5.2vw, 1.5rem);
@@ -53085,8 +53085,8 @@ button.process-bento-rail-chip {
 
 /* Homepage hero phone console: the white card stretched to the leftover
    100svh slot while the desk stayed compact (and display:block on the
-   table collapsed rows to a line). Pack the desk into the card â no
-   blank well. Desktop â¥1024 unchanged. */
+   table collapsed rows to a line). Pack the desk into the card Ã¢ÂÂ no
+   blank well. Desktop Ã¢ÂÂ¥1024 unchanged. */
 @media (max-width: 639px) {
   .hero-fit-console .hero-desk-table {
     display: table;
@@ -53128,8 +53128,8 @@ button.process-bento-rail-chip {
 
 /* Homepage hero phone console: the white card stretched to the leftover
    100svh slot while the desk stayed compact (and display:block on the
-   table collapsed rows to a line). Pack the desk into the card â no
-   blank well. Desktop â¥1024 unchanged. */
+   table collapsed rows to a line). Pack the desk into the card Ã¢ÂÂ no
+   blank well. Desktop Ã¢ÂÂ¥1024 unchanged. */
 @media (max-width: 639px) {
   .hero-fit-console .hero-desk,
   .hero-fit-console .hero-desk-shell,
@@ -53180,10 +53180,10 @@ button.process-bento-rail-chip {
 /* ==========================================================================
    WorkflowSteps leftover-row center (product / platform / shared How)
    `.ws-flow-grid` was CSS grid (`auto-fit` / 5 tracks). Grid cannot center
-   a short last row â 7 cards paint 01â05 then 06â07 left under 01â02.
+   a short last row Ã¢ÂÂ 7 cards paint 01Ã¢ÂÂ05 then 06Ã¢ÂÂ07 left under 01Ã¢ÂÂ02.
    Flex wrap + justify-content: center. Desktop cards ~20% so five fit a row.
-   6+ steps lock that width so 06â07 stay card-sized (not stretched).
-   1â5 steps still grow to fill. Homepage HowItWorks (`.how-it-*`) untouched.
+   6+ steps lock that width so 06Ã¢ÂÂ07 stay card-sized (not stretched).
+   1Ã¢ÂÂ5 steps still grow to fill. Homepage HowItWorks (`.how-it-*`) untouched.
    ========================================================================== */
 
 .ws-flow-panel {
@@ -53235,11 +53235,11 @@ button.process-bento-rail-chip {
 
 /* == TravelTools one-viewport fit (tpa-section / smt-*) 2026-08-24 ==
    #travel was min-height 100svh + height auto, so 10 listing rows grew
-   the section past one screen. Desktop â¥900px is now height/max-height
+   the section past one screen. Desktop Ã¢ÂÂ¥900px is now height/max-height
    100svh (svh, not dvh) with compact pad so the desk + 6 listing rows
-   fit without extra page scroll. Overflow stays visible â do not lock
+   fit without extra page scroll. Overflow stays visible Ã¢ÂÂ do not lock
    overflow:hidden on the section (that nested scrollport ate the wheel).
-   Table is overflow-x only. Laptop 1024â1919 .tpa-fit-zoom stays
+   Table is overflow-x only. Laptop 1024Ã¢ÂÂ1919 .tpa-fit-zoom stays
    width 100% (do not inflate by 1/0.85). .sto-* / FeatureOrbit /
    Toolkit / Nav untouched. */
 
@@ -53384,10 +53384,10 @@ button.process-bento-rail-chip {
 /* ==========================================================================
    WorkflowSteps last-row center (product How / /products / /platform / shared)
    `.ws-flow-grid { display: grid }` + auto-fit/5 tracks left-aligns a short
-   last row (01â05, then 06â07 under 01â02). Flex wrap + justify-content:
+   last row (01Ã¢ÂÂ05, then 06Ã¢ÂÂ07 under 01Ã¢ÂÂ02). Flex wrap + justify-content:
    center; each card is a locked fraction of the row so leftovers stay
    card-sized and sit in the middle. Featured span-2 is disabled in flex.
-   Homepage HowItWorks (`.how-it-*`) is a different section â untouched.
+   Homepage HowItWorks (`.how-it-*`) is a different section Ã¢ÂÂ untouched.
    ========================================================================== */
 
 .ws-flow-panel {
@@ -53441,12 +53441,12 @@ button.process-bento-rail-chip {
 }
 
 /* ==========================================================================
-   WorkflowSteps last-row center â 1 / 2 / 5 cols (2026-08-24)
+   WorkflowSteps last-row center Ã¢ÂÂ 1 / 2 / 5 cols (2026-08-24)
    Prior --center append forced 3-col from 768 and locked every card to 20%
    at 1024 (4-step product How no longer filled the row). Keep flex wrap +
-   justify-content: center. 1-col <640, 2-col 640â1023, 5-col â¥1024.
-   6+ cards lock to one-fifth so 06â07 stay card-sized and sit in the middle.
-   1â5 cards grow to fill. Featured span-2 stays off. Homepage .how-it-* off.
+   justify-content: center. 1-col <640, 2-col 640Ã¢ÂÂ1023, 5-col Ã¢ÂÂ¥1024.
+   6+ cards lock to one-fifth so 06Ã¢ÂÂ07 stay card-sized and sit in the middle.
+   1Ã¢ÂÂ5 cards grow to fill. Featured span-2 stays off. Homepage .how-it-* off.
    ========================================================================== */
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -53485,12 +53485,12 @@ button.process-bento-rail-chip {
 
 /* == TravelTools overlap fix (tpa-minis / smt-desk-chrome) 2026-08-24 ==
    The 100svh height/max-height lock crushed the quote desk so inner
-   layers painted on top of each other: 2Ã2 mini rows stacked, metric
-   â15%â clipped, status strip under the cards, and map hint + share
+   layers painted on top of each other: 2ÃÂ2 mini rows stacked, metric
+   Ã¢ÂÂ15%Ã¢ÂÂ clipped, status strip under the cards, and map hint + share
    actions + nowrap legend in one band (legend across Download PDF,
    toolbar overflow-x scrollbar). No-overlap wins over a hard 100svh
    cap. Section stays min-height 100svh and can grow. Extra leftover
-   still goes into mini row cells / map stage â not a hollow well.
+   still goes into mini row cells / map stage Ã¢ÂÂ not a hollow well.
    Laptop .tpa-fit-zoom stays width 100% (no 1/0.85 inflate). Do not
    set overflow-x: clip on .tpa-section (computes overflow-y auto and
    traps wheel). .sto-* / FeatureOrbit / Toolkit / Nav / .ws-flow-* /
@@ -53804,7 +53804,7 @@ button.process-bento-rail-chip {
    with 6 listing rows + 4 tall mini rows + 2-line notes, which crushed
    and overlapped. This pass trims density (4 listings, 3 mini rows,
    filters closed, compact chrome) and reserves one-line row cells.
-   â¥900px: height/max/min 100svh (svh, not dvh). Overflow visible â do
+   Ã¢ÂÂ¥900px: height/max/min 100svh (svh, not dvh). Overflow visible Ã¢ÂÂ do
    not overflow-x:clip the section (that computes overflow-y auto and
    traps wheel). Table/map overflow-x only. Laptop .tpa-fit-zoom width
    100%. <900px stacks and may exceed 100svh (phone/tablet) but stays
@@ -54241,9 +54241,9 @@ button.process-bento-rail-chip {
 }
 
 /* ==========================================================================
-   /products â Seven products grid last-row center (2026-08-24)
+   /products Ã¢ÂÂ Seven products grid last-row center (2026-08-24)
    ProductsEcosystem (.prd-eco .prd-eco-grid) only. Seven cards = 3+3+1 at
-   â¥1024 and 2+2+2+1 at 640â1023; incomplete last rows center via flex-wrap
+   Ã¢ÂÂ¥1024 and 2+2+2+1 at 640Ã¢ÂÂ1023; incomplete last rows center via flex-wrap
    + justify-content: center (same pattern as .ws-flow-grid--center).
    Mobile single column unchanged. Do not touch .prd-cap-* or other grids.
    ========================================================================== */
@@ -54279,9 +54279,9 @@ button.process-bento-rail-chip {
 }
 
 /* ==========================================================================
-   /products â Seven products grid 4+3 desktop (2026-08-24)
+   /products Ã¢ÂÂ Seven products grid 4+3 desktop (2026-08-24)
    ProductsEcosystem (.prd-eco .prd-eco-grid) only. Seven cards = 4+3 at
-   â¥1024 (01â04 row 1, 05â07 centered row 2); 2+2+2+1 at 640â1023; 1-col
+   Ã¢ÂÂ¥1024 (01Ã¢ÂÂ04 row 1, 05Ã¢ÂÂ07 centered row 2); 2+2+2+1 at 640Ã¢ÂÂ1023; 1-col
    <640. Overrides the prior last-row-center append that locked 3-col desktop.
    Flex-wrap + justify-content: center unchanged. .prd-cap-* untouched.
    ========================================================================== */
@@ -54295,7 +54295,7 @@ button.process-bento-rail-chip {
 }
 
 /* ==========================================================================
-   .process-bento-rail â hide scrollbar at â¤1023px (2026-08-24)
+   .process-bento-rail Ã¢ÂÂ hide scrollbar at Ã¢ÂÂ¤1023px (2026-08-24)
    Append-only. overflow-x: auto unchanged; touch/trackpad scroll preserved.
    ========================================================================== */
 
@@ -54311,10 +54311,10 @@ button.process-bento-rail-chip {
 }
 
 /* ==========================================================================
-   Product integration chain â narrow-screen horizontal scroll (2026-08-24)
+   Product integration chain Ã¢ÂÂ narrow-screen horizontal scroll (2026-08-24)
    Prefix: .prd-chain-* only. Matches .process-bento-rail snap-scroll pattern.
-   Keeps Intel â Source â Pulse â Market on one line; no orphaned â at wrap.
-   Desktop â¥1024px: existing flex-wrap unchanged.
+   Keeps Intel Ã¢ÂÂ Source Ã¢ÂÂ Pulse Ã¢ÂÂ Market on one line; no orphaned Ã¢ÂÂ at wrap.
+   Desktop Ã¢ÂÂ¥1024px: existing flex-wrap unchanged.
    ========================================================================== */
 
 @media (max-width: 1023px) {
@@ -54358,13 +54358,13 @@ button.process-bento-rail-chip {
 }
 
 /* ==========================================================================
-   Homepage hero â typewriter stays in the copy column (2026-08-24)
+   Homepage hero Ã¢ÂÂ typewriter stays in the copy column (2026-08-24)
    Prefix: .hero-fit / .hero-copy-typeline* only.
    Global .hero-copy-typeline is nowrap + live text width:max-content, so
-   âdistribute and sell globally.â paints over the console at laptop/desktop.
-   Phone wrap (â¤1023) already existed; this extends wrap + clip to all widths.
+   Ã¢ÂÂdistribute and sell globally.Ã¢ÂÂ paints over the console at laptop/desktop.
+   Phone wrap (Ã¢ÂÂ¤1023) already existed; this extends wrap + clip to all widths.
    Do not restore nowrap on .hero-copy-typeline-text. 100svh phone lock and
-   â¥1024 two-column cinema stay.
+   Ã¢ÂÂ¥1024 two-column cinema stay.
    ========================================================================== */
 
 .hero-fit .hero-copy,
@@ -54417,7 +54417,7 @@ button.process-bento-rail-chip {
   }
 }
 
-/* Tight two-column band (MacBook / 13â14" CSS px): match title + type line
+/* Tight two-column band (MacBook / 13Ã¢ÂÂ14" CSS px): match title + type line
    so the green phrase wraps inside the copy track instead of hitting the desk. */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .hero-fit .hero-copy .hero-copy-head {
@@ -54430,9 +54430,9 @@ button.process-bento-rail-chip {
 }
 
 /* ==========================================================================
-   Homepage hero â typewriter one line, no console overlap (2026-08-24)
+   Homepage hero Ã¢ÂÂ typewriter one line, no console overlap (2026-08-24)
    Prefix: .hero-fit / .hero-copy-typeline* / .hero-copy-typewriter only.
-   Prior append wrapped .hero-copy-typeline* so âdistribute and sell globally.â
+   Prior append wrapped .hero-copy-typeline* so Ã¢ÂÂdistribute and sell globally.Ã¢ÂÂ
    could not paint over the desk. User wants every green phrase on ONE line
    (Ticket Resale / distribute and sell globally. / Scale your ticket business.)
    without restoring that overlap.
@@ -54497,7 +54497,7 @@ button.process-bento-rail-chip {
     min-width: 0;
   }
 
-  /* Fallback without cqi: ~42% column Ã 6.8% â 2.85vw */
+  /* Fallback without cqi: ~42% column ÃÂ 6.8% Ã¢ÂÂ 2.85vw */
   .hero-fit .hero-copy .hero-copy-head,
   .hero-fit .hero-copy-typewriter {
     font-size: clamp(1.2rem, 2.85vw, 3.25rem);
@@ -54506,8 +54506,8 @@ button.process-bento-rail-chip {
 
 @supports (font-size: 1cqi) {
   @media (min-width: 1024px) {
-    /* 6.8cqi â 100 / 14.7em â Space Grotesk Bold longest phrase
-       (âdistribute and sell globally.â) + caret, inside the copy track. */
+    /* 6.8cqi Ã¢ÂÂ 100 / 14.7em Ã¢ÂÂ Space Grotesk Bold longest phrase
+       (Ã¢ÂÂdistribute and sell globally.Ã¢ÂÂ) + caret, inside the copy track. */
     .hero-fit .hero-copy .hero-copy-head,
     .hero-fit .hero-copy-typewriter {
       font-size: min(clamp(1.75rem, 4.6vw, 3.25rem), 6.8cqi);
@@ -54515,8 +54515,8 @@ button.process-bento-rail-chip {
   }
 }
 
-/* Tight two-column band: previous 1.55â2.2rem wrap size was still too wide
-   for âScale your ticket business.â â shrink to the track, never wrap. */
+/* Tight two-column band: previous 1.55Ã¢ÂÂ2.2rem wrap size was still too wide
+   for Ã¢ÂÂScale your ticket business.Ã¢ÂÂ Ã¢ÂÂ shrink to the track, never wrap. */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .hero-fit .hero-copy .hero-copy-head,
   .hero-fit .hero-copy-typewriter {
@@ -54538,7 +54538,7 @@ button.process-bento-rail-chip {
    Prefix: .process-bento-header* / .process-bento-title /
    .process-bento-join / .process-bento-verbs / .process-bento-close
    / .stats-wallet-header*
-   Two-column copy at â¥1024px (HowItWorks / SellerTools header
+   Two-column copy at Ã¢ÂÂ¥1024px (HowItWorks / SellerTools header
    vocabulary). Stacked below 1024. Do not touch .how-it-* .sto-*
    .tpa-* .toolkit-* .feature-orbit-* .mihp-* .journey-num*
    .process-bento-rail* .process-bento-support .bento-*
@@ -55995,7 +55995,7 @@ button.process-bento-rail-chip {
 }
 
 /* ==========================================================================
-   ProcessBento live 0107 flow (2026-08-25)
+   ProcessBento live 01Â07 flow (2026-08-25)
    Prefix: .process-bento-flow / .process-bento-step* only.
    Auto-advance + packet hop + active/done cards. Append only.
    Do not rewrite prior .process-bento-split / -rail / -header blocks.
@@ -56179,9 +56179,9 @@ button.process-bento-rail-chip {
 }
 
 /* ---------------------------------------------------------------
-   TwoTrack redesign 2026-08-25  Two Journeys (~100svh desks)
+   TwoTrack redesign 2026-08-25 Â Two Journeys (~100svh desks)
    Append-only: extend .two-track-* (ConsoleShell desks, KPI strip,
-   identity cards, partner tone via primary-deep / blue-gray  no purple).
+   identity cards, partner tone via primary-deep / blue-gray Â no purple).
    --------------------------------------------------------------- */
 
 .two-track-cinema {
@@ -56332,7 +56332,7 @@ button.process-bento-rail-chip {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-/* KPI strip  qualitative Demo chrome */
+/* KPI strip Â qualitative Demo chrome */
 .two-track-kpi-strip {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -56545,7 +56545,7 @@ button.process-bento-rail-chip {
   transform: translateY(1px);
 }
 
-/* Broker tone stays mint; partner uses blue-gray / primary-deep  never purple */
+/* Broker tone stays mint; partner uses blue-gray / primary-deep Â never purple */
 .two-track-3d-card[data-tone="broker"] .two-track-3d-accent {
   color: var(--primary);
 }
@@ -56674,14 +56674,14 @@ button.process-bento-rail-chip {
   }
 }
 
-/* ── TwoTrack page-scroll unlock + centered identity cards (2026-08-25) ──
+/* ââ TwoTrack page-scroll unlock + centered identity cards (2026-08-25) ââ
    Same class as HowItWorks / TravelTools / Event Catalog unlocks:
    never nest overflow-y: auto + overscroll-behavior: contain, and never
    put overflow-x: clip on the section (computes overflow-y to auto).
    Desktop still aims for ~100svh via min-height; height stays auto so
    dense consoles grow the document instead of trapping the wheel.
    Identity cards sit in a centered row (not edge-to-edge under desks).
-   Colors unchanged: mint broker / blue-gray partner — never purple. */
+   Colors unchanged: mint broker / blue-gray partner â never purple. */
 
 .two-track-cinema {
   overflow: visible;
@@ -56749,7 +56749,7 @@ button.process-bento-rail-chip {
   }
 
   .two-track-log-viewport {
-    /* Decorative log mask only — not a scroll pane */
+    /* Decorative log mask only â not a scroll pane */
     overflow: hidden;
     max-height: 6.5rem;
   }
@@ -56763,7 +56763,7 @@ button.process-bento-rail-chip {
   }
 }
 
-/* Centered identity card row — icon | copy | map deco */
+/* Centered identity card row â icon | copy | map deco */
 .two-track-id-row {
   display: flex;
   flex-wrap: wrap;
@@ -56953,7 +56953,7 @@ button.process-bento-rail-chip {
 }
 
 /* ==========================================================================
-   Demo modal (Book a Demo chrome) � .demo-modal-*
+   Demo modal (Book a Demo chrome) ï¿½ .demo-modal-*
    Dark mint panel; unique SeatsBrokers voice. /book-demo page unchanged.
    ========================================================================== */
 
@@ -57331,8 +57331,8 @@ button.process-bento-rail-chip {
 }
 
 /* ==========================================================================
-   Demo modal — light split redesign (overrides dark single-column above)
-   Fixed size ≤100svh, overflow:hidden — no green scrollbar.
+   Demo modal â light split redesign (overrides dark single-column above)
+   Fixed size â¤100svh, overflow:hidden â no green scrollbar.
    Left mint pitch rail + right compact form. /book-demo unchanged.
    ========================================================================== */
 
@@ -57813,12 +57813,12 @@ button.process-bento-rail-chip {
   }
 }
 
-/* ── TwoTrack 100svh equal desks + in-frame headlines (2026-08-25) ──
-   Desktop ≥1024: lock section to one viewport; equal 1fr|1fr ConsoleShell
+/* ââ TwoTrack 100svh equal desks + in-frame headlines (2026-08-25) ââ
+   Desktop â¥1024: lock section to one viewport; equal 1fr|1fr ConsoleShell
    windows; role pitch typography inside each frame; compact identity row.
-   Compress desk density (zoom / clamp / grid fr) — no nested overflow-y
+   Compress desk density (zoom / clamp / grid fr) â no nested overflow-y
    wheel traps. Mobile stacks, auto height. Mint accents; partner cards
-   stay blue-gray — never purple. */
+   stay blue-gray â never purple. */
 
 .two-track-3d-title {
   margin: 0;
@@ -57920,7 +57920,7 @@ button.process-bento-rail-chip {
     --tt-console-gap: clamp(0.28rem, 0.7vh, 0.42rem);
   }
 
-  /* Equal fixed columns — same width + same height, no content-driven mismatch */
+  /* Equal fixed columns â same width + same height, no content-driven mismatch */
   .two-track-3d-card {
     display: flex;
     flex-direction: column;
@@ -58160,14 +58160,14 @@ button.process-bento-rail-chip {
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   TwoTrack lock 2026-08-25 â€” retain dense dual-journey redesign
+/* Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â
+   TwoTrack lock 2026-08-25 Ã¢â¬â retain dense dual-journey redesign
    (fc2654dd). Undo equal-zoom / hard 100svh / in-frame h3 pass.
-   min-height 100svh at â‰¥1024; height auto so desks are not crushed.
+   min-height 100svh at Ã¢â°Â¥1024; height auto so desks are not crushed.
    No nested overflow-y:auto + overscroll contain on .lc-body.
    Identity cards under each column (original redesign content).
-   Mint broker / blue-gray partner â€” never purple.
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   Mint broker / blue-gray partner Ã¢â¬â never purple.
+   Ã¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢ÂÃ¢â¢Â */
 
 .two-track-cinema {
   overflow: visible;
@@ -58209,7 +58209,7 @@ button.process-bento-rail-chip {
   color: var(--tt-partner);
 }
 
-/* Identity cards under each desk â€” original column stack, denser copy */
+/* Identity cards under each desk Ã¢â¬â original column stack, denser copy */
 .two-track-id-row {
   display: none;
 }
@@ -58445,7 +58445,7 @@ button.process-bento-rail-chip {
 
 
 /* ==========================================================================
-   Demo modal — reference light split (data-layout="ref")
+   Demo modal â reference light split (data-layout="ref")
    Portrait card: left reassurance rail + right icon form. Supersedes prior
    dark + early light-split rules for this layout. Left never scrolls; right
    may scroll only on short viewports (thin scrollbar, no green chunk).
@@ -59049,9 +59049,9 @@ button.process-bento-rail-chip {
   }
 }
 
-/* ── TwoTrack metric/identity separation (2026-08-25) ──
+/* ââ TwoTrack metric/identity separation (2026-08-25) ââ
    Root cause: .two-track-desk .lc-screen kept max-height: var(--tt-screen-h)
-   while overflow: visible — the metric footer (Multi/Live/24/7/AI, PDF/Live/One)
+   while overflow: visible â the metric footer (Multi/Live/24/7/AI, PDF/Live/One)
    painted outside the capped chrome and overlapped the identity-card copy.
    Fix: size the ConsoleShell to its content; keep metrics in-flow inside the
    screen; identity cards occupy their own row with a clear gap. Page scroll
@@ -59068,7 +59068,7 @@ button.process-bento-rail-chip {
 .two-track-desk .lc-screen {
   display: flex;
   flex-direction: column;
-  /* Contain chrome once height is content-sized — no paint-through onto cards */
+  /* Contain chrome once height is content-sized â no paint-through onto cards */
   overflow: hidden;
 }
 
@@ -59223,17 +59223,17 @@ button.process-bento-rail-chip {
   }
 }
 
-/* ── TwoTrack 100svh viewport lock + denser desks (2026-08-25) ──
-   Desktop ≥1024: section height/max/min = 100svh; flex chain
-   (panel → .two-track-fit → intro + stage → card → desk + id-card)
+/* ââ TwoTrack 100svh viewport lock + denser desks (2026-08-25) ââ
+   Desktop â¥1024: section height/max/min = 100svh; flex chain
+   (panel â .two-track-fit â intro + stage â card â desk + id-card)
    so header + dual consoles + identity cards fit one viewport.
    Compress console density (pad, type, KPI, hub, log, bars, footer)
    rather than clipping metrics. lc-screen overflow:hidden keeps the
-   metric footer inside chrome — never overflow:visible + max-height
+   metric footer inside chrome â never overflow:visible + max-height
    (that reintroduces metric-over-identity paint). No overflow-x-clip /
    no .lc-body overflow-y:auto + overscroll contain (page scroll stays
-   unlocked). Mobile ≤1023: auto height, no crush. Mint broker /
-   blue-gray partner — never purple. */
+   unlocked). Mobile â¤1023: auto height, no crush. Mint broker /
+   blue-gray partner â never purple. */
 
 .two-track-fit {
   width: 100%;
@@ -59248,7 +59248,7 @@ button.process-bento-rail-chip {
     height: 100svh;
     max-height: 100svh;
     min-height: 100svh;
-    /* visible — not clip/hidden — so wheel never traps on the section */
+    /* visible â not clip/hidden â so wheel never traps on the section */
     overflow: visible;
   }
 
@@ -59345,7 +59345,7 @@ button.process-bento-rail-chip {
   }
 
   .two-track-desk .lc-screen {
-    /* Contain metrics inside chrome — do not pair max-height with overflow:visible */
+    /* Contain metrics inside chrome â do not pair max-height with overflow:visible */
     overflow: hidden;
   }
 
@@ -59523,7 +59523,7 @@ button.process-bento-rail-chip {
     line-height: 1.2;
   }
 
-  /* Identity cards: fully below desk, compact — never overlapped by metrics */
+  /* Identity cards: fully below desk, compact â never overlapped by metrics */
   .two-track-3d-card > .two-track-id-card {
     position: relative;
     z-index: 0;
@@ -59690,10 +59690,10 @@ button.process-bento-rail-chip {
 }
 
 /* ==========================================================================
-   Demo modal — single-column stack (data-layout="stack") 2026-08-25
+   Demo modal â single-column stack (data-layout="stack") 2026-08-25
    Matches reference: top bar + title + 4-col USP + icon form + product cards.
    Supersedes prior dark / light-split / data-layout="ref" two-column rules.
-   Panel max-height ≤100svh; ONLY .demo-modal-body scrolls (thin neutral).
+   Panel max-height â¤100svh; ONLY .demo-modal-body scrolls (thin neutral).
    /book-demo page unchanged.
    ========================================================================== */
 
@@ -60352,15 +60352,15 @@ button.process-bento-rail-chip {
   }
 }
 
-/* ── TwoTrack fixed-desk ≤100svh redesign (2026-08-25) ──
+/* ââ TwoTrack fixed-desk â¤100svh redesign (2026-08-25) ââ
    Supersedes prior .two-track-fit flex-grow desks (--tt-screen-h:100%,
    desk flex:1, max-height:none) that still let consoles grow past the
-   viewport via min-content. Desktop ≥1024 budget:
-     intro ~8–10svh + gaps + desks clamp(280px, 52svh, 420px) +
-     identity ~12–14svh + padding ≤ 100svh.
+   viewport via min-content. Desktop â¥1024 budget:
+     intro ~8â10svh + gaps + desks clamp(280px, 52svh, 420px) +
+     identity ~12â14svh + padding â¤ 100svh.
    Both desks share --tt-desk-h (fixed equal height). Metrics stay
    in-flow; .lc-screen overflow:hidden. Stage does NOT flex:1 grow.
-   Mobile ≤1023: auto height, no crush. Page scroll unlocked. */
+   Mobile â¤1023: auto height, no crush. Page scroll unlocked. */
 
 @media (min-width: 1024px) {
   .two-track-cinema {
@@ -60441,14 +60441,14 @@ button.process-bento-rail-chip {
   .two-track-3d-card {
     display: flex;
     flex-direction: column;
-    /* Size to desk + identity — never stretch to fill leftover svh */
+    /* Size to desk + identity â never stretch to fill leftover svh */
     height: auto;
     min-height: 0;
     max-height: none;
     gap: clamp(0.4rem, 0.85svh, 0.55rem);
   }
 
-  /* FIXED equal desk height — both columns share --tt-desk-h */
+  /* FIXED equal desk height â both columns share --tt-desk-h */
   .two-track-desk {
     flex: 0 0 var(--tt-desk-h) !important;
     flex-grow: 0 !important;
@@ -60788,7 +60788,7 @@ button.process-bento-rail-chip {
     line-height: 1.15;
   }
 
-  /* Identity cards BELOW desks — compact, never overlapped */
+  /* Identity cards BELOW desks â compact, never overlapped */
   .two-track-3d-card > .two-track-id-card {
     position: relative;
     z-index: 0;
@@ -60848,7 +60848,7 @@ button.process-bento-rail-chip {
   }
 }
 
-/* Short laptops: keep total ≤100svh with a shorter desk clamp */
+/* Short laptops: keep total â¤100svh with a shorter desk clamp */
 @media (min-width: 1024px) and (max-height: 780px) {
   .two-track-panel {
     padding-block: clamp(0.3rem, 0.8svh, 0.55rem);
@@ -61012,9 +61012,9 @@ button.process-bento-rail-chip {
 }
 
 
-/* ── TwoTrack intro + identity cards (2026-08-25) ──
+/* ââ TwoTrack intro + identity cards (2026-08-25) ââ
    Supersedes fixed-desk crush: intro max-height 10svh, tiny heading
-   clamps, subhead line-clamp, identity max-height 12–14svh.
+   clamps, subhead line-clamp, identity max-height 12â14svh.
    Match ProcessBento / MarketIntelligence section-head scale.
    Consoles (--tt-desk-h, dense bento) UNTOUCHED. Prefer readable
    heads + roomy cards over locking height:100svh when they conflict. */
@@ -61076,7 +61076,7 @@ button.process-bento-rail-chip {
     gap: clamp(0.65rem, 1.2svh, 0.85rem);
   }
 
-  /* Identity cards — roomy presence under fixed desks */
+  /* Identity cards â roomy presence under fixed desks */
   .two-track-3d-card > .two-track-id-card {
     position: relative;
     z-index: 0;
@@ -61208,7 +61208,7 @@ button.process-bento-rail-chip {
   }
 }
 
-/* ── TwoTrack intro L/R split + identity card type (2026-08-25) ──
+/* ââ TwoTrack intro L/R split + identity card type (2026-08-25) ââ
    Match ProcessBento/Stats wallet header: left eyebrow+H2, right lead.
    Stack below 1024. Identity cards: stronger title/body + border/shadow.
    Consoles (--tt-desk-h, dense bento) UNTOUCHED. */
@@ -61270,7 +61270,7 @@ button.process-bento-rail-chip {
     max-width: none;
   }
 
-  /* Identity cards — highlighted type + surface emphasis */
+  /* Identity cards â highlighted type + surface emphasis */
   .two-track-3d-card > .two-track-id-card {
     border: 1px solid color-mix(in oklab, var(--foreground) 12%, var(--border));
     background: color-mix(in oklab, var(--card) 88%, white);
@@ -61378,9 +61378,9 @@ button.process-bento-rail-chip {
   }
 }
 
-/* ── TwoTrack identity cards — horizontal anatomy (2026-08-25) ──
-   Icon well LEFT (~3.5–4rem) + text column RIGHT:
-   role label (accent strong) → bold headline → body → pill CTA.
+/* ââ TwoTrack identity cards â horizontal anatomy (2026-08-25) ââ
+   Icon well LEFT (~3.5â4rem) + text column RIGHT:
+   role label (accent strong) â bold headline â body â pill CTA.
    Broker: --primary / --primary-soft / --primary-deep.
    B2B: --tt-partner / --tt-partner-soft / --tt-partner-deep (slate, never purple).
    Consoles / --tt-desk-h / intro L/R: unchanged. */
@@ -61632,7 +61632,7 @@ button.process-bento-rail-chip {
   }
 }
 
-/* ── TwoTrack identity cards — equal height layout (2026-08-25) ──
+/* ââ TwoTrack identity cards â equal height layout (2026-08-25) ââ
    Partner body is longer than broker; stage was align-items:start so
    cards sized to content. Stretch columns + flex-grow id cards + CTA
    margin-top:auto so both share one height. Consoles untouched. */
@@ -61694,7 +61694,7 @@ button.process-bento-rail-chip {
   }
 }
 
-/* ── Global marketing button contract (2026-08-25) ──
+/* ââ Global marketing button contract (2026-08-25) ââ
    One look for every solid / outline CTA: --primary fill (never slate/
    primary-deep as a second brand), var(--radius), 44px min-height,
    shared lift hover (translateY -4px + --shadow-lift), same timing.
@@ -61822,7 +61822,7 @@ button.bg-primary:disabled,
   width: 100%;
 }
 
-/* Outline / secondary CTAs — same radius, height, motion; transparent fill */
+/* Outline / secondary CTAs â same radius, height, motion; transparent fill */
 .sb-btn-outline,
 .site-nav-cta-login,
 a.lift.border,
@@ -61892,7 +61892,7 @@ button.lift.border,
   box-shadow: var(--shadow-lift);
 }
 
-/* ProcessBento footer text-CTA → same solid primary button */
+/* ProcessBento footer text-CTA â same solid primary button */
 .process-bento-cta-link {
   display: inline-flex !important;
   align-items: center;
@@ -61966,4 +61966,1260 @@ button.lift.border,
 .smt-buy:hover:not(:disabled),
 .smt-apply:hover:not(:disabled) {
   transform: translateY(-2px);
+}
+
+/* ============================================================
+   ProcessBento reference rebuild (2026-08-25)
+   Prefix: .process-bento-*
+   Three bands: systems diagram, live 01–07 cards, 4-up proof.
+   Append-only. Supersedes prior .process-bento-features grid,
+   surface callout, and flow-rule chrome. Live packet hop on
+   .process-bento-step-* is unchanged in behavior.
+   Do not rewrite .process-bento-rail* .process-bento-header*
+   .bento-* or Hero / Nav / TwoTrack.
+   ============================================================ */
+
+.process-bento-callout {
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+  padding: 0.65rem 1.05rem 0.65rem 0.65rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primary-soft) 86%, var(--card));
+  border: 1px solid color-mix(in oklab, var(--primary) 18%, transparent);
+  box-shadow: none;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.process-bento-callout-icon {
+  width: 2.15rem;
+  height: 2.15rem;
+  background: color-mix(in oklab, var(--card) 88%, var(--primary-soft));
+  color: var(--primary);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 16%, transparent);
+}
+
+.process-bento-flow-heading {
+  display: none;
+}
+
+.process-bento-flow-rule {
+  display: none;
+}
+
+.process-bento-flow-title {
+  display: block;
+  width: 100%;
+  margin: 0 0 1.65rem;
+  flex: none;
+  text-align: center;
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.process-bento-diagram {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.2rem;
+  padding: 1.2rem 1rem 1.3rem;
+  border-radius: 1.25rem;
+  background: var(--card);
+  border: 1px solid color-mix(in oklab, var(--border) 78%, var(--primary));
+  box-shadow:
+    0 18px 40px -28px color-mix(in oklab, var(--foreground) 28%, transparent),
+    0 1px 0 color-mix(in oklab, var(--card) 80%, transparent);
+}
+
+.process-bento-diagram-group {
+  min-width: 0;
+}
+
+.process-bento-diagram-label {
+  margin: 0 0 0.55rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  text-transform: none;
+  color: var(--muted-foreground);
+}
+
+.process-bento-diagram-engine {
+  padding: 0.75rem 0.55rem 0.9rem;
+  border-radius: 0.9rem;
+  background: color-mix(in oklab, var(--primary-soft) 78%, var(--card));
+  border: 1px solid color-mix(in oklab, var(--primary) 22%, var(--border));
+}
+
+.process-bento-diagram-engine .process-bento-diagram-label {
+  color: var(--primary);
+}
+
+.process-bento-diagram-chips {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.15rem 0;
+}
+
+.process-bento-diagram-chip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35rem;
+  min-width: 4.35rem;
+  padding: 0.3rem 0.55rem;
+  flex: 1 1 auto;
+}
+
+.process-bento-diagram-chip:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 18%;
+  right: 0;
+  bottom: 18%;
+  width: 1px;
+  background: color-mix(in oklab, var(--border) 88%, var(--foreground));
+  pointer-events: none;
+}
+
+.process-bento-diagram-engine .process-bento-diagram-chip:not(:last-child)::after {
+  background: color-mix(in oklab, var(--primary) 22%, var(--border));
+}
+
+.process-bento-diagram-chip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primary-soft) 72%, var(--card));
+  color: var(--primary);
+}
+
+.process-bento-diagram-engine .process-bento-diagram-chip-icon {
+  background: color-mix(in oklab, var(--card) 82%, transparent);
+}
+
+.process-bento-diagram-chips[data-dense="true"] .process-bento-diagram-chip {
+  min-width: 3.6rem;
+  padding-inline: 0.32rem;
+}
+
+.process-bento-diagram-arrow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 1.7rem;
+  margin: 0.1rem 0;
+  pointer-events: none;
+}
+
+.process-bento-diagram-arrow-line {
+  flex: 1 1 auto;
+  width: 0;
+  border-left: 1.5px dashed color-mix(in oklab, var(--primary) 55%, var(--border));
+}
+
+.process-bento-diagram-arrow-head {
+  flex: 0 0 auto;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 6px solid color-mix(in oklab, var(--primary) 78%, var(--border));
+}
+
+.process-bento-diagram-arrow-packet {
+  position: absolute;
+  left: 50%;
+  top: 0.1rem;
+  z-index: 1;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 16%, transparent);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.process-bento-diagram[data-live="true"] .process-bento-diagram-arrow-packet {
+  animation: process-bento-diagram-hop 2.1s ease-in-out infinite;
+}
+
+.process-bento-diagram[data-live="true"]
+  .process-bento-diagram-arrow:nth-child(4)
+  .process-bento-diagram-arrow-packet {
+  animation-delay: 1.05s;
+}
+
+.process-bento-diagram[data-live="true"] .process-bento-diagram-arrow {
+  animation: process-bento-diagram-nudge 2.1s ease-in-out infinite;
+}
+
+.process-bento-diagram[data-live="true"] .process-bento-diagram-engine {
+  animation: process-bento-diagram-engine 3.6s ease-in-out infinite;
+}
+
+.process-bento-diagram[data-live="true"]
+  .process-bento-diagram-engine
+  .process-bento-diagram-chip-icon {
+  animation: process-bento-diagram-chip 3.2s ease-in-out infinite;
+}
+
+.process-bento-diagram-chip:nth-child(2) .process-bento-diagram-chip-icon {
+  animation-delay: 0.18s;
+}
+.process-bento-diagram-chip:nth-child(3) .process-bento-diagram-chip-icon {
+  animation-delay: 0.36s;
+}
+.process-bento-diagram-chip:nth-child(4) .process-bento-diagram-chip-icon {
+  animation-delay: 0.54s;
+}
+.process-bento-diagram-chip:nth-child(5) .process-bento-diagram-chip-icon {
+  animation-delay: 0.72s;
+}
+.process-bento-diagram-chip:nth-child(6) .process-bento-diagram-chip-icon {
+  animation-delay: 0.9s;
+}
+
+.process-bento-proof {
+  margin: clamp(2rem, 4.2vw, 2.85rem) 0 0;
+  padding: 0.25rem 0 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem 1.25rem;
+}
+
+.process-bento-proof-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.process-bento-proof-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.55rem;
+  height: 2.55rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--primary-soft) 86%, var(--card));
+  color: var(--primary);
+}
+
+.process-bento-proof-copy {
+  min-width: 0;
+  padding-top: 0.15rem;
+}
+
+.process-bento-proof-title {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--foreground);
+}
+
+.process-bento-proof-body {
+  margin: 0.15rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+}
+
+button.process-bento-cta-link {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.process-bento-step-btn {
+  min-height: 2.75rem;
+}
+
+.process-bento-step[data-state="active"] .process-bento-step-card,
+.process-bento-step-btn[data-state="active"] .process-bento-step-card {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary-soft) 78%, var(--card));
+}
+
+@keyframes process-bento-diagram-hop {
+  0% {
+    top: 0.15rem;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% - 0.15rem);
+    opacity: 0;
+  }
+}
+
+@keyframes process-bento-diagram-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+@keyframes process-bento-diagram-engine {
+  0%,
+  100% {
+    background: color-mix(in oklab, var(--primary-soft) 78%, var(--card));
+  }
+  50% {
+    background: color-mix(in oklab, var(--primary-soft) 92%, var(--card));
+  }
+}
+
+@keyframes process-bento-diagram-chip {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 1023px) {
+  .process-bento-diagram-chip:not(:last-child)::after {
+    display: none;
+  }
+
+  .process-bento-diagram-chips {
+    gap: 0.45rem 0.35rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .process-bento-proof {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.15rem 1.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .process-bento-diagram {
+    padding: 1.35rem 1.2rem 1.45rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .process-bento-split {
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+    column-gap: clamp(1.75rem, 4vw, 3.5rem);
+    align-items: center;
+  }
+
+  .process-bento-proof {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem 1.25rem;
+    margin-top: clamp(2.25rem, 3.5vw, 3rem);
+  }
+
+  .process-bento-step-card {
+    padding: 0.72rem 0.42rem 0.82rem;
+    gap: 0.32rem;
+  }
+
+  .process-bento-step-name {
+    font-size: 0.8125rem;
+  }
+
+  .process-bento-step-body {
+    font-size: 0.6875rem;
+    line-height: 1.35;
+  }
+
+  .process-bento-step-icon .lucide {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  .process-bento-diagram-chip {
+    min-width: 0;
+    padding: 0.25rem 0.4rem;
+  }
+
+  .process-bento-diagram-chip-label {
+    font-size: 0.625rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .process-bento-callout {
+    border-radius: 1.15rem;
+    align-items: flex-start;
+  }
+
+  .process-bento-diagram-chip {
+    min-width: 4.1rem;
+    flex: 1 1 4.1rem;
+  }
+
+  .process-bento-diagram-chip:not(:last-child)::after {
+    display: none;
+  }
+
+  .process-bento-proof-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-bento-diagram-arrow-packet,
+  .process-bento-diagram-arrow,
+  .process-bento-diagram-engine,
+  .process-bento-diagram-chip-icon {
+    animation: none !important;
+  }
+
+  .process-bento-diagram-arrow-packet {
+    opacity: 0 !important;
+  }
+
+  .process-bento-diagram-chip-icon {
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   Homepage hero + nav polish (2026-08-25)
+   Stronger stadium vignette, feature row under CTAs, clearer 3D console tilt.
+   Book a Demo hidden in Nav.tsx (desktop + mobile). Append-only.
+   Does not rewrite .hero-fit locks, .process-bento-*, TwoTrack, or global
+   button contract.
+   ========================================================================== */
+
+/* --- Readability veil over stadium photos --- */
+.hero-fit-veil-base {
+  background:
+    radial-gradient(
+      ellipse 78% 68% at 42% 42%,
+      rgb(0 0 0 / 0.62) 0%,
+      rgb(0 0 0 / 0.72) 42%,
+      rgb(0 0 0 / 0.84) 78%,
+      rgb(0 0 0 / 0.94) 100%
+    );
+}
+
+.hero-fit-veil-left {
+  background: linear-gradient(
+    90deg,
+    rgb(0 0 0 / 0.88) 0%,
+    rgb(0 0 0 / 0.72) 28%,
+    rgb(0 0 0 / 0.38) 52%,
+    rgb(0 0 0 / 0.12) 72%,
+    transparent 100%
+  );
+}
+
+.hero-fit-veil-top {
+  background: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0.78) 0%,
+    rgb(0 0 0 / 0.28) 28%,
+    transparent 55%
+  );
+}
+
+.hero-fit-veil-bottom {
+  background: linear-gradient(
+    0deg,
+    rgb(0 0 0 / 0.55) 0%,
+    rgb(0 0 0 / 0.18) 36%,
+    transparent 62%
+  );
+}
+
+.hero-fit .hero-copy .hero-copy-eyebrow,
+.hero-fit .hero-copy .hero-copy-head,
+.hero-fit .hero-copy .hero-copy-dense,
+.hero-fit .hero-copy .hero-copy-brief,
+.hero-fit .hero-copy .hero-copy-features {
+  text-shadow:
+    0 1px 2px rgb(0 0 0 / 0.55),
+    0 8px 28px rgb(0 0 0 / 0.45);
+}
+
+/* --- Feature row (4 qualitative claims under CTAs) --- */
+.hero-copy-features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem 0.85rem;
+  margin: 1.35rem 0 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  min-width: 0;
+}
+
+.hero-copy-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.hero-copy-feature-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 0.45rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 42%, transparent);
+  background: color-mix(in oklab, var(--primary) 18%, transparent);
+  color: var(--primary);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.2) inset;
+}
+
+.hero-copy-feature-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.08rem;
+}
+
+.hero-copy-feature-copy strong {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.hero-copy-feature-copy span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgb(255 255 255 / 0.78);
+}
+
+@media (min-width: 1024px) {
+  .hero-copy-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem 1rem;
+    margin-top: 1.55rem;
+    max-width: 28rem;
+  }
+
+  .hero-copy-feature-copy strong {
+    font-size: 0.875rem;
+  }
+
+  .hero-copy-feature-copy span {
+    font-size: 0.8125rem;
+  }
+}
+
+/* Phone / tablet hero lock: keep features readable but compact */
+@media (max-width: 1023px) {
+  .hero-fit .hero-copy .hero-copy-features {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem 0.55rem;
+    margin-top: 0.7rem;
+  }
+
+  .hero-copy-feature-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 0.35rem;
+  }
+
+  .hero-copy-feature-icon svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .hero-copy-feature-copy strong {
+    font-size: clamp(0.65rem, 2.8vw, 0.75rem);
+  }
+
+  .hero-copy-feature-copy span {
+    font-size: clamp(0.575rem, 2.4vw, 0.6875rem);
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 700px) {
+  .hero-fit .hero-copy .hero-copy-features {
+    gap: 0.3rem 0.4rem;
+    margin-top: 0.45rem;
+  }
+
+  .hero-copy-feature-copy span {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) and (max-height: 640px) {
+  .hero-fit .hero-copy .hero-copy-features {
+    display: none;
+  }
+}
+
+/* --- Clearer desktop 3D tilt (reference ~-12 to -18deg Y) --- */
+.hero-fit .hero-tilt-scene {
+  perspective: 1800px;
+  perspective-origin: 62% 42%;
+}
+
+.hero-fit .hero-tilt-card {
+  --tilt-x: 8deg;
+  --tilt-y: -16deg;
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) rotateZ(-1.5deg);
+  box-shadow:
+    0 1px 0 oklch(1 0 0 / 0.9) inset,
+    0 36px 72px -28px oklch(0.18 0.04 160 / 0.55),
+    0 18px 40px -20px oklch(0.12 0.03 160 / 0.45),
+    0 0 0 1px oklch(1 0 0 / 0.55) inset,
+    0 0 56px -8px color-mix(in oklab, var(--primary) 22%, transparent);
+}
+
+.hero-fit .hero-desk-shell .lc-bezel {
+  box-shadow:
+    0 22px 48px -24px oklch(0.2 0.04 160 / 0.5),
+    0 0 0 1px color-mix(in oklab, var(--border) 80%, transparent);
+}
+
+.hero-fit .hero-desk-pipe li[data-active="true"] {
+  border-color: color-mix(in oklab, var(--primary) 45%, var(--border));
+  background: color-mix(in oklab, var(--primary) 14%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 18%, transparent);
+}
+
+.hero-fit .hero-desk-active-name {
+  color: var(--primary-deep);
+}
+
+@media (min-width: 1024px) {
+  .hero-fit-console .hero-tilt-card {
+    --hero-card-h: 35rem;
+  }
+
+  .hero-fit-console {
+    padding-left: 0.35rem;
+  }
+}
+
+/* Tablet: shallower tilt so the desk does not clip */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero-fit-console .hero-tilt-card {
+    transform: rotateX(5deg) rotateY(-9deg) rotateZ(-1deg);
+  }
+
+  .hero-fit-console .hero-tilt-scene:hover .hero-tilt-card {
+    transform: rotateX(5deg) rotateY(-9deg) rotateZ(-1deg);
+  }
+}
+
+/* Phones â¤639 already flatten via prior append â keep that. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-fit .hero-tilt-card {
+    transform: rotateX(6deg) rotateY(-12deg);
+  }
+}
+
+/* ── Hero feature bar: 4-up single row on desktop (2026-08-25) ──
+   Full-width dark rail under copy+console. Sentence-case titles.
+   ≥1024: one row with mint icons + arrow joins. Mobile 2×2. */
+
+.hero-fit .hero-copy-features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem 0.75rem;
+  width: 100%;
+  max-width: none;
+  margin: 1rem 0 0;
+  padding: 0.75rem 0.85rem;
+  list-style: none;
+  border-radius: 0.85rem;
+  border: 1px solid color-mix(in oklab, white 14%, transparent);
+  background: color-mix(in oklab, var(--dark) 78%, transparent);
+  box-shadow: 0 18px 40px -28px rgb(0 0 0 / 0.65);
+  backdrop-filter: blur(12px);
+  text-shadow: none;
+}
+
+.hero-fit .hero-copy-feature {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.hero-fit .hero-copy-feature-join {
+  display: none;
+}
+
+.hero-fit .hero-copy-feature-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.45rem;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  box-shadow: none;
+}
+
+.hero-fit .hero-copy-feature-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.hero-fit .hero-copy-feature-copy strong {
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: #fff;
+  text-transform: none;
+}
+
+.hero-fit .hero-copy-feature-copy span {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgb(255 255 255 / 0.72);
+}
+
+@media (min-width: 1024px) {
+  .hero-fit .hero-copy-features {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: center;
+    gap: 0;
+    margin-top: 1.15rem;
+    padding: 0.85rem 1.15rem;
+  }
+
+  .hero-fit .hero-copy-feature {
+    min-width: 0;
+    padding-inline: 0.55rem;
+  }
+
+  .hero-fit .hero-copy-feature:first-child {
+    padding-left: 0;
+  }
+
+  .hero-fit .hero-copy-feature:last-child {
+    padding-right: 0;
+  }
+
+  .hero-fit .hero-copy-feature-join {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255 255 255 / 0.55);
+    margin-right: 0.45rem;
+  }
+
+  .hero-fit .hero-copy-feature-copy strong {
+    font-size: 0.8125rem;
+    white-space: nowrap;
+  }
+
+  .hero-fit .hero-copy-feature-copy span {
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 700px) {
+  .hero-fit .hero-copy-feature-copy span {
+    display: block;
+  }
+}
+
+@media (max-width: 639px) and (max-height: 640px) {
+  .hero-fit .hero-copy-features {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0.55rem 0.65rem;
+  }
+}
+
+/* ── Hero cinema restore + 4-up + 7-step workflow bar (2026-08-25) ──
+   Stadium veil back to the earlier lighter vignette (center 0.54).
+   Four highlights: open icon row (no dark glass, no arrows).
+   Seven Discover→Settle products: dark rounded rail + caption at the
+   bottom of the hero. Sentence-case titles. Append-only. */
+
+.hero-fit-veil-base {
+  background:
+    radial-gradient(
+      ellipse 78% 68% at 42% 42%,
+      rgb(0 0 0 / 0.54) 0%,
+      rgb(0 0 0 / 0.6) 38%,
+      rgb(0 0 0 / 0.72) 70%,
+      rgb(0 0 0 / 0.9) 100%
+    );
+}
+
+.hero-fit-veil-left {
+  background: linear-gradient(
+    90deg,
+    rgb(0 0 0 / 0.55) 0%,
+    rgb(0 0 0 / 0.28) 32%,
+    rgb(0 0 0 / 0.1) 58%,
+    transparent 78%
+  );
+}
+
+.hero-fit-veil-top {
+  background: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0.42) 0%,
+    rgb(0 0 0 / 0.16) 32%,
+    transparent 58%
+  );
+}
+
+.hero-fit-veil-bottom {
+  background: linear-gradient(
+    0deg,
+    rgb(0 0 0 / 0.38) 0%,
+    rgb(0 0 0 / 0.12) 36%,
+    transparent 62%
+  );
+}
+
+.hero-fit .hero-copy .hero-copy-eyebrow,
+.hero-fit .hero-copy .hero-copy-head,
+.hero-fit .hero-copy .hero-copy-dense,
+.hero-fit .hero-copy .hero-copy-brief {
+  text-shadow:
+    0 1px 2px rgb(0 0 0 / 0.4),
+    0 8px 24px rgb(0 0 0 / 0.28);
+}
+
+.hero-fit .hero-copy-features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 1rem;
+  width: 100%;
+  max-width: none;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  text-shadow:
+    0 1px 2px rgb(0 0 0 / 0.45),
+    0 6px 18px rgb(0 0 0 / 0.3);
+}
+
+.hero-fit .hero-copy-feature {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  padding-inline: 0;
+}
+
+.hero-fit .hero-copy-feature-join {
+  display: none;
+}
+
+.hero-fit .hero-copy-feature-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--primary);
+  box-shadow: none;
+}
+
+.hero-fit .hero-copy-feature-copy strong {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.hero-fit .hero-copy-feature-copy span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgb(255 255 255 / 0.78);
+  white-space: nowrap;
+}
+
+.hero-workflow {
+  width: 100%;
+  margin: 0.35rem 0 1.15rem;
+}
+
+.hero-workflow-rail {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0.85rem 1rem;
+  list-style: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  border-radius: 0.85rem;
+  border: 1px solid color-mix(in oklab, white 12%, transparent);
+  background: color-mix(in oklab, var(--dark) 82%, transparent);
+  box-shadow: 0 18px 40px -28px rgb(0 0 0 / 0.65);
+  backdrop-filter: blur(14px);
+}
+
+.hero-workflow-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-workflow-item {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  min-width: 9.5rem;
+  gap: 0.55rem;
+}
+
+.hero-workflow-join {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.45rem;
+  color: rgb(255 255 255 / 0.55);
+}
+
+.hero-workflow-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  color: var(--primary);
+}
+
+.hero-workflow-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.08rem;
+}
+
+.hero-workflow-copy strong {
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: #fff;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.hero-workflow-copy span {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgb(255 255 255 / 0.7);
+  white-space: nowrap;
+}
+
+.hero-workflow-caption {
+  margin: 0.7rem 0 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.72);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.4);
+}
+
+@media (min-width: 1024px) {
+  .hero-fit .hero-copy-features {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  .hero-fit .hero-copy-feature-copy strong {
+    font-size: 0.9375rem;
+  }
+
+  .hero-fit .hero-copy-feature-copy span {
+    font-size: 0.8125rem;
+  }
+
+  .hero-fit-dots {
+    padding-bottom: 0.55rem;
+    padding-top: 0.15rem;
+  }
+
+  .hero-workflow {
+    margin: 0.15rem 0 1.35rem;
+  }
+
+  .hero-workflow-rail {
+    padding: 0.95rem 1.15rem;
+  }
+
+  .hero-workflow-item {
+    min-width: 0;
+  }
+
+  .hero-workflow-copy strong {
+    font-size: 0.8125rem;
+  }
+
+  .hero-workflow-copy span {
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hero-workflow-rail {
+    padding: 0.8rem 0.85rem;
+  }
+
+  .hero-workflow-item {
+    gap: 0.4rem;
+  }
+
+  .hero-workflow-join {
+    margin-right: 0.28rem;
+  }
+
+  .hero-workflow-copy strong {
+    font-size: 0.6875rem;
+  }
+
+  .hero-workflow-copy span {
+    font-size: 0.625rem;
+  }
+
+  .hero-fit .hero-copy-feature-copy strong {
+    font-size: 0.8125rem;
+  }
+
+  .hero-fit .hero-copy-feature-copy span {
+    font-size: 0.6875rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-fit .hero-copy-features {
+    margin-top: 0.7rem;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .hero-fit .hero-copy-feature-copy strong,
+  .hero-fit .hero-copy-feature-copy span {
+    white-space: normal;
+  }
+
+  .hero-workflow {
+    margin: 0.2rem 0 0.65rem;
+  }
+
+  .hero-workflow-rail {
+    padding: 0.7rem 0.8rem;
+  }
+
+  .hero-workflow-copy span {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 700px) {
+  .hero-fit .hero-copy-feature-copy span {
+    display: block;
+  }
+
+  .hero-workflow-caption {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) and (max-height: 700px) {
+  .hero-workflow {
+    display: none;
+  }
+}
+
+/* ── Hero 4-up in left column + 7-rail no-overlap (2026-08-25) ──
+   Highlights sit under the CTAs inside .hero-copy (2×2).
+   Discover→Settle rail is a 7-col grid; arrows live in the column-gap
+   so icons cannot paint over neighbors. Append-only. */
+
+.hero-fit .hero-copy .hero-copy-features {
+  grid-area: 2 / 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 0.85rem;
+  width: 100%;
+  max-width: none;
+  margin: 1.1rem 0 0;
+}
+
+.hero-fit .hero-copy .hero-copy-feature-copy strong,
+.hero-fit .hero-copy .hero-copy-feature-copy span {
+  white-space: normal;
+}
+
+.hero-workflow-rail {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  column-gap: 1.35rem;
+  align-items: center;
+  overflow: visible;
+}
+
+.hero-workflow-item {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.hero-workflow-icon {
+  flex-shrink: 0;
+}
+
+.hero-workflow-copy {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.hero-workflow-copy strong,
+.hero-workflow-copy span {
+  white-space: normal;
+}
+
+.hero-workflow-join {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 1;
+  display: inline-flex;
+  margin: 0;
+  color: rgb(255 255 255 / 0.55);
+  transform: translate(calc(50% + 0.675rem), -50%);
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .hero-fit .hero-copy .hero-copy-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem 1.1rem;
+    margin-top: 1.35rem;
+  }
+
+  .hero-workflow-rail {
+    column-gap: 1.5rem;
+    overflow: visible;
+  }
+
+  .hero-workflow-join {
+    transform: translate(calc(50% + 0.75rem), -50%);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hero-workflow-rail {
+    column-gap: 1.15rem;
+    padding: 0.8rem 0.95rem;
+  }
+
+  .hero-workflow-item {
+    gap: 0.35rem;
+  }
+
+  .hero-workflow-join {
+    transform: translate(calc(50% + 0.575rem), -50%);
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-workflow-rail {
+    display: flex;
+    column-gap: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .hero-workflow-item {
+    flex: 0 0 auto;
+    min-width: 10.5rem;
+    padding-right: 1.35rem;
+  }
+
+  .hero-workflow-item:last-child {
+    padding-right: 0;
+  }
+
+  .hero-workflow-join {
+    right: 0.65rem;
+    transform: translateY(-50%);
+  }
 }

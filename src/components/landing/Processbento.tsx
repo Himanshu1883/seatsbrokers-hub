@@ -7,22 +7,34 @@ import {
 } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
+  AppWindow,
   BarChart3,
-  Binoculars,
   Box,
+  Building2,
+  ClipboardList,
+  Code2,
   CreditCard,
   Globe2,
-  Inbox,
+  Layers,
   LayoutGrid,
   Link2,
-  Network,
+  Monitor,
+  Package,
+  Plug,
+  RefreshCw,
+  Rss,
   Search,
   ShoppingCart,
+  Store,
   Tag,
+  Truck,
+  User,
+  Users,
+  Wallet,
 } from "lucide-react";
 import { Reveal, useInView } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
-import { SiteLink } from "@/components/layout/SiteLink";
+import { useDemoModal } from "@/components/landing/DemoModal";
 import {
   bentoBackdrops,
   type BentoBackdropConfig,
@@ -323,16 +335,16 @@ function LaunchIllustration({ backdrop }: BentoIllustrationProps) {
 }
 
 const processCopy = {
-  eyebrow: "The problem",
-  titleLead: "One Platform.",
-  titleAccent: "Your Entire Ticket Operation.",
-  lead: "Ticket resale is fragmented. Inventory sits across different systems, prices move constantly, and marketplaces require separate management.",
-  calloutLead: "SeatsBrokers brings the workflow together — ",
-  calloutAccent: "all from one connected platform.",
+  eyebrow: "The ticketing challenge",
+  titleLead: "Your ticket operation ",
+  titleAccent: "shouldn't live in separate systems.",
+  lead: "Inventory, pricing and distribution often live in disconnected tools. SeatsBrokers connects them into one workflow — without forcing you to replace what already works.",
+  calloutLead: "Keep the systems you already run. ",
+  calloutAccent: "Connect everything through SeatsBrokers.",
   featuresTitle: "Everything you need, in one connected platform",
-  flowTitle: "All from one connected platform.",
+  flowTitle: "One connected workflow.",
   ctaLine: "One workflow. Complete control. More reach. Higher efficiency.",
-  ctaLink: "Grow your business with SeatsBrokers.",
+  ctaLink: "Book a Demo",
   join: "SeatsBrokers brings the workflow together.",
   verbs: [
     "Source inventory",
@@ -345,6 +357,9 @@ const processCopy = {
   ],
   close: "All from one connected platform.",
   support: "One platform. One inventory layer. Multiple sales channels.",
+  systemsLabel: "Your systems",
+  engineLabel: "SeatsBrokers engine",
+  channelsLabel: "Your channels",
 } as const;
 
 const featureItems: ReadonlyArray<{
@@ -396,39 +411,79 @@ const processSteps: ReadonlyArray<{
 }> = [
   {
     stage: "Discover",
-    body: "Identify events and opportunities.",
-    Icon: Binoculars,
+    body: "Identify events and opportunities",
+    Icon: Search,
   },
   {
     stage: "Source",
-    body: "Pull inventory from multiple sources.",
-    Icon: Inbox,
+    body: "Find and secure inventory",
+    Icon: Box,
   },
   {
     stage: "Price",
-    body: "Set competitive, market-driven prices.",
+    body: "Set competitive, market-driven prices",
     Icon: Tag,
   },
   {
     stage: "Connect",
-    body: "Connect systems and channels seamlessly.",
+    body: "Connect systems and sales channels",
     Icon: Link2,
   },
   {
     stage: "Distribute",
-    body: "Distribute to global marketplaces and partners.",
+    body: "Publish inventory globally",
     Icon: Globe2,
   },
   {
     stage: "Sell",
-    body: "Receive orders from buyers worldwide.",
+    body: "Manage quotes, orders and buyers",
     Icon: ShoppingCart,
   },
   {
     stage: "Settle",
-    body: "Settle payments and reconcile efficiently.",
+    body: "Manage payments and reconciliation",
     Icon: CreditCard,
   },
+];
+
+type DiagramChip = {
+  label: string;
+  Icon: LucideIcon;
+};
+
+const systemChips: ReadonlyArray<DiagramChip> = [
+  { label: "POS", Icon: Monitor },
+  { label: "ERP", Icon: Building2 },
+  { label: "Inventory", Icon: Package },
+  { label: "Supplier Feeds", Icon: Rss },
+  { label: "APIs", Icon: Code2 },
+];
+
+const engineChips: ReadonlyArray<DiagramChip> = [
+  { label: "Inventory", Icon: Box },
+  { label: "Intelligence", Icon: BarChart3 },
+  { label: "Pricing", Icon: Tag },
+  { label: "Orders", Icon: ClipboardList },
+  { label: "Delivery", Icon: Truck },
+  { label: "Payments", Icon: Wallet },
+];
+
+const channelChips: ReadonlyArray<DiagramChip> = [
+  { label: "Marketplaces", Icon: Store },
+  { label: "B2B Partners", Icon: Users },
+  { label: "Websites", Icon: Globe2 },
+  { label: "APIs & Integrations", Icon: Plug },
+];
+
+const proofItems: ReadonlyArray<{
+  title: string;
+  body: string;
+  Icon: LucideIcon;
+}> = [
+  { title: "One inventory layer", body: "Across all channels", Icon: Layers },
+  { title: "Keep your systems", body: "POS, ERP, inventory and more", Icon: AppWindow },
+  { title: "Real-time synchronization", body: "Accurate and always up to date", Icon: RefreshCw },
+  { title: "Built for brokers", body: "Ticket brokers first", Icon: User },
 ];
 
 const cards = [
@@ -465,6 +520,65 @@ const cards = [
     wide: true,
   },
 ] as const;
+
+function DiagramArrow() {
+  return (
+    <span className="process-bento-diagram-arrow" aria-hidden>
+      <span className="process-bento-diagram-arrow-line" />
+      <span className="process-bento-diagram-arrow-packet" />
+      <span className="process-bento-diagram-arrow-head" />
+    </span>
+  );
+}
+
+function DiagramChips({
+  chips,
+  dense,
+}: {
+  chips: ReadonlyArray<DiagramChip>;
+  dense?: boolean;
+}) {
+  return (
+    <ul className="process-bento-diagram-chips" data-dense={dense ? "true" : undefined}>
+      {chips.map(({ label, Icon }) => (
+        <li key={label} className="process-bento-diagram-chip">
+          <span className="process-bento-diagram-chip-icon" aria-hidden>
+            <Icon strokeWidth={1.75} className="size-[1.05rem]" />
+          </span>
+          <span className="process-bento-diagram-chip-label">{label}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ProcessDiagram() {
+  const { ref, inView } = useInView<HTMLElement>(0.2, { once: false });
+
+  return (
+    <aside
+      ref={ref}
+      className="process-bento-diagram"
+      data-live={inView ? "true" : "false"}
+      aria-label="How SeatsBrokers connects your systems and channels"
+    >
+      <div className="process-bento-diagram-group">
+        <p className="process-bento-diagram-label">{processCopy.systemsLabel}</p>
+        <DiagramChips chips={systemChips} />
+      </div>
+      <DiagramArrow />
+      <div className="process-bento-diagram-group process-bento-diagram-engine">
+        <p className="process-bento-diagram-label">{processCopy.engineLabel}</p>
+        <DiagramChips chips={engineChips} dense />
+      </div>
+      <DiagramArrow />
+      <div className="process-bento-diagram-group">
+        <p className="process-bento-diagram-label">{processCopy.channelsLabel}</p>
+        <DiagramChips chips={channelChips} />
+      </div>
+    </aside>
+  );
+}
 
 /** Live Discover→Settle spine — auto-advances while in view (FeatureOrbit dwell). */
 function ProcessFlow() {
@@ -553,11 +667,7 @@ function ProcessFlow() {
       onFocusCapture={hold}
       onBlurCapture={onFlowBlur}
     >
-      <div className="process-bento-flow-heading">
-        <span className="process-bento-flow-rule" aria-hidden />
-        <h3 className="process-bento-flow-title">{processCopy.flowTitle}</h3>
-        <span className="process-bento-flow-rule" aria-hidden />
-      </div>
+      <h3 className="process-bento-flow-title">{processCopy.flowTitle}</h3>
 
       <ol
         ref={stepsRef}
@@ -763,6 +873,7 @@ function ProcessRail({ inView }: { inView: boolean }) {
 */
 
 export function ProcessBento() {
+  const { openDemoModal } = useDemoModal();
   // Kept for the commented bento grids below — do not remove.
   const top = cards.slice(0, 3);
   const bottom = cards.slice(3);
@@ -785,7 +896,7 @@ export function ProcessBento() {
               <p className="process-bento-lead">{processCopy.lead}</p>
               <div className="process-bento-callout">
                 <span className="process-bento-callout-icon" aria-hidden>
-                  <Network strokeWidth={1.75} className="size-[1.15rem]" />
+                  <Link2 strokeWidth={1.75} className="size-[1.15rem]" />
                 </span>
                 <p>
                   {processCopy.calloutLead}
@@ -794,6 +905,9 @@ export function ProcessBento() {
               </div>
             </div>
 
+            <ProcessDiagram />
+
+            {/* Previous 7-capability feature card (unmounted 2026-08-25 reference rebuild)
             <aside className="process-bento-features" aria-label="Platform capabilities">
               <h3 className="process-bento-features-title">{processCopy.featuresTitle}</h3>
               <ul className="process-bento-feature-grid">
@@ -810,6 +924,7 @@ export function ProcessBento() {
                 ))}
               </ul>
             </aside>
+            */}
           </div>
         </Reveal>
 
@@ -817,7 +932,23 @@ export function ProcessBento() {
           <ProcessFlow />
         </Reveal>
 
-        {/* <Reveal delay={120}>
+        <Reveal delay={120}>
+          <ul className="process-bento-proof" aria-label="Platform strengths">
+            {proofItems.map(({ title, body, Icon }) => (
+              <li key={title} className="process-bento-proof-item">
+                <span className="process-bento-proof-icon" aria-hidden>
+                  <Icon strokeWidth={1.75} className="size-[1.15rem]" />
+                </span>
+                <div className="process-bento-proof-copy">
+                  <p className="process-bento-proof-title">{title}</p>
+                  <p className="process-bento-proof-body">{body}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal delay={140}>
           <div className="process-bento-cta">
             <div className="process-bento-cta-lead">
               <span className="process-bento-cta-icon" aria-hidden>
@@ -826,11 +957,11 @@ export function ProcessBento() {
               <p>{processCopy.ctaLine}</p>
             </div>
             <span className="process-bento-cta-divider" aria-hidden />
-            <SiteLink to={ctas.bookDemo.to} className="process-bento-cta-link">
-              {processCopy.ctaLink}
-            </SiteLink>
+            <button type="button" onClick={openDemoModal} className="process-bento-cta-link">
+              {ctas.bookDemo.label}
+            </button>
           </div>
-        </Reveal> */}
+        </Reveal>
 
         {/* Previous header + live ProcessRail (unmounted 2026-08-25)
         <Reveal>
@@ -895,6 +1026,7 @@ export function ProcessBento() {
         <span className="sr-only" hidden>
           {top.length +
             bottom.length +
+            featureItems.length +
             processCopy.verbs.length +
             processCopy.join.length +
             processCopy.close.length +

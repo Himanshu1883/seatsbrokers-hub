@@ -179,7 +179,7 @@ Used on `/` unless noted.
 | DemoModal | `DemoModal.tsx` | Single-column Book a Demo (`data-layout="stack"`) + provider; top bar + USP strip + icon form + 2-col moduleList/API product cards; `submitLead`; Prefer `/book-demo` | PageShell chrome (Nav / FinalCTA / Hero) |
 | Footer | `Footer.tsx` | Footer columns Platform / Products / Company / Support; Support Help Centre → `/faq`; legal links Privacy / Terms / Cookie Policy → `/legal#privacy` `#terms` `#cookies`; brand line SeatsBrokers™ — A SeatsGroup Company; partners mailto line; socials commented out | PageShell |
 | FinalCTA | `FinalCTA.tsx` | Global close CTA (Book a Demo opens DemoModal; Become a Seller outline → `/become-a-seller`; Login) | PageShell (all pages) |
-| Hero | `Hero.tsx` | Homepage hero + typewriter; dark stadium cinema; Book a Demo opens DemoModal | `/` |
+| Hero | `Hero.tsx` | Homepage hero + typewriter; stadium cinema with lighter vignette; 4-up highlight row + 7-step Discover→Settle rail; Book a Demo opens DemoModal | `/` |
 | HeroDashboardTilt | `HeroDashboardTilt.tsx` | Three light `ConsoleShell` desks in the tilt stage (hub / Discover→Settle / product command), 1:1 with hero slides | Hero |
 | SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: 3-col `.sto-*` infographic (systems → SeatsLink™ → SeatsBrokers → channels; qualitative marketplace copy; Explore Our API). Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus synced pipeline minis | `/` (`#sellers`, `#travel`) |
 | SeatMapTicketsConsole | `SeatMapTicketsConsole.tsx` | Interactive inventory/quote mini-console (select, margin, copy, PDF) in `ConsoleShell`; **8** Available Ticket Listings rows (`SEAT_MAP_LISTING_ROWS`) | TravelTools |

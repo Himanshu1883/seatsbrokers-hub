@@ -4,7 +4,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import lockupSvg from "@/assets/SeatsBrokers-favicon.svg?url";
 import { brand, ctas, navLinks } from "@/content/site";
 import { SiteLink } from "@/components/layout/SiteLink";
-import { useDemoModal } from "@/components/landing/DemoModal";
+/* Book a Demo stays in Hero / FinalCTA / /book-demo — hidden from nav chrome. */
 
 function isNavActive(pathname: string, to: string) {
   if (to === "/") return pathname === "/";
@@ -17,7 +17,6 @@ function hashProps(link: (typeof navLinks)[number]) {
 
 export function Nav() {
   const [open, setOpen] = useState(false);
-  const { openDemoModal } = useDemoModal();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const visibleNavLinks = navLinks.filter((l) => !l.hidden);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -172,6 +171,7 @@ export function Nav() {
             >
               {ctas.login.label}
             </SiteLink>
+            {/* Book a Demo — hidden from navbar (Hero / FinalCTA / /book-demo still open it)
             <button
               type="button"
               onClick={openDemoModal}
@@ -179,6 +179,7 @@ export function Nav() {
             >
               {ctas.bookDemo.label}
             </button>
+            */}
             <SiteLink
               to={ctas.becomeSeller.to}
               className="lift rounded-md border border-border px-3 py-2 text-sm font-semibold text-foreground hover:border-primary hover:text-primary"
@@ -251,6 +252,7 @@ export function Nav() {
           </div>
 
           <div className="site-nav-ctas container-nav">
+            {/* Book a Demo — hidden from mobile sheet (same as desktop nav)
             <button
               type="button"
               onClick={() => {
@@ -261,6 +263,7 @@ export function Nav() {
             >
               {ctas.bookDemo.label}
             </button>
+            */}
             <SiteLink
               to={ctas.becomeSeller.to}
               onClick={() => setOpen(false)}

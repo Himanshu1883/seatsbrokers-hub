@@ -1,8 +1,22 @@
 import { useCallback, useEffect, useState, type ReactNode } from "react";
+import {
+  ArrowRight,
+  Box,
+  Briefcase,
+  CreditCard,
+  FolderCog,
+  Globe,
+  Link2,
+  RefreshCw,
+  Search,
+  ShoppingCart,
+  TrendingUp,
+} from "lucide-react";
 import { useTypewriter } from "@/hooks/use-scroll-motion";
 import { HeroDashboardTilt } from "@/components/landing/HeroDashboardTilt";
 import { useDemoModal } from "@/components/landing/DemoModal";
 import { SiteLink } from "@/components/layout/SiteLink";
+import { workflowStages } from "@/content/modules";
 import { ctas } from "@/content/site";
 import heroStadium1 from "@/assets/hero-stadium-1.webp";
 import heroStadium2 from "@/assets/hero-stadium-2.jpg";
@@ -10,45 +24,67 @@ import heroStadium3 from "@/assets/hero-stadium-3.jpg";
 
 const SLIDE_MS = 2100;
 
+const featureHighlights = [
+  {
+    title: "One inventory layer",
+    detail: "Across all channels",
+    icon: Search,
+  },
+  {
+    title: "Keep your systems",
+    detail: "POS, ERP, Inventory",
+    icon: FolderCog,
+  },
+  {
+    title: "Real-time sync",
+    detail: "Accurate & reliable",
+    icon: RefreshCw,
+  },
+  {
+    title: "Built for brokers",
+    detail: "Ticket brokers first",
+    icon: Briefcase,
+  },
+] as const;
+
+const workflowHighlights = [
+  { stage: workflowStages[0], detail: "Market intelligence", icon: Search },
+  { stage: workflowStages[1], detail: "Find & secure inventory", icon: Box },
+  { stage: workflowStages[2], detail: "AI pricing intelligence", icon: TrendingUp },
+  { stage: workflowStages[3], detail: "System & channel connectivity", icon: Link2 },
+  { stage: workflowStages[4], detail: "Global channel distribution", icon: Globe },
+  { stage: workflowStages[5], detail: "Quotes, orders & CRM", icon: ShoppingCart },
+  { stage: workflowStages[6], detail: "Payments & settlements", icon: CreditCard },
+] as const;
+
 const slides = [
   {
     image: heroStadium1,
     alt: "SeatsBrokers platform for professional ticket brokers",
-    eyebrow: "SeatsBrokers™",
+    eyebrow: "One platform.",
     title: "Technology powering",
     typePhrases: ["professional ticket businesses."],
-    body: "Connect your inventory once and manage distribution, pricing, orders, delivery and payments from one system.",
-    shortBody: "Connect your inventory once and manage distribution, pricing, orders, delivery and payments from one system.",
-    details: [
-      "Keep the POS, inventory and ERP you already run",
-      "Built for professional ticket brokers — not a consumer marketplace",
-    ],
+    body: "Connect your inventory once and manage distribution, pricing, orders, delivery and payments from one intelligent infrastructure layer.",
+    shortBody:
+      "Connect your inventory once and manage distribution, pricing, orders, delivery and payments from one intelligent infrastructure layer.",
   },
   {
     image: heroStadium2,
     alt: "One platform for the professional ticket operation",
-    eyebrow: "One platform",
+    eyebrow: "One platform.",
     title: "Connect once.",
     typePhrases: ["Manage the whole desk."],
     body: "Inventory, pricing, distribution, orders and settlement stay in one workflow — without replacing the stack you already run.",
     shortBody: "Inventory, pricing, distribution, orders and settlement — one connected workflow.",
-    details: [
-      "Keep the POS, inventory and ERP you already run",
-      "Orders, delivery and settlement stay in the same workflow",
-    ],
   },
   {
     image: heroStadium3,
     alt: "SeatsBrokers product workflow from opportunity to settlement",
-    eyebrow: "Professional ticket trade",
+    eyebrow: "One platform.",
     title: "Operate more efficiently.",
     typePhrases: ["Scale your ticket business."],
-    body: "Market intelligence informs the desk — you stay in control.",
+    body: "Market intelligence informs the desk — you stay in control of pricing, distribution and settlement.",
     shortBody: "Market intelligence informs the desk — you stay in control.",
-    details: [
-      "Built for professional ticket brokers — not a consumer marketplace",
-      "Travel, concierge and hospitality sit on SeatsConnect, not here",
-    ],
   },
 ] as const;
 
@@ -91,6 +127,50 @@ function HeroTypewriter({ phrases }: { phrases: readonly string[] }) {
   return <HeroTypeLine phrases={phrases}>{display}</HeroTypeLine>;
 }
 
+function HeroFeatureRow() {
+  return (
+    <ul className="hero-copy-features" aria-label="Platform highlights">
+      {featureHighlights.map(({ title, detail, icon: Icon }) => (
+        <li key={title} className="hero-copy-feature">
+          <span className="hero-copy-feature-icon" aria-hidden>
+            <Icon className="size-4" strokeWidth={1.75} />
+          </span>
+          <span className="hero-copy-feature-copy">
+            <strong>{title}</strong>
+            <span>{detail}</span>
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function HeroWorkflowBar() {
+  return (
+    <div className="hero-workflow">
+      <ol className="hero-workflow-rail" aria-label="Discover to Settle workflow">
+        {workflowHighlights.map(({ stage, detail, icon: Icon }, index) => (
+          <li key={stage} className="hero-workflow-item">
+            <span className="hero-workflow-icon" aria-hidden>
+              <Icon className="size-4" strokeWidth={1.75} />
+            </span>
+            <span className="hero-workflow-copy">
+              <strong>{stage}</strong>
+              <span>{detail}</span>
+            </span>
+            {index < workflowHighlights.length - 1 ? (
+              <span className="hero-workflow-join" aria-hidden>
+                <ArrowRight className="size-3.5" strokeWidth={2} />
+              </span>
+            ) : null}
+          </li>
+        ))}
+      </ol>
+      <p className="hero-workflow-caption">One connected workflow. Seven powerful products.</p>
+    </div>
+  );
+}
+
 function HeroSlideCopy({
   slide,
   isActive,
@@ -110,7 +190,7 @@ function HeroSlideCopy({
       <p
         className={item(
           0,
-          "hero-copy-eyebrow inline-flex max-w-full flex-wrap items-center gap-1.5 rounded-full border border-background/20 bg-background/8 px-2 py-0.5 text-pretty font-mono text-white normal-case backdrop-blur-sm",
+          "hero-copy-eyebrow inline-flex max-w-full flex-wrap items-center gap-1.5 rounded-full border border-background/25 bg-black/35 px-2.5 py-0.5 text-pretty font-mono text-white normal-case backdrop-blur-sm",
         )}
       >
         <span className="size-1 shrink-0 rounded-full bg-primary" />
@@ -150,24 +230,7 @@ function HeroSlideCopy({
         {slide.shortBody}
       </p>
 
-      <ul
-        className={item(
-          3,
-          "hero-copy-dense mt-6 space-y-2.5 border-l-2 border-primary/45 pl-4 sm:mt-7 sm:pl-5",
-        )}
-      >
-        {slide.details.map((detail) => (
-          <li
-            key={detail}
-            className="flex gap-2.5 text-sm leading-relaxed font-semibold text-white sm:text-[0.9375rem]"
-          >
-            <span className="mt-2 size-1 shrink-0 rounded-full bg-primary" aria-hidden />
-            <span>{detail}</span>
-          </li>
-        ))}
-      </ul>
-
-      <div className={item(4, "hero-copy-actions mt-8 flex w-full min-w-0 flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap")}>
+      <div className={item(3, "hero-copy-actions mt-8 flex w-full min-w-0 flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap")}>
         <button
           type="button"
           onClick={openDemoModal}
@@ -178,7 +241,7 @@ function HeroSlideCopy({
         </button>
         <SiteLink
           to={ctas.becomeSeller.to}
-          className="lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-white hover:bg-background/10 sm:w-auto"
+          className="lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md border border-background/55 px-6 py-3.5 text-sm font-semibold text-white hover:bg-background/10 sm:w-auto"
           tabIndex={isActive ? 0 : -1}
         >
           {ctas.becomeSeller.label}
@@ -238,10 +301,12 @@ export function Hero() {
         ))}
       </div>
 
-      <div className="absolute inset-0 -z-10" aria-hidden>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_58%_at_52%_44%,rgb(0_0_0_/_0.54)_0%,rgb(0_0_0_/_0.60)_38%,rgb(0_0_0_/_0.72)_72%,rgb(0_0_0_/_0.90)_100%)]" />
-        <div className="absolute inset-0 bg-linear-to-b from-black/72 via-transparent via-42% to-black/50" />
-        <div className="absolute inset-0 bg-linear-to-r from-black/58 via-transparent via-48% to-transparent" />
+      {/* Lighter stadium vignette — copy stays readable without crushing the photo. */}
+      <div className="hero-fit-veil absolute inset-0 -z-10" aria-hidden>
+        <div className="hero-fit-veil-base absolute inset-0" />
+        <div className="hero-fit-veil-left absolute inset-0" />
+        <div className="hero-fit-veil-top absolute inset-0" />
+        <div className="hero-fit-veil-bottom absolute inset-0" />
       </div>
 
       <div className="hero-fit-zoom">
@@ -263,6 +328,7 @@ export function Hero() {
                     </div>
                   );
                 })}
+                <HeroFeatureRow />
               </div>
 
               <div className="hero-fit-console hero-copy-item hero-copy-delay-3 relative z-0 mx-auto w-full min-h-0 min-w-0 max-w-xl lg:mx-0 lg:max-w-none lg:pl-0 lg:[clip-path:inset(-3rem_0_-3rem_0)] lg:[&_.hero-tilt-card]:origin-[right_center]">
@@ -296,6 +362,10 @@ export function Hero() {
               </button>
             ))}
           </div>
+        </div>
+
+        <div className="container-page">
+          <HeroWorkflowBar />
         </div>
       </div>
     </section>

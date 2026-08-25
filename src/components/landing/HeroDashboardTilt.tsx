@@ -25,7 +25,7 @@ const TICK_MS = 1600;
 
 const consoleMeta = [
   { id: "platform", path: "seatsbrokers / platform / operations", badge: "Ready" },
-  { id: "workflow", path: "seatsbrokers / platform / workflow", badge: "Live" },
+  { id: "workflow", path: "seatsbrokers / platform / overview", badge: "Live" },
   { id: "products", path: "seatsbrokers / products / command", badge: "Ready" },
 ] as const;
 
@@ -205,8 +205,8 @@ function WorkflowDesk({ tick, live }: { tick: number; live: boolean }) {
 
         <div className="hero-desk-context">
           <div className="min-w-0">
-            <p className="hero-desk-kicker">Workflow desk</p>
-            <p className="hero-desk-title">Source, price, distribute and settle from one desk</p>
+            <p className="hero-desk-kicker">Workflow overview</p>
+            <p className="hero-desk-title">Discover → Settle — seven products, one desk</p>
           </div>
           <span className="hero-desk-chip">Live</span>
         </div>
@@ -224,10 +224,8 @@ function WorkflowDesk({ tick, live }: { tick: number; live: boolean }) {
         <section className="lc-panel hero-desk-active">
           <header className="lc-panel-head">
             <span className="lc-panel-dot" />
-            Now lighting
-            <span className="lc-panel-badge">
-              {layer.index} · {layer.stage}
-            </span>
+            {layer.index} · {layer.stage}
+            <span className="lc-panel-badge lc-panel-badge-live">Active</span>
           </header>
           <p className="hero-desk-active-name">{layer.name}</p>
           <p className="hero-desk-active-tag">{layer.tagline}</p>
@@ -382,8 +380,8 @@ export function HeroDashboardTilt({
     const rect = el.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width - 0.5;
     const py = (e.clientY - rect.top) / rect.height - 0.5;
-    el.style.setProperty("--tilt-x", `${(-py * 16).toFixed(2)}deg`);
-    el.style.setProperty("--tilt-y", `${(px * 20).toFixed(2)}deg`);
+    el.style.setProperty("--tilt-x", `${(8 - py * 10).toFixed(2)}deg`);
+    el.style.setProperty("--tilt-y", `${(-16 + px * 10).toFixed(2)}deg`);
     el.style.setProperty("--tilt-glare-x", `${50 + px * 42}%`);
     el.style.setProperty("--tilt-glare-y", `${50 + py * 42}%`);
   }, []);
@@ -392,8 +390,8 @@ export function HeroDashboardTilt({
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const el = cardRef.current;
     if (!el) return;
-    el.style.setProperty("--tilt-x", "10deg");
-    el.style.setProperty("--tilt-y", "-20deg");
+    el.style.setProperty("--tilt-x", "8deg");
+    el.style.setProperty("--tilt-y", "-16deg");
     el.style.setProperty("--tilt-glare-x", "28%");
     el.style.setProperty("--tilt-glare-y", "18%");
   }, []);

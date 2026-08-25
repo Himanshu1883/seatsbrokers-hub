@@ -349,8 +349,8 @@ export function Hero() {
 
         <div className="hero-fit-main flex min-h-0 items-center overflow-visible">
           <div className="container-page flex min-h-0 w-full flex-col py-6 sm:py-8">
-            <div className="hero-fit-grid grid min-h-0 min-w-0 items-center gap-6 lg:isolate lg:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] lg:items-start lg:justify-center lg:gap-x-10 xl:gap-x-12">
-              <div className="hero-copy @container w-full min-w-0 max-w-3xl max-lg:overflow-x-visible overflow-x-clip lg:relative lg:z-20 lg:max-w-none lg:pr-[clamp(1rem,2.8vw,2.25rem)]">
+            <div className="hero-fit-grid grid min-h-0 min-w-0 w-full max-w-[70rem] mx-auto items-center gap-6 lg:isolate lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,32.5rem)] lg:items-center lg:justify-center lg:gap-x-7 xl:gap-x-8 min-[1920px]:max-w-none min-[1920px]:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] min-[1920px]:gap-x-10 min-[1920px]:items-start">
+              <div className="hero-copy @container w-full min-w-0 max-w-3xl max-lg:overflow-x-visible overflow-x-clip lg:relative lg:z-20 lg:max-w-[32.5rem] lg:pr-0 min-[1920px]:max-w-none min-[1920px]:pr-[clamp(1rem,2.8vw,2.25rem)]">
                 {slides.map((s, i) => {
                   const isActive = i === active;
                   return (
@@ -371,7 +371,7 @@ export function Hero() {
                 <HeroFeatureRow />
               </div>
 
-              <div className="hero-fit-console hero-copy-item hero-copy-delay-3 relative z-0 mx-auto w-full min-h-0 min-w-0 max-w-xl lg:mx-0 lg:max-w-none lg:pl-0 lg:[clip-path:inset(-3rem_0_-3rem_0)] lg:[&_.hero-tilt-card]:origin-[right_center]">
+              <div className="hero-fit-console hero-copy-item hero-copy-delay-3 relative z-0 mx-auto w-full min-h-0 min-w-0 max-w-xl lg:mx-0 lg:max-w-[32.5rem] lg:justify-self-end lg:[clip-path:inset(-3rem_0_-3rem_0)] lg:[&_.hero-tilt-card]:origin-center min-[1920px]:max-w-none min-[1920px]:[&_.hero-tilt-card]:origin-[right_center]">
                 <HeroDashboardTilt slide={active} swapKey={lite ? 0 : motionKey} />
               </div>
             </div>
@@ -407,7 +407,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="container-page">
+        <div className="hero-fit-workflow container-page">
           <HeroWorkflowBar />
         </div>
       </div>

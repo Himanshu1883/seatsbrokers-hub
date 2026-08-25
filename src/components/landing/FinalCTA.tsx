@@ -1,9 +1,12 @@
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
+import { useDemoModal } from "@/components/landing/DemoModal";
 import { ctas } from "@/content/site";
 import ctaImg from "@/assets/cta-trophy.jpg";
 
 export function FinalCTA() {
+  const { openDemoModal } = useDemoModal();
+
   return (
     <section id="contact" className="section-curve relative isolate scroll-mt-24 overflow-x-clip py-16 sm:py-28">
       <img
@@ -33,12 +36,13 @@ export function FinalCTA() {
             Source smarter. Price better. Distribute further. Sell more.
           </p>
           <div className="page-cta-row mt-9 justify-center">
-            <SiteLink
-              to={ctas.bookDemo.to}
+            <button
+              type="button"
+              onClick={openDemoModal}
               className="lift rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
             >
               {ctas.bookDemo.label}
-            </SiteLink>
+            </button>
             <SiteLink
               to={ctas.becomeSeller.to}
               className="lift rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-background hover:bg-background/10"

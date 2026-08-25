@@ -1,12 +1,38 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import type { LucideIcon } from "lucide-react";
+import {
+  BarChart3,
+  Binoculars,
+  Box,
+  CreditCard,
+  Globe2,
+  Inbox,
+  LayoutGrid,
+  Link2,
+  Network,
+  Search,
+  ShoppingCart,
+  Tag,
+} from "lucide-react";
 import { Reveal, useInView } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
+import { SiteLink } from "@/components/layout/SiteLink";
 import {
   bentoBackdrops,
   type BentoBackdropConfig,
   type BentoSceneVariant,
 } from "@/content/bento-illustrations";
 import { workflowStages } from "@/content/modules";
+import { ctas } from "@/content/site";
+
+const FLOW_MS = 2100;
+const FLOW_RESUME_MS = 450;
 
 type BentoIllustrationProps = {
   backdrop: BentoBackdropConfig;
@@ -300,7 +326,13 @@ const processCopy = {
   eyebrow: "The problem",
   titleLead: "One Platform.",
   titleAccent: "Your Entire Ticket Operation.",
-  lead: "Ticket resale is fragmented. Inventory sits across different systems, prices move constantly, marketplaces require separate management and orders need to be fulfilled quickly.",
+  lead: "Ticket resale is fragmented. Inventory sits across different systems, prices move constantly, and marketplaces require separate management.",
+  calloutLead: "SeatsBrokers brings the workflow together — ",
+  calloutAccent: "all from one connected platform.",
+  featuresTitle: "Everything you need, in one connected platform",
+  flowTitle: "All from one connected platform.",
+  ctaLine: "One workflow. Complete control. More reach. Higher efficiency.",
+  ctaLink: "Grow your business with SeatsBrokers.",
   join: "SeatsBrokers brings the workflow together.",
   verbs: [
     "Source inventory",
@@ -314,6 +346,90 @@ const processCopy = {
   close: "All from one connected platform.",
   support: "One platform. One inventory layer. Multiple sales channels.",
 } as const;
+
+const featureItems: ReadonlyArray<{
+  title: string;
+  body: string;
+  Icon: LucideIcon;
+}> = [
+  {
+    title: "Source inventory",
+    body: "Access inventory from multiple sources in one place.",
+    Icon: Search,
+  },
+  {
+    title: "Understand the market",
+    body: "Market intelligence to make clearer, faster decisions.",
+    Icon: BarChart3,
+  },
+  {
+    title: "Distribute globally",
+    body: "Reach more buyers through multiple channels worldwide.",
+    Icon: Globe2,
+  },
+  {
+    title: "Manage payments",
+    body: "Track payments and partners in the same workflow.",
+    Icon: CreditCard,
+  },
+  {
+    title: "Manage stock",
+    body: "Centralized inventory control across all channels.",
+    Icon: Box,
+  },
+  {
+    title: "Price smarter",
+    body: "Market-driven pricing tools to stay competitive.",
+    Icon: Tag,
+  },
+  {
+    title: "Fulfil orders",
+    body: "Order management from sale through to delivery.",
+    Icon: ShoppingCart,
+  },
+];
+
+const processSteps: ReadonlyArray<{
+  stage: (typeof workflowStages)[number];
+  body: string;
+  Icon: LucideIcon;
+}> = [
+  {
+    stage: "Discover",
+    body: "Identify events and opportunities.",
+    Icon: Binoculars,
+  },
+  {
+    stage: "Source",
+    body: "Pull inventory from multiple sources.",
+    Icon: Inbox,
+  },
+  {
+    stage: "Price",
+    body: "Set competitive, market-driven prices.",
+    Icon: Tag,
+  },
+  {
+    stage: "Connect",
+    body: "Connect systems and channels seamlessly.",
+    Icon: Link2,
+  },
+  {
+    stage: "Distribute",
+    body: "Distribute to global marketplaces and partners.",
+    Icon: Globe2,
+  },
+  {
+    stage: "Sell",
+    body: "Receive orders from buyers worldwide.",
+    Icon: ShoppingCart,
+  },
+  {
+    stage: "Settle",
+    body: "Settle payments and reconcile efficiently.",
+    Icon: CreditCard,
+  },
+];
 
 const cards = [
   {
@@ -350,9 +466,175 @@ const cards = [
   },
 ] as const;
 
-const RAIL_MS = 2100;
-const RAIL_RESUME_MS = 450;
-const RAIL_LAST = workflowStages.length - 1;
+/** Live Discover→Settle spine — auto-advances while in view (FeatureOrbit dwell). */
+function ProcessFlow() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reduced, setReduced] = useState(false);
+  const { ref, inView } = useInView<HTMLDivElement>(0.16, { once: false });
+  const resumeTimer = useRef<number | null>(null);
+  const stepsRef = useRef<HTMLOListElement | null>(null);
+  const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduced(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (reduced || paused || !inView) return;
+    if (active < processSteps.length - 1) return;
+    const id = window.setTimeout(() => setActive(0), FLOW_MS);
+    return () => window.clearTimeout(id);
+  }, [reduced, paused, inView, active]);
+
+  const hold = useCallback(() => {
+    if (resumeTimer.current != null) {
+      window.clearTimeout(resumeTimer.current);
+      resumeTimer.current = null;
+    }
+    setPaused(true);
+  }, []);
+
+  const release = useCallback(() => {
+    if (resumeTimer.current != null) window.clearTimeout(resumeTimer.current);
+    resumeTimer.current = window.setTimeout(() => {
+      setPaused(false);
+      resumeTimer.current = null;
+    }, FLOW_RESUME_MS);
+  }, []);
+
+  useEffect(
+    () => () => {
+      if (resumeTimer.current != null) window.clearTimeout(resumeTimer.current);
+    },
+    [],
+  );
+
+  useEffect(() => {
+    if (paused || reduced || !inView) return;
+    const rail = stepsRef.current;
+    const item = itemRefs.current[active];
+    if (!rail || !item) return;
+    if (rail.scrollWidth <= rail.clientWidth + 1) return;
+    const target = item.offsetLeft - (rail.clientWidth - item.offsetWidth) / 2;
+    rail.scrollTo({ left: Math.max(0, target), behavior: "smooth" });
+  }, [active, paused, reduced, inView]);
+
+  const onFlowBlur = (e: {
+    currentTarget: HTMLElement;
+    relatedTarget: EventTarget | null;
+  }) => {
+    if (!e.currentTarget.contains(e.relatedTarget as Node)) release();
+  };
+
+  const hop = useCallback(() => {
+    setActive((prev) => (prev + 1) % processSteps.length);
+  }, []);
+
+  const selectStep = useCallback((index: number) => {
+    setActive(index);
+  }, []);
+
+  const live = inView && !reduced;
+
+  return (
+    <div
+      ref={ref}
+      className="process-bento-flow"
+      data-live={live ? "true" : "false"}
+      data-paused={paused ? "true" : "false"}
+      onPointerEnter={hold}
+      onPointerLeave={release}
+      onPointerDown={hold}
+      onFocusCapture={hold}
+      onBlurCapture={onFlowBlur}
+    >
+      <div className="process-bento-flow-heading">
+        <span className="process-bento-flow-rule" aria-hidden />
+        <h3 className="process-bento-flow-title">{processCopy.flowTitle}</h3>
+        <span className="process-bento-flow-rule" aria-hidden />
+      </div>
+
+      <ol
+        ref={stepsRef}
+        className="process-bento-steps"
+        aria-label="Discover to Settle workflow"
+      >
+        {processSteps.map((step, i) => {
+          const n = String(i + 1).padStart(2, "0");
+          const StepIcon = step.Icon;
+          const state = i === active ? "active" : i < active ? "done" : "waiting";
+          const joinHot = live && i > 0 && i - 1 === active;
+          const joinDone = i > 0 && i - 1 < active;
+
+          return (
+            <li
+              key={step.stage}
+              ref={(el) => {
+                itemRefs.current[i] = el;
+              }}
+              className="process-bento-step"
+              data-state={state}
+            >
+              {i > 0 ? (
+                <span
+                  className="process-bento-step-join"
+                  data-hot={joinHot ? "true" : "false"}
+                  data-done={joinDone ? "true" : "false"}
+                  aria-hidden
+                >
+                  <span className="process-bento-step-join-line" />
+                  {joinHot ? (
+                    <span
+                      key={active}
+                      className="process-bento-step-packet"
+                      onAnimationEnd={(event) => {
+                        if (!event.animationName.includes("process-bento-step-packet")) {
+                          return;
+                        }
+                        hop();
+                      }}
+                    />
+                  ) : null}
+                  <span className="process-bento-step-join-arrow" />
+                </span>
+              ) : null}
+              <button
+                type="button"
+                className="process-bento-step-btn"
+                data-state={state}
+                aria-current={i === active ? "step" : undefined}
+                aria-label={`${n} ${step.stage}`}
+                onClick={() => selectStep(i)}
+              >
+                <span className="process-bento-step-mark">
+                  <span className="process-bento-step-num">{n}</span>
+                  <span className="process-bento-step-stem" aria-hidden />
+                </span>
+                <span className="process-bento-step-card">
+                  <span className="process-bento-step-icon" aria-hidden>
+                    <StepIcon strokeWidth={1.75} className="size-[1.15rem]" />
+                  </span>
+                  <span className="process-bento-step-name">{step.stage}</span>
+                  <span className="process-bento-step-body">{step.body}</span>
+                </span>
+              </button>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
+
+/* Preserved ProcessRail — unmounted after mockup redesign (2026-08-25).
+   Restores with: import { useCallback, useEffect, useRef, useState } from "react";
+   import { Reveal, useInView } from "@/hooks/use-scroll-motion";
+   const RAIL_MS = 2100; const RAIL_RESUME_MS = 450; const RAIL_LAST = workflowStages.length - 1;
 
 function ProcessRail({ inView }: { inView: boolean }) {
   const [active, setActive] = useState(0);
@@ -478,20 +760,79 @@ function ProcessRail({ inView }: { inView: boolean }) {
     </ol>
   );
 }
+*/
 
 export function ProcessBento() {
-  const { ref, inView } = useInView<HTMLElement>(0.16, { once: false });
+  // Kept for the commented bento grids below — do not remove.
   const top = cards.slice(0, 3);
   const bottom = cards.slice(3);
 
   return (
     <section
-      ref={ref}
       id="partner-process"
-      className="section-curve relative isolate scroll-mt-24 overflow-x-clip bg-background py-16 sm:py-24"
+      className="section-curve relative isolate scroll-mt-24 overflow-x-clip bg-background py-8 sm:py-16"
     >
       <SectionBackdrop image="footballPitch" tone="light" strength={0.12} />
       <div className="container-page relative z-10">
+        <Reveal>
+          <div className="process-bento-split">
+            <div className="process-bento-intro">
+              <p className="section-eyebrow text-primary">{processCopy.eyebrow}</p>
+              <h2 className="process-bento-title mt-4 font-display text-3xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-4xl lg:text-[2.65rem]">
+                {processCopy.titleLead}
+                <span className="text-primary">{processCopy.titleAccent}</span>
+              </h2>
+              <p className="process-bento-lead">{processCopy.lead}</p>
+              <div className="process-bento-callout">
+                <span className="process-bento-callout-icon" aria-hidden>
+                  <Network strokeWidth={1.75} className="size-[1.15rem]" />
+                </span>
+                <p>
+                  {processCopy.calloutLead}
+                  <span className="process-bento-callout-accent">{processCopy.calloutAccent}</span>
+                </p>
+              </div>
+            </div>
+
+            <aside className="process-bento-features" aria-label="Platform capabilities">
+              <h3 className="process-bento-features-title">{processCopy.featuresTitle}</h3>
+              <ul className="process-bento-feature-grid">
+                {featureItems.map(({ title, body, Icon }) => (
+                  <li key={title} className="process-bento-feature">
+                    <span className="process-bento-feature-icon" aria-hidden>
+                      <Icon strokeWidth={1.75} className="size-[1.05rem]" />
+                    </span>
+                    <div className="process-bento-feature-copy">
+                      <p className="process-bento-feature-name">{title}</p>
+                      <p className="process-bento-feature-body">{body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </div>
+        </Reveal>
+
+        <Reveal delay={80}>
+          <ProcessFlow />
+        </Reveal>
+
+        {/* <Reveal delay={120}>
+          <div className="process-bento-cta">
+            <div className="process-bento-cta-lead">
+              <span className="process-bento-cta-icon" aria-hidden>
+                <LayoutGrid strokeWidth={1.75} className="size-[1.1rem]" />
+              </span>
+              <p>{processCopy.ctaLine}</p>
+            </div>
+            <span className="process-bento-cta-divider" aria-hidden />
+            <SiteLink to={ctas.bookDemo.to} className="process-bento-cta-link">
+              {processCopy.ctaLink}
+            </SiteLink>
+          </div>
+        </Reveal> */}
+
+        {/* Previous header + live ProcessRail (unmounted 2026-08-25)
         <Reveal>
           <div className="process-bento-header">
             <div className="process-bento-header-title">
@@ -513,8 +854,10 @@ export function ProcessBento() {
             </div>
           </div>
           <ProcessRail inView={inView} />
-          {/* <p className="process-bento-support">{processCopy.support}</p> */}
         </Reveal>
+        */}
+
+        {/* <p className="process-bento-support">{processCopy.support}</p> */}
 
         {/* <div className="process-bento-grid mt-10 grid gap-6 sm:mt-12 lg:mt-14 lg:grid-cols-3 lg:gap-5">
           {top.map((c, i) => (
@@ -547,6 +890,16 @@ export function ProcessBento() {
             </Reveal>
           ))}
         </div> */}
+
+        {/* Silence unused until bento grids / prior header are remounted */}
+        <span className="sr-only" hidden>
+          {top.length +
+            bottom.length +
+            processCopy.verbs.length +
+            processCopy.join.length +
+            processCopy.close.length +
+            processCopy.support.length}
+        </span>
       </div>
     </section>
   );

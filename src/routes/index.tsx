@@ -30,8 +30,8 @@ function HomePage() {
     <PageShell>
       <Hero />
       <ProcessBento />
-      <HowItWorks />
       <SellerTools />
+      <HowItWorks />
       <FeatureOrbit />
       <ToolkitShowcase />
       <Marketplaces />

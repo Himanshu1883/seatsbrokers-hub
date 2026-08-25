@@ -175,14 +175,15 @@ Used on `/` unless noted.
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| Nav | `Nav.tsx` | Site nav — visible: Platform, Products, Integrations, API, About; hidden: For Brokers, B2B Partners, Marketplace Connectivity, Event Intelligence. Right: Login, Book a Demo, Become a Seller (`/become-a-seller`) | PageShell |
+| Nav | `Nav.tsx` | Site nav — visible: Platform, Products, Integrations, API, About; hidden: For Brokers, B2B Partners, Marketplace Connectivity, Event Intelligence. Right: Login, Book a Demo (opens DemoModal), Become a Seller (`/become-a-seller`) | PageShell |
+| DemoModal | `DemoModal.tsx` | Single-column Book a Demo (`data-layout="stack"`) + provider; top bar + USP strip + icon form + 2-col moduleList/API product cards; `submitLead`; Prefer `/book-demo` | PageShell chrome (Nav / FinalCTA / Hero) |
 | Footer | `Footer.tsx` | Footer columns Platform / Products / Company / Support; Support Help Centre → `/faq`; legal links Privacy / Terms / Cookie Policy → `/legal#privacy` `#terms` `#cookies`; brand line SeatsBrokers™ — A SeatsGroup Company; partners mailto line; socials commented out | PageShell |
-| FinalCTA | `FinalCTA.tsx` | Global close CTA (Book a Demo primary; Become a Seller outline → `/become-a-seller`; Login) | PageShell (all pages) |
-| Hero | `Hero.tsx` | Homepage hero + typewriter; dark stadium cinema; 44px CTAs | `/` |
+| FinalCTA | `FinalCTA.tsx` | Global close CTA (Book a Demo opens DemoModal; Become a Seller outline → `/become-a-seller`; Login) | PageShell (all pages) |
+| Hero | `Hero.tsx` | Homepage hero + typewriter; dark stadium cinema; Book a Demo opens DemoModal | `/` |
 | HeroDashboardTilt | `HeroDashboardTilt.tsx` | Three light `ConsoleShell` desks in the tilt stage (hub / Discover→Settle / product command), 1:1 with hero slides | Hero |
 | SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: 3-col `.sto-*` infographic (systems → SeatsLink™ → SeatsBrokers → channels; qualitative marketplace copy; Explore Our API). Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus synced pipeline minis | `/` (`#sellers`, `#travel`) |
 | SeatMapTicketsConsole | `SeatMapTicketsConsole.tsx` | Interactive inventory/quote mini-console (select, margin, copy, PDF) in `ConsoleShell`; **8** Available Ticket Listings rows (`SEAT_MAP_LISTING_ROWS`) | TravelTools |
-| TwoTrack | `TwoTrack.tsx` | Broker vs B2B partner journeys (in-view straighten). Travel/concierge/official-supplier copy points to SeatsConnect, not this site. | `/` |
+| TwoTrack | `TwoTrack.tsx` | Two Journeys: mint broker + blue-gray B2B Demo ConsoleShell. Fixed equal desks `--tt-desk-h: clamp(280px, 52svh, 420px)` (≥1024); section `100svh`; identity cards below. Explore products / SeatsDeal™. Mobile auto height. Page scroll unlocked. | `/` |
 | Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out). `#connectivity` | `/` |
 | NetworkConstellation | `NetworkConstellation.tsx` | 100dvh click-driven globe stages (no scroll pin) | **Exists; not mounted on `/` (Phase 3)** |
 | FeatureOrbit | `FeatureOrbit.tsx` | Capability orbit | `/` |

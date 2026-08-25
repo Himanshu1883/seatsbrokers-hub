@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
+import type { LucideIcon } from "lucide-react";
 import {
-  ArrowDownRight,
+  Activity,
   ArrowRight,
   ArrowUpRight,
-  Check,
-  Hand,
+  BarChart3,
+  Bell,
+  Crosshair,
+  Filter,
+  Globe,
+  Home,
+  LayoutGrid,
   LineChart,
-  Minus,
   Radar,
+  Settings,
+  Shield,
   Sparkles,
-  X,
+  Tag,
 } from "lucide-react";
 import { Reveal, useInView } from "@/hooks/use-scroll-motion";
 import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
@@ -18,65 +25,85 @@ import { ConsoleShell } from "@/components/pages/brokers/ConsoleShell";
 import { modules } from "@/content/modules";
 import { ctas } from "@/content/site";
 
-const eventContext = {
-  name: "Champions League Final",
-  section: "Category A · Longside lower",
-  venue: "Wembley · London",
-  inventory: "4 seats · Your desk",
-};
-
-const marketStats = [
-  { label: "Avg ask", value: "£248", delta: "+2.8%", direction: "up" as const },
-  { label: "Availability", value: "Open", note: "Cat A pool" },
-  { label: "Movement", value: "Firm", note: "12h view" },
+const features = [
+  { icon: BarChart3, label: "Real-time Market Intelligence" },
+  { icon: Sparkles, label: "AI-Powered Recommendations" },
+  { icon: Crosshair, label: "Competitor & Price Tracking" },
+  { icon: Bell, label: "Smart Alerts & Opportunities" },
 ] as const;
 
-const askRows: {
-  channel: string;
-  ask: string;
-  delta: string;
-  direction: "up" | "down";
-  own?: boolean;
-}[] = [
-  { channel: "Global resale", ask: "£255", delta: "+2.4%", direction: "up" },
-  { channel: "Sports exchange", ask: "£242", delta: "-0.8%", direction: "down" },
-  { channel: "Regional OTA", ask: "£238", delta: "+1.1%", direction: "up" },
-  { channel: "Your desk", ask: "£248", delta: "+3.6%", direction: "up", own: true },
+const navIcons: { icon: LucideIcon; label: string; active?: boolean }[] = [
+  { icon: Home, label: "Home" },
+  { icon: LayoutGrid, label: "Market view", active: true },
+  { icon: Globe, label: "Events" },
+  { icon: Tag, label: "Listings" },
+  { icon: LineChart, label: "Trends" },
+  { icon: Bell, label: "Alerts" },
+  { icon: Shield, label: "Guards" },
 ];
 
-const intelSignals = [
-  { level: "high" as const, time: "09:41", msg: "Demand rising in Category A" },
-  { level: "info" as const, time: "09:40", msg: "Channels refreshed · market view" },
-  { level: "warn" as const, time: "09:39", msg: "Undercut risk on one channel" },
-  { level: "info" as const, time: "09:38", msg: "Floor armed · your position tracked" },
+const ranges = ["1D", "7D", "30D", "Custom"] as const;
+
+const kpis = [
+  { label: "Active Events", value: "248", delta: "+12 vs yesterday", tone: "up" as const },
+  { label: "Total Listings", value: "24,834", delta: "+8.6%", tone: "up" as const },
+  { label: "Avg. Price (£)", value: "£248", delta: "+7.2%", tone: "up" as const },
+  { label: "Tickets Sold (24h)", value: "3,428", delta: "+15.4%", tone: "up" as const },
 ] as const;
 
 const recommendations = [
   {
-    ask: "£248",
-    note: "Hold near market average",
-    reason: "Demand firm · inventory open · floor safe",
+    title: "Price Increase Opportunity",
+    detail: "Section 120 · Row 12 · £248 → £278",
+    impact: "High Impact",
+    tone: "high" as const,
   },
   {
-    ask: "£255",
-    note: "Lift toward top of band",
-    reason: "Velocity up · comparable asks climbing",
+    title: "High Demand Detected",
+    detail: "Section 104 · Lower bowl tightening",
+    impact: "High",
+    tone: "high" as const,
   },
   {
-    ask: "£242",
-    note: "Ease slightly if you want pace",
-    reason: "Exchange soft · your desk still competitive",
+    title: "Low Inventory Alert",
+    detail: "Section 218 · Only 4 tickets left",
+    impact: "Medium",
+    tone: "med" as const,
   },
 ] as const;
 
-type Decision = "review" | "accept" | "hold" | "dismiss";
+const comparisons = [
+  { event: "Arsenal vs Chelsea", yours: "£312", market: "£298", diff: "+4.7%", tone: "up" as const },
+  { event: "Coldplay · Wembley", yours: "£186", market: "£204", diff: "-8.8%", tone: "down" as const },
+  { event: "F1 · Silverstone", yours: "£425", market: "£410", diff: "+3.7%", tone: "up" as const },
+  { event: "Ed Sheeran · Tottenham", yours: "£164", market: "£158", diff: "+3.8%", tone: "up" as const },
+] as const;
 
-const decisionCopy: Record<Decision, string> = {
-  review: "Awaiting your decision",
-  accept: "Accepted — you confirmed this ask",
-  hold: "Held — parked for your review",
-  dismiss: "Dismissed — recommendation closed",
-};
+const movers = [
+  { seat: "Sec 112 · Row 8", change: "+29.3%" },
+  { seat: "Sec 104 · Row 4", change: "+25.7%" },
+  { seat: "Sec 218 · Row 12", change: "+18.4%" },
+  { seat: "Sec 120 · Row 6", change: "+14.1%" },
+] as const;
+
+const heatCells: { id: string; level: "high" | "med" | "low" }[] = [
+  { id: "a1", level: "med" },
+  { id: "a2", level: "high" },
+  { id: "a3", level: "high" },
+  { id: "a4", level: "med" },
+  { id: "b1", level: "low" },
+  { id: "b2", level: "med" },
+  { id: "b3", level: "high" },
+  { id: "b4", level: "low" },
+  { id: "c1", level: "high" },
+  { id: "c2", level: "med" },
+  { id: "c3", level: "low" },
+  { id: "c4", level: "med" },
+  { id: "d1", level: "med" },
+  { id: "d2", level: "high" },
+  { id: "d3", level: "high" },
+  { id: "d4", level: "med" },
+];
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -90,27 +117,84 @@ function useReducedMotion() {
   return reduced;
 }
 
+function ConfidenceRing({ value }: { value: number }) {
+  const r = 18;
+  const c = 2 * Math.PI * r;
+  const offset = c * (1 - value / 100);
+  return (
+    <svg className="mihp-gauge" viewBox="0 0 48 48" aria-hidden>
+      <circle className="mihp-gauge-track" cx="24" cy="24" r={r} />
+      <circle
+        className="mihp-gauge-value"
+        cx="24"
+        cy="24"
+        r={r}
+        strokeDasharray={c}
+        strokeDashoffset={offset}
+      />
+    </svg>
+  );
+}
+
+function PriceTrendChart({ live }: { live: boolean }) {
+  return (
+    <svg
+      className="mihp-chart"
+      viewBox="0 0 280 96"
+      preserveAspectRatio="none"
+      aria-hidden
+      data-live={live ? "true" : "false"}
+    >
+      <defs>
+        <linearGradient id="mihp-price-fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.35" />
+          <stop offset="100%" stopColor="var(--primary)" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path
+        className="mihp-chart-area"
+        d="M0 72 C28 68 42 58 70 54 C98 50 112 62 140 48 C168 34 182 28 210 32 C238 36 252 22 280 18 L280 96 L0 96 Z"
+      />
+      <path
+        className="mihp-chart-line"
+        d="M0 72 C28 68 42 58 70 54 C98 50 112 62 140 48 C168 34 182 28 210 32 C238 36 252 22 280 18"
+      />
+    </svg>
+  );
+}
+
+function DemandForecastChart({ live }: { live: boolean }) {
+  return (
+    <svg
+      className="mihp-chart mihp-chart-forecast"
+      viewBox="0 0 240 88"
+      preserveAspectRatio="none"
+      aria-hidden
+      data-live={live ? "true" : "false"}
+    >
+      <path
+        className="mihp-chart-line mihp-chart-line-soft"
+        d="M0 58 C30 56 48 62 72 48 C96 34 120 40 144 28 C168 16 192 22 216 18 C228 16 234 20 240 24"
+      />
+      <circle className="mihp-chart-dot" cx="168" cy="16" r="3.5" />
+    </svg>
+  );
+}
+
 function MarketIntelDesk() {
-  const { ref, inView } = useInView<HTMLDivElement>(0.22, { once: false });
+  const { ref, inView } = useInView<HTMLDivElement>(0.18, { once: false });
   const reduced = useReducedMotion();
   const [paused, setPaused] = useState(false);
-  const [askIndex, setAskIndex] = useState(3);
-  const [recIndex, setRecIndex] = useState(0);
-  const [decision, setDecision] = useState<Decision>("review");
-  const [feedTick, setFeedTick] = useState(0);
+  const [range, setRange] = useState<(typeof ranges)[number]>("7D");
+  const [recFocus, setRecFocus] = useState(0);
 
   const live = inView && !reduced && !paused;
-  const recommendation = recommendations[recIndex] ?? recommendations[0]!;
-  const signalRows = [...intelSignals, ...intelSignals];
 
   useEffect(() => {
     if (!live) return;
     const id = window.setInterval(() => {
-      setAskIndex((i) => (i + 1) % askRows.length);
-      setRecIndex((i) => (i + 1) % recommendations.length);
-      setDecision("review");
-      setFeedTick((t) => t + 1);
-    }, 3200);
+      setRecFocus((i) => (i + 1) % recommendations.length);
+    }, 3400);
     return () => window.clearInterval(id);
   }, [live]);
 
@@ -123,165 +207,225 @@ function MarketIntelDesk() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <ConsoleShell path="seatsbrokers / market-intelligence" status="Demo" icon={Radar}>
-        <div className="mihp-body">
-          <header className="mihp-head">
-            <div className="mihp-head-event">
-              <p className="mihp-head-title">{eventContext.name}</p>
-              <p className="mihp-head-meta">
-                {eventContext.section} · {eventContext.venue}
-              </p>
-              <p className="mihp-head-meta">{eventContext.inventory}</p>
-            </div>
-            <div className="mihp-head-lock" aria-label="Broker control">
-              <Sparkles className="size-3.5" strokeWidth={1.75} aria-hidden />
-              <span>AI recommends. You decide.</span>
-            </div>
-          </header>
-
-          <div className="mihp-stats" aria-label="Pricing, availability and market movement">
-            {marketStats.map((stat) => (
-              <div key={stat.label} className="mihp-stat">
-                <span className="mihp-label">{stat.label}</span>
-                <div className="mihp-stat-row">
-                  <strong className="mihp-mono">{stat.value}</strong>
-                  {"delta" in stat && stat.delta ? (
-                    <span className="mihp-delta" data-direction={stat.direction}>
-                      {stat.direction === "up" ? (
-                        <ArrowUpRight className="size-3" strokeWidth={2.25} />
-                      ) : (
-                        <ArrowDownRight className="size-3" strokeWidth={2.25} />
-                      )}
-                      {stat.delta}
-                    </span>
-                  ) : null}
-                </div>
-                {"note" in stat && stat.note ? <span className="mihp-stat-note">{stat.note}</span> : null}
-              </div>
+      <ConsoleShell
+        path={`${modules.intel.name} / Market Intelligence`}
+        status="Demo"
+        icon={Radar}
+      >
+        <div className="mihp-work">
+          <nav className="mihp-rail" aria-label="Demo console navigation">
+            {navIcons.map(({ icon: Icon, label, active }) => (
+              <span
+                key={label}
+                className="mihp-rail-btn"
+                data-active={active ? "true" : "false"}
+                title={label}
+              >
+                <Icon className="size-3.5" strokeWidth={1.75} aria-hidden />
+                <span className="sr-only">{label}</span>
+              </span>
             ))}
-          </div>
+            <span className="mihp-rail-spacer" aria-hidden />
+            <span className="mihp-rail-btn" title="Settings">
+              <Settings className="size-3.5" strokeWidth={1.75} aria-hidden />
+              <span className="sr-only">Settings</span>
+            </span>
+          </nav>
 
-          <div className="mihp-grid">
-            <section className="mihp-panel" aria-label={`${modules.intel.name} market signals`}>
-              <header className="mihp-panel-head">
-                <LineChart className="size-3.5" strokeWidth={1.75} aria-hidden />
-                <span>{modules.intel.name}</span>
-                <span className="mihp-panel-note">Market view</span>
-              </header>
-
-              <div className="mihp-ladder-cols" aria-hidden>
-                <span>Channel</span>
-                <span>Ask</span>
-                <span>24h</span>
+          <div className="mihp-main">
+            <header className="mihp-toolbar">
+              <div className="mihp-toolbar-title">
+                <span className="mihp-live">
+                  <span className="mihp-live-dot" aria-hidden />
+                  Live
+                </span>
+                <span className="mihp-demo-stamp">Illustrative desk</span>
               </div>
-              <ul className="mihp-ladder">
-                {askRows.map((row, index) => (
-                  <li
-                    key={row.channel}
-                    className="mihp-ladder-row"
-                    data-active={askIndex === index ? "true" : "false"}
-                    data-own={row.own ? "true" : "false"}
-                  >
-                    <span className="mihp-ladder-name">
-                      {row.own ? <span className="mihp-own-dot" aria-hidden /> : null}
-                      {row.channel}
-                    </span>
-                    <span className="mihp-mono mihp-ladder-ask">{row.ask}</span>
-                    <span className="mihp-delta" data-direction={row.direction}>
-                      {row.direction === "up" ? (
-                        <ArrowUpRight className="size-3" strokeWidth={2.25} />
-                      ) : (
-                        <ArrowDownRight className="size-3" strokeWidth={2.25} />
-                      )}
-                      {row.delta}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <div className="mihp-toolbar-actions">
+                <div className="mihp-ranges" role="group" aria-label="Demo time range">
+                  {ranges.map((item) => (
+                    <button
+                      key={item}
+                      type="button"
+                      className="mihp-range"
+                      data-active={range === item ? "true" : "false"}
+                      aria-pressed={range === item}
+                      onClick={() => setRange(item)}
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+                <button type="button" className="mihp-filters" aria-label="Demo filters">
+                  <Filter className="size-3.5" strokeWidth={1.75} aria-hidden />
+                  Filters
+                </button>
+              </div>
+            </header>
 
-              <div className="mihp-feed" data-tick={feedTick % 2}>
-                <header className="mihp-feed-head">
-                  <span className="mihp-panel-dot" aria-hidden />
-                  <span>Signal feed</span>
-                </header>
-                <div className="mihp-feed-viewport">
-                  <ul className="mihp-feed-list">
-                    {signalRows.map((row, index) => (
-                      <li key={`${row.time}-${index}`} className="mihp-feed-row" data-level={row.level}>
-                        <span className="mihp-feed-level" aria-hidden />
-                        <span className="mihp-mono mihp-feed-time">{row.time}</span>
-                        <span className="mihp-feed-msg">{row.msg}</span>
+            <div className="mihp-bento">
+              <div className="mihp-kpis" aria-label="Demo market KPIs">
+                {kpis.map((kpi) => (
+                  <article key={kpi.label} className="mihp-kpi">
+                    <span className="mihp-kpi-label">{kpi.label}</span>
+                    <strong className="mihp-mono mihp-kpi-value">{kpi.value}</strong>
+                    <span className="mihp-delta" data-tone={kpi.tone}>
+                      <ArrowUpRight className="size-3" strokeWidth={2.25} aria-hidden />
+                      {kpi.delta}
+                    </span>
+                  </article>
+                ))}
+                <article className="mihp-kpi mihp-kpi-demand">
+                  <span className="mihp-kpi-label">Market Demand</span>
+                  <div className="mihp-demand-row">
+                    <div>
+                      <strong className="mihp-kpi-value">High</strong>
+                      <span className="mihp-kpi-sub">AI Confidence</span>
+                    </div>
+                    <div className="mihp-gauge-wrap" aria-label="AI confidence 92 percent">
+                      <ConfidenceRing value={92} />
+                      <span className="mihp-gauge-label">
+                        <em>92%</em>
+                        High
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <div className="mihp-mid">
+                <section className="mihp-card" aria-label="Demo price trend">
+                  <header className="mihp-card-head">
+                    <span>Price Trend</span>
+                    <strong className="mihp-mono">£248</strong>
+                  </header>
+                  <div className="mihp-chart-wrap">
+                    <PriceTrendChart live={live} />
+                  </div>
+                  <footer className="mihp-card-axis" aria-hidden>
+                    <span>May 12</span>
+                    <span>14</span>
+                    <span>16</span>
+                    <span>18</span>
+                  </footer>
+                </section>
+
+                <section className="mihp-card" aria-label="Demo inventory heatmap">
+                  <header className="mihp-card-head">
+                    <span>Inventory Heatmap</span>
+                  </header>
+                  <div className="mihp-heat" role="img" aria-label="Stadium sections High Medium Low">
+                    <div className="mihp-heat-pitch" aria-hidden />
+                    <div className="mihp-heat-grid">
+                      {heatCells.map((cell) => (
+                        <span key={cell.id} className="mihp-heat-cell" data-level={cell.level} />
+                      ))}
+                    </div>
+                  </div>
+                  <footer className="mihp-heat-legend" aria-hidden>
+                    <span data-level="high">High</span>
+                    <span data-level="med">Med</span>
+                    <span data-level="low">Low</span>
+                  </footer>
+                </section>
+
+                <section className="mihp-card mihp-card-recs" aria-label="Demo AI recommendations">
+                  <header className="mihp-card-head">
+                    <span>AI Recommendations</span>
+                    <Activity className="size-3.5 text-primary" strokeWidth={1.75} aria-hidden />
+                  </header>
+                  <ul className="mihp-recs">
+                    {recommendations.map((rec, index) => (
+                      <li
+                        key={rec.title}
+                        className="mihp-rec"
+                        data-tone={rec.tone}
+                        data-focus={recFocus === index ? "true" : "false"}
+                      >
+                        <div className="mihp-rec-copy">
+                          <strong>{rec.title}</strong>
+                          <span>{rec.detail}</span>
+                        </div>
+                        <em data-tone={rec.tone}>{rec.impact}</em>
                       </li>
                     ))}
                   </ul>
-                </div>
-              </div>
-            </section>
-
-            <section className="mihp-panel mihp-panel-pulse" aria-label={`${modules.pulse.name} recommendation`}>
-              <header className="mihp-panel-head">
-                <Sparkles className="size-3.5" strokeWidth={1.75} aria-hidden />
-                <span>{modules.pulse.name}</span>
-                <span className="mihp-panel-note">Advisory</span>
-              </header>
-
-              <div className="mihp-rec">
-                <span className="mihp-label">Recommended ask</span>
-                <div className="mihp-rec-price" data-spark={live ? "true" : "false"}>
-                  <strong className="mihp-mono">{recommendation.ask}</strong>
-                  <span className="mihp-rec-chip">Suggestion</span>
-                </div>
-                <p className="mihp-rec-note">{recommendation.note}</p>
-                <p className="mihp-rec-reason">{recommendation.reason}</p>
+                  <button type="button" className="mihp-view-all">
+                    View all recommendations
+                    <ArrowRight className="size-3" strokeWidth={2.25} aria-hidden />
+                  </button>
+                </section>
               </div>
 
-              <div className="mihp-decide">
-                <p className="mihp-decide-tag">
-                  <Hand className="size-3.5" strokeWidth={1.75} aria-hidden />
-                  Broker control
-                </p>
-                <div className="mihp-actions" role="group" aria-label="Illustrative pricing actions">
-                  <button
-                    type="button"
-                    className="mihp-btn mihp-btn-accept"
-                    data-active={decision === "accept" ? "true" : "false"}
-                    aria-pressed={decision === "accept"}
-                    onClick={() => setDecision(decision === "accept" ? "review" : "accept")}
-                  >
-                    <Check className="size-3.5" strokeWidth={2.5} aria-hidden />
-                    Accept
+              <div className="mihp-low">
+                <section className="mihp-card" aria-label="Demo market comparison">
+                  <header className="mihp-card-head">
+                    <span>Market Comparison</span>
+                  </header>
+                  <div className="mihp-table-wrap">
+                    <table className="mihp-table">
+                      <thead>
+                        <tr>
+                          <th>Event</th>
+                          <th>Your Avg</th>
+                          <th>Market</th>
+                          <th>Diff</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {comparisons.map((row) => (
+                          <tr key={row.event}>
+                            <td>{row.event}</td>
+                            <td className="mihp-mono">{row.yours}</td>
+                            <td className="mihp-mono">{row.market}</td>
+                            <td>
+                              <span className="mihp-delta" data-tone={row.tone}>
+                                {row.diff}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <section className="mihp-card" aria-label="Demo demand forecast">
+                  <header className="mihp-card-head">
+                    <span>Demand Forecast</span>
+                    <span className="mihp-card-note">7-day prediction</span>
+                  </header>
+                  <div className="mihp-chart-wrap mihp-forecast-wrap">
+                    <DemandForecastChart live={live} />
+                    <div className="mihp-forecast-tip" aria-hidden>
+                      <strong>May 22</strong>
+                      <span>Demand: High</span>
+                      <span>Confidence: 89%</span>
+                    </div>
+                  </div>
+                </section>
+
+                <section className="mihp-card" aria-label="Demo top movers">
+                  <header className="mihp-card-head">
+                    <span>Top Movers</span>
+                  </header>
+                  <ul className="mihp-movers">
+                    {movers.map((mover) => (
+                      <li key={mover.seat}>
+                        <span>{mover.seat}</span>
+                        <strong className="mihp-mono mihp-delta" data-tone="up">
+                          {mover.change}
+                        </strong>
+                      </li>
+                    ))}
+                  </ul>
+                  <button type="button" className="mihp-view-all">
+                    View all movers
+                    <ArrowRight className="size-3" strokeWidth={2.25} aria-hidden />
                   </button>
-                  <button
-                    type="button"
-                    className="mihp-btn mihp-btn-hold"
-                    data-active={decision === "hold" ? "true" : "false"}
-                    aria-pressed={decision === "hold"}
-                    onClick={() => setDecision(decision === "hold" ? "review" : "hold")}
-                  >
-                    <Minus className="size-3.5" strokeWidth={2.5} aria-hidden />
-                    Hold
-                  </button>
-                  <button
-                    type="button"
-                    className="mihp-btn mihp-btn-dismiss"
-                    data-active={decision === "dismiss" ? "true" : "false"}
-                    aria-pressed={decision === "dismiss"}
-                    onClick={() => setDecision(decision === "dismiss" ? "review" : "dismiss")}
-                  >
-                    <X className="size-3.5" strokeWidth={2.5} aria-hidden />
-                    Dismiss
-                  </button>
-                </div>
-                <p className="mihp-decide-status" data-decision={decision}>
-                  {decision === "review" ? (
-                    <Minus className="size-3.5" strokeWidth={2} aria-hidden />
-                  ) : (
-                    <Check className="size-3.5" strokeWidth={2.5} aria-hidden />
-                  )}
-                  {decisionCopy[decision]}
-                </p>
+                </section>
               </div>
-            </section>
+            </div>
           </div>
         </div>
       </ConsoleShell>
@@ -303,26 +447,25 @@ export function MarketIntelligence() {
           <div className="mihp-copy">
             <Reveal>
               <p className="section-eyebrow text-primary">{modules.intel.name}</p>
-              <h2 className="mihp-title">Make Better Decisions With Better Data</h2>
+              <h2 className="mihp-title">
+                Make Better Decisions With{" "}
+                <span className="mihp-title-accent">Better Data</span>
+              </h2>
               <div className="mihp-body-copy">
                 <p>
-                  Monitor pricing, availability and market movement across events and inventory.
+                  Monitor pricing, availability, and market movement across events and inventory —
+                  then act on AI recommendations while you stay in control.
                 </p>
-                <p>
-                  {modules.intel.name} provides the market intelligence. {modules.pulse.name} turns
-                  that picture into intelligent pricing recommendations.
-                </p>
-                <p>The broker remains in control. AI recommends. You decide.</p>
               </div>
-              <p className="mihp-lock">{modules.pulse.tagline}</p>
+              <p className="mihp-status">
+                <span className="mihp-status-dot" aria-hidden />
+                AI monitoring live market signals
+              </p>
             </Reveal>
 
-            <Reveal delay={100}>
+            <Reveal delay={80}>
               <div className="mihp-ctas">
-                <SiteLink
-                  to={ctas.exploreEventIntel.to}
-                  className="mihp-cta mihp-cta-primary"
-                >
+                <SiteLink to={ctas.exploreEventIntel.to} className="mihp-cta mihp-cta-primary">
                   {ctas.exploreEventIntel.label}
                   <ArrowRight className="size-4" aria-hidden />
                 </SiteLink>
@@ -332,10 +475,25 @@ export function MarketIntelligence() {
                 </SiteLink>
               </div>
             </Reveal>
+
+            <Reveal delay={120}>
+              <ul className="mihp-features">
+                {features.map(({ icon: Icon, label }) => (
+                  <li key={label} className="mihp-feature">
+                    <span className="mihp-feature-icon">
+                      <Icon className="size-4" strokeWidth={1.75} aria-hidden />
+                    </span>
+                    <span>{label}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
           </div>
 
           <Reveal delay={120} className="mihp-stage">
-            <MarketIntelDesk />
+            <div className="mihp-stage-scroll">
+              <MarketIntelDesk />
+            </div>
           </Reveal>
         </div>
       </div>

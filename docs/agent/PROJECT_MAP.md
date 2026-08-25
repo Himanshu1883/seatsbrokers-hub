@@ -32,8 +32,8 @@ Nav (Phase 2): Platform, Products (`/products`), Integrations, API, About. Right
 | Area | Location | Responsibility |
 |---|---|---|
 | Routes | `src/routes/` | One file = one URL. `__root.tsx` = fonts/CSS/QueryClient/404 |
-| Layout | `src/components/layout/` | `PageShell` (Nav + main + FinalCTA + Footer), `SiteLink` |
-| Landing | `src/components/landing/` | Homepage sections |
+| Layout | `src/components/layout/` | `PageShell` (Nav + main + FinalCTA + Footer + `DemoModalProvider`), `SiteLink` |
+| Landing | `src/components/landing/` | Homepage sections; `DemoModal` (Book a Demo chrome modal) |
 | Product UI | `src/components/pages/{shared,brokers,travel,marketplace,event-intelligence,api,about,book-demo,platform,products,integrations,faq,contact,legal}/` | Heroes, consoles, boards, FAQ, contact, legal |
 | Copy | `src/content/site.ts` + `*-hero-data.ts` | Nav, CTAs, pageMeta, console demo data |
 | CSS | `src/styles.css` | Tokens + all custom blocks (append, don’t rewrite) |

@@ -4,6 +4,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import lockupSvg from "@/assets/SeatsBrokers-favicon.svg?url";
 import { brand, ctas, navLinks } from "@/content/site";
 import { SiteLink } from "@/components/layout/SiteLink";
+import { useDemoModal } from "@/components/landing/DemoModal";
 
 function isNavActive(pathname: string, to: string) {
   if (to === "/") return pathname === "/";
@@ -16,6 +17,7 @@ function hashProps(link: (typeof navLinks)[number]) {
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const { openDemoModal } = useDemoModal();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const visibleNavLinks = navLinks.filter((l) => !l.hidden);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -170,12 +172,13 @@ export function Nav() {
             >
               {ctas.login.label}
             </SiteLink>
-            <SiteLink
-              to={ctas.bookDemo.to}
+            <button
+              type="button"
+              onClick={openDemoModal}
               className="lift rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
             >
               {ctas.bookDemo.label}
-            </SiteLink>
+            </button>
             <SiteLink
               to={ctas.becomeSeller.to}
               className="lift rounded-md border border-border px-3 py-2 text-sm font-semibold text-foreground hover:border-primary hover:text-primary"
@@ -248,13 +251,16 @@ export function Nav() {
           </div>
 
           <div className="site-nav-ctas container-nav">
-            <SiteLink
-              to={ctas.bookDemo.to}
-              onClick={() => setOpen(false)}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                openDemoModal();
+              }}
               className="site-nav-cta bg-primary font-semibold text-primary-foreground hover:bg-primary/90"
             >
               {ctas.bookDemo.label}
-            </SiteLink>
+            </button>
             <SiteLink
               to={ctas.becomeSeller.to}
               onClick={() => setOpen(false)}

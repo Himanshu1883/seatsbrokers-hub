@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { useTypewriter } from "@/hooks/use-scroll-motion";
 import { HeroDashboardTilt } from "@/components/landing/HeroDashboardTilt";
+import { useDemoModal } from "@/components/landing/DemoModal";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { ctas } from "@/content/site";
 import heroStadium1 from "@/assets/hero-stadium-1.webp";
@@ -99,6 +100,7 @@ function HeroSlideCopy({
   isActive: boolean;
   animate: boolean;
 }) {
+  const { openDemoModal } = useDemoModal();
   const typeLine = longestPhrase(slide.typePhrases);
   const item = (delay: number, className: string) =>
     animate ? `${className} hero-copy-item hero-copy-delay-${delay}` : className;
@@ -166,13 +168,14 @@ function HeroSlideCopy({
       </ul>
 
       <div className={item(4, "hero-copy-actions mt-8 flex w-full min-w-0 flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap")}>
-        <SiteLink
-          to={ctas.bookDemo.to}
+        <button
+          type="button"
+          onClick={openDemoModal}
           className="lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground sm:w-auto"
           tabIndex={isActive ? 0 : -1}
         >
           {ctas.bookDemo.label}
-        </SiteLink>
+        </button>
         <SiteLink
           to={ctas.becomeSeller.to}
           className="lift inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-md border border-background/40 px-6 py-3.5 text-sm font-semibold text-white hover:bg-background/10 sm:w-auto"

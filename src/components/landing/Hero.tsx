@@ -1,4 +1,4 @@
-﻿import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   Box,
   CreditCard,
@@ -23,6 +23,7 @@ import heroStadium2 from "@/assets/hero-stadium-2.jpg";
 import heroStadium3 from "@/assets/hero-stadium-3.jpg";
 
 const BANNER_MS = 3000;
+const RAIL_PX_PER_SEC = 92;
 
 const banners = [
   { src: heroStadium1, alt: "Stadium at night" },
@@ -80,6 +81,96 @@ function HeroTypewriter() {
   }, []);
 
   return <HeroTypeLine>{reduced ? longestPhrase : typed}</HeroTypeLine>;
+}
+
+function HeroRail() {
+  const trackRef = useRef<HTMLOListElement>(null);
+  const pausedRef = useRef(false);
+  const loop = [...rail, ...rail];
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const slider = window.matchMedia("(max-width: 899px)");
+    let raf = 0;
+    let last = performance.now();
+
+    const tick = (now: number) => {
+      raf = window.requestAnimationFrame(tick);
+      if (!slider.matches || pausedRef.current) {
+        last = now;
+        return;
+      }
+
+      const half = track.scrollWidth / 2;
+      if (half <= 1) {
+        last = now;
+        return;
+      }
+
+      const dt = Math.min(48, now - last);
+      last = now;
+      let next = track.scrollLeft + (RAIL_PX_PER_SEC * dt) / 1000;
+      if (next >= half) next -= half;
+      track.scrollLeft = next;
+    };
+
+    raf = window.requestAnimationFrame(tick);
+
+    const pause = () => {
+      pausedRef.current = true;
+    };
+    const resume = () => {
+      pausedRef.current = false;
+      last = performance.now();
+    };
+
+    track.addEventListener("pointerdown", pause);
+    window.addEventListener("pointerup", resume);
+    track.addEventListener("pointercancel", resume);
+    track.addEventListener("mouseenter", pause);
+    track.addEventListener("mouseleave", resume);
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      track.removeEventListener("pointerdown", pause);
+      window.removeEventListener("pointerup", resume);
+      track.removeEventListener("pointercancel", resume);
+      track.removeEventListener("mouseenter", pause);
+      track.removeEventListener("mouseleave", resume);
+    };
+  }, []);
+
+  return (
+    <div className="hh-rail hh-in hh-in-6">
+      <ol ref={trackRef} className="hh-rail-track" aria-label="SeatsBrokers workflow">
+        {loop.map(({ icon: Icon, step, note }, index) => (
+          <li
+            key={`${step}-${index}`}
+            className="hh-rail-item"
+            data-clone={index >= rail.length ? "true" : "false"}
+            aria-hidden={index >= rail.length}
+          >
+            <span className="hh-rail-icon" aria-hidden>
+              <Icon strokeWidth={1.75} />
+            </span>
+            <span className="hh-rail-copy">
+              <strong>{step}</strong>
+              <span>{note}</span>
+            </span>
+            {index < rail.length - 1 && (
+              <span className="hh-rail-arrow" aria-hidden>
+                →
+              </span>
+            )}
+          </li>
+        ))}
+      </ol>
+      <p className="hh-rail-caption">One connected workflow. Seven powerful products.</p>
+    </div>
+  );
 }
 
 export function Hero() {
@@ -164,27 +255,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hh-rail hh-in hh-in-6">
-          <ol className="hh-rail-track" aria-label="SeatsBrokers workflow">
-            {rail.map(({ icon: Icon, step, note }, index) => (
-              <li key={step} className="hh-rail-item">
-                <span className="hh-rail-icon" aria-hidden>
-                  <Icon strokeWidth={1.75} />
-                </span>
-                <span className="hh-rail-copy">
-                  <strong>{step}</strong>
-                  <span>{note}</span>
-                </span>
-                {index < rail.length - 1 && (
-                  <span className="hh-rail-arrow" aria-hidden>
-                    →
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-          <p className="hh-rail-caption">One connected workflow. Seven powerful products.</p>
-        </div>
+        <HeroRail />
       </div>
     </section>
   );

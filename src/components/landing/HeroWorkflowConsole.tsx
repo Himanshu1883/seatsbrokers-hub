@@ -11,6 +11,7 @@ type Stage = {
   module: string;
   headline: string;
   copy: string;
+  facts: readonly { label: string; value: string }[];
   activity: readonly { time: string; tag: string; msg: string }[];
 };
 
@@ -21,6 +22,11 @@ const stages: readonly Stage[] = [
     module: modules.intel.name,
     headline: "Know the market before you buy.",
     copy: `Demand, pricing and event signals stay in view, so the desk sources against the market — not a guess.`,
+    facts: [
+      { label: "Signal", value: "Cat A demand rising" },
+      { label: "Index", value: "Price book live" },
+      { label: "Watch", value: "12 events tracked" },
+    ],
     activity: [
       { time: "09:41:52", tag: "discover", msg: "demand signal · Cat A rising" },
       { time: "09:41:36", tag: "intel", msg: "price index refreshed" },
@@ -33,6 +39,11 @@ const stages: readonly Stage[] = [
     module: modules.source.name,
     headline: "Secure the right inventory.",
     copy: `Find, hold and confirm inventory, then keep one clean layer behind every channel you sell through.`,
+    facts: [
+      { label: "Hold", value: "6 seats confirmed" },
+      { label: "Layer", value: "One inventory" },
+      { label: "Write-back", value: "POS in sync" },
+    ],
     activity: [
       { time: "09:42:18", tag: "source", msg: "hold confirmed · 6 seats" },
       { time: "09:42:04", tag: "inventory", msg: "one layer updated" },
@@ -45,6 +56,11 @@ const stages: readonly Stage[] = [
     module: modules.pulse.name,
     headline: "AI recommends. You decide.",
     copy: `Pricing intelligence suggests the ask and flags the move — your team approves every change.`,
+    facts: [
+      { label: "Recommend", value: "Ask £248" },
+      { label: "Guard", value: "Margin held" },
+      { label: "Decision", value: "Awaiting you" },
+    ],
     activity: [
       { time: "09:42:44", tag: "price", msg: "recommended ask £248" },
       { time: "09:42:31", tag: "pulse", msg: "margin guard held" },
@@ -57,6 +73,11 @@ const stages: readonly Stage[] = [
     module: modules.link.name,
     headline: "Connect your existing operation.",
     copy: `POS, inventory, ERP and partner feeds connect through ${modules.link.name} — securely and in real time.`,
+    facts: [
+      { label: "POS", value: "Connected" },
+      { label: "Inventory", value: "Real-time sync" },
+      { label: "ERP", value: "Feed live" },
+    ],
     activity: [
       { time: "09:43:26", tag: "connect", msg: "POS and inventory sync" },
       { time: "09:43:12", tag: "distribute", msg: "listing improved 18%" },
@@ -69,6 +90,11 @@ const stages: readonly Stage[] = [
     module: modules.market.name,
     headline: "Reach every buyer channel.",
     copy: `One listing reaches marketplaces, B2B buyers and partner websites, and stays in sync after every sale.`,
+    facts: [
+      { label: "Channels", value: "In sync" },
+      { label: "Buyers", value: "B2B notified" },
+      { label: "Sale", value: "Auto-delist on" },
+    ],
     activity: [
       { time: "09:44:02", tag: "distribute", msg: "channels in sync" },
       { time: "09:43:49", tag: "market", msg: "B2B buyers notified" },
@@ -81,6 +107,11 @@ const stages: readonly Stage[] = [
     module: modules.deal.name,
     headline: "From enquiry to sale.",
     copy: `Quotes, orders, delivery and CRM stay inside the same workflow, so nothing is rebuilt in a spreadsheet.`,
+    facts: [
+      { label: "Order", value: "#1287 confirmed" },
+      { label: "Delivery", value: "Scheduled" },
+      { label: "Payout", value: "Queued" },
+    ],
     activity: [
       { time: "09:44:37", tag: "sell", msg: "order confirmed #1287" },
       { time: "09:44:21", tag: "deal", msg: "delivery scheduled" },
@@ -93,6 +124,11 @@ const stages: readonly Stage[] = [
     module: modules.funds.name,
     headline: "Payments built into the workflow.",
     copy: `Settlement, payouts and reconciliation close the loop on the same desk the sale started on.`,
+    facts: [
+      { label: "Payout", value: "Released" },
+      { label: "Books", value: "Matched" },
+      { label: "Next", value: "Event shortlisted" },
+    ],
     activity: [
       { time: "09:45:11", tag: "settle", msg: "payout released" },
       { time: "09:45:02", tag: "funds", msg: "reconciliation matched" },
@@ -182,6 +218,15 @@ export function HeroWorkflowConsole() {
             <strong className="hwc-stage-module">{current.module}</strong>
             <p className="hwc-stage-headline">{current.headline}</p>
             <p className="hwc-stage-copy">{current.copy}</p>
+
+            <ul className="hwc-facts" aria-label={`${current.stage} details`}>
+              {current.facts.map((fact) => (
+                <li key={fact.label} className="hwc-fact">
+                  <span className="hwc-fact-label">{fact.label}</span>
+                  <strong className="hwc-fact-value">{fact.value}</strong>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="hwc-activity">

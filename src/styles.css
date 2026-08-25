@@ -162,6 +162,14 @@
     font-family: var(--font-sans);
   }
 
+  /* Laptop CSS px (1024–1919): whole site at 90%. Phones and ≥1920 stay 100%.
+     Uses CSS zoom (Chromium, Edge, Safari). Firefox has no zoom; leave 100%. */
+  /* @media (min-width: 1024px) and (max-width: 1919px) {
+    html {
+      zoom: 0.9;
+    }
+  } */
+
   * {
     border-color: var(--color-border);
   }
@@ -64806,7 +64814,7 @@ button.process-bento-cta-link {
 }
 
 .hh-title {
-  margin-top: clamp(1rem, 2.2vw, 1.5rem);
+  margin-top: clamp(1.25rem, 2.8vw, 1.85rem);
   font-size: clamp(1.75rem, 1rem + 3.3vw, 3.4rem);
   font-weight: 700;
   line-height: 1.14;
@@ -65067,11 +65075,14 @@ button.process-bento-cta-link {
 /* ── Workflow console (hwc-*) ───────────────────────────────────────────── */
 .hwc {
   perspective: 1600px;
+  perspective-origin: 68% 42%;
   min-width: 0;
 }
 
 .hwc-card {
   --hwc-line: color-mix(in oklab, var(--border) 88%, transparent);
+  --hwc-tilt-x: 7deg;
+  --hwc-tilt-y: -14deg;
   position: relative;
   overflow: hidden;
   border: 1px solid var(--hwc-line);
@@ -65079,10 +65090,18 @@ button.process-bento-cta-link {
   background: #fff;
   color: var(--foreground);
   font-size: clamp(0.6875rem, 0.56rem + 0.5vw, 0.8125rem);
+  transform: rotateX(var(--hwc-tilt-x)) rotateY(var(--hwc-tilt-y)) rotateZ(-1.2deg);
+  transform-origin: center center;
+  transform-style: preserve-3d;
   box-shadow:
     0 1.5rem 3.5rem rgb(0 0 0 / 0.42),
     0 0.35rem 1rem rgb(0 0 0 / 0.25);
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hwc:hover .hwc-card,
+.hwc:focus-within .hwc-card {
+  transform: rotateX(2deg) rotateY(-4deg) rotateZ(0deg);
 }
 
 .hwc-chrome {
@@ -65287,6 +65306,7 @@ button.process-bento-cta-link {
 }
 
 .hwc-stage-module {
+  margin-top: 0.35em;
   font-size: 1em;
   font-weight: 700;
   color: var(--foreground);
@@ -65302,6 +65322,41 @@ button.process-bento-cta-link {
   font-size: 0.86em;
   line-height: 1.5;
   color: var(--muted-foreground);
+  text-wrap: pretty;
+}
+
+.hwc-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45em;
+  margin: 0.35em 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hwc-fact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.12em;
+  min-width: 0;
+  border: 1px solid var(--hwc-line);
+  border-radius: 0.5rem;
+  padding: 0.55em 0.6em;
+  background: color-mix(in oklab, var(--surface) 70%, #fff);
+}
+
+.hwc-fact-label {
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  color: var(--muted-foreground);
+}
+
+.hwc-fact-value {
+  font-size: 0.88em;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--foreground);
   text-wrap: pretty;
 }
 
@@ -65497,13 +65552,9 @@ button.process-bento-cta-link {
   }
 
   .hwc-card {
-    transform: rotateY(-2.4deg) rotateX(1.4deg);
+    --hwc-tilt-x: 8deg;
+    --hwc-tilt-y: -16deg;
     transform-origin: right center;
-  }
-
-  .hwc:hover .hwc-card,
-  .hwc:focus-within .hwc-card {
-    transform: none;
   }
 }
 
@@ -65529,32 +65580,327 @@ button.process-bento-cta-link {
   }
 }
 
-/* ── Phones: drop the paint cost that made hero scrolling stutter ───────── */
+/* ── Phones / tablets: one-viewport hero, compact console, sliding rail ── */
 @media (max-width: 1023px) {
+  .hh-hero {
+    height: 100svh;
+    max-height: 100svh;
+    min-height: 0;
+  }
+
+  .hh-inner {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.7rem;
+    padding-block: calc(var(--hh-nav) + 1rem) 0.85rem;
+  }
+
+  /* Copy, console and rail become three siblings so leftover height
+     can be given to the console instead of sitting as empty stadium. */
+  .hh-grid {
+    display: contents;
+  }
+
+  .hh-copy {
+    flex: 0 0 auto;
+    max-width: none;
+    padding-top: 0.2rem;
+  }
+
+  .hh-title {
+    margin-top: 0.85rem;
+    font-size: clamp(1.4rem, 6vw, 1.85rem);
+  }
+
+  .hh-lead {
+    margin-top: 0.4rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .hh-ctas {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    margin-top: 0.7rem;
+    align-items: stretch;
+  }
+
+  .hh-cta {
+    flex: 1 1 0;
+    width: auto;
+    min-height: 2.5rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.8125rem;
+  }
+
+  .hh-features {
+    display: none;
+  }
+
+  .hh-console {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin-inline: 0;
+    padding: 1.5rem 0.55rem 0.25rem;
+    overflow: visible;
+  }
+
+  .hwc {
+    height: 100%;
+    min-height: 0;
+    --hwc-tilt-x: 5deg;
+    --hwc-tilt-y: -7deg;
+    perspective-origin: 18% 40%;
+  }
+
+  .hwc-card {
+    height: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform-origin: left center;
+    backdrop-filter: none;
+  }
+
+  .hwc-chrome {
+    flex: 0 0 auto;
+  }
+
+  .hwc-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 0.55em;
+    padding: 0.7em 0.85em 0.75em;
+  }
+
+  .hwc-lede,
+  .hwc-step-kind,
+  .hwc-stat-tag {
+    display: none;
+  }
+
+  .hwc-stats {
+    flex: 0 0 auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.4em;
+  }
+
+  .hwc-stat {
+    padding: 0.4em 0.45em;
+    min-width: 0;
+  }
+
+  .hwc-stat-value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hwc-steps {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.22em;
+  }
+
+  .hwc-step {
+    min-width: 0;
+    padding: 0.3em 0.12em;
+    overflow: hidden;
+  }
+
+  .hwc-step-index {
+    display: none;
+  }
+
+  .hwc-step-name {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.58em;
+  }
+
+  .hwc-stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.28em;
+    margin: 0;
+    padding-top: 0.55em;
+    overflow: hidden;
+  }
+
+  .hwc-stage-head {
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.15rem 0.6rem;
+    margin-bottom: 0;
+  }
+
+  .hwc-stage-kicker,
+  .hwc-stage-count {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hwc-stage-module {
+    flex: 0 0 auto;
+    margin-top: 0.15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .hwc-stage-headline {
+    flex: 0 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .hwc-stage-copy {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    flex: 0 0 auto;
+    margin: 0;
+    font-size: 0.8em;
+    line-height: 1.4;
+  }
+
+  .hwc-facts {
+    flex: 1 1 auto;
+    min-height: 4.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 0.4em;
+    margin: 0.2em 0 0;
+  }
+
+  .hwc-fact {
+    min-height: 0;
+    padding: 0.45em 0.65em;
+  }
+
+  .hwc-activity {
+    flex: 0 0 auto;
+    margin-top: 0;
+    min-width: 0;
+  }
+
+  .hwc-activity-list li {
+    min-width: 0;
+  }
+
+  .hh-rail {
+    flex: 0 0 auto;
+    min-width: 0;
+    padding-top: 0.15rem;
+  }
+
+  .hh-rail-track {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.55rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: none;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0.7rem 0.8rem;
+    backdrop-filter: none;
+  }
+
+  .hh-rail-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hh-rail-item {
+    flex: 0 0 auto;
+    width: min(12rem, 72vw);
+    scroll-snap-align: start;
+  }
+
+  .hh-rail-arrow {
+    display: none;
+  }
+
+  .hh-rail-caption {
+    margin-top: 0.45rem;
+    font-size: 0.6875rem;
+  }
+
   .hh-bg-img,
   .hh-bg-slide[data-active="true"] .hh-bg-img {
     animation: none;
     transform: scale(1.04);
   }
+}
 
-  .hh-ctas {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .hh-cta {
-    width: 100%;
-  }
-
-  .hh-rail-track,
-  .hwc-card {
-    backdrop-filter: none;
+@media (min-width: 900px) {
+  .hh-rail-item[data-clone="true"] {
+    display: none;
   }
 }
 
-@media (max-width: 400px) {
+@media (min-width: 900px) and (max-width: 1023px) {
   .hh-rail-track {
-    grid-template-columns: minmax(0, 1fr);
+    display: flex;
+    overflow: visible;
+    scroll-snap-type: none;
+    padding: 0.7rem 0.85rem;
+  }
+
+  .hh-rail-item {
+    flex: 1 1 0;
+    width: auto;
+  }
+
+  .hh-rail-arrow {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 700px) {
+  .hh-lead {
+    display: none;
+  }
+
+  .hh-console {
+    padding-top: 0.2rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .hh-title {
+    font-size: clamp(1.32rem, 6.6vw, 1.6rem);
   }
 }
 
@@ -65574,7 +65920,9 @@ button.process-bento-cta-link {
     animation: none;
   }
 
-  .hwc-card {
+  .hwc-card,
+  .hwc:hover .hwc-card,
+  .hwc:focus-within .hwc-card {
     transform: none;
     transition: none;
   }

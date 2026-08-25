@@ -445,7 +445,7 @@ export function MarketIntelligence() {
       <div className="container-page relative z-10">
         <div className="mihp-layout">
           <div className="mihp-copy">
-            <Reveal>
+          <Reveal>
               <p className="section-eyebrow text-primary">{modules.intel.name}</p>
               <h2 className="mihp-title">
                 Make Better Decisions With{" "}
@@ -460,8 +460,8 @@ export function MarketIntelligence() {
               <p className="mihp-status">
                 <span className="mihp-status-dot" aria-hidden />
                 AI monitoring live market signals
-              </p>
-            </Reveal>
+            </p>
+          </Reveal>
 
             <Reveal delay={80}>
               <div className="mihp-ctas">
@@ -476,7 +476,7 @@ export function MarketIntelligence() {
               </div>
             </Reveal>
 
-            <Reveal delay={120}>
+          <Reveal delay={120}>
               <ul className="mihp-features">
                 {features.map(({ icon: Icon, label }) => (
                   <li key={label} className="mihp-feature">

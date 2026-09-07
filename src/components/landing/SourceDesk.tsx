@@ -32,19 +32,28 @@ const proofs = [
 
 const [deskLine, demandLine] = modules.source.tagline.split(". ");
 
-/** Shared viewBox so cards, nodes, dashed arc and hub sit on one grid. */
+/** Shared viewBox: cards sit on a semicircle around the radar hub. */
 const VB = { w: 900, h: 560 };
-const CARD = { w: 128, h: 118 };
-const NODES = [
-  { x: 86, y: 372 },
-  { x: 278, y: 228 },
-  { x: 450, y: 150 },
-  { x: 622, y: 228 },
-  { x: 814, y: 372 },
-] as const;
-const HUB = { x: 450, y: 458 };
-const ARC =
-  "M86 372 C150 372 214 228 278 228 S386 150 450 150 S558 228 622 228 S750 372 814 372";
+const CARD = { w: 136, h: 124 };
+const HUB = { x: 450, y: 438 };
+const ARC_R = 298;
+const CARD_ANGLES = [158, 124, 90, 56, 22] as const;
+const JOIN_ANGLES = [141, 107, 73, 39] as const;
+
+function polar(deg: number) {
+  const rad = (deg * Math.PI) / 180;
+  return {
+    x: HUB.x + ARC_R * Math.cos(rad),
+    y: HUB.y - ARC_R * Math.sin(rad),
+  };
+}
+
+const NODES = CARD_ANGLES.map(polar);
+const JOINS = JOIN_ANGLES.map(polar);
+const START = NODES[0]!;
+const END = NODES[4]!;
+const PEAK = NODES[2]!;
+const ARC = `M${START.x} ${START.y} A${ARC_R} ${ARC_R} 0 0 1 ${END.x} ${END.y}`;
 
 const proofsId = "sdhp-dots";
 
@@ -76,16 +85,18 @@ function SourceDeskCanvas() {
         <path d="M762 292c-20 10-24 42-2 56 42 10 74-10 68-38-8-20-40-28-66-18z" />
         <path d="M842 340c-6 10 8 22 14 10 0-8-8-12-14-10z" />
       </g>
+      <ellipse className="sdhp-wash" cx={HUB.x} cy="250" rx="360" ry="210" />
       <g className="sdhp-radar-rings">
-        <circle className="sdhp-radar-ring" cx={HUB.x} cy={HUB.y} r="92" />
-        <circle className="sdhp-radar-ring" cx={HUB.x} cy={HUB.y} r="68" />
-        <circle className="sdhp-radar-ring" cx={HUB.x} cy={HUB.y} r="46" />
+        <circle className="sdhp-radar-ring" cx={HUB.x} cy={HUB.y} r="108" />
+        <circle className="sdhp-radar-ring" cx={HUB.x} cy={HUB.y} r="82" />
+        <circle className="sdhp-radar-ring" cx={HUB.x} cy={HUB.y} r="58" />
+        <circle className="sdhp-radar-ring" cx={HUB.x} cy={HUB.y} r="38" />
       </g>
       <path className="sdhp-arc-path" d={ARC} />
-      <path className="sdhp-arc-stem" d={`M${HUB.x} ${NODES[2].y} L${HUB.x} ${HUB.y - 20}`} />
-      <circle className="sdhp-hub-disc" cx={HUB.x} cy={HUB.y} r="20" />
-      {NODES.map((node) => (
-        <circle key={`${node.x}-${node.y}`} className="sdhp-node" cx={node.x} cy={node.y} r="5.5" />
+      <path className="sdhp-arc-stem" d={`M${HUB.x} ${PEAK.y} L${HUB.x} ${HUB.y - 22}`} />
+      <circle className="sdhp-hub-disc" cx={HUB.x} cy={HUB.y} r="22" />
+      {JOINS.map((node) => (
+        <circle key={`${node.x}-${node.y}`} className="sdhp-node" cx={node.x} cy={node.y} r="5" />
       ))}
     </svg>
   );
@@ -152,7 +163,7 @@ export function SourceDesk() {
                         className="sdhp-card"
                         style={{
                           left: pct(node.x - CARD.w / 2, VB.w),
-                          top: pct(node.y - CARD.h - 8, VB.h),
+                          top: pct(node.y - CARD.h - 6, VB.h),
                           width: pct(CARD.w, VB.w),
                         }}
                       >

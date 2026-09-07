@@ -36,7 +36,6 @@ import {
   Code2,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
-import { PhotoWashBg } from "@/components/pages/shared/PhotoWashBg";
 import { productStories } from "@/content/products-page-data";
 
 export type ProductCapabilityKey = keyof typeof productStories;
@@ -138,8 +137,7 @@ export function ProductCapabilityBoard({ product }: ProductCapabilityBoardProps)
               const Icon = icons[item.id] ?? Layers3;
               return (
                 <li key={item.id}>
-                  <article className="prd-cap-card photo-wash-card">
-                    <PhotoWashBg index={index} />
+                  <article className="prd-cap-card">
                     <header className="prd-cap-card-head">
                       <span className="prd-cap-icon" aria-hidden>
                         <Icon className="size-5" strokeWidth={1.75} />

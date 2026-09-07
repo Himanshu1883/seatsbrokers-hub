@@ -37,7 +37,7 @@ export const pulseHeroSignals = [
 
 export const pulseHeroNotes = [
   { label: "Demand", detail: "High before onsale on this section" },
-  { label: "Inventory", detail: "Held on the same SeatsSource™ layer" },
+  { label: "Inventory", detail: "Held on the Core Engine layer" },
   { label: "Average", detail: "Market average sits above your current ask" },
   { label: "Gate", detail: "Nothing publishes until you accept" },
 ] as const;

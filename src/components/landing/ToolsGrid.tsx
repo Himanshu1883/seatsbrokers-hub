@@ -176,10 +176,10 @@ const sellerModules: {
   {
     n: "01",
     icon: Ticket,
-    title: "Inventory layer",
+    title: "Sourcing desk",
     product: modules.source.name,
-    event: "stock.push → live availability",
-    features: ["Live stock ingest", "Section and qty map", "Price held in £", "Availability sync"],
+    event: "request.open → options ready",
+    features: ["Ticket request in", "Global network", "B2B options back", "Convert to order"],
   },
   {
     n: "02",
@@ -588,10 +588,13 @@ export function SellerTools() {
   return (
     <section
       id="sellers"
-      className="sto-section section-curve relative isolate scroll-mt-24 bg-background py-8 sm:py-8"
+      className="sto-section section-curve relative isolate scroll-mt-24 py-8 sm:py-8"
       aria-labelledby="sellers-title"
     >
-      <SectionBackdrop image="concertCrowd" tone="light" strength={0.08} />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]" aria-hidden>
+        <div className="feature-orbit-bg" />
+        <div className="absolute top-1/2 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/8 blur-[100px]" />
+      </div>
       <div className="container-page relative z-10">
         <Reveal>
           <header className="sto-head">

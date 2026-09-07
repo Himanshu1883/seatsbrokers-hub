@@ -1,12 +1,14 @@
 import { Mail } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
+import { DarkSectionFill } from "@/components/landing/SectionBackdrop";
 import { brand } from "@/content/site";
 import { faqHelpCopy } from "@/content/faq-data";
 
 export function FaqHelpStrip() {
   return (
-    <section className="faq-help section-curve">
-      <div className="container-page">
+    <section className="faq-help section-curve relative isolate">
+      <DarkSectionFill image="musicStage" />
+      <div className="container-page relative z-10">
         <div className="faq-help-grid">
           <Reveal>
             <p className="section-eyebrow text-primary">{faqHelpCopy.eyebrow}</p>

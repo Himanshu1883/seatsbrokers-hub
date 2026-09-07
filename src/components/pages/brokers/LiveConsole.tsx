@@ -5,6 +5,8 @@ import { AiPredictionsConsole } from "./AiPredictionsConsole";
 import { CryptoPayoutConsole } from "./CryptoPayoutConsole";
 import { MarketIntelligenceConsole } from "./MarketIntelligenceConsole";
 import { PosConsole } from "./PosConsole";
+import { DarkSectionFill } from "@/components/landing/SectionBackdrop";
+import type { EventBackdropKey } from "@/lib/event-backdrops";
 import { modules } from "@/content/modules";
 
 export type LiveConsoleVariant =
@@ -17,6 +19,7 @@ export type LiveConsoleVariant =
 
 type LiveConsoleMeta = ConsoleCopyMeta & {
   tone: "light" | "dark";
+  backdrop?: EventBackdropKey;
   console: ReactNode;
   tiltY?: number;
   tiltX?: number;
@@ -93,6 +96,7 @@ const variants: Record<LiveConsoleVariant, LiveConsoleMeta | null> = {
       },
     ],
     tone: "dark",
+    backdrop: "footballNight",
     console: <MarketIntelligenceConsole />,
     tiltY: -9,
     tiltX: 3,
@@ -251,12 +255,7 @@ export function LiveConsole({ variant }: LiveConsoleProps) {
         isDark ? "bg-dark text-background" : "bg-surface"
       }`}
     >
-      {isDark ? (
-        <div
-          className="pointer-events-none absolute inset-0 bg-linear-to-br from-dark via-dark to-primary-deep/35"
-          aria-hidden
-        />
-      ) : null}
+      {isDark ? <DarkSectionFill image={meta.backdrop} /> : null}
 
       <div className="container-page relative z-10">
         <div className="lc-section">

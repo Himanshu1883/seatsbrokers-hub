@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useInView } from "@/hooks/use-scroll-motion";
-import { modules, workflowStages } from "@/content/modules";
+import { modules, simpleFlowStages } from "@/content/modules";
 
 const STAGE_MS = 2600;
 
 type Stage = {
-  stage: (typeof workflowStages)[number];
+  stage: (typeof simpleFlowStages)[number];
   kind: string;
   module: string;
   headline: string;
@@ -17,58 +17,7 @@ type Stage = {
 
 const stages: readonly Stage[] = [
   {
-    stage: workflowStages[0],
-    kind: "Intel",
-    module: modules.intel.name,
-    headline: "Know the market before you buy.",
-    copy: `Demand, pricing and event signals stay in view, so the desk sources against the market — not a guess.`,
-    facts: [
-      { label: "Signal", value: "Cat A demand rising" },
-      { label: "Index", value: "Price book live" },
-      { label: "Watch", value: "12 events tracked" },
-    ],
-    activity: [
-      { time: "09:41:52", tag: "discover", msg: "demand signal · Cat A rising" },
-      { time: "09:41:36", tag: "intel", msg: "price index refreshed" },
-      { time: "09:41:12", tag: "source", msg: "12 new events tracked" },
-    ],
-  },
-  {
-    stage: workflowStages[1],
-    kind: "Inventory",
-    module: modules.source.name,
-    headline: "Secure the right inventory.",
-    copy: `Find, hold and confirm inventory, then keep one clean layer behind every channel you sell through.`,
-    facts: [
-      { label: "Hold", value: "6 seats confirmed" },
-      { label: "Layer", value: "One inventory" },
-      { label: "Write-back", value: "POS in sync" },
-    ],
-    activity: [
-      { time: "09:42:18", tag: "source", msg: "hold confirmed · 6 seats" },
-      { time: "09:42:04", tag: "inventory", msg: "one layer updated" },
-      { time: "09:41:58", tag: "connect", msg: "POS write-back complete" },
-    ],
-  },
-  {
-    stage: workflowStages[2],
-    kind: "Intelligence",
-    module: modules.pulse.name,
-    headline: "AI recommends. You decide.",
-    copy: `Pricing intelligence suggests the ask and flags the move — your team approves every change.`,
-    facts: [
-      { label: "Recommend", value: "Ask £248" },
-      { label: "Guard", value: "Margin held" },
-      { label: "Decision", value: "Awaiting you" },
-    ],
-    activity: [
-      { time: "09:42:44", tag: "price", msg: "recommended ask £248" },
-      { time: "09:42:31", tag: "pulse", msg: "margin guard held" },
-      { time: "09:42:20", tag: "distribute", msg: "listing mirrored" },
-    ],
-  },
-  {
-    stage: workflowStages[3],
+    stage: simpleFlowStages[0],
     kind: "Systems",
     module: modules.link.name,
     headline: "Connect your existing operation.",
@@ -79,13 +28,30 @@ const stages: readonly Stage[] = [
       { label: "ERP", value: "Feed live" },
     ],
     activity: [
-      { time: "09:43:26", tag: "connect", msg: "POS and inventory sync" },
-      { time: "09:43:12", tag: "distribute", msg: "listing improved 18%" },
-      { time: "09:42:58", tag: "sell", msg: "quote shared #1287" },
+      { time: "09:41:26", tag: "connect", msg: "POS and inventory sync" },
+      { time: "09:41:12", tag: "link", msg: "partner feed live" },
+      { time: "09:40:58", tag: "manage", msg: "stock mirrored to desk" },
     ],
   },
   {
-    stage: workflowStages[4],
+    stage: simpleFlowStages[1],
+    kind: "Operations",
+    module: "Core Engine",
+    headline: "Manage inventory, intel and pricing.",
+    copy: `One inventory layer with market signals and AI pricing recommendations — you stay in control of every ask.`,
+    facts: [
+      { label: "Stock", value: "In sync" },
+      { label: "Signals", value: "Live" },
+      { label: "Ask", value: "You decide" },
+    ],
+    activity: [
+      { time: "09:42:18", tag: "manage", msg: "listings reconciled" },
+      { time: "09:42:04", tag: "intel", msg: "demand signal · Cat A" },
+      { time: "09:41:58", tag: "pulse", msg: "recommended ask £248" },
+    ],
+  },
+  {
+    stage: simpleFlowStages[2],
     kind: "Channels",
     module: modules.market.name,
     headline: "Reach every buyer channel.",
@@ -96,30 +62,47 @@ const stages: readonly Stage[] = [
       { label: "Sale", value: "Auto-delist on" },
     ],
     activity: [
-      { time: "09:44:02", tag: "distribute", msg: "channels in sync" },
-      { time: "09:43:49", tag: "market", msg: "B2B buyers notified" },
-      { time: "09:43:38", tag: "inventory", msg: "auto-delist on sale" },
+      { time: "09:43:02", tag: "distribute", msg: "channels in sync" },
+      { time: "09:42:49", tag: "market", msg: "B2B buyers notified" },
+      { time: "09:42:38", tag: "inventory", msg: "auto-delist on sale" },
     ],
   },
   {
-    stage: workflowStages[5],
+    stage: simpleFlowStages[3],
     kind: "Orders",
     module: modules.deal.name,
     headline: "From enquiry to sale.",
-    copy: `Quotes, orders, delivery and CRM stay inside the same workflow, so nothing is rebuilt in a spreadsheet.`,
+    copy: `Quotes, orders and CRM stay inside the same workflow, so nothing is rebuilt in a spreadsheet.`,
     facts: [
-      { label: "Order", value: "#1287 confirmed" },
-      { label: "Delivery", value: "Scheduled" },
-      { label: "Payout", value: "Queued" },
+      { label: "Quote", value: "#1287 shared" },
+      { label: "Order", value: "Confirmed" },
+      { label: "CRM", value: "Updated" },
     ],
     activity: [
-      { time: "09:44:37", tag: "sell", msg: "order confirmed #1287" },
-      { time: "09:44:21", tag: "deal", msg: "delivery scheduled" },
-      { time: "09:44:08", tag: "settle", msg: "payout queued" },
+      { time: "09:43:37", tag: "sell", msg: "order confirmed #1287" },
+      { time: "09:43:21", tag: "deal", msg: "quote shared" },
+      { time: "09:43:08", tag: "crm", msg: "buyer record updated" },
     ],
   },
   {
-    stage: workflowStages[6],
+    stage: simpleFlowStages[4],
+    kind: "Fulfilment",
+    module: modules.deal.name,
+    headline: "Delivery stays in the workflow.",
+    copy: `Fulfilment and ticket delivery close on the same desk the sale started on — no hand-off gap.`,
+    facts: [
+      { label: "Delivery", value: "Scheduled" },
+      { label: "Tickets", value: "Allocated" },
+      { label: "Buyer", value: "Notified" },
+    ],
+    activity: [
+      { time: "09:44:14", tag: "deliver", msg: "fulfil scheduled" },
+      { time: "09:44:02", tag: "deal", msg: "tickets allocated" },
+      { time: "09:43:51", tag: "notify", msg: "buyer confirmation sent" },
+    ],
+  },
+  {
+    stage: simpleFlowStages[5],
     kind: "Payments",
     module: modules.funds.name,
     headline: "Payments built into the workflow.",
@@ -132,14 +115,14 @@ const stages: readonly Stage[] = [
     activity: [
       { time: "09:45:11", tag: "settle", msg: "payout released" },
       { time: "09:45:02", tag: "funds", msg: "reconciliation matched" },
-      { time: "09:44:55", tag: "discover", msg: "next event shortlisted" },
+      { time: "09:44:55", tag: "connect", msg: "next feed reconciled" },
     ],
   },
 ];
 
 export function HeroWorkflowConsole() {
   const { ref, inView } = useInView<HTMLDivElement>(0.2, { once: false });
-  const [active, setActive] = useState(3);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
@@ -175,9 +158,9 @@ export function HeroWorkflowConsole() {
             <div className="hwc-stat">
               <span className="hwc-stat-label">Path</span>
               <strong className="hwc-stat-value">
-                {workflowStages[0]}
+                {simpleFlowStages[0]}
                 <ArrowRight className="hwc-stat-arrow" strokeWidth={2} aria-hidden />
-                {workflowStages[6]}
+                {simpleFlowStages[5]}
               </strong>
             </div>
             <div className="hwc-stat">
@@ -193,7 +176,7 @@ export function HeroWorkflowConsole() {
 
           <p className="hwc-lede">SeatsBrokers connects your operation from one desk.</p>
 
-          <ol className="hwc-steps" aria-label="Discover to Settle workflow">
+          <ol className="hwc-steps" aria-label="Connect to Settle workflow">
             {stages.map((s, i) => (
               <li
                 key={s.stage}
@@ -212,7 +195,7 @@ export function HeroWorkflowConsole() {
             <div className="hwc-stage-head">
               <span className="hwc-stage-kicker">In this stage</span>
               <span className="hwc-stage-count">
-                {step} of 07 · {current.stage}
+                {step} of 06 · {current.stage}
               </span>
             </div>
             <strong className="hwc-stage-module">{current.module}</strong>

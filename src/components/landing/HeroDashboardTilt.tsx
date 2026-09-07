@@ -191,7 +191,7 @@ function WorkflowDesk({ tick, live }: { tick: number; live: boolean }) {
         <div className="hero-desk-stats">
           <div className="lc-stat">
             <span className="lc-stat-label">Path</span>
-            <strong className="lc-stat-value">Discover → Settle</strong>
+            <strong className="lc-stat-value">Connect → Settle</strong>
           </div>
           <div className="lc-stat">
             <span className="lc-stat-label">Stage</span>

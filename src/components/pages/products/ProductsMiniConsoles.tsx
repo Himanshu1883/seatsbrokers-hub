@@ -95,7 +95,7 @@ function SourceMini() {
             ))}
           </tbody>
         </table>
-        <MiniFoot label="SeatsSource™" value="One inventory layer" />
+        <MiniFoot label="SeatsSource™" value="Sourcing desk" />
       </div>
     </MiniDesk>
   );

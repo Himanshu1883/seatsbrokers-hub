@@ -40,8 +40,9 @@ import {
   type BentoBackdropConfig,
   type BentoSceneVariant,
 } from "@/content/bento-illustrations";
-import { workflowStages } from "@/content/modules";
+import { simpleFlowStages } from "@/content/modules";
 import { ctas } from "@/content/site";
+import { eventBackdrops } from "@/lib/event-backdrops";
 
 const FLOW_MS = 2100;
 const FLOW_RESUME_MS = 450;
@@ -405,29 +406,19 @@ const featureItems: ReadonlyArray<{
 ];
 
 const processSteps: ReadonlyArray<{
-  stage: (typeof workflowStages)[number];
+  stage: (typeof simpleFlowStages)[number];
   body: string;
   Icon: LucideIcon;
 }> = [
   {
-    stage: "Discover",
-    body: "Identify events and opportunities",
-    Icon: Search,
-  },
-  {
-    stage: "Source",
-    body: "Find and secure inventory",
-    Icon: Box,
-  },
-  {
-    stage: "Price",
-    body: "Set competitive, market-driven prices",
-    Icon: Tag,
-  },
-  {
     stage: "Connect",
     body: "Connect systems and sales channels",
     Icon: Link2,
+  },
+  {
+    stage: "Manage",
+    body: "Inventory, intelligence and pricing",
+    Icon: Box,
   },
   {
     stage: "Distribute",
@@ -438,6 +429,11 @@ const processSteps: ReadonlyArray<{
     stage: "Sell",
     body: "Manage quotes, orders and buyers",
     Icon: ShoppingCart,
+  },
+  {
+    stage: "Deliver",
+    body: "Fulfil tickets in the same workflow",
+    Icon: Truck,
   },
   {
     stage: "Settle",
@@ -562,19 +558,25 @@ function ProcessDiagram() {
       data-live={inView ? "true" : "false"}
       aria-label="How SeatsBrokers connects your systems and channels"
     >
-      <div className="process-bento-diagram-group">
-        <p className="process-bento-diagram-label">{processCopy.systemsLabel}</p>
-        <DiagramChips chips={systemChips} />
+      <div className="process-bento-diagram-bg" aria-hidden>
+        <img src={eventBackdrops.sportsCrowd} alt="" loading="lazy" decoding="async" />
       </div>
-      <DiagramArrow />
-      <div className="process-bento-diagram-group process-bento-diagram-engine">
-        <p className="process-bento-diagram-label">{processCopy.engineLabel}</p>
-        <DiagramChips chips={engineChips} dense />
-      </div>
-      <DiagramArrow />
-      <div className="process-bento-diagram-group">
-        <p className="process-bento-diagram-label">{processCopy.channelsLabel}</p>
-        <DiagramChips chips={channelChips} />
+
+      <div className="process-bento-diagram-inner">
+        <div className="process-bento-diagram-group">
+          <p className="process-bento-diagram-label">{processCopy.systemsLabel}</p>
+          <DiagramChips chips={systemChips} />
+        </div>
+        <DiagramArrow />
+        <div className="process-bento-diagram-group process-bento-diagram-engine">
+          <p className="process-bento-diagram-label">{processCopy.engineLabel}</p>
+          <DiagramChips chips={engineChips} dense />
+        </div>
+        <DiagramArrow />
+        <div className="process-bento-diagram-group">
+          <p className="process-bento-diagram-label">{processCopy.channelsLabel}</p>
+          <DiagramChips chips={channelChips} />
+        </div>
       </div>
     </aside>
   );
@@ -672,7 +674,7 @@ function ProcessFlow() {
       <ol
         ref={stepsRef}
         className="process-bento-steps"
-        aria-label="Discover to Settle workflow"
+        aria-label="Connect to Settle workflow"
       >
         {processSteps.map((step, i) => {
           const n = String(i + 1).padStart(2, "0");

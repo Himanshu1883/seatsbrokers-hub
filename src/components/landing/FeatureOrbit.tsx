@@ -68,7 +68,7 @@ const features: {
     italic: modules.source.tagline,
     category: modules.source.what,
     detail:
-      "Centralise your own inventory and connected supplier stock, including ticket categories, sections, rows, quantities, pricing and delivery information.",
+      "Find the inventory. On-demand sourcing for tickets not currently available on the SeatsBrokers platform — hard-to-find, premium and hospitality included.",
     href: productHrefs.source,
     cta: `Explore ${modules.source.name}`,
   },

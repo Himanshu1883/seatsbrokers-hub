@@ -24,7 +24,7 @@ Source of truth: `src/styles.css` (`@theme` + `:root` / `.dark`) and Google Font
 - `--primary-deep` `oklch(0.42 0.098 158.2)` — darker green
 - `--primary-soft` / `--accent` `oklch(0.958 0.028 158.2)`
 - `--surface` — section alt background (`bg-surface`)
-- `--dark` — dark section background (`bg-dark text-background`)
+- `--dark` — dark section background (`bg-dark text-background`). Dark **body** bands (not heroes, not Footer) use `SectionBackdrop` / `DarkSectionFill` (`tone="dark"`): muted event photo + mid cinematic wash (~70–80% `--dark`, not a bright poster and not an 88% blackout). No grid on dark. Parent must be `relative isolate`; copy stays `z-10`. Heroes keep stadium/gradient chrome. Footer stays flat `bg-dark`. Thin `SectionConnector` rails stay fill-only.
 - `--muted-foreground` — secondary copy
 - `--gradient-hero` — dark → primary-deep overlay
 - `--shadow-card`, `--shadow-lift`

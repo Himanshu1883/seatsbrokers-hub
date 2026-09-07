@@ -1,4 +1,4 @@
-import { Layers } from "lucide-react";
+import { Search } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { sourceHeroCopy } from "@/content/source-hero-data";
@@ -8,7 +8,7 @@ import { SourceConsoleWall } from "./SourceConsoleWall";
 function SourceHeroIcon({ className }: { className?: string }) {
   return (
     <span className={className} aria-hidden>
-      <Layers className="size-4" strokeWidth={1.75} />
+      <Search className="size-4" strokeWidth={1.75} />
     </span>
   );
 }
@@ -34,9 +34,9 @@ export function SourceHero() {
             <p className="bh-subhead">{sourceHeroCopy.subhead}</p>
             <p className="bh-body">{sourceHeroCopy.body}</p>
             <ul className="bh-points">
-              <li>Tickets, sections, rows and packages in one inventory layer</li>
-              <li>Supplier feeds and POS ingest land beside your own stock</li>
-              <li>Live availability so connected channels do not sell what you no longer have</li>
+              <li>Submit ticket requests when inventory is not on the platform</li>
+              <li>Access our global sourcing network for hard-to-find and hospitality stock</li>
+              <li>Compare competitive B2B options and convert the best into an order</li>
             </ul>
             <div className="page-cta-row bh-ctas mt-9">
               <SiteLink

@@ -2,12 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { KeyRound, Layers, Webhook } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { pageMeta, seoHead } from "@/content/site";
-import { apiProducts } from "@/content/api-hero-data";
-import { ApiCards, WorkflowSteps } from "@/components/pages/shared/PageSections";
+import { WorkflowSteps } from "@/components/pages/shared/PageSections";
 import { SectionConnector } from "@/components/pages/brokers/SectionConnector";
 import { ApiHero } from "@/components/pages/api/ApiHero";
 import { ApiInfraBoard } from "@/components/pages/api/ApiInfraBoard";
 import { ApiLiveConsole } from "@/components/pages/api/ApiLiveConsole";
+import { ApiProductBoard } from "@/components/pages/api/ApiProductBoard";
 
 export const Route = createFileRoute("/api")({
   head: () => seoHead("/api", pageMeta.api),
@@ -37,12 +37,7 @@ function ApiPage() {
         payload={["api key", "role scope", "event id", "signed request"]}
       />
 
-      <ApiCards
-        eyebrow="API products"
-        title="Seven APIs for the full ticketing stack"
-        intro="Connect at the depth you need — from the global event catalog through inventory, listings, orders, pricing, delivery and partner quotations."
-        items={[...apiProducts]}
-      />
+      <ApiProductBoard />
 
       <ApiInfraBoard />
 

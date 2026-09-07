@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Reveal, useInView } from "@/hooks/use-scroll-motion";
+import { DarkSectionFill } from "@/components/landing/SectionBackdrop";
 
 const copy = {
   eyebrow: "After the listing is live",
@@ -105,10 +106,7 @@ export function MarketplaceCapabilityBoard() {
       data-live={inView ? "true" : "false"}
       aria-labelledby="mcb-title"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-linear-to-br from-dark via-dark to-primary-deep/35"
-        aria-hidden
-      />
+      <DarkSectionFill image="footballPitch" />
 
       <div className="container-page relative z-10">
         <Reveal>

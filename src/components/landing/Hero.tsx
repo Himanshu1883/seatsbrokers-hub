@@ -7,10 +7,8 @@ import {
   Link2,
   PlugZap,
   RefreshCw,
-  Search,
   ShieldCheck,
   ShoppingCart,
-  TrendingUp,
   type LucideIcon,
 } from "lucide-react";
 import { useTypewriter } from "@/hooks/use-scroll-motion";
@@ -45,12 +43,11 @@ const highlights: readonly { icon: LucideIcon; title: string; note: string }[] =
 ];
 
 const rail: readonly { icon: LucideIcon; step: string; note: string }[] = [
-  { icon: Search, step: "Discover", note: "Market intelligence" },
-  { icon: Box, step: "Source", note: "Find & secure inventory" },
-  { icon: TrendingUp, step: "Price", note: "AI pricing intelligence" },
-  { icon: Link2, step: "Connect", note: "System & channel connectivity" },
-  { icon: Globe, step: "Distribute", note: "Global channel distribution" },
+  { icon: Link2, step: "Connect", note: "Systems & channels" },
+  { icon: Box, step: "Manage", note: "Inventory, intel & pricing" },
+  { icon: Globe, step: "Distribute", note: "Global channel reach" },
   { icon: ShoppingCart, step: "Sell", note: "Quotes, orders & CRM" },
+  { icon: RefreshCw, step: "Deliver", note: "Fulfilment in-workflow" },
   { icon: CreditCard, step: "Settle", note: "Payments & settlements" },
 ];
 
@@ -168,7 +165,7 @@ function HeroRail() {
           </li>
         ))}
       </ol>
-      <p className="hh-rail-caption">One connected workflow. Seven powerful products.</p>
+      <p className="hh-rail-caption">One connected workflow. Six stages. Seven products.</p>
     </div>
   );
 }

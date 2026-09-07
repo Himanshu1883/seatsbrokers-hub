@@ -387,8 +387,8 @@ export function InventoryAccessShowcase() {
 
       <div className="container-page relative z-10">
         <Reveal className="inv-head">
-          <p className="section-eyebrow text-center text-primary">{modules.source.name}</p>
-          <h2 className="inv-title">{modules.source.tagline}</h2>
+          <p className="section-eyebrow text-center text-primary">{modules.market.name}</p>
+          <h2 className="inv-title">{modules.market.tagline}</h2>
         </Reveal>
 
         <Reveal delay={90} className="inv-console-wrap">

@@ -50,6 +50,7 @@ export const ctas = {
   exploreTravel: { label: `Explore ${modules.deal.name}`, to: productHrefs.deal },
   exploreMarketplace: { label: `Explore ${modules.market.name}`, to: productHrefs.market },
   exploreEventIntel: { label: `Explore ${modules.intel.name}`, to: productHrefs.intel },
+  exploreSource: { label: `Explore ${modules.source.name}`, to: productHrefs.source },
   explorePulse: { label: `Explore ${modules.pulse.name}`, to: productHrefs.pulse },
   exploreLink: { label: `Explore ${modules.link.name}`, to: productHrefs.link },
   viewApiDocs: { label: "View API documentation", to: "/api" },
@@ -163,9 +164,9 @@ export const pageMeta = {
       "Join the SeatsBrokers network. Professional ticket businesses can apply to access the platform — inventory, technology, marketplaces and market intelligence.",
   },
   source: {
-    title: `Ticket Inventory Management — ${modules.source.name} | SeatsBrokers`,
+    title: `Ticket Sourcing Desk — ${modules.source.name} | SeatsBrokers`,
     description:
-      "Ticket inventory management for professional brokers. Centralise your own stock and connected supplier supply — categories, sections, rows, quantities, pricing and delivery.",
+      "Your sourcing desk, on demand. Request tickets not listed on SeatsBrokers — our network sources hard-to-find, premium and hospitality inventory with competitive B2B options.",
   },
   funds: {
     title: `Ticket Payments & Settlement — ${modules.funds.name} | SeatsBrokers`,

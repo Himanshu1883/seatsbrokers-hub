@@ -3,6 +3,7 @@ import { Reveal, useInView } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { integrationsPage } from "@/content/products-page-data";
 import { ctas } from "@/content/site";
+import { DarkSectionFill } from "@/components/landing/SectionBackdrop";
 
 function useCycle(length: number, ms: number, enabled: boolean) {
   const [active, setActive] = useState(0);
@@ -31,10 +32,7 @@ export function IntegrationsCapabilityBoard() {
       data-live={inView ? "true" : "false"}
       aria-labelledby="int-board-title"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-linear-to-br from-dark via-dark to-primary-deep/35"
-        aria-hidden
-      />
+      <DarkSectionFill image="motorsport" />
 
       <div className="container-page relative z-10">
         <Reveal>

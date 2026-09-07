@@ -42,7 +42,7 @@ Nav (Phase 2): Platform, Products (`/products`), Integrations, API, About. Right
 ## Important Entry Points
 
 - `src/routes/__root.tsx` — app shell, fonts, `styles.css`
-- `src/routes/index.tsx` — homepage reference structure: Hero → ProcessBento → SellerTools → FeatureOrbit → ToolkitShowcase → Marketplaces → MarketIntelligence → TwoTrack (FinalCTA is PageShell). TravelTools on `/products/seatsdeal` only. Unmounted (files kept): HowItWorks, TravelTools, JourneyNumbers, StickyScrollShowcase, Stats.
+- `src/routes/index.tsx` — homepage: Hero → ProcessBento → SellerTools → HowItWorks → FeatureOrbit → MarketIntelligence → SourceDesk → TwoTrack → Stats (FinalCTA is PageShell). Unmounted (files kept): ToolkitShowcase, Marketplaces.
 - `src/components/layout/PageShell.tsx` — every marketing page chrome
 - `src/content/site.ts` — nav (`hidden` flag), CTAs, SEO `pageMeta` + `seoHead()`
 - `src/styles.css` — design tokens + page CSS prefixes

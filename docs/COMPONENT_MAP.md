@@ -15,7 +15,8 @@ Routes listed are where the component is **mounted**, not every import.
 | WorkflowInfraCanvas | `src/components/pages/shared/WorkflowInfraCanvas.tsx` | Visual for WorkflowSteps | WorkflowSteps |
 | SplitPanel | PageSections | Copy + labelled value rows | market-analytics, ai-pricing, integrations (SeatsLink problem) |
 | SyncDiagram | PageSections | Four-card hub diagram | brokers, marketplace-connectivity |
-| ApiCards | PageSections | API product grid | brokers, api |
+| ApiCards | PageSections | Plain API product grid | **Unmounted** — `/api` uses `ApiProductBoard`; file kept |
+| ApiProductBoard | `src/components/pages/api/ApiProductBoard.tsx` | Photo cards for the seven product APIs (`.apc-*`): image + API pill + overlapping white body, 4+3 desktop | `/api` |
 | ContactForm | PageSections | Lead form | contact |
 | SectionConnector | `src/components/pages/brokers/SectionConnector.tsx` | Source → payload rail → destination | brokers, travel-partners, marketplace-connectivity, event-intelligence, api, book-demo, platform |
 | ConsoleCopyPanel | `src/components/pages/brokers/ConsoleCopyPanel.tsx` | Live-console left copy (accordion) | LiveConsole, TravelLiveConsole, MarketplaceLiveConsole, EventIntelLiveConsole, ApiLiveConsole, AboutLiveConsole, IntegrationsLiveConsole |
@@ -112,7 +113,7 @@ Routes listed are where the component is **mounted**, not every import.
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
 | PlatformHero + StackWall | `PlatformHero.tsx`, `PlatformStackWall.tsx` | `bh-hero` left copy (Your Ticket Brokerage. Connected. + supporting statement); right is a dark alive `ConsoleShell` Discover→Pay & settle spine lighting all seven stages (`.plt-os-*`) | `/platform` |
-| PlatformModuleMap | `PlatformModuleMap.tsx` | Sticky HowItWorks-vocabulary workflow (`#operating-stack`, `.plt-flow-*`): stage + product + one-line role + Explore CTA; right pane swaps compact desks. Not a 4+3 product-card dump | `/platform` only — **not** on `/products` |
+| PlatformModuleMap | `PlatformModuleMap.tsx` | Sticky HowItWorks-vocabulary workflow (`#operating-stack`, `.plt-flow-*`): stage + product + one-line role + Explore CTA; left 01–07 cards have Unsplash event photo + white LTR wash; right pane swaps compact desks. Not a 4+3 product-card dump | `/platform` only — **not** on `/products` |
 | PlatformDesks | `PlatformDesks.tsx` | Compact Ready `ConsoleShell` stage desks with In/Out handoff (Intel demand, Source £ inventory, Pulse you-decide rec, Link ticks, Market generic channels, Deal quote £, Funds settlement £). Prefix `.plt-mini-*` | PlatformModuleMap |
 
 ### Products (`src/components/pages/products/`)
@@ -120,7 +121,7 @@ Routes listed are where the component is **mounted**, not every import.
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
 | ProductsHero + WorkflowWall | `ProductsHero.tsx`, `ProductsWorkflowWall.tsx` | `bh-hero` left copy (existing `productsHeroCopy`); right is a **dark** `ConsoleShell` Discover→Settle hub (traffic lights, Ready stamp, stats, seven-stage rail, workflow table, Now/status rail — `.prd-*`). Sans dashboard, not a timestamp log. Not a clone of Platform spine or Integrations connect wall | `/products` |
-| ProductsEcosystem | `ProductsEcosystem.tsx` | Seven equal-height light product cards (name, tagline, 2–3 sentence body, stage, Explore CTA) + packed related mini consoles. Replaces `PlatformModuleMap` on this page | `/products` |
+| ProductsEcosystem | `ProductsEcosystem.tsx` | Compact photo-header product cards (~7rem shot, 2-line copy, 3-row minis, 44px Explore). Related images, 4+3 desktop | `/products` |
 | ProductsMiniConsoles | `ProductsMiniConsoles.tsx` | Compact static `ConsoleShell` desks for overview cards. No marketplace brand names | ProductsEcosystem |
 | ProductStoryPage | `ProductStoryPage.tsx` | Brief-order shell with **slots**: `hero`, `how` (earlier live consoles), `extraCapabilities`. Shared: Problem, How steps, CapabilityBoard, integration chain, Book a Demo / Become a Seller. `showFinalCta={false}` | all seven `/products/seats*` routes |
 | SourceHero + Wall | `SourceHero.tsx`, `SourceConsoleWall.tsx` | Dark `bh-hero` like EventIntelHero; right stage is catalog + inventory ingest (`srh-*`) | `/products/seatssource` |
@@ -183,24 +184,25 @@ Used on `/` unless noted.
 | HeroDashboardTilt | `HeroDashboardTilt.tsx` | Three light `ConsoleShell` desks in the tilt stage (hub / Discover→Settle / product command), 1:1 with hero slides | Hero |
 | SellerTools / TravelTools | `ToolsGrid.tsx` | Seller: 3-col `.sto-*` infographic (systems → SeatsLink™ → SeatsBrokers → channels; qualitative marketplace copy; Explore Our API). Travel: live Seat Map & Tickets quote desk (`SeatMapTicketsConsole`, `smt-*`) plus synced pipeline minis | `/` (`#sellers`, `#travel`) |
 | SeatMapTicketsConsole | `SeatMapTicketsConsole.tsx` | Interactive inventory/quote mini-console (select, margin, copy, PDF) in `ConsoleShell`; **8** Available Ticket Listings rows (`SEAT_MAP_LISTING_ROWS`) | TravelTools |
-| TwoTrack | `TwoTrack.tsx` | Two Journeys: mint broker + blue-gray B2B Demo ConsoleShell. Fixed equal desks `--tt-desk-h: clamp(280px, 52svh, 420px)` (≥1024); section `100svh`; identity cards below. Explore products / SeatsDeal™. Mobile auto height. Page scroll unlocked. | `/` |
-| Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out). `#connectivity` | `/` |
+| TwoTrack | `TwoTrack.tsx` | Two Journeys dark identity (`#platform-tracks`): full-width photo cards (black tint), large role lines, section pattern. Explore products / SeatsDeal™. | `/` |
+| SourceDesk | `SourceDesk.tsx` | Homepage SeatsSource™ band (`#source-desk`, `.sdhp-*`): split copy + 5-step arc (Request→Buy) + radar hub | `/` |
+| Marketplaces | `Marketplaces.tsx` | Full-width logo hub; dual inward marquees (events → listings in; marketplaces → POS out). `#connectivity` | **Unmounted from `/` 2026-08-26 (file kept)** |
 | NetworkConstellation | `NetworkConstellation.tsx` | 100dvh click-driven globe stages (no scroll pin) | **Exists; not mounted on `/` (Phase 3)** |
 | FeatureOrbit | `FeatureOrbit.tsx` | Capability orbit | `/` |
-| ProcessBento | `Processbento.tsx` | Problem / platform bento (`#partner-process`); 7-stage Discover→Settle rail + five cards | `/` |
-| HowItWorks | `HowItWorks.tsx` | Seven-stage workflow sticky (`#how-it-works`, `.how-it-*`): numbered 01–07 Discover→Settle cards with owning product + Explore CTA; right column swaps six product screenshots + one static `.how-it-desk-*` settlement desk | **Unmounted from `/` (file kept)** — FeatureOrbit owns the seven-product “How it works” slot |
+| ProcessBento | `Processbento.tsx` | Problem / platform bento (`#partner-process`); `processSteps` uses `simpleFlowStages` (6) when flow remounted | `/` |
+| HowItWorks | `HowItWorks.tsx` | 100svh workflow showcase (`#how-it-works`, `.hiw-*`): header + 4-up USP strip, 01–07 stage rail, showcase card (copy + real product screenshots over a left→right washed event photo), workflow close track | `/` |
 | PartnerProductShowcase | `PartnerProductShowcase.tsx` | Tabbed product shots | **Exists; not mounted on `/`** |
-| ToolkitShowcase | `Toolkitshowcase.tsx` | Global Distribution (`#platform-toolkit`) **light**: copy + fan-out tree (hub = Nav lockup, not word) + one static Ready hub `ConsoleShell`; columns stretch at `lg`; **no** partner logo strip; do not restore dark `.toolkit` shell | `/` |
+| ToolkitShowcase | `Toolkitshowcase.tsx` | Global Distribution (`#platform-toolkit`) **light**: copy + fan-out tree + Ready hub `ConsoleShell` | **Unmounted from `/` 2026-08-26 (file kept)** |
 | StickyScrollShowcase | `StickyScrollShowcase.tsx` | Who it's for deep sticky (`#who-its-for`) — workflow titles + consoles for brokers/resellers/suppliers/operators. Brief §9 role grid is JourneyNumbers | **Unmounted from `/` (file kept)** |
 | StickyScrollConsoles | `StickyScrollConsoles.tsx` | Four unique light `ConsoleShell` mini-consoles (broker distribution, travel quote desk, marketplace sync, partner API bridge); `sss-*` | StickyScrollShowcase |
-| MarketIntelligence | `MarketIntelligence.tsx` | Homepage §7 pricing/intel Demo desk (`#market-intelligence`, `.mihp-*`): Intel signals + Pulse Accept/Hold/Dismiss | `/` |
+| MarketIntelligence | `MarketIntelligence.tsx` | Homepage intel Demo desk (`#market-intelligence`, `.mihp-*`): **Know what to buy** + Pulse Accept/Hold/Dismiss | `/` |
 | JourneyNumbers | `JourneyNumbers.tsx` | Audience grid (`#journey-numbers`) — four professional ticket roles; desktop autoplay / mobile stack | `/` |
 | GlobalReach | `GlobalReach.tsx` | Geography | **Exists; not mounted on `/` (Phase 3)** |
 | GlobeScrollSection | `GlobeScrollSection.tsx` | Globe + 2 unique slides (NY, Dubai) | **Exists; not mounted on `/` (Phase 3)** |
 | GlobeCanvas | `landing/globe/GlobeCanvas.tsx` | Canvas globe (idle orbit; optional scrollOffset) | NetworkConstellation, GlobeScrollSection (unmounted) |
-| Stats + accent/glow/ledger | `Stats.tsx`, `stats/*` | Experience / proof wallet (`.stats-wallet-*`); ledger/glow unmounted | **Unmounted from `/` (file kept)** |
+| Stats + accent/glow/ledger | `Stats.tsx`, `stats/*` | Experience / proof wallet (`.stats-wallet-*`); ledger/glow unmounted | `/` |
 | Testimonials | `Testimonials.tsx` | Quotes | **Exists; not mounted on `/`** |
-| SectionBackdrop | `SectionBackdrop.tsx` | Shared photo/grid backdrops | several landing sections |
+| SectionBackdrop / DarkSectionFill | `SectionBackdrop.tsx` | Shared photo/grid backdrops. `DarkSectionFill` is the dark-band helper (`tone="dark"` + legacy gradient fallback). Keys in `lib/event-backdrops.ts`. **Not** on heroes or Footer. | landing light sections + dark body bands (Intel, TwoTrack, dark Live Consoles, SyncDiagram, capability boards, FaqHelpStrip) |
 | MarketPathScroll | `MarketPathScroll.tsx` | Scroll path viz | **Exists; not imported on any route** |
 
 ## Content
@@ -214,7 +216,7 @@ Used on `/` unless noted.
 | `src/content/travel-hero-data.ts` | Travel hero copy + partner-desk dashboard data (KPIs, earnings, charts, lists). Mini-card datasets remain for `TravelConsoleCards` |
 | `src/content/marketplace-hero-data.ts` | Marketplace connectivity hero copy + channel-mesh stage data (mini-card datasets remain for `MarketplaceConsoleCards`) |
 | `src/content/event-intel-hero-data.ts` | Event intelligence hero copy + forecast-lens stage data (mini-card datasets remain for `EventIntelConsoleCards`) |
-| `src/content/api-hero-data.ts` | API hero copy + docs-console endpoints, auth scopes/roles, webhook payloads, `apiInfra` (ApiInfraBoard) |
+| `src/content/api-hero-data.ts` | API hero copy + docs-console endpoints, auth scopes/roles, webhook payloads, `apiInfra` (ApiInfraBoard), `apiProducts` / `apiProductsCopy` (ApiProductBoard) |
 | `src/content/about-page-data.ts` | About chapters, seven official module surfaces, page CTAs |
 | `src/content/faq-data.ts` | FAQ hero copy, six questions, still-need-help strip |
 | `src/content/legal-data.ts` | Legal hero + Privacy / Terms / Cookie chapters |

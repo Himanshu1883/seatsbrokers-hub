@@ -164,34 +164,67 @@ export const apiDocEndpoints: ApiDocEndpoint[] = [
   },
 ];
 
+export const apiProductsCopy = {
+  eyebrow: "API products",
+  titleBefore: "Seven APIs for the full ",
+  titleAccent: "ticketing",
+  titleAfter: " stack",
+  intro:
+    "Connect at the depth you need — from the global event catalog through inventory, listings, orders, pricing, delivery and partner quotations.",
+  noteRight: "One ecosystem. Endless possibilities.",
+  noteLeft: "Built for a more connected ticketing business.",
+  noteTrust: "Trusted by partners worldwide.",
+} as const;
+
 export const apiProducts = [
   {
+    id: "events",
     title: "Events API",
     body: "Global event catalog and event information — onsale dates, venues, categories and demand indicators.",
+    caption: "Discover what's next",
+    tags: ["Real-time event data", "Worldwide coverage"],
   },
   {
+    id: "inventory",
     title: "Inventory API",
     body: "Search and retrieve available ticket inventory — sections, rows, quantity, prices and delivery information.",
+    caption: null,
+    tags: ["Live inventory", "Accurate and reliable"],
   },
   {
+    id: "listing",
     title: "Listing API",
     body: "Create and manage ticket listings across connected marketplaces from your existing systems.",
+    caption: null,
+    tags: ["List once", "Reach more buyers"],
   },
   {
+    id: "order",
     title: "Order API",
     body: "Receive and manage ticket orders — synchronization, delivery updates and order status.",
+    caption: null,
+    tags: ["Streamlined order management"],
   },
   {
+    id: "pricing",
     title: "Pricing API",
     body: "Access pricing and market information — average price, movement, demand signals and AI recommendations.",
+    caption: null,
+    tags: ["Market insights", "Smarter pricing"],
   },
   {
+    id: "delivery",
     title: "Delivery API",
     body: "Manage ticket delivery information — mobile transfer, PDF, will-call and fulfillment routing.",
+    caption: null,
+    tags: ["Flexible delivery", "Seamless fulfillment"],
   },
   {
+    id: "partner",
     title: "Partner API",
     body: "Allow B2B partners and external systems to interact with inventory, margins and quotations.",
+    caption: null,
+    tags: ["Stronger partnerships", "More opportunities"],
   },
 ] as const;
 

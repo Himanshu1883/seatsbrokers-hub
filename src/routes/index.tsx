@@ -5,9 +5,10 @@ import { Hero } from "@/components/landing/Hero";
 import { ProcessBento } from "@/components/landing/Processbento";
 import { SellerTools } from "@/components/landing/ToolsGrid";
 import { FeatureOrbit } from "@/components/landing/FeatureOrbit";
-import { ToolkitShowcase } from "@/components/landing/Toolkitshowcase";
-import { Marketplaces } from "@/components/landing/Marketplaces";
+// import { ToolkitShowcase } from "@/components/landing/Toolkitshowcase";
+// import { Marketplaces } from "@/components/landing/Marketplaces";
 import { MarketIntelligence } from "@/components/landing/MarketIntelligence";
+import { SourceDesk } from "@/components/landing/SourceDesk";
 import { TwoTrack } from "@/components/landing/TwoTrack";
 import { Stats } from "@/components/landing/Stats";
 import { HowItWorks } from "@/components/landing/HowItWorks";
@@ -18,12 +19,10 @@ export const Route = createFileRoute("/")({
 });
 
 /**
- * Reference homepage structure (our design/theme).
- * Hero → process ribbon → engine → seven products → connect once →
- * global distribution → SeatsIntel deep dive → broker vs B2B → FinalCTA.
- * Unmounted (files kept): HowItWorks, TravelTools, JourneyNumbers,
- * StickyScrollShowcase, Stats, NetworkConstellation, GlobalReach,
- * GlobeScrollSection, PartnerProductShowcase, Testimonials.
+ * Homepage (Phase 2 merge 2026-08-26):
+ * Hero → ProcessBento → SellerTools → HowItWorks → FeatureOrbit →
+ * MarketIntelligence → SourceDesk → TwoTrack → Stats (+ FinalCTA in PageShell).
+ * Unmounted (files kept): ToolkitShowcase, Marketplaces.
  */
 function HomePage() {
   return (
@@ -33,10 +32,11 @@ function HomePage() {
       <SellerTools />
       <HowItWorks />
       <FeatureOrbit />
-      <ToolkitShowcase />
-      <Marketplaces />
+      {/* <ToolkitShowcase /> */}
+      {/* <Marketplaces /> */}
       <MarketIntelligence />
-      {/* <TwoTrack /> */}
+      <SourceDesk />
+      <TwoTrack />
       <Stats />
     </PageShell>
   );

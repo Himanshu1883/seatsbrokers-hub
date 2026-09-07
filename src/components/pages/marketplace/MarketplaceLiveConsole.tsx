@@ -5,11 +5,14 @@ import { ConsoleCopyPanel, type ConsoleCopyMeta } from "@/components/pages/broke
 import { ChannelStatusConsole } from "./ChannelStatusConsole";
 import { ListingDistributionConsole } from "./ListingDistributionConsole";
 import { PriceConflictConsole } from "./PriceConflictConsole";
+import { DarkSectionFill } from "@/components/landing/SectionBackdrop";
+import type { EventBackdropKey } from "@/lib/event-backdrops";
 
 export type MarketplaceLiveConsoleVariant = "channelStatus" | "listingDistribution" | "pricePush";
 
 type MarketplaceLiveConsoleMeta = ConsoleCopyMeta & {
   tone: "light" | "dark";
+  backdrop?: EventBackdropKey;
   surface?: "surface" | "background";
   console: ReactNode;
   tiltY?: number;
@@ -80,6 +83,7 @@ const variants: Record<MarketplaceLiveConsoleVariant, MarketplaceLiveConsoleMeta
       },
     ],
     tone: "dark",
+    backdrop: "sportsCrowd",
     console: <ListingDistributionConsole />,
     tiltY: -10,
     tiltX: 3,
@@ -145,12 +149,7 @@ export function MarketplaceLiveConsole({ variant }: MarketplaceLiveConsoleProps)
 
   return (
     <section className={`section-curve relative isolate scroll-mt-24 py-20 sm:py-24 ${bg}`}>
-      {isDark ? (
-        <div
-          className="pointer-events-none absolute inset-0 bg-linear-to-br from-dark via-dark to-primary-deep/35"
-          aria-hidden
-        />
-      ) : null}
+      {isDark ? <DarkSectionFill image={meta.backdrop} /> : null}
 
       <div className="container-page relative z-10">
         <div className="lc-section">

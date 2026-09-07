@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Layers } from "lucide-react";
+import { Search } from "lucide-react";
 import { useInView } from "@/hooks/use-scroll-motion";
 import {
   sourceHeroEvents,
@@ -36,8 +36,8 @@ export function SourceConsoleWall() {
         <header className="srh-head">
           <div className="srh-head-copy">
             <p className="srh-kicker">
-              <Layers className="size-3" strokeWidth={2} />
-              Catalog ingest
+              <Search className="size-3" strokeWidth={2} />
+              Sourcing desk
             </p>
             <p className="srh-event">
               {event.name}
@@ -47,7 +47,7 @@ export function SourceConsoleWall() {
             </p>
           </div>
           <div className="srh-head-meta">
-            <span className="srh-horizon">{event.feed} in</span>
+            <span className="srh-horizon">{event.feed}</span>
             <span className="srh-live">
               <span className="srh-live-dot" aria-hidden />
               Live
@@ -56,7 +56,7 @@ export function SourceConsoleWall() {
         </header>
 
         <div className="srh-body">
-          <ul className="srh-catalog" aria-label="Event catalog">
+          <ul className="srh-catalog" aria-label="Open requests">
             <span className="srh-bus" aria-hidden />
             {sourceHeroEvents.map((row, index) => (
               <li key={row.id} data-active={eventTick === index ? "true" : "false"}>
@@ -69,12 +69,12 @@ export function SourceConsoleWall() {
             ))}
           </ul>
 
-          <section className="srh-stock" aria-label="Inventory layer">
+          <section className="srh-stock" aria-label="Sourcing workflow">
             <header className="srh-panel-label">
-              Inventory layer
+              Request → Buy
               <span>Section · qty · £</span>
             </header>
-            <ul className="srh-layers" aria-label="Stock sources">
+            <ul className="srh-layers" aria-label="Sourcing stages">
               {sourceHeroLayers.map((layer, index) => (
                 <li key={layer.id} data-active={layerTick === index ? "true" : "false"}>
                   <span>{layer.label}</span>
@@ -108,7 +108,7 @@ export function SourceConsoleWall() {
         </div>
 
         <footer className="srh-foot">
-          <ul className="srh-feeds" aria-label="Ingest sources">
+          <ul className="srh-feeds" aria-label="Sourcing stages">
             {sourceHeroFeeds.map((feed, index) => (
               <li key={feed.id} data-active={feedTick === index ? "true" : "false"}>
                 <span>{feed.label}</span>
@@ -120,8 +120,9 @@ export function SourceConsoleWall() {
       </div>
 
       <p className="sr-only">
-        SeatsSource™ inventory ingest for {event.name} at {event.venue}. Own stock, supplier
-        feeds and POS ingest land in one inventory layer with sections, quantities and asks.
+        SeatsSource™ sourcing desk for {event.name} at {event.venue}. Ticket requests move through
+        Request → Source → Compare → Quote, with competitive B2B options returned from the global
+        network.
       </p>
     </div>
   );

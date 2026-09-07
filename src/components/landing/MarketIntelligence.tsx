@@ -440,7 +440,7 @@ export function MarketIntelligence() {
       className="mihp-section section-curve relative isolate py-16 text-background sm:py-24"
     >
       <div className="mihp-shell" aria-hidden>
-        <SectionBackdrop image="footballNight" tone="dark" strength={0.16} />
+        <SectionBackdrop image="footballNight" tone="dark" />
       </div>
       <div className="container-page relative z-10">
         <div className="mihp-layout">
@@ -448,13 +448,13 @@ export function MarketIntelligence() {
           <Reveal>
               <p className="section-eyebrow text-primary">{modules.intel.name}</p>
               <h2 className="mihp-title">
-                Make Better Decisions With{" "}
-                <span className="mihp-title-accent">Better Data</span>
+                Know what to{" "}
+                <span className="mihp-title-accent">buy</span>
               </h2>
               <div className="mihp-body-copy">
                 <p>
-                  Monitor pricing, availability, and market movement across events and inventory —
-                  then act on AI recommendations while you stay in control.
+                  Demand, pricing and opportunity signals across events — so the desk sources and
+                  prices against the market, not a guess. AI recommends. You decide.
                 </p>
               </div>
               <p className="mihp-status">

@@ -209,7 +209,13 @@ Homepage order is Hero → Problem (ProcessBento) → Ecosystem (FeatureOrbit + 
 The brief is a re-sequence, not a redesign. Travel/concierge must not dominate; globe sections repeated the same proof.
 
 ### Consequence
-Do not remount TwoTrack or the globe trio on `/` without an explicit request. Do not add a second FinalCTA. HowItWorks was a 3-step intelligence sticky here; it has since been expanded to all seven workflow stages — see “Homepage How it works is the seven-stage spine” below.
+Do not remount the globe trio on `/` without an explicit request. Do not add a second FinalCTA. HowItWorks was a 3-step intelligence sticky here; it has since been expanded to all seven workflow stages — see “Homepage How it works is the seven-stage spine” below. **TwoTrack remounted 2026-08-26** (explicit Phase 2 merge). ToolkitShowcase + Marketplaces unmounted the same day (files kept).
+
+## Decision: Marketing rails use the six-stage simple flow; products stay seven
+
+Date: 2026-08-26
+
+Brief §4 simple platform flow is **Connect → Manage → Distribute → Sell → Deliver → Settle**. Homepage Hero rail, `HeroWorkflowConsole`, and ProcessBento `processSteps` use `simpleFlowStages` from `modules.ts`. The seven-product spine (`workflowStages`: Discover → Settle) remains for HowItWorks, FeatureOrbit, `/platform`, and `/products`. Do not collapse seven modules into six stages.
 
 ---
 
@@ -338,5 +344,57 @@ Master brief “Every product page should follow the same layout,” without thr
 
 ### Consequence
 Do not flatten these pages back to the shared mini-console hero. Do not put marketplace brand names on SeatsMarket™. Do not restore Talk-to-the-team as the product-page close. Keep consoles in the How slot, not as unordered extra chapters.
+
+---
+
+## Decision: SeatsSource™ is a sourcing desk — not the inventory layer
+
+### Date
+2026-08-26
+
+### Decision
+SeatsSource™ is the broker **sourcing desk** for inventory that is **not currently available** on the SeatsBrokers platform (REQUEST → SOURCE → COMPARE → QUOTE → BUY). Inventory management / sync / one inventory layer belongs to the **Core Engine** (and SeatsLink™ connectivity) — not SeatsSource™.
+
+Canonical strings live in `modules.ts` (`what: "Sourcing desk"`, `tagline: "Your sourcing desk. On demand."`) plus `source-hero-data.ts` and `productStories.source` in `products-page-data.ts`.
+
+### Reason
+Phase 2 refinement brief §5. Calling Source the central inventory layer mispositions the product and overlaps Core Engine messaging.
+
+### Consequence
+Do not restore “Manage your inventory,” “one inventory layer,” POS ingest, or “inventory every other product reads” copy on Source surfaces. Platform slogans that say “one inventory layer” without naming SeatsSource™ remain valid for the engine.
+
+---
+
+## Decision: Dark body bands get related event photos — heroes and Footer do not
+
+### Date
+2026-09-07
+
+### Decision
+Non-hero dark sections use `SectionBackdrop` / `DarkSectionFill` with a muted, content-related image from `event-backdrops.ts` plus a mid wash (~58–70% `--dark`) so the photo reads as atmosphere, not a bright poster and not a blackout. Heroes keep existing stadium/gradient chrome. Footer stays flat `bg-dark`. FinalCTA already has `cta-trophy.jpg`. Thin `SectionConnector` dark rails stay fill-only. Dark bands do not paint the SectionBackdrop grid.
+
+### Reason
+Atmosphere should match the desk (intel, distribution, ingest, settlement) without fighting hero banners or chrome.
+
+### Consequence
+Do not add photos to `bh-hero` / homepage Hero / Footer. Do not invent a second backdrop component. Adjacent dark bands on one page should not share the same photo.
+
+---
+
+## Decision: How it works is a single-viewport showcase — product screenshots **over** a washed event photo
+
+### Date
+2026-09-07
+
+### Decision
+Homepage `#how-it-works` is one `100svh` frame (`.hiw-*`) with four bands: header + 4-up USP strip → 01–07 stage rail → showcase card → workflow close track. The card pairs **left copy** with **real SeatsBrokers product screenshots** (a main shot plus an overlapping inset that bleed past the card edge) sitting on an event photo that washes **left→right from solid white to ~80% photo**.
+
+Superseded on the same day, in order: the sticky screenshot cinema, the seven stacked `.how-it-ed-*` editorial cards, and the `.how-it-vp-*` photo-only cinema. All three are unmounted.
+
+### Reason
+The client reference calls for one premium viewport that shows the actual product, with photography as atmosphere behind it rather than as the subject.
+
+### Consequence
+Screenshots are wanted here — this reverses the earlier "no dashboards" rule for this section only. Do not restack seven full-width cards, do not reintroduce laptop/browser frames around the shots, and do not let the section grow past `100svh` at ≥1024px (`svh`, never `dvh`). Keep stage names, product names, taglines, body copy, and Explore {Product}™. Phones stay auto-height.
 
 

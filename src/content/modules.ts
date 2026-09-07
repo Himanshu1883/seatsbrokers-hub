@@ -16,8 +16,8 @@ export const modules = {
   },
   source: {
     name: "SeatsSource™",
-    what: "Inventory & supply",
-    tagline: "Manage your inventory.",
+    what: "Sourcing desk",
+    tagline: "Your sourcing desk. On demand.",
   },
   pulse: {
     name: "SeatsPulse™",
@@ -60,6 +60,16 @@ export const workflowStages = [
   "Connect",
   "Distribute",
   "Sell",
+  "Settle",
+] as const;
+
+/** Brief §4 simple platform flow (marketing rails). Seven products stay on `workflowStages`. */
+export const simpleFlowStages = [
+  "Connect",
+  "Manage",
+  "Distribute",
+  "Sell",
+  "Deliver",
   "Settle",
 ] as const;
 

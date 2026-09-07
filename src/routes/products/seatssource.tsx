@@ -23,12 +23,12 @@ function SeatsSourcePage() {
             <EventCatalogSection />
             <InventoryManagementSection
               eyebrow={modules.source.name}
-              title="Manage every detail of your ticket inventory"
-              intro="Tickets, sections, rows, pricing, delivery rules and packages — synchronized from your POS and distributed across every connected marketplace from one live console."
+              title="Your back-office sourcing department, built into SeatsBrokers"
+              intro="If it's not listed, request it. SeatsSource works across our global network to find the best available options and competitive B2B pricing — then you compare, quote and buy from one desk."
               items={[
-                { title: "Tickets & sections", body: "Manage tickets, sections, rows, quantity and ticket types from one layer." },
-                { title: "Pricing & delivery", body: "Set prices, delivery information, restrictions and notes per listing." },
-                { title: "Packages", body: "Bundle tickets into packages with custom rules and partner inventory access." },
+                { title: "Ticket requests", body: "Submit requirements directly through SeatsBrokers when stock is not on the platform." },
+                { title: "Global network", body: "Source hard-to-find, premium and hospitality inventory through our dedicated sourcing network." },
+                { title: "Compare & buy", body: "Review B2B options, manage quotations and convert sourced inventory into an order." },
               ]}
             />
           </>

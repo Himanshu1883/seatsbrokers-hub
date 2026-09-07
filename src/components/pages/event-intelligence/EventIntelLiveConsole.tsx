@@ -5,11 +5,14 @@ import { ConsoleCopyPanel, type ConsoleCopyMeta } from "@/components/pages/broke
 import { EventRadarConsole } from "./EventRadarConsole";
 import { DemandSignalConsole } from "./DemandSignalConsole";
 import { ForecastConsole } from "./ForecastConsole";
+import { DarkSectionFill } from "@/components/landing/SectionBackdrop";
+import type { EventBackdropKey } from "@/lib/event-backdrops";
 
 export type EventIntelLiveConsoleVariant = "onsaleRadar" | "demandSignals" | "forecast";
 
 type EventIntelLiveConsoleMeta = ConsoleCopyMeta & {
   tone: "light" | "dark";
+  backdrop?: EventBackdropKey;
   surface?: "surface" | "background";
   console: ReactNode;
   tiltY?: number;
@@ -84,6 +87,7 @@ const variants: Record<EventIntelLiveConsoleVariant, EventIntelLiveConsoleMeta> 
       },
     ],
     tone: "dark",
+    backdrop: "basketball",
     console: <DemandSignalConsole />,
     tiltY: -10,
     tiltX: 3,
@@ -149,12 +153,7 @@ export function EventIntelLiveConsole({ variant }: EventIntelLiveConsoleProps) {
 
   return (
     <section className={`section-curve relative isolate scroll-mt-24 py-20 sm:py-24 ${bg}`}>
-      {isDark ? (
-        <div
-          className="pointer-events-none absolute inset-0 bg-linear-to-br from-dark via-dark to-primary-deep/35"
-          aria-hidden
-        />
-      ) : null}
+      {isDark ? <DarkSectionFill image={meta.backdrop} /> : null}
 
       <div className="container-page relative z-10">
         <div className="lc-section">

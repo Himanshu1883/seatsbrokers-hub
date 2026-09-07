@@ -33,7 +33,7 @@ export const platformStackLayers = [
     index: "02",
     product: modules.source.name,
     stage: "Source",
-    role: "Hold stock and supply on one inventory layer.",
+    role: "Find inventory not already on the platform.",
     href: productHrefs.source,
   },
   {
@@ -82,7 +82,7 @@ export type PlatformStageId = (typeof platformStackLayers)[number]["id"];
 
 export const platformHandoffFeed = [
   { time: "09:42:18", msg: "discover → opportunity on the record" },
-  { time: "09:42:14", msg: "source → inventory layer aligned" },
+  { time: "09:42:14", msg: "source → request open · network live" },
   { time: "09:42:10", msg: "price → recommendation ready · you decide" },
   { time: "09:42:06", msg: "connect → POS and feed on path" },
   { time: "09:42:02", msg: "distribute → listing mirrored" },
@@ -108,12 +108,12 @@ export const platformModules = [
     index: "02",
     title: modules.source.name,
     tagline: modules.source.tagline,
-    body: "Manage your inventory. Centralise your own stock and connected supplier supply in one layer.",
+    body: "Your sourcing desk. On demand. Request tickets that are not listed on SeatsBrokers — our network returns competitive B2B options.",
     href: productHrefs.source,
     cta: `Explore ${modules.source.name}`,
     layer: "Source",
-    receives: "Opportunity",
-    writes: "Inventory layer",
+    receives: "Missing inventory need",
+    writes: "Sourced options",
   },
   {
     id: "pulse" as const,
@@ -192,7 +192,7 @@ export const platformModuleCopy = {
 
 export const platformSteps = [
   `${modules.intel.name} structures events, onsales and market opportunity`,
-  `${modules.source.name} holds your inventory and connected supply`,
+  `${modules.source.name} sources inventory not already listed on the platform`,
   `${modules.pulse.name} turns market data into pricing recommendations you approve`,
   `${modules.link.name} connects POS, ERP, sites and partner systems`,
   `${modules.market.name} distributes listings across connected channels`,

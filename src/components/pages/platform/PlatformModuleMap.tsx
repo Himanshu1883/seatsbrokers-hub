@@ -3,7 +3,19 @@ import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { platformFlowCopy, platformModules } from "@/content/platform-page-data";
+import { eventBackdrops, type EventBackdropKey } from "@/lib/event-backdrops";
 import { PlatformStageDesk } from "./PlatformDesks";
+
+/** Same Unsplash event map as How it works — left cards only. */
+const stagePhotos: Record<(typeof platformModules)[number]["id"], EventBackdropKey> = {
+  intel: "footballNight",
+  source: "venueSeats",
+  pulse: "basketball",
+  link: "motorsport",
+  market: "sportsCrowd",
+  deal: "concertCrowd",
+  funds: "trophy",
+};
 
 /** Fractional index of the step card nearest the middle of the viewport.
  *  Measured from the cards themselves, so the step count is not baked in. */
@@ -118,36 +130,46 @@ export function PlatformModuleMap() {
                     <PlatformStageDesk id={module.id} />
                   </div>
 
-                  <div className="plt-flow-card w-full min-w-0">
-                    <div className="plt-flow-card-meta">
-                      <span className="plt-flow-index">{module.index}</span>
-                      <span className="plt-flow-pill">{module.title}</span>
+                  <div className="plt-flow-card w-full min-w-0" data-product={module.id}>
+                    <div className="plt-flow-card-bg" aria-hidden>
+                      <img
+                        src={eventBackdrops[stagePhotos[module.id]]}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
-                    <h3>{module.layer}</h3>
-                    <p className="plt-flow-tagline">{module.tagline}</p>
-                    <p className="plt-flow-role">{module.body}</p>
-                    <p className="plt-flow-io">
-                      <span>
-                        In <strong>{module.receives}</strong>
-                      </span>
-                      {next ? (
+                    <div className="plt-flow-card-inner">
+                      <div className="plt-flow-card-meta">
+                        <span className="plt-flow-index">{module.index}</span>
+                        <span className="plt-flow-pill">{module.title}</span>
+                      </div>
+                      <h3>{module.layer}</h3>
+                      <p className="plt-flow-tagline">{module.tagline}</p>
+                      <p className="plt-flow-role">{module.body}</p>
+                      <p className="plt-flow-io">
                         <span>
-                          Next <strong>{next.layer}</strong>
+                          In <strong>{module.receives}</strong>
                         </span>
-                      ) : (
-                        <span>
-                          Out <strong>{module.writes}</strong>
-                        </span>
-                      )}
-                    </p>
-                    <div className="page-cta-row plt-flow-cta">
-                      <SiteLink
-                        to={module.href}
-                        className="lift inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-primary/25 bg-primary/[0.06] px-4 text-sm font-semibold text-primary"
-                      >
-                        {module.cta}
-                        <ArrowRight className="size-4 shrink-0" aria-hidden />
-                      </SiteLink>
+                        {next ? (
+                          <span>
+                            Next <strong>{next.layer}</strong>
+                          </span>
+                        ) : (
+                          <span>
+                            Out <strong>{module.writes}</strong>
+                          </span>
+                        )}
+                      </p>
+                      <div className="page-cta-row plt-flow-cta">
+                        <SiteLink
+                          to={module.href}
+                          className="sb-btn-primary lift inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-4 text-sm font-semibold"
+                        >
+                          {module.cta}
+                          <ArrowRight className="size-4 shrink-0" aria-hidden />
+                        </SiteLink>
+                      </div>
                     </div>
                   </div>
                 </article>

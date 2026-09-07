@@ -158,17 +158,17 @@ export const aboutSurfaces = [
   {
     index: "02",
     title: modules.source.name,
-    body: "Manage your inventory. Centralise your own inventory and connected supplier stock, including ticket categories, sections, rows, quantities, pricing and delivery information.",
+    body: "Your sourcing desk. On demand. Access a dedicated network for inventory that is not currently available on the SeatsBrokers platform.",
     href: productHrefs.source,
     cta: `Explore ${modules.source.name}`,
     layer: "Source",
     analysis:
-      "SeatsSource™ is the inventory layer — your stock and connected supply in one place, ready to price and distribute.",
-    systems: ["Stock", "Supply", "Delivery"],
+      "SeatsSource™ is the broker sourcing desk — request, source, compare and buy inventory that is not listed on the platform.",
+    systems: ["Request", "Network", "Quote"],
     readout: [
-      { label: "Role", value: "Inventory" },
-      { label: "Object", value: "Ticket stock" },
-      { label: "Motion", value: "Centralise" },
+      { label: "Role", value: "Sourcing" },
+      { label: "Object", value: "Ticket request" },
+      { label: "Motion", value: "On demand" },
     ],
   },
   {

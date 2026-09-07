@@ -5,12 +5,15 @@ import { ConsoleCopyPanel, type ConsoleCopyMeta } from "@/components/pages/broke
 import { InventorySearchConsole } from "./InventorySearchConsole";
 import { PartnerOrdersConsole } from "./PartnerOrdersConsole";
 import { QuotationBuilderConsole } from "./QuotationBuilderConsole";
+import { DarkSectionFill } from "@/components/landing/SectionBackdrop";
+import type { EventBackdropKey } from "@/lib/event-backdrops";
 import { modules } from "@/content/modules";
 
 export type TravelLiveConsoleVariant = "inventorySearch" | "quotationBuilder" | "partnerOrders";
 
 type TravelLiveConsoleMeta = ConsoleCopyMeta & {
   tone: "light" | "dark";
+  backdrop?: EventBackdropKey;
   surface?: "surface" | "background";
   console: ReactNode;
   tiltY?: number;
@@ -19,8 +22,8 @@ type TravelLiveConsoleMeta = ConsoleCopyMeta & {
 
 const variants: Record<TravelLiveConsoleVariant, TravelLiveConsoleMeta> = {
   inventorySearch: {
-    eyebrow: modules.source.name,
-    title: modules.source.tagline,
+    eyebrow: modules.market.name,
+    title: modules.market.tagline,
     body: "A live buying workspace — markets, events, section bands and margin preview — so B2B desks see partner cost before they quote.",
     detail:
       "This is the same catalog brokers publish on their desk. When a listing syncs, it lands in the access feed with seats, delivery method and your margin math — no spreadsheet chase between broker and B2B partner.",
@@ -125,6 +128,7 @@ const variants: Record<TravelLiveConsoleVariant, TravelLiveConsoleMeta> = {
       },
     ],
     tone: "dark",
+    backdrop: "trophy",
     console: <PartnerOrdersConsole />,
     tiltY: -10,
     tiltX: 3,
@@ -154,12 +158,7 @@ export function TravelLiveConsole({ variant }: TravelLiveConsoleProps) {
 
   return (
     <section className={`section-curve relative isolate scroll-mt-24 py-20 sm:py-24 ${bg}`}>
-      {isDark ? (
-        <div
-          className="pointer-events-none absolute inset-0 bg-linear-to-br from-dark via-dark to-primary-deep/35"
-          aria-hidden
-        />
-      ) : null}
+      {isDark ? <DarkSectionFill image={meta.backdrop} /> : null}
 
       <div className="container-page relative z-10">
         <div className="lc-section">

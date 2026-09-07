@@ -5,6 +5,7 @@ import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { WorkflowInfraCanvas } from "@/components/pages/shared/WorkflowInfraCanvas";
 import { brand, ctas } from "@/content/site";
+import { DarkSectionFill } from "@/components/landing/SectionBackdrop";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -253,7 +254,7 @@ export function SyncDiagram({
 
   return (
     <section className="section-curve relative isolate bg-dark py-20 text-background sm:py-24">
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-dark via-dark to-primary-deep/35" aria-hidden />
+      <DarkSectionFill image="arenaNight" />
       <div className="container-page relative z-10">
         <Reveal>
           <h2 className="max-w-2xl text-3xl font-bold sm:text-4xl">{title}</h2>

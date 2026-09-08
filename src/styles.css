@@ -70534,19 +70534,16 @@ button.process-bento-cta-link {
   margin: 0;
   max-width: 14rem;
   font-size: 0.875rem;
-  font-style: italic;
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 1.45;
   color: var(--primary-deep);
-  transform: rotate(-4deg);
-  transform-origin: right top;
   justify-self: end;
 }
 
 .prd-eco-rail {
   display: flex;
   align-items: stretch;
-  gap: 0.7rem;
+  gap: 0.55rem;
   margin: 1.35rem 0 0;
   padding: 0 0 0.35rem;
   list-style: none;
@@ -70564,13 +70561,13 @@ button.process-bento-cta-link {
 
 .prd-eco-rail > li {
   display: flex;
-  flex: 0 0 min(15.5rem, calc(100% - 1.65rem));
+  flex: 0 0 min(17.25rem, calc(100% - 1.65rem));
   min-width: 0;
   scroll-snap-align: start;
 }
 
 .prd-eco-card {
-  --prd-eco-shot-h: 7.75rem;
+  --prd-eco-shot-h: 6.5rem;
   position: relative;
   display: flex;
   flex: 1 1 auto;
@@ -70698,13 +70695,13 @@ button.process-bento-cta-link {
   flex: 1 1 auto;
   flex-direction: column;
   min-width: 0;
-  min-height: 15.5rem;
-  padding: 1.35rem 0.85rem 0.85rem;
+  min-height: 11.75rem;
+  padding: 1.1rem 0.8rem 0.72rem;
 }
 
 .prd-eco-card-meta {
   flex: 0 0 auto;
-  min-height: 2.35rem;
+  min-height: 2rem;
 }
 
 .prd-eco-card-meta h4 {
@@ -70732,7 +70729,7 @@ button.process-bento-cta-link {
 .prd-eco-card-hook {
   display: -webkit-box;
   flex: 0 0 auto;
-  margin: 0.55rem 0 0;
+  margin: 0.4rem 0 0;
   min-height: calc(0.8125rem * 1.35 * 2);
   max-height: calc(0.8125rem * 1.35 * 2);
   -webkit-line-clamp: 2;
@@ -70748,9 +70745,9 @@ button.process-bento-cta-link {
 .prd-eco-card-desc {
   display: -webkit-box;
   flex: 1 1 auto;
-  margin: 0.35rem 0 0;
-  min-height: calc(0.75rem * 1.45 * 5);
-  -webkit-line-clamp: 5;
+  margin: 0.3rem 0 0;
+  min-height: calc(0.75rem * 1.45 * 3);
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   font-size: 0.75rem;
@@ -70762,7 +70759,7 @@ button.process-bento-cta-link {
   flex: 0 0 auto;
   width: 100%;
   justify-content: center;
-  margin-top: 0.75rem;
+  margin-top: 0.55rem;
   min-height: 2.75rem;
 }
 
@@ -70872,7 +70869,7 @@ button.process-bento-cta-link {
   }
 
   .prd-eco-rail > li {
-    flex-basis: min(16rem, calc(50% - 0.4rem));
+    flex-basis: min(18rem, calc(50% - 0.35rem));
   }
 
   .prd-eco-stack-head {
@@ -70931,15 +70928,11 @@ button.process-bento-cta-link {
   }
 
   .prd-eco-card {
-    --prd-eco-shot-h: 8.25rem;
+    --prd-eco-shot-h: 6.5rem;
   }
 
   .prd-eco-card-shot {
     height: var(--prd-eco-shot-h);
-  }
-
-  .prd-eco-card-desc {
-    -webkit-line-clamp: 5;
   }
 }
 
@@ -70958,7 +70951,6 @@ button.process-bento-cta-link {
 
   .prd-eco-stack-note {
     justify-self: start;
-    transform: rotate(-2deg);
   }
 
   .prd-eco-rail {
@@ -70981,7 +70973,7 @@ button.process-bento-cta-link {
 
 @media (max-width: 767px) {
   .prd-eco-rail > li {
-    flex-basis: min(15rem, calc(100% - 1.25rem));
+    flex-basis: min(16.75rem, calc(100% - 1.25rem));
   }
 }
 
@@ -71059,7 +71051,6 @@ button.process-bento-cta-link {
   .prd-eco-stack-note {
     max-width: none;
     font-size: 0.8125rem;
-    transform: rotate(-1.5deg);
   }
 
   .prd-eco-rail {
@@ -71068,16 +71059,16 @@ button.process-bento-cta-link {
   }
 
   .prd-eco-rail > li {
-    flex-basis: min(14.25rem, calc(100% - 1.1rem));
+    flex-basis: min(15.5rem, calc(100% - 1.1rem));
   }
 
   .prd-eco-card {
-    --prd-eco-shot-h: 6.75rem;
+    --prd-eco-shot-h: 5.75rem;
   }
 
   .prd-eco-card-body {
-    min-height: 13.5rem;
-    padding: 1.2rem 0.72rem 0.72rem;
+    min-height: 10.75rem;
+    padding: 1rem 0.72rem 0.68rem;
   }
 
   .prd-eco-card-meta h4 {
@@ -71091,9 +71082,9 @@ button.process-bento-cta-link {
   }
 
   .prd-eco-card-desc {
-    min-height: calc(0.6875rem * 1.45 * 4);
+    min-height: calc(0.6875rem * 1.45 * 3);
     font-size: 0.6875rem;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
   }
 
   .prd-eco-card-cta {
@@ -71161,7 +71152,7 @@ button.process-bento-cta-link {
   }
 
   .prd-eco-card-body {
-    min-height: 12.75rem;
+    min-height: 10.25rem;
   }
 
   .prd-eco-card-meta h4 {

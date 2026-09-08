@@ -21,7 +21,7 @@ function ApiPage() {
 
       <ApiLiveConsole variant="auth" />
 
-      <SectionConnector
+      {/* <SectionConnector
         step="01"
         tone="light"
         from={{
@@ -35,13 +35,13 @@ function ApiPage() {
           detail: "Events, inventory, listings, orders, pricing, delivery and partner.",
         }}
         payload={["api key", "role scope", "event id", "signed request"]}
-      />
+      /> */}
 
       <ApiProductBoard />
 
       <ApiInfraBoard />
 
-      <SectionConnector
+      {/* <SectionConnector
         step="02"
         tone="dark"
         from={{
@@ -55,7 +55,7 @@ function ApiPage() {
           detail: "Signed webhooks return inventory, order and delivery changes.",
         }}
         payload={["inventory update", "listing status", "order event", "delivery"]}
-      />
+      /> */}
 
       <ApiLiveConsole variant="webhooks" />
 

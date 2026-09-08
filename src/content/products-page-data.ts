@@ -102,8 +102,30 @@ export const productsEcosystemCopy = {
   eyebrow: "Seven products",
   title: "The desks that run a ticket brokerage",
   intro:
-    "Each product is built for one stage of the workflow. Open the page that matches how you work — the consoles here are compact previews, not a second copy of every desk.",
-  note: "One connected ticketing business.",
+    "Each product is built for one stage of the workflow. Open the page that matches how you work — from market intelligence through to settlement.",
+  stackEyebrow: "Operating stack",
+  stackTitleStart: "Discover",
+  stackTitleEnd: "Pay & settle",
+  stackNote: "One platform. Seven desks. Endless possibilities.",
+  heroQuote: "More events. Bigger opportunities. A stronger ticketing business.",
+  heroBadge: "Global ticket distribution",
+  exploreStack: {
+    label: "Explore the full stack",
+    to: "/platform",
+    hash: "operating-stack",
+  },
+  watch: {
+    label: "Watch how it works",
+    note: "2 min overview",
+    to: "/",
+    hash: "how-it-works",
+  },
+  close: "One workflow. One inventory layer. Multiple sales channels.",
+  barItems: [
+    { id: "events", label: "More events", note: "Global event catalog" },
+    { id: "buyers", label: "More buyers", note: "Connected channels" },
+    { id: "growth", label: "More growth", note: "Stronger business" },
+  ],
   proofs: [
     {
       id: "workflow",

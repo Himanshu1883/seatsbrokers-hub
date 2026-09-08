@@ -2,8 +2,6 @@ import { Layers, Map } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { pageMeta, seoHead } from "@/content/site";
-import { platformSteps } from "@/content/platform-page-data";
-import { WorkflowSteps } from "@/components/pages/shared/PageSections";
 import { SectionConnector } from "@/components/pages/brokers/SectionConnector";
 import { PlatformHero } from "@/components/pages/platform/PlatformHero";
 import { PlatformModuleMap } from "@/components/pages/platform/PlatformModuleMap";
@@ -35,12 +33,6 @@ function PlatformPage() {
       />
 
       <PlatformModuleMap />
-
-      <WorkflowSteps
-        eyebrow="How the stack connects"
-        title="The technology layer connecting the ticketing ecosystem"
-        steps={[...platformSteps]}
-      />
     </PageShell>
   );
 }

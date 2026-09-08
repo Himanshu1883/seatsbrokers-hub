@@ -11,7 +11,7 @@ Routes listed are where the component is **mounted**, not every import.
 | PageHero | `src/components/pages/shared/PageSections.tsx` | Dark copy-only product-page hero | **Unmounted** — file kept; `/become-a-seller` uses `SellerHero` |
 | FeatureGrid | same | Key benefits 3×2 hairline cards (`prd-cap-*`, same language as ProductCapabilityBoard) | `/become-a-seller` only — **not** `/api` (uses `ApiInfraBoard`), **not** `/integrations`, and **not** `/products/seats*` (uses `ProductCapabilityBoard`) |
 | FeatureOrbitGrid | `src/components/pages/shared/FeatureOrbitGrid.tsx` | Desktop infinity orbit; ≤767px stacked title+body cards (`.fg-stack`) | **Unmounted** — file kept; become-a-seller Key benefits no longer uses it |
-| WorkflowSteps | PageSections | Numbered infra canvas | brokers, marketplace-connectivity, event-intelligence, platform, products, ai-pricing, integrations, api, book-demo |
+| WorkflowSteps | PageSections | Numbered infra canvas | `/products/seats*` How slots, integrations, api, book-demo. **Not** on `/platform` or `/products` overview (those already map 01–07) |
 | WorkflowInfraCanvas | `src/components/pages/shared/WorkflowInfraCanvas.tsx` | Visual for WorkflowSteps | WorkflowSteps |
 | SplitPanel | PageSections | Copy + labelled value rows | market-analytics, ai-pricing, integrations (SeatsLink problem) |
 | SyncDiagram | PageSections | Four-card hub diagram | brokers, marketplace-connectivity |
@@ -113,16 +113,17 @@ Routes listed are where the component is **mounted**, not every import.
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
 | PlatformHero + StackWall | `PlatformHero.tsx`, `PlatformStackWall.tsx` | `bh-hero` left copy (Your Ticket Brokerage. Connected. + supporting statement); right is a dark alive `ConsoleShell` Discover→Pay & settle spine lighting all seven stages (`.plt-os-*`) | `/platform` |
-| PlatformModuleMap | `PlatformModuleMap.tsx` | Sticky HowItWorks-vocabulary workflow (`#operating-stack`, `.plt-flow-*`): stage + product + one-line role + Explore CTA; left 01–07 cards have Unsplash event photo + white LTR wash; right pane swaps compact desks. Not a 4+3 product-card dump | `/platform` only — **not** on `/products` |
-| PlatformDesks | `PlatformDesks.tsx` | Compact Ready `ConsoleShell` stage desks with In/Out handoff (Intel demand, Source £ inventory, Pulse you-decide rec, Link ticks, Market generic channels, Deal quote £, Funds settlement £). Prefix `.plt-mini-*` | PlatformModuleMap |
+| PlatformModuleMap | `PlatformModuleMap.tsx` | `/platform` `#operating-stack` (`.plt-mod-*`): compact 7-up photo cards (short shot, tagline, In/Next, outline Explore) + `PlatformStageBoard` selected-stage panel. Click a card to swap the board. Not a second 01–07 WorkflowSteps closer. | `/platform` only — **not** on `/products` |
+| PlatformStageBoard | `PlatformStageBoard.tsx` | Stage panel under the 7-up: full-bleed unique photo (fade right) + compact three consoles (nav / desk / sync). Prefix `.plt-stage-*`. Copy `platformStageBoards`. | PlatformModuleMap |
+| PlatformDesks | `PlatformDesks.tsx` | Compact Ready `ConsoleShell` stage desks with In/Out handoff (Intel demand, Source £ inventory, Pulse you-decide rec, Link ticks, Market generic channels, Deal quote £, Funds settlement £). Prefix `.plt-mini-*`. **Unmounted** from PlatformModuleMap (file kept). | Unmounted |
 
 ### Products (`src/components/pages/products/`)
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
 | ProductsHero + WorkflowWall | `ProductsHero.tsx`, `ProductsWorkflowWall.tsx` | `bh-hero` left copy (existing `productsHeroCopy`); right is a **dark** `ConsoleShell` Discover→Settle hub (traffic lights, Ready stamp, stats, seven-stage rail, workflow table, Now/status rail — `.prd-*`). Sans dashboard, not a timestamp log. Not a clone of Platform spine or Integrations connect wall | `/products` |
-| ProductsEcosystem | `ProductsEcosystem.tsx` | Compact photo-header product cards (~7rem shot, 2-line copy, 3-row minis, 44px Explore). Related images, 4+3 desktop | `/products` |
-| ProductsMiniConsoles | `ProductsMiniConsoles.tsx` | Compact static `ConsoleShell` desks for overview cards. No marketplace brand names | ProductsEcosystem |
+| ProductsEcosystem | `ProductsEcosystem.tsx` | Two-panel Seven products section: intro (proofs, CTAs, crowd photo + quote) + operating-stack 7-up rail (tagline, body, outline Explore) + mint pill footer. Mobile snap-scroll rail | `/products` |
+| ProductsMiniConsoles | `ProductsMiniConsoles.tsx` | Compact static `ConsoleShell` desks for overview cards. No marketplace brand names | *(unmounted from ProductsEcosystem 2026-09-08; file kept)* |
 | ProductStoryPage | `ProductStoryPage.tsx` | Brief-order shell with **slots**: `hero`, `how` (earlier live consoles), `extraCapabilities`. Shared: Problem, How steps, CapabilityBoard, integration chain, Book a Demo / Become a Seller. `showFinalCta={false}` | all seven `/products/seats*` routes |
 | SourceHero + Wall | `SourceHero.tsx`, `SourceConsoleWall.tsx` | Dark `bh-hero` like EventIntelHero; right stage is catalog + inventory ingest (`srh-*`) | `/products/seatssource` |
 | PulseHero + Wall | `PulseHero.tsx`, `PulseConsoleWall.tsx` | Dark `bh-hero`; right stage is MI + you-decide rec (`plh-*`). No fake accuracy % | `/products/seatspulse` |
@@ -202,7 +203,7 @@ Used on `/` unless noted.
 | GlobeCanvas | `landing/globe/GlobeCanvas.tsx` | Canvas globe (idle orbit; optional scrollOffset) | NetworkConstellation, GlobeScrollSection (unmounted) |
 | Stats + accent/glow/ledger | `Stats.tsx`, `stats/*` | Experience / proof wallet (`.stats-wallet-*`); ledger/glow unmounted | `/` |
 | Testimonials | `Testimonials.tsx` | Quotes | **Exists; not mounted on `/`** |
-| SectionBackdrop / DarkSectionFill | `SectionBackdrop.tsx` | Shared photo/grid backdrops. `DarkSectionFill` is the dark-band helper (`tone="dark"` + legacy gradient fallback). Keys in `lib/event-backdrops.ts`. **Not** on heroes or Footer. | landing light sections + dark body bands (Intel, TwoTrack, dark Live Consoles, SyncDiagram, capability boards, FaqHelpStrip) |
+| SectionBackdrop / DarkSectionFill / HeroBackdrop | `SectionBackdrop.tsx` | Shared photo/grid backdrops. `DarkSectionFill` is the dark-band helper (`tone="dark"`). `HeroBackdrop` (`tone="hero"`) is the inner-page `bh-hero` photo. Keys in `lib/event-backdrops.ts`. **Not** on homepage hero or Footer. | landing light sections + dark body bands + all inner-page heroes |
 | MarketPathScroll | `MarketPathScroll.tsx` | Scroll path viz | **Exists; not imported on any route** |
 
 ## Content

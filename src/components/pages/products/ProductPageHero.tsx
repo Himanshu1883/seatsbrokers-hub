@@ -10,6 +10,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
+import { HeroBackdrop } from "@/components/landing/SectionBackdrop";
 import { modules } from "@/content/modules";
 import { productStories } from "@/content/products-page-data";
 import { ctas } from "@/content/site";
@@ -37,14 +38,7 @@ export function ProductPageHero({ product }: ProductPageHeroProps) {
 
   return (
     <section className="bh-hero prd-hero prd-story-hero section-curve relative isolate scroll-mt-24 overflow-hidden bg-dark text-background">
-      <div
-        className="pointer-events-none absolute inset-0 bg-linear-to-br from-dark via-dark to-primary-deep/40"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-24 top-1/4 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
-        aria-hidden
-      />
+      <HeroBackdrop image="footballStadium" />
 
       <div className="container-page relative z-10">
         <div className="bh-layout">

@@ -45,7 +45,7 @@ import {
   listingLineTotal,
   useSeatMapTickets,
 } from "@/components/landing/SeatMapTicketsConsole";
-import type { EventBackdropKey } from "@/lib/event-backdrops";
+import { eventBackdrops, type EventBackdropKey } from "@/lib/event-backdrops";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { ctas } from "@/content/site";
 import { modules } from "@/content/modules";
@@ -240,12 +240,12 @@ const sellerChannels: readonly { id: string; icon: LucideIcon; label: string }[]
   { id: "other-channels", icon: Building2, label: "Other channels" },
 ];
 
-const sellerBuyers: { icon: LucideIcon; label: string }[] = [
-  { icon: BadgeCheck, label: "Sports" },
-  { icon: Radio, label: "Music" },
-  { icon: Building2, label: "Theatre" },
-  { icon: CalendarDays, label: "Events" },
-  { icon: Sparkles, label: "Experiences" },
+const sellerBuyers: { icon: LucideIcon; label: string; backdrop: EventBackdropKey }[] = [
+  { icon: BadgeCheck, label: "Sports", backdrop: "footballStadium" },
+  { icon: Radio, label: "Music", backdrop: "concert" },
+  { icon: Building2, label: "Theatre", backdrop: "venueSeats" },
+  { icon: CalendarDays, label: "Events", backdrop: "liveCrowd" },
+  { icon: Sparkles, label: "Experiences", backdrop: "premiumVenue" },
 ];
 
 const sellerSteps: { n: string; icon: LucideIcon; title: string; body: string }[] = [
@@ -676,7 +676,8 @@ export function SellerTools() {
 
             <StoVLink label="Two-way sync" reverse />
 
-            <div className="sto-core">
+            <div className="sto-center">
+              <div className="sto-core">
               <ConsoleShell
                 path="seatsbrokers / sellers / orchestration"
                 status="Live"
@@ -751,6 +752,24 @@ export function SellerTools() {
                   </div>
                 </div>
               </ConsoleShell>
+              </div>
+
+              <div className="sto-buyer-visuals" aria-label="End customer categories">
+                {sellerBuyers.map((item) => (
+                  <figure key={item.label} className="sto-buyer-visual">
+                    <img
+                      src={eventBackdrops[item.backdrop]}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span className="sto-buyer-visual-label" aria-hidden>
+                      {item.label}
+                    </span>
+                    <figcaption className="sr-only">{item.label}</figcaption>
+                  </figure>
+                ))}
+              </div>
             </div>
 
             <StoVLink label="Distributed out" />

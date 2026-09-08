@@ -1,7 +1,7 @@
 import type { EventBackdropKey } from "@/lib/event-backdrops";
 import { eventBackdrops } from "@/lib/event-backdrops";
 
-type Tone = "light" | "surface" | "dark";
+type Tone = "light" | "surface" | "dark" | "hero";
 
 type SectionBackdropProps = {
   image: EventBackdropKey;
@@ -14,24 +14,32 @@ type SectionBackdropProps = {
  * Full-bleed Unsplash atmosphere behind a section.
  * Parent must be `relative isolate`. Content stays above via z-index.
  * Light/surface: whisper photo via `strength`. Dark: muted photo + mid wash (no grid).
+ * Hero: related event photo + heavier left wash so copy stays readable.
  */
 export function SectionBackdrop({ image, tone = "light", strength = 0.11 }: SectionBackdropProps) {
-  const isDark = tone === "dark";
+  const isPhotoFill = tone === "dark" || tone === "hero";
+  const isHero = tone === "hero";
 
   return (
     <div className="section-backdrop" data-tone={tone} aria-hidden>
       <img
         src={eventBackdrops[image]}
         alt=""
-        loading="lazy"
+        loading={isHero ? "eager" : "lazy"}
         decoding="async"
+        fetchPriority={isHero ? "high" : "low"}
         className="section-backdrop-img"
-        style={isDark ? undefined : { opacity: strength }}
+        style={isPhotoFill ? undefined : { opacity: strength }}
       />
       <span className="section-backdrop-wash" />
-      {isDark ? null : <span className="section-backdrop-grid" />}
+      {isPhotoFill ? null : <span className="section-backdrop-grid" />}
     </div>
   );
+}
+
+/** Page-hero photo (not homepage). Same wash recipe on every inner-page `bh-hero`. */
+export function HeroBackdrop({ image }: { image: EventBackdropKey }) {
+  return <SectionBackdrop image={image} tone="hero" />;
 }
 
 /** Dark-band photo + readable wash. Falls back to the legacy mint gradient when no image is set. */

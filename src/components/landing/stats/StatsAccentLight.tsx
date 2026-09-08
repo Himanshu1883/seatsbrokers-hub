@@ -128,7 +128,6 @@ export function StatsAccentLight() {
                 data-hero={s.hero ? "true" : "false"}
                 style={{ "--sw-i": i } as CSSProperties}
               >
-                <span className="stats-wallet-edge" aria-hidden />
                 <div className="stats-wallet-card-face">
                   <div className="stats-wallet-card-top">
                     <span className="stats-wallet-index">{index}</span>

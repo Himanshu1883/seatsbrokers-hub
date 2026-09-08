@@ -1,6 +1,7 @@
 import { Layers } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
+import { HeroBackdrop } from "@/components/landing/SectionBackdrop";
 import { platformHeroCopy, platformHeroPoints } from "@/content/platform-page-data";
 import { ctas } from "@/content/site";
 import { PlatformStackWall } from "./PlatformStackWall";
@@ -8,14 +9,7 @@ import { PlatformStackWall } from "./PlatformStackWall";
 export function PlatformHero() {
   return (
     <section className="bh-hero plt-hero section-curve relative isolate scroll-mt-24 overflow-hidden bg-dark text-background">
-      <div
-        className="pointer-events-none absolute inset-0 bg-linear-to-br from-dark via-dark to-primary-deep/40"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-24 top-1/4 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
-        aria-hidden
-      />
+      <HeroBackdrop image="stadiumNightLit" />
 
       <div className="container-page relative z-10">
         <div className="bh-layout">

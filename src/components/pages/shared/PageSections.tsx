@@ -5,7 +5,7 @@ import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { WorkflowInfraCanvas } from "@/components/pages/shared/WorkflowInfraCanvas";
 import { brand, ctas } from "@/content/site";
-import { DarkSectionFill } from "@/components/landing/SectionBackdrop";
+import { DarkSectionFill, HeroBackdrop } from "@/components/landing/SectionBackdrop";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -24,14 +24,14 @@ export function PageHero({
 }: PageHeroProps) {
   return (
     <section className="bh-hero section-curve relative isolate scroll-mt-24 bg-dark text-background">
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-dark via-dark to-primary-deep/40" aria-hidden />
+      <HeroBackdrop image="footballStadium" />
       <div className="container-page relative z-10 max-w-3xl">
         <Reveal>
           <p className="section-eyebrow text-primary">{eyebrow}</p>
           <h1 className="mt-5 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
             {title}
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-background/75 sm:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-background/90 sm:text-lg">
             {body}
           </p>
           <div className="page-cta-row mt-9">

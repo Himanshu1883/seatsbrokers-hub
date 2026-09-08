@@ -1,11 +1,13 @@
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
+import { HeroBackdrop } from "@/components/landing/SectionBackdrop";
 import { ctas } from "@/content/site";
 import heroContact from "@/assets/hero-contact.png";
 
 export function ContactHero() {
   return (
     <section className="bh-hero ct-hero section-curve relative isolate scroll-mt-24 overflow-hidden bg-dark text-background">
+      <HeroBackdrop image="cityTowers" />
       <div className="bh-layout ct-hero-banner">
         <Reveal className="ct-hero-copy min-w-0">
           <div className="bh-copy">

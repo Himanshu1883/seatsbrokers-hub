@@ -181,13 +181,11 @@ function DemandForecastChart({ live }: { live: boolean }) {
   );
 }
 
-function MarketIntelDesk() {
+function useMarketIntelLive() {
   const { ref, inView } = useInView<HTMLDivElement>(0.18, { once: false });
   const reduced = useReducedMotion();
   const [paused, setPaused] = useState(false);
-  const [range, setRange] = useState<(typeof ranges)[number]>("7D");
   const [recFocus, setRecFocus] = useState(0);
-
   const live = inView && !reduced && !paused;
 
   useEffect(() => {
@@ -198,10 +196,89 @@ function MarketIntelDesk() {
     return () => window.clearInterval(id);
   }, [live]);
 
+  return { ref, live, reduced, recFocus, setPaused };
+}
+
+function MarketIntelMiniDesk() {
+  const { ref, live, recFocus } = useMarketIntelLive();
+  const rec = recommendations[recFocus]!;
+
+  return (
+    <div ref={ref} className="mihp-desk mihp-desk--mini" data-live={live ? "true" : "false"}>
+      <ConsoleShell
+        path={`${modules.intel.name} / Market Intelligence`}
+        status="Demo"
+        icon={Radar}
+      >
+        <div className="mihp-mini">
+          <header className="mihp-mini-head">
+            <span className="mihp-live">
+              <span className="mihp-live-dot" aria-hidden />
+              Live
+            </span>
+            <span className="mihp-demo-stamp">Illustrative desk</span>
+          </header>
+
+          <div className="mihp-mini-kpis" aria-label="Demo market KPIs">
+            <article className="mihp-mini-kpi">
+              <span className="mihp-kpi-label">Active Events</span>
+              <strong className="mihp-mono mihp-kpi-value">{kpis[0].value}</strong>
+            </article>
+            <article className="mihp-mini-kpi">
+              <span className="mihp-kpi-label">Avg. Price (£)</span>
+              <strong className="mihp-mono mihp-kpi-value">{kpis[2].value}</strong>
+            </article>
+            <article className="mihp-mini-kpi">
+              <span className="mihp-kpi-label">Demand</span>
+              <strong className="mihp-kpi-value">High</strong>
+              <span className="mihp-delta" data-tone="up">
+                <ArrowUpRight className="size-3" strokeWidth={2.25} aria-hidden />
+                92% conf.
+              </span>
+            </article>
+            <article className="mihp-mini-kpi">
+              <span className="mihp-kpi-label">Sold (24h)</span>
+              <strong className="mihp-mono mihp-kpi-value">{kpis[3].value}</strong>
+            </article>
+          </div>
+
+          <section className="mihp-mini-chart" aria-label="Demo price trend">
+            <header className="mihp-card-head">
+              <span>Price Trend</span>
+              <strong className="mihp-mono">£248</strong>
+            </header>
+            <div className="mihp-chart-wrap mihp-mini-chart-wrap">
+              <PriceTrendChart live={live} />
+            </div>
+          </section>
+
+          <section className="mihp-mini-rec" aria-label="Demo AI recommendation">
+            <header className="mihp-card-head">
+              <span>AI Recommendation</span>
+              <Activity className="size-3.5 text-primary" strokeWidth={1.75} aria-hidden />
+            </header>
+            <div className="mihp-rec" data-tone={rec.tone} data-focus="true">
+              <div className="mihp-rec-copy">
+                <strong>{rec.title}</strong>
+                <span>{rec.detail}</span>
+              </div>
+              <em data-tone={rec.tone}>{rec.impact}</em>
+            </div>
+          </section>
+        </div>
+      </ConsoleShell>
+    </div>
+  );
+}
+
+function MarketIntelDesk() {
+  const { ref, live, reduced, recFocus, setPaused } = useMarketIntelLive();
+  const [range, setRange] = useState<(typeof ranges)[number]>("7D");
+
   return (
     <div
       ref={ref}
-      className="mihp-desk"
+      className="mihp-desk mihp-desk--full"
       data-live={live ? "true" : "false"}
       data-reduced={reduced ? "true" : "false"}
       onMouseEnter={() => setPaused(true)}
@@ -445,7 +522,7 @@ export function MarketIntelligence() {
       <div className="container-page relative z-10">
         <div className="mihp-layout">
           <div className="mihp-copy">
-          <Reveal>
+          <Reveal className="mihp-copy-lead">
               <p className="section-eyebrow text-primary">{modules.intel.name}</p>
               <h2 className="mihp-title">
                 Know what to{" "}
@@ -463,7 +540,7 @@ export function MarketIntelligence() {
             </p>
           </Reveal>
 
-            <Reveal delay={80}>
+            <Reveal delay={80} className="mihp-copy-ctas">
               <div className="mihp-ctas">
                 <SiteLink to={ctas.exploreEventIntel.to} className="mihp-cta mihp-cta-primary">
                   {ctas.exploreEventIntel.label}
@@ -476,7 +553,7 @@ export function MarketIntelligence() {
               </div>
             </Reveal>
 
-          <Reveal delay={120}>
+          <Reveal delay={120} className="mihp-copy-features">
               <ul className="mihp-features">
                 {features.map(({ icon: Icon, label }) => (
                   <li key={label} className="mihp-feature">
@@ -492,6 +569,7 @@ export function MarketIntelligence() {
 
           <Reveal delay={120} className="mihp-stage">
             <div className="mihp-stage-scroll">
+              <MarketIntelMiniDesk />
               <MarketIntelDesk />
             </div>
           </Reveal>

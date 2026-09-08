@@ -1,23 +1,23 @@
 import {
   ArrowRight,
   BarChart3,
+  Calendar,
   FileText,
   Globe2,
   Infinity as InfinityIcon,
   Layers,
   Link2,
+  Play,
   RefreshCw,
   TrendingUp,
+  Users2,
   Wallet,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Reveal } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
 import { productCards, productsEcosystemCopy } from "@/content/products-page-data";
-import { eventBackdrops } from "@/lib/event-backdrops";
-import categoryPrices from "@/assets/product-showcase/category-prices-light.png";
-import stadiumConnect from "@/assets/hero-stadium-3.jpg";
-import { ProductsMiniConsole } from "./ProductsMiniConsoles";
+import { eventBackdrops, type EventBackdropKey } from "@/lib/event-backdrops";
 
 const proofIcons: Record<(typeof productsEcosystemCopy.proofs)[number]["id"], LucideIcon> = {
   workflow: InfinityIcon,
@@ -35,20 +35,29 @@ const stageIcons: Record<(typeof productCards)[number]["id"], LucideIcon> = {
   funds: Wallet,
 };
 
-const productShots: Record<(typeof productCards)[number]["id"], string> = {
-  intel: eventBackdrops.footballNight,
-  source: eventBackdrops.venueSeats,
-  pulse: categoryPrices,
-  link: stadiumConnect,
-  market: eventBackdrops.concertCrowd,
-  deal: eventBackdrops.musicStage,
-  funds: eventBackdrops.trophy,
+const barIcons: Record<(typeof productsEcosystemCopy.barItems)[number]["id"], LucideIcon> = {
+  events: Calendar,
+  buyers: Users2,
+  growth: TrendingUp,
+};
+
+/** One related event photo per product stage — all from eventBackdrops. */
+const productShots: Record<(typeof productCards)[number]["id"], EventBackdropKey> = {
+  intel: "footballStadium",
+  source: "venueSeats",
+  pulse: "basketball",
+  link: "aiConnect",
+  market: "sportsCrowd",
+  deal: "liveCrowd",
+  funds: "premiumVenue",
 };
 
 export function ProductsEcosystem() {
+  const copy = productsEcosystemCopy;
+
   return (
     <section
-      className="prd-eco section-curve relative isolate scroll-mt-24 bg-surface py-16 sm:py-20"
+      className="prd-eco section-curve relative isolate scroll-mt-24 bg-surface"
       aria-labelledby="prd-eco-title"
     >
       <div
@@ -57,63 +66,136 @@ export function ProductsEcosystem() {
       />
 
       <div className="container-page relative z-10">
-        <Reveal className="prd-eco-head">
-          <div className="prd-eco-copy">
-            <p className="section-eyebrow text-primary">{productsEcosystemCopy.eyebrow}</p>
-            <h2 id="prd-eco-title" className="prd-eco-title">
-              {productsEcosystemCopy.title}
-            </h2>
-            <p className="prd-eco-intro">{productsEcosystemCopy.intro}</p>
-          </div>
-          <p className="prd-eco-note">{productsEcosystemCopy.note}</p>
-          <ul className="prd-eco-proofs">
-            {productsEcosystemCopy.proofs.map((proof) => {
-              const Icon = proofIcons[proof.id];
-              return (
-                <li key={proof.id}>
-                  <span className="prd-eco-proof-icon" aria-hidden>
-                    <Icon className="size-4" strokeWidth={1.75} />
-                  </span>
-                  <strong>{proof.title}</strong>
-                  <span>{proof.body}</span>
-                </li>
-              );
-            })}
-          </ul>
-        </Reveal>
+        <div className="prd-eco-shell">
+          <Reveal className="prd-eco-panel prd-eco-intro-panel">
+            <div className="prd-eco-intro-copy">
+              <p className="section-eyebrow text-primary">{copy.eyebrow}</p>
+              <h2 id="prd-eco-title" className="prd-eco-title">
+                {copy.title}
+              </h2>
+              <p className="prd-eco-lead">{copy.intro}</p>
 
-        <Reveal delay={80} className="mt-9 lg:mt-11">
-          <ul className="prd-eco-grid">
-            {productCards.map((card) => {
-              const Icon = stageIcons[card.id];
-              return (
-                <li key={card.id} className="prd-card" data-product={card.id}>
-                  <div className="prd-card-shot">
-                    <img src={productShots[card.id]} alt="" decoding="async" />
-                    <div className="prd-card-shot-copy">
-                      <span className="prd-card-index">{card.index}</span>
-                      <span className="prd-card-stage">{card.stage}</span>
-                      <span className="prd-card-caption">{card.caption}</span>
-                    </div>
-                    <span className="prd-card-badge" aria-hidden>
-                      <Icon className="size-4" strokeWidth={1.75} />
-                    </span>
-                  </div>
-                  <div className="prd-card-copy">
-                    <h3 className="prd-card-name">{card.name}</h3>
-                    <p className="prd-card-tag">{card.tagline}</p>
-                    <p className="prd-card-body">{card.body}</p>
-                  </div>
-                  <ProductsMiniConsole id={card.id} />
-                  <SiteLink to={card.href} className="prd-card-cta">
-                    {card.cta}
-                    <ArrowRight className="size-3.5" strokeWidth={2.25} />
-                  </SiteLink>
-                </li>
-              );
-            })}
-          </ul>
-        </Reveal>
+              <ul className="prd-eco-proofs">
+                {copy.proofs.map((proof) => {
+                  const Icon = proofIcons[proof.id];
+                  return (
+                    <li key={proof.id}>
+                      <span className="prd-eco-proof-icon" aria-hidden>
+                        <Icon className="size-4" strokeWidth={1.75} />
+                      </span>
+                      <strong>{proof.title}</strong>
+                      <span>{proof.body}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="prd-eco-actions">
+                <SiteLink
+                  to={copy.exploreStack.to}
+                  hash={copy.exploreStack.hash}
+                  className="sb-btn-primary lift prd-eco-explore"
+                >
+                  {copy.exploreStack.label}
+                  <ArrowRight className="size-4" strokeWidth={2.25} aria-hidden />
+                </SiteLink>
+                <SiteLink to={copy.watch.to} hash={copy.watch.hash} className="prd-eco-watch lift">
+                  <span className="prd-eco-watch-icon" aria-hidden>
+                    <Play className="size-3.5" strokeWidth={2.25} />
+                  </span>
+                  <span>
+                    <strong>{copy.watch.label}</strong>
+                    <em>{copy.watch.note}</em>
+                  </span>
+                </SiteLink>
+              </div>
+            </div>
+
+            <div className="prd-eco-intro-visual">
+              <img src={eventBackdrops.liveCrowd} alt="" decoding="async" />
+              <div className="prd-eco-intro-quote">
+                <p>{copy.heroQuote}</p>
+              </div>
+              <p className="prd-eco-intro-badge">
+                <Globe2 className="size-3.5" strokeWidth={1.75} aria-hidden />
+                {copy.heroBadge}
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={80} className="prd-eco-panel prd-eco-stack">
+            <header className="prd-eco-stack-head">
+              <div className="prd-eco-stack-lead">
+                <p className="section-eyebrow text-primary">{copy.stackEyebrow}</p>
+                <h3 className="prd-eco-stack-title">
+                  <span>{copy.stackTitleStart}</span>
+                  <ArrowRight className="prd-eco-stack-arrow" strokeWidth={2.5} aria-hidden />
+                  <span className="text-primary">{copy.stackTitleEnd}</span>
+                </h3>
+              </div>
+              <p className="prd-eco-stack-note">{copy.stackNote}</p>
+            </header>
+
+            <ul className="prd-eco-rail" aria-label="SeatsBrokers product stack">
+              {productCards.map((card) => {
+                const Icon = stageIcons[card.id];
+                return (
+                  <li key={card.id}>
+                    <article className="prd-eco-card" data-product={card.id}>
+                      <div className="prd-eco-card-shot">
+                        <img
+                          src={eventBackdrops[productShots[card.id]]}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span className="prd-eco-card-index">{card.index}</span>
+                      </div>
+                      <span className="prd-eco-card-icon" aria-hidden>
+                        <Icon strokeWidth={1.75} />
+                      </span>
+                      <div className="prd-eco-card-body">
+                        <div className="prd-eco-card-meta">
+                          <h4>{card.name}</h4>
+                          <p>{card.stage}</p>
+                        </div>
+                        <p className="prd-eco-card-hook">{card.tagline}</p>
+                        <p className="prd-eco-card-desc">{card.body}</p>
+                        <SiteLink to={card.href} className="sb-btn-outline lift prd-eco-card-cta">
+                          {card.cta}
+                          <ArrowRight className="size-3.5 shrink-0" strokeWidth={2.25} aria-hidden />
+                        </SiteLink>
+                      </div>
+                    </article>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div className="prd-eco-bar">
+              <p>
+                <span className="prd-eco-bar-mark" aria-hidden>
+                  <InfinityIcon strokeWidth={2.25} />
+                </span>
+                {copy.close}
+              </p>
+              <ul>
+                {copy.barItems.map((item) => {
+                  const Icon = barIcons[item.id];
+                  return (
+                    <li key={item.id}>
+                      <Icon strokeWidth={1.75} aria-hidden />
+                      <span>
+                        <strong>{item.label}</strong>
+                        <em>{item.note}</em>
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

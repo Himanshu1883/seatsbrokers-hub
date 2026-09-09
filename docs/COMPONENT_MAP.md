@@ -203,7 +203,7 @@ Used on `/` unless noted.
 | GlobeCanvas | `landing/globe/GlobeCanvas.tsx` | Canvas globe (idle orbit; optional scrollOffset) | NetworkConstellation, GlobeScrollSection (unmounted) |
 | Stats + accent/glow/ledger | `Stats.tsx`, `stats/*` | Experience / proof wallet (`.stats-wallet-*`); ledger/glow unmounted | `/` |
 | Testimonials | `Testimonials.tsx` | Quotes | **Exists; not mounted on `/`** |
-| SectionBackdrop / DarkSectionFill / HeroBackdrop | `SectionBackdrop.tsx` | Shared photo/grid backdrops. `DarkSectionFill` is the dark-band helper (`tone="dark"`). `HeroBackdrop` (`tone="hero"`) is the inner-page `bh-hero` photo. Keys in `lib/event-backdrops.ts`. **Not** on homepage hero or Footer. | landing light sections + dark body bands + all inner-page heroes |
+| SectionBackdrop / DarkSectionFill / HeroBackdrop | `SectionBackdrop.tsx` | Shared photo/grid backdrops. `DarkSectionFill` is the dark-band helper (`tone="dark"`). `HeroBackdrop` (`tone="hero"`) is the inner-page `bh-hero` photo. Keys in `lib/event-backdrops.ts`. How it works (`#how-it-works`) is a **dark cinema** (`tone="dark"`, `concert`, light type). **Not** on homepage hero or Footer. | landing light sections + dark body bands + all inner-page heroes |
 | MarketPathScroll | `MarketPathScroll.tsx` | Scroll path viz | **Exists; not imported on any route** |
 
 ## Content

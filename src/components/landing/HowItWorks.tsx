@@ -32,6 +32,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { useInView, useTypewriter } from "@/hooks/use-scroll-motion";
 import { SiteLink } from "@/components/layout/SiteLink";
+import { SectionBackdrop } from "@/components/landing/SectionBackdrop";
 import { productHrefs } from "@/content/site";
 import { modules } from "@/content/modules";
 import { eventBackdrops, type EventBackdropKey } from "@/lib/event-backdrops";
@@ -344,10 +345,12 @@ export function HowItWorks() {
     <section
       ref={ref}
       id="how-it-works"
-      className="hiw section-curve relative isolate scroll-mt-24 bg-background"
+      className="hiw section-curve relative isolate scroll-mt-24 bg-dark text-background"
+      data-theme="dark"
       aria-label="How it works"
     >
-      <div className="container-page hiw-inner">
+      <SectionBackdrop image="concert" tone="dark" />
+      <div className="container-page hiw-inner relative z-10">
         <header className="hiw-head">
           <div className="hiw-head-copy">
             <p className="section-eyebrow text-primary">How it works</p>

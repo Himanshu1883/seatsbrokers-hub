@@ -71637,3 +71637,122 @@ button.border-border.bg-transparent svg.lucide,
   background: var(--azure-soft) !important;
   color: var(--azure) !important;
 }
+
+/* How it works — dark cinema (2026-09-09)
+   Stadium photo stays; light type + dark glass so copy reads over the pitch.
+   Scoped to .hiw only. Green = copy/CTAs; azure = icons + active rail chrome. */
+.hiw .section-backdrop[data-tone="dark"] .section-backdrop-img {
+  filter: grayscale(6%) saturate(0.88) contrast(1.08) brightness(0.7);
+}
+
+.hiw .section-backdrop[data-tone="dark"] .section-backdrop-wash {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--dark) 72%, transparent) 0%,
+    color-mix(in oklab, var(--dark) 48%, transparent) 28%,
+    color-mix(in oklab, var(--dark) 36%, transparent) 55%,
+    color-mix(in oklab, var(--dark) 66%, transparent) 100%
+  );
+}
+
+.hiw-title,
+.hiw-usp-title,
+.hiw-card-title,
+.hiw-card-tagline,
+.hiw-stage-product,
+.hiw-fact-value,
+.hiw-close-title {
+  color: var(--background);
+  text-shadow: 0 1px 18px color-mix(in oklab, var(--dark) 70%, transparent);
+}
+
+.hiw-lead,
+.hiw-usp-note,
+.hiw-card-stage,
+.hiw-card-body,
+.hiw-stage-name,
+.hiw-stage-num,
+.hiw-fact-label,
+.hiw-close-eyebrow,
+.hiw-note,
+.hiw-track-label,
+.hiw-rail-arrow {
+  color: color-mix(in oklab, var(--background) 74%, transparent);
+  text-shadow: 0 1px 14px color-mix(in oklab, var(--dark) 65%, transparent);
+}
+
+.hiw-usp + .hiw-usp {
+  border-left-color: color-mix(in oklab, var(--background) 16%, transparent);
+}
+
+.hiw-usp-icon {
+  background: color-mix(in oklab, var(--azure) 20%, transparent) !important;
+  color: var(--azure) !important;
+}
+
+.hiw-stage {
+  background: color-mix(in oklab, var(--dark) 58%, transparent);
+  border-color: color-mix(in oklab, var(--background) 16%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.hiw-stage:hover {
+  border-color: color-mix(in oklab, var(--azure) 55%, transparent) !important;
+}
+
+.hiw-stage[data-active="true"] {
+  background: color-mix(in oklab, var(--azure) 18%, transparent) !important;
+  border-color: color-mix(in oklab, var(--azure) 72%, transparent) !important;
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--azure) 32%, transparent);
+}
+
+.hiw-stage[data-done="true"] .hiw-stage-num,
+.hiw-stage[data-active="true"] .hiw-stage-num,
+.hiw-stage[data-active="true"] .hiw-stage-name {
+  color: var(--primary);
+}
+
+.hiw-card {
+  background: color-mix(in oklab, var(--dark) 62%, transparent);
+  border-color: color-mix(in oklab, var(--background) 14%, transparent);
+  box-shadow: 0 24px 52px -28px color-mix(in oklab, var(--dark) 85%, transparent);
+}
+
+.hiw-card-bg img[data-active="true"] {
+  opacity: 0.52;
+  filter: saturate(0.7) contrast(1.04) brightness(0.52);
+}
+
+.hiw-card-bg::after {
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--dark) 90%, transparent) 0%,
+    color-mix(in oklab, var(--dark) 78%, transparent) 16%,
+    color-mix(in oklab, var(--dark) 56%, transparent) 42%,
+    color-mix(in oklab, var(--dark) 28%, transparent) 72%,
+    color-mix(in oklab, var(--dark) 14%, transparent) 100%
+  );
+}
+
+.hiw-fact-icon {
+  background: color-mix(in oklab, var(--azure) 20%, transparent) !important;
+  color: var(--azure) !important;
+}
+
+.hiw-shot-main,
+.hiw-shot-inset {
+  border-color: color-mix(in oklab, var(--background) 22%, transparent);
+}
+
+.hiw-track::before {
+  background: color-mix(in oklab, var(--background) 18%, transparent);
+}
+
+.hiw-track-dot {
+  background: color-mix(in oklab, var(--dark) 35%, transparent);
+  border-color: color-mix(in oklab, var(--background) 28%, transparent);
+}
+
+.hiw-track-node[data-done="true"] .hiw-track-dot {
+  background: color-mix(in oklab, var(--primary) 42%, transparent);
+}

@@ -231,7 +231,7 @@ export function FeatureOrbit() {
     <section
       ref={ref}
       id="platform"
-      className="feature-orbit-section relative rounded-[1.5rem] bg-[oklch(0.985_0.008_158)] py-16 sm:py-20"
+      className="feature-orbit-section relative rounded-[1.5rem] bg-surface py-16 sm:py-20"
       aria-label="SeatsBrokers platform orbit"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]" aria-hidden>

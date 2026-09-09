@@ -94,7 +94,7 @@ Shared chrome: `ConsoleCopyPanel` + `ConsoleShell` (brokers folder) used by all 
 ## Agent Rules
 
 1. Read this map + `CHANGE_MAP.md` before searching `src/`.
-2. Brand: **SeatsBrokers** (plural). Primary `--primary` (brief `#198754`). No purple. Currency £. No competitor product names in new copy.
+2. Brand: **SeatsBrokers** (plural). Primary `--primary` (brief `#198754`). Third color `--azure` (hue 258) — not a CTA fill. No purple. Currency £. No competitor product names in new copy.
 3. One section at a time. Reuse PageSections / Live Console — check `COMPONENT_MAP.md` before new shapes.
 4. Append CSS as a marked prefix block. Never rewrite `styles.css`.
 5. PageShell already has FinalCTA — don’t add another.

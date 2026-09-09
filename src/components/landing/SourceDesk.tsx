@@ -61,56 +61,28 @@ function pct(n: number, total: number) {
 function SourceDeskCanvas() {
   return (
     <svg
-      className="absolute inset-0 h-full w-full text-primary"
+      className="absolute inset-0 h-full w-full text-border"
       viewBox={`0 0 ${VB.w} ${VB.h}`}
       aria-hidden
     >
-      <defs>
-        <pattern id="sdhp-dots" width="9" height="9" patternUnits="userSpaceOnUse">
-          <circle cx="1.2" cy="1.2" r="1.15" fill="currentColor" />
-        </pattern>
-      </defs>
-
-      <g fill="url(#sdhp-dots)" opacity="0.5">
-        <path d="M228 92c-42-16-78 8-86 48-8 46 14 84 58 106 42 20 78 4 98-30 24-42 28-86-6-112-22-18-44-20-64-12z" />
-        <path d="M208 238c-6 20 4 40 24 46 10-20 2-36-24-46z" />
-        <path d="M286 268c-14 28-20 76-4 122 18 42 44 28 50-14 6-50-10-88-24-108-6-8-14-8-22 0z" />
-        <path d="M338 78c18-14 50-8 56 18-8 24-38 28-52 10-6-10-10-20-4-28z" />
-        <path d="M468 118c-18-4-24 14-12 34 14 14 42 8 56-6 8-16-6-34-24-36-6 0-14 4-20 8z" />
-        <path d="M444 124c-6-6-12 4-4 12 8-2 6-10 4-12z" />
-        <path d="M478 168c-20 10-24 52-12 98 10 46 44 74 72 54 14-38 8-84 2-116-8-32-34-44-62-36z" />
-        <path d="M542 168c10-10 30-2 36 18-10 10-30 2-36-18z" />
-        <path d="M552 96c-20 14-24 48-4 72 24-14 64-20 112-6 56 14 122 4 168-20 36-22 26-56-30-62-66-8-132 0-178-6-38-4-56 4-68 22z" />
-        <path d="M658 170c-10 20-4 52 14 66 14-24 8-52-14-66z" />
-        <path d="M728 188c-10 20 8 40 28 28 8-20-10-34-28-28z" />
-        <path d="M824 130c10-10 22 4 16 18-8 6-20-10-16-18z" />
-        <path d="M762 292c-20 10-24 42-2 56 42 10 74-10 68-38-8-20-40-28-66-18z" />
-        <path d="M842 340c-6 10 8 22 14 10 0-8-8-12-14-10z" />
-      </g>
-
-      <ellipse
-        cx={HUB.x}
-        cy="250"
-        rx="360"
-        ry="210"
-        fill="currentColor"
-        opacity="0.04"
-      />
-
       <path
         d={ARC}
         fill="none"
         stroke="currentColor"
-        strokeOpacity="0.3"
+        strokeOpacity="0.45"
         strokeWidth="1.5"
         strokeDasharray="2 6"
+        strokeLinecap="round"
       />
       <path
-        d={`M${HUB.x} ${PEAK.y} L${HUB.x} ${HUB.y - 22}`}
+        className="sdhp-arc-stem"
+        d={`M${HUB.x} ${PEAK.y} L${HUB.x} ${HUB.y - 28}`}
         fill="none"
         stroke="currentColor"
-        strokeOpacity="0.2"
+        strokeOpacity="0.55"
         strokeWidth="1.5"
+        strokeDasharray="4 5"
+        strokeLinecap="round"
       />
 
       <circle r="4" fill="currentColor">
@@ -196,10 +168,7 @@ export function SourceDesk() {
             <div className="relative hidden aspect-[900/560] w-full lg:block">
               <SourceDeskCanvas />
 
-              {/* Clean, minimal image placement - just 3 strategic images */}
-              
-              {/* Image 1: Global network - subtle, blended */}
-              <div className="absolute right-0 top-0 z-0 h-40 w-56 overflow-hidden rounded-2xl opacity-60 transition-all duration-500 hover:opacity-90">
+              <div className="pointer-events-none absolute right-0 top-0 z-0 h-40 w-56 overflow-hidden rounded-2xl opacity-60 transition-opacity duration-500 hover:opacity-90">
                 <img
                   src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=600&fit=crop&auto=format"
                   alt=""
@@ -209,8 +178,7 @@ export function SourceDesk() {
                 <div className="absolute inset-0 bg-gradient-to-bl from-background/60 via-background/20 to-transparent" />
               </div>
 
-              {/* Image 2: Premium inventory - elegant and subtle */}
-              <div className="absolute bottom-0 left-0 z-0 h-32 w-48 overflow-hidden rounded-2xl opacity-60 transition-all duration-500 hover:opacity-90">
+              <div className="pointer-events-none absolute bottom-0 left-0 z-0 h-32 w-48 overflow-hidden rounded-2xl opacity-60 transition-opacity duration-500 hover:opacity-90">
                 <img
                   src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop&auto=format"
                   alt=""
@@ -220,8 +188,7 @@ export function SourceDesk() {
                 <div className="absolute inset-0 bg-gradient-to-tr from-background/60 via-background/20 to-transparent" />
               </div>
 
-              {/* Image 3: Business partnership - clean and professional */}
-              <div className="absolute bottom-20 right-8 z-0 h-28 w-44 overflow-hidden rounded-2xl opacity-50 transition-all duration-500 hover:opacity-80">
+              <div className="pointer-events-none absolute bottom-20 right-8 z-0 h-28 w-44 overflow-hidden rounded-2xl opacity-50 transition-opacity duration-500 hover:opacity-80">
                 <img
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&auto=format"
                   alt=""
@@ -237,7 +204,7 @@ export function SourceDesk() {
                   return (
                     <li
                       key={step}
-                      className="absolute flex flex-col gap-1.5 rounded-2xl border border-border/60 bg-card/95 p-4 shadow-[0_18px_40px_-24px_rgba(18,24,26,0.15)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-xl"
+                      className="absolute flex flex-col gap-1.5 rounded-2xl border border-border/60 bg-card/95 p-4 shadow-[0_18px_40px_-24px_rgba(18,24,26,0.15)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[color-mix(in_oklab,var(--azure)_35%,var(--border))] hover:shadow-xl"
                       style={{
                         left: pct(node.x - CARD.w / 2, VB.w),
                         top: pct(node.y - CARD.h - 6, VB.h),
@@ -266,9 +233,8 @@ export function SourceDesk() {
                   zIndex: 10,
                 }}
               >
-                <span className="relative flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_16px_32px_-10px_rgba(25,135,84,0.5)] transition-all duration-300 hover:scale-110">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-30" />
-                  <Plane className="relative size-5" strokeWidth={2} />
+                <span className="relative flex size-14 items-center justify-center rounded-full bg-[var(--azure)] text-primary-foreground shadow-[0_16px_32px_-10px_color-mix(in_oklab,var(--azure)_45%,transparent)]">
+                  <Plane className="size-5" strokeWidth={2} />
                 </span>
                 <p className="whitespace-nowrap rounded-full bg-card/90 px-3 py-1 text-[11px] font-semibold text-foreground shadow-sm backdrop-blur-sm">
                   Global sourcing network
@@ -286,7 +252,7 @@ export function SourceDesk() {
               />
               {flow.map(({ step, note, icon: Icon }, index) => (
                 <li key={step} className="relative flex items-start gap-4 pl-0">
-                  <span className="relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full border-4 border-background bg-primary/10 text-primary">
+                  <span className="relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full border-4 border-background bg-[var(--azure-soft)] text-[var(--azure)]">
                     <Icon className="size-4" strokeWidth={1.8} />
                   </span>
                   <div className="pt-1">
@@ -299,7 +265,7 @@ export function SourceDesk() {
                 </li>
               ))}
               <li className="relative flex items-center gap-4">
-                <span className="relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full border-4 border-background bg-primary text-primary-foreground">
+                <span className="relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full border-4 border-background bg-[var(--azure)] text-primary-foreground">
                   <Plane className="size-4" strokeWidth={2} />
                 </span>
                 <strong className="text-sm font-semibold text-foreground">

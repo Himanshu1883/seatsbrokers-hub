@@ -181,6 +181,19 @@ Swapping primary breaks every CTA, nav active, and console accent.
 
 ---
 
+## Decision: Azure is the structural third color (2026-09-09)
+
+### Date
+2026-09-09
+
+### Decision
+`--azure` is a chrome accent only (icons, icon wells, hover/active borders and washes, buttons) — never a section or page background. Brand green (`--primary` / `--primary-soft` / `--primary-deep` / `--dark`) stays on eyebrows, copy, and dark bands. Light mint section fills are neutralized to `--surface`. Marketplace logo tones stay hardcoded.
+
+### Do Not Change Without Considering
+A second uncoordinated hue (purple, teal, gold fills) will re-fragment the palette. Amber `oklch(0.62 0.12 75)` is reserved for chart-5 / lagging-status signals, not a third brand fill.
+
+---
+
 ## Decision: Canonical product URLs (Phase 2)
 
 ### Date

@@ -49,6 +49,10 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-primary-deep: var(--primary-deep);
   --color-primary-soft: var(--primary-soft);
+  --color-azure: var(--azure);
+  --color-azure-deep: var(--azure-deep);
+  --color-azure-soft: var(--azure-soft);
+  --color-azure-lift: var(--azure-lift);
   --color-ink: var(--ink);
   --color-surface: var(--surface);
   --color-dark: var(--dark);
@@ -85,6 +89,9 @@
   --primary-foreground: oklch(1 0 0);
   --primary-deep: oklch(0.42 0.098 158.2);
   --primary-soft: oklch(0.958 0.028 158.2);
+  --cta-green: oklch(0.548 0.117 158.2);
+  --cta-green-deep: oklch(0.42 0.098 158.2);
+  --cta-green-soft: oklch(0.958 0.028 158.2);
   --secondary: oklch(0.977 0.002 247);
   --secondary-foreground: oklch(0.205 0.005 285);
   --muted: oklch(0.977 0.002 247);
@@ -99,6 +106,10 @@
   --border: oklch(0.928 0.004 247);
   --input: oklch(0.928 0.004 247);
   --ring: oklch(0.548 0.117 158.2);
+  --azure: oklch(0.50 0.13 258);
+  --azure-deep: oklch(0.38 0.11 258);
+  --azure-soft: oklch(0.955 0.022 258);
+  --azure-lift: oklch(0.72 0.12 258);
   --gradient-hero: linear-gradient(
     100deg,
     color-mix(in oklab, var(--dark) 88%, transparent),
@@ -106,11 +117,11 @@
   );
   --shadow-card: 0 1px 2px oklch(0.2 0.01 160 / 0.04), 0 12px 32px -18px oklch(0.2 0.01 160 / 0.35);
   --shadow-lift: 0 20px 45px -22px oklch(0.42 0.098 158.2 / 0.45);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-1: var(--primary);
+  --chart-2: var(--azure);
+  --chart-3: var(--primary-deep);
+  --chart-4: var(--azure-deep);
+  --chart-5: oklch(0.62 0.12 75);
   --sidebar: oklch(0.984 0.003 247.858);
   --sidebar-foreground: oklch(0.129 0.042 264.695);
   --sidebar-primary: oklch(0.208 0.042 265.755);
@@ -18853,8 +18864,8 @@ main > .section-curve:first-child {
 }
 
 .qb-recent-row[data-status="viewed"] .qb-recent-status {
-  color: oklch(0.55 0.12 250);
-  background: oklch(0.55 0.12 250 / 0.1);
+  color: var(--azure);
+  background: color-mix(in oklab, var(--azure) 10%, transparent);
 }
 
 .qb-recent-row[data-status="sent"] .qb-recent-status {
@@ -19986,13 +19997,13 @@ main > .section-curve:first-child {
 }
 
 .po-lane[data-status="invoiced"][data-current="true"] {
-  border-color: color-mix(in oklab, oklch(0.55 0.12 250) 32%, var(--border));
-  background: color-mix(in oklab, oklch(0.55 0.12 250) 7%, white);
+  border-color: color-mix(in oklab, var(--azure) 32%, var(--border));
+  background: color-mix(in oklab, var(--azure) 7%, white);
 }
 
 .po-lane[data-status="invoiced"][data-current="true"] .po-lane-rail,
 .po-lane[data-status="invoiced"][data-done="true"] .po-lane-rail {
-  background: oklch(0.55 0.12 250);
+  background: var(--azure);
 }
 
 .po-lane-head {
@@ -20135,9 +20146,9 @@ main > .section-curve:first-child {
 }
 
 .po-badge[data-status="invoiced"] {
-  color: oklch(0.55 0.12 250);
-  background: oklch(0.55 0.12 250 / 0.1);
-  border-color: oklch(0.55 0.12 250 / 0.28);
+  color: var(--azure);
+  background: color-mix(in oklab, var(--azure) 10%, transparent);
+  border-color: color-mix(in oklab, var(--azure) 28%, transparent);
 }
 
 .po-dossier-meta {
@@ -67959,8 +67970,8 @@ button.process-bento-cta-link {
   width: 2rem;
   height: 2rem;
   border-radius: 0.5rem;
-  background: var(--primary-soft);
-  color: var(--primary);
+  background: var(--azure-soft);
+  color: var(--azure);
 }
 
 .apc-go {
@@ -67969,15 +67980,21 @@ button.process-bento-cta-link {
   width: 1.85rem;
   height: 1.85rem;
   border-radius: 999px;
-  background: var(--primary);
+  background: var(--azure);
   color: var(--primary-foreground);
   text-decoration: none;
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
 }
 
 .apc-go:hover {
+  background: var(--azure-deep);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lift);
+}
+
+.apc-go svg.lucide {
+  color: currentColor;
+  stroke: currentColor;
 }
 
 .apc-body h3 {
@@ -71216,4 +71233,407 @@ button.process-bento-cta-link {
   .prd-eco-card-shot img {
     transition: none;
   }
+}
+
+/* ==========================================================================
+   Azure Phase 2 — visible structural accents (2026-09-09)
+   Green stays on CTAs, eyebrows, live/success, title arrows.
+   Azure on icons, stages, data labels, partner/B2B, even-row USPs.
+   ========================================================================== */
+
+.prd-eco-intro-panel .prd-eco-proof-icon {
+  background: var(--azure-soft);
+  color: var(--azure);
+}
+
+.prd-eco-watch-icon {
+  border-color: color-mix(in oklab, var(--azure) 32%, var(--border));
+  background: var(--azure-soft);
+  color: var(--azure);
+}
+
+.prd-eco-stack-note {
+  color: var(--azure-deep);
+}
+
+.prd-eco-card-icon {
+  border-color: color-mix(in oklab, var(--azure) 36%, var(--border));
+  color: var(--azure);
+}
+
+.prd-eco-card-meta p {
+  color: var(--azure);
+}
+
+.prd-eco-bar-mark,
+.prd-eco-bar li svg {
+  color: var(--azure);
+}
+
+.plt-mod-chip-icon {
+  background: color-mix(in oklab, var(--azure) 14%, var(--card));
+  color: var(--azure);
+}
+
+.plt-mod-icon {
+  border-color: color-mix(in oklab, var(--azure) 32%, var(--border));
+  color: var(--azure-deep);
+}
+
+.plt-mod-io dt {
+  color: var(--azure);
+}
+
+.plt-mod-bar li svg {
+  color: var(--azure);
+}
+
+.feature-orbit {
+  --fo-teal: var(--azure);
+  --fo-cyan: var(--azure-deep);
+}
+
+.hiw-usp-icon,
+.sdhp-proof-icon {
+  color: var(--azure);
+}
+
+/* ==========================================================================
+   Azure chrome only (2026-09-09)
+   Green stays on eyebrows / copy / all buttons. Azure = icons, icon wells,
+   card hover borders and washes — not solid or outline CTAs. Section fills neutral.
+   ========================================================================== */
+
+.feature-orbit,
+.feature-orbit-section,
+.sto-section,
+.apc-section {
+  background: var(--surface) !important;
+}
+
+.feature-orbit {
+  --fo-mint: var(--azure);
+  --fo-forest: var(--azure-deep);
+  --fo-teal: var(--azure);
+  --fo-cyan: var(--azure-deep);
+}
+
+.feature-orbit-core-glow,
+.apc-glow,
+.apc-net,
+.bg-primary\/8,
+.bg-primary\/15.blur-3xl {
+  background: transparent !important;
+  background-image: none !important;
+  opacity: 0 !important;
+}
+
+[class*="-icon"]:not(svg):not(i) {
+  background-color: var(--azure-soft);
+  color: var(--azure);
+}
+
+.sto-mod-icon,
+.sto-sys-icon,
+.hiw-usp-icon,
+.sdhp-proof-icon {
+  background-color: var(--azure-soft);
+  color: var(--azure);
+}
+
+svg.lucide,
+svg[class*="-icon"],
+[class*="-icon"] svg,
+.hiw-usp-icon,
+.sdhp-proof-icon,
+.text-primary svg,
+svg.text-primary,
+.sto-mod-icon svg,
+.sto-mod-feat svg {
+  color: var(--azure);
+  stroke: var(--azure);
+  background-color: transparent;
+}
+
+.sto-mod-n {
+  background: var(--azure);
+}
+
+article:hover,
+[class*="-card"]:hover,
+[class*="-chip"]:hover,
+[class*="-tile"]:hover,
+[class*="-item"]:hover,
+[class*="-node"]:hover,
+[class*="-row"]:hover,
+[class*="-lane"]:hover,
+[class*="-stage"]:hover,
+[class*="-tab"]:hover,
+[class*="-step"]:hover,
+[class*="-mod"]:hover,
+[class*="-product"]:hover,
+[data-active="true"] {
+  --primary: var(--azure);
+  --primary-deep: var(--azure-deep);
+  --primary-soft: var(--azure-soft);
+  --color-primary: var(--azure);
+  --color-primary-soft: var(--azure-soft);
+  --ring: var(--azure);
+}
+
+.process-bento-card:hover,
+.prd-eco-card:hover,
+.plt-mod-card:hover,
+.plt-mod-card:focus-visible,
+.prd-card:hover,
+.apc-card:hover,
+.hiw-stage:hover,
+.hiw-stage[data-active="true"],
+.sto-mod[data-active="true"],
+.sto-sys-item[data-active="true"],
+.plt-mod-card[data-active="true"] {
+  border-color: color-mix(in oklab, var(--azure) 50%, var(--border)) !important;
+}
+
+.hiw-stage[data-active="true"],
+.sto-mod[data-active="true"],
+.sto-sys-item[data-active="true"] {
+  background: color-mix(in oklab, var(--azure) 8%, var(--card)) !important;
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--azure) 28%, transparent) inset;
+}
+
+.prd-eco-bar {
+  background: var(--card);
+}
+
+.prd-eco-bar > p {
+  color: var(--foreground);
+}
+
+.sto-channel[data-named="true"],
+.sto-board[data-live="true"] .sto-channel[data-named="true"] {
+  animation: none;
+  border-color: var(--border);
+  background: var(--card);
+  box-shadow: none;
+  color: var(--foreground);
+}
+
+.sto-channel[data-named="true"] .sto-channel-n {
+  color: var(--azure-deep);
+}
+
+.sto-channel-live {
+  color: var(--azure-deep);
+}
+
+.sto-channel-live i {
+  background: var(--azure);
+}
+
+.sto-channel[data-named="true"]:hover {
+  border-color: var(--azure);
+  background: color-mix(in oklab, var(--azure) 8%, var(--card));
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--azure) 32%, transparent) inset;
+}
+
+.mihp-cta svg.lucide,
+#source-desk a svg.lucide {
+  color: currentColor;
+  stroke: currentColor;
+}
+
+.mihp-feature-icon {
+  border-color: color-mix(in oklab, var(--azure) 28%, transparent) !important;
+  background: var(--azure-soft) !important;
+  color: var(--azure) !important;
+}
+
+#source-desk .rounded-full svg.lucide {
+  color: currentColor;
+  stroke: currentColor;
+}
+
+#source-desk .sdhp-arc-stem {
+  stroke: color-mix(in oklab, var(--azure) 42%, var(--border)) !important;
+  stroke-opacity: 1;
+}
+
+/* ==========================================================================
+   All marketing buttons — locked to --cta-green (2026-09-09)
+   Section/card hovers swap --primary → azure on parents; buttons must not
+   inherit that. Use --cta-green literals, not var(--primary). Exception: .apc-go
+   ========================================================================== */
+
+.sb-btn-primary,
+.demo-modal-root .demo-modal-submit,
+.site-nav-cta.bg-primary,
+.site-nav-cta-demo,
+button.bg-primary,
+a.bg-primary,
+.lift.bg-primary,
+.smt-btn-primary,
+.smt-btn-solid,
+.smt-buy,
+.smt-apply,
+.mihp-cta-primary,
+.process-bento-cta-link,
+.two-track-id-cta,
+.two-track-path-cta,
+.plt-mod-explore,
+.plt-stage-explore,
+.prd-eco-explore,
+.feature-orbit-cta,
+.how-it-step a.lift,
+.sb-btn-outline,
+.site-nav-cta-login,
+.site-nav-cta.border,
+a.lift.border,
+button.lift.border,
+.lift.border.border-border,
+.mihp-cta-ghost,
+.prd-eco-card-cta,
+.hh-cta-ghost,
+.toolkit-light-cta-ghost,
+.netgraph-cta-ghost,
+.market-path-cta-ghost,
+button.border-border.bg-transparent,
+a.border-border.bg-background,
+.page-cta-row a.bg-primary,
+.page-cta-row button.bg-primary,
+a.lift.min-h-11,
+button.lift.min-h-11 {
+  --primary: var(--cta-green) !important;
+  --primary-deep: var(--cta-green-deep) !important;
+  --primary-soft: var(--cta-green-soft) !important;
+  --color-primary: var(--cta-green) !important;
+  --color-primary-soft: var(--cta-green-soft) !important;
+  --ring: var(--cta-green) !important;
+}
+
+.sb-btn-primary,
+.demo-modal-root .demo-modal-submit,
+.site-nav-cta.bg-primary,
+.site-nav-cta-demo,
+button.bg-primary,
+a.bg-primary,
+.lift.bg-primary,
+.smt-btn-primary,
+.smt-btn-solid,
+.smt-buy,
+.smt-apply,
+.mihp-cta-primary,
+.process-bento-cta-link,
+.two-track-id-cta,
+.two-track-path-cta,
+.plt-mod-explore,
+.plt-stage-explore,
+.prd-eco-explore,
+.page-cta-row a.bg-primary,
+.page-cta-row button.bg-primary,
+a.lift.min-h-11.bg-primary,
+button.lift.min-h-11.bg-primary {
+  background: var(--cta-green) !important;
+  color: var(--primary-foreground) !important;
+}
+
+.sb-btn-primary:hover,
+.demo-modal-root .demo-modal-submit:hover:not(:disabled),
+.site-nav-cta.bg-primary:hover,
+.site-nav-cta-demo:hover,
+button.bg-primary:hover,
+a.bg-primary:hover,
+.lift.bg-primary:hover,
+.smt-btn-primary:hover,
+.smt-btn-solid:hover:not(:disabled),
+.smt-buy:hover:not(:disabled),
+.smt-apply:hover:not(:disabled),
+.mihp-cta-primary:hover,
+.process-bento-cta-link:hover,
+.two-track-id-cta:hover,
+.two-track-path-cta:hover,
+.plt-mod-explore:hover,
+.plt-stage-explore:hover,
+.prd-eco-explore:hover,
+.page-cta-row a.bg-primary:hover,
+.page-cta-row button.bg-primary:hover,
+a.lift.min-h-11.bg-primary:hover,
+button.lift.min-h-11.bg-primary:hover {
+  --primary: var(--cta-green) !important;
+  --color-primary: var(--cta-green) !important;
+  background: color-mix(in oklab, var(--cta-green) 90%, black) !important;
+  color: var(--primary-foreground) !important;
+}
+
+.feature-orbit-cta,
+.how-it-step a.lift {
+  border-color: color-mix(in oklab, var(--cta-green) 25%, var(--border)) !important;
+  background: color-mix(in oklab, var(--cta-green) 6%, transparent) !important;
+  color: var(--cta-green) !important;
+}
+
+.feature-orbit-cta:hover,
+.how-it-step a.lift:hover {
+  background: var(--cta-green) !important;
+  border-color: var(--cta-green) !important;
+  color: var(--primary-foreground) !important;
+}
+
+.sb-btn-outline:hover,
+.sb-btn-outline:focus-visible,
+.site-nav-cta-login:hover,
+.site-nav-cta.border:hover,
+a.lift.border:hover,
+button.lift.border:hover,
+.lift.border.border-border:hover,
+.mihp-cta-ghost:hover,
+.prd-eco-card-cta:hover,
+button.border-border.bg-transparent:hover,
+button.border-border.bg-transparent:focus-visible {
+  --primary: var(--cta-green) !important;
+  --color-primary: var(--cta-green) !important;
+  border-color: var(--cta-green) !important;
+  color: var(--cta-green) !important;
+  background: color-mix(in oklab, var(--cta-green) 6%, transparent) !important;
+}
+
+.sb-btn-primary svg.lucide,
+.demo-modal-root .demo-modal-submit svg.lucide,
+button.bg-primary svg.lucide,
+a.bg-primary svg.lucide,
+.lift.bg-primary svg.lucide,
+.mihp-cta svg.lucide,
+.sb-btn-outline svg.lucide,
+.site-nav-cta.border svg.lucide,
+a.lift.border svg.lucide,
+button.lift.border svg.lucide,
+.mihp-cta-ghost svg.lucide,
+.prd-eco-card-cta svg.lucide,
+button.border-border.bg-transparent svg.lucide,
+.feature-orbit-cta svg.lucide,
+.how-it-step a.lift svg.lucide {
+  color: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* /api seven product cards — arrow CTAs stay azure (site buttons stay green) */
+.apc-go {
+  --primary: var(--azure) !important;
+  --color-primary: var(--azure) !important;
+  background: var(--azure) !important;
+  color: var(--primary-foreground) !important;
+}
+
+.apc-go:hover {
+  background: var(--azure-deep) !important;
+}
+
+.apc-go svg.lucide {
+  color: currentColor !important;
+  stroke: currentColor !important;
+}
+
+.apc-icon {
+  background: var(--azure-soft) !important;
+  color: var(--azure) !important;
 }

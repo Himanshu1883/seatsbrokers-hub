@@ -20,14 +20,17 @@ Source of truth: `src/styles.css` (`@theme` + `:root` / `.dark`) and Google Font
 
 ## Semantic tokens (light, `:root`)
 
-- `--primary` / `--ring` — brand green
+- `--primary` / `--ring` — brand green (sections, eyebrows, washes, copy)
 - `--primary-deep` `oklch(0.42 0.098 158.2)` — darker green
 - `--primary-soft` / `--accent` `oklch(0.958 0.028 158.2)`
+- `--azure` `oklch(0.50 0.13 258)` — chrome accent only: **icons**, icon wells, hover/active borders and washes on cards/console chrome. **Never solid or outline CTAs; never a section background.** Light mint section fills (FeatureOrbit / SellerTools / API board) use `--surface`.
+- `--azure-deep` / `--azure-soft` / `--azure-lift` — icon/hover wash, dark-surface icon, card hover chrome (not buttons)
 - `--surface` — section alt background (`bg-surface`)
-- `--dark` — dark section background (`bg-dark text-background`). Dark **body** bands (not Footer) use `SectionBackdrop` / `DarkSectionFill` (`tone="dark"`): muted event photo + mid cinematic wash (~70–80% `--dark`, not a bright poster and not an 88% blackout). No grid on dark. Parent must be `relative isolate`; copy stays `z-10`. **Inner-page heroes** use `HeroBackdrop` (`tone="hero"`) with a related `event-backdrops` photo and a heavier left wash so copy stays readable. **Homepage hero** keeps its own stadium banners. Footer stays flat `bg-dark`. Thin `SectionConnector` rails stay fill-only.
+- `--dark` `oklch(0.19 0.012 160)` — dark section background (`bg-dark text-background`). Dark **body** bands (not Footer) use `SectionBackdrop` / `DarkSectionFill` (`tone="dark"`): muted event photo + mid cinematic wash (~70–80% `--dark`, not a bright poster and not an 88% blackout). No grid on dark. Parent must be `relative isolate`; copy stays `z-10`. **Inner-page heroes** use `HeroBackdrop` (`tone="hero"`) with a related `event-backdrops` photo and a heavier left wash so copy stays readable. **Homepage hero** keeps its own stadium banners. Footer stays flat `bg-dark`. Thin `SectionConnector` rails stay fill-only.
 - `--muted-foreground` — secondary copy
 - `--gradient-hero` — dark → primary-deep overlay
 - `--shadow-card`, `--shadow-lift`
+- `--chart-1`…`--chart-5` — brand-aligned data series (`primary` / `azure` / `primary-deep` / `azure-deep` / amber `oklch(0.62 0.12 75)`). Amber is data-viz only, not a marketing fill.
 - `--radius: 0.625rem`
 
 ## Layout utilities
@@ -44,7 +47,7 @@ Source of truth: `src/styles.css` (`@theme` + `:root` / `.dark`) and Google Font
 
 | Pattern | Where | What it is |
 |---|---|---|
-| **Button / CTA** | Global `.sb-btn-*` contract in `styles.css` + `ui/button.tsx` | Solid: `--primary` fill, `--primary-foreground` text, `var(--radius)`, min-height `2.75rem`, hover `translateY(-4px)` + `--shadow-lift` + slightly darker primary. Outline: border + transparent, same radius/height/motion. Never a second brand color (no slate/purple CTA fills) and never pill `999px` on marketing CTAs. |
+| **Button / CTA** | Global `.sb-btn-*` contract in `styles.css` + `ui/button.tsx` | Solid: `--primary` fill, `--primary-foreground` text, `var(--radius)`, min-height `2.75rem`, hover `translateY(-4px)` + `--shadow-lift` + `--sb-btn-hover-bg`. Outline: green border + 6% primary wash on hover, same radius/height/motion. Never azure/indigo CTA fills and never pill `999px` on marketing CTAs. |
 | Typewriter | `useTypewriter` in `src/hooks/use-scroll-motion.tsx` | Cycles phrases; used in `Hero.tsx`, `HowItWorks.tsx` |
 | Scroll reveal | `Reveal` + `.reveal` | Opacity + `translateY(28px)` until `data-visible` |
 | Live pulse | `@keyframes two-track-live-pulse` | Scale/opacity ping on LIVE dots (TwoTrack, consoles, connectors) |

@@ -42,6 +42,7 @@ Only rules this repo actually uses. Visual tokens: `docs/DESIGN_SYSTEM.md`.
 
 - Enable `.dark` class (wrong purple tokens); use `bg-dark`
 - Swap `--primary` to a different green
+- Use `--azure` as a CTA fill (CTAs stay `--primary`)
 - Restyle with neon purple
 - Clone another page’s hero (travel dashboard / marketplace mosaic / event-intel cone / brokers wall / API docs console are intentionally different)
 - Overlap/stacked-card treatment on `/event-intelligence`

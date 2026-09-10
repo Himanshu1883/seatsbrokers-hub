@@ -120,7 +120,7 @@ export function FundsConsoleWall() {
       </div>
 
       <p className="sr-only">
-        SeatsFunds™ settlement desk for {fundsHeroSale.event}. Sale, commission, transfer and
+        SeatsPay™ settlement desk for {fundsHeroSale.event}. Sale, commission, transfer and
         settled on the {rail.label} rail. Standard is the default path; USDT is eligible where
         allowed. Active stage {stage.label}.
       </p>

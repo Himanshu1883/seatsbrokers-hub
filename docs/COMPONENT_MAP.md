@@ -39,7 +39,7 @@ Routes listed are where the component is **mounted**, not every import.
 | AiPredictionsConsole | `AiPredictionsConsole.tsx` | Pricing cockpit (no ConsoleShell) | LiveConsole `aiPredictions` |
 | PosConsole | `PosConsole.tsx` | Broker POS queue + sale pipeline | **Built; LiveConsole `pos` exists; not used in `brokers.tsx`** |
 | PaymentInfrastructureSection + Console + Copy | `PaymentInfrastructureSection.tsx`, `PaymentConsole.tsx`, `PaymentCopyPanel.tsx` | Payments dashboard (own section, not LiveConsole) | `/brokers` |
-| CryptoPayoutConsole | `CryptoPayoutConsole.tsx` | SeatsFunds™ USDT desk: wallet path, on-chain transfer, qualitative Standard vs crypto switch | LiveConsole `cryptoPayouts` |
+| CryptoPayoutConsole | `CryptoPayoutConsole.tsx` | SeatsPay™ USDT desk: wallet path, on-chain transfer, qualitative Standard vs crypto switch | LiveConsole `cryptoPayouts` |
 
 ### Travel (`src/components/pages/travel/`)
 
@@ -128,7 +128,7 @@ Routes listed are where the component is **mounted**, not every import.
 | SourceHero + Wall | `SourceHero.tsx`, `SourceConsoleWall.tsx` | Dark `bh-hero` like EventIntelHero; right stage is catalog + inventory ingest (`srh-*`) | `/products/seatssource` |
 | PulseHero + Wall | `PulseHero.tsx`, `PulseConsoleWall.tsx` | Dark `bh-hero`; right stage is MI + you-decide rec (`plh-*`). No fake accuracy % | `/products/seatspulse` |
 | LinkHero + Wall | `LinkHero.tsx`, `LinkConsoleWall.tsx` | Dark `bh-hero`; right stage is POS queue + ops pipeline (`lkh-*`) | `/products/seatslink` |
-| FundsHero + Wall | `FundsHero.tsx`, `FundsConsoleWall.tsx` | Dark `bh-hero`; right stage is settlement desk Standard/USDT (`fnh-*`). Qualitative rails | `/products/seatsfunds` |
+| FundsHero + Wall | `FundsHero.tsx`, `FundsConsoleWall.tsx` | Dark `bh-hero`; right stage is settlement desk Standard/USDT (`fnh-*`). Qualitative rails | `/products/seatspay` |
 | ProductPageHero | `ProductPageHero.tsx` | Shared mini-console hero — **not mounted** on individual product pages (unique heroes restored). Kept for possible reuse | unused |
 | ProductIntegrationChain | `ProductIntegrationChain.tsx` | Platform integration: product → product pills (current highlighted). Prefix `.prd-chain-*` | ProductStoryPage |
 | ProductCapabilityBoard | `ProductCapabilityBoard.tsx` | Light 3×2 hairline cards (44px icon well + index + title + sentence). Prefix `.prd-cap-*`. Copy from `productStories.*.capabilities`. Not FeatureOrbitGrid and not `ApiInfraBoard` | ProductStoryPage |
@@ -137,7 +137,7 @@ Routes listed are where the component is **mounted**, not every import.
 
 | Name | Path | Purpose | Used on |
 |---|---|---|---|
-| IntegrationsHero + ConnectWall | `IntegrationsHero.tsx`, `IntegrationsConnectWall.tsx` | `bh-hero` left copy; right is a **dark** detailed `ConsoleShell` connect desk (`int-room`): POS, feeds, APIs, websites, ERP, payments — categories only, no partner names. Stats + rail + table + Now/status. Not a timestamp log. Not SeatsLink™ / API docs. CTAs `.page-cta-row` 44px nowrap | `/integrations` |
+| IntegrationsHero + ConnectWall | `IntegrationsHero.tsx`, `IntegrationsConnectWall.tsx` | `HeroBackdrop` `integrationConnect` (data-flow hub photo). `bh-hero` left copy; right is a **dark** detailed `ConsoleShell` connect desk (`int-room`): POS, feeds, APIs, websites, ERP, payments — categories only, no partner names. Stats + rail + table + Now/status. Not a timestamp log. Not SeatsLink™ / API docs. CTAs `.page-cta-row` 44px nowrap | `/integrations` |
 | IntegrationsCapabilityBoard | `IntegrationsCapabilityBoard.tsx` | Eight readable category cards + live dock. Replaces FeatureOrbitGrid on this page | `/integrations` |
 | IntegrationsLiveConsole | `IntegrationsLiveConsole.tsx` | Own wrapper (does not extend broker `LiveConsoleVariant`). Variants `marketplaces`, `stackIngest`, `feedPayments` | `/integrations` |
 | Marketplace / Stack / Feed consoles | `MarketplaceConnectConsole.tsx`, `StackIngestConsole.tsx`, `FeedPaymentsConsole.tsx` | Generic channel desk; POS/inventory/ERP ingest; supplier/site/custom + qualitative Standard/USDT rails | IntegrationsLiveConsole |
@@ -211,7 +211,7 @@ Used on `/` unless noted.
 | File | Purpose |
 |---|---|
 | `src/content/site.ts` | Brand, nav, footer, CTAs, SEO meta |
-| `src/content/modules.ts` | Official product module names + taglines (SeatsIntel™, SeatsSource™, SeatsPulse™, SeatsLink™, SeatsMarket™, SeatsDeal™, SeatsFunds™). SeatsLaunch™ defined but parked — not in `moduleList` |
+| `src/content/modules.ts` | Official product module names + taglines (SeatsIntel™, SeatsSource™, SeatsPulse™, SeatsLink™, SeatsMarket™, SeatsDeal™, SeatsPay™). SeatsLaunch™ defined but parked — not in `moduleList` |
 | `src/content/broker-hero-data.ts` | Brokers hero copy + mini-card data |
 | `src/content/broker-onboarding-data.ts` | `/brokers` company setup: regions, comparison rows, six phases, partners, checklist, FAQ (`[CONFIRM: …]` unknowns) |
 | `src/content/travel-hero-data.ts` | Travel hero copy + partner-desk dashboard data (KPIs, earnings, charts, lists). Mini-card datasets remain for `TravelConsoleCards` |
@@ -230,9 +230,9 @@ Used on `/` unless noted.
 | `src/content/source-hero-data.ts` | SeatsSource™ hero copy + catalog/inventory ingest stage |
 | `src/content/pulse-hero-data.ts` | SeatsPulse™ hero copy + published sample rec (£247 / £285 / £265) + Accept/Hold/Dismiss |
 | `src/content/link-hero-data.ts` | SeatsLink™ hero copy + POS queue / ops pipeline / connect ticks |
-| `src/content/funds-hero-data.ts` | SeatsFunds™ hero copy + qualitative settlement stages / Standard·USDT rails |
+| `src/content/funds-hero-data.ts` | SeatsPay™ hero copy + qualitative settlement stages / Standard·USDT rails |
 | `src/content/inventory-console-data.ts` | Inventory console demo rows |
-| `src/content/crypto-payout-data.ts` | Brokers SeatsFunds™ USDT desk: rails, path, ledger, auto-run frames (no amounts) |
+| `src/content/crypto-payout-data.ts` | Brokers SeatsPay™ USDT desk: rails, path, ledger, auto-run frames (no amounts) |
 | `src/content/seat-map-tickets-data.ts` | Homepage TravelTools Seat Map & Tickets demo listings / map blocks (£); listings array is **8** rows so `#travel` fills the table well |
 | `src/content/bento-illustrations.ts` | ProcessBento images |
 

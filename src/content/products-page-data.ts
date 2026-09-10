@@ -219,7 +219,7 @@ export const productCards = [
     name: modules.funds.name,
     tagline: modules.funds.tagline,
     caption: "Payments in the workflow",
-    body: "SeatsFunds™ keeps purchasing, balances and partner settlements inside SeatsBrokers. Standard remains the default rail; a USDT path is available where it is eligible. Settlement is not a separate product.",
+    body: "SeatsPay™ keeps purchasing, balances and partner settlements inside SeatsBrokers. Standard remains the default rail; a USDT path is available where it is eligible. Settlement is not a separate product.",
     href: productHrefs.funds,
     cta: `Explore ${modules.funds.name}`,
   },
@@ -576,7 +576,7 @@ export const productStories = {
     },
   },
   funds: {
-    what: "SeatsFunds™ builds payments into the ticketing workflow. Manage purchasing, balances, payment methods and transaction visibility from the same desk. Eligible partner settlements stay inside SeatsBrokers — Standard remains the default rail.",
+    what: "SeatsPay™ builds payments into the ticketing workflow. Manage purchasing, balances, payment methods and transaction visibility from the same desk. Eligible partner settlements stay inside SeatsBrokers — Standard remains the default rail.",
     problem: {
       eyebrow: "The problem",
       title: "Settlement should not be a separate product.",

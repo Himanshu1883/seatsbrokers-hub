@@ -36,16 +36,16 @@ export const productHrefs = {
   link: "/products/seatslink",
   market: "/products/seatsmarket",
   deal: "/products/seatsdeal",
-  funds: "/products/seatsfunds",
+  funds: "/products/seatspay",
 } as const;
 
 export const ctas = {
   bookDemo: { label: "Book a Demo", to: "/book-demo" },
-  becomeSeller: { label: "Become a Seller", to: "/become-a-seller" },
+  becomeSeller: { label: "Join SeatsBrokers", to: "https://seller.seatsbrokers.com/signup" },
   applyToJoin: { label: "Apply to Join", to: "/become-a-seller", hash: "apply" },
   explorePlatform: { label: "Explore the platform", to: "/platform" },
   talkToTeam: { label: "Talk to our team", to: "/contact" },
-  login: { label: "Login", to: "/contact" },
+  login: { label: "Login", to: "https://seller.seatsbrokers.com/login" },
   exploreBrokers: { label: "Explore products", to: "/products" },
   exploreTravel: { label: `Explore ${modules.deal.name}`, to: productHrefs.deal },
   exploreMarketplace: { label: `Explore ${modules.market.name}`, to: productHrefs.market },
@@ -70,6 +70,17 @@ export const navLinks: NavLink[] = [
   { label: "Event Intelligence", to: productHrefs.intel, hidden: true },
 ];
 
+/** Seven public products — nav hover menu + footer Products column. */
+export const navProductLinks = [
+  { label: modules.intel.name, note: modules.intel.what, to: productHrefs.intel },
+  { label: modules.source.name, note: modules.source.what, to: productHrefs.source },
+  { label: modules.pulse.name, note: modules.pulse.what, to: productHrefs.pulse },
+  { label: modules.link.name, note: modules.link.what, to: productHrefs.link },
+  { label: modules.market.name, note: modules.market.what, to: productHrefs.market },
+  { label: modules.deal.name, note: modules.deal.what, to: productHrefs.deal },
+  { label: modules.funds.name, note: modules.funds.what, to: productHrefs.funds },
+] as const;
+
 export const footerColumns: { title: string; links: FooterLink[] }[] = [
   {
     title: "Platform",
@@ -82,15 +93,7 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
   },
   {
     title: "Products",
-    links: [
-      { label: modules.intel.name, to: productHrefs.intel },
-      { label: modules.source.name, to: productHrefs.source },
-      { label: modules.pulse.name, to: productHrefs.pulse },
-      { label: modules.link.name, to: productHrefs.link },
-      { label: modules.market.name, to: productHrefs.market },
-      { label: modules.deal.name, to: productHrefs.deal },
-      { label: modules.funds.name, to: productHrefs.funds },
-    ],
+    links: navProductLinks.map(({ label, to }) => ({ label, to })),
   },
   {
     title: "Company",
@@ -156,7 +159,7 @@ export const pageMeta = {
   products: {
     title: "Ticket Broker Software — SeatsBrokers",
     description:
-      "Ticket broker software for professional desks: SeatsIntel™, SeatsSource™, SeatsPulse™, SeatsLink™, SeatsMarket™, SeatsDeal™ and SeatsFunds™. Seven products. One platform.",
+      "Ticket broker software for professional desks: SeatsIntel™, SeatsSource™, SeatsPulse™, SeatsLink™, SeatsMarket™, SeatsDeal™ and SeatsPay™. Seven products. One platform.",
   },
   becomeASeller: {
     title: "Become a Seller — SeatsBrokers",

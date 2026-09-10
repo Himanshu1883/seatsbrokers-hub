@@ -237,7 +237,7 @@ export const onboardStages: readonly OnboardStage[] = [
     blurb: "Company settlement",
     weHandle: [
       "Arm the regional bank rail for company settlement",
-      "Link the SeatsFunds™ USDT wallet — rail depth lives on that desk, not here",
+      "Link the SeatsPay™ USDT wallet — rail depth lives on that desk, not here",
       "Set company payout approvals",
     ],
     youProvide: [
@@ -246,17 +246,17 @@ export const onboardStages: readonly OnboardStage[] = [
       "Who can approve payouts on the company",
     ],
     regionDetail: {
-      dubai: "AED bank rail, with SeatsFunds™ USDT available on the payouts desk below.",
-      london: "GBP bank rail, with SeatsFunds™ USDT available on the payouts desk below.",
-      india: "INR bank rail, with SeatsFunds™ USDT available on the payouts desk below.",
-      newyork: "USD ACH/wire, with SeatsFunds™ USDT available on the payouts desk below.",
+      dubai: "AED bank rail, with SeatsPay™ USDT available on the payouts desk below.",
+      london: "GBP bank rail, with SeatsPay™ USDT available on the payouts desk below.",
+      india: "INR bank rail, with SeatsPay™ USDT available on the payouts desk below.",
+      newyork: "USD ACH/wire, with SeatsPay™ USDT available on the payouts desk below.",
     },
-    checks: ["Regional bank rail armed", "SeatsFunds™ USDT wallet linked", "Company payout approvals set"],
+    checks: ["Regional bank rail armed", "SeatsPay™ USDT wallet linked", "Company payout approvals set"],
     ledger: {
-      dubai: "payouts.armed → AED rail + SeatsFunds™ USDT",
-      london: "payouts.armed → GBP rail + SeatsFunds™ USDT",
-      india: "payouts.armed → INR rail + SeatsFunds™ USDT",
-      newyork: "payouts.armed → USD rail + SeatsFunds™ USDT",
+      dubai: "payouts.armed → AED rail + SeatsPay™ USDT",
+      london: "payouts.armed → GBP rail + SeatsPay™ USDT",
+      india: "payouts.armed → INR rail + SeatsPay™ USDT",
+      newyork: "payouts.armed → USD rail + SeatsPay™ USDT",
     },
   },
   {

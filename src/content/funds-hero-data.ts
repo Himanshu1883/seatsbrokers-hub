@@ -1,4 +1,4 @@
-/** SeatsFunds™ hero: left copy + settlement / payments stage.
+/** SeatsPay™ hero: left copy + settlement / payments stage.
  *  Qualitative rails only — no fake volume, accuracy, or crypto amounts. */
 
 import { modules } from "./modules";
@@ -8,7 +8,7 @@ export const fundsHeroCopy = {
   title: modules.funds.tagline,
   subhead:
     "Purchasing, balances and partner settlements stay on the same desk as the ticket — Standard remains the default rail.",
-  body: "SeatsFunds™ builds payments into the ticketing workflow. A sale or purchase posts against the same record as inventory and quotes. Eligible partner settlements follow the rules you set. USDT is a path where it is eligible — not a parallel bank product.",
+  body: "SeatsPay™ builds payments into the ticketing workflow. A sale or purchase posts against the same record as inventory and quotes. Eligible partner settlements follow the rules you set. USDT is a path where it is eligible — not a parallel bank product.",
 } as const;
 
 export const fundsHeroSale = {
@@ -40,7 +40,7 @@ export const fundsHeroRails = [
 ] as const;
 
 export const fundsHeroPath = [
-  { id: "vault", label: "SeatsFunds™ vault", hint: "Sale in" },
+  { id: "vault", label: "SeatsPay™ vault", hint: "Sale in" },
   { id: "rail", label: "Armed rail", hint: "Standard or USDT" },
   { id: "dest", label: "Broker account", hint: "Settled" },
 ] as const;
@@ -54,7 +54,7 @@ export const fundsHeroQueue = [
 ] as const;
 
 export const fundsHeroLedger = [
-  "Marketplace sale posts to the SeatsFunds™ desk",
+  "Marketplace sale posts to the SeatsPay™ desk",
   "Sale commission withheld — nothing monthly, nothing to list",
   "Payout leaves on the rail already attached to the account",
   "USDT only where the settlement is eligible",

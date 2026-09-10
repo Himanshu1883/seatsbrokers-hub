@@ -163,7 +163,7 @@ export function ProductsWorkflowWall() {
 
       <p className="sr-only">
         SeatsBrokers workflow desk. Seven stages Discover, Source, Price, Connect,
-        Distribute, Sell and Settle light SeatsIntel™ through SeatsFunds™. Active product:{" "}
+        Distribute, Sell and Settle light SeatsIntel™ through SeatsPay™. Active product:{" "}
         {layer.name}. Figures are illustrative.
       </p>
     </div>

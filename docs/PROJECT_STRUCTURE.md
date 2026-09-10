@@ -95,7 +95,7 @@ seatsbrokers-hub/
 | `products/seatslink.tsx` | `/products/seatslink` | SeatsLink™ — connect-your-stack story (PageHero / FeatureGrid / WorkflowSteps) |
 | `products/seatsmarket.tsx` | `/products/seatsmarket` | SeatsMarket™ — marketplace consoles + product story template |
 | `products/seatsdeal.tsx` | `/products/seatsdeal` | SeatsDeal™ — quote / order consoles + product story template |
-| `products/seatsfunds.tsx` | `/products/seatsfunds` | SeatsFunds™ — payments + USDT desk + product story template |
+| `products/seatspay.tsx` | `/products/seatspay` | SeatsPay™ — payments + USDT desk + product story template |
 | `become-a-seller.tsx` | `/become-a-seller` | Benefits + onboarding + application form (`#apply`) |
 | `about.tsx` | `/about` | Company atlas + journey ledger + ops console |
 | `contact.tsx` | `/contact` | Dark `bh-hero` + right-stage HUD photo + ContactForm |

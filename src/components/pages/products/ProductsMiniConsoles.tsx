@@ -254,7 +254,7 @@ function FundsMini() {
             </li>
           ))}
         </ul>
-        <MiniFoot label="SeatsFunds™" value="Rails ready" />
+        <MiniFoot label="SeatsPay™" value="Rails ready" />
       </div>
     </MiniDesk>
   );

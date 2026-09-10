@@ -40,7 +40,7 @@ export const modules = {
     tagline: "From enquiry to sale.",
   },
   funds: {
-    name: "SeatsFunds™",
+    name: "SeatsPay™",
     what: "Payments & settlement",
     tagline: "Payments built into your ticketing workflow.",
   },

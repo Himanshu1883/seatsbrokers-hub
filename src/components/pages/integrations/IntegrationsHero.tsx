@@ -9,7 +9,7 @@ import { IntegrationsConnectWall } from "./IntegrationsConnectWall";
 export function IntegrationsHero() {
   return (
     <section className="bh-hero int-hero section-curve relative isolate scroll-mt-24 overflow-hidden bg-dark text-background">
-      <HeroBackdrop image="platformLayers" />
+      <HeroBackdrop image="integrationConnect" />
 
       <div className="container-page relative z-10">
         <div className="bh-layout">

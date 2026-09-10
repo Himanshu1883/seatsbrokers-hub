@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import lockupSvg from "@/assets/SeatsBrokers-favicon.svg?url";
-import { brand, ctas, navLinks } from "@/content/site";
+import { brand, ctas, navLinks, navProductLinks } from "@/content/site";
 import { SiteLink } from "@/components/layout/SiteLink";
 /* Book a Demo stays in Hero / FinalCTA / /book-demo — hidden from nav chrome. */
 
@@ -13,6 +13,36 @@ function isNavActive(pathname: string, to: string) {
 
 function hashProps(link: (typeof navLinks)[number]) {
   return "hash" in link && link.hash ? { hash: link.hash } : {};
+}
+
+function ProductMenuItems({
+  onNavigate = () => undefined,
+  className,
+}: {
+  onNavigate?: () => void;
+  className: string;
+}) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  return (
+    <>
+      {navProductLinks.map((product) => {
+        const active = pathname === product.to;
+        return (
+          <SiteLink
+            key={product.to}
+            to={product.to}
+            role="menuitem"
+            onClick={onNavigate}
+            aria-current={active ? "page" : undefined}
+            className={`${className}${active ? " is-active" : ""}`}
+          >
+            <span className="site-nav-products-item-name">{product.label}</span>
+            <span className="site-nav-products-item-note">{product.note}</span>
+          </SiteLink>
+        );
+      })}
+    </>
+  );
 }
 
 export function Nav() {
@@ -146,17 +176,39 @@ export function Nav() {
           <div className="hidden items-center gap-7 lg:flex">
             {visibleNavLinks.map((l) => {
               const active = isNavActive(pathname, l.to);
+              const linkClass = `text-sm font-medium transition-colors hover:text-primary ${
+                active
+                  ? "text-primary decoration-primary decoration-2 underline-offset-4"
+                  : "text-foreground"
+              }`;
+
+              if (l.to === "/products") {
+                return (
+                  <div key={l.to} className="site-nav-products">
+                    <SiteLink
+                      to={l.to}
+                      {...hashProps(l)}
+                      aria-current={active ? "page" : undefined}
+                      aria-haspopup="menu"
+                      className={`site-nav-products-trigger ${linkClass}`}
+                    >
+                      {l.label}
+                      <ChevronDown className="site-nav-products-caret" aria-hidden />
+                    </SiteLink>
+                    <div className="site-nav-products-panel" role="menu" aria-label="Products">
+                      <ProductMenuItems className="site-nav-products-item" />
+                    </div>
+                  </div>
+                );
+              }
+
               return (
                 <SiteLink
                   key={`${l.to}${"hash" in l && l.hash ? `#${l.hash}` : ""}`}
                   to={l.to}
                   {...hashProps(l)}
                   aria-current={active ? "page" : undefined}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
-                    active
-                      ? "text-primary decoration-primary decoration-2 underline-offset-4"
-                      : "text-foreground"
-                  }`}
+                  className={linkClass}
                 >
                   {l.label}
                 </SiteLink>
@@ -236,6 +288,27 @@ export function Nav() {
           <div className="site-nav-links container-nav">
             {visibleNavLinks.map((l) => {
               const active = isNavActive(pathname, l.to);
+              if (l.to === "/products") {
+                return (
+                  <div key={`mobile-${l.to}`} className="site-nav-products-mobile">
+                    <SiteLink
+                      to={l.to}
+                      {...hashProps(l)}
+                      onClick={() => setOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={`site-nav-link ${active ? "is-active" : ""}`}
+                    >
+                      {l.label}
+                    </SiteLink>
+                    <div className="site-nav-products-mobile-list" role="group" aria-label="Products">
+                      <ProductMenuItems
+                        onNavigate={() => setOpen(false)}
+                        className="site-nav-products-mobile-item"
+                      />
+                    </div>
+                  </div>
+                );
+              }
               return (
                 <SiteLink
                   key={`mobile-${l.to}${"hash" in l && l.hash ? `#${l.hash}` : ""}`}

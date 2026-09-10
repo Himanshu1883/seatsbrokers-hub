@@ -19,6 +19,7 @@ import stadiumTunnel from "@/assets/backdrops/stadium-night-lit1.jpg";
 import stadiumNightLit from "@/assets/backdrops/stadium-night-lit.png";
 import aiConnect from "@/assets/backdrops/istockphoto-1206796363-612x612.jpg";
 import platformLayers from "@/assets/backdrops/istockphoto-2262851578-612x612.jpg";
+import integrationConnect from "@/assets/backdrops/integration-connect.jpg";
 import cityTowers from "@/assets/backdrops/istockphoto-1351571961-612x612.webp";
 import premiumVenue from "@/assets/backdrops/premium_photo-1681487767138-ddf2d67b35c1.avif";
 
@@ -49,6 +50,7 @@ export const eventBackdrops = {
   stadiumNightLit,
   aiConnect,
   platformLayers,
+  integrationConnect,
   cityTowers,
   premiumVenue,
 } as const;

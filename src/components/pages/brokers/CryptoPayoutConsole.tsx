@@ -126,11 +126,11 @@ export function CryptoPayoutConsole() {
       onPointerDownCapture={takeControl}
       onKeyDownCapture={takeControl}
     >
-      <ConsoleShell path="seatsbrokers / seatsfunds / usdt-rail" status={status} icon={Wallet}>
+      <ConsoleShell path="seatsbrokers / SeatsPay / usdt-rail" status={status} icon={Wallet}>
         <div className="sfp-body">
           <header className="sfp-sale">
             <div className="sfp-sale-copy">
-              <span className="lc-mono">SeatsFunds™ · payout desk</span>
+              <span className="lc-mono">SeatsPay™ · payout desk</span>
               <strong>{payoutSale.event}</strong>
               <span>
                 {payoutSale.venue} · {payoutSale.channel}

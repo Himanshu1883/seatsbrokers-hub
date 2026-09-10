@@ -243,7 +243,7 @@ export const aboutSurfaces = [
     cta: `Explore ${modules.funds.name}`,
     layer: "Settle",
     analysis:
-      "SeatsFunds™ is payments and settlement inside the same workflow — purchasing, balances and eligible partner payouts.",
+      "SeatsPay™ is payments and settlement inside the same workflow — purchasing, balances and eligible partner payouts.",
     systems: ["Payments", "Purchasing", "Settlement"],
     readout: [
       { label: "Role", value: "Payments" },

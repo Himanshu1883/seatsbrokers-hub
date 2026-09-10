@@ -4037,7 +4037,7 @@ main > .section-curve:first-child {
   }
 }
 
-/* SeatsFundsÃ¢ÂÂ¢ stage has no product screenshot Ã¢ÂÂ it fills the frame with a
+/* SeatsPayÃ¢ÂÂ¢ stage has no product screenshot Ã¢ÂÂ it fills the frame with a
    static light desk instead of stretching a shorter card. */
 .how-it-desktop-shot[data-kind="desk"] {
   align-self: stretch;
@@ -38277,7 +38277,7 @@ html.site-nav-locked body {
   }
 }
 
-/* == Brokers SeatsFundsÃ¢ÂÂ¢ payout desk (sfp-*) 2026-08-19 ==
+/* == Brokers SeatsPayÃ¢ÂÂ¢ payout desk (sfp-*) 2026-08-19 ==
    Live Console on /brokers after PaymentInfrastructureSection.
    USDT / wallet rail is the hero. Qualitative Standard vs crypto switch.
    No volume ladder, sale maths, or KPI amounts. Reserved path / ledger /
@@ -43025,7 +43025,7 @@ body,
   }
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ ToolkitShowcase static desks (SeatsSource / SeatsMarket / SeatsFunds) Ã¢ÂÂÃ¢ÂÂ
+/* Ã¢ÂÂÃ¢ÂÂ ToolkitShowcase static desks (SeatsSource / SeatsMarket / SeatsPay) Ã¢ÂÂÃ¢ÂÂ
    Prefix: .tks-* only. Do not use .sto-* or .tpa-*.
    Consoles fill .toolkit-screen; no auto-cycle, packets, or scan loops. */
 
@@ -71755,4 +71755,159 @@ button.border-border.bg-transparent svg.lucide,
 
 .hiw-track-node[data-done="true"] .hiw-track-dot {
   background: color-mix(in oklab, var(--primary) 42%, transparent);
+}
+
+/* Products hover menu (2026-09-10). Desktop ≥1024 hover/focus-within;
+   mobile sheet nests the same seven links under Products. */
+@media (min-width: 1024px) {
+  .site-nav {
+    overflow: visible;
+  }
+}
+
+.site-nav-products {
+  position: relative;
+}
+
+.site-nav-products-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+}
+
+.site-nav-products-caret {
+  width: 0.9rem;
+  height: 0.9rem;
+  stroke-width: 2;
+  color: currentColor !important;
+  stroke: currentColor !important;
+  background: transparent !important;
+  transition: transform 0.18s ease;
+}
+
+.site-nav-products:hover .site-nav-products-caret,
+.site-nav-products:focus-within .site-nav-products-caret {
+  transform: rotate(-180deg);
+}
+
+.site-nav-products-panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  min-width: 16.5rem;
+  padding: 0.4rem;
+  margin-top: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background);
+  box-shadow: var(--shadow-lift);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(0.35rem);
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease,
+    visibility 0s linear 0.16s;
+}
+
+.site-nav-products-panel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 0.95rem;
+}
+
+.site-nav-products:hover .site-nav-products-panel,
+.site-nav-products:focus-within .site-nav-products-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  transition-delay: 0s;
+}
+
+.site-nav-products-item {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.08rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: calc(var(--radius) - 2px);
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.site-nav-products-item:hover,
+.site-nav-products-item:focus-visible {
+  background: color-mix(in oklab, var(--primary) 8%, transparent);
+}
+
+.site-nav-products-item.is-active {
+  background: color-mix(in oklab, var(--primary) 8%, transparent);
+}
+
+.site-nav-products-item-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--foreground);
+}
+
+.site-nav-products-item.is-active .site-nav-products-item-name,
+.site-nav-products-item:hover .site-nav-products-item-name {
+  color: var(--primary);
+}
+
+.site-nav-products-item-note {
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  color: var(--muted-foreground);
+}
+
+.site-nav-products-mobile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  padding: 0 0 0.35rem 0.75rem;
+}
+
+.site-nav-products-mobile-item {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.06rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 1rem;
+  border-radius: 0.5rem;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.site-nav-products-mobile-item:hover,
+.site-nav-products-mobile-item.is-active {
+  background: color-mix(in oklab, var(--primary) 6%, transparent);
+}
+
+.site-nav-products-mobile-item .site-nav-products-item-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.site-nav-products-mobile-item.is-active .site-nav-products-item-name {
+  color: var(--primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav-products-caret,
+  .site-nav-products-panel {
+    transition: none;
+  }
 }

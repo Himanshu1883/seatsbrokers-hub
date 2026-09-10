@@ -334,7 +334,7 @@ Do not add a database, HubSpot embed, or invented CRM UI. Do not publish competi
 2026-08-22
 
 ### Decision
-Homepage section 4 (`HowItWorks.tsx`) now carries the full **01–07 Discover → Source → Price → Connect → Distribute → Sell → Settle** workflow, one stage per owning product, replacing the three-step intelligence sticky described in the Phase 3 decision above. Copy reuses `productsSteps` / `platformModules` wording instead of adding another variant of the same sentences. The existing sticky cinema is kept — desktop left cards scroll against a `sticky` right pane, mobile stacks shot-above-card — with the active step measured from card centers so the step count is not hardcoded. Six stages reuse existing product screenshots; SeatsFunds™ has no screenshot, so Settle uses a static light `.how-it-desk-*` desk with illustrative £ rows rather than new artwork.
+Homepage section 4 (`HowItWorks.tsx`) now carries the full **01–07 Discover → Source → Price → Connect → Distribute → Sell → Settle** workflow, one stage per owning product, replacing the three-step intelligence sticky described in the Phase 3 decision above. Copy reuses `productsSteps` / `platformModules` wording instead of adding another variant of the same sentences. The existing sticky cinema is kept — desktop left cards scroll against a `sticky` right pane, mobile stacks shot-above-card — with the active step measured from card centers so the step count is not hardcoded. Six stages reuse existing product screenshots; SeatsPay™ has no screenshot, so Settle uses a static light `.how-it-desk-*` desk with illustrative £ rows rather than new artwork.
 
 ### Reason
 Master brief §4. ProcessBento states the spine as chips; the homepage still needed one section that walks a reader through all seven stages with the product that owns each and a route into it.
@@ -350,7 +350,7 @@ Do not return this section to three intelligence steps, and do not let it drift 
 2026-08-22
 
 ### Decision
-`/products/seatsintel` through `/products/seatsfunds` all mount `ProductStoryPage` in brief order (name/what, Problem, How, capabilities, integration chain, Book a Demo + Become a Seller). **Heroes and How desks are the earlier unique designs** passed as slots (`EventIntelHero`, `MarketplaceHero`, `TravelPartnersHero`, catalog/inventory, live consoles, etc.). Global FinalCTA is off. PartnerTerms is not a second close.
+`/products/seatsintel` through `/products/seatspay` all mount `ProductStoryPage` in brief order (name/what, Problem, How, capabilities, integration chain, Book a Demo + Become a Seller). **Heroes and How desks are the earlier unique designs** passed as slots (`EventIntelHero`, `MarketplaceHero`, `TravelPartnersHero`, catalog/inventory, live consoles, etc.). Global FinalCTA is off. PartnerTerms is not a second close.
 
 ### Reason
 Master brief “Every product page should follow the same layout,” without throwing away the Live Console / hero walls already built.

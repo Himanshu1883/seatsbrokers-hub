@@ -105,7 +105,7 @@ export function PlatformStackWall() {
 
       <p className="sr-only">
         SeatsBrokers operating ecosystem. Seven stages Discover, Source, Price, Connect,
-        Distribute, Sell &amp; fulfil and Pay &amp; settle light SeatsIntel™ through SeatsFunds™.
+        Distribute, Sell &amp; fulfil and Pay &amp; settle light SeatsIntel™ through SeatsPay™.
         Active surface: {layer.product}. Figures are illustrative.
       </p>
     </div>

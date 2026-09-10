@@ -142,8 +142,8 @@ const variants: Record<LiveConsoleVariant, LiveConsoleMeta | null> = {
   },
   cryptoPayouts: {
     eyebrow: modules.funds.name,
-    title: "SeatsFunds™ — settle in USDT.",
-    body: "When a marketplace sale completes, SeatsFunds™ withholds the sale commission and sends the rest to your wallet on the USDT rail. No monthly fee. No listing fee. The standard bank rail stays available; the crypto rail adds an extra transfer fee and moves USDT on-chain. Commission steps down as lifetime volume grows — you do not re-negotiate the rate.",
+    title: "SeatsPay™ — settle in USDT.",
+    body: "When a marketplace sale completes, SeatsPay™ withholds the sale commission and sends the rest to your wallet on the USDT rail. No monthly fee. No listing fee. The standard bank rail stays available; the crypto rail adds an extra transfer fee and moves USDT on-chain. Commission steps down as lifetime volume grows — you do not re-negotiate the rate.",
     detail:
       "The desk follows one path: the sale posts, commission is taken from that sale only, then the armed rail settles. Arm USDT and the payout leaves as an on-chain transfer to the broker wallet, with a settlement confirmation on the desk. Arm Standard and the same sale settles on the bank rails already on the payments desk — no extra payout fee. Brokers open this console for the USDT rail; Standard is the quiet alternative.",
     detailLabel: "How the USDT desk works",
@@ -155,7 +155,7 @@ const variants: Record<LiveConsoleVariant, LiveConsoleMeta | null> = {
     points: [
       {
         title: "USDT wallet rail",
-        body: "Arm the crypto rail and SeatsFunds™ routes the payout to the broker wallet as USDT — vault, on-chain transfer, then the wallet. That is the primary settlement story on this desk.",
+        body: "Arm the crypto rail and SeatsPay™ routes the payout to the broker wallet as USDT — vault, on-chain transfer, then the wallet. That is the primary settlement story on this desk.",
       },
       {
         title: "On-chain transfer",

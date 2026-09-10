@@ -31,6 +31,7 @@ import { Route as ProductsSeatsfundsRouteImport } from './routes/products/seatsf
 import { Route as ProductsSeatsintelRouteImport } from './routes/products/seatsintel'
 import { Route as ProductsSeatslinkRouteImport } from './routes/products/seatslink'
 import { Route as ProductsSeatsmarketRouteImport } from './routes/products/seatsmarket'
+import { Route as ProductsSeatspayRouteImport } from './routes/products/seatspay'
 import { Route as ProductsSeatspulseRouteImport } from './routes/products/seatspulse'
 import { Route as ProductsSeatssourceRouteImport } from './routes/products/seatssource'
 
@@ -144,6 +145,11 @@ const ProductsSeatsmarketRoute = ProductsSeatsmarketRouteImport.update({
   path: '/products/seatsmarket',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsSeatspayRoute = ProductsSeatspayRouteImport.update({
+  id: '/products/seatspay',
+  path: '/products/seatspay',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsSeatspulseRoute = ProductsSeatspulseRouteImport.update({
   id: '/products/seatspulse',
   path: '/products/seatspulse',
@@ -177,6 +183,7 @@ export interface FileRoutesByFullPath {
   '/products/seatsintel': typeof ProductsSeatsintelRoute
   '/products/seatslink': typeof ProductsSeatslinkRoute
   '/products/seatsmarket': typeof ProductsSeatsmarketRoute
+  '/products/seatspay': typeof ProductsSeatspayRoute
   '/products/seatspulse': typeof ProductsSeatspulseRoute
   '/products/seatssource': typeof ProductsSeatssourceRoute
   '/products/': typeof ProductsIndexRoute
@@ -203,6 +210,7 @@ export interface FileRoutesByTo {
   '/products/seatsintel': typeof ProductsSeatsintelRoute
   '/products/seatslink': typeof ProductsSeatslinkRoute
   '/products/seatsmarket': typeof ProductsSeatsmarketRoute
+  '/products/seatspay': typeof ProductsSeatspayRoute
   '/products/seatspulse': typeof ProductsSeatspulseRoute
   '/products/seatssource': typeof ProductsSeatssourceRoute
   '/products': typeof ProductsIndexRoute
@@ -230,6 +238,7 @@ export interface FileRoutesById {
   '/products/seatsintel': typeof ProductsSeatsintelRoute
   '/products/seatslink': typeof ProductsSeatslinkRoute
   '/products/seatsmarket': typeof ProductsSeatsmarketRoute
+  '/products/seatspay': typeof ProductsSeatspayRoute
   '/products/seatspulse': typeof ProductsSeatspulseRoute
   '/products/seatssource': typeof ProductsSeatssourceRoute
   '/products/': typeof ProductsIndexRoute
@@ -258,6 +267,7 @@ export interface FileRouteTypes {
     | '/products/seatsintel'
     | '/products/seatslink'
     | '/products/seatsmarket'
+    | '/products/seatspay'
     | '/products/seatspulse'
     | '/products/seatssource'
     | '/products/'
@@ -284,6 +294,7 @@ export interface FileRouteTypes {
     | '/products/seatsintel'
     | '/products/seatslink'
     | '/products/seatsmarket'
+    | '/products/seatspay'
     | '/products/seatspulse'
     | '/products/seatssource'
     | '/products'
@@ -310,6 +321,7 @@ export interface FileRouteTypes {
     | '/products/seatsintel'
     | '/products/seatslink'
     | '/products/seatsmarket'
+    | '/products/seatspay'
     | '/products/seatspulse'
     | '/products/seatssource'
     | '/products/'
@@ -337,6 +349,7 @@ export interface RootRouteChildren {
   ProductsSeatsintelRoute: typeof ProductsSeatsintelRoute
   ProductsSeatslinkRoute: typeof ProductsSeatslinkRoute
   ProductsSeatsmarketRoute: typeof ProductsSeatsmarketRoute
+  ProductsSeatspayRoute: typeof ProductsSeatspayRoute
   ProductsSeatspulseRoute: typeof ProductsSeatspulseRoute
   ProductsSeatssourceRoute: typeof ProductsSeatssourceRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
@@ -498,6 +511,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsSeatsmarketRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/seatspay': {
+      id: '/products/seatspay'
+      path: '/products/seatspay'
+      fullPath: '/products/seatspay'
+      preLoaderRoute: typeof ProductsSeatspayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/seatspulse': {
       id: '/products/seatspulse'
       path: '/products/seatspulse'
@@ -537,6 +557,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsSeatsintelRoute: ProductsSeatsintelRoute,
   ProductsSeatslinkRoute: ProductsSeatslinkRoute,
   ProductsSeatsmarketRoute: ProductsSeatsmarketRoute,
+  ProductsSeatspayRoute: ProductsSeatspayRoute,
   ProductsSeatspulseRoute: ProductsSeatspulseRoute,
   ProductsSeatssourceRoute: ProductsSeatssourceRoute,
   ProductsIndexRoute: ProductsIndexRoute,

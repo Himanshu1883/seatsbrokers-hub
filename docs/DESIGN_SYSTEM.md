@@ -98,7 +98,7 @@ Copy + console must stay in this split. New “alive” sections should use `Tra
 | SeatsLink™ | API & connectivity | Connect your ticketing operation. |
 | SeatsMarket™ | Distribution | List once. Distribute everywhere. |
 | SeatsDeal™ | Quotes, orders & fulfilment | From enquiry to sale. |
-| SeatsFunds™ | Payments & settlement | Payments built into your ticketing workflow. |
+| SeatsPay™ | Payments & settlement | Payments built into your ticketing workflow. |
 
 SeatsLaunch™ remains in `modules.ts` but is **parked** — not in `moduleList` and not shown on any public surface.
 

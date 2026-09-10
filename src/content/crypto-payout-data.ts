@@ -1,4 +1,4 @@
-/** Illustrative SeatsFunds™ USDT payout desk — qualitative rails and auto-run frames. No demo KPIs or amounts. */
+/** Illustrative SeatsPay™ USDT payout desk — qualitative rails and auto-run frames. No demo KPIs or amounts. */
 
 export const PAYOUT_RESUME_MS = 14000;
 
@@ -12,7 +12,7 @@ export type PayoutRail = "standard" | "usdt";
 export type PayoutStage = "sale" | "withhold" | "transfer" | "settle";
 
 export const payoutStages = [
-  { id: "sale" as const, label: "Sale", detail: "Marketplace sale posts to SeatsFunds™" },
+  { id: "sale" as const, label: "Sale", detail: "Marketplace sale posts to SeatsPay™" },
   {
     id: "withhold" as const,
     label: "Commission",
@@ -47,12 +47,12 @@ export const payoutTracks = [
 
 export const pathNodes = {
   usdt: [
-    { id: "vault", label: "SeatsFunds™ vault", hint: "Sale in" },
+    { id: "vault", label: "SeatsPay™ vault", hint: "Sale in" },
     { id: "rail", label: "USDT rail", hint: "On-chain" },
     { id: "dest", label: "Broker wallet", hint: "USDT out" },
   ],
   standard: [
-    { id: "vault", label: "SeatsFunds™ vault", hint: "Sale in" },
+    { id: "vault", label: "SeatsPay™ vault", hint: "Sale in" },
     { id: "rail", label: "Bank rail", hint: "Sterling" },
     { id: "dest", label: "Broker account", hint: "Settled" },
   ],
@@ -68,13 +68,13 @@ export type ChainChipId = (typeof chainChips)[number]["id"];
 
 export const ledgerCopy = {
   usdt: [
-    "Marketplace sale posts to the SeatsFunds™ desk",
+    "Marketplace sale posts to the SeatsPay™ desk",
     "Sale commission withheld — nothing monthly, nothing to list",
     "USDT broadcasts on the crypto rail toward the broker wallet",
     "On-chain confirmation — USDT settled in the wallet",
   ],
   standard: [
-    "Marketplace sale posts to the SeatsFunds™ desk",
+    "Marketplace sale posts to the SeatsPay™ desk",
     "Sale commission withheld — nothing monthly, nothing to list",
     "Payout leaves on the bank rails already on the payments desk",
     "Sterling settlement confirmed — crypto rail stays idle",
